@@ -1,6 +1,7 @@
 ---
 import Container from '../ui/Container.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
+import { Check } from '@lucide/astro';
 
 const differentiators = [
   'Marketing and technical execution under one workflow',
@@ -28,8 +29,8 @@ const differentiators = [
       <ul class="flex flex-col border-t border-brand-grey/25 pt-6 lg:border-t-0 lg:pt-0">
         {
           differentiators.map((item) => (
-            <li class="flex items-start gap-4 py-4 border-b border-brand-grey/15 first:pt-0 last:border-b-0 last:pb-0">
-              <span class="text-brand-blue font-bold text-lg select-none shrink-0 mt-[-2px]">&mdash;</span>
+            <li class="flex items-start gap-4 py-5 border-b border-brand-grey/15 first:pt-0 last:border-b-0 last:pb-0">
+              <Check class="w-5 h-5 text-brand-blue shrink-0 mt-0.5" />
               <p class="font-body text-base font-normal text-brand-black leading-relaxed">
                 {item}
               </p>

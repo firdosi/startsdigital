@@ -6,17 +6,17 @@ import { siteConfig } from '../../data/site';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-brand-grey/10 bg-brand-navy py-12 md:py-16">
-  <Container class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+<footer class="border-t border-brand-grey/10 bg-brand-navy py-16 md:py-20">
+  <Container class="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
     <!-- Left Column: Brandmark & Tagline -->
-    <div class="max-w-md">
-      <span class="font-heading text-lg font-bold tracking-tight text-brand-white">
+    <div class="max-w-md space-y-4">
+      <span class="font-heading text-xl md:text-2xl font-bold tracking-tight text-brand-white">
         Starts<span class="text-brand-blue">Digital</span>
       </span>
-      <p class="mt-4 font-body text-sm font-light leading-relaxed text-brand-text">
+      <p class="font-body text-base font-normal leading-relaxed text-brand-muted-dark">
         {siteConfig.tagline}
       </p>
-      <p class="mt-2 font-body text-xs font-light text-brand-text/70">
+      <p class="font-body text-sm font-normal text-brand-text">
         AI-powered digital marketing for businesses ready to grow.
       </p>
     </div>
@@ -26,12 +26,12 @@ const currentYear = new Date().getFullYear();
       <span class="font-heading text-xs font-bold tracking-widest text-brand-white uppercase">
         Explore
       </span>
-      <nav class="flex flex-col gap-2.5" aria-label="Footer Navigation">
+      <nav class="flex flex-col gap-3" aria-label="Footer Navigation">
         {
           footerNavLinks.map((link) => (
             <a
               href={link.href}
-              class="font-body text-sm font-light text-brand-text hover:text-brand-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded px-1 py-0.5"
+              class="font-body text-base font-normal text-brand-muted-dark hover:text-brand-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded py-0.5"
             >
               {link.label}
             </a>
@@ -42,11 +42,11 @@ const currentYear = new Date().getFullYear();
   </Container>
 
   <!-- Copyright Area -->
-  <Container class="mt-12 border-t border-brand-grey/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-    <p class="font-body text-xs font-light text-brand-text/50">
+  <Container class="mt-16 border-t border-brand-grey/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+    <p class="font-body text-sm font-normal text-brand-text">
       &copy; {currentYear} {siteConfig.name}. All rights reserved.
     </p>
-    <p class="font-body text-xs font-light text-brand-text/50">
+    <p class="font-body text-sm font-normal text-brand-text">
       Built for speed, accessibility, and measurable growth.
     </p>
   </Container>

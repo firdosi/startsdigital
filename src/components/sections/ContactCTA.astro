@@ -4,22 +4,22 @@ import Button from '../ui/Button.astro';
 import { siteConfig } from '../../data/site';
 ---
 
-<section id="contact" class="bg-brand-black text-brand-white py-24 md:py-32 scroll-mt-20 border-t border-brand-grey/5">
+<section id="contact" class="bg-brand-black text-brand-white py-28 md:py-36 scroll-mt-20 border-t border-brand-grey/5">
   <Container class="text-center flex flex-col items-center justify-center space-y-8 max-w-4xl">
     <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
       GET IN TOUCH
     </span>
 
-    <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-brand-white max-w-2xl leading-tight">
+    <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-white max-w-3xl leading-tight">
       Ready to build a stronger digital presence?
     </h2>
 
-    <p class="font-body text-base sm:text-lg font-light text-brand-text max-w-xl leading-relaxed">
+    <p class="font-body text-base sm:text-lg font-normal text-brand-muted-dark max-w-xl leading-relaxed">
       Tell us where your business is today, what you want to achieve and where digital marketing is currently falling short.
     </p>
 
-    <!-- Call to Actions -->
-    <div class="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto justify-center">
+    <!-- Call to Actions: Full width on mobile -->
+    <div class="flex flex-col sm:flex-row gap-4 pt-6 w-full sm:w-auto justify-center">
       <Button href={`mailto:${siteConfig.contact.email}`} variant="primary" class="w-full sm:w-auto">
         Start a Project
       </Button>
@@ -35,17 +35,17 @@ import { siteConfig } from '../../data/site';
       </Button>
     </div>
 
-    <!-- Direct Contact Details Display -->
-    <div class="pt-10 border-t border-brand-grey/10 w-full grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm font-body max-w-md mx-auto text-brand-text">
+    <!-- Direct Contact Details Display: High-contrast, larger text, distinct spacing -->
+    <div class="pt-16 border-t border-brand-grey/10 w-full grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm font-body max-w-md mx-auto text-brand-muted-dark">
       <div class="flex flex-col items-center sm:items-end sm:pr-8 sm:border-r border-brand-grey/10">
-        <span class="text-2xs font-bold tracking-widest text-brand-white uppercase font-heading mb-1">Email Us</span>
-        <a href={`mailto:${siteConfig.contact.email}`} class="hover:text-brand-white transition-colors">
+        <span class="text-xs font-bold tracking-widest text-brand-white uppercase font-heading mb-1.5">Email Us</span>
+        <a href={`mailto:${siteConfig.contact.email}`} class="text-base sm:text-lg hover:text-brand-white transition-colors">
           {siteConfig.contact.email}
         </a>
       </div>
       <div class="flex flex-col items-center sm:items-start sm:pl-8">
-        <span class="text-2xs font-bold tracking-widest text-brand-white uppercase font-heading mb-1">WhatsApp</span>
-        <a href={siteConfig.contact.whatsappUrl} target="_blank" rel="noopener noreferrer" class="hover:text-brand-white transition-colors">
+        <span class="text-xs font-bold tracking-widest text-brand-white uppercase font-heading mb-1.5">WhatsApp</span>
+        <a href={siteConfig.contact.whatsappUrl} target="_blank" rel="noopener noreferrer" class="text-base sm:text-lg hover:text-brand-white transition-colors">
           {siteConfig.contact.phone}
         </a>
       </div>

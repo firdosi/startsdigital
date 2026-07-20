@@ -13,17 +13,19 @@ import { servicesData } from '../../data/services';
     />
 
     <!-- Editorial 3-Column Service Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 pt-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12 pt-4">
       {
         servicesData.map((service, index) => (
-          <div class="flex flex-col space-y-3 border-t border-brand-grey/10 pt-6">
-            <span class="font-heading text-xs font-semibold text-brand-teal tracking-wider uppercase">
-              0{index + 1}
-            </span>
-            <h3 class="font-heading text-lg font-bold text-brand-white">
-              {service.title}
-            </h3>
-            <p class="font-body text-sm font-light text-brand-text leading-relaxed">
+          <div class="flex flex-col space-y-4 border-t border-brand-grey/10 pt-8">
+            <div class="flex items-baseline gap-3.5">
+              <span class="font-heading text-sm sm:text-base font-bold text-brand-teal select-none shrink-0">
+                0{index + 1}
+              </span>
+              <h3 class="font-heading text-xl sm:text-2xl font-bold text-brand-white tracking-tight">
+                {service.title}
+              </h3>
+            </div>
+            <p class="font-body text-base font-normal text-brand-muted-dark leading-relaxed pl-7">
               {service.description}
             </p>
           </div>

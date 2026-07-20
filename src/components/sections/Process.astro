@@ -12,19 +12,19 @@ import { processData } from '../../data/process';
       theme="dark"
     />
 
-    <!-- Numbered Sequence Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 pt-4">
+    <!-- Numbered Sequence Layout: Stacked timeline on mobile/tablet, 3-column grid on desktop -->
+    <div class="flex flex-col lg:grid lg:grid-cols-3 gap-x-10 gap-y-12 pt-4">
       {
         processData.map((item) => (
-          <div class="flex gap-5 items-start border-t border-brand-grey/10 pt-6">
-            <span class="font-heading text-xl sm:text-2xl font-extrabold text-brand-blue tracking-tight select-none shrink-0">
+          <div class="flex gap-6 items-start border-t border-brand-grey/10 pt-8">
+            <span class="font-heading text-3xl sm:text-4xl font-bold text-brand-blue select-none shrink-0 leading-none">
               {item.step}
             </span>
-            <div class="space-y-2">
-              <h3 class="font-heading text-lg font-bold text-brand-white">
+            <div class="space-y-3">
+              <h3 class="font-heading text-xl sm:text-2xl font-bold text-brand-white tracking-tight">
                 {item.title}
               </h3>
-              <p class="font-body text-sm font-light text-brand-text leading-relaxed">
+              <p class="font-body text-base font-normal text-brand-muted-dark leading-relaxed">
                 {item.description}
               </p>
             </div>

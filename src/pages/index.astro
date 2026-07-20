@@ -43,10 +43,10 @@ const capabilities = [
         <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-brand-white leading-[1.1] max-w-2xl">
           Digital marketing built to <span class="text-brand-blue">start</span>, grow and scale businesses online.
         </h1>
-        <p class="font-body text-base sm:text-lg font-light leading-relaxed text-brand-text max-w-xl">
+        <p class="font-body text-base sm:text-lg font-normal leading-relaxed text-brand-muted-dark max-w-xl">
           Starts Digital combines strategy, paid advertising, SEO, websites, content and practical AI solutions to help businesses build a stronger digital presence and create measurable opportunities.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+        <div class="flex flex-col sm:flex-row gap-4 pt-6">
           <Button 
             href="#work" 
             variant="primary"
@@ -74,16 +74,13 @@ const capabilities = [
           <ul class="space-y-4">
             {
               capabilities.map((item, index) => (
-                <li class="flex items-center justify-between group border-b border-brand-grey/5 pb-3.5 last:border-0 last:pb-0">
+                <li class="flex items-center justify-between border-b border-brand-grey/10 pb-4 last:border-0 last:pb-0">
                   <div class="flex items-center gap-4">
-                    <span class="font-heading text-xs text-brand-text/45 font-semibold">0{index + 1}</span>
-                    <span class="font-body text-sm sm:text-base font-normal text-brand-white group-hover:text-brand-blue transition-colors duration-200">
+                    <span class="font-heading text-xs font-bold text-brand-teal">0{index + 1}</span>
+                    <span class="font-body text-base font-normal text-brand-white">
                       {item}
                     </span>
                   </div>
-                  <span class="text-brand-teal text-xs font-semibold tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-1 group-hover:translate-x-0 font-heading">
-                    Active &rarr;
-                  </span>
                 </li>
               ))
             }

@@ -14,7 +14,7 @@ import { siteConfig } from '../../data/site';
     <!-- Brand Logo -->
     <a
       href={`${siteConfig.basePath}/`}
-      class="font-heading text-lg font-bold tracking-tight text-brand-white hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+      class="font-heading text-xl md:text-2xl font-bold tracking-tight text-brand-white hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
       aria-label="Starts Digital Home"
     >
       Starts<span class="text-brand-blue">Digital</span>
@@ -45,10 +45,10 @@ import { siteConfig } from '../../data/site';
       </Button>
     </div>
 
-    <!-- Mobile Menu Toggle Button -->
+    <!-- Mobile Menu Toggle Button (44px min touch target) -->
     <button
       id="mobile-menu-toggle"
-      class="relative z-50 p-2 text-brand-white hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded md:hidden"
+      class="relative z-50 w-11 h-11 flex items-center justify-center text-brand-white hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded md:hidden"
       aria-controls="mobile-menu"
       aria-expanded="false"
       aria-label="Toggle Navigation Menu"
