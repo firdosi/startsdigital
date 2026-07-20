@@ -67,7 +67,7 @@ startsdigital/
 ## Local Development Instructions
 
 ### Prerequisites
-*   Node.js (v18.14.1 or higher, preferably v24+)
+*   Node.js (>=22.12.0)
 *   npm
 
 ### 1. Installation

@@ -12,8 +12,8 @@ export const siteConfig = {
   
   // Interactive / Contact Links
   links: {
-    whatsapp: 'https://wa.me/1234567890', // Centralized for contact forms & floating buttons
-    contact: '/startsdigital/contact',     // Centralized routing
+    whatsapp: undefined as string | undefined, // Empty/undefined WhatsApp config
+    contact: '#',                             // Pointing to safe anchor until section/page is built
   }
 } as const;
 

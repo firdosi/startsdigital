@@ -31,6 +31,7 @@ const currentYear = new Date().getFullYear();
           footerNavLinks.map((link) => (
             <a
               href={link.href}
+              onclick={link.isUnbuilt ? "event.preventDefault()" : undefined}
               class="font-body text-sm font-light text-brand-text hover:text-brand-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded px-1 py-0.5"
             >
               {link.label}

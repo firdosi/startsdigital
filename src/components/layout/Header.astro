@@ -26,6 +26,7 @@ import { siteConfig } from '../../data/site';
         headerNavLinks.map((link) => (
           <a
             href={link.href}
+            onclick={link.isUnbuilt ? "event.preventDefault()" : undefined}
             class="font-heading text-sm font-medium text-brand-text hover:text-brand-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue px-1 py-1 rounded"
           >
             {link.label}
@@ -36,7 +37,12 @@ import { siteConfig } from '../../data/site';
 
     <!-- Desktop Call to Action -->
     <div class="hidden md:block">
-      <Button href={siteConfig.links.contact} variant="primary" class="!px-5 !py-2">
+      <Button 
+        href={siteConfig.links.contact} 
+        variant="primary" 
+        class="!px-5 !py-2"
+        onclick={siteConfig.links.contact === '#' ? "event.preventDefault()" : undefined}
+      >
         Start a Project
       </Button>
     </div>
