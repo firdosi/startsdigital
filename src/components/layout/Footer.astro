@@ -1,0 +1,53 @@
+---
+import Container from '../ui/Container.astro';
+import { footerNavLinks } from '../../data/navigation';
+import { siteConfig } from '../../data/site';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-brand-grey/10 bg-brand-navy py-12 md:py-16">
+  <Container class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+    <!-- Left Column: Brandmark & Tagline -->
+    <div class="max-w-md">
+      <span class="font-heading text-lg font-bold tracking-tight text-brand-white">
+        Start<span class="text-brand-blue">Digital</span>
+      </span>
+      <p class="mt-4 font-body text-sm font-light leading-relaxed text-brand-text">
+        {siteConfig.tagline}
+      </p>
+      <p class="mt-2 font-body text-xs font-light text-brand-text/70">
+        AI-powered digital marketing for businesses ready to grow.
+      </p>
+    </div>
+
+    <!-- Right Column: Links -->
+    <div class="flex flex-col gap-4">
+      <span class="font-heading text-xs font-bold tracking-widest text-brand-white uppercase">
+        Explore
+      </span>
+      <nav class="flex flex-col gap-2.5" aria-label="Footer Navigation">
+        {
+          footerNavLinks.map((link) => (
+            <a
+              href={link.href}
+              class="font-body text-sm font-light text-brand-text hover:text-brand-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded px-1 py-0.5"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </Container>
+
+  <!-- Copyright Area -->
+  <Container class="mt-12 border-t border-brand-grey/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="font-body text-xs font-light text-brand-text/50">
+      &copy; {currentYear} {siteConfig.name}. All rights reserved.
+    </p>
+    <p class="font-body text-xs font-light text-brand-text/50">
+      Built for speed, accessibility, and measurable growth.
+    </p>
+  </Container>
+</footer>

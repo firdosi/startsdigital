@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import Container from '../components/ui/Container.astro';
+import { siteConfig } from '../data/site';
+---
+
+<BaseLayout title="404 Page Not Found" description="The page you requested was not found.">
+  <section class="flex min-h-[50vh] items-center justify-center py-24 md:py-32">
+    <Container class="text-center flex flex-col items-center justify-center space-y-6">
+      <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
+        Error 404
+      </span>
+      <h1 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-brand-white">
+        Lost in navigation.
+      </h1>
+      <p class="font-body text-base text-brand-text max-w-md leading-relaxed">
+        The page you are looking for doesn't exist, has been moved, or is currently under development.
+      </p>
+      <div class="pt-4">
+        <Button href={`${siteConfig.basePath}/`} variant="primary">
+          Return to Homepage
+        </Button>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

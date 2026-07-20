@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import Container from '../components/ui/Container.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import { ArrowRight, Sparkles, Check, ShieldCheck } from '@lucide/astro';
+---
+
+<BaseLayout title="Design System Style Guide" description="Internal style guide and visual testing page." noindex={true}>
+  <section class="pt-32 pb-24 md:pt-40 md:pb-32">
+    <Container class="space-y-16">
+      
+      <!-- Style Guide Header -->
+      <div class="border-b border-brand-grey/10 pb-8">
+        <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
+          Internal Review Only
+        </span>
+        <h1 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-brand-white mt-2">
+          Visual Style Guide
+        </h1>
+        <p class="mt-4 font-body text-base font-light text-brand-text max-w-xl">
+          This private page demonstrates the visual system, styling tokens, and interface components developed for Start Digital.
+        </p>
+      </div>
+
+      <!-- Color Palette -->
+      <div class="space-y-6">
+        <SectionHeading title="Color Tokens" description="Our premium editorial palette. High-contrast colors configured for accessible readability." />
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-4">
+          
+          <div class="flex flex-col gap-2">
+            <div class="h-16 w-full rounded bg-brand-black border border-brand-grey/10"></div>
+            <span class="font-heading text-xs font-semibold text-brand-white">Near Black</span>
+            <span class="font-body text-2xs text-brand-text">#0B0D10 / Base BG</span>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <div class="h-16 w-full rounded bg-brand-navy border border-brand-grey/10"></div>
+            <span class="font-heading text-xs font-semibold text-brand-white">Deep Navy</span>
+            <span class="font-body text-2xs text-brand-text">#07111F / Containers</span>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <div class="h-16 w-full rounded bg-brand-white"></div>
+            <span class="font-heading text-xs font-semibold text-brand-white">Warm White</span>
+            <span class="font-body text-2xs text-brand-text">#F7F7F3 / Main Text</span>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <div class="h-16 w-full rounded bg-brand-grey"></div>
+            <span class="font-heading text-xs font-semibold text-brand-white">Soft Grey</span>
+            <span class="font-body text-2xs text-brand-text">#E8EBEF / Subheaders</span>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <div class="h-16 w-full rounded bg-brand-blue"></div>
+            <span class="font-heading text-xs font-semibold text-brand-white">Primary Blue</span>
+            <span class="font-body text-2xs text-brand-text">#246BFD / Focus, CTAs</span>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <div class="h-16 w-full rounded bg-brand-teal"></div>
+            <span class="font-heading text-xs font-semibold text-brand-white">Teal Accent</span>
+            <span class="font-body text-2xs text-brand-text">#10A8A0 / Strategy</span>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <div class="h-16 w-full rounded bg-brand-text"></div>
+            <span class="font-heading text-xs font-semibold text-brand-white">Text Grey</span>
+            <span class="font-body text-2xs text-brand-text">#667085 / Body Copy</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Typography Scale -->
+      <div class="space-y-6 border-t border-brand-grey/5 pt-12">
+        <SectionHeading title="Typography" description="Font family scales. Headings styled in Manrope, body copy styled in Inter." />
+        <div class="space-y-6 max-w-4xl">
+          <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 border-b border-brand-grey/5 pb-4">
+            <span class="font-body text-xs text-brand-text w-24 shrink-0">H1 / Hero Title</span>
+            <h1 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-brand-white">
+              Digital strategy that scales.
+            </h1>
+          </div>
+          <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 border-b border-brand-grey/5 pb-4">
+            <span class="font-body text-xs text-brand-text w-24 shrink-0">H2 / Section Title</span>
+            <h2 class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-brand-white">
+              Strategic execution, clear results.
+            </h2>
+          </div>
+          <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 border-b border-brand-grey/5 pb-4">
+            <span class="font-body text-xs text-brand-text w-24 shrink-0">H3 / Subhead</span>
+            <h3 class="font-heading text-xl font-semibold text-brand-white">
+              AI Marketing &amp; Integrations
+            </h3>
+          </div>
+          <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 border-b border-brand-grey/5 pb-4">
+            <span class="font-body text-xs text-brand-text w-24 shrink-0">Body Large</span>
+            <p class="font-body text-lg font-light text-brand-text leading-relaxed">
+              We design digital products that solve complex problems and connect brands to their audiences using structured, fast architectures.
+            </p>
+          </div>
+          <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
+            <span class="font-body text-xs text-brand-text w-24 shrink-0">Body Regular</span>
+            <p class="font-body text-base font-normal text-brand-text leading-relaxed">
+              Start Digital combines strategy, paid advertising, SEO, websites, content and practical AI solutions to help businesses build a stronger digital presence and create measurable opportunities.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-y-6 border-t border-brand-grey/5 pt-12">
+        <SectionHeading title="Buttons &amp; Links" description="Interactive CTA styles with focus rules." />
+        <div class="flex flex-wrap items-center gap-6">
+          <div class="flex flex-col gap-2">
+            <span class="font-body text-2xs text-brand-text">Primary CTA</span>
+            <Button variant="primary">Start a Project</Button>
+          </div>
+          <div class="flex flex-col gap-2">
+            <span class="font-body text-2xs text-brand-text">Secondary CTA</span>
+            <Button variant="secondary">Discuss Your Project</Button>
+          </div>
+          <div class="flex flex-col gap-2">
+            <span class="font-body text-2xs text-brand-text">Tertiary Link</span>
+            <Button variant="tertiary" href="#">View Our Work</Button>
+          </div>
+          <div class="flex flex-col gap-2">
+            <span class="font-body text-2xs text-brand-text">Standard Inline Link</span>
+            <a href="#" class="text-sm font-semibold text-brand-blue hover:text-brand-white underline underline-offset-4 transition-colors">
+              Read Our Process
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spacing Scale -->
+      <div class="space-y-6 border-t border-brand-grey/5 pt-12">
+        <SectionHeading title="Spacing Scale" description="Predictable spatial scales configured in Tailwind." />
+        <div class="space-y-3 font-body text-xs">
+          <div class="flex items-center gap-4">
+            <span class="w-16 text-brand-text">Small (16px)</span>
+            <div class="h-4 bg-brand-blue/20 rounded w-4 border border-brand-blue/30" title="w-4"></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="w-16 text-brand-text">Medium (32px)</span>
+            <div class="h-4 bg-brand-blue/20 rounded w-8 border border-brand-blue/30" title="w-8"></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="w-16 text-brand-text">Large (48px)</span>
+            <div class="h-4 bg-brand-blue/20 rounded w-12 border border-brand-blue/30" title="w-12"></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="w-16 text-brand-text">X-Large (64px)</span>
+            <div class="h-4 bg-brand-blue/20 rounded w-16 border border-brand-blue/30" title="w-16"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid Cards & Containers -->
+      <div class="space-y-6 border-t border-brand-grey/5 pt-12">
+        <SectionHeading title="Containers &amp; Cards" description="Subtle rounded layouts, clean borders, and soft frame layouts." />
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-brand-navy border border-brand-grey/10 rounded-xl p-6 relative overflow-hidden">
+            <h4 class="font-heading text-base font-semibold text-brand-white mb-2">Strategy First</h4>
+            <p class="font-body text-sm font-light text-brand-text leading-relaxed">
+              We define clear goals and align technology parameters before initiating campaigns.
+            </p>
+          </div>
+          <div class="bg-brand-navy border border-brand-grey/10 rounded-xl p-6 relative overflow-hidden">
+            <h4 class="font-heading text-base font-semibold text-brand-white mb-2">Creative Content</h4>
+            <p class="font-body text-sm font-light text-brand-text leading-relaxed">
+              Premium visual assets and message-oriented copywriting tailored for customer conversion.
+            </p>
+          </div>
+          <div class="bg-brand-navy border border-brand-grey/10 rounded-xl p-6 relative overflow-hidden">
+            <h4 class="font-heading text-base font-semibold text-brand-white mb-2">Practical AI</h4>
+            <p class="font-body text-sm font-light text-brand-text leading-relaxed">
+              Deploying intelligent solutions that cut workflow overheads and scale leads.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Icon System -->
+      <div class="space-y-6 border-t border-brand-grey/5 pt-12">
+        <SectionHeading title="Icons System" description="Selective use of Lucide icons to add meaningful visual identifiers." />
+        <div class="flex items-center gap-8">
+          <div class="flex items-center gap-2 text-sm text-brand-text">
+            <Sparkles class="h-5 w-5 text-brand-blue" />
+            <span>AI Spotlight</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm text-brand-text">
+            <ShieldCheck class="h-5 w-5 text-brand-teal" />
+            <span>Trust Indicator</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm text-brand-text">
+            <Check class="h-5 w-5 text-brand-white" />
+            <span>Completed Step</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm text-brand-text">
+            <ArrowRight class="h-5 w-5 text-brand-text" />
+            <span>Next Transition</span>
+          </div>
+        </div>
+      </div>
+
+    </Container>
+  </section>
+</BaseLayout>

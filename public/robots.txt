@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://firdosi.github.io/startsdigital/sitemap-index.xml

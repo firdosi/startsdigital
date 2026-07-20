@@ -1,0 +1,184 @@
+---
+import { headerNavLinks } from '../../data/navigation';
+import Button from '../ui/Button.astro';
+import Container from '../ui/Container.astro';
+import MobileMenu from './MobileMenu.astro';
+import { siteConfig } from '../../data/site';
+---
+
+<header
+  id="main-header"
+  class="fixed top-0 left-0 right-0 z-50 w-full border-b border-transparent bg-transparent transition-all duration-300"
+>
+  <Container class="flex h-20 items-center justify-between">
+    <!-- Brand Logo -->
+    <a
+      href={`${siteConfig.basePath}/`}
+      class="font-heading text-lg font-bold tracking-tight text-brand-white hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+      aria-label="Start Digital Home"
+    >
+      Start<span class="text-brand-blue">Digital</span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+      {
+        headerNavLinks.map((link) => (
+          <a
+            href={link.href}
+            class="font-heading text-sm font-medium text-brand-text hover:text-brand-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue px-1 py-1 rounded"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Desktop Call to Action -->
+    <div class="hidden md:block">
+      <Button href={siteConfig.links.contact} variant="primary" class="!px-5 !py-2">
+        Start a Project
+      </Button>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button
+      id="mobile-menu-toggle"
+      class="relative z-50 p-2 text-brand-white hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded md:hidden"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Toggle Navigation Menu"
+    >
+      <span class="sr-only">Toggle navigation menu</span>
+      <!-- Hamburger Icon Lines -->
+      <div class="flex h-5 w-6 flex-col justify-between">
+        <span class="hamburger-line h-[2px] w-full bg-current transition-all duration-300 origin-left"></span>
+        <span class="hamburger-line h-[2px] w-full bg-current transition-all duration-300"></span>
+        <span class="hamburger-line h-[2px] w-full bg-current transition-all duration-300 origin-left"></span>
+      </div>
+    </button>
+  </Container>
+</header>
+
+<!-- Mobile Navigation Drawer -->
+<MobileMenu id="mobile-menu" />
+
+<!-- Overlay Backdrop for Mobile Menu -->
+<div
+  id="mobile-menu-overlay"
+  class="fixed inset-0 z-30 hidden bg-brand-black/60 backdrop-blur-sm transition-opacity duration-300"
+  aria-hidden="true"
+></div>
+
+<script>
+  // Access and toggle DOM elements for mobile navigation
+  const header = document.getElementById('main-header');
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('mobile-menu-overlay');
+  const lines = document.querySelectorAll('.hamburger-line');
+  const navLinks = document.querySelectorAll('.mobile-nav-link');
+  const body = document.body;
+
+  let isOpen = false;
+
+  function toggleMobileMenu(open: boolean) {
+    if (!toggleBtn || !mobileMenu || !overlay) return;
+    
+    isOpen = open;
+    toggleBtn.setAttribute('aria-expanded', String(isOpen));
+    
+    if (isOpen) {
+      mobileMenu.classList.remove('translate-x-full');
+      overlay.classList.remove('hidden');
+      body.classList.add('overflow-hidden');
+      
+      // Animate Hamburger to Close X
+      if (lines[0] && lines[1] && lines[2]) {
+        (lines[0] as HTMLElement).style.transform = 'rotate(45deg) translate(4px, 1.5px)';
+        (lines[1] as HTMLElement).style.opacity = '0';
+        (lines[2] as HTMLElement).style.transform = 'rotate(-45deg) translate(4px, -1.5px)';
+      }
+      
+      // Focus-trap: focus on the first link inside the menu
+      setTimeout(() => {
+        const firstLink = mobileMenu.querySelector('a');
+        if (firstLink) firstLink.focus();
+      }, 100);
+    } else {
+      mobileMenu.classList.add('translate-x-full');
+      overlay.classList.add('hidden');
+      body.classList.remove('overflow-hidden');
+      
+      // Animate Close X back to Hamburger
+      if (lines[0] && lines[1] && lines[2]) {
+        (lines[0] as HTMLElement).style.transform = 'none';
+        (lines[1] as HTMLElement).style.opacity = '1';
+        (lines[2] as HTMLElement).style.transform = 'none';
+      }
+      
+      toggleBtn.focus();
+    }
+  }
+
+  // Click Event Listeners
+  toggleBtn?.addEventListener('click', () => {
+    toggleMobileMenu(!isOpen);
+  });
+
+  overlay?.addEventListener('click', () => {
+    toggleMobileMenu(false);
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      toggleMobileMenu(false);
+    });
+  });
+
+  // Close menu on Escape key press
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) {
+      toggleMobileMenu(false);
+    }
+  });
+
+  // Focus trap inside the mobile navigation drawer
+  mobileMenu?.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    
+    const focusableElements = mobileMenu.querySelectorAll('a, button');
+    if (!focusableElements.length) return;
+    
+    const firstElement = focusableElements[0] as HTMLElement;
+    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+    if (e.shiftKey) { // Shift + Tab
+      if (document.activeElement === firstElement) {
+        lastElement.focus();
+        e.preventDefault();
+      }
+    } else { // Tab
+      if (document.activeElement === lastElement) {
+        firstElement.focus();
+        e.preventDefault();
+      }
+    }
+  });
+
+  // Scroll styling check
+  function checkScroll() {
+    if (!header) return;
+    if (window.scrollY > 20) {
+      header.classList.add('bg-brand-black/95', 'backdrop-blur-md', 'border-brand-grey/10');
+      header.classList.remove('bg-transparent', 'border-transparent');
+    } else {
+      header.classList.add('bg-transparent', 'border-transparent');
+      header.classList.remove('bg-brand-black/95', 'backdrop-blur-md', 'border-brand-grey/10');
+    }
+  }
+
+  window.addEventListener('scroll', checkScroll);
+  // Initial check
+  checkScroll();
+</script>

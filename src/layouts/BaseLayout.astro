@@ -1,0 +1,53 @@
+---
+// Font imports for local self-hosting via Fontsource Variable packages
+import '@fontsource-variable/inter';
+import '@fontsource-variable/manrope';
+import '../styles/global.css';
+
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import SEO from '../components/seo/SEO.astro';
+import StructuredData from '../components/seo/StructuredData.astro';
+import { siteConfig } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { title, description, noindex = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang={siteConfig.defaultLanguage} class="h-full selection:bg-brand-blue/30 selection:text-brand-white">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={`${siteConfig.basePath}/favicon.svg`} />
+    
+    <SEO title={title} description={description} noindex={noindex} />
+    <StructuredData />
+    <slot name="head" />
+  </head>
+  <body class="flex min-h-full flex-col bg-brand-black text-brand-white antialiased">
+    <!-- Accessibility Skip Link -->
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-brand-blue focus:px-4 focus:py-2 focus:text-brand-white focus:font-semibold focus:outline-none"
+    >
+      Skip to content
+    </a>
+
+    <!-- Header Navigation -->
+    <Header />
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="flex-grow outline-none" tabindex="-1">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+  </body>
+</html>

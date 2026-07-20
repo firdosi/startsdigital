@@ -1,0 +1,18 @@
+---
+import { siteConfig } from '../../data/site';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": siteConfig.name,
+  "url": `${siteConfig.url}${siteConfig.basePath}/`,
+  "logo": `${siteConfig.url}${siteConfig.basePath}/favicon.svg`,
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": `${siteConfig.url}${siteConfig.basePath}/#contact`
+  }
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

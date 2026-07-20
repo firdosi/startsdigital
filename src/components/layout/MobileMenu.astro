@@ -1,0 +1,38 @@
+---
+import { headerNavLinks } from '../../data/navigation';
+import Button from '../ui/Button.astro';
+import { siteConfig } from '../../data/site';
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div
+  id={id}
+  class="fixed inset-y-0 right-0 z-40 w-full max-w-sm translate-x-full bg-brand-black border-l border-brand-grey/10 pt-24 px-8 pb-8 transition-transform duration-300 md:hidden flex flex-col justify-between shadow-2xl"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Mobile Navigation"
+>
+  <nav class="flex flex-col gap-5">
+    {
+      headerNavLinks.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link font-heading text-lg font-medium text-brand-white hover:text-brand-blue py-3 border-b border-brand-grey/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+
+  <div class="mt-auto">
+    <Button href={siteConfig.links.contact} variant="primary" class="w-full text-center" id="mobile-menu-cta">
+      Start a Project
+    </Button>
+  </div>
+</div>
