@@ -11,7 +11,7 @@ const currentYear = new Date().getFullYear();
     <!-- Left Column: Brandmark & Tagline -->
     <div class="max-w-md">
       <span class="font-heading text-lg font-bold tracking-tight text-brand-white">
-        Start<span class="text-brand-blue">Digital</span>
+        Starts<span class="text-brand-blue">Digital</span>
       </span>
       <p class="mt-4 font-body text-sm font-light leading-relaxed text-brand-text">
         {siteConfig.tagline}
@@ -31,7 +31,6 @@ const currentYear = new Date().getFullYear();
           footerNavLinks.map((link) => (
             <a
               href={link.href}
-              onclick={link.isUnbuilt ? "arguments[0].preventDefault()" : undefined}
               class="font-body text-sm font-light text-brand-text hover:text-brand-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded px-1 py-0.5"
             >
               {link.label}

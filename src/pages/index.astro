@@ -2,7 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/ui/Button.astro';
 import Container from '../components/ui/Container.astro';
-import { siteConfig } from '../data/site';
+
+// Section Component Imports
+import Results from '../components/sections/Results.astro';
+import Services from '../components/sections/Services.astro';
+import SelectedWork from '../components/sections/SelectedWork.astro';
+import Process from '../components/sections/Process.astro';
+import WhyUs from '../components/sections/WhyUs.astro';
+import AboutPreview from '../components/sections/AboutPreview.astro';
+import ContactCTA from '../components/sections/ContactCTA.astro';
 
 const capabilities = [
   'Digital Strategy',
@@ -14,7 +22,10 @@ const capabilities = [
 ];
 ---
 
-<BaseLayout title="AI-Powered Digital Strategy & Growth" description={siteConfig.description}>
+<BaseLayout 
+  title="AI-Powered Digital Marketing Agency" 
+  description="Starts Digital provides digital strategy, Meta advertising, SEO, website development, creative content and practical AI marketing solutions for growing businesses."
+>
   <!-- Homepage Hero Section -->
   <section class="relative pt-32 pb-24 md:pt-44 md:pb-36 overflow-hidden">
     <!-- Subtle Grid Background Composition for Premium Technical Feel -->
@@ -33,20 +44,18 @@ const capabilities = [
           Digital marketing built to <span class="text-brand-blue">start</span>, grow and scale businesses online.
         </h1>
         <p class="font-body text-base sm:text-lg font-light leading-relaxed text-brand-text max-w-xl">
-          Start Digital combines strategy, paid advertising, SEO, websites, content and practical AI solutions to help businesses build a stronger digital presence and create measurable opportunities.
+          Starts Digital combines strategy, paid advertising, SEO, websites, content and practical AI solutions to help businesses build a stronger digital presence and create measurable opportunities.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 pt-4">
           <Button 
-            href="#" 
+            href="#work" 
             variant="primary"
-            onclick="arguments[0].preventDefault()"
           >
             View Our Work
           </Button>
           <Button 
-            href={siteConfig.links.contact} 
+            href="#contact" 
             variant="secondary"
-            onclick={siteConfig.links.contact === '#' ? "arguments[0].preventDefault()" : undefined}
           >
             Discuss Your Project
           </Button>
@@ -83,4 +92,25 @@ const capabilities = [
       </div>
     </Container>
   </section>
+
+  <!-- Section 3: Results and Credibility -->
+  <Results />
+
+  <!-- Section 4: Services -->
+  <Services />
+
+  <!-- Section 5: Selected Work -->
+  <SelectedWork />
+
+  <!-- Section 6: Working Process -->
+  <Process />
+
+  <!-- Section 7: Why Starts Digital -->
+  <WhyUs />
+
+  <!-- Section 8: About Preview -->
+  <AboutPreview />
+
+  <!-- Section 9: Final Contact CTA -->
+  <ContactCTA />
 </BaseLayout>

@@ -1,6 +1,6 @@
-# Start Digital - Design System
+# Starts Digital - Design System
 
-This document outlines the core styling tokens, guidelines, and constraints for the Start Digital website. All developers and AI agents must strictly adhere to these rules when building or modifying the UI.
+This document outlines the core styling tokens, guidelines, and constraints for the Starts Digital website. All developers and AI agents must strictly adhere to these rules when building or modifying the UI.
 
 ---
 

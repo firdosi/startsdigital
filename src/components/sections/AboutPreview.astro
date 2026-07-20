@@ -1,0 +1,24 @@
+---
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="about" class="bg-brand-navy text-brand-white py-20 md:py-28 scroll-mt-20">
+  <Container class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+    <!-- Left Column: Headings -->
+    <div class="lg:col-span-6">
+      <SectionHeading
+        eyebrow="ABOUT STARTS DIGITAL"
+        title="Built from hands-on experience across marketing, websites and business growth."
+        theme="dark"
+      />
+    </div>
+
+    <!-- Right Column: Strategic Pitch copy -->
+    <div class="lg:col-span-6">
+      <p class="font-body text-base sm:text-lg font-light text-brand-text leading-relaxed border-t border-brand-grey/10 pt-6 lg:border-t-0 lg:pt-0">
+        Starts Digital is an AI-powered digital marketing agency combining strategy, advertising, SEO, website development, creative content and practical automation. Our approach connects marketing decisions with real implementation, helping businesses strengthen their digital presence without managing several disconnected providers.
+      </p>
+    </div>
+  </Container>
+</section>

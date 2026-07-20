@@ -6,7 +6,14 @@ const schema = {
   "@type": "Organization",
   "name": siteConfig.name,
   "url": `${siteConfig.url}${siteConfig.basePath}/`,
-  "logo": `${siteConfig.url}${siteConfig.basePath}/favicon.svg`
+  "logo": `${siteConfig.url}${siteConfig.basePath}/favicon.svg`,
+  "email": siteConfig.contact.email,
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "email": siteConfig.contact.email,
+    "url": `${siteConfig.url}${siteConfig.basePath}/#contact`
+  }
 };
 ---
 

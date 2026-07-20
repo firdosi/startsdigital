@@ -4,6 +4,7 @@ interface Props {
   title: string;
   description?: string;
   alignment?: 'left' | 'center';
+  theme?: 'dark' | 'light';
   class?: string;
 }
 
@@ -12,6 +13,7 @@ const {
   title,
   description,
   alignment = 'left',
+  theme = 'dark',
   class: className = '',
 } = Astro.props;
 
@@ -19,6 +21,9 @@ const alignmentClasses = {
   left: 'text-left',
   center: 'text-center mx-auto',
 };
+
+const titleColor = theme === 'light' ? 'text-brand-black' : 'text-brand-white';
+const descColor = theme === 'light' ? 'text-brand-text' : 'text-brand-text';
 ---
 
 <div class={`max-w-3xl ${alignmentClasses[alignment]} ${className}`}>
@@ -27,11 +32,11 @@ const alignmentClasses = {
       {eyebrow}
     </span>
   )}
-  <h2 class="font-heading text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-white leading-tight">
+  <h2 class={`font-heading text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${titleColor} leading-tight`}>
     {title}
   </h2>
   {description && (
-    <p class="mt-4 text-base sm:text-lg text-brand-text font-light leading-relaxed">
+    <p class={`mt-4 text-base sm:text-lg ${descColor} font-light leading-relaxed`}>
       {description}
     </p>
   )}

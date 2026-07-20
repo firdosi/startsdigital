@@ -1,6 +1,6 @@
-# Start Digital Website
+# Starts Digital Website
 
-A premium, fast, SEO-friendly digital marketing agency and portfolio website for **Start Digital**.
+A premium, fast, SEO-friendly digital marketing agency and portfolio website for **Starts Digital**.
 
 *   **Temporary Live URL**: `https://firdosi.github.io/startsdigital/`
 *   **Future Custom Domain**: `startsdigital.com`

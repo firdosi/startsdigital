@@ -1,0 +1,32 @@
+---
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import { resultsData } from '../../data/results';
+---
+
+<section id="results" class="bg-brand-white text-brand-black py-20 md:py-28 scroll-mt-20">
+  <Container class="space-y-12 md:space-y-16">
+    <SectionHeading
+      eyebrow="REAL WORK. MEASURABLE OUTCOMES."
+      title="Marketing decisions backed by practical execution."
+      description="Our experience covers digital campaigns, e-commerce, lead generation, websites, SEO and AI-powered content across multiple industries."
+      theme="light"
+    />
+
+    <!-- Metrics Strip Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-10 border-t border-brand-grey/25">
+      {
+        resultsData.map((item) => (
+          <div class="flex flex-col space-y-2">
+            <span class="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-brand-blue">
+              {item.value}
+            </span>
+            <p class="font-body text-sm sm:text-base font-light text-brand-text leading-snug">
+              {item.wording}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

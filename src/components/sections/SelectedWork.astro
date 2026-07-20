@@ -1,0 +1,65 @@
+---
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import { projectsData } from '../../data/projects';
+---
+
+<section id="work" class="bg-brand-white text-brand-black py-20 md:py-28 scroll-mt-20">
+  <Container class="space-y-12 md:space-y-16">
+    <SectionHeading
+      eyebrow="SELECTED WORK"
+      title="Experience across products, services and competitive industries."
+      theme="light"
+    />
+
+    <!-- Editorial Panel Rows divided by subtle lines -->
+    <div class="flex flex-col border-t border-brand-grey/25 divide-y divide-brand-grey/15">
+      {
+        projectsData.map((project) => (
+          <div class="py-8 md:py-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            <!-- Left side: Project Title and Industry -->
+            <div class="lg:col-span-4 space-y-2">
+              <h3 class="font-heading text-xl font-bold text-brand-black">
+                {project.title}
+              </h3>
+              <span class="inline-block text-xs font-semibold text-brand-teal uppercase tracking-wider font-heading">
+                {project.industry}
+              </span>
+            </div>
+
+            <!-- Middle: Services Tag Strip -->
+            <div class="lg:col-span-4 space-y-2">
+              <span class="block font-heading text-2xs font-bold tracking-widest text-brand-text uppercase">
+                Services Rendered
+              </span>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                {project.services.map((service) => (
+                  <span class="text-xs bg-brand-grey/30 text-brand-black border border-brand-grey/20 px-2.5 py-0.5 rounded font-body">
+                    {service}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Right side: Verified Business Outcome -->
+            <div class="lg:col-span-4 space-y-2">
+              <span class="block font-heading text-2xs font-bold tracking-widest text-brand-text uppercase">
+                Outcome
+              </span>
+              <p class="font-body text-sm sm:text-base font-light text-brand-black leading-relaxed">
+                {project.result}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Case Studies Footer Note -->
+    <div class="pt-8 border-t border-brand-grey/20 text-center">
+      <p class="font-body text-xs font-medium tracking-[0.15em] text-brand-text uppercase">
+        Detailed case studies coming next &middot; Reviewing campaign outcomes
+      </p>
+    </div>
+  </Container>
+</section>

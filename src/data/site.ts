@@ -1,19 +1,28 @@
 export const siteConfig = {
-  name: 'Start Digital',
+  name: 'Starts Digital',
   tagline: 'AI-Powered Digital Strategy & Growth',
-  description: 'Digital marketing built to start, grow and scale businesses online. Strategy, paid advertising, SEO, website development, content, and practical AI solutions.',
+  description: 'Starts Digital provides digital strategy, Meta advertising, SEO, website development, creative content and practical AI marketing solutions for growing businesses.',
+  
   // Deployment Configuration (Centralized for easy domain migrations)
   url: 'https://firdosi.github.io',
   basePath: '/startsdigital',
   
   // SEO Metadata Defaults
   defaultLanguage: 'en',
-  author: 'Start Digital Agency',
+  author: 'Starts Digital Agency',
+  
+  // Centralized Contact Details
+  contact: {
+    email: 'firdosidigital@gmail.com',
+    phone: '+92 339 4135544',
+    whatsappNumber: '+923394135544',
+    whatsappUrl: 'https://wa.me/923394135544'
+  },
   
   // Interactive / Contact Links
   links: {
-    whatsapp: undefined as string | undefined, // Empty/undefined WhatsApp config
-    contact: '#',                             // Pointing to safe anchor until section/page is built
+    whatsapp: 'https://wa.me/923394135544',
+    contact: '#contact',
   }
 } as const;
 

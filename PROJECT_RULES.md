@@ -1,4 +1,4 @@
-# Start Digital - Project Rules
+# Starts Digital - Project Rules
 
 This repository enforces strict rules for development. All future AI coding agents and human developers must follow these rules without exception.
 

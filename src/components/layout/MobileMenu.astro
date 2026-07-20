@@ -22,7 +22,6 @@ const { id } = Astro.props;
       headerNavLinks.map((link) => (
         <a
           href={link.href}
-          onclick={link.isUnbuilt ? "arguments[0].preventDefault()" : undefined}
           class="mobile-nav-link font-heading text-lg font-medium text-brand-white hover:text-brand-blue py-3 border-b border-brand-grey/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
         >
           {link.label}
@@ -37,7 +36,6 @@ const { id } = Astro.props;
       variant="primary" 
       class="w-full text-center" 
       id="mobile-menu-cta"
-      onclick={siteConfig.links.contact === '#' ? "arguments[0].preventDefault()" : undefined}
     >
       Start a Project
     </Button>

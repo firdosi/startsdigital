@@ -15,9 +15,9 @@ import { siteConfig } from '../../data/site';
     <a
       href={`${siteConfig.basePath}/`}
       class="font-heading text-lg font-bold tracking-tight text-brand-white hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
-      aria-label="Start Digital Home"
+      aria-label="Starts Digital Home"
     >
-      Start<span class="text-brand-blue">Digital</span>
+      Starts<span class="text-brand-blue">Digital</span>
     </a>
 
     <!-- Desktop Navigation Links -->
@@ -26,7 +26,6 @@ import { siteConfig } from '../../data/site';
         headerNavLinks.map((link) => (
           <a
             href={link.href}
-            onclick={link.isUnbuilt ? "arguments[0].preventDefault()" : undefined}
             class="font-heading text-sm font-medium text-brand-text hover:text-brand-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue px-1 py-1 rounded"
           >
             {link.label}
@@ -41,7 +40,6 @@ import { siteConfig } from '../../data/site';
         href={siteConfig.links.contact} 
         variant="primary" 
         class="!px-5 !py-2"
-        onclick={siteConfig.links.contact === '#' ? "arguments[0].preventDefault()" : undefined}
       >
         Start a Project
       </Button>

@@ -1,0 +1,42 @@
+---
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const differentiators = [
+  'Marketing and technical execution under one workflow',
+  'Practical AI adoption without unnecessary gimmicks',
+  'Experience across different industries and business models',
+  'Campaigns, websites, SEO and content managed together',
+  'Decisions based on commercial goals, not vanity metrics',
+  'Direct communication and transparent execution',
+];
+---
+
+<section id="why-us" class="bg-brand-white text-brand-black py-20 md:py-28 scroll-mt-20">
+  <Container class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+    <!-- Left Column: Strategic Headings -->
+    <div class="lg:col-span-5">
+      <SectionHeading
+        eyebrow="WHY STARTS DIGITAL"
+        title="Strategy, marketing and technology working together."
+        theme="light"
+      />
+    </div>
+
+    <!-- Right Column: Differentiators List -->
+    <div class="lg:col-span-7">
+      <ul class="flex flex-col border-t border-brand-grey/25 pt-6 lg:border-t-0 lg:pt-0">
+        {
+          differentiators.map((item) => (
+            <li class="flex items-start gap-4 py-4 border-b border-brand-grey/15 first:pt-0 last:border-b-0 last:pb-0">
+              <span class="text-brand-blue font-bold text-lg select-none shrink-0 mt-[-2px]">&mdash;</span>
+              <p class="font-body text-base font-normal text-brand-black leading-relaxed">
+                {item}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Container>
+</section>
