@@ -16,19 +16,19 @@ This plan proposes visual refinements for the Starts Digital homepage to improve
 
 ### Reusable UI and Layout
 
-#### [MODIFY] [SectionHeading.astro](src/components/ui/SectionHeading.astro)
+#### [MODIFY] [SectionHeading.astro](../../../src/components/ui/SectionHeading.astro)
 - Adjust the light and dark text colors to use `text-brand-muted-dark` in dark mode for better readability.
 
 ---
 
 ### Navigation Components
 
-#### [MODIFY] [Header.astro](src/components/layout/Header.astro)
+#### [MODIFY] [Header.astro](../../../src/components/layout/Header.astro)
 - Enlarge logo wordmark to `text-xl md:text-2xl`.
 - Enlarge mobile hamburger toggle interactive target area to `44px` (`p-3` or `w-11 h-11`).
 - Maintain fixed position and check mobile paddings.
 
-#### [MODIFY] [Footer.astro](src/components/layout/Footer.astro)
+#### [MODIFY] [Footer.astro](../../../src/components/layout/Footer.astro)
 - Enlarge logo wordmark.
 - Ensure link list copy is at least `text-sm` or `text-base` (no low opacity or tiny text).
 - Increase spacing between sections, links, and copyright text.
@@ -37,44 +37,44 @@ This plan proposes visual refinements for the Starts Digital homepage to improve
 
 ### Homepage Sections
 
-#### [MODIFY] [index.astro](src/pages/index.astro) (Hero section layout inline)
+#### [MODIFY] [index.astro](../../../src/pages/index.astro) (Hero section layout inline)
 - Adjust mobile text size of hero paragraph to `text-base sm:text-lg leading-relaxed text-brand-muted-dark`.
 - Increase mobile padding/gap between hero copy and buttons.
 - Remove the hover-only `Active →` indicators from capabilities list rows to simplify layout on touch screens.
 - Enhance vertical rhythm between hero elements.
 
-#### [MODIFY] [Results.astro](src/components/sections/Results.astro)
+#### [MODIFY] [Results.astro](../../../src/components/sections/Results.astro)
 - Convert mobile layout to a clean 2-column grid (`grid grid-cols-2 lg:grid-cols-4 gap-8`).
 - Set figures to `text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-blue`.
 - Set wording text to `text-sm sm:text-base text-brand-text font-normal leading-normal` (clear paragraph spacing, no rounded cards).
 
-#### [MODIFY] [Services.astro](src/components/sections/Services.astro)
+#### [MODIFY] [Services.astro](../../../src/components/sections/Services.astro)
 - Enlarge numbers to `text-sm` or `text-base` in `text-brand-teal` with solid weights.
 - Enlarge service titles to `text-xl md:text-2xl font-bold`.
 - Ensure descriptions are at least `text-base` (16px) using `text-brand-muted-dark`.
 - Add clean border dividers and spacing between services.
 
-#### [MODIFY] [SelectedWork.astro](src/components/sections/SelectedWork.astro)
+#### [MODIFY] [SelectedWork.astro](../../../src/components/sections/SelectedWork.astro)
 - Remove tiny chips and replace with a short readable services sentence: *"Services: Meta advertising, digital strategy..."*
 - Make the outcome block visually dominant with larger bold text.
 - Re-layout each project row into an editorial panel.
 - Simplify the coming next note.
 
-#### [MODIFY] [Process.astro](src/components/sections/Process.astro)
+#### [MODIFY] [Process.astro](../../../src/components/sections/Process.astro)
 - Re-layout on mobile to a vertical timeline/sequence with visible spacing.
 - Enlarge numbers (`text-3xl` or `text-4xl` in `text-brand-blue`).
 - Enlarge step titles and set descriptions to `text-base` (16px) with `text-brand-muted-dark`.
 
-#### [MODIFY] [WhyUs.astro](src/components/sections/WhyUs.astro)
+#### [MODIFY] [WhyUs.astro](../../../src/components/sections/WhyUs.astro)
 - Replace plain dashes with a clean `@lucide/astro` icon (e.g. `ArrowUpRight` or `Check`) to act as list bullets.
 - Ensure description text is at least `text-base` (16px).
 - Add generous spacing between differentiators.
 
-#### [MODIFY] [AboutPreview.astro](src/components/sections/AboutPreview.astro)
+#### [MODIFY] [AboutPreview.astro](../../../src/components/sections/AboutPreview.astro)
 - Split dense strategic paragraph into two shorter, highly readable paragraphs.
 - Add supporting uppercase tracking eyebrow label: `MARKETING + TECHNOLOGY + EXECUTION`.
 
-#### [MODIFY] [ContactCTA.astro](src/components/sections/ContactCTA.astro)
+#### [MODIFY] [ContactCTA.astro](../../../src/components/sections/ContactCTA.astro)
 - Increase vertical padding (`py-28 md:py-36`).
 - Set CTA buttons to be full width on mobile (`w-full sm:w-auto`).
 - Set a minimum comfortable button height (`py-3.5`).

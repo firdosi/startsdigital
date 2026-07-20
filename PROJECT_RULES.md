@@ -16,3 +16,20 @@ This repository enforces strict rules for development. All future AI coding agen
 10. **Focused Commits**: Keep Git commits atomic, specific, and clearly named.
 11. **Security & Secrets**: Never commit API keys, configuration credentials, client details, private reports, or staging environment credentials. Use `.env` or system environment variables.
 12. **Restrained Aesthetics**: Do not add animations, gradients, shadows, or visual effects merely to make the site look "advanced". Keep the editorial layout spacious, clean, and strategic.
+
+## AGY Documentation Workflow
+
+- Before requesting approval for any planned task, create and push:
+  docs/agy/<task-name>/implementation-plan.md
+
+- Share the GitHub path, not a local file:/// path.
+
+- After completing the task, also push:
+  docs/agy/<task-name>/task-checklist.md
+  docs/agy/<task-name>/walkthrough.md
+
+- Update the implementation plan when the approved scope changes.
+
+- Documentation must use valid repository-relative links.
+
+- Local brain-folder Markdown files are not considered delivered until copied to GitHub.
