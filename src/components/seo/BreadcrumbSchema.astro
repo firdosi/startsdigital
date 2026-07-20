@@ -1,0 +1,27 @@
+---
+import { siteConfig } from '../../data/site';
+
+interface BreadcrumbSchemaItem {
+  name: string;
+  item: string; // Dynamic path relative to the domain (e.g., /startsdigital/work/)
+}
+
+interface Props {
+  items: BreadcrumbSchemaItem[];
+}
+
+const { items } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": `${siteConfig.url}${item.item}`
+  }))
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

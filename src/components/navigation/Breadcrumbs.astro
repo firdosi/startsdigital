@@ -1,0 +1,46 @@
+---
+import Container from '../ui/Container.astro';
+import { getAssetPath } from '../../data/site';
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+  class?: string;
+}
+
+const { items, class: className = '' } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class={`py-4 ${className}`}>
+  <Container class="flex flex-wrap items-center gap-2.5 text-sm font-body font-normal text-brand-muted-dark">
+    <a 
+      href={getAssetPath('/')} 
+      class="hover:text-brand-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded px-1"
+    >
+      Home
+    </a>
+    {
+      items.map((item) => (
+        <>
+          <span class="text-brand-text select-none text-xs">&rsaquo;</span>
+          {item.href ? (
+            <a 
+              href={item.href} 
+              class="hover:text-brand-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded px-1"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <span class="text-brand-white font-medium" aria-current="page">
+              {item.label}
+            </span>
+          )}
+        </>
+      ))
+    }
+  </Container>
+</nav>

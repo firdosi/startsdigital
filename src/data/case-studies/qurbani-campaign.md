@@ -1,0 +1,29 @@
+---
+title: "Qurbani Campaign"
+description: "Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign."
+industry: "Livestock and seasonal e-commerce"
+services:
+  - "Seasonal campaign strategy"
+  - "Paid social advertising"
+  - "Lead generation"
+  - "Creative content"
+  - "Sales support"
+  - "Campaign management"
+outcomeSummary: "Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign."
+metrics:
+  - value: "150+"
+    label: "animals sold"
+  - value: "PKR 4.2M+"
+    label: "sales supported"
+responsibilities:
+  - "Seasonal campaign planning and execution strategy"
+  - "Paid social advertising campaign setup and optimizations"
+  - "Lead generation and contact capture funnels"
+  - "Social media content and ad creatives"
+  - "Lead follow-up and sales coordination support"
+featured: true
+order: 2
+seoTitle: "Eid Qurbani Campaign: Seasonal Lead Generation Case Study | Starts Digital"
+seoDescription: "See how Starts Digital helped sell 150+ animals and supported PKR 4.2M+ in sales through a seasonal Eid Qurbani campaign."
+draft: false
+---

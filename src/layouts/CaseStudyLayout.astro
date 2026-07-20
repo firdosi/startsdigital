@@ -1,0 +1,218 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/navigation/Breadcrumbs.astro';
+import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
+import Container from '../components/ui/Container.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Button from '../components/ui/Button.astro';
+import { siteConfig, getAssetPath } from '../data/site';
+
+interface Props {
+  entry: {
+    id: string;
+    data: {
+      title: string;
+      description: string;
+      industry: string;
+      services: string[];
+      outcomeSummary: string;
+      metrics: Array<{ value: string; label: string }>;
+      responsibilities: string[];
+      seoTitle: string;
+      seoDescription: string;
+      ogImage?: string;
+      heroImage?: { src: string; alt: string; caption?: string };
+      gallery?: Array<{ src: string; alt: string; caption?: string }>;
+    };
+  };
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+
+const breadcrumbsList = [
+  { label: 'Work', href: getAssetPath('/work/') },
+  { label: data.title }
+];
+
+const schemaItems = [
+  { name: 'Home', item: `${siteConfig.basePath}/` },
+  { name: 'Work', item: `${siteConfig.basePath}/work/` },
+  { name: data.title, item: `${siteConfig.basePath}/work/${entry.id}/` }
+];
+---
+
+<BaseLayout title={data.seoTitle} description={data.seoDescription}>
+  <BreadcrumbSchema items={schemaItems} />
+  
+  <div class="bg-brand-black min-h-screen">
+    <!-- Breadcrumbs -->
+    <Breadcrumbs items={breadcrumbsList} class="border-b border-brand-grey/10" />
+
+    <!-- Hero Header Section -->
+    <section class="py-16 md:py-24 border-b border-brand-grey/5">
+      <Container class="space-y-6 max-w-4xl">
+        <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
+          {data.industry}
+        </span>
+        <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-brand-white leading-tight">
+          {data.title}
+        </h1>
+        <p class="font-body text-lg sm:text-xl font-normal text-brand-muted-dark leading-relaxed max-w-3xl">
+          {data.description}
+        </p>
+      </Container>
+    </section>
+
+    <!-- Key Metrics Strip -->
+    <section class="bg-brand-navy py-12 border-b border-brand-grey/10">
+      <Container class="max-w-4xl">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {
+            data.metrics.map((metric) => (
+              <div class="flex flex-col space-y-2">
+                <span class="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-brand-blue leading-none">
+                  {metric.value}
+                </span>
+                <p class="font-body text-base font-normal text-brand-muted-dark">
+                  {metric.label}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </Container>
+    </section>
+
+    <!-- Project Specifications & Content Layout -->
+    <section class="py-16 md:py-24 bg-brand-white text-brand-black">
+      <Container class="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl">
+        <!-- Left Sidebar: Metadata Info -->
+        <div class="lg:col-span-4 space-y-8">
+          <div class="border-b border-brand-grey/25 pb-6">
+            <span class="block font-heading text-xs font-bold tracking-widest text-brand-text uppercase mb-2">
+              Industry
+            </span>
+            <p class="font-body text-base font-normal text-brand-black">
+              {data.industry}
+            </p>
+          </div>
+
+          <div class="border-b border-brand-grey/25 pb-6">
+            <span class="block font-heading text-xs font-bold tracking-widest text-brand-text uppercase mb-2">
+              Services Provided
+            </span>
+            <ul class="space-y-2">
+              {
+                data.services.map((service) => (
+                  <li class="font-body text-base font-normal text-brand-text">
+                    <a 
+                      href={`${siteConfig.basePath}/#services`} 
+                      class="hover:text-brand-blue underline decoration-brand-grey/40 underline-offset-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded px-1 py-0.5"
+                    >
+                      {service}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Content Area: Responsibilities -->
+        <div class="lg:col-span-8 space-y-8">
+          <div>
+            <h2 class="font-heading text-2xl font-bold text-brand-black mb-6">
+              Our Responsibilities
+            </h2>
+            <ul class="space-y-4">
+              {
+                data.responsibilities.map((item) => (
+                  <li class="flex items-start gap-3">
+                    <span class="text-brand-blue font-bold text-base select-none shrink-0 mt-0.5">&mdash;</span>
+                    <p class="font-body text-base font-normal text-brand-text leading-relaxed">
+                      {item}
+                    </p>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <!-- Dynamic Markdown Body Content (if present) -->
+          <div class="prose max-w-none pt-4">
+            <slot />
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Visual Presentation: Conditionally rendered only if images exist -->
+    {
+      (data.heroImage || (data.gallery && data.gallery.length > 0)) && (
+        <section class="py-16 md:py-24 bg-brand-navy border-t border-b border-brand-grey/10">
+          <Container class="max-w-4xl space-y-8">
+            <SectionHeading
+              eyebrow="VISUAL EVIDENCE"
+              title="Campaign & project presentation."
+              theme="dark"
+            />
+            {data.heroImage && (
+              <figure class="space-y-2">
+                <img
+                  src={data.heroImage.src}
+                  alt={data.heroImage.alt}
+                  width="1200"
+                  height="630"
+                  class="w-full h-auto rounded-lg border border-brand-grey/10 object-cover"
+                />
+                {data.heroImage.caption && (
+                  <figcaption class="text-sm text-brand-muted-dark text-center">
+                    {data.heroImage.caption}
+                  </figcaption>
+                )}
+              </figure>
+            )}
+            {data.gallery && data.gallery.length > 0 && (
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {data.gallery.map((img) => (
+                  <figure class="space-y-2">
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      width="600"
+                      height="400"
+                      class="w-full h-auto rounded-lg border border-brand-grey/10 object-cover"
+                    />
+                    {img.caption && (
+                      <figcaption class="text-sm text-brand-muted-dark text-center">
+                        {img.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            )}
+          </Container>
+        </section>
+      )
+    }
+
+    <!-- Call to Action Section -->
+    <section class="bg-brand-black text-brand-white py-20 border-t border-brand-grey/5">
+      <Container class="text-center space-y-8 max-w-3xl">
+        <h2 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-brand-white">
+          Ready to build a stronger digital presence?
+        </h2>
+        <p class="font-body text-base sm:text-lg font-normal text-brand-muted-dark leading-relaxed">
+          Tell us about your business goals and where your digital marketing is currently falling short.
+        </p>
+        <div class="pt-4">
+          <Button href={`${siteConfig.basePath}/#contact`} variant="primary">
+            Start a Project
+          </Button>
+        </div>
+      </Container>
+    </section>
+  </div>
+</BaseLayout>
