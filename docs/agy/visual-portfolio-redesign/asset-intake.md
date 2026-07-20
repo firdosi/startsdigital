@@ -8,534 +8,443 @@ This document serves as the centralized asset intake and tracking checklist for 
 
 To prevent partial text-only layouts or broken image regions on production, the redesigned pages will only go public once the following asset threshold is met:
 *   [ ] **At least 6 approved brand logos** received in transparent format.
+    *   *Clarification*: Plain brand-name text fallbacks do not count toward this 6 approved-logo requirement. Only received, approved, and optimized real logos count.
+    *   *Clarification*: Platform/tool logos do not count toward the 6 client-brand logos.
+    *   *Clarification*: An approved brand name without an approved logo may appear only in secondary text listings after public approval. It must not appear in the logo wall as a substitute logo.
 *   [ ] **Black Gold Fertilizer**: Approved logo + 1 real desktop screenshot or ad visual.
 *   [ ] **Wajib Livestock**: Approved brand naming + approved logo + 1 real campaign or livestock visual.
 *   [ ] **RK Reno Solutions**: Approved logo + 1 real website screenshot.
-*   [ ] **Platforms & Tools**: Approved official SVG assets for tools actually used (Meta, Google, Shopify, WordPress, WooCommerce, GTM, Canva).
+*   [ ] **Platforms & Tools**: Approved official SVG assets for tools actually used.
 
 ---
 
-## 1. Black Gold Fertilizer
+## File-Size & Optimization Targets
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Black Gold Fertilizer |
-| **Asset type** | Client Logo (Primary Brand mark) |
-| **Required filename** | `logo.png` / `logo.svg` |
-| **Source owner** | Black Gold Fertilizer |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 240 x 80 px (fitted inside bounds) |
-| **Format** | Transparent SVG or clean WebP/PNG |
-| **Maximum file size** | 10 KB |
-| **Alt text** | `Black Gold Fertilizer logo` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | [ ] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/brands/black-gold-fertilizer/logo.png` |
-| **Notes** | Logo must contrast clearly on a light neutral background. |
+Rather than rigid maximum constraints, the following are quality targets for assets. Larger files may be accepted when further compression visibly damages readability:
+*   **Simple SVG platform icon**: target under 20 KB
+*   **SVG brand logo**: target under 30 KB
+*   **Transparent PNG or WebP logo**: target under 60 KB
+*   **Project screenshot**: target under 200 KB
+*   **Campaign creative**: target under 150 KB
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Black Gold Fertilizer |
-| **Asset type** | E-commerce desktop screenshot |
-| **Required filename** | `desktop-screenshot.webp` |
-| **Source owner** | Black Gold Fertilizer |
-| **Source URL if applicable** | https://blackgoldfertilizer.com (or approved client url) |
-| **Original dimensions** | 1920 x 1080 px |
-| **Recommended optimized dimensions** | 1200 x 630 px (fitted) |
-| **Format** | WebP or AVIF |
-| **Maximum file size** | 150 KB |
-| **Alt text** | `E-commerce online store layout for Black Gold Fertilizer` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | N/A |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/projects/black-gold-fertilizer/desktop-screenshot.webp` |
-| **Notes** | Simple straight screenshot frame. Do not use 3D rotations or mockups. |
+*Note on Originals*: High-resolution original source files will be preserved outside the public optimized folders in `docs/agy/visual-portfolio-redesign/originals/` to protect master assets.
 
 ---
 
-## 2. Wajib Livestock (Pending Naming Approval)
+## Client Brand Registry (12 Records)
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Wajib Livestock |
-| **Asset type** | Client Logo (Primary Brand mark) |
-| **Required filename** | `logo.png` / `logo.svg` |
-| **Source owner** | Wajib Livestock |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 240 x 80 px |
-| **Format** | Transparent SVG or clean WebP/PNG |
-| **Maximum file size** | 10 KB |
-| **Alt text** | `Wajib Livestock logo` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | [ ] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/brands/wajib-livestock/logo.png` |
-| **Notes** | Naming and logo remain pending explicit user review. |
+All publication and logo approvals remain pending until the user confirms them. Permission is never inferred from previous work history or online profiles.
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Wajib Livestock |
-| **Asset type** | Campaign creative photography |
-| **Required filename** | `campaign-photo.webp` |
-| **Source owner** | Wajib Livestock |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | 1200 x 1200 px (or 1080 x 1080 px) |
-| **Recommended optimized dimensions** | 800 x 800 px (fitted square) |
-| **Format** | WebP |
-| **Maximum file size** | 100 KB |
-| **Alt text** | `Wajib Livestock Eid Qurbani social media marketing creative` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | N/A |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/projects/wajib-livestock/campaign-photo.webp` |
-| **Notes** | Do not invent fake social borders or overlay mockups. |
+### 1. Black Gold Fertilizer
+*   **Brand name**: Black Gold Fertilizer
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.png` / `logo.svg`
+*   **Source owner**: Black Gold Fertilizer
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended optimized dimensions**: 240 x 80 px
+*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Alt text**: `Black Gold Fertilizer logo`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/black-gold-fertilizer/logo.png`
+*   **Notes**: Contrast-adjusted for light neutral tiles.
+
+*   **Brand name**: Black Gold Fertilizer
+*   **Asset type**: E-commerce desktop screenshot
+*   **Required filename**: `desktop-screenshot.webp`
+*   **Source owner**: Black Gold Fertilizer
+*   **Source URL**: N/A
+*   **Original dimensions**: 1920 x 1080 px
+*   **Recommended optimized dimensions**: 1200 x 630 px
+*   **Format**: WebP / AVIF
+*   **Alt text**: `E-commerce online store layout for Black Gold Fertilizer`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: N/A
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/projects/black-gold-fertilizer/desktop-screenshot.webp`
+*   **Notes**: Straight flat screenshot frame only.
 
 ---
 
-## 3. RK Reno Solutions
+### 2. Wajib Livestock (Naming & Route Pending)
+*   **Proposed Name**: `Wajib Livestock Qurbani Campaign`
+*   **Route status**: Old Qurbani route `/work/qurbani-campaign/` and files remain unchanged pending approval.
+*   **Brand name**: Wajib Livestock
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.png` / `logo.svg`
+*   **Source owner**: Wajib Livestock
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended optimized dimensions**: 240 x 80 px
+*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Alt text**: `Wajib Livestock logo`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/wajib-livestock/logo.png`
+*   **Notes**: Name approval pending.
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | RK Reno Solutions |
-| **Asset type** | Client Logo (Primary Brand mark) |
-| **Required filename** | `logo.png` / `logo.svg` |
-| **Source owner** | RK Reno Solutions |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 240 x 80 px |
-| **Format** | Transparent SVG or clean WebP/PNG |
-| **Maximum file size** | 10 KB |
-| **Alt text** | `RK Reno Solutions logo` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | [ ] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/brands/rk-reno-solutions/logo.png` |
-| **Notes** | Fallback to stylized plain text block if logo is unavailable. |
-
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | RK Reno Solutions |
-| **Asset type** | Website screenshot or campaign visual |
-| **Required filename** | `website-screenshot.webp` |
-| **Source owner** | RK Reno Solutions |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | 1920 x 1080 px |
-| **Recommended optimized dimensions** | 1200 x 630 px |
-| **Format** | WebP |
-| **Maximum file size** | 150 KB |
-| **Alt text** | `Home renovation service website layout for RK Reno Solutions` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | N/A |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/projects/rk-reno-solutions/website-screenshot.webp` |
-| **Notes** | Keep layout simple and flat. |
+*   **Brand name**: Wajib Livestock
+*   **Asset type**: Campaign creative photography
+*   **Required filename**: `campaign-photo.webp`
+*   **Source owner**: Wajib Livestock
+*   **Source URL**: N/A
+*   **Original dimensions**: 1200 x 1200 px
+*   **Recommended optimized dimensions**: 800 x 800 px
+*   **Format**: WebP
+*   **Alt text**: `Wajib Livestock Eid Qurbani campaign visual`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: N/A
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/projects/wajib-livestock/campaign-photo.webp`
+*   **Notes**: No fake dashboard widgets or browser chrome mockups.
 
 ---
 
-## 4. Viral Naturals
+### 3. RK Reno Solutions
+*   **Brand name**: RK Reno Solutions
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.png` / `logo.svg`
+*   **Source owner**: RK Reno Solutions
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended optimized dimensions**: 240 x 80 px
+*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Alt text**: `RK Reno Solutions logo`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/rk-reno-solutions/logo.png`
+*   **Notes**: Falls back to styled plain text block if logo files are not supplied.
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Viral Naturals |
-| **Asset type** | Client Logo (Primary Brand mark) |
-| **Required filename** | `logo.png` / `logo.svg` |
-| **Source owner** | Viral Naturals |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 240 x 80 px |
-| **Format** | Transparent SVG or clean WebP/PNG |
-| **Maximum file size** | 10 KB |
-| **Alt text** | `Viral Naturals logo` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | [ ] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/brands/viral-naturals/logo.png` |
-| **Notes** | Must not use substitute or generated mock logos. |
-
----
-
-## 5. Convort AI
-
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Convort AI |
-| **Asset type** | Client Logo (Primary Brand mark) |
-| **Required filename** | `logo.png` / `logo.svg` |
-| **Source owner** | Convort AI |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 240 x 80 px |
-| **Format** | Transparent SVG or clean WebP/PNG |
-| **Maximum file size** | 10 KB |
-| **Alt text** | `Convort AI logo` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | [ ] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/brands/convort-ai/logo.png` |
-| **Notes** | Fallback to plain text typography if logo file is unapproved. |
+*   **Brand name**: RK Reno Solutions
+*   **Asset type**: Website screenshot
+*   **Required filename**: `website-screenshot.webp`
+*   **Source owner**: RK Reno Solutions
+*   **Source URL**: N/A
+*   **Original dimensions**: 1920 x 1080 px
+*   **Recommended optimized dimensions**: 1200 x 630 px
+*   **Format**: WebP
+*   **Alt text**: `Home renovation service website layout for RK Reno Solutions`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: N/A
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/projects/rk-reno-solutions/website-screenshot.webp`
+*   **Notes**: Flat screenshot inside neutral frames.
 
 ---
 
-## 6. Clearzone Immigration
-
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Clearzone Immigration |
-| **Asset type** | Client Logo (Primary Brand mark) |
-| **Required filename** | `logo.png` / `logo.svg` |
-| **Source owner** | Clearzone Immigration |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 240 x 80 px |
-| **Format** | Transparent SVG or clean WebP/PNG |
-| **Maximum file size** | 10 KB |
-| **Alt text** | `Clearzone Immigration logo` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | [ ] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/brands/clearzone/logo.png` |
-| **Notes** | Ensure neutral phrasing: do not label as certified or official partner. |
+### 4. Viral Naturals
+*   **Brand name**: Viral Naturals
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.png` / `logo.svg`
+*   **Source owner**: Viral Naturals
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended optimized dimensions**: 240 x 80 px
+*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Alt text**: `Viral Naturals logo`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/viral-naturals/logo.png`
+*   **Notes**: Omit if approval not confirmed.
 
 ---
 
-## 7. Europa Immigration
-
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Europa Immigration |
-| **Asset type** | Client Logo (Primary Brand mark) |
-| **Required filename** | `logo.png` / `logo.svg` |
-| **Source owner** | Europa Immigration |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 240 x 80 px |
-| **Format** | Transparent SVG or clean WebP/PNG |
-| **Maximum file size** | 10 KB |
-| **Alt text** | `Europa Immigration logo` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | [ ] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/brands/europa-immigration/logo.png` |
-| **Notes** | Fallback to styled plain text block if logo files are not supplied. |
+### 5. Convort AI
+*   **Brand name**: Convort AI
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.png` / `logo.svg`
+*   **Source owner**: Convort AI
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended optimized dimensions**: 240 x 80 px
+*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Alt text**: `Convort AI logo`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/convort-ai/logo.png`
+*   **Notes**: Dynamic tech card grid.
 
 ---
 
-## 8. Quick Immigration Service
-
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Quick Immigration Service |
-| **Asset type** | Client Logo (Primary Brand mark) |
-| **Required filename** | `logo.png` / `logo.svg` |
-| **Source owner** | Quick Immigration Service |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 240 x 80 px |
-| **Format** | Transparent SVG or clean WebP/PNG |
-| **Maximum file size** | 10 KB |
-| **Alt text** | `Quick Immigration Service logo` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | [ ] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/brands/quick-immigration/logo.png` |
-| **Notes** | Neutral wording: "Projects across multiple industries". |
+### 6. Clearzone Immigration
+*   **Brand name**: Clearzone Immigration
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.png` / `logo.svg`
+*   **Source owner**: Clearzone Immigration
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended optimized dimensions**: 240 x 80 px
+*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Alt text**: `Clearzone Immigration logo`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/clearzone/logo.png`
+*   **Notes**: Wordmark text layout fallback.
 
 ---
 
-## 9. Shopinq Online
-
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Shopinq Online |
-| **Asset type** | Client Logo (Primary Brand mark) |
-| **Required filename** | `logo.png` / `logo.svg` |
-| **Source owner** | Shopinq Online |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 240 x 80 px |
-| **Format** | Transparent SVG or clean WebP/PNG |
-| **Maximum file size** | 10 KB |
-| **Alt text** | `Shopinq Online logo` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | [ ] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/brands/shopinq/logo.png` |
-| **Notes** | Client logo must be supplied or approved by user. |
+### 7. Europa Immigration
+*   **Brand name**: Europa Immigration
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.png` / `logo.svg`
+*   **Source owner**: Europa Immigration
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended optimized dimensions**: 240 x 80 px
+*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Alt text**: `Europa Immigration logo`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/europa-immigration/logo.png`
+*   **Notes**: Neutral sector list entry.
 
 ---
 
-## 10. Super Safety Covers
-
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Super Safety Covers |
-| **Asset type** | Client Logo (Primary Brand mark) |
-| **Required filename** | `logo.png` / `logo.svg` |
-| **Source owner** | Super Safety Covers |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 240 x 80 px |
-| **Format** | Transparent SVG or clean WebP/PNG |
-| **Maximum file size** | 10 KB |
-| **Alt text** | `Super Safety Covers logo` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | [ ] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/brands/super-safety-covers/logo.png` |
-| **Notes** | Omit from public site if publicApproved remains false. |
+### 8. Quick Immigration Service
+*   **Brand name**: Quick Immigration Service
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.png` / `logo.svg`
+*   **Source owner**: Quick Immigration Service
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended optimized dimensions**: 240 x 80 px
+*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Alt text**: `Quick Immigration Service logo`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/quick-immigration/logo.png`
+*   **Notes**: Text fallback.
 
 ---
 
-## 11. Riyadh Finish Pro
-
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Riyadh Finish Pro |
-| **Asset type** | Client Logo (Primary Brand mark) |
-| **Required filename** | `logo.png` / `logo.svg` |
-| **Source owner** | Riyadh Finish Pro |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 240 x 80 px |
-| **Format** | Transparent SVG or clean WebP/PNG |
-| **Maximum file size** | 10 KB |
-| **Alt text** | `Riyadh Finish Pro logo` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | [ ] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/brands/riyadh-finish-pro/logo.png` |
-| **Notes** | Fallback to plain text block if logo is unavailable. |
+### 9. Shopinq Online
+*   **Brand name**: Shopinq Online
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.png` / `logo.svg`
+*   **Source owner**: Shopinq Online
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended optimized dimensions**: 240 x 80 px
+*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Alt text**: `Shopinq Online logo`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/shopinq/logo.png`
+*   **Notes**: Approved brand asset.
 
 ---
 
-## 12. Unique Lahore Lab Sahiwal
-
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Unique Lahore Lab Sahiwal |
-| **Asset type** | Client Logo (Primary Brand mark) |
-| **Required filename** | `logo.png` / `logo.svg` |
-| **Source owner** | Unique Lahore Lab Sahiwal |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 240 x 80 px |
-| **Format** | Transparent SVG or clean WebP/PNG |
-| **Maximum file size** | 10 KB |
-| **Alt text** | `Unique Lahore Lab Sahiwal logo` |
-| **Public usage approved** | [ ] Yes / [ ] No |
-| **Logo usage approved** | [ ] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/brands/unique-lahore-lab/logo.png` |
-| **Notes** | Fallback to plain text if logo files are not supplied. |
+### 10. Super Safety Covers
+*   **Brand name**: Super Safety Covers
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.png` / `logo.svg`
+*   **Source owner**: Super Safety Covers
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended optimized dimensions**: 240 x 80 px
+*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Alt text**: `Super Safety Covers logo`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/super-safety-covers/logo.png`
+*   **Notes**: Omit completely if publicApproved is not confirmed.
 
 ---
 
-## 13. Platforms and Tools
+### 11. Riyadh Finish Pro
+*   **Brand name**: Riyadh Finish Pro
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.png` / `logo.svg`
+*   **Source owner**: Riyadh Finish Pro
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended optimized dimensions**: 240 x 80 px
+*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Alt text**: `Riyadh Finish Pro logo`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/riyadh-finish-pro/logo.png`
+*   **Notes**: Construction client.
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Meta Ads |
-| **Asset type** | Platform Logo (SVG) |
-| **Required filename** | `meta-ads.svg` |
-| **Source owner** | Meta / Local original asset |
-| **Source URL if applicable** | https://about.meta.com/brand/resources/ |
-| **Original dimensions** | Variable (Square / Rectangle aspect) |
-| **Recommended optimized dimensions** | 48 x 48 px |
-| **Format** | SVG |
-| **Maximum file size** | 5 KB |
-| **Alt text** | `Meta Ads platform logo` |
-| **Public usage approved** | [x] Yes / [ ] No (Official brand guidelines permit) |
-| **Logo usage approved** | [x] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/platforms/meta-ads.svg` |
-| **Notes** | Do not color-reconvert or display partner badges without certificates. |
+---
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Google Ads |
-| **Asset type** | Platform Logo (SVG) |
-| **Required filename** | `google-ads.svg` |
-| **Source owner** | Google / Local original asset |
-| **Source URL if applicable** | https://www.google.com/permissions/ |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 48 x 48 px |
-| **Format** | SVG |
-| **Maximum file size** | 5 KB |
-| **Alt text** | `Google Ads platform logo` |
-| **Public usage approved** | [x] Yes / [ ] No |
-| **Logo usage approved** | [x] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/platforms/google-ads.svg` |
-| **Notes** | Keep original proportions. |
+### 12. Unique Lahore Lab Sahiwal
+*   **Brand name**: Unique Lahore Lab Sahiwal
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.png` / `logo.svg`
+*   **Source owner**: Unique Lahore Lab Sahiwal
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended optimized dimensions**: 240 x 80 px
+*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Alt text**: `Unique Lahore Lab Sahiwal logo`
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/unique-lahore-lab/logo.png`
+*   **Notes**: Healthcare laboratory.
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Google Analytics 4 |
-| **Asset type** | Platform Logo (SVG) |
-| **Required filename** | `google-analytics.svg` |
-| **Source owner** | Google / Local original asset |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 48 x 48 px |
-| **Format** | SVG |
-| **Maximum file size** | 5 KB |
-| **Alt text** | `Google Analytics 4 logo` |
-| **Public usage approved** | [x] Yes / [ ] No |
-| **Logo usage approved** | [x] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/platforms/google-analytics.svg` |
-| **Notes** | Original colors only. |
+---
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Google Tag Manager |
-| **Asset type** | Platform Logo (SVG) |
-| **Required filename** | `google-tag-manager.svg` |
-| **Source owner** | Google / Local original asset |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 48 x 48 px |
-| **Format** | SVG |
-| **Maximum file size** | 5 KB |
-| **Alt text** | `Google Tag Manager logo` |
-| **Public usage approved** | [x] Yes / [ ] No |
-| **Logo usage approved** | [x] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/platforms/google-tag-manager.svg` |
-| **Notes** | Clean asset vectors. |
+## Platforms & Tools Registry (12 Records)
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | WordPress |
-| **Asset type** | Platform Logo (SVG) |
-| **Required filename** | `wordpress.svg` |
-| **Source owner** | WordPress Foundation |
-| **Source URL if applicable** | https://wordpress.org/about/logos/ |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 48 x 48 px |
-| **Format** | SVG |
-| **Maximum file size** | 5 KB |
-| **Alt text** | `WordPress logo` |
-| **Public usage approved** | [x] Yes / [ ] No |
-| **Logo usage approved** | [x] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/platforms/wordpress.svg` |
-| **Notes** | Do not force recoloring without approval. |
+The availability of public brand-resource pages does not imply prior approval for our specific layouts. All review, usage, and logo approvals are pending verification. These platforms are tools we work with and are never described as partners without documentation.
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | WooCommerce |
-| **Asset type** | Platform Logo (SVG) |
-| **Required filename** | `woocommerce.svg` |
-| **Source owner** | WooCommerce |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 48 x 48 px |
-| **Format** | SVG |
-| **Maximum file size** | 5 KB |
-| **Alt text** | `WooCommerce platform logo` |
-| **Public usage approved** | [x] Yes / [ ] No |
-| **Logo usage approved** | [x] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/platforms/woocommerce.svg` |
-| **Notes** | Clean asset vectors. |
+### 1. Meta Ads
+*   **Official source owner**: Meta Platforms, Inc.
+*   **Official brand-resource URL**: https://about.meta.com/brand/resources/meta-ads/
+*   **Original filename**: `meta-ads-original.svg`
+*   **Local optimized filename**: `meta-ads.svg`
+*   **Guideline review completed**: [ ] Yes / [x] No
+*   **Whether recoloring is allowed**: [ ] Yes / [x] No (Strictly prohibited by Meta guidelines)
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Usage notes**: Keep original proportion and spacing. Render on light neutral logo tile.
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Shopify |
-| **Asset type** | Platform Logo (SVG) |
-| **Required filename** | `shopify.svg` |
-| **Source owner** | Shopify Inc. |
-| **Source URL if applicable** | https://www.shopify.com/brand-assets |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 48 x 48 px |
-| **Format** | SVG |
-| **Maximum file size** | 5 KB |
-| **Alt text** | `Shopify platform logo` |
-| **Public usage approved** | [x] Yes / [ ] No |
-| **Logo usage approved** | [x] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/platforms/shopify.svg` |
-| **Notes** | Green / White official proportions. |
+### 2. Facebook
+*   **Official source owner**: Meta Platforms, Inc.
+*   **Official brand-resource URL**: https://about.meta.com/brand/resources/facebook-app/logo/
+*   **Original filename**: `facebook-original.svg`
+*   **Local optimized filename**: `facebook.svg`
+*   **Guideline review completed**: [ ] Yes / [x] No
+*   **Whether recoloring is allowed**: [ ] Yes / [x] No (Must use official blue circle or white/transparent knockouts)
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Usage notes**: Do not modify shape, color, or proportions.
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | WhatsApp Business |
-| **Asset type** | Platform Logo (SVG) |
-| **Required filename** | `whatsapp.svg` |
-| **Source owner** | Meta |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 48 x 48 px |
-| **Format** | SVG |
-| **Maximum file size** | 5 KB |
-| **Alt text** | `WhatsApp Business logo` |
-| **Public usage approved** | [x] Yes / [ ] No |
-| **Logo usage approved** | [x] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/platforms/whatsapp.svg` |
-| **Notes** | Standard green branding icon. |
+### 3. Instagram
+*   **Official source owner**: Meta Platforms, Inc.
+*   **Official brand-resource URL**: https://about.meta.com/brand/resources/instagram/instagram-brand/
+*   **Original filename**: `instagram-original.svg`
+*   **Local optimized filename**: `instagram.svg`
+*   **Guideline review completed**: [ ] Yes / [x] No
+*   **Whether recoloring is allowed**: [ ] Yes / [x] No
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Usage notes**: Use only official glyph assets; do not download random vector conversions.
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Elementor |
-| **Asset type** | Platform Logo (SVG) |
-| **Required filename** | `elementor.svg` |
-| **Source owner** | Elementor |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 48 x 48 px |
-| **Format** | SVG |
-| **Maximum file size** | 5 KB |
-| **Alt text** | `Elementor layout builder logo` |
-| **Public usage approved** | [x] Yes / [ ] No |
-| **Logo usage approved** | [x] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/platforms/elementor.svg` |
-| **Notes** | Keep original proportions. |
+### 4. Google Ads
+*   **Official source owner**: Google LLC
+*   **Official brand-resource URL**: https://www.google.com/permissions/
+*   **Original filename**: `google-ads-original.svg`
+*   **Local optimized filename**: `google-ads.svg`
+*   **Guideline review completed**: [ ] Yes / [x] No
+*   **Whether recoloring is allowed**: [ ] Yes / [x] No
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Usage notes**: Align logo elements properly. Do not use recolored options.
 
-| Field | Registry Entry & Parameter Requirements |
-| :--- | :--- |
-| **Brand or platform name** | Canva |
-| **Asset type** | Platform Logo (SVG) |
-| **Required filename** | `canva.svg` |
-| **Source owner** | Canva |
-| **Source URL if applicable** | N/A |
-| **Original dimensions** | Variable |
-| **Recommended optimized dimensions** | 48 x 48 px |
-| **Format** | SVG |
-| **Maximum file size** | 5 KB |
-| **Alt text** | `Canva design tool logo` |
-| **Public usage approved** | [x] Yes / [ ] No |
-| **Logo usage approved** | [x] Yes / [ ] No |
-| **Received** | [ ] Yes / [x] No |
-| **Optimized** | [ ] Yes / [x] No |
-| **Final repository path** | `public/platforms/canva.svg` |
-| **Notes** | Standard Canva gradient vector. |
+### 5. Google Analytics 4
+*   **Official source owner**: Google LLC
+*   **Official brand-resource URL**: N/A
+*   **Original filename**: `google-analytics-original.svg`
+*   **Local optimized filename**: `google-analytics.svg`
+*   **Guideline review completed**: [ ] Yes / [x] No
+*   **Whether recoloring is allowed**: [ ] Yes / [x] No
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Usage notes**: Retain dynamic orange bar-graph proportions.
+
+### 6. Google Tag Manager
+*   **Official source owner**: Google LLC
+*   **Official brand-resource URL**: N/A
+*   **Original filename**: `google-tag-manager-original.svg`
+*   **Local optimized filename**: `google-tag-manager.svg`
+*   **Guideline review completed**: [ ] Yes / [x] No
+*   **Whether recoloring is allowed**: [ ] Yes / [x] No
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Usage notes**: Keep default vector layout.
+
+### 7. WordPress
+*   **Official source owner**: WordPress Foundation
+*   **Official brand-resource URL**: https://wordpress.org/about/logos/
+*   **Original filename**: `wordpress-original.svg`
+*   **Local optimized filename**: `wordpress.svg`
+*   **Guideline review completed**: [ ] Yes / [x] No
+*   **Whether recoloring is allowed**: [ ] Yes / [x] No (Do not alter gray or blue logo files)
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Usage notes**: Do not skew, tilt, or stretch the 'W' emblem.
+
+### 8. WooCommerce
+*   **Official source owner**: WooCommerce (Automattic Inc.)
+*   **Official brand-resource URL**: https://woocommerce.com/style-guide/
+*   **Original filename**: `woocommerce-original.svg`
+*   **Local optimized filename**: `woocommerce.svg`
+*   **Guideline review completed**: [ ] Yes / [x] No
+*   **Whether recoloring is allowed**: [ ] Yes / [x] No
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Usage notes**: Standard purple styling.
+
+### 9. Shopify
+*   **Official source owner**: Shopify Inc.
+*   **Official brand-resource URL**: https://www.shopify.com/brand-assets
+*   **Original filename**: `shopify-original.svg`
+*   **Local optimized filename**: `shopify.svg`
+*   **Guideline review completed**: [ ] Yes / [x] No
+*   **Whether recoloring is allowed**: [ ] Yes / [x] No
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Usage notes**: Maintain official bag geometry and green tint.
+
+### 10. WhatsApp Business
+*   **Official source owner**: Meta Platforms, Inc.
+*   **Official brand-resource URL**: https://whatsappbrand.com/
+*   **Original filename**: `whatsapp-original.svg`
+*   **Local optimized filename**: `whatsapp.svg`
+*   **Guideline review completed**: [ ] Yes / [x] No
+*   **Whether recoloring is allowed**: [ ] Yes / [x] No
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Usage notes**: Green icon with telephone glyph wrapper.
+
+### 11. Elementor
+*   **Official source owner**: Elementor Ltd.
+*   **Official brand-resource URL**: N/A
+*   **Original filename**: `elementor-original.svg`
+*   **Local optimized filename**: `elementor.svg`
+*   **Guideline review completed**: [ ] Yes / [x] No
+*   **Whether recoloring is allowed**: [ ] Yes / [x] No
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Usage notes**: Red E-symbol layout block.
+
+### 12. Canva
+*   **Official source owner**: Canva Pty Ltd
+*   **Official brand-resource URL**: N/A
+*   **Original filename**: `canva-original.svg`
+*   **Local optimized filename**: `canva.svg`
+*   **Guideline review completed**: [ ] Yes / [x] No
+*   **Whether recoloring is allowed**: [ ] Yes / [x] No
+*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Usage notes**: Keep Canva brand gradient.
