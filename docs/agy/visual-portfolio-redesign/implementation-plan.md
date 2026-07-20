@@ -8,17 +8,19 @@ This document outlines the complete visual redesign plan for the Starts Digital 
 
 To address the overall visual feedback, the entire site is transitioning from its dark mode default to a **premium, light-first editorial system**. Existing color tokens from [DESIGN_SYSTEM.md](../../../DESIGN_SYSTEM.md) are preserved but re-mapped for light-mode backgrounds, reserving dark navy colors for visual punctuation.
 
-### Re-mapped Design Tokens
-*   **Page Background**: Warm White (`#F7F7F3`) — Applied as the base body background globally (instead of `#0B0D10`).
-*   **Surface White**: Pure White (`#FFFFFF`) — Card bodies, dropdown blocks, and light containers.
-*   **Surface Grey**: Light Grey / Soft Grey (`#F0F2F5` / `#E8EBEF`) — Secondary sections, process blocks, and code/table outlines.
-*   **Main Text / Headings**: Near Black (`#0B0D10`) — Used for default body copy, titles, and structural labels to ensure readable contrast (ratio > 7:1).
-*   **Muted Text**: Text Grey (`#667085`) — Description blocks, subtitles, and metadata labels.
-*   **Border Color**: Light Grey (`#E4E7EC`) — Subtle borders (`1px`) on containers, tiles, and headers.
-*   **Primary Blue**: Accent Blue (`#246BFD`) — Core action button background, inline text links, and key metric numbers.
-*   **Teal Accent**: Accent Teal (`#10A8A0`) — Selective highlight markers, category labels, and status badges.
-*   **Dark Navy**: Deep Navy (`#07111F`) — Reserved for high-impact visual sections: metrics strips, platform tool grids, the final Contact CTA banner, and footer backgrounds.
-*   **Near Black**: Charcoal (`#0F172A`) — Text color for items positioned inside Deep Navy blocks.
+### Color Mapping & Section Rules
+*   **Light Backgrounds (applied to ~70% of the site)**:
+    *   Page Background: Warm White (`#F7F7F3`) — Applied as the base body background globally (instead of `#0B0D10`).
+    *   Surface White: Pure White (`#FFFFFF`) — Card containers and inner blocks.
+    *   Surface Grey: Light Grey / Soft Grey (`#F0F2F5`) — Alternating section backgrounds, process blocks, and code/table outlines.
+    *   Main Text / Headings: Near Black (`#0B0D10`) — Default body copy and headings.
+    *   Muted Text: Text Grey (`#667085`) — Supporting descriptions and small metadata.
+    *   Borders: Light border grey (`#E4E7EC`) — Thin dividers (`1px`).
+*   **Dark Sections (applied to ~30% of the site, e.g. Results, platforms, CTA, footer)**:
+    *   Background: Deep Navy (`#07111F`).
+    *   Headings: Warm White (`#F7F7F3`) — Must be used for high-contrast headers.
+    *   Supporting / Body Text: Muted Light (`#98A2B3`) — For all secondary copy inside dark areas.
+    *   *Contrast Constraint*: Never use `#0F172A` or `#667085` as text on a `#07111F` background.
 
 ---
 
@@ -27,15 +29,15 @@ To address the overall visual feedback, the entire site is transitioning from it
 All layouts feature straight, clean real screenshots, simple borders, subtle shadows, and alternating project columns without 3D rotations or overlapping frames.
 
 ### A. Global Layout Elements
-*   **Header**: White background (`#FFFFFF`) with a subtle bottom border (`#E4E7EC`). Logo text wordmark uses Near Black (`#0B0D10`) for "Starts" and Primary Blue (`#246BFD`) for "Digital".
-*   **Footer**: Deep Navy background (`#07111F`) with Warm White (`#F7F7F3`) text and Text Grey (`#667085`) description copy.
+*   **Header**: White background (`#FFFFFF`) with a subtle bottom border (`#E4E7EC`). Logo text uses Near Black (`#0B0D10`) for "Starts" and Primary Blue (`#246BFD`) for "Digital".
+*   **Footer**: Deep Navy background (`#07111F`) with Warm White (`#F7F7F3`) headings and Muted Light (`#98A2B3`) body copy.
 *   **Mobile Navigation**: Full-screen overlay in Pure White (`#FFFFFF`), with large clickable menu links in Near Black (`#0B0D10`).
 
-### B. Homepage Structure (Warm White / Light Grey background)
+### B. Homepage Structure
 1.  **Hero Section (Light Background)**:
-    *   Text-aligned left. Large H1 title in Near Black.
-    *   Introductory paragraph and dual CTA buttons (Primary Blue filled and Secondary Grey bordered).
-    *   Spacious bottom padding (`py-24` / `96px`) to present an airy agency feel.
+    *   *Left*: Large H1 title in Near Black. Introductory paragraph in `#667085`. Dual CTA buttons (Primary Blue filled and Secondary Grey bordered).
+    *   *Right (Conditional Visual Area)*: A clean, straight desktop screenshot of our flagship project (e.g. Black Gold Fertilizer) displayed inside a neutral grey border frame (`#E4E7EC`).
+    *   *Fallback*: If no real visual is approved, this area is completely omitted (no placeholder boxes or empty frames).
 2.  **Brand Logo Wall (Light Grey background, `#F0F2F5`)**:
     *   Grid of light neutral tiles showing approved client logos.
 3.  **Selected Work (Light Background)**:
@@ -46,7 +48,7 @@ All layouts feature straight, clean real screenshots, simple borders, subtle sha
 4.  **Results (Dark Navy Background, `#07111F`)**:
     *   High-impact metric counters styled in large white/blue numbers.
 5.  **Services (Light Background)**:
-    *   3-column card grid in Pure White. Title uses Lucide icons.
+    *   **Open Icon-Led Layout**: Replaces bulky card grids with an open layout. Features thin light grey dividers (`#E4E7EC`) between items. Includes Lucide icons to denote service concepts.
 6.  **Platforms & Tools (Light Grey Background)**:
     *   Platform logo grid containing tool tiles.
 7.  **Process (Light Background)**:
@@ -56,19 +58,13 @@ All layouts feature straight, clean real screenshots, simple borders, subtle sha
 9.  **Contact CTA (Dark Navy Background)**:
     *   Centered CTA text and "Discuss Your Project" button.
 
-### C. Work Overview Page (`/work/` - Light Background)
-1.  **Introductory Hero**: Large header, category navigation tags (E-commerce, Local Services, International).
-2.  **Featured Work Showcase**: Alternating screenshot/info grids (2-column layout).
-3.  **Additional Projects**: Simple text card lists (RK Reno, etc.) without fake screenshot placeholders.
-
-### D. Case Study Details Page (Light Background)
-1.  **Header**: Home > Work > Client Breadcrumbs trail.
-2.  **Metrics Banner (Dark Navy background)**: Side-by-side key numbers.
-3.  **Split Grid**:
-    *   *Left Sidebar (width 1/3)*: Industry metadata, Services, and Platforms.
-    *   *Right Sidebar (width 2/3)*: Exact responsibilities checklist, followed by dynamic markdown body content.
-4.  **Visual Evidence Gallery (Light Grey background)**: Two side-by-side straight website or campaign screenshots.
-5.  **CTA Banner (Dark Navy background)**.
+### C. Responsive Grid Stacking Rules (320px to 1440px)
+*   **1440px (Desktop)**: 12-column grids, maximum width `1200px` (`max-w-7xl` with `px-8` side margins). Alternating screenshots (left/right split). Horizontal dividers for Services.
+*   **1024px (Tablet Landscape)**: Grid columns contract to 2-columns for showcase items. Platform tool icons wrap to a 4-column layout.
+*   **768px (Tablet Portrait)**: Homepage hero stacks vertically. Selected work switches to screenshot-top, text-bottom layout. Services grid stacks into a single column with horizontal dividers.
+*   **430px (Large Mobile)**: Margins shrink to `px-5` (`20px`). Large fonts scale down dynamically (H1 to `2.25rem`, H2 to `1.75rem`).
+*   **375px (Medium Mobile)**: Logo walls scale to 2-columns. Inline buttons stack vertically to fit viewport width.
+*   **320px (Small Mobile)**: Padding reduced to `px-4` (`16px`). Text size capped to prevent clipping or horizontal scrolling.
 
 ---
 
@@ -82,10 +78,12 @@ export interface Brand {
   id: string;
   name: string;
   category: 'ecommerce' | 'construction' | 'immigration' | 'technology' | 'healthcare';
-  logo: string; // Path under public/brands/
+  logo?: string;          // Optional path under public/brands/
   website?: string;
   projectUrl?: string;
   relationshipLabel?: string;
+  assetSource?: string;   // Track origin details of screenshots/logos
+  permissionNote?: string; // Track user approval context
   featured: boolean;
   publicApproved: boolean; // Visual display permission
   logoApproved: boolean;   // Logo rendering permission
@@ -93,7 +91,9 @@ export interface Brand {
   order: number;
 }
 ```
-*   *Security Rule*: If `publicApproved: false` or `logoApproved: false`, the logo grid will fallback to rendering a plain text wordmark or omit the entry. Internal Boolean parameters must not be output to rendered HTML wrappers.
+*   *Mandatory Omission Rule*: If `publicApproved: false`, the brand is **completely omitted** from the website (never rendered in logo grids, lists, or text mentions).
+*   *Fallback Wordmark*: If `publicApproved: true` but `logoApproved: false`, the entry will render as styled plain text (do not refer to this as a "wordmark").
+*   *Security Rule*: Internal approval parameters (`publicApproved`, `logoApproved`, `assetSource`, `permissionNote`) must not be output to rendered HTML wrappers.
 
 ### B. Platform Data Model (`src/data/platforms.ts`)
 ```typescript
@@ -162,10 +162,18 @@ const caseStudies = defineCollection({
 
 ## 5. Naming & Route Redirection Strategy
 
-### Route Redirection for case studies:
-*   **Target Change**: Naming Qurbani Campaign to **Wajib Livestock Qurbani Campaign** (pending user approval).
-*   **Target Route**: `/work/wajib-livestock-qurbani-campaign/`
-*   **Redirect Strategy**: Because GitHub Pages hosts static files and does not support server-side 301 redirects, we will create a client-side routing page at [src/pages/work/qurbani-campaign.astro](../../../src/pages/work/qurbani-campaign.astro) utilizing an HTML `<meta http-equiv="refresh" content="0;url=/startsdigital/work/wajib-livestock-qurbani-campaign/">` redirect tag. This ensures old inbound URLs route gracefully without breaking.
+### Dynamic Case-Study Paths:
+*   **Wajib Livestock Naming**: The rename of "Qurbani Campaign" to **"Wajib Livestock Qurbani Campaign"** remains **pending explicit user approval**.
+*   **Old Route Redirection**: If approved in the future, we will utilize Astro's native redirection feature in `astro.config.mjs` instead of custom redirect page components.
+    ```javascript
+    // astro.config.mjs (future configuration if approved)
+    export default defineConfig({
+      redirects: {
+        '/work/qurbani-campaign': '/work/wajib-livestock-qurbani-campaign'
+      }
+    });
+    ```
+*   *Security Rule*: All redirects will resolve dynamically or use relative paths. **Never hardcode `/startsdigital`** in redirect configurations.
 
 ---
 
@@ -198,43 +206,33 @@ public/
     immigration/
 ```
 
-### Complete Brand Registry & Details (12 projects)
+### Brand Registry & Details (12 projects)
+Under the section title **"Brands & Projects We Have Worked With"**:
 1.  **Black Gold Fertilizer** (E-commerce and consumer)
-    *   *Permission*: Pending logo & screenshot approval.
-    *   *Visuals*: Transparent logo (SVG/PNG), desktop website screenshot.
+    *   *Source / Approval*: User supplies file / explicitly approves.
+    *   *Visuals*: Logo & desktop layout view.
 2.  **Viral Naturals** (E-commerce and consumer)
-    *   *Permission*: Pending.
-    *   *Visuals*: Logo & desktop layout.
+    *   *Source / Approval*: User supplies.
 3.  **Shopinq Online** (E-commerce and consumer)
-    *   *Permission*: Pending.
-    *   *Visuals*: Logo.
+    *   *Source / Approval*: User supplies.
 4.  **Super Safety Covers** (E-commerce and consumer)
-    *   *Permission*: Pending.
-    *   *Visuals*: Logo.
+    *   *Source / Approval*: User supplies.
 5.  **Wajib Livestock** (E-commerce and consumer)
-    *   *Permission*: Naming pending user approval.
-    *   *Visuals*: Logo & 1 livestock/campaign photograph.
+    *   *Source / Approval*: Naming and asset approval pending.
 6.  **RK Reno Solutions** (Construction and local services)
-    *   *Permission*: Pending logo & homepage screenshot.
-    *   *Visuals*: Logo, desktop screenshot.
+    *   *Source / Approval*: User supplies.
 7.  **Riyadh Finish Pro** (Construction and local services)
-    *   *Permission*: Pending.
-    *   *Visuals*: Text wordmark fallback.
+    *   *Source / Approval*: User supplies.
 8.  **Clearzone Immigration** (Immigration and international services)
-    *   *Permission*: Pending.
-    *   *Visuals*: Text wordmark fallback.
+    *   *Source / Approval*: User supplies.
 9.  **Europa Immigration** (Immigration and international services)
-    *   *Permission*: Pending.
-    *   *Visuals*: Text wordmark fallback.
+    *   *Source / Approval*: User supplies.
 10. **Quick Immigration Service** (Immigration and international services)
-    *   *Permission*: Pending.
-    *   *Visuals*: Text wordmark fallback.
+    *   *Source / Approval*: User supplies.
 11. **Convort AI** (Technology and AI)
-    *   *Permission*: Pending.
-    *   *Visuals*: Software screenshot.
+    *   *Source / Approval*: User supplies.
 12. **Unique Lahore Lab Sahiwal** (Healthcare)
-    *   *Permission*: Pending.
-    *   *Visuals*: Logo or text fallback.
+    *   *Source / Approval*: User supplies.
 
 ---
 
@@ -247,13 +245,15 @@ To guarantee the site remains professional and layout-complete, the implementati
 *   Update core structural markup (Header, Footer, Homepage panels, Work lists).
 *   Create data models `src/data/brands.ts` and `src/data/platforms.ts`.
 *   Support layout files and schema fields in `content.config.ts`.
-*   **Zero visual placeholders, fake browser frames, or dummy mockups will be added.** If no visual screenshot exists for a project, the image container will be completely omitted from the layout.
+*   **No partial text-only redesign deployment to production.** Global deployment of Stage 1 remains gated until Stage 2 assets are available to prevent rendering layout skeletons.
 
-### Stage 2 Scope (Visual Assets & Evidence Integration)
-Visual case studies and logo grids will only be rendered once the following specific real client files are supplied/approved by the user:
-1.  **Black Gold Fertilizer**: Approved logo file and one real desktop website view or campaign creative.
-2.  **Wajib Livestock**: Approved project name, logo file, and one real campaign or livestock photograph.
-3.  **RK Reno Solutions**: Approved logo file and one real website or social media visual asset.
+### Stage 2 Scope (Visual Assets & Public Release Gate)
+Visual case studies and logo grids will only be rendered once the following specific **Public Release Gate** assets are available:
+1.  **Approved Logos**: At least 6 approved brand logos in the logo registry.
+2.  **Black Gold Fertilizer**: Approved logo file and one real desktop website view or campaign creative.
+3.  **Wajib Livestock**: Approved project name, logo file, and one real campaign or livestock photograph.
+4.  **RK Reno Solutions**: Approved logo file and one real website or social media visual asset.
+5.  **Platforms & Tools**: Approved platform logos grid.
 
 ---
 
@@ -264,6 +264,7 @@ Visual case studies and logo grids will only be rendered once the following spec
 *   `ProjectShowcase.astro` *(New)*: Renders alternating layout rows (screenshot and text splits).
 *   `ProjectGallery.astro` *(New)*: Handles multi-screenshot grids inside case studies.
 *   *Note*: Separate layout files will not be created if their code is utilized once.
+*   *Logo Contrast Rules*: Client logo grids will use light neutral tiles (`#F9FAFB`) with consistent internal padding and original aspect ratios. Logo assets will not be white-converted without explicit approval.
 *   *Trademark Compliance*: Official logos for Meta Ads, Shopify, Google Ads, etc., will be loaded from local files with original proportions, ensuring no color manipulation or unofficial "Partner" badge additions.
 
 ---
@@ -287,18 +288,17 @@ Visual case studies and logo grids will only be rendered once the following spec
 4. `src/components/ui/PlatformLogoGrid.astro` *(Platform logo rendering grid)*
 5. `src/components/ui/ProjectShowcase.astro` *(Visual showcase rows)*
 6. `src/components/ui/ProjectGallery.astro` *(Case study creative galleries)*
-7. `src/pages/work/qurbani-campaign.astro` *(Static HTML redirect mapping)*
 
 ### Files to Modify:
 1. [BaseLayout.astro](../../../src/layouts/BaseLayout.astro) *(Redesign global backgrounds to light-first)*
 2. [CaseStudyLayout.astro](../../../src/layouts/CaseStudyLayout.astro) *(Update columns, metric strips, and gallery slots)*
 3. [index.astro](../../../src/pages/work/index.astro) *(Rebuild layout using logo walls and visual showcases)*
-4. [src/pages/index.astro](../../../src/pages/index.astro) *(Rebuild Homepage using light-first section blocks)*
+4. [src/pages/index.astro](../../../src/pages/index.astro) *(Rebuild Homepage using light-first section blocks and hero conditional screen)*
 5. [src/content.config.ts](../../../src/content.config.ts) *(Extend schema with media fields)*
 6. [Header.astro](../../../src/components/layout/Header.astro) *(Adjust header contrast to white background)*
 7. [Footer.astro](../../../src/components/layout/Footer.astro) *(Refine text layouts for Deep Navy colors)*
 8. [Results.astro](../../../src/components/sections/Results.astro) *(Update container padding and alignment)*
-9. [Services.astro](../../../src/components/sections/Services.astro) *(Rebuild services using Lucide icons)*
+9. [Services.astro](../../../src/components/sections/Services.astro) *(Rebuild services using Lucide icons and open border layouts)*
 10. [SelectedWork.astro](../../../src/components/sections/SelectedWork.astro) *(Update homepage panels to use project showcase layouts)*
 11. [Process.astro](../../../src/components/sections/Process.astro) *(Clean sequence borders)*
 12. [AboutPreview.astro](../../../src/components/sections/AboutPreview.astro) *(Adjust side grid spacings)*
