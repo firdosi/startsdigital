@@ -1,149 +1,180 @@
-# Implementation Plan - Portfolio & Case Study Foundation
+# Implementation Plan - Portfolio & Case Study Foundation (Revised)
 
-This plan details the technical, content, and design approach for creating the Starts Digital case-study foundation, including the Work overview page and two initial case studies (Black Gold Fertilizer & Qurbani Campaign).
+This plan outlines the technical structure, design rules, and content verification steps for adding a portfolio and case-study system to the Starts Digital website.
 
-## 1. Planned Pages and Routes
-The following public routes will be introduced:
-- `/work/`: A premium portfolio page listing our strategic capabilities, sectors served, and summaries of verified client results.
-- `/work/black-gold-fertilizer/`: Case study details for the Black Gold Fertilizer project.
-- `/work/qurbani-campaign/`: Case study details for the Eid Qurbani livestock campaign.
+## 1. Directory Structure & Astro 7 Content Layer Architecture
+We will use Astro 7's new **Content Layer** approach. Instead of the legacy `src/content/config.ts` system, we will configure the schema inside `src/content.config.ts` using the new dynamic loaders and `defineCollection`.
+
+Recommended folder structure:
+```text
+src/
+├── content.config.ts
+├── data/
+│   └── case-studies/
+│       ├── black-gold-fertilizer.md
+│       └── qurbani-campaign.md
+├── pages/
+│   └── work/
+│       ├── index.astro
+│       └── [slug].astro
+└── layouts/
+    └── CaseStudyLayout.astro
+```
+
+### Collection Loader Setup
+In [content.config.ts](../../../src/content.config.ts), the case-studies collection will use the built-in `glob` loader to read markdown files:
+```typescript
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+const caseStudies = defineCollection({
+  loader: glob({ pattern: '*.md', base: "./src/data/case-studies" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    industry: z.string(),
+    services: z.array(z.string()),
+    outcomeSummary: z.string(),
+    metrics: z.array(
+      z.object({
+        value: z.string(),
+        label: z.string()
+      })
+    ),
+    responsibilities: z.array(z.string()),
+    featured: z.boolean().default(false),
+    order: z.number().default(99),
+    seoTitle: z.string(),
+    seoDescription: z.string(),
+    ogImage: z.string().optional(),
+    heroImage: z.string().optional(),
+    gallery: z.array(z.string()).optional(),
+    draft: z.boolean().default(true)
+  })
+});
+
+export const collections = { 'case-studies': caseStudies };
+```
+*Note: Publication dates and image paths are optional, and will be conditionally rendered to avoid broken references.*
+
+### Dynamic Routing
+Because the project compiles to static pages (`output: 'static'`), the dynamic page [[slug].astro](../../../src/pages/work/[slug].astro) will explicitly implement `getStaticPaths()` using `getCollection` from `astro:content`:
+```typescript
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('case-studies', ({ data }) => !data.draft);
+  return entries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry }
+  }));
+}
+```
+Inside the template, page HTML will render dynamically using:
+`const { Content } = await render(entry);`
 
 ---
 
-## 2. Content Architecture
-To manage portfolio content, we evaluate three options supported by Astro:
+## 2. Content Truthfulness & Verification Matrix
+To ensure 100% truthfulness, only approved business facts will be published. Client-specific narratives, timelines, and technical challenges will **not** be drafted based on general marketing frameworks or assumptions.
 
-| Option | Pros | Cons |
+### Approved Project Facts
+- **Black Gold Fertilizer**: E-commerce / Agriculture sector. Managed services include Meta advertising, digital strategy, e-commerce growth, and creative campaigns. Contributed to PKR 30M+ in revenue and 29,000+ product sales.
+- **Qurbani Campaign**: Seasonal e-commerce / Livestock sector. Managed services include Campaign strategy, lead generation, content, and paid social. Helped sell more than 150 animals and supported PKR 4.2M+ in sales.
+
+### Verification Matrix
+The following sections must be verified by the user before they are moved from draft status:
+
+| Page Section | Verification Status | Rules |
 | :--- | :--- | :--- |
-| **Astro Content Collections** *(Recommended)* | - Strong schema validation (using Zod)<br>- Centralized markdown content<br>- Separatation of copy from code layout<br>- Out-of-the-box static generation with `getStaticPaths()` | - Small initial setup overhead (declaring `src/content/config.ts`) |
-| **Typed TypeScript Data Files** | - Fast definition in TypeScript | - Lacks layout separation for rich textual content (needs manual parsing or raw HTML in properties) |
-| **Individual Hard-coded Astro Pages** | - Quickest to build for exactly 2 pages | - High code duplication<br>- Difficult to maintain or scale in future phases |
-
-### Recommendation: Astro Content Collections
-We will implement the **Astro Content Collections** framework. This is the official Astro approach for managing markdown pages. It compiles collections into type-safe modules, validates metadata fields (such as titles, descriptions, metrics) at compile time via Zod, and easily generates optimized static HTML files inside the output directory structure (`dist/work/[slug]/index.html`), ensuring clean URLs on GitHub Pages.
-
----
-
-## 3. Work Page Layout (`/work/`)
-The portfolio index page ([work/index.astro](../../../src/pages/work/index.astro)) will be structured with a clean, high-contrast visual rhythm:
-- **Hero & Intro**: A bold introduction reinforcing the brand promise: *AI-powered digital strategy, marketing campaigns, and technical execution built for commercial outcomes.*
-- **Strategic Sector Listing**: Displays our experience across competitive sectors (Agriculture, E-commerce, Local Services, Education & Recruitment).
-- **Client Project Rows**: A sequence of premium editorial project rows (no card grids or image placeholders). Each item shows:
-  - Project Title & Industry
-  - Prominent business metrics (e.g. *PKR 30M+ revenue*, *150+ animals sold*)
-  - A short summary of our responsibilities
-  - A text link: `Read Case Study &rarr;`
-- **Final Call to Action**: Connects directly to the `#contact` CTA.
+| **Business Challenge** | **Pending User Verification** | Do not draft narrative until the user supplies exact facts. |
+| **Our Responsibilities**| Ready | Strictly matches the list of approved services. |
+| **Strategy** | **Pending User Verification** | No assumptions allowed. User must verify strategic planning. |
+| **Execution** | **Pending User Verification** | No assumptions allowed. User must verify creative assets and setups. |
+| **Key Results** | Ready | Restrained to the approved outcomes. |
+| **Channels & Tools** | **Pending User Verification** | User must confirm platforms used. |
+| **Target Audience** | **Pending User Verification** | User must define target audience parameters. |
+| **Project Timeline** | **Pending User Verification** | User must provide real campaign durations. |
+| **Lessons & Insights** | **Pending User Verification** | User must provide operational insights. |
 
 ---
 
-## 4. Case-Study Page Structure
-All case studies will use a single layout template ([CaseStudyLayout.astro](../../../src/layouts/CaseStudyLayout.astro) or dynamic router `[slug].astro`) containing the following sections:
-
-1.  **Project Header**: Big bold title, industry, and a high-impact outcome summary.
-2.  **Metadata Strip**: Small details displaying:
-    - Client Industry
-    - Service Scope (e.g. *Meta ads, Strategy, Web development*)
-    - Target Audience
-3.  **Business Challenge**: Details the client's bottleneck before Starts Digital stepped in.
-4.  **Responsibilities**: A clear list of what we owned.
-5.  **Strategy**: The strategic planning phase (focusing on practical AI adoption and structured marketing funnels).
-6.  **Execution & Channels**: Technical campaign setups, creative testing, and tools.
-7.  **Key Results**: Large, visually dominant figures using approved phrasing (no invented ROAS/ad spend).
-8.  **Campaign Visuals**: Reserved sections for actual client creative assets (using text descriptions or empty visual slots until the user uploads real images; no generic stock photos).
-9.  **Lessons & Strategic Insights**: Editorial takeaways from the project.
-10. **Related Services**: Links pointing back to services defined in `src/data/services.ts`.
-11. **Contact CTA**: A centered block linking to `/work/#contact` or `/startsdigital/#contact` for inquiries.
-
-### Verification Matrix for Page Sections
-To preserve truthfulness, we map out what can be written immediately versus what requires user approval:
-
-| Section | Status | Detail / Action Required |
-| :--- | :--- | :--- |
-| **1. Project Header** | Ready | Uses approved wording (PKR 30M+ revenue / 150+ animals sold). |
-| **2. Metadata Strip** | Ready | Uses approved list of services. |
-| **3. Business Challenge** | Draft | Drafted based on industry background. User to verify client-specific context. |
-| **4. Responsibilities** | Ready | Confirmed from previous files. |
-| **5. Strategy** | Draft | Drafted based on standard marketing frameworks. User to expand on operational details. |
-| **6. Execution & Channels** | Draft | Drafted based on Meta ads and lead generation setup. |
-| **7. Key Results** | Ready | Uses approved outcomes. |
-| **8. Campaign Visuals** | *Pending* | **Requires user visual assets** (e.g. ad creatives, Shopify screenshots). |
-| **9. Lessons & Insights** | Draft | General agency learnings. User to approve. |
-| **10. Related Services** | Ready | Automatically mapped to existing services. |
-| **11. Contact CTA** | Ready | Links to approved contact channels. |
+## 3. No Empty Media Placeholders
+To ensure a premium design, we will use **conditional rendering** to show visuals. 
+- If a case study has no approved images in its frontmatter (`heroImage` or `gallery`), the visual blocks will be completely omitted from the DOM.
+- We will not render "image coming soon" boxes, empty placeholder skeletons, stock photography, fake analytics dashboard screenshots, or AI-generated visual drafts.
+- Campaign screenshot media will only render once actual client files are approved and uploaded by the user.
 
 ---
 
-## 5. Visual & Design Direction
-The case study pages will extend the existing Starts Digital styling system:
-- **Palette**: Use Warm White (`#F7F7F3`) for body columns to ensure editorial reading comfort, and Deep Navy (`#07111F`) or Near Black (`#0B0D10`) for the header and results strips.
-- **Typography**: Editorial layout with large, high-contrast headings (`font-heading text-3xl md:text-5xl font-bold`) and readable body text (`font-body text-base md:text-lg leading-relaxed`).
-- **No Bulky Cards**: Information is separated by thin horizontal dividers (`border-brand-grey/15`), em-dashes, and clean spacing grids.
-- **Strict Visual Restraints**:
-  - **No stock images** or generic graphics representing client dashboards.
-  - **No fake browser windows** or fake desktop device mockups.
-  - **No generic vector illustrations**.
-  - Visual blocks are strictly reserved for actual client assets. If not provided, we will omit the image section entirely or use descriptive text notes.
+## 4. Centralized URL Handling
+We will avoid hardcoding URLs in canonical links, breadcrumbs, structured data, and navigation. All URLs will resolve dynamically using site configuration properties:
+- `Astro.site` or `Astro.url.pathname`
+- `siteConfig.url` and `siteConfig.basePath` (e.g. from [site.ts](../../../src/data/site.ts))
+- Existing URL helpers (such as `getFullUrl` or `getAssetPath` in `site.ts`)
+
+This ensures that migrating the project from the temporary GitHub Pages path to the custom domain `startsdigital.com` only requires modifying the centralized configuration in `src/data/site.ts`.
+
+### Direct Contact CTAs
+All case-study CTA buttons prompting project inquiries must link back to the homepage contact section:
+```text
+${siteConfig.basePath}/#contact
+```
+Do not link to `/work/#contact` (since contact forms do not exist on the `/work/` page).
 
 ---
 
-## 6. SEO & Metadata Plan
-Each page will have native SEO configurations passed to `SEO.astro`:
-*   **Page Titles**:
-    - Work Overview: `Client Success & Selected Case Studies | Starts Digital`
-    - Black Gold Fertilizer: `Black Gold Fertilizer: E-Commerce Growth Case Study | Starts Digital`
-    - Qurbani Campaign: `Eid Qurbani Campaign: Seasonal Lead Generation Case Study | Starts Digital`
-*   **Meta Descriptions**: Unique, search-optimized descriptions containing the exact outcome figures (e.g. *Read how Starts Digital supported PKR 30M+ in revenue...*).
-*   **Canonical URLs**: Points explicitly to the absolute URL on GitHub Pages:
-    - `https://firdosi.github.io/startsdigital/work/`
-    - `https://firdosi.github.io/startsdigital/work/black-gold-fertilizer/`
-    - `https://firdosi.github.io/startsdigital/work/qurbani-campaign/`
-*   **Open Graph (OG)**: Inherits title and description defaults, with page type configured as `article`.
-*   **Breadcrumbs**: Standard breadcrumb trail: `Home > Work > [Project Name]` with active links.
-*   **Breadcrumb Structured Data**: JSON-LD `BreadcrumbList` schema output.
-*   **Case-Study Structured Data**: JSON-LD `Article` schema targeting the case studies:
-    ```json
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "[Project Title] Case Study",
-      "description": "[Project Meta Description]",
-      "author": {
-        "@type": "Organization",
-        "name": "Starts Digital"
-      }
-    }
-    ```
-*   **Internal Linking**: Update the homepage `SelectedWork.astro` panels to link directly to `/work/black-gold-fertilizer/` and `/work/qurbani-campaign/`, and link back from case studies to `/work/`.
-*   **Image Alt-Text Rules**: Descriptive text strictly focusing on the visual content of the asset (e.g., *"Meta ads manager dashboard showing verified PKR 4.2M sales value output"*).
+## 5. Internal Link & Work Page Rules
+- **Homepage Selected Work**:
+  - The *Black Gold Fertilizer* link will point to `/startsdigital/work/black-gold-fertilizer/`.
+  - The *Qurbani Campaign* link will point to `/startsdigital/work/qurbani-campaign/`.
+  - *RK Reno Solutions* and *Immigration and Education Projects* will remain plain text entries or link back to `/startsdigital/work/` (with no fake case study target paths).
+- **Work Overview Page (`/work/`)**:
+  - The two verified case studies will be featured prominently with clickable links.
+  - The other two projects (RK Reno & Immigration) will appear in a separate section titled `"Additional Experience"` without fake links. We will not use disabled buttons or broken indicators.
 
 ---
 
-## 7. Asset Checklist (Needed from User)
-To elevate these case studies to a premium level, the user is requested to compile the following real-world evidence assets where possible.
-
-### Black Gold Fertilizer
-*   **Ad Creative Samples**: 1–2 image or video ad designs used in campaigns (identifying information can be blurred/cropped).
-*   **E-commerce Screenshots**: Crop of Shopify/WooCommerce backend dashboard showing the order volume (29k+ sales) or revenue scale (confidential absolute account settings can be blurred).
-*   **Product Visuals**: High-quality product packaging photos of the fertilizer.
-*   **Workflow / Ad Accounts**: Screenshots of Meta Ads Manager showing the campaign structure.
-
-### Qurbani Campaign
-*   **Ad Creative Samples**: Paid social designs or videos showcasing livestock for Qurbani campaigns.
-*   **WhatsApp Lead Chats**: Blurry/cropped screenshot of client inquiries coming in through WhatsApp (removing user names and phone numbers).
-*   **Campaign Dashboard**: Crop of Meta Lead Generation campaign metrics showing lead forms submitted.
-
-### Instructions on Confidentiality & Redaction
-To protect client privacy:
-- **Client Identifiers**: Crop out or apply a solid black overlay on email addresses, customer names, private phone numbers, pixel IDs, and ad account numbers.
-- **Absolute Budgets**: If the client does not want to disclose absolute advertising spend, crop or blur the budget and cost-per-result columns, keeping only the relative growth percentages or total volume metrics.
-- **Logo Usage**: Confirm that the client has granted permission to display their text logo or wordmark. If not, we will represent them using text headers only.
+## 6. Open Graph (OG) & Social Images
+- We will not reference dummy files (like `/images/og-default.jpg`) if they do not exist in the repository.
+- We will conditionally render `og:image` and `twitter:image` tags in [SEO.astro](../../../src/components/seo/SEO.astro) only when `ogImage` is explicitly configured in frontmatter.
+- Recommended visual assets for OG preview images must have dimensions of exactly `1200 × 630 pixels`.
 
 ---
 
-## 8. Accessibility & Responsiveness Plan
-We will design pages to support standard accessibility protocols:
-- **Heading Order**: Enforce strict `h1 -> h2 -> h3` semantic flow.
-- **Keyboard Navigation**: All interactive elements (breadcrumbs, buttons, text links) must have visible focus rings (`focus-visible:ring-2 focus-visible:ring-brand-blue`).
-- **Contrast**: Confirm that text colors on light backgrounds meet a minimum of 4.5:1 ratio, and dark text (`text-brand-muted-dark` or `#98A2B3`) has high contrast on dark backgrounds.
-- **Responsive Breaks**: Test grid alignments at `320px`, `375px`, `430px`, `768px`, `1024px`, and `1440px`. Ensure images use explicit aspect ratios to avoid layout shifts.
+## 7. Structured Data
+- **Article Schema**: Dynamic case-study pages will render JSON-LD `Article` structured data. We will only include real metadata. We will not generate fake values for `datePublished`, `dateModified`, `image`, client details, author profiles, or fake reviews.
+- **Breadcrumb Schema**: We will render `BreadcrumbList` structured data on `/work/` and individual case-study pages, aligning with search engine indexing guidelines.
+
+---
+
+## 8. Image Alt Text Guidelines
+- Alt text must describe only what is visibly present in the image.
+- We will not write alt text that asserts commercial outcomes (e.g. *"Dashboard verifying PKR 4.2M sales"*).
+- Alt text must be factual and descriptive (e.g. *"Meta ads manager interface showing lead generation metrics"*).
+
+---
+
+## 9. User Information Questionnaire
+The following questionnaire must be filled out for each project to complete the pending sections of the case studies:
+
+### Questionnaire for Case Studies
+1.  **Original Business Problem**: What challenges was the client facing before this project?
+2.  **Campaign Objective**: What was the primary goal (e.g. leads, product sales)?
+3.  **Client's Target Audience**: Who was the target demographic and location?
+4.  **Exact Services/Responsibilities**: What did Starts Digital manage (strategy, ad creatives, page optimization)?
+5.  **Platforms & Tools Used**: Confirm all channels (Meta Ads, Shopify, WooCommerce, WhatsApp Business, etc.).
+6.  **Campaign Formats**: What ad types were tested (video, catalog ads, carousel, lead forms)?
+7.  **Creative Testing Approach**: How was testing managed (copy variations, creative testing hooks)?
+8.  **Project Period/Timeline**: What was the approximate duration of the campaigns?
+9.  **Key Operations & Improvements**: What workflow changes were implemented to optimize results?
+10. **Lessons Learned**: What key insights did we take away from this campaign?
+11. **Assets Available**: Are there screenshots, visual designs, or product photography files available for upload?
+12. **Client Permission Status**: Has the client approved displaying their brand name and results?
+
+---
+
+## 10. Verification Plan
+- **Type Checking**: Run `npm run check` to ensure Astro 7 loaders and schema typings compile.
+- **Static Compile**: Run `npm run build` to confirm output static files generate within the `/dist/work/` directory hierarchy.
+- **Link & Sitemap Integrity**: Confirm `/style-guide` remains excluded from `sitemap-0.xml`.
