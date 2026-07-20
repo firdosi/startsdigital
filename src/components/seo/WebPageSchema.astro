@@ -1,0 +1,19 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  url: string; // Must be absolute (e.g. Astro.url.href)
+}
+
+const { name, description, url } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": name,
+  "description": description,
+  "url": url
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -16,14 +16,15 @@ metrics:
   - value: "PKR 4.2M+"
     label: "sales supported"
 responsibilities:
-  - "Seasonal campaign planning and execution strategy"
-  - "Paid social advertising campaign setup and optimizations"
-  - "Lead generation and contact capture funnels"
-  - "Social media content and ad creatives"
-  - "Lead follow-up and sales coordination support"
+  - "Seasonal campaign strategy"
+  - "Paid social advertising"
+  - "Lead generation"
+  - "Creative content"
+  - "Sales support"
+  - "Campaign management"
 featured: true
 order: 2
-seoTitle: "Eid Qurbani Campaign: Seasonal Lead Generation Case Study | Starts Digital"
+seoTitle: "Eid Qurbani Campaign: Seasonal Lead Generation Case Study"
 seoDescription: "See how Starts Digital helped sell 150+ animals and supported PKR 4.2M+ in sales through a seasonal Eid Qurbani campaign."
 draft: false
 ---

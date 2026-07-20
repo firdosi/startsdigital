@@ -51,6 +51,7 @@ const collectionSchema = {
 <BaseLayout 
   title="Client Success & Case Studies" 
   description="Explore Starts Digital case studies covering e-commerce growth, paid advertising, lead generation and verified campaign outcomes."
+  ogType="website"
 >
   <BreadcrumbSchema items={schemaItems} />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
@@ -117,7 +118,7 @@ const collectionSchema = {
                   </div>
 
                   <div class="pt-4 border-t border-brand-grey/15 flex justify-between items-center flex-wrap gap-4">
-                    <p class="font-body text-sm sm:text-base font-normal text-brand-text leading-relaxed">
+                    <p class="font-body text-base font-normal text-brand-text leading-relaxed">
                       <strong class="font-semibold text-brand-black">Services:</strong>{' '}
                       {study.data.services.slice(0, 3).join(', ')}...
                     </p>
@@ -165,7 +166,7 @@ const collectionSchema = {
                     {project.result}
                   </p>
                   <div class="pt-3 border-t border-brand-grey/5">
-                    <p class="font-body text-sm font-normal text-brand-text">
+                    <p class="font-body text-base font-normal text-brand-text">
                       <strong class="font-semibold text-brand-muted-dark">Services:</strong>{' '}
                       {project.services.join(', ')}
                     </p>

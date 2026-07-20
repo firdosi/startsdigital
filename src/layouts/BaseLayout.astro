@@ -14,9 +14,19 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  canonicalUrl?: string;
+  ogType?: 'website' | 'article';
+  ogImage?: string;
 }
 
-const { title, description, noindex = false } = Astro.props;
+const { 
+  title, 
+  description, 
+  noindex = false,
+  canonicalUrl,
+  ogType,
+  ogImage
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -26,7 +36,14 @@ const { title, description, noindex = false } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href={`${siteConfig.basePath}/favicon.svg`} />
     
-    <SEO title={title} description={description} noindex={noindex} />
+    <SEO 
+      title={title} 
+      description={description} 
+      noindex={noindex} 
+      canonicalUrl={canonicalUrl}
+      ogType={ogType}
+      ogImage={ogImage}
+    />
     <StructuredData />
     <slot name="head" />
   </head>

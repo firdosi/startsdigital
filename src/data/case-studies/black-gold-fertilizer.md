@@ -16,14 +16,15 @@ metrics:
   - value: "29,000+"
     label: "product sales supported"
 responsibilities:
-  - "Digital marketing strategy and execution roadmap"
-  - "Meta advertising campaign structuring and optimizations"
-  - "Creative testing hooks and layout designs"
-  - "E-commerce conversions and funnel mapping"
-  - "Website usability improvements and analytics tracking"
+  - "Digital marketing strategy"
+  - "Meta advertising"
+  - "Campaign management"
+  - "Creative testing"
+  - "E-commerce growth"
+  - "Website and conversion support"
 featured: true
 order: 1
-seoTitle: "Black Gold Fertilizer: E-Commerce Growth Case Study | Starts Digital"
+seoTitle: "Black Gold Fertilizer: E-Commerce Growth Case Study"
 seoDescription: "See how Starts Digital contributed to PKR 30M+ in revenue and 29,000+ product sales through digital strategy and managed campaigns for Black Gold Fertilizer."
 draft: false
 ---

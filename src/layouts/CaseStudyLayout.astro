@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumbs from '../components/navigation/Breadcrumbs.astro';
 import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
+import WebPageSchema from '../components/seo/WebPageSchema.astro';
 import Container from '../components/ui/Container.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
 import Button from '../components/ui/Button.astro';
@@ -42,8 +43,15 @@ const schemaItems = [
 ];
 ---
 
-<BaseLayout title={data.seoTitle} description={data.seoDescription}>
+<BaseLayout 
+  title={data.seoTitle} 
+  description={data.seoDescription}
+  ogType="article"
+  ogImage={data.ogImage}
+  canonicalUrl={Astro.url.href}
+>
   <BreadcrumbSchema items={schemaItems} />
+  <WebPageSchema name={data.seoTitle} description={data.seoDescription} url={Astro.url.href} />
   
   <div class="bg-brand-black min-h-screen">
     <!-- Breadcrumbs -->
