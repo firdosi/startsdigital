@@ -29,7 +29,7 @@ This document tracks the tasks completed for the visual homepage prototype on br
 ## 4. Elimination of Repetitive Card Grids & Platform Readability
 
 - [x] Rebuild [Services.astro](../../../src/components/sections/Services.astro): Replace 6 equal white cards with 3 distinct large solution pillars (`Performance & Lead Generation`, `Websites, E-Commerce & SEO`, `Creative Content & AI Systems`) using light, dark navy, and image-led panels (`loading="lazy"` `decoding="async"`)
-- [x] Rebuild [FeaturedWork.astro](../../../src/components/sections/FeaturedWork.astro): Replace small alternating cards with 3 substantial editorial project showcases (`Black Gold Fertilizer`, `Qurbani Campaign`, `RK Reno Solutions`) (`loading="lazy"` `decoding="async"`)
+- [x] Rebuild [FeaturedWork.astro](../../../src/components/sections/FeaturedWork.astro): Replace small alternating cards with 3 substantial editorial project showcases (`Black Gold Fertilizer`, `Wajib Livestock Qurbani Campaign`, `RK Reno Solutions`) (`loading="lazy"` `decoding="async"`)
 - [x] Rebuild [Results.astro](../../../src/components/sections/Results.astro): Wide editorial metric layout with vertical dividers and background glow effects
 - [x] Rebuild [PlatformsTools.astro](../../../src/components/sections/PlatformsTools.astro): Enhanced 14-16px readability for tool names and clear uppercase category group headings
 - [x] Rebuild [WhyUs.astro](../../../src/components/sections/WhyUs.astro): Editorial split layout (left: large statement, right: 4 differentiators with dividers)
@@ -45,9 +45,7 @@ This document tracks the tasks completed for the visual homepage prototype on br
 ## 6. Verification & Screenshot Archive Management
 
 - [x] Enforce strict mandatory Screenshot Versioning policy in [PROJECT_RULES.md](../../../PROJECT_RULES.md)
-- [x] Rewrite capture script [capture-homepage-screenshots.js](../../../scripts/capture-homepage-screenshots.js) using Playwright JS API directly with scroll-into-view element capture and image decoding validation
-- [x] Create versioned folder `screenshots/v6-valid-capture-0b70d69/` containing validated screenshots and `README.md`
-- [x] Preserve all historical screenshot archives (`v1-initial-prototype-b944ab0`, `v2-integrity-cleanup-12097b1`, `v3-presentation-polish-cc24ed8`, `v4-image-led-redesign-a712770`, `v5-targeted-polish-6b06122`)
+- [x] Create versioned folder `screenshots/v7-approved-brands-f2a1366/` displaying approved 15-brand experience listing and updated Qurbani title
+- [x] Preserve all historical screenshot archives (`v1-initial-prototype-b944ab0`, `v2-integrity-cleanup-12097b1`, `v3-presentation-polish-cc24ed8`, `v4-image-led-redesign-a712770`, `v5-targeted-polish-6b06122`, `v6-valid-capture-0b70d69`)
 - [x] Run `npm run check` (`astro check`) and resolve all TypeScript/Astro errors (0 errors)
 - [x] Run `npm run build` to verify static production build (0 errors)
-- [x] Confirm 0 website source components (`src/`) changed in capture fix task
