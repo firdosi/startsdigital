@@ -1,7 +1,7 @@
 ---
 title: "RK Reno Solutions"
 description: "Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor."
-industry: "Renovation and local services"
+industry: "Renovation and Local Services"
 services:
   - "SEO strategy"
   - "service-page development"
@@ -18,18 +18,33 @@ responsibilities:
   - "Service-page architecture and localized landing page content creation."
   - "On-page search engine optimization and technical schema markup."
   - "Mobile performance and user experience optimization."
-draft: false
+heroImage:
+  src: "/images/project-seo.webp"
+  alt: "RK Reno Solutions Website & Local SEO Architecture"
+  caption: "RK Reno Solutions Localized Renovation & HVAC Service Pages"
+gallery:
+  - src: "/images/seo.webp"
+    alt: "Technical Search Engine Optimization & Schema Architecture"
+    caption: "Structured Local Schema Markup & Keyword Mapping"
+featured: true
 order: 3
 seoTitle: "RK Reno Solutions Case Study | Starts Digital"
 seoDescription: "Discover how Starts Digital built a structured SEO foundation targeting renovation and air-conditioning services in KL and Selangor."
+draft: false
 ---
 
-# RK Reno Solutions Case Study
+## Search Opportunity
 
-Starts Digital engineered a structured local search engine optimization strategy for RK Reno Solutions, targeting high-intent commercial keywords for home renovation, interior work, and air-conditioning services across Kuala Lumpur and Selangor.
+High commercial demand for home renovation, interior fitting, and air-conditioning services across Kuala Lumpur and Selangor required a structured search engine foundation.
 
-## Strategy & Approach
+## Service-Page Architecture
 
-1. **Local Intent Mapping**: Identified core search queries used by homeowners and business managers seeking renovation and air-conditioning contracts.
-2. **Service Architecture**: Developed dedicated landing pages with clear service breakdowns and contact triggers.
-3. **Technical SEO Foundation**: Implemented clean metadata, semantic HTML markup, and fast-loading mobile templates.
+Developed dedicated landing pages for specific renovation and HVAC service categories, incorporating localized search intent and technical schema.
+
+## Local SEO Foundation
+
+Optimized site structure, on-page metadata, semantic headings, and fast-loading mobile templates to capture regional search intent.
+
+## Implementation Scope
+
+Successfully established a structured SEO architecture targeting key commercial renovation queries across Kuala Lumpur and Selangor.

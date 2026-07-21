@@ -3,8 +3,9 @@ import BaseLayout from './BaseLayout.astro';
 import Container from '../components/ui/Container.astro';
 import FinalCta from '../components/landing/FinalCta.astro';
 import MotionController from '../components/common/MotionController.astro';
+import { getCollection } from 'astro:content';
 import { site } from '../site.config';
-import { ArrowRight, CheckCircle2, Sparkles, ArrowLeft } from '@lucide/astro';
+import { ArrowRight, CheckCircle2, Sparkles, ArrowLeft, Image as ImageIcon } from '@lucide/astro';
 
 interface Props {
   entry: {
@@ -28,6 +29,14 @@ interface Props {
 
 const { entry } = Astro.props;
 const { data } = entry;
+
+// Fetch all case studies for previous / next project navigation
+const allStudies = await getCollection('case-studies', ({ data }) => !data.draft);
+const sortedStudies = allStudies.sort((a, b) => a.data.order - b.data.order);
+const currentIndex = sortedStudies.findIndex((s) => s.id === entry.id);
+
+const prevStudy = currentIndex > 0 ? sortedStudies[currentIndex - 1] : sortedStudies[sortedStudies.length - 1];
+const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[currentIndex + 1] : sortedStudies[0];
 ---
 
 <BaseLayout 
@@ -38,7 +47,7 @@ const { data } = entry;
 >
   <div class="bg-[#f7f4ed] min-h-screen text-[#061d33]">
     <!-- Deep Navy Hero Header Section -->
-    <section class="bg-[#061d33] text-white py-16 sm:py-24 border-b border-white/10 relative overflow-hidden rounded-b-[40px] shadow-2xl">
+    <section class="bg-[#061d33] text-white pt-16 pb-20 sm:pt-20 sm:pb-24 border-b border-white/10 relative overflow-hidden rounded-b-[40px] shadow-2xl">
       <Container class="relative max-w-[1000px] px-6 sm:px-8 space-y-6">
         <div class="flex items-center justify-between gap-4">
           <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#ddff35]">
@@ -65,7 +74,7 @@ const { data } = entry;
     </section>
 
     <!-- Key Metrics Cards -->
-    <section class="py-12 bg-white border-b border-[#061d33]/10">
+    <section class="py-10 bg-white border-b border-[#061d33]/10">
       <Container class="max-w-[1000px] px-6 sm:px-8">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {
@@ -84,12 +93,38 @@ const { data } = entry;
       </Container>
     </section>
 
-    <!-- Specifications & Content -->
-    <section class="py-16 sm:py-20">
+    <!-- Primary Hero Visual Component (heroImage) -->
+    {data.heroImage && (
+      <section class="pt-12 pb-4 bg-[#f7f4ed]">
+        <Container class="max-w-[1000px] px-6 sm:px-8">
+          <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-4 sm:p-6 shadow-xl overflow-hidden group">
+            <div class="relative overflow-hidden rounded-2xl bg-[#061d33]/5 border border-slate-200">
+              <img 
+                src={`${site.basePath}${data.heroImage.src}`} 
+                alt={data.heroImage.alt}
+                class="w-full max-h-[500px] object-cover sm:object-contain bg-slate-900/5 group-hover:scale-102 transition-transform duration-500"
+              />
+            </div>
+            {data.heroImage.caption && (
+              <div class="mt-4 flex items-center justify-between text-xs font-mono font-bold text-slate-600 px-2">
+                <span class="inline-flex items-center gap-1.5 uppercase text-[#ff762b]">
+                  <ImageIcon class="size-4" />
+                  <span>Featured Visual</span>
+                </span>
+                <span>{data.heroImage.caption}</span>
+              </div>
+            )}
+          </div>
+        </Container>
+      </section>
+    )}
+
+    <!-- Specifications & Main Case Content -->
+    <section class="py-12 sm:py-16">
       <Container class="max-w-[1000px] px-6 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
         <!-- Sidebar -->
         <div class="lg:col-span-4 space-y-6">
-          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-6 sticky top-8">
             <div>
               <span class="block font-mono text-xs font-bold tracking-wider text-[#ff762b] uppercase mb-1">
                 Industry
@@ -117,7 +152,7 @@ const { data } = entry;
           </div>
         </div>
 
-        <!-- Main Content -->
+        <!-- Main Content (Markdown Body) -->
         <div class="lg:col-span-8 space-y-8">
           <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm space-y-6">
             <h2 class="font-display text-2xl font-black uppercase text-[#061d33] border-b border-slate-100 pb-4">
@@ -135,9 +170,95 @@ const { data } = entry;
             </ul>
           </div>
 
-          <div class="prose prose-slate max-w-none pt-2">
+          <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm space-y-6 prose prose-slate max-w-none font-body">
             <slot />
           </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Project Gallery Visuals Component (gallery) -->
+    {data.gallery && data.gallery.length > 0 && (
+      <section class="py-12 bg-white border-t border-b border-[#061d33]/10">
+        <Container class="max-w-[1000px] px-6 sm:px-8 space-y-8">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display text-2xl font-black uppercase text-[#061d33]">
+              CAMPAIGN & VISUAL GALLERY
+            </h3>
+            <span class="text-xs font-mono font-bold uppercase text-[#ff762b]">Verified Assets</span>
+          </div>
+
+          <div class="grid gap-6 sm:grid-cols-2">
+            {data.gallery.map((img) => (
+              <div class="rounded-2xl border border-slate-200 bg-[#f7f4ed] p-3 shadow-md overflow-hidden group">
+                <div class="relative overflow-hidden rounded-xl bg-white border border-slate-200">
+                  <img 
+                    src={`${site.basePath}${img.src}`} 
+                    alt={img.alt}
+                    class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                {img.caption && (
+                  <p class="mt-3 text-xs font-mono font-bold text-slate-600 px-1">
+                    {img.caption}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+    )}
+
+    <!-- Previous / Next Project Navigation -->
+    <section class="py-16 bg-[#f7f4ed] border-t border-[#061d33]/10">
+      <Container class="max-w-[1000px] px-6 sm:px-8">
+        <div class="text-xs font-mono font-bold uppercase tracking-widest text-slate-500 mb-6 text-center">
+          EXPLORE MORE CASE STUDIES
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2">
+          <!-- Previous Project Link -->
+          {prevStudy && (
+            <a 
+              href={`${site.basePath}/work/${prevStudy.id}/`}
+              class="rounded-2xl border-2 border-[#061d33]/15 bg-white p-6 shadow-md hover:border-[#ff762b] hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            >
+              <div class="space-y-2">
+                <span class="inline-flex items-center gap-1 text-xs font-mono font-bold uppercase text-[#ff762b]">
+                  <ArrowLeft class="size-3.5" />
+                  <span>Previous Case Study</span>
+                </span>
+                <h4 class="font-display text-xl font-black uppercase text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+                  {prevStudy.data.title}
+                </h4>
+              </div>
+              <p class="text-xs font-mono font-bold text-slate-500 uppercase mt-4">
+                {prevStudy.data.industry}
+              </p>
+            </a>
+          )}
+
+          <!-- Next Project Link -->
+          {nextStudy && (
+            <a 
+              href={`${site.basePath}/work/${nextStudy.id}/`}
+              class="rounded-2xl border-2 border-[#061d33]/15 bg-white p-6 shadow-md hover:border-[#ff762b] hover:shadow-xl transition-all duration-300 flex flex-col justify-between text-right group"
+            >
+              <div class="space-y-2">
+                <span class="inline-flex items-center gap-1 justify-end text-xs font-mono font-bold uppercase text-[#ff762b]">
+                  <span>Next Case Study</span>
+                  <ArrowRight class="size-3.5" />
+                </span>
+                <h4 class="font-display text-xl font-black uppercase text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+                  {nextStudy.data.title}
+                </h4>
+              </div>
+              <p class="text-xs font-mono font-bold text-slate-500 uppercase mt-4">
+                {nextStudy.data.industry}
+              </p>
+            </a>
+          )}
         </div>
       </Container>
     </section>

@@ -124,15 +124,13 @@ import {
                 TELL US ABOUT YOUR PROJECT
               </h3>
               <p class="text-sm sm:text-base text-slate-600 font-body">
-                Fill out the form below or message us directly via WhatsApp.
+                Choose your preferred channel below (Email or WhatsApp) to send your inquiry directly to our execution team.
               </p>
             </div>
 
             <!-- Form -->
             <form 
               id="contact-form"
-              action={`mailto:${site.contact.email}`}
-              method="GET"
               class="space-y-5"
             >
               <div class="grid gap-5 sm:grid-cols-2">
@@ -143,7 +141,6 @@ import {
                   <input 
                     type="text" 
                     id="name" 
-                    name="subject"
                     required
                     placeholder="e.g. John Doe"
                     class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-sm font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
@@ -156,7 +153,6 @@ import {
                   <input 
                     type="email" 
                     id="email" 
-                    name="replyto"
                     required
                     placeholder="name@company.com"
                     class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-sm font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
@@ -172,7 +168,6 @@ import {
                   <input 
                     type="text" 
                     id="phone" 
-                    name="phone"
                     placeholder="+92 300 0000000"
                     class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-sm font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                   />
@@ -184,7 +179,6 @@ import {
                   <input 
                     type="text" 
                     id="company" 
-                    name="company"
                     placeholder="Your Business Name"
                     class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-sm font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                   />
@@ -197,7 +191,6 @@ import {
                 </label>
                 <select 
                   id="service" 
-                  name="service"
                   required
                   class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-sm font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                 >
@@ -216,7 +209,6 @@ import {
                 </label>
                 <textarea 
                   id="message" 
-                  name="body"
                   rows="4"
                   required
                   placeholder="Tell us about your current campaigns, website, and growth objectives..."
@@ -224,18 +216,29 @@ import {
                 ></textarea>
               </div>
 
-              <div class="pt-2">
+              <!-- Action Choice Buttons -->
+              <div class="pt-2 grid gap-4 sm:grid-cols-2">
                 <button
-                  type="submit"
-                  class="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-[#061d33] px-8 py-4 font-display text-lg font-bold text-white shadow-xl hover:bg-[#ff762b] transition-all cursor-pointer"
+                  type="button"
+                  id="btn-send-email"
+                  class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#061d33] px-6 py-4 font-display text-base font-bold text-white shadow-lg hover:bg-[#ff762b] transition-all cursor-pointer"
                 >
                   <Send class="size-5 text-[#ddff35]" />
-                  <span>SEND ENQUIRY VIA EMAIL</span>
+                  <span>SEND VIA EMAIL</span>
+                </button>
+
+                <button
+                  type="button"
+                  id="btn-send-whatsapp"
+                  class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#39c98a] px-6 py-4 font-display text-base font-bold text-white shadow-lg hover:bg-[#2fb078] transition-all cursor-pointer"
+                >
+                  <MessageSquare class="size-5 text-white" />
+                  <span>SEND VIA WHATSAPP</span>
                 </button>
               </div>
 
               <p class="text-xs text-center text-slate-500 font-mono">
-                Note: Submitting this form opens your email client directly addressing {site.contact.email}.
+                Note: Selecting Email opens your email client addressing {site.contact.email}. Selecting WhatsApp opens WhatsApp directly with your pre-filled inquiry.
               </p>
             </form>
           </div>
@@ -253,4 +256,39 @@ import {
   <FinalCta />
 
   <MotionController />
+
+  <!-- Client-side Interactive Form Dispatcher -->
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const btnEmail = document.getElementById('btn-send-email');
+    const btnWhatsApp = document.getElementById('btn-send-whatsapp');
+
+    function getFormData() {
+      const name = (document.getElementById('name') as HTMLInputElement)?.value.trim() || 'Not specified';
+      const email = (document.getElementById('email') as HTMLInputElement)?.value.trim() || 'Not specified';
+      const phone = (document.getElementById('phone') as HTMLInputElement)?.value.trim() || 'Not specified';
+      const company = (document.getElementById('company') as HTMLInputElement)?.value.trim() || 'Not specified';
+      const service = (document.getElementById('service') as HTMLSelectElement)?.value || 'General Inquiry';
+      const message = (document.getElementById('message') as HTMLTextAreaElement)?.value.trim() || '';
+
+      return { name, email, phone, company, service, message };
+    }
+
+    btnEmail?.addEventListener('click', () => {
+      const data = getFormData();
+      const subject = encodeURIComponent(`Starts Digital Project Inquiry: ${data.service}`);
+      const body = encodeURIComponent(
+        `Name: ${data.name}\nEmail: ${data.email}\nPhone/WhatsApp: ${data.phone}\nCompany: ${data.company}\nService Needed: ${data.service}\n\nProject Details:\n${data.message}`
+      );
+      window.location.href = `mailto:firdosidigital@gmail.com?subject=${subject}&body=${body}`;
+    });
+
+    btnWhatsApp?.addEventListener('click', () => {
+      const data = getFormData();
+      const text = encodeURIComponent(
+        `Hello Starts Digital,\n\nI would like to discuss a project:\n\n*Name:* ${data.name}\n*Email:* ${data.email}\n*Phone:* ${data.phone}\n*Company:* ${data.company}\n*Service Needed:* ${data.service}\n\n*Project Details:*\n${data.message}`
+      );
+      window.open(`https://wa.me/923394135544?text=${text}`, '_blank');
+    });
+  </script>
 </BaseLayout>
