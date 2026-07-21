@@ -1,72 +1,94 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/ui/Container.astro';
-import { getCollection } from 'astro:content';
+import Showcase from '../../components/landing/Showcase.astro';
+import FinalCta from '../../components/landing/FinalCta.astro';
+import MotionController from '../../components/common/MotionController.astro';
+import { brands } from '../../data/brands';
 import { site } from '../../site.config';
-import { ArrowRight, Sparkles } from '@lucide/astro';
+import { Sparkles, ArrowRight } from '@lucide/astro';
 
-const caseStudies = await getCollection('case-studies', ({ data }) => !data.draft);
-const sortedStudies = caseStudies.sort((a, b) => a.data.order - b.data.order);
+// Remaining approved brands
+const remainingBrands = brands.filter((b) => b.id !== 'black-gold-fertilizer' && b.id !== 'rk-reno-solutions');
 ---
 
 <BaseLayout 
-  title="Client Success & Case Studies — Starts Digital" 
-  description="Explore Starts Digital case studies covering e-commerce growth, paid advertising, lead generation and verified campaign outcomes."
+  title="Client Work & Case Studies — Starts Digital"
+  description="Selected campaigns, websites and growth projects supported by Starts Digital."
   type="website"
 >
-  <!-- Hero Section -->
-  <section class="bg-[#061d33] text-white py-16 sm:py-24 border-b border-white/10 relative overflow-hidden rounded-b-[40px]">
-    <Container class="relative max-w-[1280px] px-6 sm:px-8 space-y-4">
-      <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#ddff35]">
+  <!-- Deep Navy Rounded Hero Header -->
+  <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 rounded-b-[40px] shadow-2xl">
+    <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-bold uppercase tracking-widest text-[#ddff35]">
         <Sparkles class="size-3.5 text-[#ddff35]" />
-        <span>PORTFOLIO & CASE STUDIES</span>
+        <span>OUR WORK</span>
       </span>
-      <h1 class="font-display text-4xl sm:text-6xl font-black uppercase tracking-tight text-white leading-tight">
-        OUR FEATURED CASE STUDIES
+      
+      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-none text-white max-w-5xl mx-auto">
+        WORK BUILT AROUND <span class="text-[#ff762b]">REAL BUSINESS OUTCOMES</span>
       </h1>
-      <p class="font-body text-lg sm:text-xl text-slate-200 max-w-2xl leading-relaxed font-medium">
-        Factual case studies covering e-commerce revenue growth, paid media acquisition, and structured search engine architecture.
+      
+      <p class="font-body text-lg sm:text-2xl text-slate-200 max-w-3xl mx-auto leading-relaxed font-medium">
+        Selected campaigns, websites and growth projects supported by Starts Digital.
       </p>
     </Container>
   </section>
 
-  <!-- Main Case Studies Grid -->
-  <section class="py-20 bg-[#f7f4ed] text-[#061d33]">
-    <Container class="max-w-[1280px] px-6 sm:px-8 space-y-12">
-      
-      <div class="grid gap-8 md:grid-cols-2">
-        {
-          sortedStudies.map((study) => (
-            <div 
-              class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-10 shadow-lg hover:shadow-xl transition-all duration-200 flex flex-col justify-between group"
-            >
-              <div class="space-y-4">
-                <span class="inline-block rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-4 py-1 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
-                  {study.data.industry}
-                </span>
-                <h2 class="font-display text-3xl sm:text-4xl font-black uppercase text-[#061d33] group-hover:text-[#ff762b] transition-colors">
-                  {study.data.title}
-                </h2>
-                <p class="font-body text-base text-slate-700 leading-relaxed font-medium">
-                  {study.data.outcomeSummary}
-                </p>
-              </div>
+  <!-- 3 Large Image-Led Featured Projects -->
+  <Showcase />
 
-              <div class="mt-8 pt-6 border-t border-slate-200 flex items-center justify-between">
-                <span class="text-xs font-mono font-bold text-slate-500 uppercase">Verified Case Study</span>
-                <a
-                  href={`${site.basePath}/work/${study.id}/`}
-                  class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-6 py-3 font-display text-sm font-bold text-white hover:bg-[#ff762b] transition-all shadow-sm"
-                >
-                  <span>Read Case Study</span>
-                  <ArrowRight class="size-4" />
-                </a>
-              </div>
-            </div>
-          ))
-        }
+  <!-- Other Brands and Projects We Have Worked With -->
+  <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="max-w-[1280px] px-6 sm:px-8 space-y-16">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] mb-3 block">
+          PORTFOLIO & PARTNERSHIPS
+        </span>
+        <h2 class="font-display text-3xl sm:text-5xl font-black uppercase text-[#061d33] leading-tight">
+          OTHER BRANDS AND PROJECTS WE HAVE WORKED WITH
+        </h2>
+        <p class="mt-4 text-base sm:text-xl text-slate-700 font-body">
+          Client accounts across e-commerce, international consultation, education, and regional service sectors.
+        </p>
       </div>
 
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {remainingBrands.map((b, idx) => (
+          <div 
+            class="reveal-on-scroll rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 shadow-md hover:shadow-xl hover:border-[#ff762b] transition-all duration-300 flex items-center gap-5 group"
+            data-reveal-delay={idx * 50}
+          >
+            {b.logo && b.logoApproved ? (
+              <div class="size-16 rounded-2xl bg-[#f7f4ed] p-2 flex items-center justify-center shrink-0 border border-slate-200">
+                <img 
+                  src={`${site.basePath}${b.logo}`} 
+                  alt={`${b.name} logo`} 
+                  class="max-h-10 max-w-12 object-contain grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all"
+                />
+              </div>
+            ) : (
+              <div class="size-16 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-display font-black text-xl shrink-0">
+                {b.name.charAt(0)}
+              </div>
+            )}
+            
+            <div>
+              <h3 class="font-display text-lg sm:text-xl font-black uppercase text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
+                {b.name}
+              </h3>
+              <p class="text-xs font-mono font-bold text-slate-500 uppercase mt-1">
+                {b.category}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
     </Container>
   </section>
+
+  <!-- Approved Navy CTA Panel -->
+  <FinalCta />
+
+  <MotionController />
 </BaseLayout>

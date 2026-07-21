@@ -1,8 +1,10 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Container from '../components/ui/Container.astro';
+import FinalCta from '../components/landing/FinalCta.astro';
+import MotionController from '../components/common/MotionController.astro';
 import { site } from '../site.config';
-import { ArrowRight, CheckCircle2, Sparkles } from '@lucide/astro';
+import { ArrowRight, CheckCircle2, Sparkles, ArrowLeft } from '@lucide/astro';
 
 interface Props {
   entry: {
@@ -35,13 +37,24 @@ const { data } = entry;
   image={data.ogImage}
 >
   <div class="bg-[#f7f4ed] min-h-screen text-[#061d33]">
-    <!-- Hero Header Section -->
-    <section class="bg-[#061d33] text-white py-16 sm:py-24 border-b border-white/10 relative overflow-hidden rounded-b-[40px]">
+    <!-- Deep Navy Hero Header Section -->
+    <section class="bg-[#061d33] text-white py-16 sm:py-24 border-b border-white/10 relative overflow-hidden rounded-b-[40px] shadow-2xl">
       <Container class="relative max-w-[1000px] px-6 sm:px-8 space-y-6">
-        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#ddff35]">
-          <Sparkles class="size-3.5 text-[#ddff35]" />
-          <span>{data.industry}</span>
-        </span>
+        <div class="flex items-center justify-between gap-4">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#ddff35]">
+            <Sparkles class="size-3.5 text-[#ddff35]" />
+            <span>{data.industry}</span>
+          </span>
+
+          <a 
+            href={`${site.basePath}/work/`}
+            class="inline-flex items-center gap-2 text-xs font-mono font-bold text-slate-300 hover:text-[#ddff35] transition-colors"
+          >
+            <ArrowLeft class="size-3.5" />
+            <span>Back to All Work</span>
+          </a>
+        </div>
+
         <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-tight">
           {data.title}
         </h1>
@@ -129,25 +142,9 @@ const { data } = entry;
       </Container>
     </section>
 
-    <!-- Bottom CTA Banner -->
-    <section class="bg-[#061d33] text-white py-16 border-t border-white/10">
-      <Container class="max-w-[800px] px-6 sm:px-8 text-center space-y-6">
-        <h2 class="font-display text-3xl sm:text-5xl font-black uppercase text-white">
-          READY TO BUILD STRONGER DIGITAL GROWTH?
-        </h2>
-        <p class="font-body text-lg text-slate-200">
-          Speak directly with our team to evaluate your ad campaigns and web strategy.
-        </p>
-        <div>
-          <a 
-            href={`${site.basePath}/#contact`} 
-            class="inline-flex items-center gap-2 rounded-full bg-[#ddff35] px-8 py-4 font-display text-base font-bold text-[#061d33] shadow-xl hover:bg-[#c9eb1e] transition-all"
-          >
-            <span>Discuss Your Project</span>
-            <ArrowRight class="size-5" />
-          </a>
-        </div>
-      </Container>
-    </section>
+    <!-- Approved Navy CTA Panel -->
+    <FinalCta />
   </div>
+
+  <MotionController />
 </BaseLayout>

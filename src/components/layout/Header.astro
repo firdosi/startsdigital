@@ -3,12 +3,12 @@ import Logo from './Logo.astro';
 import { site } from '../../site.config';
 
 const links = [
-  { href: `${site.basePath}/#services`, label: 'Services' },
-  { href: `${site.basePath}/#work`, label: 'Work' },
-  { href: `${site.basePath}/#results`, label: 'Results' },
-  { href: `${site.basePath}/#about`, label: 'About' },
+  { href: `${site.basePath}/`, label: 'Home' },
+  { href: `${site.basePath}/services/`, label: 'Services' },
+  { href: `${site.basePath}/work/`, label: 'Work' },
+  { href: `${site.basePath}/about/`, label: 'About' },
   { href: `${site.basePath}/#faq`, label: 'FAQ' },
-  { href: `${site.basePath}/#contact`, label: 'Contact' },
+  { href: `${site.basePath}/contact/`, label: 'Contact' },
 ];
 ---
 
@@ -31,7 +31,7 @@ const links = [
     <!-- Right Actions -->
     <div class="flex items-center gap-4">
       <a
-        href={`${site.basePath}/#contact`}
+        href={`${site.basePath}/contact/`}
         class="hidden sm:inline-flex items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-bold text-[#061d33] shadow-md hover:bg-[#ddff35] hover:text-[#061d33] transition-all transform hover:-translate-y-0.5"
       >
         Discuss Your Project
@@ -64,7 +64,7 @@ const links = [
         </a>
       ))}
       <a
-        href={`${site.basePath}/#contact`}
+        href={`${site.basePath}/contact/`}
         class="mobile-link mt-2 rounded-full bg-[#ff762b] px-6 py-3 text-center text-sm font-bold text-white shadow-md hover:bg-[#e56017] transition-all"
       >
         Discuss Your Project

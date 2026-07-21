@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Features from '../components/landing/Features.astro';
+import Process from '../components/landing/Process.astro';
+import FinalCta from '../components/landing/FinalCta.astro';
+import MotionController from '../components/common/MotionController.astro';
+import { site } from '../site.config';
+import { 
+  Sparkles, 
+  Megaphone, 
+  ShoppingBag, 
+  Search, 
+  Video, 
+  Bot, 
+  BarChart3,
+  CheckCircle2
+} from '@lucide/astro';
+
+const toolkitItems = [
+  { name: 'Meta Advertising', desc: 'Campaign structure & Conversions API' },
+  { name: 'Google Advertising', desc: 'Search & Performance Max setup' },
+  { name: 'Landing Pages', desc: 'High-converting mobile landers' },
+  { name: 'Conversion-Focused Websites', desc: 'Fast WooCommerce & Shopify' },
+  { name: 'E-Commerce Architecture', desc: 'Checkout friction reduction' },
+  { name: 'Technical SEO', desc: 'Schema markup & site indexation' },
+  { name: 'Local SEO', desc: 'Geographic keyword targeting' },
+  { name: 'Campaign Creative', desc: 'Direct-response video & graphics' },
+  { name: 'Content Systems', desc: 'Scalable creative pipelines' },
+  { name: 'Tracking & Analytics', desc: 'GA4, CAPI & attribution auditing' },
+  { name: 'AI-Assisted Workflows', desc: 'Lead routing & avatar videos' },
+  { name: 'Performance Reporting', desc: 'Transparent revenue tracking' }
+];
+---
+
+<BaseLayout 
+  title="Digital Marketing & Growth Services — Starts Digital"
+  description="One connected team for paid advertising, websites, SEO, creative content and practical AI-powered marketing systems."
+  type="website"
+>
+  <!-- Deep Navy Rounded Hero Header -->
+  <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 rounded-b-[40px] shadow-2xl">
+    <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-bold uppercase tracking-widest text-[#ddff35]">
+        <Sparkles class="size-3.5 text-[#ddff35]" />
+        <span>SERVICES</span>
+      </span>
+      
+      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-none text-white max-w-5xl mx-auto">
+        EVERYTHING YOUR BUSINESS NEEDS TO <span class="text-[#ff762b]">GROW ONLINE</span>
+      </h1>
+      
+      <p class="font-body text-lg sm:text-2xl text-slate-200 max-w-3xl mx-auto leading-relaxed font-medium">
+        One connected team for paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Main 6 Colourful Service Cards -->
+  <Features />
+
+  <!-- Working Method Accordion -->
+  <Process />
+
+  <!-- Explore Our Complete Growth Toolkit -->
+  <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="max-w-[1280px] px-6 sm:px-8 space-y-16">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] mb-3 block">
+          CAPABILITIES & STACK
+        </span>
+        <h2 class="font-display text-3xl sm:text-5xl font-black uppercase text-[#061d33] leading-tight">
+          EXPLORE OUR COMPLETE GROWTH TOOLKIT
+        </h2>
+        <p class="mt-4 text-base sm:text-xl text-slate-700 font-body">
+          Unified capabilities covering paid acquisition, web infrastructure, search optimization, and AI automation.
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {toolkitItems.map((item, idx) => (
+          <div 
+            class="reveal-on-scroll rounded-2xl border-2 border-[#061d33]/15 bg-white p-6 shadow-md hover:shadow-xl hover:border-[#ff762b] transition-all duration-300 group"
+            data-reveal-delay={idx * 40}
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <CheckCircle2 class="size-5 text-[#ff762b] group-hover:scale-110 transition-transform shrink-0" />
+              <h3 class="font-display text-lg font-black uppercase text-[#061d33] leading-snug">
+                {item.name}
+              </h3>
+            </div>
+            <p class="text-sm text-slate-600 font-body leading-relaxed font-medium pl-8">
+              {item.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Approved Navy CTA Panel -->
+  <FinalCta />
+
+  <MotionController />
+</BaseLayout>

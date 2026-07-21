@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import WhyUs from '../components/landing/WhyUs.astro';
+import AboutOperator from '../components/landing/AboutOperator.astro';
+import Process from '../components/landing/Process.astro';
+import FinalCta from '../components/landing/FinalCta.astro';
+import MotionController from '../components/common/MotionController.astro';
+import { site } from '../site.config';
+import { 
+  Sparkles, 
+  Target, 
+  MessageSquare, 
+  TrendingUp, 
+  RotateCw,
+  CheckCircle2
+} from '@lucide/astro';
+
+const values = [
+  {
+    title: 'Practical Strategy',
+    desc: 'No vague marketing jargon or unproven frameworks. Every plan is tied directly to real commercial deliverables and unit economics.',
+    colorClass: 'border-[#ff762b] text-[#ff762b]',
+    Icon: Target,
+  },
+  {
+    title: 'Clear Communication',
+    desc: 'Direct access to senior execution partners without junior account managers or hidden communication barriers.',
+    colorClass: 'border-[#9a83f5] text-[#9a83f5]',
+    Icon: MessageSquare,
+  },
+  {
+    title: 'Commercial Focus',
+    desc: 'We measure campaign health on actual bank revenue, cost-per-lead, and sales volume—never vanity impressions.',
+    colorClass: 'border-[#39c98a] text-[#39c98a]',
+    Icon: TrendingUp,
+  },
+  {
+    title: 'Continuous Improvement',
+    desc: 'Iterative creative testing, CRO adjustments, and long-term search engine authority building that compounds over time.',
+    colorClass: 'border-[#ff514b] text-[#ff514b]',
+    Icon: RotateCw,
+  },
+];
+---
+
+<BaseLayout 
+  title="About Starts Digital — Growth Marketing & Technical Systems"
+  description="Starts Digital combines campaign strategy, paid advertising, websites, SEO, creative content and practical technology systems to support business growth."
+  type="website"
+>
+  <!-- Deep Navy Rounded Hero Header -->
+  <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 rounded-b-[40px] shadow-2xl">
+    <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-bold uppercase tracking-widest text-[#ddff35]">
+        <Sparkles class="size-3.5 text-[#ddff35]" />
+        <span>ABOUT STARTS DIGITAL</span>
+      </span>
+      
+      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-none text-white max-w-5xl mx-auto">
+        MARKETING, TECHNOLOGY AND EXECUTION <span class="text-[#ff762b]">WORKING AS ONE</span>
+      </h1>
+      
+      <p class="font-body text-lg sm:text-2xl text-slate-200 max-w-3xl mx-auto leading-relaxed font-medium">
+        Starts Digital combines campaign strategy, paid advertising, websites, SEO, creative content and practical technology systems to support business growth.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Why Brands Trust Starts Digital -->
+  <WhyUs />
+
+  <!-- Built With Hands-On Operator Experience -->
+  <AboutOperator />
+
+  <!-- Core Operating Values Section -->
+  <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="max-w-[1280px] px-6 sm:px-8 space-y-16">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] mb-3 block">
+          OUR GUIDING PRINCIPLES
+        </span>
+        <h2 class="font-display text-3xl sm:text-5xl font-black uppercase text-[#061d33] leading-tight">
+          OPERATING VALUES THAT DRIVE PERFORMANCE
+        </h2>
+        <p class="mt-4 text-base sm:text-xl text-slate-700 font-body">
+          Disciplined principles that govern our client relationships, technical execution, and daily decision-making.
+        </p>
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {values.map((v, idx) => (
+          <div 
+            class="reveal-on-scroll rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 shadow-lg hover:shadow-2xl hover:border-[#ff762b] transition-all duration-300 flex flex-col justify-between group"
+            data-reveal-delay={idx * 80}
+          >
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class:list={['size-12 rounded-2xl border-2 flex items-center justify-center font-bold bg-[#f7f4ed]', v.colorClass]}>
+                  <v.Icon class="size-6" />
+                </div>
+                <span class="text-xs font-mono font-extrabold text-slate-400">0{idx + 1}</span>
+              </div>
+
+              <h3 class="font-display text-2xl font-black uppercase text-[#061d33] mb-3 leading-snug">
+                {v.title}
+              </h3>
+              
+              <p class="text-sm text-slate-700 font-body leading-relaxed font-medium">
+                {v.desc}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Working Method Accordion -->
+  <Process />
+
+  <!-- Approved Navy CTA Panel -->
+  <FinalCta />
+
+  <MotionController />
+</BaseLayout>
