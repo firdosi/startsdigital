@@ -275,6 +275,7 @@ import {
     }
 
     btnEmail?.addEventListener('click', () => {
+      if (!form.reportValidity()) return;
       const data = getFormData();
       const subject = encodeURIComponent(`Starts Digital Project Inquiry: ${data.service}`);
       const body = encodeURIComponent(
@@ -284,6 +285,7 @@ import {
     });
 
     btnWhatsApp?.addEventListener('click', () => {
+      if (!form.reportValidity()) return;
       const data = getFormData();
       const text = encodeURIComponent(
         `Hello Starts Digital,\n\nI would like to discuss a project:\n\n*Name:* ${data.name}\n*Email:* ${data.email}\n*Phone:* ${data.phone}\n*Company:* ${data.company}\n*Service Needed:* ${data.service}\n\n*Project Details:*\n${data.message}`

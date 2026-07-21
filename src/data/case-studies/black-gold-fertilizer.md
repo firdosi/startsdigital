@@ -49,4 +49,4 @@ Tested creative ad angles, structured campaign ad sets, and provided ongoing e-c
 
 ## Commercial Outcome
 
-Contributed to PKR 30M+ in revenue supported and over 29,000 product sales across multiple product categories through managed digital campaigns.
+Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.
