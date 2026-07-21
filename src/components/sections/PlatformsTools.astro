@@ -1,11 +1,10 @@
 ---
 import Container from '../ui/Container.astro';
 import { platforms } from '../../data/platforms';
-import { getAssetPath } from '../../data/site';
 ---
 
 <section class="py-16 md:py-24 bg-brand-white border-b border-brand-light-border">
-  <Container class="space-y-12">
+  <Container class="space-y-10">
     <div class="text-center max-w-2xl mx-auto space-y-3">
       <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
         TECHNOLOGY STACK
@@ -14,27 +13,32 @@ import { getAssetPath } from '../../data/site';
         Platforms & Tools We Work With
       </h2>
       <p class="font-body text-sm sm:text-base text-brand-text">
-        We integrate industry-leading advertising channels, analytics systems, content management platforms and design software.
+        We integrate advertising channels, analytics systems, content management platforms, and design software.
       </p>
     </div>
 
-    <!-- Platform Tool Tiles Grid -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    <!-- Platform Tool Names in Clean Neutral Text Tiles (Preferred Safe Prototype Approach) -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
       {platforms.map((platform) => (
-        <div class="flex flex-col items-center justify-center p-6 bg-white border border-brand-light-border rounded-xl shadow-xs hover:border-brand-blue/40 transition-colors group">
-          <img 
-            src={getAssetPath(platform.logo)} 
-            alt={`${platform.name} logo`}
-            width="48"
-            height="48"
-            loading="lazy"
-            class="h-10 w-10 object-contain group-hover:scale-105 transition-transform"
-          />
-          <span class="mt-3 font-heading text-xs font-bold text-brand-black text-center">
+        <div class="flex flex-col items-center justify-center p-5 bg-white border border-brand-light-border rounded-xl shadow-xs hover:border-brand-blue/40 transition-colors space-y-2 group">
+          <div class="w-8 h-8 rounded-lg bg-brand-navy/5 border border-brand-light-border/60 flex items-center justify-center text-brand-blue font-heading font-extrabold text-xs group-hover:bg-brand-blue group-hover:text-white transition-colors">
+            {platform.name.charAt(0)}
+          </div>
+          <span class="font-heading text-xs font-extrabold text-brand-black text-center">
             {platform.name}
+          </span>
+          <span class="text-[10px] font-semibold uppercase tracking-wider text-brand-text/70 font-heading">
+            {platform.category}
           </span>
         </div>
       ))}
+    </div>
+
+    <!-- Notice -->
+    <div class="pt-2 text-center">
+      <p class="text-xs font-semibold text-brand-text/80">
+        Note: Official platform SVG brand assets remain pending guideline review and intake approval per <a href="../../docs/agy/visual-portfolio-redesign/asset-intake.md" class="text-brand-blue underline">asset-intake.md</a>.
+      </p>
     </div>
   </Container>
 </section>

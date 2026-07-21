@@ -9,12 +9,13 @@ export interface Brand {
   assetSource?: string;
   permissionNote?: string;
   featured: boolean;
-  publicApproved: boolean; // Visual display permission
-  logoApproved: boolean;   // Logo rendering permission
+  publicApproved: boolean; // Visual display permission (must be false until explicit user confirmation)
+  logoApproved: boolean;   // Logo rendering permission (must be false until explicit user confirmation)
   active: boolean;
   order: number;
 }
 
+// All brand entries set to publicApproved: false and logoApproved: false pending explicit user confirmation per asset-intake.md
 export const brands: Brand[] = [
   {
     id: 'black-gold-fertilizer',
@@ -22,7 +23,7 @@ export const brands: Brand[] = [
     category: 'ecommerce',
     logo: '/brands/black-gold-fertilizer/logo.png',
     featured: true,
-    publicApproved: true,
+    publicApproved: false,
     logoApproved: false,
     active: true,
     order: 1,
@@ -33,7 +34,7 @@ export const brands: Brand[] = [
     category: 'ecommerce',
     logo: '/brands/wajib-livestock/logo.png',
     featured: true,
-    publicApproved: true,
+    publicApproved: false,
     logoApproved: false,
     active: true,
     order: 2,
@@ -44,7 +45,7 @@ export const brands: Brand[] = [
     category: 'construction',
     logo: '/brands/rk-reno-solutions/logo.png',
     featured: true,
-    publicApproved: true,
+    publicApproved: false,
     logoApproved: false,
     active: true,
     order: 3,
@@ -55,7 +56,7 @@ export const brands: Brand[] = [
     category: 'ecommerce',
     logo: '/brands/viral-naturals/logo.png',
     featured: false,
-    publicApproved: true,
+    publicApproved: false,
     logoApproved: false,
     active: true,
     order: 4,
@@ -66,7 +67,7 @@ export const brands: Brand[] = [
     category: 'ecommerce',
     logo: '/brands/shopinq/logo.png',
     featured: false,
-    publicApproved: true,
+    publicApproved: false,
     logoApproved: false,
     active: true,
     order: 5,
@@ -77,7 +78,7 @@ export const brands: Brand[] = [
     category: 'ecommerce',
     logo: '/brands/super-safety-covers/logo.png',
     featured: false,
-    publicApproved: true,
+    publicApproved: false,
     logoApproved: false,
     active: true,
     order: 6,
@@ -88,7 +89,7 @@ export const brands: Brand[] = [
     category: 'construction',
     logo: '/brands/riyadh-finish-pro/logo.png',
     featured: false,
-    publicApproved: true,
+    publicApproved: false,
     logoApproved: false,
     active: true,
     order: 7,
@@ -99,7 +100,7 @@ export const brands: Brand[] = [
     category: 'technology',
     logo: '/brands/convort-ai/logo.png',
     featured: false,
-    publicApproved: true,
+    publicApproved: false,
     logoApproved: false,
     active: true,
     order: 8,
@@ -110,7 +111,7 @@ export const brands: Brand[] = [
     category: 'immigration',
     logo: '/brands/clearzone/logo.png',
     featured: false,
-    publicApproved: true,
+    publicApproved: false,
     logoApproved: false,
     active: true,
     order: 9,
@@ -121,7 +122,7 @@ export const brands: Brand[] = [
     category: 'immigration',
     logo: '/brands/europa-immigration/logo.png',
     featured: false,
-    publicApproved: true,
+    publicApproved: false,
     logoApproved: false,
     active: true,
     order: 10,
@@ -132,7 +133,7 @@ export const brands: Brand[] = [
     category: 'immigration',
     logo: '/brands/quick-immigration/logo.png',
     featured: false,
-    publicApproved: true,
+    publicApproved: false,
     logoApproved: false,
     active: true,
     order: 11,
@@ -143,7 +144,7 @@ export const brands: Brand[] = [
     category: 'healthcare',
     logo: '/brands/unique-lahore-lab/logo.png',
     featured: false,
-    publicApproved: true,
+    publicApproved: false,
     logoApproved: false,
     active: true,
     order: 12,

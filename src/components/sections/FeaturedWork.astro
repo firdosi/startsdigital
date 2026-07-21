@@ -8,36 +8,61 @@ const featuredProjects = [
     id: 'black-gold-fertilizer',
     title: 'Black Gold Fertilizer',
     category: 'E-COMMERCE & CONSUMER',
-    summary: 'Comprehensive digital campaign management, online store user experience, and meta performance advertising for an agricultural consumer brand.',
-    services: ['Performance Marketing', 'E-Commerce Growth', 'Ad Creatives'],
+    summary: 'Digital marketing and e-commerce growth support across multiple product categories.',
+    services: [
+      'Digital Marketing Strategy',
+      'Meta Advertising',
+      'Campaign Management',
+      'Creative Testing',
+      'E-Commerce Growth',
+      'Website and Conversion Support'
+    ],
+    outcomeLabel: 'VERIFIED OUTCOME',
     verifiedOutcome: 'Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.',
     caseStudyUrl: getAssetPath('/work/black-gold-fertilizer/'),
+    caseStudyLabel: 'Read Full Case Study &rarr;',
     image: getAssetPath('/prototype/hero-dashboard.webp'),
-    altText: 'Black Gold Fertilizer e-commerce growth campaign layout',
+    altText: 'Temporary visual demonstrating the proposed Black Gold Fertilizer project layout',
     reverseLayout: false,
   },
   {
-    id: 'wajib-livestock',
-    title: 'Wajib Livestock Qurbani Campaign',
+    id: 'qurbani-campaign',
+    title: 'Qurbani Campaign',
     category: 'SEASONAL CAMPAIGN & E-COMMERCE',
-    summary: 'Targeted Eid Qurbani performance marketing, video ad content, and direct WhatsApp lead conversion funnel.',
-    services: ['Meta & Paid Ads', 'Campaign Video Content', 'WhatsApp Lead Routing'],
+    summary: 'Seasonal digital marketing and sales support for an Eid Qurbani livestock campaign.',
+    services: [
+      'Seasonal Campaign Strategy',
+      'Paid Social Advertising',
+      'Lead Generation',
+      'Creative Content',
+      'Sales Support',
+      'Campaign Management'
+    ],
+    outcomeLabel: 'VERIFIED OUTCOME',
     verifiedOutcome: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.',
     caseStudyUrl: getAssetPath('/work/qurbani-campaign/'),
+    caseStudyLabel: 'Read Full Case Study &rarr;',
     image: getAssetPath('/prototype/campaign-lab.webp'),
-    altText: 'Wajib Livestock Qurbani campaign performance visual',
+    altText: 'Temporary visual demonstrating the proposed Qurbani Campaign project layout',
     reverseLayout: true,
   },
   {
     id: 'rk-reno-solutions',
     title: 'RK Reno Solutions',
     category: 'CONSTRUCTION & LOCAL SERVICES',
-    summary: 'High-conversion home renovation service website development, local SEO optimization, and direct inquiry acquisition system.',
-    services: ['Website Development', 'Local SEO', 'Lead Generation Architecture'],
-    verifiedOutcome: 'Verified website deployment and local lead acquisition pipeline for home renovation services.',
-    caseStudyUrl: getAssetPath('/work/rk-reno-solutions/'),
+    summary: 'Website and SEO work for renovation and air-conditioning services in Kuala Lumpur and Selangor.',
+    services: [
+      'SEO Strategy',
+      'Service-Page Development',
+      'Website Content',
+      'Local Search Optimisation'
+    ],
+    outcomeLabel: 'PROJECT SCOPE',
+    verifiedOutcome: 'Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.',
+    caseStudyUrl: getAssetPath('/work/'),
+    caseStudyLabel: 'View Work Directory &rarr;',
     image: getAssetPath('/prototype/project-seo.webp'),
-    altText: 'RK Reno Solutions website layout view',
+    altText: 'Temporary visual demonstrating the proposed RK Reno Solutions project layout',
     reverseLayout: false,
   },
 ];
@@ -70,7 +95,14 @@ const featuredProjects = [
         <div class={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${project.reverseLayout ? 'lg:flex-row-reverse' : ''}`}>
           <!-- Project Visual Side -->
           <div class={`lg:col-span-7 ${project.reverseLayout ? 'lg:order-2' : 'lg:order-1'}`}>
-            <div class="rounded-2xl border border-brand-light-border bg-white p-3 shadow-md hover:shadow-xl transition-shadow">
+            <div class="rounded-2xl border border-brand-light-border bg-white p-3 shadow-md space-y-2">
+              <!-- Visible Prototype Label -->
+              <div class="px-2 pt-1 flex items-center justify-between">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/10 text-amber-700 font-extrabold text-[11px] font-heading rounded tracking-wider uppercase border border-amber-500/20">
+                  Prototype visual only. Replace with approved real project asset before release.
+                </span>
+              </div>
+
               <div class="relative overflow-hidden rounded-xl bg-brand-navy/5">
                 <img 
                   src={project.image} 
@@ -107,9 +139,11 @@ const featuredProjects = [
               ))}
             </div>
 
-            <!-- Verified Outcome Box -->
+            <!-- Outcome Box -->
             <div class="p-4 bg-brand-navy/5 border-l-4 border-l-brand-blue border-y border-r border-brand-light-border rounded-r-lg space-y-1">
-              <span class="text-xs font-extrabold tracking-wider text-brand-blue uppercase font-heading block">Verified Result</span>
+              <span class="text-xs font-extrabold tracking-wider text-brand-blue uppercase font-heading block">
+                {project.outcomeLabel}
+              </span>
               <p class="font-body text-sm font-semibold text-brand-black">
                 {project.verifiedOutcome}
               </p>
@@ -121,7 +155,7 @@ const featuredProjects = [
                 href={project.caseStudyUrl}
                 class="inline-flex items-center gap-2 font-heading text-sm font-extrabold text-brand-blue hover:text-brand-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded px-1"
               >
-                Read Full Case Study &rarr;
+                {project.caseStudyLabel}
               </a>
             </div>
           </div>

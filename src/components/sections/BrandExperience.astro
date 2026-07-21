@@ -3,7 +3,7 @@ import Container from '../ui/Container.astro';
 import { brands } from '../../data/brands';
 import { getAssetPath } from '../../data/site';
 
-// Filter approved brands
+// Filter approved brands (only entries explicitly approved by user will render)
 const publicApprovedBrands = brands.filter((b) => b.publicApproved && b.active);
 const logoWallBrands = publicApprovedBrands.filter((b) => b.logoApproved && b.logo);
 const secondaryTextBrands = publicApprovedBrands.filter((b) => !b.logoApproved || !b.logo);
@@ -41,7 +41,7 @@ const secondaryTextBrands = publicApprovedBrands.filter((b) => !b.logoApproved |
       </div>
     )}
 
-    {/* Secondary Text Listing (For approved brands currently awaiting logo file delivery) */}
+    {/* Secondary Text Listing (Only rendered for approved brands awaiting logo delivery) */}
     {secondaryTextBrands.length > 0 && (
       <div class="pt-6 border-t border-brand-light-border/60">
         <p class="text-center text-xs font-bold uppercase tracking-widest text-brand-text/70 mb-6 font-heading">
@@ -54,6 +54,16 @@ const secondaryTextBrands = publicApprovedBrands.filter((b) => !b.logoApproved |
             </span>
           ))}
         </div>
+      </div>
+    )}
+
+    {/* Pending Intake Architecture Placeholder */}
+    {publicApprovedBrands.length === 0 && (
+      <div class="p-8 bg-brand-grey/20 border border-dashed border-brand-light-border rounded-xl text-center space-y-2 max-w-2xl mx-auto">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-brand-teal font-heading">PROTOTYPE ARCHITECTURE READY</span>
+        <p class="font-body text-sm font-medium text-brand-text">
+          Client brand logo wall and public experience listings will populate here upon explicit user approval and asset intake completion.
+        </p>
       </div>
     )}
   </Container>

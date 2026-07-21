@@ -12,7 +12,7 @@ The new visual prototype shifts Starts Digital into a **premium, light-first dig
 - **Visual Balance**: ~70% light sections (`#F7F7F3` Warm White, `#FFFFFF` Surface White) balanced with ~30% high-impact Deep Navy sections (`#07111F`) for Results, Contact CTA, and Footer.
 - **Brand Identity**: Primary Blue (`#246BFD`) for actions & results, Teal Accent (`#10A8A0`) for tags & labels, Near Black (`#0B0D10`) for main typography.
 - **Wordmark Integrity**: Clear `StartsDigital` brandmark in Header and Footer (`Starts` in Near Black/Warm White, `Digital` in Primary Blue).
-- **Structure**: Rebuilt on Astro 5, TypeScript, and Tailwind CSS without third-party JS animation bloat or fake data.
+- **Technology Stack**: Built on Astro 7, TypeScript, and Tailwind CSS without third-party JS animation bloat or fake data.
 
 ---
 
@@ -41,82 +41,87 @@ The new visual prototype shifts Starts Digital into a **premium, light-first dig
 
 ---
 
-## 3. Asset Classification & Usage
+## 3. Asset Classification & Retained Prototype Assets
 
-### A. Temporary Oldweb Assets Used (Prototype Only)
-These non-client decorative assets were copied from `oldweb/assets/img/*.webp` into `public/prototype/` to serve as clean straight visual frames on the `visual-redesign-v2` prototype branch:
-- `public/prototype/hero-business.webp`: Used in the Hero right-column visual frame.
-- `public/prototype/hero-dashboard.webp`: Used as temporary visual for Black Gold Fertilizer showcase.
-- `public/prototype/campaign-lab.webp`: Used as temporary visual for Wajib Livestock Qurbani Campaign showcase.
-- `public/prototype/project-seo.webp`: Used as temporary visual for RK Reno Solutions showcase.
+### A. Temporary Oldweb Assets Retained (Prototype Preview Only)
+To keep the repository clean of unused clutter, 17 unused WebP images were removed from `public/prototype/`. Exactly 4 active WebP images are retained for prototype visual frames:
+1. `public/prototype/hero-business.webp`: Used in [Hero.astro](../../src/components/sections/Hero.astro) right-column visual frame.
+2. `public/prototype/hero-dashboard.webp`: Used in [FeaturedWork.astro](../../src/components/sections/FeaturedWork.astro) for the Black Gold Fertilizer project layout preview.
+3. `public/prototype/campaign-lab.webp`: Used in [FeaturedWork.astro](../../src/components/sections/FeaturedWork.astro) for the Qurbani Campaign project layout preview.
+4. `public/prototype/project-seo.webp`: Used in [FeaturedWork.astro](../../src/components/sections/FeaturedWork.astro) for the RK Reno Solutions project layout preview.
 
-*Note*: These temporary assets are purely decorative for prototype preview and will not be merged into production without client approval.
+*Note*: Every section utilizing these temporary assets displays a visible, high-contrast label (`PROTOTYPE VISUAL` or `Prototype visual only. Replace with approved real project asset before release.`).
 
-### B. Real & Verified Assets Used
-- **Platform SVGs**: Official vector assets under `public/platforms/` for Meta Ads, Facebook, Instagram, Google Ads, Google Analytics 4, Google Tag Manager, WordPress, WooCommerce, Shopify, WhatsApp Business, Elementor, and Canva.
-- **Verified Facts**:
-  - `PKR 30M+` revenue supported
-  - `29,000+` product sales supported
-  - `PKR 4.2M+` Qurbani sales supported
-  - `150+` animals sold
+### B. Platform Display Approach
+We adopted the preferred safe prototype approach in [PlatformsTools.astro](../../src/components/sections/PlatformsTools.astro):
+- Render platform names in clean neutral text tiles with category tags.
+- Removed manually created SVG files from the repository to prevent unverified brand asset representation.
+- Official platform SVG brand assets remain pending formal guideline review per [asset-intake.md](../visual-portfolio-redesign/asset-intake.md).
 
 ---
 
-## 4. Components Created & Modified
+## 4. Brand Approval Flags & Verified Case-Study Wording
 
-### A. Data Models Created
-1. [`src/data/brands.ts`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/data/brands.ts): Manages 12 client brand entries, categories, and permission flags (`publicApproved`, `logoApproved`).
-2. [`src/data/platforms.ts`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/data/platforms.ts): Manages 12 platform tool entries and official SVG paths.
+### A. Brand Approval Flags
+In [brands.ts](../../src/data/brands.ts), all 12 client brand records are explicitly set to:
+- `publicApproved: false`
+- `logoApproved: false`
 
-### B. Layout Components Modified
-1. [`src/styles/global.css`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/styles/global.css): Configured light-first theme tokens (`#F7F7F3` background, `#0B0D10` body text).
-2. [`src/layouts/BaseLayout.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/layouts/BaseLayout.astro): Re-mapped body styles and selection highlights.
-3. [`src/components/layout/Header.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/layout/Header.astro): Implemented sticky light header (`bg-white/90`), `StartsDigital` brandmark, navigation links, and "Discuss Your Project" CTA.
-4. [`src/components/layout/MobileMenu.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/layout/MobileMenu.astro): Implemented accessible drawer with light theme.
-5. [`src/components/layout/Footer.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/layout/Footer.astro): Deep Navy background (`#07111F`) with complete agency details, direct email, WhatsApp links, and copyright 2026.
+Unapproved client brand logos or names do not render on the public prototype page. [BrandExperience.astro](../../src/components/sections/BrandExperience.astro) maintains ready component architecture and displays a clean pending intake notice.
 
-### C. Homepage Section Components Created & Rebuilt
-1. [`src/components/sections/Hero.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/sections/Hero.astro): Rebuilt split-screen hero with verified metrics strip and straight visual frame.
-2. [`src/components/sections/BrandExperience.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/sections/BrandExperience.astro): Created responsive logo wall and secondary text listing for entries without approved logos.
-3. [`src/components/sections/Services.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/sections/Services.astro): Rebuilt open service layout featuring 2 large featured deliverable cards and 4 supporting panels with thin dividers.
-4. [`src/components/sections/FeaturedWork.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/sections/FeaturedWork.astro): Created alternating project showcase rows highlighting Black Gold Fertilizer, Wajib Livestock Qurbani Campaign, and RK Reno Solutions.
-5. [`src/components/sections/Results.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/sections/Results.astro): Rebuilt Deep Navy section displaying verified commercial statistics.
-6. [`src/components/sections/PlatformsTools.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/sections/PlatformsTools.astro): Created 12-tile official platform SVG grid.
-7. [`src/components/sections/WhyUs.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/sections/WhyUs.astro): Rebuilt operating model pillars focusing on strategy, execution, tech stack, and transparency.
-8. [`src/components/sections/FounderSection.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/sections/FounderSection.astro): Created founder layout component (conditionally disabled).
-9. [`src/components/sections/Process.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/sections/Process.astro): Rebuilt 4-stage open timeline layout.
-10. [`src/components/sections/FAQ.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/sections/FAQ.astro): Created accessible accordion component with 6 verified Q&As.
-11. [`src/components/sections/ContactCTA.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/components/sections/ContactCTA.astro): Rebuilt Deep Navy CTA section with direct email and WhatsApp links.
-12. [`src/pages/index.astro`](file:///c:/Users/BGF/OneDrive/Documents/StartsDigital/src/pages/index.astro): Assembled all 11 section blocks in clean 70/30 light/dark visual order.
+### B. Verified Project Wording
+1. **Black Gold Fertilizer**:
+   - Title: Black Gold Fertilizer
+   - Summary: Digital marketing and e-commerce growth support across multiple product categories.
+   - Outcome: Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.
+2. **Qurbani Campaign**:
+   - Title: Qurbani Campaign (route `/work/qurbani-campaign/` preserved pending Wajib Livestock name approval).
+   - Summary: Seasonal digital marketing and sales support for an Eid Qurbani livestock campaign.
+   - Outcome: Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.
+3. **RK Reno Solutions**:
+   - Title: RK Reno Solutions
+   - Summary: Website and SEO work for renovation and air-conditioning services in Kuala Lumpur and Selangor.
+   - Outcome Label: `PROJECT SCOPE`
+   - Outcome: Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.
+   - Link: Points to `/work/` (no dedicated case study route created).
 
 ---
 
-## 5. Responsive, Performance & Accessibility Implementation
+## 5. Components Created & Modified
 
-### A. Responsive Breakpoint Behaviors
-- **1440px (Desktop)**: 12-column container grids (`max-w-7xl px-8`), dual-column hero split, alternating project rows, 6-column tool grids.
-- **1024px (Tablet Landscape)**: Showcase cards scale to 2-column flex layouts, platform tool icons wrap to 4 columns.
-- **768px (Tablet Portrait)**: Hero section stacks vertically (text first, CTAs, metrics, visual), mobile menu toggle activates, services stack cleanly with left borders.
-- **430px / 375px (Mobile)**: Padding adjusts to `px-5` / `px-4`, headline fonts scale dynamically (`text-4xl`), hero CTAs and contact cards stack vertically with full-width touch targets.
-- **320px (Small Mobile)**: Guaranteed no horizontal scrolling, zero text clipping or overlapping elements.
+### A. Data Models
+1. [brands.ts](../../src/data/brands.ts): Manages 12 client brand records and approval flags.
+2. [platforms.ts](../../src/data/platforms.ts): Manages 12 platform tool records.
 
-### B. Animation & Performance Considerations
-- **No Third-Party Animation Bloat**: No heavy JS animation libraries or CSS Framework overrides added.
-- **Subtle Interactions**: Smooth CSS transitions for header backdrop-blur, accordion toggles, button hover states, and card borders.
-- **Media Optimizations**: Explicit `width` and `height` attributes on image elements to eliminate Cumulative Layout Shift (CLS). Eager loading on hero visual; lazy loading on all below-the-fold assets.
-- **Reduced Motion Support**: Fully respects `@media (prefers-reduced-motion: reduce)`.
+### B. Layout Components
+1. [global.css](../../src/styles/global.css): Configured light-first theme tokens (`#F7F7F3` background, `#0B0D10` body text).
+2. [BaseLayout.astro](../../src/layouts/BaseLayout.astro): Re-mapped body styles and selection highlights.
+3. [Header.astro](../../src/components/layout/Header.astro): Implemented sticky light header (`bg-white/90`), `StartsDigital` brandmark, navigation links, and "Discuss Your Project" CTA.
+4. [MobileMenu.astro](../../src/components/layout/MobileMenu.astro): Implemented accessible drawer with light theme.
+5. [Footer.astro](../../src/components/layout/Footer.astro): Deep Navy background (`#07111F`) with agency details, direct email, WhatsApp links, and copyright 2026.
 
-### C. Accessibility Standards
-- High contrast body text (`#0B0D10` on `#F7F7F3`, `#F7F7F3` on `#07111F`).
-- Skip-to-content accessibility link at the top of BaseLayout.
-- Keyboard-navigable mobile menu drawer with focus trapping and `Escape` key handler.
-- Keyboard-navigable FAQ accordion with dynamic `aria-expanded` and `aria-controls` updates.
-- All interactive buttons and links feature visible focus rings (`focus-visible:ring-2 focus-visible:ring-brand-blue`).
+### C. Homepage Section Components
+1. [Hero.astro](../../src/components/sections/Hero.astro): Split-screen hero with verified metrics strip and visible `PROTOTYPE VISUAL` label.
+2. [BrandExperience.astro](../../src/components/sections/BrandExperience.astro): Component architecture displaying pending intake notice.
+3. [Services.astro](../../src/components/sections/Services.astro): Open service layout featuring 2 large featured deliverable cards and 4 supporting panels with thin dividers.
+4. [FeaturedWork.astro](../../src/components/sections/FeaturedWork.astro): Showcase rows highlighting Black Gold Fertilizer, Qurbani Campaign, and RK Reno Solutions with visible prototype labels.
+5. [Results.astro](../../src/components/sections/Results.astro): Deep Navy section displaying verified commercial statistics.
+6. [PlatformsTools.astro](../../src/components/sections/PlatformsTools.astro): Neutral text tile grid displaying 12 platform tools.
+7. [WhyUs.astro](../../src/components/sections/WhyUs.astro): Operating model pillars focusing on strategy, execution, tech stack, and transparency.
+8. [FounderSection.astro](../../src/components/sections/FounderSection.astro): Founder layout component (conditionally disabled).
+9. [Process.astro](../../src/components/sections/Process.astro): 4-stage open timeline layout.
+10. [FAQ.astro](../../src/components/sections/FAQ.astro): Accessible accordion component with 6 verified Q&As.
+11. [ContactCTA.astro](../../src/components/sections/ContactCTA.astro): Deep Navy CTA section with direct contact channels.
+12. [index.astro](../../src/pages/index.astro): Assembled all 11 section blocks in clean 70/30 light/dark visual order.
 
 ---
 
-## 6. Remaining Asset Intake Requirements
+## 6. Screenshots & Full-Page Visual Proof
 
-Before merging `visual-redesign-v2` into production, the following real client assets from [asset-intake.md](../../../docs/agy/visual-portfolio-redesign/asset-intake.md) should be uploaded:
-1. **Brand Logos**: Receive and place transparent logo files for Black Gold Fertilizer, Wajib Livestock, RK Reno Solutions, Viral Naturals, Shopinq Online, Super Safety Covers, Riyadh Finish Pro, Convort AI, Clearzone Immigration, Europa Immigration, Quick Immigration Service, and Unique Lahore Lab Sahiwal under `public/brands/<brand-name>/logo.png` or `logo.svg`.
-2. **Real Screenshots & Campaign Photos**: Replace temporary prototype images in `public/prototype/` with real client screenshots/creatives under `public/projects/`.
+Full-page screenshots of the production preview build were captured using Playwright CLI on port 4321 with the `/startsdigital/` base path:
+
+- [Desktop 1440px Full-Page Screenshot](./screenshots/desktop-1440-full.png)
+- [Mobile 375px Full-Page Screenshot](./screenshots/mobile-375-full.png)
+- [Tablet 768px Full-Page Screenshot](./screenshots/tablet-768-full.png)
+
+All screenshots capture the complete layout from header to footer, demonstrate responsive behavior, show visible prototype labels, and confirm zero horizontal overflow.
