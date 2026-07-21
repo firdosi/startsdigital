@@ -21,18 +21,18 @@ const unverifiedBrands = brands.filter((b) => !b.logoApproved || !b.logo);
   </div>
 
   <!-- Row 1: Verified Brand Logos Marquee -->
-  <div class="marquee-container overflow-hidden py-4 bg-white border-y border-slate-200/80">
+  <div class="marquee-container overflow-hidden py-5 bg-white border-y border-slate-200/80">
     <div class="animate-marquee-left flex items-center gap-8 px-4">
       {
         [...verifiedBrands, ...verifiedBrands, ...verifiedBrands, ...verifiedBrands].map((b) => (
-          <div class="h-16 w-48 shrink-0 rounded-xl border border-slate-200/80 bg-slate-50/50 px-6 py-3 flex items-center justify-center hover:border-blue-500/50 hover:bg-white transition-all shadow-sm group">
+          <div class="h-20 w-[220px] shrink-0 rounded-xl border border-slate-200/80 bg-slate-50/60 px-5 py-3 flex items-center justify-center hover:border-blue-500/50 hover:bg-white transition-all shadow-xs group">
             <img
               src={`${site.basePath}${b.logo}`}
               alt={`${b.name} logo`}
-              width="140"
-              height="40"
+              width="180"
+              height="50"
               loading="lazy"
-              class="max-h-9 w-auto object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-200"
+              class="max-h-[50px] w-auto object-contain grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-200"
             />
           </div>
         ))

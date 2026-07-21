@@ -1,74 +1,86 @@
 ---
-// MotionController.astro — Lightweight IntersectionObserver Reveal & Counter Animation System
+// MotionController.astro — Reliable Reveal & Counter Animation System
 ---
 
 <script>
   function initMotionSystem() {
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+    
+    // Safety Fallback: Guarantee reveal after 1.5s so no card is ever permanently hidden
+    setTimeout(() => {
+      revealElements.forEach((el) => el.classList.add('is-revealed'));
+    }, 1500);
+
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const delay = parseInt(el.dataset.revealDelay || '0', 10);
+              if (delay > 0) {
+                setTimeout(() => el.classList.add('is-revealed'), delay);
+              } else {
+                el.classList.add('is-revealed');
+              }
+              revealObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      revealElements.forEach((el) => revealObserver.observe(el));
+
+      const counterElements = document.querySelectorAll('[data-counter-target]');
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
             const el = entry.target as HTMLElement;
-            const delay = parseInt(el.dataset.revealDelay || '0', 10);
-            if (delay > 0) {
-              setTimeout(() => el.classList.add('is-revealed'), delay);
-            } else {
-              el.classList.add('is-revealed');
+            const targetNum = parseFloat(el.dataset.counterTarget || '0');
+            const exactText = el.dataset.counterExact || el.textContent || '';
+            const prefix = el.dataset.counterPrefix || '';
+            const suffix = el.dataset.counterSuffix || '';
+            const decimals = parseInt(el.dataset.counterDecimals || '0', 10);
+            const duration = 1200;
+            const startTime = performance.now();
+
+            function formatValue(value: number) {
+              return value.toLocaleString(undefined, {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals,
+              });
             }
-            revealObserver.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
 
-    revealElements.forEach((el) => revealObserver.observe(el));
+            function updateCounter(currentTime: number) {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - (1 - progress) * (1 - progress);
+              const currentVal = targetNum * eased;
 
-    const counterElements = document.querySelectorAll('[data-counter-target]');
-    const counterObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-
-          const el = entry.target as HTMLElement;
-          const targetNum = parseFloat(el.dataset.counterTarget || '0');
-          const exactText = el.dataset.counterExact || el.textContent || '';
-          const prefix = el.dataset.counterPrefix || '';
-          const suffix = el.dataset.counterSuffix || '';
-          const decimals = parseInt(el.dataset.counterDecimals || '0', 10);
-          const duration = 1400;
-          const startTime = performance.now();
-
-          function formatValue(value: number) {
-            return value.toLocaleString(undefined, {
-              minimumFractionDigits: decimals,
-              maximumFractionDigits: decimals,
-            });
-          }
-
-          function updateCounter(currentTime: number) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - (1 - progress) * (1 - progress);
-            const currentVal = targetNum * eased;
-
-            if (progress < 1) {
-              el.textContent = `${prefix}${formatValue(currentVal)}${suffix}`;
-              requestAnimationFrame(updateCounter);
-            } else {
-              el.textContent = exactText;
+              if (progress < 1) {
+                el.textContent = `${prefix}${formatValue(currentVal)}${suffix}`;
+                requestAnimationFrame(updateCounter);
+              } else {
+                // Always finish with exact approved text string
+                el.textContent = exactText;
+              }
             }
-          }
 
-          requestAnimationFrame(updateCounter);
-          counterObserver.unobserve(el);
-        });
-      },
-      { threshold: 0.25 }
-    );
+            requestAnimationFrame(updateCounter);
+            counterObserver.unobserve(el);
+          });
+        },
+        { threshold: 0.15 }
+      );
 
-    counterElements.forEach((el) => counterObserver.observe(el));
+      counterElements.forEach((el) => counterObserver.observe(el));
+    } else {
+      // Direct fallback for legacy environments
+      revealElements.forEach((el) => el.classList.add('is-revealed'));
+    }
   }
 
   if (document.readyState === 'loading') {
