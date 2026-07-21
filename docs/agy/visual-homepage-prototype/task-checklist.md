@@ -1,55 +1,51 @@
 # Starts Digital - Visual Homepage Prototype Task Checklist
 
-This document tracks the tasks completed for the visual homepage prototype on branch `visual-redesign-v2`.
+This document tracks the tasks completed for the bold, image-led visual homepage redesign on branch `visual-redesign-v2`.
 
 ---
 
 ## 1. Setup & Branch Isolation
 
 - [x] Pull latest changes from `origin/main`
-- [x] Verify clean working tree
-- [x] Create and switch to isolated prototype branch `visual-redesign-v2`
-- [x] Inspect existing project rules ([PROJECT_RULES.md](../../../PROJECT_RULES.md), [DESIGN_SYSTEM.md](../../../DESIGN_SYSTEM.md), implementation plan, asset intake registry)
+- [x] Verify clean working tree on `visual-redesign-v2`
+- [x] Inspect existing project rules ([PROJECT_RULES.md](../../../PROJECT_RULES.md), [DESIGN_SYSTEM.md](../../../DESIGN_SYSTEM.md), asset intake registry)
 
 ## 2. Reference Analysis & Asset Intake
 
 - [x] Inspect complete `oldweb/` directory (`index.html`, `services.html`, `contact.html`, `assets/`)
-- [x] Review layout structures, typography hierarchy, section transitions, and responsive behavior
-- [x] Copy and filter temporary non-client decorative WebP visuals under `public/prototype/` (retaining only 4 active prototype assets)
-- [x] Adopt preferred safe platform display model using neutral text tiles with category icons (official brand assets pending review per [asset-intake.md](../../visual-portfolio-redesign/asset-intake.md))
+- [x] Reuse layered composite visual concepts, brand strips, timeline progression, and scannable metrics
+- [x] Copy temporary concept WebP visuals under `public/prototype/` with `loading="eager"` attributes to ensure zero blank image frames
+- [x] Add concise `CONCEPT VISUAL` badges to temporary project image containers
 
-## 3. Data Architecture & Structured Models
+## 3. Hero Section Transformation
 
-- [x] Create [brands.ts](../../../src/data/brands.ts) for managing 12 client brand records, setting all entries to `publicApproved: false` and `logoApproved: false` pending user confirmation
-- [x] Create [platforms.ts](../../../src/data/platforms.ts) for managing 12 platform tool records
+- [x] Rebuild [Hero.astro](../../../src/components/sections/Hero.astro): Desktop ~48% content / ~52% visual composition split
+- [x] Eyebrow: `DIGITAL MARKETING, CREATIVE & TECHNOLOGY`
+- [x] Headline: `Digital strategy, campaigns and websites built to generate <span class="...">measurable growth.</span>`
+- [x] Scannable Results Strip: `PKR 30M+` Revenue Supported, `29,000+` Product Sales, `Multiple` Industries & Markets
+- [x] Right column layered composite composition with blue/teal graphic shapes, subtle dot matrix pattern, and `CONCEPT VISUAL` badge
 
-## 4. Layout & Design System Re-mapping
+## 4. Elimination of Repetitive Card Grids
 
-- [x] Re-map global design tokens to light-first system in [global.css](../../../src/styles/global.css)
-- [x] Update [BaseLayout.astro](../../../src/layouts/BaseLayout.astro) for light body background (`bg-brand-white text-brand-black`)
-- [x] Update [Header.astro](../../../src/components/layout/Header.astro) to premium light header with `StartsDigital` wordmark
-- [x] Update [MobileMenu.astro](../../../src/components/layout/MobileMenu.astro) with light drawer styling
-- [x] Update [Footer.astro](../../../src/components/layout/Footer.astro) for Deep Navy background, verified contact info, and navigation links
+- [x] Rebuild [Services.astro](../../../src/components/sections/Services.astro): Replace 6 equal white cards with 3 distinct large solution pillars (`Performance & Lead Generation`, `Websites, E-Commerce & SEO`, `Creative Content & AI Systems`) using light, dark navy, and image-led panels
+- [x] Rebuild [FeaturedWork.astro](../../../src/components/sections/FeaturedWork.astro): Replace small alternating cards with 3 substantial editorial project showcases (`Black Gold Fertilizer`, `Qurbani Campaign`, `RK Reno Solutions`)
+- [x] Rebuild [Results.astro](../../../src/components/sections/Results.astro): Wide editorial metric layout with vertical dividers and background glow effects
+- [x] Rebuild [PlatformsTools.astro](../../../src/components/sections/PlatformsTools.astro): Compact horizontal technology band grouped by category with typographic list dividers
+- [x] Rebuild [WhyUs.astro](../../../src/components/sections/WhyUs.astro): Editorial split layout (left: large statement, right: 4 differentiators with dividers)
+- [x] Rebuild [Process.astro](../../../src/components/sections/Process.astro): Continuous horizontal connected timeline (`Understand → Plan → Build → Grow`)
+- [x] Rebuild [FAQ.astro](../../../src/components/sections/FAQ.astro): Split layout with left-side direct consultation panel and right-side interactive accordion
+- [x] Rebuild [ContactCTA.astro](../../../src/components/sections/ContactCTA.astro): High-impact Deep Navy CTA section with separated email and WhatsApp cards
 
-## 5. Homepage Component Implementation
+## 5. Mobile Content Reduction & Typography
 
-- [x] Rebuild [Hero.astro](../../../src/components/sections/Hero.astro): Split-screen layout, verified metrics strip, visible `PROTOTYPE VISUAL` label, and neutral wording
-- [x] Update [BrandExperience.astro](../../../src/components/sections/BrandExperience.astro): Component architecture ready, completely hidden when zero brands have `publicApproved: true`
-- [x] Rebuild [Services.astro](../../../src/components/sections/Services.astro): Open layout with featured cards, prominent SVG category icons, deliverables grid, and thin dividers
-- [x] Update [FeaturedWork.astro](../../../src/components/sections/FeaturedWork.astro): Showcase rows with approved wording, `Qurbani Campaign` title, `RK Reno Solutions` scope, and visible prototype labels
-- [x] Rebuild [Results.astro](../../../src/components/sections/Results.astro): Deep Navy background displaying only verified client results
-- [x] Update [PlatformsTools.astro](../../../src/components/sections/PlatformsTools.astro): Neutral text tile grid displaying 12 platform tools with generic category SVG icons
-- [x] Rebuild [WhyUs.astro](../../../src/components/sections/WhyUs.astro): Operating model pillars focusing on strategy + execution, engineering, and transparency
-- [x] Create [FounderSection.astro](../../../src/components/sections/FounderSection.astro): Conditionally disabled founder component layout
-- [x] Rebuild [Process.astro](../../../src/components/sections/Process.astro): Open 4-stage timeline layout (Understand, Plan, Build, Grow)
-- [x] Create [FAQ.astro](../../../src/components/sections/FAQ.astro): Accessible accordion component with 6 verified Q&As
-- [x] Rebuild [ContactCTA.astro](../../../src/components/sections/ContactCTA.astro): Deep Navy CTA block with direct email and WhatsApp links
-- [x] Rebuild [index.astro](../../../src/pages/index.astro) assembling all section blocks in clean 70/30 light/dark visual order
+- [x] Reduce mobile page length: 3 main service category panels, concise deliverables, compact platform groups, shortened process descriptions
+- [x] Enforce minimum 16px font size on mobile body copy
 
 ## 6. Verification & Quality Assurance
 
 - [x] Run `npm run check` (`astro check`) and resolve all TypeScript/Astro errors (0 errors)
 - [x] Run `npm run build` to verify static production build (0 errors)
-- [x] Verify responsive layout across breakpoints (320px, 375px, 430px, 768px, 1024px, 1440px)
-- [x] Ensure no fake ROAS, fake lead totals, fake team photos, or unapproved claims are published
-- [x] Capture and commit 3 full-page screenshots under `docs/agy/visual-homepage-prototype/screenshots/`
+- [x] Verify responsive layout across 320px, 375px, 430px, 768px, 1024px, 1440px
+- [x] Ensure no blank grey image frames appear in screenshots
+- [x] Regenerate full-page screenshots (`desktop-1440-full.png`, `tablet-768-full.png`, `mobile-375-full.png`)
+- [x] Generate focused review screenshots (`desktop-hero-services.png`, `desktop-featured-work.png`, `mobile-hero-work.png`)

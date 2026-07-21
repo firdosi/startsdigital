@@ -2,82 +2,18 @@
 import Container from '../ui/Container.astro';
 import Button from '../ui/Button.astro';
 import { getAssetPath } from '../../data/site';
-
-const featuredProjects = [
-  {
-    id: 'black-gold-fertilizer',
-    title: 'Black Gold Fertilizer',
-    category: 'E-COMMERCE & CONSUMER',
-    summary: 'Digital marketing and e-commerce growth support across multiple product categories.',
-    services: [
-      'Digital Marketing Strategy',
-      'Meta Advertising',
-      'Campaign Management',
-      'Creative Testing',
-      'E-Commerce Growth',
-      'Website and Conversion Support'
-    ],
-    outcomeLabel: 'VERIFIED OUTCOME',
-    verifiedOutcome: 'Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.',
-    caseStudyUrl: getAssetPath('/work/black-gold-fertilizer/'),
-    caseStudyLabel: 'Read Full Case Study &rarr;',
-    image: getAssetPath('/prototype/hero-dashboard.webp'),
-    altText: 'Temporary visual demonstrating the proposed Black Gold Fertilizer project layout',
-    reverseLayout: false,
-  },
-  {
-    id: 'qurbani-campaign',
-    title: 'Qurbani Campaign',
-    category: 'SEASONAL CAMPAIGN & E-COMMERCE',
-    summary: 'Seasonal digital marketing and sales support for an Eid Qurbani livestock campaign.',
-    services: [
-      'Seasonal Campaign Strategy',
-      'Paid Social Advertising',
-      'Lead Generation',
-      'Creative Content',
-      'Sales Support',
-      'Campaign Management'
-    ],
-    outcomeLabel: 'VERIFIED OUTCOME',
-    verifiedOutcome: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.',
-    caseStudyUrl: getAssetPath('/work/qurbani-campaign/'),
-    caseStudyLabel: 'Read Full Case Study &rarr;',
-    image: getAssetPath('/prototype/campaign-lab.webp'),
-    altText: 'Temporary visual demonstrating the proposed Qurbani Campaign project layout',
-    reverseLayout: true,
-  },
-  {
-    id: 'rk-reno-solutions',
-    title: 'RK Reno Solutions',
-    category: 'CONSTRUCTION & LOCAL SERVICES',
-    summary: 'Website and SEO work for renovation and air-conditioning services in Kuala Lumpur and Selangor.',
-    services: [
-      'SEO Strategy',
-      'Service-Page Development',
-      'Website Content',
-      'Local Search Optimisation'
-    ],
-    outcomeLabel: 'PROJECT SCOPE',
-    verifiedOutcome: 'Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.',
-    caseStudyUrl: getAssetPath('/work/'),
-    caseStudyLabel: 'View Work Directory &rarr;',
-    image: getAssetPath('/prototype/project-seo.webp'),
-    altText: 'Temporary visual demonstrating the proposed RK Reno Solutions project layout',
-    reverseLayout: false,
-  },
-];
 ---
 
-<section id="work" class="py-20 md:py-28 bg-brand-white border-b border-brand-light-border">
-  <Container class="space-y-16">
+<section id="work" class="py-20 md:py-32 bg-brand-white border-b border-brand-light-border">
+  <Container class="space-y-20">
     <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-brand-light-border">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-brand-light-border">
       <div class="space-y-3 max-w-2xl">
         <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
-          SELECTED CASE STUDIES
+          EDITORIAL CASE STUDIES
         </span>
         <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-black">
-          Featured Client Work & Verified Outcomes
+          Featured Work Showcase
         </h2>
       </div>
       <Button 
@@ -85,82 +21,219 @@ const featuredProjects = [
         variant="secondary"
         class="!px-6 !py-3 font-semibold !bg-white !text-brand-black !border-brand-light-border hover:!bg-brand-grey/30 self-start md:self-auto"
       >
-        View All Case Studies &rarr;
+        View All Projects &rarr;
       </Button>
     </div>
 
-    <!-- Project Showcase List (Alternating Rows) -->
-    <div class="space-y-16">
-      {featuredProjects.map((project) => (
-        <div class={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${project.reverseLayout ? 'lg:flex-row-reverse' : ''}`}>
-          <!-- Project Visual Side -->
-          <div class={`lg:col-span-7 ${project.reverseLayout ? 'lg:order-2' : 'lg:order-1'}`}>
-            <div class="rounded-2xl border border-brand-light-border bg-white p-3 shadow-md space-y-2">
-              <!-- Visible Prototype Label -->
-              <div class="px-2 pt-1 flex items-center justify-between">
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/10 text-amber-700 font-extrabold text-[11px] font-heading rounded tracking-wider uppercase border border-amber-500/20">
-                  Prototype visual only. Replace with approved real project asset before release.
-                </span>
+    <!-- 3 Large Substantial Editorial Project Showcases -->
+    <div class="space-y-16 md:space-y-24">
+
+      <!-- Project 1: Black Gold Fertilizer (Dark Navy Editorial Hero Showcase) -->
+      <div class="bg-brand-navy text-white rounded-3xl p-8 sm:p-12 md:p-16 shadow-2xl space-y-8 border border-white/10 relative overflow-hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6">
+          <div>
+            <span class="text-xs font-extrabold tracking-widest text-brand-teal uppercase font-heading bg-brand-teal/20 px-3 py-1 rounded-md">
+              E-COMMERCE & CONSUMER
+            </span>
+            <h3 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mt-2">
+              Black Gold Fertilizer
+            </h3>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/90 text-white font-extrabold text-xs font-heading rounded-md shadow-xs uppercase tracking-wider self-start md:self-auto">
+            CONCEPT VISUAL
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-6">
+            <p class="font-body text-lg text-brand-muted-dark leading-relaxed">
+              Digital marketing and e-commerce growth support across multiple product categories.
+            </p>
+
+            <!-- Prominent Verified Outcome Box -->
+            <div class="p-6 bg-white/5 border-l-4 border-l-brand-blue border-y border-r border-white/10 rounded-r-2xl space-y-2">
+              <span class="text-xs font-extrabold tracking-wider text-brand-blue uppercase font-heading">VERIFIED COMMERCIAL IMPACT</span>
+              <p class="font-heading text-xl sm:text-2xl font-extrabold text-white leading-snug">
+                Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.
+              </p>
+            </div>
+
+            <!-- Compact Services & CTA -->
+            <div class="space-y-4 pt-2">
+              <div class="flex flex-wrap gap-2">
+                {['Digital Marketing Strategy', 'Meta Advertising', 'Campaign Management', 'Creative Testing', 'E-Commerce Growth'].map((s) => (
+                  <span class="text-xs font-semibold text-white bg-white/10 border border-white/15 px-3 py-1.5 rounded-lg">
+                    {s}
+                  </span>
+                ))}
               </div>
 
-              <div class="relative overflow-hidden rounded-xl bg-brand-navy/5">
-                <img 
-                  src={project.image} 
-                  alt={project.altText}
-                  width="800"
-                  height="450"
-                  loading="lazy"
-                  class="w-full h-auto object-cover rounded-lg border border-brand-light-border/40"
-                />
+              <div>
+                <a 
+                  href={getAssetPath('/work/black-gold-fertilizer/')}
+                  class="inline-flex items-center gap-2 font-heading text-base font-extrabold text-brand-blue hover:text-white transition-colors pt-2"
+                >
+                  Read Full Case Study &rarr;
+                </a>
               </div>
             </div>
           </div>
 
-          <!-- Project Information Side -->
-          <div class={`lg:col-span-5 space-y-6 ${project.reverseLayout ? 'lg:order-1' : 'lg:order-2'}`}>
-            <div class="space-y-3">
-              <span class="text-xs font-extrabold tracking-widest text-brand-teal uppercase font-heading bg-brand-teal/10 px-3 py-1 rounded-md">
-                {project.category}
-              </span>
-              <h3 class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-black">
-                {project.title}
-              </h3>
-              <p class="font-body text-base text-brand-text leading-relaxed">
-                {project.summary}
-              </p>
-            </div>
-
-            <!-- Services Tags -->
-            <div class="flex flex-wrap gap-2">
-              {project.services.map(s => (
-                <span class="text-xs font-semibold text-brand-black bg-brand-grey/30 border border-brand-light-border px-3 py-1 rounded-md">
-                  {s}
-                </span>
-              ))}
-            </div>
-
-            <!-- Outcome Box -->
-            <div class="p-4 bg-brand-navy/5 border-l-4 border-l-brand-blue border-y border-r border-brand-light-border rounded-r-lg space-y-1">
-              <span class="text-xs font-extrabold tracking-wider text-brand-blue uppercase font-heading block">
-                {project.outcomeLabel}
-              </span>
-              <p class="font-body text-sm font-semibold text-brand-black">
-                {project.verifiedOutcome}
-              </p>
-            </div>
-
-            <!-- Action Link -->
-            <div>
-              <a 
-                href={project.caseStudyUrl}
-                class="inline-flex items-center gap-2 font-heading text-sm font-extrabold text-brand-blue hover:text-brand-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded px-1"
-              >
-                {project.caseStudyLabel}
-              </a>
+          <!-- Large Visual Frame -->
+          <div class="lg:col-span-5">
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-2 shadow-xl">
+              <img 
+                src={getAssetPath('/prototype/hero-dashboard.webp')} 
+                alt="Temporary visual demonstrating proposed Black Gold Fertilizer project layout"
+                width="700"
+                height="440"
+                loading="eager"
+                class="w-full h-auto object-cover rounded-xl border border-white/10"
+              />
             </div>
           </div>
         </div>
-      ))}
+      </div>
+
+      <!-- Project 2: Qurbani Campaign (Warm Natural/Neutral Editorial Showcase) -->
+      <div class="bg-[#FAF6F0] border-2 border-brand-light-border rounded-3xl p-8 sm:p-12 md:p-16 shadow-xl space-y-8 relative overflow-hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-brand-light-border pb-6">
+          <div>
+            <span class="text-xs font-extrabold tracking-widest text-amber-800 uppercase font-heading bg-amber-800/10 px-3 py-1 rounded-md">
+              SEASONAL CAMPAIGN & E-COMMERCE
+            </span>
+            <h3 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-black mt-2">
+              Qurbani Campaign
+            </h3>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/90 text-white font-extrabold text-xs font-heading rounded-md shadow-xs uppercase tracking-wider self-start md:self-auto">
+            CONCEPT VISUAL
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <!-- Visual Side -->
+          <div class="lg:col-span-6">
+            <div class="rounded-2xl border border-brand-light-border bg-white p-2 shadow-xl">
+              <img 
+                src={getAssetPath('/prototype/campaign-lab.webp')} 
+                alt="Temporary visual demonstrating proposed Qurbani Campaign project layout"
+                width="700"
+                height="440"
+                loading="eager"
+                class="w-full h-auto object-cover rounded-xl border border-brand-light-border/40"
+              />
+            </div>
+          </div>
+
+          <!-- Content Side with Large Prominent Numbers -->
+          <div class="lg:col-span-6 space-y-6">
+            <p class="font-body text-lg text-brand-text leading-relaxed">
+              Seasonal digital marketing and sales support for an Eid Qurbani livestock campaign.
+            </p>
+
+            <!-- Prominent Dual Metric Cards -->
+            <div class="grid grid-cols-2 gap-4">
+              <div class="p-4 bg-white border border-brand-light-border rounded-xl space-y-1">
+                <span class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-blue block">PKR 4.2M+</span>
+                <span class="text-xs font-bold text-brand-black uppercase tracking-wider font-heading">Sales Supported</span>
+              </div>
+              <div class="p-4 bg-white border border-brand-light-border rounded-xl space-y-1">
+                <span class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-teal block">150+</span>
+                <span class="text-xs font-bold text-brand-black uppercase tracking-wider font-heading">Animals Sold</span>
+              </div>
+            </div>
+
+            <!-- Compact Services & CTA -->
+            <div class="space-y-4 pt-2">
+              <div class="flex flex-wrap gap-2">
+                {['Seasonal Campaign Strategy', 'Paid Social Advertising', 'Lead Generation', 'Creative Content', 'Sales Support'].map((s) => (
+                  <span class="text-xs font-semibold text-brand-black bg-white border border-brand-light-border px-3 py-1.5 rounded-lg">
+                    {s}
+                  </span>
+                ))}
+              </div>
+
+              <div>
+                <a 
+                  href={getAssetPath('/work/qurbani-campaign/')}
+                  class="inline-flex items-center gap-2 font-heading text-base font-extrabold text-brand-blue hover:text-brand-black transition-colors pt-2"
+                >
+                  Read Full Case Study &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: RK Reno Solutions (Website & Renovation Focus Showcase) -->
+      <div class="bg-white border border-brand-light-border rounded-3xl p-8 sm:p-12 md:p-16 shadow-lg space-y-8 relative overflow-hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-brand-light-border pb-6">
+          <div>
+            <span class="text-xs font-extrabold tracking-widest text-brand-blue uppercase font-heading bg-brand-blue/10 px-3 py-1 rounded-md">
+              CONSTRUCTION & LOCAL SERVICES
+            </span>
+            <h3 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-black mt-2">
+              RK Reno Solutions
+            </h3>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/90 text-white font-extrabold text-xs font-heading rounded-md shadow-xs uppercase tracking-wider self-start md:self-auto">
+            CONCEPT VISUAL
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-6">
+            <p class="font-body text-lg text-brand-text leading-relaxed">
+              Website and SEO work for renovation and air-conditioning services in Kuala Lumpur and Selangor.
+            </p>
+
+            <!-- Verified Project Scope Box -->
+            <div class="p-6 bg-brand-grey/30 border-l-4 border-l-brand-teal border-y border-r border-brand-light-border rounded-r-2xl space-y-2">
+              <span class="text-xs font-extrabold tracking-wider text-brand-teal uppercase font-heading">PROJECT SCOPE</span>
+              <p class="font-heading text-lg font-bold text-brand-black leading-snug">
+                Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.
+              </p>
+            </div>
+
+            <!-- Compact Services & CTA -->
+            <div class="space-y-4 pt-2">
+              <div class="flex flex-wrap gap-2">
+                {['SEO Strategy', 'Service-Page Development', 'Website Content', 'Local Search Optimisation'].map((s) => (
+                  <span class="text-xs font-semibold text-brand-black bg-brand-grey/40 border border-brand-light-border px-3 py-1.5 rounded-lg">
+                    {s}
+                  </span>
+                ))}
+              </div>
+
+              <div>
+                <a 
+                  href={getAssetPath('/work/')}
+                  class="inline-flex items-center gap-2 font-heading text-base font-extrabold text-brand-blue hover:text-brand-black transition-colors pt-2"
+                >
+                  View Work Directory &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual Frame -->
+          <div class="lg:col-span-6">
+            <div class="rounded-2xl border border-brand-light-border bg-brand-navy/5 p-2 shadow-lg">
+              <img 
+                src={getAssetPath('/prototype/project-seo.webp')} 
+                alt="Temporary visual demonstrating proposed RK Reno Solutions project layout"
+                width="700"
+                height="440"
+                loading="eager"
+                class="w-full h-auto object-cover rounded-xl border border-brand-light-border/40"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </Container>
 </section>

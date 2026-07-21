@@ -1,35 +1,35 @@
 ---
 import Container from '../ui/Container.astro';
 
-const steps = [
+const stages = [
   {
     number: '01',
     title: 'Understand',
     summary: 'Discovery & Audit',
-    description: 'We audit your current ad accounts, website funnel, content assets, competitor positioning, and target audience data to identify immediate growth bottlenecks.',
+    description: 'We audit your ad accounts, website funnel, content assets, competitor positioning, and target audience data.',
   },
   {
     number: '02',
     title: 'Plan',
-    summary: 'Growth & Creative Strategy',
-    description: 'We map out a structured growth blueprint: campaign angles, offer positioning, ad creative hooks, website technical architecture, and budget allocation.',
+    summary: 'Growth Blueprint',
+    description: 'We map out a structured growth strategy: campaign angles, offer positioning, ad hooks, web architecture, and budget.',
   },
   {
     number: '03',
     title: 'Build',
-    summary: 'Production & Engineering',
-    description: 'We build high-speed landing pages, produce short-form ad creatives, set up conversion tracking pixels, write ad copy, and configure WhatsApp/lead routing.',
+    summary: 'Production & Setup',
+    description: 'We build high-speed landing pages, produce short-form ad creatives, set up tracking, and configure lead routing.',
   },
   {
     number: '04',
     title: 'Grow',
-    summary: 'Launch, Test & Scale',
-    description: 'Campaigns go live. We systematically test creative angles, audience segments, and landing page elements, scaling winning assets to maximize return on ad spend.',
+    summary: 'Launch & Scale',
+    description: 'Campaigns go live. We systematically test creative angles, audience segments, and scale winning assets.',
   },
 ];
 ---
 
-<section id="process" class="py-20 md:py-28 bg-brand-white border-b border-brand-light-border">
+<section id="process" class="py-20 md:py-32 bg-brand-white border-b border-brand-light-border relative overflow-hidden">
   <Container class="space-y-16">
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-brand-light-border">
@@ -38,39 +38,46 @@ const steps = [
           METHODOLOGY
         </span>
         <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-black">
-          Four Stages From Audit to Scale
+          Continuous Execution Timeline
         </h2>
       </div>
       <p class="font-body text-base text-brand-text max-w-md">
-        A structured, repeatable execution framework designed for clarity and continuous performance testing.
+        Understand &rarr; Plan &rarr; Build &rarr; Grow: A continuous four-stage framework designed for clarity and performance testing.
       </p>
     </div>
 
-    <!-- Timeline Horizontal Sequence Layout (Clean thin dividers, open layout) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {steps.map((step, idx) => (
-        <div class="relative flex flex-col justify-between p-6 bg-white border border-brand-light-border rounded-xl space-y-6 shadow-xs hover:border-brand-blue/40 transition-colors">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between border-b border-brand-light-border pb-4">
-              <span class="font-heading text-3xl font-extrabold text-brand-blue">
-                {step.number}
+    <!-- Desktop Horizontal Connected Timeline / Mobile Vertical Timeline (NO 4 separate cards) -->
+    <div class="relative">
+      <!-- Horizontal Connecting Line (Desktop) -->
+      <div class="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-brand-blue/20 -translate-y-1/2 -z-10" aria-hidden="true"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        {stages.map((stage, idx) => (
+          <div class="relative bg-white border border-brand-light-border rounded-2xl p-6 shadow-sm space-y-4 hover:border-brand-blue/40 transition-colors">
+            <div class="flex items-center justify-between">
+              <span class="w-10 h-10 rounded-full bg-brand-blue text-white font-heading font-extrabold text-sm flex items-center justify-center shadow-xs">
+                {stage.number}
               </span>
-              <span class="text-xs font-extrabold tracking-widest text-brand-teal uppercase font-heading bg-brand-teal/10 px-2.5 py-1 rounded">
+              <span class="text-[11px] font-extrabold tracking-widest text-brand-teal uppercase font-heading bg-brand-teal/10 px-2.5 py-1 rounded">
                 Stage 0{idx + 1}
               </span>
             </div>
-            <h3 class="font-heading text-2xl font-extrabold text-brand-black">
-              {step.title}
-            </h3>
-            <span class="block text-xs font-bold uppercase tracking-wider text-brand-text/80 font-heading">
-              {step.summary}
-            </span>
+
+            <div class="space-y-1">
+              <h3 class="font-heading text-2xl font-extrabold text-brand-black">
+                {stage.title}
+              </h3>
+              <span class="block text-xs font-bold uppercase tracking-wider text-brand-blue font-heading">
+                {stage.summary}
+              </span>
+            </div>
+
             <p class="font-body text-sm text-brand-text leading-relaxed">
-              {step.description}
+              {stage.description}
             </p>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </Container>
 </section>

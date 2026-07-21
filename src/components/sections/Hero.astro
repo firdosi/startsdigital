@@ -4,79 +4,99 @@ import Button from '../ui/Button.astro';
 import { getAssetPath } from '../../data/site';
 ---
 
-<section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-brand-white overflow-hidden border-b border-brand-light-border/60">
-  <Container class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
-    <!-- Left Column: Copy & Actions -->
-    <div class="lg:col-span-7 flex flex-col space-y-6 md:space-y-8">
+<section class="relative pt-32 pb-20 md:pt-40 md:pb-32 bg-brand-white overflow-hidden border-b border-brand-light-border">
+  <!-- Subtle Dot Matrix Background Pattern -->
+  <div class="absolute inset-0 -z-10 bg-[radial-gradient(#e4e7ec_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-60" aria-hidden="true"></div>
+
+  <Container class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+    <!-- Left Column (~48% content): Copy, Actions, Scannable Results -->
+    <div class="lg:col-span-6 flex flex-col space-y-6 md:space-y-8">
       <div>
-        <span class="inline-block text-xs font-extrabold tracking-[0.2em] text-brand-teal uppercase font-heading bg-brand-teal/10 px-3 py-1.5 rounded-md">
+        <span class="inline-flex items-center gap-2 text-xs font-extrabold tracking-[0.2em] text-brand-teal uppercase font-heading bg-brand-teal/10 px-3.5 py-1.5 rounded-md">
+          <span class="w-2 h-2 rounded-full bg-brand-teal animate-pulse" aria-hidden="true"></span>
           DIGITAL MARKETING, CREATIVE & TECHNOLOGY
         </span>
       </div>
 
-      <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-brand-black leading-[1.15]">
-        Digital strategy, campaigns and websites built to generate <span class="text-brand-blue">measurable growth.</span>
+      <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-brand-black leading-[1.12]">
+        Digital strategy, campaigns and websites built to generate <span class="text-brand-blue relative inline-block underline decoration-brand-teal/60 decoration-4 underline-offset-8">measurable growth.</span>
       </h1>
 
-      <p class="font-body text-base sm:text-lg font-normal leading-relaxed text-brand-text max-w-2xl">
+      <p class="font-body text-base sm:text-lg font-normal leading-relaxed text-brand-text max-w-xl">
         Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and AI-powered digital systems.
       </p>
 
-      <!-- Primary Actions -->
+      <!-- Primary CTAs -->
       <div class="flex flex-col sm:flex-row gap-4 pt-2">
         <Button 
           href="#contact" 
           variant="primary"
-          class="!px-7 !py-3.5 font-semibold text-base shadow-sm"
+          class="!px-8 !py-4 font-semibold text-base shadow-md"
         >
           Discuss Your Project
         </Button>
         <Button 
           href={getAssetPath('/work/')} 
           variant="secondary"
-          class="!px-7 !py-3.5 font-semibold text-base !bg-white !text-brand-black !border-brand-light-border hover:!bg-brand-grey/30"
+          class="!px-8 !py-4 font-semibold text-base !bg-white !text-brand-black !border-brand-light-border hover:!bg-brand-grey/30"
         >
           View Our Work
         </Button>
       </div>
 
-      <!-- Verified Results Metric Bar -->
-      <div class="pt-6 border-t border-brand-light-border grid grid-cols-2 sm:grid-cols-3 gap-6">
-        <div>
-          <span class="block font-heading text-2xl font-extrabold text-brand-blue">PKR 30M+</span>
-          <span class="text-xs font-semibold text-brand-text uppercase tracking-wider">Revenue Supported</span>
+      <!-- Prominent, Large Scannable Results Bar -->
+      <div class="pt-8 border-t border-brand-light-border grid grid-cols-3 gap-4 sm:gap-6">
+        <div class="space-y-1">
+          <span class="block font-heading text-2xl sm:text-3xl font-extrabold text-brand-blue tracking-tight">PKR 30M+</span>
+          <span class="block text-xs font-bold text-brand-black uppercase tracking-wider font-heading">Revenue Supported</span>
         </div>
-        <div>
-          <span class="block font-heading text-2xl font-extrabold text-brand-blue">29,000+</span>
-          <span class="text-xs font-semibold text-brand-text uppercase tracking-wider">Product Sales</span>
+        <div class="space-y-1">
+          <span class="block font-heading text-2xl sm:text-3xl font-extrabold text-brand-blue tracking-tight">29,000+</span>
+          <span class="block text-xs font-bold text-brand-black uppercase tracking-wider font-heading">Product Sales</span>
         </div>
-        <div class="col-span-2 sm:col-span-1">
-          <span class="block font-heading text-2xl font-extrabold text-brand-black">Multiple</span>
-          <span class="text-xs font-semibold text-brand-text uppercase tracking-wider">Industries & Markets</span>
+        <div class="space-y-1">
+          <span class="block font-heading text-2xl sm:text-3xl font-extrabold text-brand-teal tracking-tight">Multiple</span>
+          <span class="block text-xs font-bold text-brand-black uppercase tracking-wider font-heading">Industries & Markets</span>
         </div>
       </div>
     </div>
 
-    <!-- Right Column: Visual Frame with Visible Prototype Label -->
-    <div class="lg:col-span-5">
-      <div class="relative rounded-2xl border border-brand-light-border bg-white p-3 shadow-xl space-y-2">
-        <div class="flex items-center justify-between px-2 pt-1">
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-500/10 text-amber-700 font-extrabold text-[11px] font-heading rounded tracking-wider uppercase border border-amber-500/20">
-            PROTOTYPE VISUAL
-          </span>
-          <span class="text-[11px] font-semibold text-brand-text/80 font-heading">
-            Visual direction preview using temporary design assets
+    <!-- Right Column (~52% visual composition): Layered Concept Visuals -->
+    <div class="lg:col-span-6 relative">
+      <!-- Background Graphic Accents -->
+      <div class="absolute -top-10 -right-10 w-72 h-72 bg-brand-blue/10 rounded-full blur-3xl -z-10" aria-hidden="true"></div>
+      <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-brand-teal/10 rounded-full blur-3xl -z-10" aria-hidden="true"></div>
+
+      <!-- Layered Visual Container -->
+      <div class="relative p-2 sm:p-4">
+        <!-- CONCEPT VISUAL Badge -->
+        <div class="absolute top-6 right-6 z-20">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/90 text-white font-extrabold text-xs font-heading rounded-md shadow-md uppercase tracking-wider">
+            CONCEPT VISUAL
           </span>
         </div>
 
-        <div class="relative overflow-hidden rounded-xl bg-brand-navy/5">
+        <!-- Main Primary Visual -->
+        <div class="relative rounded-2xl border border-brand-light-border bg-white p-2 shadow-2xl overflow-hidden transform lg:rotate-[-1deg] hover:rotate-0 transition-transform duration-300">
           <img 
             src={getAssetPath('/prototype/hero-business.webp')} 
-            alt="Temporary visual direction preview using temporary design assets"
-            width="600"
-            height="400"
+            alt="Concept visual preview demonstrating agency strategy and creative composition"
+            width="700"
+            height="460"
             loading="eager"
             fetchpriority="high"
+            class="w-full h-auto object-cover rounded-xl border border-brand-light-border/40"
+          />
+        </div>
+
+        <!-- Overlapping Secondary Visual (Controlled depth) -->
+        <div class="hidden sm:block absolute -bottom-6 -left-4 w-3/5 rounded-xl border border-brand-light-border bg-white p-2 shadow-2xl transform lg:rotate-[2deg] hover:rotate-0 transition-transform duration-300 z-10">
+          <img 
+            src={getAssetPath('/prototype/hero-dashboard.webp')} 
+            alt="Concept visual preview demonstrating analytics layout"
+            width="400"
+            height="260"
+            loading="eager"
             class="w-full h-auto object-cover rounded-lg border border-brand-light-border/40"
           />
         </div>

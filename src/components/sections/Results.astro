@@ -1,71 +1,64 @@
 ---
 import Container from '../ui/Container.astro';
 
-const verifiedResults = [
+const metrics = [
   {
-    metric: 'PKR 30M+',
+    value: 'PKR 30M+',
     label: 'Revenue Supported',
-    detail: 'E-commerce and consumer product sales supported through managed digital campaigns.',
-    icon: 'chart',
+    sublabel: 'E-commerce and consumer product campaigns',
   },
   {
-    metric: '29,000+',
-    label: 'Product Sales Supported',
-    detail: 'Individual product units delivered across multiple client categories and markets.',
-    icon: 'box',
+    value: '29,000+',
+    label: 'Product Sales',
+    sublabel: 'Individual product units delivered across categories',
   },
   {
-    metric: 'PKR 4.2M+',
-    label: 'Qurbani Sales Supported',
-    detail: 'Seasonal campaign sales generated during the Eid Qurbani livestock campaign.',
-    icon: 'trend',
+    value: 'PKR 4.2M+',
+    label: 'Qurbani Sales',
+    sublabel: 'Seasonal livestock campaign sales generated',
   },
   {
-    metric: '150+',
+    value: '150+',
     label: 'Animals Sold',
-    detail: 'Direct livestock sales closed via video marketing and targeted campaign funnels.',
-    icon: 'check',
+    sublabel: 'Direct livestock sales closed via video marketing',
   },
 ];
 ---
 
-<section class="py-20 md:py-28 bg-brand-navy text-brand-white relative overflow-hidden border-y border-brand-light-border/10">
+<section class="py-24 md:py-36 bg-brand-navy text-white relative overflow-hidden border-y border-white/10">
+  <!-- Subtle Background Glow Elements -->
+  <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-blue/15 rounded-full blur-3xl" aria-hidden="true"></div>
+  <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-brand-teal/15 rounded-full blur-3xl" aria-hidden="true"></div>
+
   <Container class="space-y-16 relative z-10">
     <!-- Header -->
     <div class="text-center max-w-3xl mx-auto space-y-4">
-      <span class="text-xs font-extrabold tracking-[0.2em] text-brand-teal uppercase font-heading bg-brand-teal/10 px-3 py-1.5 rounded-md">
-        VERIFIED CAMPAIGN IMPACT
+      <span class="text-xs font-extrabold tracking-[0.2em] text-brand-teal uppercase font-heading bg-brand-teal/10 px-3.5 py-1.5 rounded-md">
+        VERIFIED COMMERCIAL IMPACT
       </span>
-      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-white">
-        Measurable Growth Across Campaigns & Projects
+      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-white">
+        Commercial Performance Figures
       </h2>
       <p class="font-body text-base text-brand-muted-dark leading-relaxed">
-        We track our performance strictly against real commercial results — revenue generated, units sold, and qualified customer inquiries delivered.
+        We track our performance against real commercial outcomes delivered across client campaigns.
       </p>
     </div>
 
-    <!-- Metric Cards Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {verifiedResults.map((item) => (
-        <div class="p-8 bg-white/5 border border-white/10 rounded-2xl space-y-4 hover:border-brand-blue/50 transition-colors">
-          <span class="font-heading text-4xl sm:text-5xl font-extrabold text-brand-blue block">
-            {item.metric}
+    <!-- Wide Editorial Metric Layout (Dividers instead of 4 standard cards) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-white/10 pt-4">
+      {metrics.map((item, idx) => (
+        <div class={`space-y-3 ${idx !== 0 ? 'pt-6 sm:pt-0 sm:pl-8' : ''}`}>
+          <span class="font-heading text-4xl sm:text-5xl font-extrabold text-brand-blue tracking-tight block">
+            {item.value}
           </span>
-          <h3 class="font-heading text-lg font-bold text-brand-white">
+          <h3 class="font-heading text-lg font-bold text-white">
             {item.label}
           </h3>
           <p class="font-body text-sm text-brand-muted-dark leading-relaxed">
-            {item.detail}
+            {item.sublabel}
           </p>
         </div>
       ))}
-    </div>
-
-    <!-- Assurance Note -->
-    <div class="pt-6 border-t border-white/10 text-center">
-      <p class="text-xs font-semibold text-brand-muted-dark">
-        All figures represent real, verified client outcomes. Permission for public disclosure is confirmed with respective clients.
-      </p>
     </div>
   </Container>
 </section>
