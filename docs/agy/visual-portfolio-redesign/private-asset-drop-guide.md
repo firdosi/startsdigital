@@ -53,10 +53,14 @@ private-assets/
 - **Required**: Real website screenshot targeting renovation/air-conditioning services in KL & Selangor.
 - **Optional**: Real renovation project photo.
 
-### E. Other Brands (Experience Grid)
-- **Required**: Original vector SVG or transparent PNG logo (minimum 1000px on longest side).
-- **Required**: Written public display permission (`publicApproved: true`).
-- **Required**: Approved public brand name string.
+### E. Approved Brands (Experience Grid)
+- **Approved Brands (15)**: Black Gold Fertilizer, Wajib Livestock, RK Reno Solutions, Viral Naturals, Shopinq Online, Super Safety Covers, Riyadh Finish Pro, Convort AI, Clearzone Immigration, Europa Immigration, Quick Immigration Service, Unique Lahore Lab Sahiwal, Right Link Advisors, Rapidline Immigration Services, Rapidzone.
+- **Status**: Public brand-name display is approved (`publicApproved: true`). Logo publication remains pending (`logoApproved: false`).
+- **Logo Target Paths**:
+  - `private-assets/client-logos/right-link-advisors-logo.svg`
+  - `private-assets/client-logos/rapidline-immigration-services-logo.svg`
+  - `private-assets/client-logos/rapidzone-logo.svg`
+- **Required**: Original vector SVG or transparent PNG logo (minimum 1000px on longest side). Do not create or download substitute logos from social media.
 
 ### F. Founder Section
 - **Required**: High-resolution professional portrait photo.

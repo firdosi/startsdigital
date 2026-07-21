@@ -61,9 +61,9 @@ Rather than rigid maximum constraints, the following are quality targets for ass
 
 ---
 
-## Client Brand Registry (12 Records)
+## Client Brand Registry (15 Records)
 
-All publication and logo approvals remain pending until the user confirms them. Permission is never inferred from previous work history or online profiles.
+Public brand-name display is approved by the user for all 15 records. Logo publication approvals remain pending until original logo assets are received and reviewed.
 
 ### 1. Black Gold Fertilizer
 *   **Brand name**: Black Gold Fertilizer
@@ -75,7 +75,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
 *   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Black Gold Fertilizer logo`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -91,7 +91,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 1200 x 630 px, preserve original aspect ratio
 *   **Format**: WebP / AVIF
 *   **Alt text**: `E-commerce online store layout for Black Gold Fertilizer`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: N/A
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -112,7 +112,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
 *   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Wajib Livestock logo`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -128,7 +128,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 800 x 800 px, preserve original aspect ratio
 *   **Format**: WebP
 *   **Alt text**: `Wajib Livestock Eid Qurbani campaign visual`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: N/A
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -147,7 +147,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
 *   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `RK Reno Solutions logo`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -163,7 +163,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 1200 x 630 px, preserve original aspect ratio
 *   **Format**: WebP
 *   **Alt text**: `Home renovation service website layout for RK Reno Solutions`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: N/A
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -182,7 +182,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
 *   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Viral Naturals logo`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -201,7 +201,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
 *   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Convort AI logo`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -220,7 +220,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
 *   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Clearzone Immigration logo`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -239,7 +239,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
 *   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Europa Immigration logo`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -258,7 +258,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
 *   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Quick Immigration Service logo`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -277,7 +277,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
 *   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Shopinq Online logo`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -296,7 +296,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
 *   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Super Safety Covers logo`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -315,7 +315,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
 *   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Riyadh Finish Pro logo`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
@@ -334,12 +334,69 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
 *   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Unique Lahore Lab Sahiwal logo`
-*   **Public usage approved**: [ ] Yes / [ ] No
+*   **Public usage approved**: [x] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
 *   **Final repository path**: `public/brands/unique-lahore-lab-sahiwal/logo.svg`
 *   **Notes**: Healthcare laboratory. Never stretch or crop brand logos to fill the box.
+
+---
+
+### 13. Right Link Advisors
+*   **Brand name**: Right Link Advisors
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.svg`
+*   **Source owner**: Right Link Advisors
+*   **Source URL**: https://reech-uk.com
+*   **Original dimensions**: Variable
+*   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
+*   **Format**: Transparent SVG (or transparent WebP)
+*   **Alt text**: `Right Link Advisors logo`
+*   **Public usage approved**: [x] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/right-link-advisors/logo.svg`
+*   **Notes**: Public brand-name display approved by the user. Logo publication remains pending original asset intake and review.
+
+---
+
+### 14. Rapidline Immigration Services
+*   **Brand name**: Rapidline Immigration Services
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.svg`
+*   **Source owner**: Rapidline Immigration Services
+*   **Source URL**: N/A
+*   **Original dimensions**: Variable
+*   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
+*   **Format**: Transparent SVG (or transparent WebP)
+*   **Alt text**: `Rapidline Immigration Services logo`
+*   **Public usage approved**: [x] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/rapidline-immigration-services/logo.svg`
+*   **Notes**: Public brand-name display approved by the user. Logo publication remains pending original asset intake and review.
+
+---
+
+### 15. Rapidzone
+*   **Brand name**: Rapidzone
+*   **Asset type**: Client Logo
+*   **Required filename**: `logo.svg`
+*   **Source owner**: Rapidzone
+*   **Source URL**: https://rapidzone.ae
+*   **Original dimensions**: Variable
+*   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
+*   **Format**: Transparent SVG (or transparent WebP)
+*   **Alt text**: `Rapidzone logo`
+*   **Public usage approved**: [x] Yes / [ ] No
+*   **Logo usage approved**: [ ] Yes / [ ] No
+*   **Received**: [ ] Yes / [x] No
+*   **Optimized**: [ ] Yes / [x] No
+*   **Final repository path**: `public/brands/rapidzone/logo.svg`
+*   **Notes**: Public brand-name display approved by the user. Logo publication remains pending original asset intake and review.
 
 ---
 

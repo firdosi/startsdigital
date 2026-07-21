@@ -16,7 +16,7 @@ export const projectsData: ProjectItem[] = [
   },
   {
     id: 'qurbani-campaign',
-    title: 'Qurbani Campaign',
+    title: 'Wajib Livestock Qurbani Campaign',
     industry: 'Livestock and seasonal e-commerce',
     services: ['Campaign strategy', 'lead generation', 'content and paid social'],
     result: 'Helped sell 150+ animals and generate PKR 4.2M+ in seasonal sales.'

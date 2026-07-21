@@ -1,5 +1,5 @@
 ---
-title: "Qurbani Campaign"
+title: "Wajib Livestock Qurbani Campaign"
 description: "Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign."
 industry: "Livestock and seasonal e-commerce"
 services:
@@ -24,7 +24,7 @@ responsibilities:
   - "Campaign management"
 featured: true
 order: 2
-seoTitle: "Eid Qurbani Campaign: Seasonal Lead Generation Case Study"
-seoDescription: "See how Starts Digital helped sell 150+ animals and supported PKR 4.2M+ in sales through a seasonal Eid Qurbani campaign."
+seoTitle: "Wajib Livestock Qurbani Campaign: Seasonal Lead Generation Case Study"
+seoDescription: "See how Starts Digital helped sell 150+ animals and supported PKR 4.2M+ in sales through the Wajib Livestock Qurbani campaign."
 draft: false
 ---

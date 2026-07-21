@@ -1,7 +1,7 @@
 export interface Brand {
   id: string;
   name: string;
-  category: 'ecommerce' | 'construction' | 'immigration' | 'technology' | 'healthcare';
+  category: 'ecommerce' | 'construction' | 'immigration' | 'technology' | 'healthcare' | 'business-services';
   logo?: string;
   website?: string;
   projectUrl?: string;
@@ -9,21 +9,24 @@ export interface Brand {
   assetSource?: string;
   permissionNote?: string;
   featured: boolean;
-  publicApproved: boolean; // Visual display permission (must be false until explicit user confirmation)
-  logoApproved: boolean;   // Logo rendering permission (must be false until explicit user confirmation)
+  publicApproved: boolean; // Public brand-name display permission (approved by user)
+  logoApproved: boolean;   // Logo publication permission (remains false until original logo asset intake and review)
   active: boolean;
   order: number;
 }
 
-// All brand entries set to publicApproved: false and logoApproved: false pending explicit user confirmation per asset-intake.md
+// Public brand-name display is approved for all 15 records.
+// Logo publication remains pending (logoApproved: false) until original vector/transparent assets are received and reviewed.
+// Brand names without approved logos appear only as normal text in the secondary experience listing.
+// They must not appear in the logo wall or be styled as substitute logos.
 export const brands: Brand[] = [
   {
     id: 'black-gold-fertilizer',
     name: 'Black Gold Fertilizer',
     category: 'ecommerce',
-    logo: '/brands/black-gold-fertilizer/logo.png',
+    logo: '/brands/black-gold-fertilizer/logo.svg',
     featured: true,
-    publicApproved: false,
+    publicApproved: true,
     logoApproved: false,
     active: true,
     order: 1,
@@ -32,9 +35,9 @@ export const brands: Brand[] = [
     id: 'wajib-livestock',
     name: 'Wajib Livestock',
     category: 'ecommerce',
-    logo: '/brands/wajib-livestock/logo.png',
+    logo: '/brands/wajib-livestock/logo.svg',
     featured: true,
-    publicApproved: false,
+    publicApproved: true,
     logoApproved: false,
     active: true,
     order: 2,
@@ -43,9 +46,9 @@ export const brands: Brand[] = [
     id: 'rk-reno-solutions',
     name: 'RK Reno Solutions',
     category: 'construction',
-    logo: '/brands/rk-reno-solutions/logo.png',
+    logo: '/brands/rk-reno-solutions/logo.svg',
     featured: true,
-    publicApproved: false,
+    publicApproved: true,
     logoApproved: false,
     active: true,
     order: 3,
@@ -54,9 +57,9 @@ export const brands: Brand[] = [
     id: 'viral-naturals',
     name: 'Viral Naturals',
     category: 'ecommerce',
-    logo: '/brands/viral-naturals/logo.png',
+    logo: '/brands/viral-naturals/logo.svg',
     featured: false,
-    publicApproved: false,
+    publicApproved: true,
     logoApproved: false,
     active: true,
     order: 4,
@@ -65,9 +68,9 @@ export const brands: Brand[] = [
     id: 'shopinq-online',
     name: 'Shopinq Online',
     category: 'ecommerce',
-    logo: '/brands/shopinq/logo.png',
+    logo: '/brands/shopinq-online/logo.svg',
     featured: false,
-    publicApproved: false,
+    publicApproved: true,
     logoApproved: false,
     active: true,
     order: 5,
@@ -76,9 +79,9 @@ export const brands: Brand[] = [
     id: 'super-safety-covers',
     name: 'Super Safety Covers',
     category: 'ecommerce',
-    logo: '/brands/super-safety-covers/logo.png',
+    logo: '/brands/super-safety-covers/logo.svg',
     featured: false,
-    publicApproved: false,
+    publicApproved: true,
     logoApproved: false,
     active: true,
     order: 6,
@@ -87,9 +90,9 @@ export const brands: Brand[] = [
     id: 'riyadh-finish-pro',
     name: 'Riyadh Finish Pro',
     category: 'construction',
-    logo: '/brands/riyadh-finish-pro/logo.png',
+    logo: '/brands/riyadh-finish-pro/logo.svg',
     featured: false,
-    publicApproved: false,
+    publicApproved: true,
     logoApproved: false,
     active: true,
     order: 7,
@@ -98,9 +101,9 @@ export const brands: Brand[] = [
     id: 'convort-ai',
     name: 'Convort AI',
     category: 'technology',
-    logo: '/brands/convort-ai/logo.png',
+    logo: '/brands/convort-ai/logo.svg',
     featured: false,
-    publicApproved: false,
+    publicApproved: true,
     logoApproved: false,
     active: true,
     order: 8,
@@ -109,9 +112,9 @@ export const brands: Brand[] = [
     id: 'clearzone-immigration',
     name: 'Clearzone Immigration',
     category: 'immigration',
-    logo: '/brands/clearzone/logo.png',
+    logo: '/brands/clearzone-immigration/logo.svg',
     featured: false,
-    publicApproved: false,
+    publicApproved: true,
     logoApproved: false,
     active: true,
     order: 9,
@@ -120,9 +123,9 @@ export const brands: Brand[] = [
     id: 'europa-immigration',
     name: 'Europa Immigration',
     category: 'immigration',
-    logo: '/brands/europa-immigration/logo.png',
+    logo: '/brands/europa-immigration/logo.svg',
     featured: false,
-    publicApproved: false,
+    publicApproved: true,
     logoApproved: false,
     active: true,
     order: 10,
@@ -131,22 +134,63 @@ export const brands: Brand[] = [
     id: 'quick-immigration-service',
     name: 'Quick Immigration Service',
     category: 'immigration',
-    logo: '/brands/quick-immigration/logo.png',
+    logo: '/brands/quick-immigration-service/logo.svg',
     featured: false,
-    publicApproved: false,
+    publicApproved: true,
     logoApproved: false,
     active: true,
     order: 11,
   },
   {
-    id: 'unique-lahore-lab',
+    id: 'unique-lahore-lab-sahiwal',
     name: 'Unique Lahore Lab Sahiwal',
     category: 'healthcare',
-    logo: '/brands/unique-lahore-lab/logo.png',
+    logo: '/brands/unique-lahore-lab-sahiwal/logo.svg',
     featured: false,
-    publicApproved: false,
+    publicApproved: true,
     logoApproved: false,
     active: true,
     order: 12,
+  },
+  {
+    id: 'right-link-advisors',
+    name: 'Right Link Advisors',
+    category: 'immigration',
+    logo: '/brands/right-link-advisors/logo.svg',
+    website: 'https://reech-uk.com',
+    assetSource: 'https://www.facebook.com/Rightlinkadvisors/',
+    permissionNote: 'Public brand-name display approved by the user. Logo publication remains pending original asset intake and review.',
+    featured: false,
+    publicApproved: true,
+    logoApproved: false,
+    active: true,
+    order: 13,
+  },
+  {
+    id: 'rapidline-immigration-services',
+    name: 'Rapidline Immigration Services',
+    category: 'immigration',
+    logo: '/brands/rapidline-immigration-services/logo.svg',
+    assetSource: 'https://www.facebook.com/RapidlineImmigartionServices/',
+    permissionNote: 'Public brand-name display approved by the user. Logo publication remains pending original asset intake and review.',
+    featured: false,
+    publicApproved: true,
+    logoApproved: false,
+    active: true,
+    order: 14,
+  },
+  {
+    id: 'rapidzone',
+    name: 'Rapidzone',
+    category: 'business-services',
+    logo: '/brands/rapidzone/logo.svg',
+    website: 'https://rapidzone.ae',
+    assetSource: 'https://www.facebook.com/Rapidzone.ae',
+    permissionNote: 'Public brand-name display approved by the user. Logo publication remains pending original asset intake and review.',
+    featured: false,
+    publicApproved: true,
+    logoApproved: false,
+    active: true,
+    order: 15,
   },
 ];
