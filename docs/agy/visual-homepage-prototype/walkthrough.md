@@ -45,29 +45,26 @@ The new visual prototype shifts Starts Digital into a **premium, light-first dig
 
 ### A. Temporary Oldweb Assets Retained (Prototype Preview Only)
 To keep the repository clean of unused clutter, 17 unused WebP images were removed from `public/prototype/`. Exactly 4 active WebP images are retained for prototype visual frames:
-1. `public/prototype/hero-business.webp`: Used in [Hero.astro](../../src/components/sections/Hero.astro) right-column visual frame.
-2. `public/prototype/hero-dashboard.webp`: Used in [FeaturedWork.astro](../../src/components/sections/FeaturedWork.astro) for the Black Gold Fertilizer project layout preview.
-3. `public/prototype/campaign-lab.webp`: Used in [FeaturedWork.astro](../../src/components/sections/FeaturedWork.astro) for the Qurbani Campaign project layout preview.
-4. `public/prototype/project-seo.webp`: Used in [FeaturedWork.astro](../../src/components/sections/FeaturedWork.astro) for the RK Reno Solutions project layout preview.
+1. `public/prototype/hero-business.webp`: Used in [Hero.astro](../../../src/components/sections/Hero.astro) right-column visual frame.
+2. `public/prototype/hero-dashboard.webp`: Used in [FeaturedWork.astro](../../../src/components/sections/FeaturedWork.astro) for the Black Gold Fertilizer project layout preview.
+3. `public/prototype/campaign-lab.webp`: Used in [FeaturedWork.astro](../../../src/components/sections/FeaturedWork.astro) for the Qurbani Campaign project layout preview.
+4. `public/prototype/project-seo.webp`: Used in [FeaturedWork.astro](../../../src/components/sections/FeaturedWork.astro) for the RK Reno Solutions project layout preview.
 
 *Note*: Every section utilizing these temporary assets displays a visible, high-contrast label (`PROTOTYPE VISUAL` or `Prototype visual only. Replace with approved real project asset before release.`).
 
 ### B. Platform Display Approach
-We adopted the preferred safe prototype approach in [PlatformsTools.astro](../../src/components/sections/PlatformsTools.astro):
-- Render platform names in clean neutral text tiles with category tags.
-- Removed manually created SVG files from the repository to prevent unverified brand asset representation.
-- Official platform SVG brand assets remain pending formal guideline review per [asset-intake.md](../visual-portfolio-redesign/asset-intake.md).
+We adopted the preferred safe prototype approach in [PlatformsTools.astro](../../../src/components/sections/PlatformsTools.astro):
+- Render platform names in clean neutral text tiles with category SVG icons (advertising, analytics, cms, communication, design).
+- Removed manually created SVG files and internal asset-review messages from the public rendering.
+- Official platform SVG brand assets remain pending formal guideline review per [asset-intake.md](../../visual-portfolio-redesign/asset-intake.md).
 
 ---
 
 ## 4. Brand Approval Flags & Verified Case-Study Wording
 
 ### A. Brand Approval Flags
-In [brands.ts](../../src/data/brands.ts), all 12 client brand records are explicitly set to:
-- `publicApproved: false`
-- `logoApproved: false`
-
-Unapproved client brand logos or names do not render on the public prototype page. [BrandExperience.astro](../../src/components/sections/BrandExperience.astro) maintains ready component architecture and displays a clean pending intake notice.
+In [brands.ts](../../../src/data/brands.ts), all 12 client brand records are set to `publicApproved: false` and `logoApproved: false`.
+In [BrandExperience.astro](../../../src/components/sections/BrandExperience.astro), the section checks `publicApprovedBrands.length > 0` and is completely hidden from public rendering while zero brands are approved (leaving no empty spacing or development notices).
 
 ### B. Verified Project Wording
 1. **Black Gold Fertilizer**:
@@ -90,29 +87,29 @@ Unapproved client brand logos or names do not render on the public prototype pag
 ## 5. Components Created & Modified
 
 ### A. Data Models
-1. [brands.ts](../../src/data/brands.ts): Manages 12 client brand records and approval flags.
-2. [platforms.ts](../../src/data/platforms.ts): Manages 12 platform tool records.
+1. [brands.ts](../../../src/data/brands.ts): Manages 12 client brand records and approval flags.
+2. [platforms.ts](../../../src/data/platforms.ts): Manages 12 platform tool records.
 
 ### B. Layout Components
-1. [global.css](../../src/styles/global.css): Configured light-first theme tokens (`#F7F7F3` background, `#0B0D10` body text).
-2. [BaseLayout.astro](../../src/layouts/BaseLayout.astro): Re-mapped body styles and selection highlights.
-3. [Header.astro](../../src/components/layout/Header.astro): Implemented sticky light header (`bg-white/90`), `StartsDigital` brandmark, navigation links, and "Discuss Your Project" CTA.
-4. [MobileMenu.astro](../../src/components/layout/MobileMenu.astro): Implemented accessible drawer with light theme.
-5. [Footer.astro](../../src/components/layout/Footer.astro): Deep Navy background (`#07111F`) with agency details, direct email, WhatsApp links, and copyright 2026.
+1. [global.css](../../../src/styles/global.css): Configured light-first theme tokens (`#F7F7F3` background, `#0B0D10` body text).
+2. [BaseLayout.astro](../../../src/layouts/BaseLayout.astro): Re-mapped body styles and selection highlights.
+3. [Header.astro](../../../src/components/layout/Header.astro): Implemented sticky light header (`bg-white/90`), `StartsDigital` brandmark, navigation links, and "Discuss Your Project" CTA.
+4. [MobileMenu.astro](../../../src/components/layout/MobileMenu.astro): Implemented accessible drawer with light theme.
+5. [Footer.astro](../../../src/components/layout/Footer.astro): Deep Navy background (`#07111F`) with agency details, direct email, WhatsApp links, and copyright 2026.
 
 ### C. Homepage Section Components
-1. [Hero.astro](../../src/components/sections/Hero.astro): Split-screen hero with verified metrics strip and visible `PROTOTYPE VISUAL` label.
-2. [BrandExperience.astro](../../src/components/sections/BrandExperience.astro): Component architecture displaying pending intake notice.
-3. [Services.astro](../../src/components/sections/Services.astro): Open service layout featuring 2 large featured deliverable cards and 4 supporting panels with thin dividers.
-4. [FeaturedWork.astro](../../src/components/sections/FeaturedWork.astro): Showcase rows highlighting Black Gold Fertilizer, Qurbani Campaign, and RK Reno Solutions with visible prototype labels.
-5. [Results.astro](../../src/components/sections/Results.astro): Deep Navy section displaying verified commercial statistics.
-6. [PlatformsTools.astro](../../src/components/sections/PlatformsTools.astro): Neutral text tile grid displaying 12 platform tools.
-7. [WhyUs.astro](../../src/components/sections/WhyUs.astro): Operating model pillars focusing on strategy, execution, tech stack, and transparency.
-8. [FounderSection.astro](../../src/components/sections/FounderSection.astro): Founder layout component (conditionally disabled).
-9. [Process.astro](../../src/components/sections/Process.astro): 4-stage open timeline layout.
-10. [FAQ.astro](../../src/components/sections/FAQ.astro): Accessible accordion component with 6 verified Q&As.
-11. [ContactCTA.astro](../../src/components/sections/ContactCTA.astro): Deep Navy CTA section with direct contact channels.
-12. [index.astro](../../src/pages/index.astro): Assembled all 11 section blocks in clean 70/30 light/dark visual order.
+1. [Hero.astro](../../../src/components/sections/Hero.astro): Split-screen hero with verified metrics strip and visible `PROTOTYPE VISUAL` label.
+2. [BrandExperience.astro](../../../src/components/sections/BrandExperience.astro): Hidden when zero brands are publicly approved.
+3. [Services.astro](../../../src/components/sections/Services.astro): Open service layout featuring prominent SVG category icons, 2 large featured deliverable cards, and 4 supporting panels with thin dividers.
+4. [FeaturedWork.astro](../../../src/components/sections/FeaturedWork.astro): Showcase rows highlighting Black Gold Fertilizer, Qurbani Campaign, and RK Reno Solutions with visible prototype labels.
+5. [Results.astro](../../../src/components/sections/Results.astro): Deep Navy section displaying verified commercial statistics.
+6. [PlatformsTools.astro](../../../src/components/sections/PlatformsTools.astro): Neutral text tile grid with generic category SVG icons.
+7. [WhyUs.astro](../../../src/components/sections/WhyUs.astro): Operating model pillars focusing on strategy, execution, tech stack, and transparency.
+8. [FounderSection.astro](../../../src/components/sections/FounderSection.astro): Founder layout component (conditionally disabled).
+9. [Process.astro](../../../src/components/sections/Process.astro): 4-stage open timeline layout.
+10. [FAQ.astro](../../../src/components/sections/FAQ.astro): Accessible accordion component with 6 verified Q&As.
+11. [ContactCTA.astro](../../../src/components/sections/ContactCTA.astro): Deep Navy CTA section with direct contact channels.
+12. [index.astro](../../../src/pages/index.astro): Assembled section blocks in clean 70/30 light/dark visual order.
 
 ---
 
@@ -121,7 +118,7 @@ Unapproved client brand logos or names do not render on the public prototype pag
 Full-page screenshots of the production preview build were captured using Playwright CLI on port 4321 with the `/startsdigital/` base path:
 
 - [Desktop 1440px Full-Page Screenshot](./screenshots/desktop-1440-full.png)
-- [Mobile 375px Full-Page Screenshot](./screenshots/mobile-375-full.png)
 - [Tablet 768px Full-Page Screenshot](./screenshots/tablet-768-full.png)
+- [Mobile 375px Full-Page Screenshot](./screenshots/mobile-375-full.png)
 
-All screenshots capture the complete layout from header to footer, demonstrate responsive behavior, show visible prototype labels, and confirm zero horizontal overflow.
+All screenshots capture the complete layout from header to footer, demonstrate responsive behavior, show visible prototype labels, confirm zero horizontal overflow, and verify that no internal development notices or empty brand sections render.

@@ -17,14 +17,40 @@ import { platforms } from '../../data/platforms';
       </p>
     </div>
 
-    <!-- Platform Tool Names in Clean Neutral Text Tiles (Preferred Safe Prototype Approach) -->
+    <!-- Platform Tool Tiles with Generic Category SVG Icons (No internal notices) -->
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
       {platforms.map((platform) => (
-        <div class="flex flex-col items-center justify-center p-5 bg-white border border-brand-light-border rounded-xl shadow-xs hover:border-brand-blue/40 transition-colors space-y-2 group">
-          <div class="w-8 h-8 rounded-lg bg-brand-navy/5 border border-brand-light-border/60 flex items-center justify-center text-brand-blue font-heading font-extrabold text-xs group-hover:bg-brand-blue group-hover:text-white transition-colors">
-            {platform.name.charAt(0)}
+        <div class="flex flex-col items-center justify-center p-4 bg-white border border-brand-light-border rounded-xl shadow-xs hover:border-brand-blue/40 transition-colors space-y-2 group">
+          <!-- Generic Category SVG Icon -->
+          <div class="w-9 h-9 rounded-lg bg-brand-blue/10 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors">
+            {platform.category === 'advertising' && (
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+              </svg>
+            )}
+            {platform.category === 'analytics' && (
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            )}
+            {platform.category === 'cms' && (
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM4 10h16M10 14h6" />
+              </svg>
+            )}
+            {platform.category === 'communication' && (
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            )}
+            {platform.category === 'design' && (
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4c0-1.429.91-2.68 2.215-3.093l.362-1.446c.14-.56.637-.961 1.213-.961h1.42c.576 0 1.073.401 1.213.961l.362 1.446A3.204 3.204 0 0113 17a4 4 0 01-4 4H7zm0 0l4-4M19.707 7.707l-3.414-3.414a1 1 0 00-1.414 0l-7 7a1 1 0 000 1.414l3.414 3.414a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" />
+              </svg>
+            )}
           </div>
-          <span class="font-heading text-xs font-extrabold text-brand-black text-center">
+
+          <span class="font-heading text-xs font-bold text-brand-black text-center">
             {platform.name}
           </span>
           <span class="text-[10px] font-semibold uppercase tracking-wider text-brand-text/70 font-heading">
@@ -32,13 +58,6 @@ import { platforms } from '../../data/platforms';
           </span>
         </div>
       ))}
-    </div>
-
-    <!-- Notice -->
-    <div class="pt-2 text-center">
-      <p class="text-xs font-semibold text-brand-text/80">
-        Note: Official platform SVG brand assets remain pending guideline review and intake approval per <a href="../../docs/agy/visual-portfolio-redesign/asset-intake.md" class="text-brand-blue underline">asset-intake.md</a>.
-      </p>
     </div>
   </Container>
 </section>
