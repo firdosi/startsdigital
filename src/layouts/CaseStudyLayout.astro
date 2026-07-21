@@ -51,7 +51,6 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
       <Container class="relative max-w-[1000px] px-6 sm:px-8 space-y-6">
         <div class="flex items-center justify-between gap-4">
           <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#ddff35]">
-            <Sparkles class="size-3.5 text-[#ddff35]" />
             <span>{data.industry}</span>
           </span>
 
@@ -64,10 +63,10 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
           </a>
         </div>
 
-        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-tight">
+        <h1 class="font-body font-bold text-3xl sm:text-5xl lg:text-6xl text-white leading-tight">
           {data.title}
         </h1>
-        <p class="font-body text-lg sm:text-xl text-slate-200 leading-relaxed max-w-3xl font-medium">
+        <p class="font-body text-lg sm:text-xl text-slate-200 leading-[1.6] max-w-3xl font-normal">
           {data.description}
         </p>
       </Container>
@@ -79,11 +78,11 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {
             data.metrics.map((metric) => (
-              <div class="rounded-2xl border-2 border-[#061d33]/15 bg-[#f7f4ed] p-6 shadow-sm">
-                <span class="font-display text-3xl sm:text-5xl font-black text-[#ff762b] uppercase block">
+              <div class="rounded-2xl border-2 border-[#061d33]/15 bg-[#f7f4ed] p-6 shadow-sm font-body">
+                <span class="font-bold text-3xl sm:text-4xl lg:text-5xl text-[#ff762b] block">
                   {metric.value}
                 </span>
-                <p class="font-display text-sm font-bold text-[#061d33] uppercase tracking-wider mt-2">
+                <p class="font-semibold text-sm text-[#061d33] tracking-wide mt-2">
                   {metric.label}
                 </p>
               </div>
@@ -129,7 +128,7 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
               <span class="block font-mono text-xs font-bold tracking-wider text-[#ff762b] uppercase mb-1">
                 Industry
               </span>
-              <p class="font-display text-lg font-bold text-[#061d33]">
+              <p class="font-body font-bold text-lg text-[#061d33]">
                 {data.industry}
               </p>
             </div>
@@ -138,7 +137,7 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
               <span class="block font-mono text-xs font-bold tracking-wider text-[#ff762b] uppercase mb-3">
                 Services Delivered
               </span>
-              <ul class="space-y-2.5 text-sm font-body font-medium text-slate-700">
+              <ul class="space-y-2.5 text-sm font-body font-normal text-slate-700">
                 {
                   data.services.map((service) => (
                     <li class="flex items-center gap-2">
@@ -155,10 +154,10 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
         <!-- Main Content (Markdown Body) -->
         <div class="lg:col-span-8 space-y-8">
           <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm space-y-6">
-            <h2 class="font-display text-2xl font-black uppercase text-[#061d33] border-b border-slate-100 pb-4">
+            <h2 class="font-body font-bold text-xl sm:text-2xl text-[#061d33] border-b border-slate-100 pb-4">
               Campaign Execution & Scope
             </h2>
-            <ul class="space-y-3 font-body text-base text-slate-700 leading-relaxed font-medium">
+            <ul class="space-y-3 font-body text-base text-slate-700 leading-[1.6] font-normal">
               {
                 data.responsibilities.map((item) => (
                   <li class="flex items-start gap-3">
@@ -182,8 +181,8 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
       <section class="py-12 bg-white border-t border-b border-[#061d33]/10">
         <Container class="max-w-[1000px] px-6 sm:px-8 space-y-8">
           <div class="flex items-center justify-between">
-            <h3 class="font-display text-2xl font-black uppercase text-[#061d33]">
-              PROJECT GALLERY
+            <h3 class="font-body font-bold text-xl sm:text-2xl text-[#061d33]">
+              Project Gallery
             </h3>
           </div>
 
@@ -228,7 +227,7 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
                   <ArrowLeft class="size-3.5" />
                   <span>Previous Case Study</span>
                 </span>
-                <h4 class="font-display text-xl font-black uppercase text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+                <h4 class="font-body font-semibold text-lg sm:text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-snug">
                   {prevStudy.data.title}
                 </h4>
               </div>
@@ -249,7 +248,7 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
                   <span>Next Case Study</span>
                   <ArrowRight class="size-3.5" />
                 </span>
-                <h4 class="font-display text-xl font-black uppercase text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+                <h4 class="font-body font-semibold text-lg sm:text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-snug">
                   {nextStudy.data.title}
                 </h4>
               </div>

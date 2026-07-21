@@ -25,15 +25,15 @@ import {
   <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 rounded-b-[40px] shadow-2xl">
     <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
       <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-bold uppercase tracking-widest text-[#ddff35]">
-        <Sparkles class="size-3.5 text-[#ddff35]" />
         <span>CONTACT</span>
       </span>
       
-      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-none text-white max-w-5xl mx-auto">
-        LET’S TALK ABOUT YOUR NEXT <span class="text-[#ff762b]">GROWTH OPPORTUNITY</span>
+      <!-- Hero Headline (7 words - font-display) -->
+      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-black text-white leading-tight max-w-5xl mx-auto">
+        Let’s talk about your next <span class="text-[#ff762b]">growth opportunity</span>
       </h1>
       
-      <p class="font-body text-lg sm:text-2xl text-slate-200 max-w-3xl mx-auto leading-relaxed font-medium">
+      <p class="font-body text-lg sm:text-2xl text-slate-200 max-w-3xl mx-auto leading-[1.6] font-normal">
         Tell us about your business, current challenges and goals. We will review where Starts Digital may be able to help.
       </p>
     </Container>
@@ -47,14 +47,14 @@ import {
         
         <!-- Left Column: Clickable Contact Cards & Assurance -->
         <div class="lg:col-span-5 space-y-8">
-          <div>
-            <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] mb-2 block">
+          <div class="space-y-3">
+            <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
               DIRECT CHANNELS
             </span>
-            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#061d33] leading-tight">
-              GET IN TOUCH DIRECTLY
+            <h2 class="font-body font-bold text-3xl sm:text-4xl lg:text-5xl text-[#061d33] leading-tight">
+              Get in touch directly
             </h2>
-            <p class="mt-3 text-base text-slate-700 font-body leading-relaxed font-medium">
+            <p class="text-base text-slate-700 font-body leading-[1.6] font-normal">
               We respond promptly to project enquiries with honest commercial evaluations and direct strategic feedback.
             </p>
           </div>
@@ -70,10 +70,10 @@ import {
               </div>
               <div>
                 <span class="text-xs font-mono font-bold uppercase text-slate-500 block">Email Inquiry</span>
-                <span class="font-display text-lg sm:text-xl font-black text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+                <span class="font-body font-semibold text-lg sm:text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors">
                   {site.contact.email}
                 </span>
-                <p class="text-xs text-slate-600 font-body mt-0.5">Direct inbox monitored daily</p>
+                <p class="text-xs text-slate-600 font-body mt-0.5 font-normal">Direct inbox monitored daily</p>
               </div>
             </div>
           </a>
@@ -91,17 +91,17 @@ import {
               </div>
               <div>
                 <span class="text-xs font-mono font-bold uppercase text-slate-500 block">WhatsApp Direct Chat</span>
-                <span class="font-display text-lg sm:text-xl font-black text-[#061d33] group-hover:text-[#39c98a] transition-colors">
+                <span class="font-body font-semibold text-lg sm:text-xl text-[#061d33] group-hover:text-[#39c98a] transition-colors">
                   {site.contact.phone}
                 </span>
-                <p class="text-xs text-slate-600 font-body mt-0.5">Quick voice note or chat consultation</p>
+                <p class="text-xs text-slate-600 font-body mt-0.5 font-normal">Quick voice note or chat consultation</p>
               </div>
             </div>
           </a>
 
           <!-- Expectation Guarantees -->
-          <div class="rounded-2xl border border-slate-300 bg-white/60 p-6 space-y-3 font-body text-sm font-medium text-slate-700">
-            <div class="flex items-center gap-2 text-[#061d33] font-bold font-display uppercase">
+          <div class="rounded-2xl border border-slate-300 bg-white/60 p-6 space-y-3 font-body text-sm font-normal text-slate-700">
+            <div class="flex items-center gap-2 text-[#061d33] font-semibold font-body uppercase text-xs tracking-wider">
               <ShieldCheck class="size-5 text-[#ff762b]" />
               <span>COMMERCIAL ASSURANCE</span>
             </div>
@@ -120,10 +120,10 @@ import {
         <div class="lg:col-span-7">
           <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-12 shadow-2xl space-y-6">
             <div>
-              <h3 class="font-display text-2xl sm:text-3xl font-black uppercase text-[#061d33] mb-2">
-                TELL US ABOUT YOUR PROJECT
+              <h3 class="font-body font-bold text-2xl sm:text-3xl text-[#061d33] mb-2 leading-tight">
+                Tell us about your project
               </h3>
-              <p class="text-sm sm:text-base text-slate-600 font-body">
+              <p class="text-sm sm:text-base text-slate-600 font-body leading-[1.6] font-normal">
                 Choose your preferred channel below (Email or WhatsApp) to send your inquiry directly to our execution team.
               </p>
             </div>
@@ -216,24 +216,24 @@ import {
                 ></textarea>
               </div>
 
-              <!-- Action Choice Buttons -->
-              <div class="pt-2 grid gap-4 sm:grid-cols-2">
+              <!-- Action Choice Buttons (Manrope 600) -->
+              <div class="pt-2 grid gap-4 sm:grid-cols-2 font-body">
                 <button
                   type="button"
                   id="btn-send-email"
-                  class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#061d33] px-6 py-4 font-display text-base font-bold text-white shadow-lg hover:bg-[#ff762b] transition-all cursor-pointer"
+                  class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#061d33] px-6 py-4 font-body font-semibold text-base text-white shadow-lg hover:bg-[#ff762b] transition-all cursor-pointer"
                 >
                   <Send class="size-5 text-[#ddff35]" />
-                  <span>SEND VIA EMAIL</span>
+                  <span>Send via Email</span>
                 </button>
 
                 <button
                   type="button"
                   id="btn-send-whatsapp"
-                  class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#39c98a] px-6 py-4 font-display text-base font-bold text-white shadow-lg hover:bg-[#2fb078] transition-all cursor-pointer"
+                  class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#39c98a] px-6 py-4 font-body font-semibold text-base text-white shadow-lg hover:bg-[#2fb078] transition-all cursor-pointer"
                 >
                   <MessageSquare class="size-5 text-white" />
-                  <span>SEND VIA WHATSAPP</span>
+                  <span>Send via WhatsApp</span>
                 </button>
               </div>
 

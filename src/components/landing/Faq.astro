@@ -1,5 +1,5 @@
 ---
-import { Plus, Minus, HelpCircle } from '@lucide/astro';
+import { Plus, Minus } from '@lucide/astro';
 
 const items = [
   {
@@ -27,14 +27,14 @@ const items = [
     <div class="grid gap-12 lg:grid-cols-12 items-start">
       
       <!-- Left Column: Boost-Style Title & Subtitle -->
-      <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
+      <div class="lg:col-span-5 space-y-4 lg:sticky lg:top-28">
         <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
           CLEAR ANSWERS
         </span>
-        <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#061d33] uppercase leading-tight">
-          YOUR QUESTIONS ANSWERED
+        <h2 class="font-body font-bold text-3xl sm:text-4xl lg:text-5xl text-[#061d33] leading-tight">
+          Your questions answered
         </h2>
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-medium">
+        <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal">
           Everything you need to know about working with Starts Digital. Clear timelines, transparent tracking systems, and direct senior execution.
         </p>
       </div>
@@ -47,11 +47,12 @@ const items = [
               class="reveal-on-scroll overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:border-[#ff762b]"
               data-reveal-delay={i * 70}
             >
+              <!-- FAQ Question (Manrope 600) -->
               <button
                 type="button"
                 data-faq-toggle
                 aria-expanded={i === 0 ? 'true' : 'false'}
-                class="flex w-full cursor-pointer items-center justify-between gap-4 px-7 py-6 text-left font-display text-lg sm:text-xl font-bold uppercase text-[#061d33] hover:text-[#ff762b] transition-colors"
+                class="flex w-full cursor-pointer items-center justify-between gap-4 px-7 py-6 text-left font-body text-base sm:text-lg font-semibold text-[#061d33] hover:text-[#ff762b] transition-colors"
               >
                 <span>{item.q}</span>
                 <span
@@ -66,10 +67,11 @@ const items = [
                 </span>
               </button>
               
+              <!-- FAQ Answer (Manrope 400 leading 1.6) -->
               <div
                 data-faq-answer
                 hidden={i !== 0}
-                class="px-7 pb-6 text-base leading-relaxed text-slate-700 font-body border-t border-slate-100 pt-4 font-medium"
+                class="px-7 pb-6 text-base leading-[1.6] text-slate-700 font-body border-t border-slate-100 pt-4 font-normal"
               >
                 {item.a}
               </div>

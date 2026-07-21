@@ -3,7 +3,6 @@ import { site } from '../../site.config';
 import { 
   Sprout, 
   TrendingUp, 
-  Award, 
   Wrench, 
   MapPin, 
   ArrowRight,
@@ -17,18 +16,18 @@ import {
     
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-      <div>
-        <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] mb-2 block">
+      <div class="space-y-3">
+        <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
           FEATURED WORK & CASE STUDIES
         </span>
-        <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#061d33] uppercase leading-tight">
-          OUR FEATURED PROJECTS
+        <h2 class="font-body font-bold text-3xl sm:text-4xl lg:text-5xl text-[#061d33] leading-tight">
+          Our featured projects
         </h2>
       </div>
       <div>
         <a
           href={`${site.basePath}/work/`}
-          class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-7 py-3.5 font-display text-sm font-bold text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-md"
+          class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-7 py-3.5 font-body font-semibold text-sm text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-md"
         >
           <span>View All Case Studies</span>
           <ArrowRight class="size-4" />
@@ -61,22 +60,22 @@ import {
                 loading="lazy"
                 class="max-h-12 w-auto object-contain"
               />
-              <h3 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+              <h3 class="font-body font-bold text-2xl sm:text-3xl lg:text-4xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
                 Black Gold Fertilizer
               </h3>
             </div>
 
-            <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-medium">
+            <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal">
               Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.
             </p>
 
             <!-- Verified Metrics Badges -->
-            <div class="flex flex-wrap items-center gap-3 pt-2">
-              <div class="inline-flex items-center gap-2 rounded-xl bg-[#ff762b]/10 border border-[#ff762b]/30 px-4 py-2.5 text-sm font-bold font-display text-[#061d33]">
+            <div class="flex flex-wrap items-center gap-3 pt-2 font-body">
+              <div class="inline-flex items-center gap-2 rounded-xl bg-[#ff762b]/10 border border-[#ff762b]/30 px-4 py-2.5 text-sm font-semibold text-[#061d33]">
                 <TrendingUp class="size-4 text-[#ff762b]" />
                 <span>PKR 30M+ revenue supported</span>
               </div>
-              <div class="inline-flex items-center gap-2 rounded-xl bg-[#9a83f5]/10 border border-[#9a83f5]/30 px-4 py-2.5 text-sm font-bold font-display text-[#061d33]">
+              <div class="inline-flex items-center gap-2 rounded-xl bg-[#9a83f5]/10 border border-[#9a83f5]/30 px-4 py-2.5 text-sm font-semibold text-[#061d33]">
                 <ShoppingBag class="size-4 text-[#9a83f5]" />
                 <span>29,000+ product sales</span>
               </div>
@@ -85,7 +84,7 @@ import {
             <div class="pt-4">
               <a
                 href={`${site.basePath}/work/black-gold-fertilizer/`}
-                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-display text-base font-bold text-white shadow-md hover:bg-[#ff762b] transition-all"
+                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
               >
                 <span>Read Case Study</span>
                 <ArrowRight class="size-4" />
@@ -95,7 +94,7 @@ import {
 
           <!-- Visual Side: Official Product Packaging Visual -->
           <div class="lg:col-span-6">
-            <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-[#061d33] p-4 shadow-2xl">
+            <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-[#061d33] p-4 shadow-2xl font-body">
               <img
                 src={`${site.basePath}/images/black-gold-official.png`}
                 alt="Official Black Gold Fertilizer Product Packaging"
@@ -108,7 +107,7 @@ import {
                 <Sprout class="size-6 text-[#39c98a] shrink-0" />
                 <div>
                   <div class="text-[11px] font-mono text-slate-300">Agriculture & E-Commerce</div>
-                  <div class="text-xs font-bold font-display text-white">Multi-Category Product Growth</div>
+                  <div class="text-xs font-semibold text-white">Multi-Category Product Growth</div>
                 </div>
               </div>
             </div>
@@ -128,18 +127,18 @@ import {
                 <span class="inline-block rounded-full bg-[#39c98a]/20 border border-[#39c98a]/40 px-4 py-1.5 text-xs font-mono font-bold text-[#39c98a] uppercase tracking-wider">
                   Verified Outcome Summary
                 </span>
-                <h4 class="font-display text-3xl sm:text-4xl font-black text-white uppercase leading-tight">
-                  WAJIB LIVESTOCK EID QURBANI
+                <h4 class="font-body font-bold text-2xl sm:text-3xl text-white leading-tight">
+                  Wajib Livestock Eid Qurbani
                 </h4>
               </div>
 
-              <div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/10">
+              <div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/10 font-body">
                 <div class="rounded-xl bg-white/10 p-4 border border-white/10">
-                  <span class="font-display text-2xl sm:text-3xl font-black text-[#ddff35] block">150+</span>
+                  <span class="font-bold text-2xl sm:text-3xl text-[#ddff35] block">150+</span>
                   <span class="text-xs font-mono text-slate-300 uppercase">Animals Sold</span>
                 </div>
                 <div class="rounded-xl bg-white/10 p-4 border border-white/10">
-                  <span class="font-display text-2xl sm:text-3xl font-black text-[#ff762b] block">PKR 4.2M+</span>
+                  <span class="font-bold text-2xl sm:text-3xl text-[#ff762b] block">PKR 4.2M+</span>
                   <span class="text-xs font-mono text-slate-300 uppercase">Sales Supported</span>
                 </div>
               </div>
@@ -154,21 +153,21 @@ import {
               <span class="text-xs font-mono font-bold text-slate-400">02 / FEATURED CASE</span>
             </div>
 
-            <h3 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+            <h3 class="font-body font-bold text-2xl sm:text-3xl lg:text-4xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
               Wajib Livestock Qurbani Campaign
             </h3>
 
-            <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-medium">
+            <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal">
               Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.
             </p>
 
             <!-- Verified Metrics Badges -->
-            <div class="flex flex-wrap items-center gap-3 pt-2">
-              <div class="inline-flex items-center gap-2 rounded-xl bg-[#ddff35]/20 border border-[#ddff35]/40 px-4 py-2.5 text-sm font-bold font-display text-[#061d33]">
+            <div class="flex flex-wrap items-center gap-3 pt-2 font-body">
+              <div class="inline-flex items-center gap-2 rounded-xl bg-[#ddff35]/20 border border-[#ddff35]/40 px-4 py-2.5 text-sm font-semibold text-[#061d33]">
                 <HeartHandshake class="size-4 text-[#061d33]" />
                 <span>More than 150 animals sold</span>
               </div>
-              <div class="inline-flex items-center gap-2 rounded-xl bg-[#ff762b]/10 border border-[#ff762b]/30 px-4 py-2.5 text-sm font-bold font-display text-[#061d33]">
+              <div class="inline-flex items-center gap-2 rounded-xl bg-[#ff762b]/10 border border-[#ff762b]/30 px-4 py-2.5 text-sm font-semibold text-[#061d33]">
                 <TrendingUp class="size-4 text-[#ff762b]" />
                 <span>PKR 4.2M+ sales supported</span>
               </div>
@@ -177,7 +176,7 @@ import {
             <div class="pt-4">
               <a
                 href={`${site.basePath}/work/qurbani-campaign/`}
-                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-display text-base font-bold text-white shadow-md hover:bg-[#ff762b] transition-all"
+                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
               >
                 <span>Read Case Study</span>
                 <ArrowRight class="size-4" />
@@ -210,22 +209,22 @@ import {
                 loading="lazy"
                 class="max-h-12 w-auto object-contain"
               />
-              <h3 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+              <h3 class="font-body font-bold text-2xl sm:text-3xl lg:text-4xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
                 RK Reno Solutions
               </h3>
             </div>
 
-            <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-medium">
+            <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal">
               Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.
             </p>
 
             <!-- Scope Badges -->
-            <div class="flex flex-wrap items-center gap-3 pt-2">
-              <div class="inline-flex items-center gap-2 rounded-xl bg-[#061d33]/10 border border-[#061d33]/20 px-4 py-2.5 text-sm font-bold font-display text-[#061d33]">
+            <div class="flex flex-wrap items-center gap-3 pt-2 font-body">
+              <div class="inline-flex items-center gap-2 rounded-xl bg-[#061d33]/10 border border-[#061d33]/20 px-4 py-2.5 text-sm font-semibold text-[#061d33]">
                 <MapPin class="size-4 text-[#ff762b]" />
                 <span>Kuala Lumpur & Selangor SEO Scope</span>
               </div>
-              <div class="inline-flex items-center gap-2 rounded-xl bg-[#ff514b]/10 border border-[#ff514b]/30 px-4 py-2.5 text-sm font-bold font-display text-[#061d33]">
+              <div class="inline-flex items-center gap-2 rounded-xl bg-[#ff514b]/10 border border-[#ff514b]/30 px-4 py-2.5 text-sm font-semibold text-[#061d33]">
                 <Wrench class="size-4 text-[#ff514b]" />
                 <span>Renovation & HVAC Architecture</span>
               </div>
@@ -234,7 +233,7 @@ import {
             <div class="pt-4">
               <a
                 href={`${site.basePath}/work/rk-reno-solutions/`}
-                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-display text-base font-bold text-white shadow-md hover:bg-[#ff762b] transition-all"
+                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
               >
                 <span>Read Case Study</span>
                 <ArrowRight class="size-4" />
@@ -244,7 +243,7 @@ import {
 
           <!-- Visual Side: Genuine Website Screenshot from rkrenosolution.com -->
           <div class="lg:col-span-6">
-            <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-[#061d33] p-2.5 shadow-2xl">
+            <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-[#061d33] p-2.5 shadow-2xl font-body">
               <img
                 src={`${site.basePath}/brands/rk-reno-solutions/screenshot.png`}
                 alt="Genuine RK Reno Solutions Official Website Screenshot (rkrenosolution.com)"
@@ -257,7 +256,7 @@ import {
                 <Wrench class="size-6 text-[#ddff35] shrink-0" />
                 <div>
                   <div class="text-[11px] font-mono text-slate-300">Renovation & Local Search</div>
-                  <div class="text-xs font-bold font-display text-white">rkrenosolution.com</div>
+                  <div class="text-xs font-semibold text-white">rkrenosolution.com</div>
                 </div>
               </div>
             </div>

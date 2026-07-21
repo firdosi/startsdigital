@@ -9,14 +9,14 @@ const logoSrc = (logo: string) => logo.startsWith('http') ? logo : `${site.baseP
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Section Header -->
-    <div class="max-w-3xl mb-16 text-center mx-auto">
-      <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] mb-3 block">
+    <div class="max-w-3xl mb-16 text-center mx-auto space-y-3">
+      <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
         TECH STACK & ECOSYSTEM
       </span>
-      <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#061d33] uppercase leading-tight">
-        PLATFORMS & TOOLS WE WORK WITH
+      <h2 class="font-body font-bold text-3xl sm:text-4xl lg:text-5xl text-[#061d33] leading-tight">
+        Platforms & tools we work with
       </h2>
-      <p class="mt-4 text-base sm:text-xl text-slate-700 font-body">
+      <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal max-w-2xl mx-auto">
         Engineered integration across advertising networks, analytics engines, CMS platforms, and customer channels.
       </p>
     </div>
@@ -39,7 +39,8 @@ const logoSrc = (logo: string) => logo.startsWith('http') ? logo : `${site.baseP
                 class="max-h-9 max-w-9 object-contain"
               />
             </div>
-            <h3 class="font-display font-bold text-base text-[#061d33] group-hover:text-[#ff762b] transition-colors uppercase">
+            <!-- Title (Manrope 600) -->
+            <h3 class="font-body font-semibold text-base text-[#061d33] group-hover:text-[#ff762b] transition-colors">
               {p.name}
             </h3>
             <span class="mt-1 font-mono text-xs text-slate-500 font-medium">

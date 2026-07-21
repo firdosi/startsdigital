@@ -26,21 +26,23 @@ const stickers = [
         ))}
       </div>
 
-      <div class="relative z-10 max-w-4xl mx-auto space-y-8">
+      <div class="relative z-10 max-w-4xl mx-auto space-y-8 font-body">
         
-        <h2 class="font-display text-4xl sm:text-6xl lg:text-7xl font-black uppercase leading-tight tracking-tight text-white">
-          READY TO BUILD STRONGER DIGITAL GROWTH?
+        <!-- Headline (Manrope 700) -->
+        <h2 class="font-body font-bold text-3xl sm:text-5xl lg:text-6xl text-white leading-tight">
+          Ready to build stronger digital growth?
         </h2>
 
-        <p class="text-base sm:text-xl leading-relaxed text-slate-200 font-body max-w-2xl mx-auto font-medium">
+        <!-- Description (Manrope 400 leading 1.6) -->
+        <p class="text-base sm:text-lg leading-[1.6] text-slate-200 font-body max-w-2xl mx-auto font-normal">
           Speak directly with our team to review your paid campaigns, website conversion architecture and growth opportunities.
         </p>
 
-        <!-- Buttons -->
+        <!-- Buttons (Manrope 600) -->
         <div class="flex flex-wrap items-center justify-center gap-5 pt-4">
           <a
             href={`mailto:${site.contact.email}`}
-            class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-9 py-4 font-display text-lg font-bold text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
+            class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-9 py-4 font-body font-semibold text-base text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
           >
             <span>Discuss Your Project</span>
             <ArrowRight class="size-5 text-[#061d33] group-hover:translate-x-1 transition-transform" />
@@ -50,7 +52,7 @@ const stickers = [
             href={site.contact.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 rounded-full bg-[#39c98a] px-9 py-4 font-display text-lg font-bold text-white shadow-xl hover:bg-[#32b57c] hover:shadow-2xl hover:-translate-y-1 transition-all"
+            class="inline-flex items-center gap-3 rounded-full bg-[#39c98a] px-9 py-4 font-body font-semibold text-base text-white shadow-xl hover:bg-[#32b57c] hover:shadow-2xl hover:-translate-y-1 transition-all"
           >
             <MessageSquare class="size-5 text-white" />
             <span>Chat on WhatsApp</span>

@@ -53,15 +53,15 @@ const metrics = [
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Section Header -->
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <span class="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-[#ddff35] mb-3">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+      <span class="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-[#ddff35]">
         <CheckCircle class="size-4 text-[#ddff35]" />
         <span>VERIFIED PERFORMANCE</span>
       </span>
-      <h2 class="font-display text-4xl sm:text-6xl font-black uppercase tracking-tight text-white leading-none">
-        VERIFIED COMMERCIAL RESULTS
+      <h2 class="font-body font-bold text-3xl sm:text-5xl text-white leading-tight">
+        Verified commercial results
       </h2>
-      <p class="mt-4 text-lg text-slate-300 font-body">
+      <p class="text-base sm:text-lg text-slate-300 font-body leading-[1.6] font-normal max-w-2xl mx-auto">
         Commercial milestones achieved across client accounts with 100% verified first-party metrics.
       </p>
     </div>
@@ -87,9 +87,9 @@ const metrics = [
                 </span>
               </div>
 
-              <!-- Oversized Condensed Counter Typography -->
+              <!-- Metric Value -->
               <div
-                class="font-display text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-none counter-value mb-4"
+                class="font-display text-4xl sm:text-5xl font-black uppercase tracking-tight leading-none counter-value mb-4"
                 data-counter-target={m.target}
                 data-counter-prefix={m.prefix}
                 data-counter-suffix={m.suffix}
@@ -98,11 +98,13 @@ const metrics = [
                 {m.exact}
               </div>
 
-              <h3 class="font-display text-xl sm:text-2xl font-black uppercase leading-tight mb-2">
+              <!-- Label (Manrope 600) -->
+              <h3 class="font-body font-semibold text-lg sm:text-xl leading-snug mb-2">
                 {m.label}
               </h3>
               
-              <p class="text-sm leading-relaxed font-body font-medium opacity-90">
+              <!-- Description (Manrope 400 leading 1.6) -->
+              <p class="text-sm leading-[1.6] font-body font-normal opacity-90">
                 {m.description}
               </p>
             </div>

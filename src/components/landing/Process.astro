@@ -105,14 +105,14 @@ const stages = [
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Section Header -->
-    <div class="max-w-3xl mb-16 text-center mx-auto">
-      <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] mb-3 block">
+    <div class="max-w-3xl mb-16 text-center mx-auto space-y-3">
+      <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
         EXECUTION FRAMEWORK
       </span>
-      <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#061d33] uppercase leading-tight">
-        OUR WORKING METHOD
+      <h2 class="font-body font-bold text-3xl sm:text-4xl lg:text-5xl text-[#061d33] leading-tight">
+        Our working method
       </h2>
-      <p class="mt-4 text-base sm:text-xl text-slate-700 font-body">
+      <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal max-w-2xl mx-auto">
         A structured, four-stage collaborative process designed to eliminate guesswork and turn strategy into measurable business outcomes.
       </p>
     </div>
@@ -142,11 +142,11 @@ const stages = [
                   {stage.id}
                 </span>
                 <div>
-                  <h3 class="font-display text-2xl sm:text-3xl font-black uppercase leading-snug">
+                  <h3 class="font-body font-semibold text-xl sm:text-2xl leading-snug">
                     {stage.title}
                   </h3>
                   <p class:list={[
-                    'text-sm sm:text-base font-body font-medium mt-1',
+                    'text-sm sm:text-base font-body font-normal mt-1 leading-[1.6]',
                     stage.isDefaultOpen ? 'text-white/90' : 'text-slate-600'
                   ]}>
                     {stage.subtitle}
@@ -175,10 +175,10 @@ const stages = [
                     <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#ff762b] bg-[#ff762b]/10 px-2.5 py-0.5 rounded block w-fit mb-3">
                       {sub.tag}
                     </span>
-                    <h4 class="font-display text-lg font-black uppercase mb-2 text-[#061d33]">
+                    <h4 class="font-body font-semibold text-base mb-2 text-[#061d33]">
                       {sub.title}
                     </h4>
-                    <p class="text-sm font-body leading-relaxed text-slate-700 font-medium">
+                    <p class="text-sm font-body leading-[1.6] text-slate-700 font-normal">
                       {sub.desc}
                     </p>
                   </div>
@@ -186,7 +186,7 @@ const stages = [
               </div>
 
               <!-- Colourful Topic Chips -->
-              <div class="mt-8 pt-6 border-t border-current/20 flex flex-wrap items-center gap-2.5">
+              <div class="mt-8 pt-6 border-t border-current/20 flex flex-wrap items-center gap-2.5 font-body">
                 <span class="text-xs font-mono font-bold uppercase mr-2 opacity-80">FOCUS AREAS:</span>
                 {stage.chips.map((chip) => (
                   <span class:list={[

@@ -6,8 +6,7 @@ import {
   Award, 
   HeartHandshake, 
   ArrowRight,
-  Sparkles,
-  Star
+  Sparkles
 } from '@lucide/astro';
 ---
 
@@ -24,34 +23,34 @@ import {
       
       <!-- Decorative Sticker / Eyebrow Pill -->
       <div class="reveal-on-scroll inline-flex items-center justify-center">
-        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-bold uppercase tracking-widest text-[#ddff35] backdrop-blur-md shadow-sm">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-bold uppercase tracking-widest text-[#ddff35] backdrop-blur-md shadow-sm">
           <Sparkles class="size-4 text-[#ddff35]" />
           <span>PERFORMANCE MARKETING & DIGITAL SYSTEMS</span>
         </span>
       </div>
 
-      <!-- Main Condensed Headline -->
+      <!-- Main Short Headline (Anton / Bebas Neue - 7 words) -->
       <h1 class="reveal-on-scroll font-display text-4xl sm:text-6xl lg:text-[76px] font-black uppercase leading-[0.98] tracking-normal text-white" data-reveal-delay="100">
         DIGITAL MARKETING BUILT TO SCALE <span class="text-[#ff762b] underline decoration-[#ddff35] decoration-4 underline-offset-8">REAL BUSINESSES</span>.
       </h1>
 
-      <!-- Supporting Copy -->
-      <p class="reveal-on-scroll text-lg sm:text-2xl leading-relaxed text-slate-200 font-body max-w-3xl mx-auto font-medium" data-reveal-delay="200">
+      <!-- Supporting Copy (Manrope 400 leading 1.6) -->
+      <p class="reveal-on-scroll text-lg sm:text-2xl leading-[1.6] text-slate-200 font-body max-w-3xl mx-auto font-normal" data-reveal-delay="200">
         Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
       </p>
 
-      <!-- Action Buttons -->
-      <div class="reveal-on-scroll flex flex-wrap items-center justify-center gap-5 pt-4" data-reveal-delay="300">
+      <!-- Action Buttons (Manrope 600) -->
+      <div class="reveal-on-scroll flex flex-wrap items-center justify-center gap-5 pt-4 font-body" data-reveal-delay="300">
         <a
           href={`${site.basePath}/#contact`}
-          class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-8 py-4 font-display text-lg font-bold text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
+          class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-8 py-4 font-body font-semibold text-lg text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
         >
           <span>Discuss Your Project</span>
           <ArrowRight class="size-5 text-[#061d33] group-hover:translate-x-1 transition-transform" />
         </a>
         <a
           href={`${site.basePath}/#work`}
-          class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-4 font-display text-lg font-bold text-white hover:bg-white/20 hover:border-white/50 transition-all backdrop-blur-sm"
+          class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-4 font-body font-semibold text-lg text-white hover:bg-white/20 hover:border-white/50 transition-all backdrop-blur-sm"
         >
           View Our Work
         </a>
@@ -64,7 +63,7 @@ import {
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
         <!-- Metric Card 1: Orange Accent -->
-        <div class="rounded-2xl border-2 border-[#ff762b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff762b] transition-all">
+        <div class="rounded-2xl border-2 border-[#ff762b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff762b] transition-all font-body">
           <div class="flex items-center justify-between mb-3">
             <div class="size-10 rounded-xl bg-[#ff762b] text-white flex items-center justify-center font-bold">
               <TrendingUp class="size-5" />
@@ -74,13 +73,13 @@ import {
           <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             PKR 30M+
           </div>
-          <p class="text-sm text-slate-300 font-body font-medium mt-1">
+          <p class="text-sm text-slate-300 font-body font-normal mt-1">
             Revenue Supported
           </p>
         </div>
 
         <!-- Metric Card 2: Purple Accent -->
-        <div class="rounded-2xl border-2 border-[#9a83f5]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#9a83f5] transition-all">
+        <div class="rounded-2xl border-2 border-[#9a83f5]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#9a83f5] transition-all font-body">
           <div class="flex items-center justify-between mb-3">
             <div class="size-10 rounded-xl bg-[#9a83f5] text-white flex items-center justify-center font-bold">
               <ShoppingBag class="size-5" />
@@ -90,13 +89,13 @@ import {
           <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             29,000+
           </div>
-          <p class="text-sm text-slate-300 font-body font-medium mt-1">
+          <p class="text-sm text-slate-300 font-body font-normal mt-1">
             Product Sales
           </p>
         </div>
 
         <!-- Metric Card 3: Lime Accent -->
-        <div class="rounded-2xl border-2 border-[#ddff35]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ddff35] transition-all">
+        <div class="rounded-2xl border-2 border-[#ddff35]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ddff35] transition-all font-body">
           <div class="flex items-center justify-between mb-3">
             <div class="size-10 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center font-bold">
               <Award class="size-5" />
@@ -106,13 +105,13 @@ import {
           <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             PKR 4.2M+
           </div>
-          <p class="text-sm text-slate-300 font-body font-medium mt-1">
+          <p class="text-sm text-slate-300 font-body font-normal mt-1">
             Sales Supported
           </p>
         </div>
 
         <!-- Metric Card 4: Coral Accent -->
-        <div class="rounded-2xl border-2 border-[#ff514b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff514b] transition-all">
+        <div class="rounded-2xl border-2 border-[#ff514b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff514b] transition-all font-body">
           <div class="flex items-center justify-between mb-3">
             <div class="size-10 rounded-xl bg-[#ff514b] text-white flex items-center justify-center font-bold">
               <HeartHandshake class="size-5" />
@@ -122,7 +121,7 @@ import {
           <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             More Than 150
           </div>
-          <p class="text-sm text-slate-300 font-body font-medium mt-1">
+          <p class="text-sm text-slate-300 font-body font-normal mt-1">
             Animals Sold
           </p>
         </div>
