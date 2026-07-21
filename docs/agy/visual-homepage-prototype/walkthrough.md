@@ -12,7 +12,7 @@ The homepage has been transformed from a clean grid-based business template into
 - **Platform Readability**: Enhanced platform tool names to 14-16px on desktop with clear category group headings.
 - **Image Loading & Asset Cleanup**: Eager loading (`loading="eager"`) configured strictly for Hero images; below-the-fold images use `loading="lazy" decoding="async"`. Deleted 16 unused prototype WebP files, retaining only 5 referenced assets.
 - **Mobile Content Reduction**: Streamlined mobile length with concise deliverables, compact platform groups, and shortened process descriptions while maintaining a minimum 16px body copy size.
-- **Strict Screenshot Versioning**: Archived all screenshot revisions in version-controlled folders per [PROJECT_RULES.md](../../../PROJECT_RULES.md).
+- **Strict Screenshot Versioning & Reliable Capture**: Rewrote capture script to use Playwright JS API directly with scroll-into-view element screenshotting and image decoding validation (`complete === true` & `naturalWidth > 0`).
 
 ---
 
@@ -69,19 +69,20 @@ Replaced 6 uniform cards with 3 visually distinct large panels:
 
 ---
 
-## 4. Latest Revision Screenshots (v5 Targeted Polish)
+## 4. Validated v6 Revision Screenshots
 
-All screenshots for the v5 targeted polish revision are archived under [`screenshots/v5-targeted-polish-6b06122/`](./screenshots/v5-targeted-polish-6b06122/):
+All screenshots for the validated v6 revision are archived under [`screenshots/v6-valid-capture-0b70d69/`](./screenshots/v6-valid-capture-0b70d69/):
 
 ### Full-Page Captures
-- [v5 Desktop 1440px Full-Page Screenshot](./screenshots/v5-targeted-polish-6b06122/desktop-1440-full.png)
-- [v5 Tablet 768px Full-Page Screenshot](./screenshots/v5-targeted-polish-6b06122/tablet-768-full.png)
-- [v5 Mobile 375px Full-Page Screenshot](./screenshots/v5-targeted-polish-6b06122/mobile-375-full.png)
+- [v6 Desktop 1440px Full-Page Screenshot](./screenshots/v6-valid-capture-0b70d69/desktop-1440-full.png)
+- [v6 Tablet 768px Full-Page Screenshot](./screenshots/v6-valid-capture-0b70d69/tablet-768-full.png)
+- [v6 Mobile 375px Full-Page Screenshot](./screenshots/v6-valid-capture-0b70d69/mobile-375-full.png)
 
 ### Focused Review Captures
-- [v5 Desktop Hero & Services Review Screenshot](./screenshots/v5-targeted-polish-6b06122/desktop-hero-services.png)
-- [v5 Desktop Featured Work Review Screenshot](./screenshots/v5-targeted-polish-6b06122/desktop-featured-work.png)
-- [v5 Mobile Hero & Work Review Screenshot](./screenshots/v5-targeted-polish-6b06122/mobile-hero-work.png)
+- [v6 Desktop Hero & Services Review Screenshot](./screenshots/v6-valid-capture-0b70d69/desktop-hero-services.png)
+- [v6 Desktop Featured Work Review Screenshot](./screenshots/v6-valid-capture-0b70d69/desktop-featured-work.png)
+- [v6 Mobile Hero Review Screenshot](./screenshots/v6-valid-capture-0b70d69/mobile-hero.png)
+- [v6 Mobile Featured Work Review Screenshot](./screenshots/v6-valid-capture-0b70d69/mobile-featured-work.png)
 
 ---
 
@@ -94,3 +95,4 @@ Per our mandatory versioning rules, every design revision is preserved in its ow
 - **v3 Presentation Polish** ([`v3-presentation-polish-cc24ed8`](./screenshots/v3-presentation-polish-cc24ed8/)): Internal notice removal & SVG category icons (`cc24ed8`).
 - **v4 Image-Led Redesign** ([`v4-image-led-redesign-a712770`](./screenshots/v4-image-led-redesign-a712770/)): Complete image-led portfolio redesign (`a712770`).
 - **v5 Targeted Polish** ([`v5-targeted-polish-6b06122`](./screenshots/v5-targeted-polish-6b06122/)): Spacing polish, platform readability, loading optimization & asset cleanup (`6b06122`).
+- **v6 Validated Capture** ([`v6-valid-capture-0b70d69`](./screenshots/v6-valid-capture-0b70d69/)): Reliable Playwright JS capture API, element scrolling, image decoding validation & separate mobile reviews (`0b70d69`).

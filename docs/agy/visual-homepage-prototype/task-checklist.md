@@ -45,8 +45,9 @@ This document tracks the tasks completed for the visual homepage prototype on br
 ## 6. Verification & Screenshot Archive Management
 
 - [x] Enforce strict mandatory Screenshot Versioning policy in [PROJECT_RULES.md](../../../PROJECT_RULES.md)
-- [x] Create versioned folder `screenshots/v5-targeted-polish-6b06122/` containing revision screenshots and `README.md`
-- [x] Archive historical screenshot revisions in dedicated folders (`v1-initial-prototype-b944ab0`, `v2-integrity-cleanup-12097b1`, `v3-presentation-polish-cc24ed8`, `v4-image-led-redesign-a712770`)
-- [x] Reusable automated capture script [capture-homepage-screenshots.js](../../../scripts/capture-homepage-screenshots.js) with version directory protection and element scrolling
+- [x] Rewrite capture script [capture-homepage-screenshots.js](../../../scripts/capture-homepage-screenshots.js) using Playwright JS API directly with scroll-into-view element capture and image decoding validation
+- [x] Create versioned folder `screenshots/v6-valid-capture-0b70d69/` containing validated screenshots and `README.md`
+- [x] Preserve all historical screenshot archives (`v1-initial-prototype-b944ab0`, `v2-integrity-cleanup-12097b1`, `v3-presentation-polish-cc24ed8`, `v4-image-led-redesign-a712770`, `v5-targeted-polish-6b06122`)
 - [x] Run `npm run check` (`astro check`) and resolve all TypeScript/Astro errors (0 errors)
 - [x] Run `npm run build` to verify static production build (0 errors)
+- [x] Confirm 0 website source components (`src/`) changed in capture fix task
