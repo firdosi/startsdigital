@@ -1,0 +1,116 @@
+---
+import Container from '../ui/Container.astro';
+
+const faqs = [
+  {
+    question: 'Can Starts Digital manage strategy, creatives and advertising together?',
+    answer: 'Yes. We provide end-to-end execution. We audit your brand, write ad copy, produce short-form video creatives, build conversion landing pages, launch paid ad campaigns on Meta and Google, and manage weekly performance optimization.',
+  },
+  {
+    question: 'Do you work with businesses outside Pakistan?',
+    answer: 'Yes. We work with clients across international markets, including Saudi Arabia, the Middle East, and global e-commerce brands, coordinating strategy and communications remotely via WhatsApp, email, and scheduled video calls.',
+  },
+  {
+    question: 'Can you build websites and landing pages?',
+    answer: 'Yes. We build custom websites and conversion landing pages using high-speed modern technology (Astro, Tailwind CSS, TypeScript) as well as WordPress and Shopify. All sites are optimized for fast mobile load times and lead capture.',
+  },
+  {
+    question: 'Do you provide SEO with website development?',
+    answer: 'Yes. Every website we build includes foundational technical SEO, proper semantic HTML structure, schema markup, mobile speed optimization, and meta tag setup. We also offer dedicated ongoing technical and content SEO packages.',
+  },
+  {
+    question: 'Can you work with an existing marketing team?',
+    answer: 'Yes. We can operate as a specialized growth partner alongside your internal team — handling specific channels such as paid ad creative production, complex website builds, or high-intent lead generation campaigns.',
+  },
+  {
+    question: 'How do we start a project?',
+    answer: 'We begin with an initial strategy discussion to review your goals, current ad performance, and technical requirements. From there, we prepare a clear audit and proposal outlining deliverables, timelines, and execution steps.',
+  },
+];
+---
+
+<section id="faq" class="py-20 md:py-28 bg-brand-white border-b border-brand-light-border">
+  <Container class="space-y-14">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto space-y-3">
+      <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
+        FREQUENTLY ASKED QUESTIONS
+      </span>
+      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-black">
+        Everything You Need to Know Before Starting
+      </h2>
+      <p class="font-body text-base text-brand-text">
+        Clear answers regarding our services, technical execution, campaign workflows and onboarding process.
+      </p>
+    </div>
+
+    <!-- Accordion List -->
+    <div class="max-w-3xl mx-auto space-y-4">
+      {faqs.map((faq, index) => (
+        <div class="bg-white border border-brand-light-border rounded-xl overflow-hidden transition-colors">
+          <button
+            class="faq-trigger w-full flex items-center justify-between p-6 text-left font-heading text-lg font-bold text-brand-black hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+            aria-expanded="false"
+            aria-controls={`faq-answer-${index}`}
+            id={`faq-button-${index}`}
+          >
+            <span class="pr-4">{faq.question}</span>
+            <span class="faq-icon text-2xl font-normal text-brand-blue shrink-0 transition-transform duration-200">+</span>
+          </button>
+          <div
+            id={`faq-answer-${index}`}
+            class="faq-content hidden px-6 pb-6 pt-0 font-body text-base text-brand-text leading-relaxed border-t border-brand-light-border/40 mt-2"
+            aria-labelledby={`faq-button-${index}`}
+          >
+            <p class="pt-4">{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<script>
+  const faqButtons = document.querySelectorAll('.faq-trigger');
+
+  faqButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      const contentId = button.getAttribute('aria-controls');
+      const content = contentId ? document.getElementById(contentId) : null;
+      const icon = button.querySelector('.faq-icon');
+
+      // Close all other accordions
+      faqButtons.forEach((otherBtn) => {
+        if (otherBtn !== button) {
+          otherBtn.setAttribute('aria-expanded', 'false');
+          const otherId = otherBtn.getAttribute('aria-controls');
+          const otherContent = otherId ? document.getElementById(otherId) : null;
+          const otherIcon = otherBtn.querySelector('.faq-icon');
+          if (otherContent) otherContent.classList.add('hidden');
+          if (otherIcon) {
+            otherIcon.textContent = '+';
+            (otherIcon as HTMLElement).style.transform = 'none';
+          }
+        }
+      });
+
+      // Toggle current accordion
+      if (isExpanded) {
+        button.setAttribute('aria-expanded', 'false');
+        if (content) content.classList.add('hidden');
+        if (icon) {
+          icon.textContent = '+';
+          (icon as HTMLElement).style.transform = 'none';
+        }
+      } else {
+        button.setAttribute('aria-expanded', 'true');
+        if (content) content.classList.remove('hidden');
+        if (icon) {
+          icon.textContent = '−';
+          (icon as HTMLElement).style.transform = 'rotate(180deg)';
+        }
+      }
+    });
+  });
+</script>

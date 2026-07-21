@@ -4,7 +4,9 @@
   --color-brand-navy: #07111F;
   --color-brand-black: #0B0D10;
   --color-brand-white: #F7F7F3;
+  --color-brand-pure-white: #FFFFFF;
   --color-brand-grey: #E8EBEF;
+  --color-brand-light-border: #E4E7EC;
   --color-brand-blue: #246BFD;
   --color-brand-teal: #10A8A0;
   --color-brand-text: #667085;
@@ -18,14 +20,16 @@
   html {
     scroll-behavior: smooth;
     font-family: var(--font-body);
-    background-color: var(--color-brand-black);
-    color: var(--color-brand-white);
+    background-color: var(--color-brand-white);
+    color: var(--color-brand-black);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     margin: 0;
+    background-color: var(--color-brand-white);
+    color: var(--color-brand-black);
   }
 
   /* Support prefers-reduced-motion */

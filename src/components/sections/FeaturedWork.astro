@@ -1,0 +1,132 @@
+---
+import Container from '../ui/Container.astro';
+import Button from '../ui/Button.astro';
+import { getAssetPath } from '../../data/site';
+
+const featuredProjects = [
+  {
+    id: 'black-gold-fertilizer',
+    title: 'Black Gold Fertilizer',
+    category: 'E-COMMERCE & CONSUMER',
+    summary: 'Comprehensive digital campaign management, online store user experience, and meta performance advertising for an agricultural consumer brand.',
+    services: ['Performance Marketing', 'E-Commerce Growth', 'Ad Creatives'],
+    verifiedOutcome: 'Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.',
+    caseStudyUrl: getAssetPath('/work/black-gold-fertilizer/'),
+    image: getAssetPath('/prototype/hero-dashboard.webp'),
+    altText: 'Black Gold Fertilizer e-commerce growth campaign layout',
+    reverseLayout: false,
+  },
+  {
+    id: 'wajib-livestock',
+    title: 'Wajib Livestock Qurbani Campaign',
+    category: 'SEASONAL CAMPAIGN & E-COMMERCE',
+    summary: 'Targeted Eid Qurbani performance marketing, video ad content, and direct WhatsApp lead conversion funnel.',
+    services: ['Meta & Paid Ads', 'Campaign Video Content', 'WhatsApp Lead Routing'],
+    verifiedOutcome: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.',
+    caseStudyUrl: getAssetPath('/work/qurbani-campaign/'),
+    image: getAssetPath('/prototype/campaign-lab.webp'),
+    altText: 'Wajib Livestock Qurbani campaign performance visual',
+    reverseLayout: true,
+  },
+  {
+    id: 'rk-reno-solutions',
+    title: 'RK Reno Solutions',
+    category: 'CONSTRUCTION & LOCAL SERVICES',
+    summary: 'High-conversion home renovation service website development, local SEO optimization, and direct inquiry acquisition system.',
+    services: ['Website Development', 'Local SEO', 'Lead Generation Architecture'],
+    verifiedOutcome: 'Verified website deployment and local lead acquisition pipeline for home renovation services.',
+    caseStudyUrl: getAssetPath('/work/rk-reno-solutions/'),
+    image: getAssetPath('/prototype/project-seo.webp'),
+    altText: 'RK Reno Solutions website layout view',
+    reverseLayout: false,
+  },
+];
+---
+
+<section id="work" class="py-20 md:py-28 bg-brand-white border-b border-brand-light-border">
+  <Container class="space-y-16">
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-brand-light-border">
+      <div class="space-y-3 max-w-2xl">
+        <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
+          SELECTED CASE STUDIES
+        </span>
+        <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-black">
+          Featured Client Work & Verified Outcomes
+        </h2>
+      </div>
+      <Button 
+        href={getAssetPath('/work/')} 
+        variant="secondary"
+        class="!px-6 !py-3 font-semibold !bg-white !text-brand-black !border-brand-light-border hover:!bg-brand-grey/30 self-start md:self-auto"
+      >
+        View All Case Studies &rarr;
+      </Button>
+    </div>
+
+    <!-- Project Showcase List (Alternating Rows) -->
+    <div class="space-y-16">
+      {featuredProjects.map((project) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${project.reverseLayout ? 'lg:flex-row-reverse' : ''}`}>
+          <!-- Project Visual Side -->
+          <div class={`lg:col-span-7 ${project.reverseLayout ? 'lg:order-2' : 'lg:order-1'}`}>
+            <div class="rounded-2xl border border-brand-light-border bg-white p-3 shadow-md hover:shadow-xl transition-shadow">
+              <div class="relative overflow-hidden rounded-xl bg-brand-navy/5">
+                <img 
+                  src={project.image} 
+                  alt={project.altText}
+                  width="800"
+                  height="450"
+                  loading="lazy"
+                  class="w-full h-auto object-cover rounded-lg border border-brand-light-border/40"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Information Side -->
+          <div class={`lg:col-span-5 space-y-6 ${project.reverseLayout ? 'lg:order-1' : 'lg:order-2'}`}>
+            <div class="space-y-3">
+              <span class="text-xs font-extrabold tracking-widest text-brand-teal uppercase font-heading bg-brand-teal/10 px-3 py-1 rounded-md">
+                {project.category}
+              </span>
+              <h3 class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-black">
+                {project.title}
+              </h3>
+              <p class="font-body text-base text-brand-text leading-relaxed">
+                {project.summary}
+              </p>
+            </div>
+
+            <!-- Services Tags -->
+            <div class="flex flex-wrap gap-2">
+              {project.services.map(s => (
+                <span class="text-xs font-semibold text-brand-black bg-brand-grey/30 border border-brand-light-border px-3 py-1 rounded-md">
+                  {s}
+                </span>
+              ))}
+            </div>
+
+            <!-- Verified Outcome Box -->
+            <div class="p-4 bg-brand-navy/5 border-l-4 border-l-brand-blue border-y border-r border-brand-light-border rounded-r-lg space-y-1">
+              <span class="text-xs font-extrabold tracking-wider text-brand-blue uppercase font-heading block">Verified Result</span>
+              <p class="font-body text-sm font-semibold text-brand-black">
+                {project.verifiedOutcome}
+              </p>
+            </div>
+
+            <!-- Action Link -->
+            <div>
+              <a 
+                href={project.caseStudyUrl}
+                class="inline-flex items-center gap-2 font-heading text-sm font-extrabold text-brand-blue hover:text-brand-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded px-1"
+              >
+                Read Full Case Study &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

@@ -1,36 +1,76 @@
 ---
 import Container from '../ui/Container.astro';
-import SectionHeading from '../ui/SectionHeading.astro';
-import { processData } from '../../data/process';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Understand',
+    summary: 'Discovery & Audit',
+    description: 'We audit your current ad accounts, website funnel, content assets, competitor positioning, and target audience data to identify immediate growth bottlenecks.',
+  },
+  {
+    number: '02',
+    title: 'Plan',
+    summary: 'Growth & Creative Strategy',
+    description: 'We map out a structured growth blueprint: campaign angles, offer positioning, ad creative hooks, website technical architecture, and budget allocation.',
+  },
+  {
+    number: '03',
+    title: 'Build',
+    summary: 'Production & Engineering',
+    description: 'We build high-speed landing pages, produce short-form ad creatives, set up conversion tracking pixels, write ad copy, and configure WhatsApp/lead routing.',
+  },
+  {
+    number: '04',
+    title: 'Grow',
+    summary: 'Launch, Test & Scale',
+    description: 'Campaigns go live. We systematically test creative angles, audience segments, and landing page elements, scaling winning assets to maximize return on ad spend.',
+  },
+];
 ---
 
-<section id="process" class="bg-brand-black text-brand-white py-20 md:py-28 scroll-mt-20">
-  <Container class="space-y-12 md:space-y-16">
-    <SectionHeading
-      eyebrow="HOW WE WORK"
-      title="A clear process from business problem to measurable execution."
-      theme="dark"
-    />
+<section id="process" class="py-20 md:py-28 bg-brand-white border-b border-brand-light-border">
+  <Container class="space-y-16">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-brand-light-border">
+      <div class="space-y-3 max-w-2xl">
+        <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
+          METHODOLOGY
+        </span>
+        <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-black">
+          Four Stages From Audit to Scale
+        </h2>
+      </div>
+      <p class="font-body text-base text-brand-text max-w-md">
+        A structured, repeatable execution framework designed for clarity and continuous performance testing.
+      </p>
+    </div>
 
-    <!-- Numbered Sequence Layout: Stacked timeline on mobile/tablet, 3-column grid on desktop -->
-    <div class="flex flex-col lg:grid lg:grid-cols-3 gap-x-10 gap-y-12 pt-4">
-      {
-        processData.map((item) => (
-          <div class="flex gap-6 items-start border-t border-brand-grey/10 pt-8">
-            <span class="font-heading text-3xl sm:text-4xl font-bold text-brand-blue select-none shrink-0 leading-none">
-              {item.step}
-            </span>
-            <div class="space-y-3">
-              <h3 class="font-heading text-xl sm:text-2xl font-bold text-brand-white tracking-tight">
-                {item.title}
-              </h3>
-              <p class="font-body text-base font-normal text-brand-muted-dark leading-relaxed">
-                {item.description}
-              </p>
+    <!-- Timeline Horizontal Sequence Layout (Clean thin dividers, open layout) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {steps.map((step, idx) => (
+        <div class="relative flex flex-col justify-between p-6 bg-white border border-brand-light-border rounded-xl space-y-6 shadow-xs hover:border-brand-blue/40 transition-colors">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between border-b border-brand-light-border pb-4">
+              <span class="font-heading text-3xl font-extrabold text-brand-blue">
+                {step.number}
+              </span>
+              <span class="text-xs font-extrabold tracking-widest text-brand-teal uppercase font-heading bg-brand-teal/10 px-2.5 py-1 rounded">
+                Stage 0{idx + 1}
+              </span>
             </div>
+            <h3 class="font-heading text-2xl font-extrabold text-brand-black">
+              {step.title}
+            </h3>
+            <span class="block text-xs font-bold uppercase tracking-wider text-brand-text/80 font-heading">
+              {step.summary}
+            </span>
+            <p class="font-body text-sm text-brand-text leading-relaxed">
+              {step.description}
+            </p>
           </div>
-        ))
-      }
+        </div>
+      ))}
     </div>
   </Container>
 </section>

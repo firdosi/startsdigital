@@ -8,13 +8,13 @@ import { siteConfig } from '../../data/site';
 
 <header
   id="main-header"
-  class="fixed top-0 left-0 right-0 z-50 w-full border-b border-transparent bg-transparent transition-all duration-300"
+  class="fixed top-0 left-0 right-0 z-50 w-full border-b border-brand-light-border bg-white/90 backdrop-blur-md transition-all duration-300 shadow-xs"
 >
   <Container class="flex h-20 items-center justify-between">
     <!-- Brand Logo -->
     <a
       href={`${siteConfig.basePath}/`}
-      class="font-heading text-xl md:text-2xl font-bold tracking-tight text-brand-white hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+      class="font-heading text-2xl font-extrabold tracking-tight text-brand-black hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-md px-1 py-0.5"
       aria-label="Starts Digital Home"
     >
       Starts<span class="text-brand-blue">Digital</span>
@@ -26,7 +26,7 @@ import { siteConfig } from '../../data/site';
         headerNavLinks.map((link) => (
           <a
             href={link.href}
-            class="font-heading text-sm font-medium text-brand-text hover:text-brand-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue px-1 py-1 rounded"
+            class="font-heading text-sm font-semibold text-brand-text hover:text-brand-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue px-2 py-1 rounded-md"
           >
             {link.label}
           </a>
@@ -39,16 +39,16 @@ import { siteConfig } from '../../data/site';
       <Button 
         href={siteConfig.links.contact} 
         variant="primary" 
-        class="!px-5 !py-2"
+        class="!px-5 !py-2.5 font-semibold text-sm"
       >
-        Start a Project
+        Discuss Your Project
       </Button>
     </div>
 
     <!-- Mobile Menu Toggle Button (44px min touch target) -->
     <button
       id="mobile-menu-toggle"
-      class="relative z-50 w-11 h-11 flex items-center justify-center text-brand-white hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded md:hidden"
+      class="relative z-50 w-11 h-11 flex items-center justify-center text-brand-black hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-md md:hidden"
       aria-controls="mobile-menu"
       aria-expanded="false"
       aria-label="Toggle Navigation Menu"
@@ -70,13 +70,11 @@ import { siteConfig } from '../../data/site';
 <!-- Overlay Backdrop for Mobile Menu -->
 <div
   id="mobile-menu-overlay"
-  class="fixed inset-0 z-30 hidden bg-brand-black/60 backdrop-blur-sm transition-opacity duration-300"
+  class="fixed inset-0 z-30 hidden bg-brand-black/40 backdrop-blur-xs transition-opacity duration-300"
   aria-hidden="true"
 ></div>
 
 <script>
-  // Access and toggle DOM elements for mobile navigation
-  const header = document.getElementById('main-header');
   const toggleBtn = document.getElementById('mobile-menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
   const overlay = document.getElementById('mobile-menu-overlay');
@@ -97,14 +95,12 @@ import { siteConfig } from '../../data/site';
       overlay.classList.remove('hidden');
       body.classList.add('overflow-hidden');
       
-      // Animate Hamburger to Close X
       if (lines[0] && lines[1] && lines[2]) {
         (lines[0] as HTMLElement).style.transform = 'rotate(45deg) translate(4px, 1.5px)';
         (lines[1] as HTMLElement).style.opacity = '0';
         (lines[2] as HTMLElement).style.transform = 'rotate(-45deg) translate(4px, -1.5px)';
       }
       
-      // Focus-trap: focus on the first link inside the menu
       setTimeout(() => {
         const firstLink = mobileMenu.querySelector('a');
         if (firstLink) firstLink.focus();
@@ -114,7 +110,6 @@ import { siteConfig } from '../../data/site';
       overlay.classList.add('hidden');
       body.classList.remove('overflow-hidden');
       
-      // Animate Close X back to Hamburger
       if (lines[0] && lines[1] && lines[2]) {
         (lines[0] as HTMLElement).style.transform = 'none';
         (lines[1] as HTMLElement).style.opacity = '1';
@@ -125,7 +120,6 @@ import { siteConfig } from '../../data/site';
     }
   }
 
-  // Click Event Listeners
   toggleBtn?.addEventListener('click', () => {
     toggleMobileMenu(!isOpen);
   });
@@ -140,49 +134,9 @@ import { siteConfig } from '../../data/site';
     });
   });
 
-  // Close menu on Escape key press
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && isOpen) {
       toggleMobileMenu(false);
     }
   });
-
-  // Focus trap inside the mobile navigation drawer
-  mobileMenu?.addEventListener('keydown', (e) => {
-    if (e.key !== 'Tab') return;
-    
-    const focusableElements = mobileMenu.querySelectorAll('a, button');
-    if (!focusableElements.length) return;
-    
-    const firstElement = focusableElements[0] as HTMLElement;
-    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
-
-    if (e.shiftKey) { // Shift + Tab
-      if (document.activeElement === firstElement) {
-        lastElement.focus();
-        e.preventDefault();
-      }
-    } else { // Tab
-      if (document.activeElement === lastElement) {
-        firstElement.focus();
-        e.preventDefault();
-      }
-    }
-  });
-
-  // Scroll styling check
-  function checkScroll() {
-    if (!header) return;
-    if (window.scrollY > 20) {
-      header.classList.add('bg-brand-black/95', 'backdrop-blur-md', 'border-brand-grey/10');
-      header.classList.remove('bg-transparent', 'border-transparent');
-    } else {
-      header.classList.add('bg-transparent', 'border-transparent');
-      header.classList.remove('bg-brand-black/95', 'backdrop-blur-md', 'border-brand-grey/10');
-    }
-  }
-
-  window.addEventListener('scroll', checkScroll);
-  // Initial check
-  checkScroll();
 </script>

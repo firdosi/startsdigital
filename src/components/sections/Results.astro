@@ -1,32 +1,71 @@
 ---
 import Container from '../ui/Container.astro';
-import SectionHeading from '../ui/SectionHeading.astro';
-import { resultsData } from '../../data/results';
+
+const verifiedResults = [
+  {
+    metric: 'PKR 30M+',
+    label: 'Revenue Supported',
+    detail: 'E-commerce and consumer product sales supported through managed digital campaigns.',
+    icon: 'chart',
+  },
+  {
+    metric: '29,000+',
+    label: 'Product Sales Supported',
+    detail: 'Individual product units delivered across multiple client categories and markets.',
+    icon: 'box',
+  },
+  {
+    metric: 'PKR 4.2M+',
+    label: 'Qurbani Sales Supported',
+    detail: 'Seasonal campaign sales generated during the Eid Qurbani livestock campaign.',
+    icon: 'trend',
+  },
+  {
+    metric: '150+',
+    label: 'Animals Sold',
+    detail: 'Direct livestock sales closed via video marketing and targeted campaign funnels.',
+    icon: 'check',
+  },
+];
 ---
 
-<section id="results" class="bg-brand-white text-brand-black py-20 md:py-28 scroll-mt-20">
-  <Container class="space-y-12 md:space-y-16">
-    <SectionHeading
-      eyebrow="REAL WORK. MEASURABLE OUTCOMES."
-      title="Marketing decisions backed by practical execution."
-      description="Our experience covers digital campaigns, e-commerce, lead generation, websites, SEO and AI-powered content across multiple industries."
-      theme="light"
-    />
+<section class="py-20 md:py-28 bg-brand-navy text-brand-white relative overflow-hidden border-y border-brand-light-border/10">
+  <Container class="space-y-16 relative z-10">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <span class="text-xs font-extrabold tracking-[0.2em] text-brand-teal uppercase font-heading bg-brand-teal/10 px-3 py-1.5 rounded-md">
+        VERIFIED CAMPAIGN IMPACT
+      </span>
+      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-white">
+        Measurable Growth Across Campaigns & Projects
+      </h2>
+      <p class="font-body text-base text-brand-muted-dark leading-relaxed">
+        We track our performance strictly against real commercial results — revenue generated, units sold, and qualified customer inquiries delivered.
+      </p>
+    </div>
 
-    <!-- Metrics Strip Grid: 2-column mobile layout, 4-column desktop layout -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 sm:gap-8 pt-10 border-t border-brand-grey/25">
-      {
-        resultsData.map((item) => (
-          <div class="flex flex-col space-y-2">
-            <span class="font-heading text-5xl sm:text-6xl font-bold tracking-tight text-brand-blue leading-none">
-              {item.value}
-            </span>
-            <p class="font-body text-base font-normal text-brand-text leading-snug">
-              {item.wording}
-            </p>
-          </div>
-        ))
-      }
+    <!-- Metric Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {verifiedResults.map((item) => (
+        <div class="p-8 bg-white/5 border border-white/10 rounded-2xl space-y-4 hover:border-brand-blue/50 transition-colors">
+          <span class="font-heading text-4xl sm:text-5xl font-extrabold text-brand-blue block">
+            {item.metric}
+          </span>
+          <h3 class="font-heading text-lg font-bold text-brand-white">
+            {item.label}
+          </h3>
+          <p class="font-body text-sm text-brand-muted-dark leading-relaxed">
+            {item.detail}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Assurance Note -->
+    <div class="pt-6 border-t border-white/10 text-center">
+      <p class="text-xs font-semibold text-brand-muted-dark">
+        All figures represent real, verified client outcomes. Permission for public disclosure is confirmed with respective clients.
+      </p>
     </div>
   </Container>
 </section>

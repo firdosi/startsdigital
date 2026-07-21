@@ -1,114 +1,54 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../components/ui/Button.astro';
-import Container from '../components/ui/Container.astro';
-import { getAssetPath } from '../data/site';
 
-// Section Component Imports
-import Results from '../components/sections/Results.astro';
+// Section Components
+import Hero from '../components/sections/Hero.astro';
+import BrandExperience from '../components/sections/BrandExperience.astro';
 import Services from '../components/sections/Services.astro';
-import SelectedWork from '../components/sections/SelectedWork.astro';
-import Process from '../components/sections/Process.astro';
+import FeaturedWork from '../components/sections/FeaturedWork.astro';
+import Results from '../components/sections/Results.astro';
+import PlatformsTools from '../components/sections/PlatformsTools.astro';
 import WhyUs from '../components/sections/WhyUs.astro';
-import AboutPreview from '../components/sections/AboutPreview.astro';
+import FounderSection from '../components/sections/FounderSection.astro';
+import Process from '../components/sections/Process.astro';
+import FAQ from '../components/sections/FAQ.astro';
 import ContactCTA from '../components/sections/ContactCTA.astro';
-
-const capabilities = [
-  'Digital Strategy',
-  'Meta Advertising',
-  'SEO',
-  'Website Development',
-  'Content',
-  'AI Marketing Solutions',
-];
 ---
 
 <BaseLayout 
-  title="AI-Powered Digital Marketing Agency" 
-  description="Starts Digital provides digital strategy, Meta advertising, SEO, website development, creative content and practical AI marketing solutions for growing businesses."
+  title="Digital Strategy, Marketing & Technology Agency" 
+  description="Starts Digital helps businesses grow through performance marketing, website development, technical SEO, creative content and practical AI digital systems."
 >
-  <!-- Homepage Hero Section -->
-  <section class="relative pt-32 pb-24 md:pt-44 md:pb-36 overflow-hidden">
-    <!-- Subtle Grid Background Composition for Premium Technical Feel -->
-    <div 
-      class="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(102,112,133,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(102,112,133,0.04)_1px,transparent_1px)] bg-[size:4.5rem_4.5rem]"
-      aria-hidden="true"
-    ></div>
+  {/* 1. Hero Section (Light Background) */}
+  <Hero />
 
-    <Container class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-      <!-- Left Column: Primary Copy and Call to Actions -->
-      <div class="lg:col-span-7 flex flex-col space-y-6 md:space-y-8">
-        <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
-          STRATEGY &middot; MARKETING &middot; TECHNOLOGY
-        </span>
-        <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-brand-white leading-[1.1] max-w-2xl">
-          Digital marketing built to <span class="text-brand-blue">start</span>, grow and scale businesses online.
-        </h1>
-        <p class="font-body text-base sm:text-lg font-normal leading-relaxed text-brand-muted-dark max-w-xl">
-          Starts Digital combines strategy, paid advertising, SEO, websites, content and practical AI solutions to help businesses build a stronger digital presence and create measurable opportunities.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 pt-6">
-          <Button 
-            href={getAssetPath('/work/')} 
-            variant="primary"
-          >
-            View Our Work
-          </Button>
-          <Button 
-            href="#contact" 
-            variant="secondary"
-          >
-            Discuss Your Project
-          </Button>
-        </div>
-      </div>
+  {/* 2. Brand Experience Section (Light Background) */}
+  <BrandExperience />
 
-      <!-- Right Column: Restrained Capabilities Presentation -->
-      <div class="lg:col-span-5">
-        <div class="bg-brand-navy border border-brand-grey/10 rounded-xl p-8 relative overflow-hidden">
-          <!-- Subtle layout glow in corner to frame content without neon excessive gradients -->
-          <div class="absolute -top-12 -right-12 h-32 w-32 bg-brand-blue/5 blur-3xl rounded-full" aria-hidden="true"></div>
-          
-          <h3 class="font-heading text-xs font-bold tracking-widest text-brand-grey/50 uppercase mb-6 pb-2 border-b border-brand-grey/5">
-            Core Capabilities
-          </h3>
-          <ul class="space-y-4">
-            {
-              capabilities.map((item, index) => (
-                <li class="flex items-center justify-between border-b border-brand-grey/10 pb-4 last:border-0 last:pb-0">
-                  <div class="flex items-center gap-4">
-                    <span class="font-heading text-xs font-bold text-brand-teal">0{index + 1}</span>
-                    <span class="font-body text-base font-normal text-brand-white">
-                      {item}
-                    </span>
-                  </div>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </div>
-    </Container>
-  </section>
-
-  <!-- Section 3: Results and Credibility -->
-  <Results />
-
-  <!-- Section 4: Services -->
+  {/* 3. Core Services (Light Background) */}
   <Services />
 
-  <!-- Section 5: Selected Work -->
-  <SelectedWork />
+  {/* 4. Featured Work Showcase (Light Background) */}
+  <FeaturedWork />
 
-  <!-- Section 6: Working Process -->
-  <Process />
+  {/* 5. Verified Results (Deep Navy Background) */}
+  <Results />
 
-  <!-- Section 7: Why Starts Digital -->
+  {/* 6. Platforms & Tools We Work With (Light Background) */}
+  <PlatformsTools />
+
+  {/* 7. Why Starts Digital / Operating Model (Light Background) */}
   <WhyUs />
 
-  <!-- Section 8: About Preview -->
-  <AboutPreview />
+  {/* 8. Founder Section (Disabled until verified media is provided) */}
+  <FounderSection enabled={false} />
 
-  <!-- Section 9: Final Contact CTA -->
+  {/* 9. Methodology & Process (Light Background) */}
+  <Process />
+
+  {/* 10. Frequently Asked Questions (Light Background) */}
+  <FAQ />
+
+  {/* 11. Final Contact CTA (Deep Navy Background) */}
   <ContactCTA />
 </BaseLayout>
