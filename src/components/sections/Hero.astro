@@ -4,13 +4,13 @@ import Button from '../ui/Button.astro';
 import { getAssetPath } from '../../data/site';
 ---
 
-<section class="relative pt-32 pb-20 md:pt-40 md:pb-32 bg-brand-white overflow-hidden border-b border-brand-light-border">
+<section class="relative pt-28 pb-12 md:pt-36 md:pb-16 bg-brand-white overflow-hidden border-b border-brand-light-border">
   <!-- Subtle Dot Matrix Background Pattern -->
   <div class="absolute inset-0 -z-10 bg-[radial-gradient(#e4e7ec_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-60" aria-hidden="true"></div>
 
-  <Container class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+  <Container class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-center">
     <!-- Left Column (~48% content): Copy, Actions, Scannable Results -->
-    <div class="lg:col-span-6 flex flex-col space-y-6 md:space-y-8">
+    <div class="lg:col-span-6 flex flex-col space-y-5 md:space-y-6">
       <div>
         <span class="inline-flex items-center gap-2 text-xs font-extrabold tracking-[0.2em] text-brand-teal uppercase font-heading bg-brand-teal/10 px-3.5 py-1.5 rounded-md">
           <span class="w-2 h-2 rounded-full bg-brand-teal animate-pulse" aria-hidden="true"></span>
@@ -27,7 +27,7 @@ import { getAssetPath } from '../../data/site';
       </p>
 
       <!-- Primary CTAs -->
-      <div class="flex flex-col sm:flex-row gap-4 pt-2">
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
         <Button 
           href="#contact" 
           variant="primary"
@@ -44,8 +44,8 @@ import { getAssetPath } from '../../data/site';
         </Button>
       </div>
 
-      <!-- Prominent, Large Scannable Results Bar -->
-      <div class="pt-8 border-t border-brand-light-border grid grid-cols-3 gap-4 sm:gap-6">
+      <!-- Prominent, Large Scannable Results Bar (Compact Vertical Padding) -->
+      <div class="pt-6 border-t border-brand-light-border grid grid-cols-3 gap-4 sm:gap-6">
         <div class="space-y-1">
           <span class="block font-heading text-2xl sm:text-3xl font-extrabold text-brand-blue tracking-tight">PKR 30M+</span>
           <span class="block text-xs font-bold text-brand-black uppercase tracking-wider font-heading">Revenue Supported</span>
@@ -61,7 +61,7 @@ import { getAssetPath } from '../../data/site';
       </div>
     </div>
 
-    <!-- Right Column (~52% visual composition): Layered Concept Visuals -->
+    <!-- Right Column (~52% visual composition): Layered Concept Visuals (Eager Loading) -->
     <div class="lg:col-span-6 relative">
       <!-- Background Graphic Accents -->
       <div class="absolute -top-10 -right-10 w-72 h-72 bg-brand-blue/10 rounded-full blur-3xl -z-10" aria-hidden="true"></div>
@@ -76,7 +76,7 @@ import { getAssetPath } from '../../data/site';
           </span>
         </div>
 
-        <!-- Main Primary Visual -->
+        <!-- Main Primary Visual (Hero Only: loading="eager", fetchpriority="high") -->
         <div class="relative rounded-2xl border border-brand-light-border bg-white p-2 shadow-2xl overflow-hidden transform lg:rotate-[-1deg] hover:rotate-0 transition-transform duration-300">
           <img 
             src={getAssetPath('/prototype/hero-business.webp')} 
@@ -89,7 +89,7 @@ import { getAssetPath } from '../../data/site';
           />
         </div>
 
-        <!-- Overlapping Secondary Visual (Controlled depth) -->
+        <!-- Overlapping Secondary Visual (Hero Only: loading="eager") -->
         <div class="hidden sm:block absolute -bottom-6 -left-4 w-3/5 rounded-xl border border-brand-light-border bg-white p-2 shadow-2xl transform lg:rotate-[2deg] hover:rotate-0 transition-transform duration-300 z-10">
           <img 
             src={getAssetPath('/prototype/hero-dashboard.webp')} 
@@ -97,6 +97,7 @@ import { getAssetPath } from '../../data/site';
             width="400"
             height="260"
             loading="eager"
+            fetchpriority="high"
             class="w-full h-auto object-cover rounded-lg border border-brand-light-border/40"
           />
         </div>

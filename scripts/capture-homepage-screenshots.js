@@ -6,7 +6,7 @@ import fs from 'fs';
 const folderName = process.argv[2];
 
 if (!folderName) {
-  console.error('ERROR: You must specify a version folder name argument (e.g., v5-short-revision-name-commit).');
+  console.error('ERROR: You must specify a version folder name argument (e.g., v5-targeted-polish-a1b2c3d).');
   console.error('Usage: node scripts/capture-homepage-screenshots.js <vNN-short-name-sha>');
   process.exit(1);
 }
@@ -68,7 +68,7 @@ async function capture() {
     await page.waitForTimeout(500);
   }
 
-  // 1. Desktop 1440 Full Page
+  // 1. Desktop 1440 Full Page & Focused Reviews
   {
     const page = await browser.newPage();
     await preparePage(page, 1440, 900);
@@ -82,9 +82,11 @@ async function capture() {
       clip: { x: 0, y: 0, width: 1440, height: 1600 },
     });
 
-    // Focused Desktop Featured Work
+    // Focused Desktop Featured Work (Locate element id="work", scrollIntoView, wait, capture)
     const featuredWorkElement = await page.$('#work');
     if (featuredWorkElement) {
+      await featuredWorkElement.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(500);
       await featuredWorkElement.screenshot({
         path: path.join(targetDir, 'desktop-featured-work.png'),
       });
@@ -103,7 +105,7 @@ async function capture() {
     await page.close();
   }
 
-  // 3. Mobile 375 Full Page
+  // 3. Mobile 375 Full Page & Focused Review
   {
     const page = await browser.newPage();
     await preparePage(page, 375, 812);
@@ -139,11 +141,11 @@ async function capture() {
 
 ## Main Design Changes
 
-- Captured revision for ${folderName}.
+- Captured v5 targeted polish revision for ${folderName}.
 
 ## Asset Status
 
-Document asset approval status here.
+Temporary concept assets used. Not approved for production merge.
 `;
 
   fs.writeFileSync(path.join(targetDir, 'README.md'), readmeContent, 'utf-8');
