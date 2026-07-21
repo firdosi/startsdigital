@@ -1,64 +1,42 @@
 ---
 import Container from '../ui/Container.astro';
-
-const metrics = [
-  {
-    value: 'PKR 30M+',
-    label: 'Revenue Supported',
-    sublabel: 'E-commerce and consumer product campaigns',
-  },
-  {
-    value: '29,000+',
-    label: 'Product Sales',
-    sublabel: 'Individual product units delivered across categories',
-  },
-  {
-    value: 'PKR 4.2M+',
-    label: 'Qurbani Sales',
-    sublabel: 'Seasonal livestock campaign sales generated',
-  },
-  {
-    value: '150+',
-    label: 'Animals Sold',
-    sublabel: 'Direct livestock sales closed via video marketing',
-  },
-];
+import SectionHeading from '../ui/SectionHeading.astro';
+import { resultsData } from '../../data/results';
 ---
 
-<section class="py-24 md:py-36 bg-brand-navy text-white relative overflow-hidden border-y border-white/10">
-  <!-- Subtle Background Glow Elements -->
-  <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-blue/15 rounded-full blur-3xl" aria-hidden="true"></div>
-  <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-brand-teal/15 rounded-full blur-3xl" aria-hidden="true"></div>
+<section class="py-24 md:py-36 bg-slate-950 text-white border-b border-white/10 relative overflow-hidden">
+  <!-- Radial Glow Texture -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-blue-600/15 via-teal-500/10 to-indigo-600/15 rounded-full blur-[140px] pointer-events-none" aria-hidden="true"></div>
 
-  <Container class="space-y-16 relative z-10">
-    <!-- Header -->
-    <div class="text-center max-w-3xl mx-auto space-y-4">
-      <span class="text-xs font-extrabold tracking-[0.2em] text-brand-teal uppercase font-heading bg-brand-teal/10 px-3.5 py-1.5 rounded-md">
-        VERIFIED COMMERCIAL IMPACT
-      </span>
-      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-white">
-        Commercial Performance Figures
-      </h2>
-      <p class="font-body text-base text-brand-muted-dark leading-relaxed">
-        We track our performance against real commercial outcomes delivered across client campaigns.
-      </p>
-    </div>
+  <Container class="relative">
+    <SectionHeading
+      eyebrow="COMMERCIAL IMPACT"
+      title="Verified metrics backed by real client accounts."
+      description="We track business progress through commercial revenue growth, conversion volume, and verified search visibility."
+      class="mb-20 text-center max-w-3xl mx-auto dark-theme"
+    />
 
-    <!-- Wide Editorial Metric Layout (Dividers instead of 4 standard cards) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-white/10 pt-4">
-      {metrics.map((item, idx) => (
-        <div class={`space-y-3 ${idx !== 0 ? 'pt-6 sm:pt-0 sm:pl-8' : ''}`}>
-          <span class="font-heading text-4xl sm:text-5xl font-extrabold text-brand-blue tracking-tight block">
-            {item.value}
-          </span>
-          <h3 class="font-heading text-lg font-bold text-white">
-            {item.label}
-          </h3>
-          <p class="font-body text-sm text-brand-muted-dark leading-relaxed">
-            {item.sublabel}
-          </p>
-        </div>
-      ))}
+    <!-- Visually Dominant Metric Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {
+        resultsData.map((metric) => (
+          <div 
+            class="p-8 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 border border-white/10 hover:border-blue-500/30 transition-all duration-300 group shadow-2xl relative overflow-hidden flex flex-col justify-between"
+          >
+            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/15 transition-all"></div>
+
+            <div>
+              <span class="block font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-teal-300 to-white tracking-tight mb-3 group-hover:scale-105 transition-transform origin-left">
+                {metric.value}
+              </span>
+            </div>
+
+            <p class="text-slate-300 text-xs sm:text-sm font-semibold leading-relaxed border-t border-white/10 pt-4 mt-4">
+              {metric.wording}
+            </p>
+          </div>
+        ))
+      }
     </div>
   </Container>
 </section>

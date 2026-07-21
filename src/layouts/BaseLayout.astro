@@ -47,7 +47,7 @@ const {
     <StructuredData />
     <slot name="head" />
   </head>
-  <body class="flex min-h-full flex-col bg-brand-white text-brand-black antialiased">
+  <body class="flex min-h-full flex-col bg-slate-950 text-slate-100 antialiased overflow-x-hidden w-full max-w-full">
     <!-- Accessibility Skip Link -->
     <a 
       href="#main-content" 
@@ -60,7 +60,7 @@ const {
     <Header />
 
     <!-- Main Content Area -->
-    <main id="main-content" class="flex-grow outline-none" tabindex="-1">
+    <main id="main-content" class="flex-grow outline-none overflow-x-hidden w-full max-w-full" tabindex="-1">
       <slot />
     </main>
 

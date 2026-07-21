@@ -1,62 +1,31 @@
 ---
 import Container from '../ui/Container.astro';
 import { brands } from '../../data/brands';
-import { getAssetPath } from '../../data/site';
-
-// Filter approved brands (only entries explicitly approved by user will render)
-const publicApprovedBrands = brands.filter((b) => b.publicApproved && b.active);
-const logoWallBrands = publicApprovedBrands.filter((b) => b.logoApproved && b.logo);
-const secondaryTextBrands = publicApprovedBrands.filter((b) => !b.logoApproved || !b.logo);
 ---
 
-{publicApprovedBrands.length > 0 && (
-  <section class="py-16 md:py-24 bg-brand-white border-b border-brand-light-border">
-    <Container class="space-y-10">
-      <div class="text-center max-w-2xl mx-auto space-y-3">
-        <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
-          EXPERIENCE & SECTOR COVERAGE
-        </span>
-        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-black">
-          Brands & Projects We Have Worked With
-        </h2>
-        <p class="font-body text-sm sm:text-base text-brand-text">
-          Delivering strategy, performance marketing, websites and growth campaigns across e-commerce, construction, immigration, healthcare, technology, and business services.
-        </p>
-      </div>
+<section class="py-14 bg-slate-950 border-b border-white/10 overflow-hidden relative">
+  <Container class="mb-6">
+    <p class="text-center text-xs font-heading font-extrabold tracking-[0.25em] text-slate-400 uppercase">
+      TRUSTED BY GROWTH-ORIENTED BRANDS & ENTERPRISES
+    </p>
+  </Container>
 
-      {/* Primary Logo Wall */}
-      {logoWallBrands.length > 0 && (
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {logoWallBrands.map((brand) => (
-            <div class="flex items-center justify-center p-6 bg-white border border-brand-light-border rounded-xl shadow-xs hover:border-brand-blue/40 transition-colors">
-              <img 
-                src={getAssetPath(brand.logo!)} 
-                alt={`${brand.name} logo`}
-                width="180"
-                height="60"
-                loading="lazy"
-                class="max-h-10 w-auto object-contain"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Secondary Text Listing */}
-      {secondaryTextBrands.length > 0 && (
-        <div class="pt-6 border-t border-brand-light-border/60">
-          <p class="text-center text-xs font-bold uppercase tracking-widest text-brand-text/70 mb-6 font-heading">
-            Featured Brand Experience Listings
-          </p>
-          <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            {secondaryTextBrands.map((brand) => (
-              <span class="inline-flex items-center px-4 py-2 bg-brand-grey/40 border border-brand-light-border rounded-lg text-sm font-semibold text-brand-black/80 font-heading hover:bg-brand-grey/70 transition-colors">
-                {brand.name}
-              </span>
-            ))}
+  <!-- Marquee Container with Left/Right Gradient Fade Masks -->
+  <div class="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,#000_15%,#000_85%,transparent_100%)]">
+    <div class="animate-marquee flex items-center gap-12 whitespace-nowrap py-4">
+      {/* Duplicate list to create seamless infinite scroll loop */}
+      {
+        [...brands, ...brands].map((brand) => (
+          <div 
+            class="flex items-center gap-12 group cursor-default"
+          >
+            <span class="font-heading text-lg sm:text-xl font-bold tracking-wider text-slate-300 group-hover:text-blue-400 transition-colors uppercase">
+              {brand.name}
+            </span>
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-500/40 group-hover:bg-blue-400 transition-colors" aria-hidden="true"></span>
           </div>
-        </div>
-      )}
-    </Container>
-  </section>
-)}
+        ))
+      }
+    </div>
+  </div>
+</section>

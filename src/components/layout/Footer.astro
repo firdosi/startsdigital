@@ -1,98 +1,89 @@
 ---
 import Container from '../ui/Container.astro';
-import { siteConfig, getAssetPath } from '../../data/site';
-
-const currentYear = new Date().getFullYear();
-
-const navLinks = [
-  { name: 'Services', href: getAssetPath('#services') },
-  { name: 'Work Showcase', href: getAssetPath('#work') },
-  { name: 'Why Starts Digital', href: getAssetPath('#why-us') },
-  { name: 'Process', href: getAssetPath('#process') },
-  { name: 'FAQ', href: getAssetPath('#faq') },
-  { name: 'Contact', href: getAssetPath('#contact') },
-];
-
-const workLinks = [
-  { name: 'Black Gold Fertilizer', href: getAssetPath('/work/black-gold-fertilizer/') },
-  { name: 'Wajib Livestock Qurbani Campaign', href: getAssetPath('/work/qurbani-campaign/') },
-  { name: 'RK Reno Solutions', href: getAssetPath('/work/') },
-];
+import { footerNavLinks } from '../../data/navigation';
+import { siteConfig } from '../../data/site';
 ---
 
-<footer class="bg-brand-navy text-white pt-20 pb-12 border-t border-white/10">
-  <Container class="space-y-16">
-    <!-- Main Footer Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16">
+<footer class="bg-slate-950 text-slate-400 border-t border-white/10 pt-16 pb-12 font-body">
+  <Container>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12 mb-16">
       
-      <!-- Brand Column (lg:col-span-5) -->
-      <div class="lg:col-span-5 space-y-6">
-        <a href={getAssetPath('/')} class="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded">
-          <span class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight text-white">
-            Starts<span class="text-brand-blue">Digital</span>
-          </span>
+      <!-- Brand & Summary Column (2 Cols) -->
+      <div class="lg:col-span-2 space-y-4">
+        <a
+          href={`${siteConfig.basePath}/`}
+          class="font-heading text-3xl font-extrabold tracking-tight text-white inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
+          aria-label="Starts Digital Home"
+        >
+          Starts<span class="text-blue-500">Digital</span>
         </a>
 
-        <p class="font-body text-base text-brand-muted-dark leading-relaxed max-w-md">
-          {siteConfig.description}
+        <p class="text-sm text-slate-300 leading-relaxed max-w-sm">
+          Performance digital agency specializing in paid media acquisition, conversion-focused websites, technical SEO, creative content, and practical AI systems.
         </p>
 
-        <!-- Verified Agency Metadata -->
-        <div class="space-y-2 text-sm text-brand-muted-dark font-body pt-2 border-t border-white/10">
-          <p class="flex items-center gap-2 font-semibold">
-            <span class="w-2 h-2 rounded-full bg-brand-teal" aria-hidden="true"></span>
-            <span>Operating internationally across Pakistan, Middle East & global markets</span>
-          </p>
-          <p>Email: <a href={`mailto:${siteConfig.contact.email}`} class="text-white hover:text-brand-blue underline transition-colors">{siteConfig.contact.email}</a></p>
-          <p>WhatsApp: <a href={siteConfig.contact.whatsappUrl} target="_blank" rel="noopener noreferrer" class="text-white hover:text-brand-teal underline transition-colors">{siteConfig.contact.phone}</a></p>
+        <div class="pt-2 text-xs font-mono text-slate-400">
+          Pakistan • Malaysia • International Remote Execution
         </div>
       </div>
 
-      <!-- Navigation Column (lg:col-span-3) -->
-      <div class="lg:col-span-3 space-y-4">
-        <h3 class="font-heading text-sm font-extrabold text-brand-teal uppercase tracking-widest">
-          NAVIGATION
+      <!-- Navigation Column (1 Col) -->
+      <div>
+        <h3 class="font-heading text-sm font-bold uppercase tracking-wider text-white mb-4">
+          Navigation
         </h3>
-        <ul class="space-y-3 font-body text-base">
-          {navLinks.map((link) => (
-            <li>
-              <a 
-                href={link.href} 
-                class="text-brand-muted-dark hover:text-white transition-colors"
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
+        <ul class="space-y-2.5 text-sm">
+          {
+            footerNavLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-slate-300 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
-      <!-- Case Studies Column (lg:col-span-4) -->
-      <div class="lg:col-span-4 space-y-4">
-        <h3 class="font-heading text-sm font-extrabold text-brand-teal uppercase tracking-widest">
-          FEATURED WORK
+      <!-- Core Services Column (1 Col) -->
+      <div>
+        <h3 class="font-heading text-sm font-bold uppercase tracking-wider text-white mb-4">
+          Capabilities
         </h3>
-        <ul class="space-y-3 font-body text-base">
-          {workLinks.map((link) => (
-            <li>
-              <a 
-                href={link.href} 
-                class="text-brand-muted-dark hover:text-white transition-colors block"
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#services" class="text-slate-300 hover:text-white transition-colors">Paid Advertising & ROAS</a></li>
+          <li><a href="#services" class="text-slate-300 hover:text-white transition-colors">Websites & E-Commerce</a></li>
+          <li><a href="#services" class="text-slate-300 hover:text-white transition-colors">Technical SEO & Local Search</a></li>
+          <li><a href="#services" class="text-slate-300 hover:text-white transition-colors">Creative Content & Video</a></li>
+          <li><a href="#services" class="text-slate-300 hover:text-white transition-colors">AI Marketing Automation</a></li>
         </ul>
       </div>
+
+      <!-- Case Studies & Direct Contact (1 Col) -->
+      <div>
+        <h3 class="font-heading text-sm font-bold uppercase tracking-wider text-white mb-4">
+          Case Studies
+        </h3>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href={`${siteConfig.basePath}/work/black-gold-fertilizer/`} class="text-slate-300 hover:text-white transition-colors">Black Gold Fertilizer</a></li>
+          <li><a href={`${siteConfig.basePath}/work/qurbani-campaign/`} class="text-slate-300 hover:text-white transition-colors">Wajib Livestock Qurbani Campaign</a></li>
+          <li><a href={`${siteConfig.basePath}/work/rk-reno-solutions/`} class="text-slate-300 hover:text-white transition-colors">RK Reno Solutions</a></li>
+        </ul>
+      </div>
+
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-body text-sm text-brand-muted-dark">
-      <p>&copy; {currentYear} {siteConfig.name}. All rights reserved.</p>
-      <p class="text-xs">
-        Light-First Visual Prototype — <a href={getAssetPath('/style-guide/')} class="hover:text-white underline">Style Guide</a>
-      </p>
+    <!-- Bottom Copyright & Legal Strip -->
+    <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
+
+      <div class="flex items-center gap-6">
+        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+        <a href="#services" class="hover:text-white transition-colors">Services</a>
+      </div>
     </div>
   </Container>
 </footer>

@@ -1,52 +1,55 @@
 ---
 import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
 import { platforms } from '../../data/platforms';
 
-const categories = [
-  { id: 'advertising', title: 'Advertising Channels' },
-  { id: 'analytics', title: 'Analytics & Tracking' },
-  { id: 'cms', title: 'E-Commerce & CMS' },
-  { id: 'design', title: 'Design & Creative' },
-  { id: 'communication', title: 'Communication' },
-];
+const categoryLabels: Record<string, string> = {
+  advertising: 'PAID ADVERTISING & PPC',
+  analytics: 'ANALYTICS & CONVERSION TRACKING',
+  cms: 'E-COMMERCE & CMS PLATFORMS',
+  communication: 'CLIENT AUTOMATION & MESSAGING',
+  design: 'CREATIVE PRODUCTION & DESIGN'
+};
+
+const groupedPlatforms = Object.entries(
+  platforms.reduce((acc, platform) => {
+    acc[platform.category] = acc[platform.category] || [];
+    acc[platform.category].push(platform.name);
+    return acc;
+  }, {} as Record<string, string[]>)
+);
 ---
 
-<section class="py-14 md:py-20 bg-brand-white border-b border-brand-light-border">
-  <Container class="space-y-10">
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-brand-light-border">
-      <div class="space-y-1.5">
-        <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
-          TECHNOLOGY STACK
-        </span>
-        <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-black">
-          Platforms & Tools We Work With
-        </h2>
-      </div>
-      <p class="font-body text-sm sm:text-base text-brand-text max-w-sm">
-        Advertising, analytics, e-commerce, and creative tools integrated into client marketing workflows.
-      </p>
-    </div>
+<section class="py-20 md:py-32 bg-slate-950 text-white border-b border-white/10 relative">
+  <Container>
+    <SectionHeading
+      eyebrow="STACK & ARCHITECTURE"
+      title="Enterprise platforms and modern technical tools."
+      description="We deploy official API integrations and trusted technology frameworks to execute paid media, analytics, e-commerce, and automation."
+      class="mb-16 dark-theme"
+    />
 
-    <!-- Compact Grouped Horizontal Technology Band (Enhanced 14-16px Readability & Spacing) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6 divide-y md:divide-y-0 md:divide-x divide-brand-light-border">
-      {categories.map((cat, idx) => {
-        const catTools = platforms.filter(p => p.category === cat.id);
-        return (
-          <div class={`space-y-4 ${idx !== 0 ? 'pt-6 md:pt-0 md:pl-6' : ''}`}>
-            <span class="text-xs md:text-sm font-extrabold tracking-widest text-brand-blue uppercase font-heading block pb-1 border-b border-brand-light-border/60 md:border-b-0">
-              {cat.title}
-            </span>
-            <ul class="space-y-2.5">
-              {catTools.map(tool => (
-                <li class="flex items-center gap-2.5 text-sm md:text-base font-semibold text-brand-black font-body">
-                  <span class="w-2 h-2 rounded-full bg-brand-teal shrink-0" aria-hidden="true"></span>
-                  <span>{tool.name}</span>
-                </li>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        groupedPlatforms.map(([categoryKey, tools]) => (
+          <div class="p-8 rounded-2xl bg-slate-900/60 border border-white/10 hover:border-blue-500/30 transition-all">
+            <h3 class="text-xs font-mono font-extrabold tracking-widest text-teal-400 uppercase mb-6 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+              {categoryLabels[categoryKey] || categoryKey}
+            </h3>
+
+            <div class="flex flex-wrap gap-3">
+              {tools.map((tool) => (
+                <span 
+                  class="font-heading text-sm sm:text-base font-bold text-slate-200 bg-slate-950 px-4 py-2 rounded-xl border border-white/10 hover:border-blue-400/40 hover:text-white transition-all shadow-sm"
+                >
+                  {tool}
+                </span>
               ))}
-            </ul>
+            </div>
           </div>
-        );
-      })}
+        ))
+      }
     </div>
   </Container>
 </section>

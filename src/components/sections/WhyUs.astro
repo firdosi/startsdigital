@@ -1,58 +1,67 @@
 ---
 import Container from '../ui/Container.astro';
-
-const differentiators = [
-  {
-    title: 'Strategy & Execution Together',
-    description: 'We do not deliver static PDF strategy decks and disappear. We write the copy, produce the video ad creatives, build the landing page, and optimize campaign budgets directly.',
-  },
-  {
-    title: 'Multi-Industry Domain Experience',
-    description: 'From e-commerce consumer goods and livestock campaigns to local construction services and healthcare labs, we adapt our growth models to your industry dynamics.',
-  },
-  {
-    title: 'Marketing & Technical Capabilities',
-    description: 'We blend performance marketing expertise with clean web development (Astro, TypeScript, Tailwind) and practical AI automation systems to build sustainable growth infrastructure.',
-  },
-  {
-    title: 'Direct Communication & Transparency',
-    description: 'You communicate directly with the strategists and creators executing your work. No account manager layers, no inflated reports, and clear weekly progress tracking.',
-  },
-];
 ---
 
-<section id="why-us" class="py-20 md:py-32 bg-brand-white border-b border-brand-light-border">
-  <Container class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-    <!-- Left Column: Large Editorial Statement -->
-    <div class="lg:col-span-5 space-y-6 sticky top-28">
-      <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
-        OUR OPERATING MODEL
-      </span>
-      <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-black leading-[1.15]">
-        Strategy, creative and execution managed as one <span class="text-brand-blue">connected growth system.</span>
-      </h2>
-      <p class="font-body text-base text-brand-text leading-relaxed">
-        We build integrated digital engines where strategy, creative production, and engineering operate in sync without agency silos.
-      </p>
-    </div>
+<section class="py-20 md:py-32 bg-slate-950 text-white border-b border-white/10 relative">
+  <Container>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Left Column: Large Statement (5 Cols) -->
+      <div class="lg:col-span-5 space-y-6">
+        <span class="inline-flex items-center gap-2 text-xs font-extrabold tracking-[0.2em] text-blue-400 uppercase font-heading bg-blue-500/10 px-3.5 py-1.5 rounded-full border border-blue-500/20">
+          THE STARTS DIGITAL DIFFERENCE
+        </span>
 
-    <!-- Right Column: 4 Short Differentiators with Dividers (No white boxes) -->
-    <div class="lg:col-span-7 divide-y divide-brand-light-border border-y border-brand-light-border">
-      {differentiators.map((diff, idx) => (
-        <div class="py-8 space-y-3">
-          <div class="flex items-center gap-3">
-            <span class="font-heading text-xs font-extrabold text-brand-teal uppercase tracking-widest bg-brand-teal/10 px-2.5 py-1 rounded">
-              0{idx + 1}
-            </span>
-            <h3 class="font-heading text-xl sm:text-2xl font-bold text-brand-black">
-              {diff.title}
-            </h3>
+        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+          Strategy, creative, and technical engineering managed as <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">one connected growth system.</span>
+        </h2>
+
+        <p class="text-slate-300 text-base leading-relaxed">
+          Most businesses waste money managing disjointed freelancers, ad agencies, and web developers who pass blame when performance drops. We take single-point responsibility for full-funnel commercial growth.
+        </p>
+      </div>
+
+      <!-- Right Column: 4 Key Differentiators with Dividers (7 Cols) -->
+      <div class="lg:col-span-7 space-y-8">
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-white/10 hover:border-blue-500/30 transition-all flex items-start gap-5">
+          <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 mt-1">
+            <span class="font-mono font-bold text-sm">01</span>
           </div>
-          <p class="font-body text-base text-brand-text leading-relaxed pl-10">
-            {diff.description}
-          </p>
+          <div>
+            <h3 class="font-heading text-xl font-bold text-white mb-2">Single-Point Execution Ownership</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">No finger-pointing between your ad media buyer and website developer. We engineer the ads, landing pages, and lead flows in sync.</p>
+          </div>
         </div>
-      ))}
+
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-white/10 hover:border-teal-500/30 transition-all flex items-start gap-5">
+          <div class="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 shrink-0 mt-1">
+            <span class="font-mono font-bold text-sm">02</span>
+          </div>
+          <div>
+            <h3 class="font-heading text-xl font-bold text-white mb-2">Commercial Focus Over Vanity Metrics</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">We optimize for actual bank-account revenue, lead volume, and customer acquisition cost—not meaningless impressions or bot likes.</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-white/10 hover:border-indigo-500/30 transition-all flex items-start gap-5">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0 mt-1">
+            <span class="font-mono font-bold text-sm">03</span>
+          </div>
+          <div>
+            <h3 class="font-heading text-xl font-bold text-white mb-2">Clean Technical Foundations</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">Custom, light code architectures without bloatware, ensuring fast load speed and clean SEO indexing for long-term compounding growth.</p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-white/10 hover:border-blue-500/30 transition-all flex items-start gap-5">
+          <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 mt-1">
+            <span class="font-mono font-bold text-sm">04</span>
+          </div>
+          <div>
+            <h3 class="font-heading text-xl font-bold text-white mb-2">Direct Founder Communication</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">Work directly with senior strategists who understand business metrics, supply chains, and market realities across Pakistan and international markets.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </Container>
 </section>
