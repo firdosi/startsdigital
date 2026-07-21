@@ -1,75 +1,36 @@
 @import "tailwindcss";
 
 /*
- * Kepler design tokens — navy / orange design system & warm paper neutrals.
+ * Starts Digital — Premium Dark-First Growth Agency Design System
  */
 @theme {
   /* Colors */
-  --color-navy: #1e3a8a; /* primary brand, dark sections, headings on light */
-  --color-navy-deep: #152a63; /* deep gradients, footer */
-  --color-ink: #0f1e42; /* near-black text on light */
-  --color-orange: #f97316; /* primary accent, CTAs */
-  --color-orange-bright: #fb923c; /* gradient start, highlighted words on navy */
-  --color-orange-deep: #ea580c; /* gradient end */
-  --color-orange-glow: #fdba74; /* eyebrow text on navy */
-  --color-orange-soft: #ffedd5; /* tinted backgrounds, chips */
-  --color-sky: #dbeafe; /* soft blue tints, nav links */
-  --color-sky-mist: #c7d2fe; /* secondary text on navy */
-  --color-paper: #fbfaf7; /* warm off-white page background */
-  --color-cloud: #ffffff; /* cards on paper */
-  --color-line: rgb(15 30 66 / 0.1); /* hairline borders */
+  --color-dark-bg: #090d16;        /* Near black main dark background */
+  --color-dark-surface: #0f172a;   /* Deep slate for dark cards/containers */
+  --color-dark-card: #141e33;      /* Elevated dark card background */
+  --color-dark-border: rgba(255, 255, 255, 0.08);
+
+  --color-light-bg: #f8fafc;       /* Slate off-white light background */
+  --color-light-surface: #ffffff;  /* Pure white light cards */
+  --color-light-border: rgba(15, 23, 42, 0.08);
+
+  --color-accent-blue: #2563eb;    /* Electric blue main primary accent */
+  --color-accent-blue-bright: #3b82f6;
+  --color-accent-blue-glow: rgba(37, 99, 235, 0.25);
+
+  --color-accent-orange: #f97316;  /* Selective warm orange accent */
+  --color-accent-orange-bright: #fb923c;
+  
+  --color-slate-950: #020617;
+  --color-slate-900: #0f172a;
+  --color-slate-800: #1e293b;
+  --color-slate-700: #334155;
+  --color-slate-400: #94a3b8;
+  --color-slate-300: #cbd5e1;
 
   /* Typography */
   --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-body: "Manrope", system-ui, sans-serif;
-
-  /* Hard offset shadows — comic/pop feel */
-  --shadow-pop-sm: 3px 3px 0 var(--color-ink);
-  --shadow-pop: 6px 6px 0 var(--color-ink);
-  --shadow-pop-lg: 8px 8px 0 var(--color-ink);
-  --shadow-pop-orange: 6px 6px 0 var(--color-orange);
-  --shadow-pop-white: 5px 5px 0 var(--color-cloud);
-
-  /* Radii */
-  --radius-card: 20px;
-  --radius-tile: 16px;
-  --radius-chip: 14px;
-}
-
-@keyframes orbit-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes orbit-spin-rev {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
-}
-
-@keyframes drift {
-  0%, 100% {
-    transform: translateY(0) rotate(var(--r, 0deg));
-  }
-  50% {
-    transform: translateY(-14px) rotate(var(--r, 0deg));
-  }
-}
-
-@keyframes drift-alt {
-  0%, 100% {
-    transform: translateY(0) rotate(var(--r, 0deg));
-  }
-  50% {
-    transform: translateY(12px) rotate(var(--r, 0deg));
-  }
 }
 
 @keyframes marquee-left {
@@ -90,31 +51,24 @@
   }
 }
 
-@keyframes pulse-subtle {
+@keyframes pulse-glow {
   0%, 100% {
-    opacity: 1;
+    opacity: 0.6;
     transform: scale(1);
   }
   50% {
-    opacity: 0.85;
-    transform: scale(1.03);
+    opacity: 1;
+    transform: scale(1.05);
   }
 }
 
-.animate-orbit-spin {
-  animation: orbit-spin 26s linear infinite !important;
-}
-
-.animate-orbit-spin-rev {
-  animation: orbit-spin-rev 18s linear infinite !important;
-}
-
-.animate-drift {
-  animation: drift 6s ease-in-out infinite !important;
-}
-
-.animate-drift-alt {
-  animation: drift-alt 7s ease-in-out infinite !important;
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .animate-marquee-left {
@@ -134,23 +88,40 @@
   animation-play-state: paused;
 }
 
+.animate-float {
+  animation: float-subtle 6s ease-in-out infinite;
+}
+
 /* Scroll Reveal Utility Classes */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(24px) scale(0.98);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .reveal-on-scroll.is-revealed {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
+}
+
+/* Subtle Grid Pattern Overlay */
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-grid-pattern-dark {
+  background-image: linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 @layer base {
   body {
-    background-color: var(--color-paper);
-    color: var(--color-ink);
+    background-color: var(--color-dark-bg);
+    color: var(--color-slate-300);
     font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.6;
@@ -158,9 +129,10 @@
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     text-wrap: balance;
+    letter-spacing: -0.02em;
   }
 
   p {
@@ -168,18 +140,15 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-orange);
+    outline: 2px solid var(--color-accent-blue);
     outline-offset: 2px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-orbit-spin,
-  .animate-orbit-spin-rev,
-  .animate-drift,
-  .animate-drift-alt,
   .animate-marquee-left,
-  .animate-marquee-right {
+  .animate-marquee-right,
+  .animate-float {
     animation: none !important;
   }
   .reveal-on-scroll {

@@ -3,23 +3,24 @@ interface Props {
   eyebrow: string;
   title: string;
   sub?: string;
-  on: 'orange' | 'navy';
+  on?: 'dark' | 'light' | 'orange' | 'navy';
   class?: string;
 }
-const { eyebrow, title, sub, on, class: className = 'max-w-[640px] mb-12' } = Astro.props;
+const { eyebrow, title, sub, on = 'dark', class: className = 'max-w-[640px] mb-12' } = Astro.props;
+const isDark = on === 'dark' || on === 'navy';
 ---
 
 <div class:list={['mx-auto text-center', className]}>
   <span
     class:list={[
-      'text-[13px] font-bold tracking-[0.12em] uppercase',
-      on === 'orange' ? 'text-cloud' : 'text-orange-glow',
+      'text-xs font-bold font-mono tracking-widest uppercase',
+      isDark ? 'text-blue-400' : 'text-blue-600',
     ]}>{eyebrow}</span
   >
   <h2
     class:list={[
-      'mt-3 text-[36px] sm:text-[44px] leading-tight font-bold tracking-[-0.02em]',
-      on === 'orange' ? 'text-ink' : 'text-cloud',
+      'mt-2.5 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight',
+      isDark ? 'text-white' : 'text-slate-900',
     ]}
   >
     {title}
@@ -28,8 +29,8 @@ const { eyebrow, title, sub, on, class: className = 'max-w-[640px] mb-12' } = As
     sub && (
       <p
         class:list={[
-          'mt-4 text-base sm:text-lg',
-          on === 'orange' ? 'text-[#3a1503]' : 'text-sky-mist',
+          'mt-3.5 text-base sm:text-lg font-body leading-relaxed',
+          isDark ? 'text-slate-300' : 'text-slate-600',
         ]}
       >
         {sub}

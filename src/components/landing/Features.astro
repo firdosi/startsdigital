@@ -1,5 +1,5 @@
 ---
-import SectionHeader from './SectionHeader.astro';
+import { site } from '../../site.config';
 import { 
   Megaphone, 
   ShoppingBag, 
@@ -7,116 +7,221 @@ import {
   Video, 
   Bot, 
   BarChart3, 
-  MousePointerClick, 
-  MapPin, 
-  Workflow, 
-  TrendingUp,
-  Image as ImageIcon,
-  Target
+  ArrowUpRight,
+  CheckCircle2,
+  Zap
 } from '@lucide/astro';
-
-const services = [
-  {
-    title: 'Paid Advertising and Lead Generation',
-    body: 'Precision Meta Ads and Google Ads campaigns engineered for immediate customer acquisition, lead volume, and high ROAS.',
-    chip: 'bg-orange-soft',
-    IconComponent: Megaphone,
-    subIcon: Target,
-    iconColor: 'text-orange-deep',
-  },
-  {
-    title: 'Website Design and E-Commerce',
-    body: 'Custom high-converting websites and WooCommerce platforms designed for fast load speed, mobile checkout, and SEO.',
-    chip: 'bg-sky',
-    IconComponent: ShoppingBag,
-    subIcon: MousePointerClick,
-    iconColor: 'text-navy',
-  },
-  {
-    title: 'SEO and Local Search',
-    body: 'Technical search engine optimization and local service landing pages built to capture organic demand across commercial keywords.',
-    chip: 'bg-orange-soft',
-    IconComponent: Search,
-    subIcon: MapPin,
-    iconColor: 'text-orange-deep',
-  },
-  {
-    title: 'Creative Content',
-    body: 'Performance ad creatives, short-form video editing, product graphics, and social content tailored for feed conversion.',
-    chip: 'bg-sky',
-    IconComponent: Video,
-    subIcon: ImageIcon,
-    iconColor: 'text-navy',
-  },
-  {
-    title: 'AI Marketing Systems',
-    body: 'Automated lead qualification workflows, AI content pipelines, and automated customer routing systems for operational scale.',
-    chip: 'bg-orange-soft',
-    IconComponent: Bot,
-    subIcon: Workflow,
-    iconColor: 'text-orange-deep',
-  },
-  {
-    title: 'Campaign Strategy',
-    body: 'Commercial positioning, marketing budget allocation, multi-channel rollout plans, and data-backed scale advisory.',
-    chip: 'bg-sky',
-    IconComponent: BarChart3,
-    subIcon: TrendingUp,
-    iconColor: 'text-navy',
-  },
-];
 ---
 
-<section
-  id="services"
-  class="border-y-4 border-ink bg-linear-160 from-orange-bright from-0% via-orange via-55% to-orange-deep text-ink relative overflow-hidden"
->
-  <!-- Decorative Kepler Corner Elements -->
-  <span class="absolute top-10 left-[4%] text-[32px] text-cloud pointer-events-none" aria-hidden="true">✦</span>
-  <span class="absolute bottom-12 right-[5%] size-5 rotate-[22deg] rounded-md bg-cloud pointer-events-none" aria-hidden="true"></span>
+<section id="services" class="relative py-24 bg-[#090d16] text-white border-b border-white/10 overflow-hidden">
+  <!-- Subtle Background Mesh Glow -->
+  <div class="pointer-events-none absolute top-1/3 left-0 size-[500px] rounded-full bg-blue-600/10 blur-[130px]"></div>
 
-  <div class="mx-auto max-w-[1200px] px-6 sm:px-8 pt-18 pb-21">
-    <SectionHeader
-      eyebrow="Capabilities"
-      title="End-to-End Growth System"
-      sub="No fragmented freelancers or blame-shifting. We manage media, web architecture, search, and creative as one system."
-      on="orange"
-    />
-    <div class="grid gap-6 md:grid-cols-3">
-      {
-        services.map((s, i) => (
-          <div
-            class:list={[
-              'reveal-on-scroll rounded-card border-2 border-ink bg-cloud p-7 shadow-pop transition-[transform,box-shadow] duration-180 hover:translate-y-[-4px] hover:rotate-0 hover:shadow-pop-lg flex flex-col justify-between',
-              i % 2 === 0 ? '-rotate-1' : 'rotate-1',
-            ]}
-            data-reveal-delay={i * 80}
-          >
-            <div>
-              <div class="flex items-center justify-between mb-5">
-                <span
-                  class:list={[
-                    'flex size-14 items-center justify-center rounded-chip border-2 border-ink shadow-pop-sm',
-                    s.chip,
-                  ]}
-                >
-                  <s.IconComponent class:list={['size-7', s.iconColor]} />
-                </span>
-                <span class="flex size-8 items-center justify-center rounded-full bg-paper border border-line">
-                  <s.subIcon class="size-4 text-slate-500" />
-                </span>
+  <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8">
+    
+    <!-- Section Header -->
+    <div class="max-w-2xl mb-16">
+      <span class="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-blue-400 mb-3">
+        <Zap class="size-3.5 text-blue-400" />
+        <span>CAPABILITIES & GROWTH SYSTEMS</span>
+      </span>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+        End-to-End Growth Architecture
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-slate-300 font-body leading-relaxed">
+        We replace fragmented freelancer workflows with a unified performance system spanning media buying, web architecture, search engine engineering, and AI automation.
+      </p>
+    </div>
+
+    <!-- VARIED EDITORIAL LAYOUT -->
+    <div class="space-y-8">
+      
+      <!-- 1. FEATURED HERO SERVICE PANEL (Paid Advertising & Lead Generation) -->
+      <div class="reveal-on-scroll rounded-2xl border border-white/15 bg-slate-900/80 p-8 lg:p-10 shadow-2xl backdrop-blur-xl hover:border-blue-500/40 transition-all duration-300 group">
+        <div class="grid gap-8 lg:grid-cols-12 items-center">
+          
+          <div class="lg:col-span-7 space-y-6">
+            <div class="flex items-center gap-3">
+              <div class="size-12 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400">
+                <Megaphone class="size-6" />
               </div>
-              <h3 class="font-display text-[21px] font-bold text-navy leading-snug">{s.title}</h3>
-              <p class="mt-3 text-[15px] sm:text-[16px] leading-relaxed text-slate-700 font-body">{s.body}</p>
+              <span class="text-xs font-mono font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
+                FLAGSHIP CAPABILITY
+              </span>
             </div>
 
-            <div class="mt-6 pt-3 border-t border-line flex items-center justify-between text-xs font-mono text-slate-500">
-              <span>Kepler Capability</span>
-              <span class="text-orange font-bold">✦ Active</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-white group-hover:text-blue-400 transition-colors">
+              Paid Advertising and Lead Generation
+            </h3>
+
+            <p class="text-base sm:text-lg text-slate-300 font-body leading-relaxed">
+              Precision Meta Ads and Google Ads campaigns engineered for immediate customer acquisition, qualified lead volume, and high commercial ROAS without budget waste.
+            </p>
+
+            <div class="grid grid-cols-2 gap-3 pt-2">
+              <div class="flex items-center gap-2 text-sm text-slate-200">
+                <CheckCircle2 class="size-4 text-blue-400 shrink-0" />
+                <span>Meta Ads & Conversions API</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-slate-200">
+                <CheckCircle2 class="size-4 text-blue-400 shrink-0" />
+                <span>Google Search & Performance Max</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-slate-200">
+                <CheckCircle2 class="size-4 text-blue-400 shrink-0" />
+                <span>High-Intent Lead Funnels</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-slate-200">
+                <CheckCircle2 class="size-4 text-blue-400 shrink-0" />
+                <span>WhatsApp Customer Routing</span>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <a
+                href={`${site.basePath}/#contact`}
+                class="inline-flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                <span>Explore Paid Media Strategy</span>
+                <ArrowUpRight class="size-4" />
+              </a>
             </div>
           </div>
-        ))
-      }
+
+          <div class="lg:col-span-5">
+            <div class="relative overflow-hidden rounded-xl border border-white/10 bg-slate-950 p-2 shadow-lg">
+              <img
+                src={`${site.basePath}/images/meta-ads.webp`}
+                alt="Paid Advertising Strategy"
+                width="500"
+                height="320"
+                loading="lazy"
+                class="w-full h-auto rounded-lg object-cover group-hover:scale-103 transition-transform duration-300"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2. SPLIT EDITORIAL PANELS (Web Design & SEO) -->
+      <div class="grid gap-8 md:grid-cols-2">
+        
+        <!-- Panel A: Website Design & E-Commerce -->
+        <div class="reveal-on-scroll rounded-2xl border border-white/15 bg-slate-900/80 p-8 shadow-xl backdrop-blur-xl hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between group" data-reveal-delay="100">
+          <div class="space-y-5">
+            <div class="flex items-center justify-between">
+              <div class="size-11 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+                <ShoppingBag class="size-5.5" />
+              </div>
+              <span class="text-xs font-mono text-slate-400">02 / WEB & STORE</span>
+            </div>
+
+            <h3 class="font-display text-xl sm:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
+              Website Design and E-Commerce
+            </h3>
+
+            <p class="text-sm sm:text-base text-slate-300 font-body leading-relaxed">
+              Custom high-converting websites, WooCommerce platforms, and Shopify stores built for lightning speed, mobile checkout friction reduction, and long-term search indexation.
+            </p>
+
+            <div class="relative overflow-hidden rounded-lg border border-white/10 bg-slate-950 p-1.5 mt-4">
+              <img
+                src={`${site.basePath}/images/hero-business.webp`}
+                alt="Website & E-Commerce Architecture"
+                width="500"
+                height="280"
+                loading="lazy"
+                class="w-full h-44 object-cover rounded group-hover:scale-103 transition-transform duration-300"
+              />
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+            <span>Shopify & WooCommerce</span>
+            <span class="text-blue-400 font-bold">Fast Speed</span>
+          </div>
+        </div>
+
+        <!-- Panel B: SEO and Local Search -->
+        <div class="reveal-on-scroll rounded-2xl border border-white/15 bg-slate-900/80 p-8 shadow-xl backdrop-blur-xl hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between group" data-reveal-delay="200">
+          <div class="space-y-5">
+            <div class="flex items-center justify-between">
+              <div class="size-11 rounded-xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <Search class="size-5.5" />
+              </div>
+              <span class="text-xs font-mono text-slate-400">03 / SEARCH & ORGANIC</span>
+            </div>
+
+            <h3 class="font-display text-xl sm:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
+              SEO and Local Search
+            </h3>
+
+            <p class="text-sm sm:text-base text-slate-300 font-body leading-relaxed">
+              Technical search engine optimization, structured schema markup, and local service landing pages built to capture organic demand across targeted commercial keywords.
+            </p>
+
+            <div class="relative overflow-hidden rounded-lg border border-white/10 bg-slate-950 p-1.5 mt-4">
+              <img
+                src={`${site.basePath}/images/project-seo.webp`}
+                alt="SEO Strategy & Keyword Ranking"
+                width="500"
+                height="280"
+                loading="lazy"
+                class="w-full h-44 object-cover rounded group-hover:scale-103 transition-transform duration-300"
+              />
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+            <span>On-Page & Technical</span>
+            <span class="text-emerald-400 font-bold">Local Intent</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. NUMBERED CAPABILITY ROWS (Creative Content, AI Systems, Strategy) -->
+      <div class="grid gap-6 md:grid-cols-3">
+        
+        <!-- Service 04: Creative Content -->
+        <div class="reveal-on-scroll rounded-xl border border-white/10 bg-slate-900/60 p-6 backdrop-blur-md hover:border-white/20 transition-all group" data-reveal-delay="100">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono font-bold text-blue-400">04</span>
+            <Video class="size-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
+          </div>
+          <h4 class="font-display text-lg font-bold text-white mb-2">Creative Content</h4>
+          <p class="text-sm text-slate-300 font-body leading-relaxed">
+            Performance ad creatives, short-form video editing, product graphics, and social content tailored for feed conversion.
+          </p>
+        </div>
+
+        <!-- Service 05: AI Marketing Systems -->
+        <div class="reveal-on-scroll rounded-xl border border-white/10 bg-slate-900/60 p-6 backdrop-blur-md hover:border-white/20 transition-all group" data-reveal-delay="200">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono font-bold text-blue-400">05</span>
+            <Bot class="size-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
+          </div>
+          <h4 class="font-display text-lg font-bold text-white mb-2">AI Marketing Systems</h4>
+          <p class="text-sm text-slate-300 font-body leading-relaxed">
+            Practical use of AI for lead qualification workflows, avatar video creation, content pipelines, and automated customer routing.
+          </p>
+        </div>
+
+        <!-- Service 06: Campaign Strategy -->
+        <div class="reveal-on-scroll rounded-xl border border-white/10 bg-slate-900/60 p-6 backdrop-blur-md hover:border-white/20 transition-all group" data-reveal-delay="300">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono font-bold text-blue-400">06</span>
+            <BarChart3 class="size-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
+          </div>
+          <h4 class="font-display text-lg font-bold text-white mb-2">Campaign Strategy</h4>
+          <p class="text-sm text-slate-300 font-body leading-relaxed">
+            Commercial positioning, marketing budget allocation, multi-channel rollout plans, and data-backed scale advisory.
+          </p>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </section>

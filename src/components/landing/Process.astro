@@ -1,0 +1,83 @@
+---
+import { processData } from '../../data/process';
+import { Workflow } from '@lucide/astro';
+---
+
+<section id="process" class="py-24 bg-[#f8fafc] border-b border-slate-200/80 text-slate-900 overflow-hidden">
+  <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-blue-600 mb-2">
+        <Workflow class="size-3.5 text-blue-600" />
+        <span>EXECUTION FRAMEWORK</span>
+      </span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
+        A Continuous Growth Journey
+      </h2>
+      <p class="mt-3 text-sm sm:text-base text-slate-600 font-body">
+        Six disciplined phases designed to eliminate guesswork and turn strategy into measurable business outcomes.
+      </p>
+    </div>
+
+    <!-- Desktop: Horizontal Connected Sequence (lg screen grid) -->
+    <div class="hidden lg:block relative">
+      <!-- Connecting Line behind steps -->
+      <div class="absolute top-1/2 left-8 right-8 h-0.5 bg-slate-200 -translate-y-6 z-0"></div>
+
+      <div class="grid grid-cols-6 gap-4 relative z-10">
+        {
+          processData.map((p, idx) => (
+            <div
+              class="reveal-on-scroll rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm hover:shadow-md hover:border-blue-500/50 transition-all duration-200 flex flex-col justify-between group"
+              data-reveal-delay={idx * 70}
+            >
+              <div>
+                <div class="size-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 font-mono font-bold text-sm flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  {p.step}
+                </div>
+                <h3 class="font-display font-bold text-lg text-slate-900 group-hover:text-blue-600 transition-colors mb-2">
+                  {p.title}
+                </h3>
+                <p class="text-xs text-slate-600 font-body leading-relaxed">
+                  {p.description}
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-400">
+                Phase {p.step}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Mobile / Tablet: Vertical Journey Timeline -->
+    <div class="lg:hidden relative pl-6 border-l-2 border-blue-500/30 space-y-8">
+      {
+        processData.map((p, idx) => (
+          <div
+            class="reveal-on-scroll relative rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm group"
+            data-reveal-delay={idx * 60}
+          >
+            <!-- Timeline Node Circle -->
+            <div class="absolute -left-[33px] top-6 size-4 rounded-full border-2 border-blue-600 bg-white"></div>
+
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-xs font-mono font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
+                STEP {p.step}
+              </span>
+              <h3 class="font-display font-bold text-xl text-slate-900">
+                {p.title}
+              </h3>
+            </div>
+            <p class="text-sm text-slate-600 font-body leading-relaxed">
+              {p.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+  </div>
+</section>

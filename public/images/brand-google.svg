@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="100" viewBox="0 0 320 100" role="img" aria-label="Google">
+  <rect width="320" height="100" rx="18" fill="#fff7f7"/>
+  <circle cx="52" cy="50" r="22" fill="#4285F4" opacity="0.16"/>
+  <circle cx="52" cy="50" r="10" fill="#4285F4"/>
+  <text x="90" y="58" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#230506">Google</text>
+</svg>

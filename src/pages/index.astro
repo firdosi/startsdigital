@@ -3,10 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/landing/Hero.astro';
 import BrandMarquee from '../components/landing/BrandMarquee.astro';
 import Features from '../components/landing/Features.astro';
-import PlatformGrid from '../components/landing/PlatformGrid.astro';
 import Showcase from '../components/landing/Showcase.astro';
 import Results from '../components/landing/Results.astro';
+import PlatformGrid from '../components/landing/PlatformGrid.astro';
 import WhyUs from '../components/landing/WhyUs.astro';
+import Process from '../components/landing/Process.astro';
 import Faq from '../components/landing/Faq.astro';
 import FinalCta from '../components/landing/FinalCta.astro';
 import MotionController from '../components/common/MotionController.astro';
@@ -14,36 +15,39 @@ import { site } from '../site.config';
 ---
 
 <BaseLayout 
-  title={`${site.name} — Digital Strategy, Paid Advertising & Growth`}
+  title={`${site.name} — Digital Marketing, Paid Ads, Websites & AI Systems`}
   description={site.description}
 >
-  {/* 1. Hero with Kepler Orbit Graphic & 3D Elements */}
+  {/* 1. Hero with Layered Visual Composition & Verified Metrics */}
   <Hero />
 
-  {/* 2. Clients, Brands & Business Partners (2 Opposite Scrolling Marquees) */}
+  {/* 2. Clients, Brands & Business Partners */}
   <BrandMarquee />
 
-  {/* 3. Capabilities (Kepler Features Adaptation with Lucide Icons) */}
+  {/* 3. Capabilities / Services (Varied Editorial Layout) */}
   <Features />
 
-  {/* 4. Platforms & Tools We Work With (12 Official Platform Logos) */}
-  <PlatformGrid />
-
-  {/* 5. Featured Work (Kepler Showcase Visual Compositions) */}
+  {/* 4. Featured Work (3 Distinct Large Visual Compositions) */}
   <Showcase />
 
-  {/* 6. Verified Commercial Results (Animated Counters) */}
+  {/* 5. Verified Commercial Results (Oversized Typography & Counters) */}
   <Results />
 
-  {/* 7. Why Starts Digital (Kepler Card Grid) */}
+  {/* 6. Platforms & Tools We Work With (12 Official Logotypes) */}
+  <PlatformGrid />
+
+  {/* 7. Why Starts Digital (Editorial Credibility & Operator Perspective) */}
   <WhyUs />
 
-  {/* 8. Frequently Asked Questions (Kepler Accordion) */}
+  {/* 8. Working Process (Horizontal Desktop / Vertical Mobile Journey) */}
+  <Process />
+
+  {/* 9. Frequently Asked Questions (Clean Accordion) */}
   <Faq />
 
-  {/* 9. Final Call to Action (Kepler Banner) */}
+  {/* 10. Final Call to Action (Bold Conversion Section) */}
   <FinalCta />
 
-  {/* 10. Motion Controller (IntersectionObserver Scroll Reveals & Counters) */}
+  {/* Motion Controller System */}
   <MotionController />
 </BaseLayout>

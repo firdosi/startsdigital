@@ -1,184 +1,160 @@
 ---
 import { site } from '../../site.config';
 import { 
-  Search, 
-  BarChart3, 
+  TrendingUp, 
   ShoppingBag, 
-  Megaphone, 
-  Code2, 
-  Sparkles,
-  TrendingUp
+  Award, 
+  CheckCircle2, 
+  ArrowRight,
+  Sparkles
 } from '@lucide/astro';
 ---
 
-<section id="hero" class="bg-linear-160 from-navy via-navy to-navy-deep text-cloud overflow-hidden relative border-b-4 border-ink">
-  <header
-    id="top"
-    class="relative mx-auto grid max-w-[1200px] items-center gap-12 px-6 sm:px-8 pt-16 pb-14 lg:grid-cols-[1.05fr_.95fr]"
-  >
-    <!-- Ambient Color Glows -->
-    <span
-      class="pointer-events-none absolute -top-[90px] -right-[70px] z-0 size-[660px] bg-radial from-orange/50 via-orange/15 to-transparent to-65%"
-      aria-hidden="true"
-    ></span>
-    <span
-      class="pointer-events-none absolute -bottom-40 -left-[100px] z-0 size-[560px] bg-radial from-[rgb(96_165_250/0.4)] to-transparent to-64%"
-      aria-hidden="true"
-    ></span>
+<section id="hero" class="relative overflow-hidden bg-[#090d16] text-white py-16 sm:py-24 border-b border-white/10">
+  <!-- Subtle Mesh Grid & Radial Glow Background -->
+  <div class="pointer-events-none absolute inset-0 bg-grid-pattern opacity-40"></div>
+  <div class="pointer-events-none absolute -top-40 right-0 size-[600px] rounded-full bg-blue-600/15 blur-[120px]"></div>
+  <div class="pointer-events-none absolute bottom-0 left-0 size-[500px] rounded-full bg-orange-500/10 blur-[100px]"></div>
 
-    <!-- Drifting Kepler Shapes (Task 1 & 10) -->
-    <span
-      class="absolute top-14 left-[46%] z-1 size-[24px] rounded-md bg-orange [--r:18deg] animate-drift hidden sm:inline-block shadow-pop-sm"
-      aria-hidden="true"
-    ></span>
-    <span
-      class="absolute top-52 left-2 z-1 size-4 rounded-full bg-cloud [--r:0deg] animate-drift-alt hidden sm:inline-block shadow-sm"
-      aria-hidden="true"
-    ></span>
-    <span
-      class="absolute bottom-24 right-8 z-1 size-5 rotate-45 rounded-[4px] bg-orange-bright [--r:45deg] animate-drift hidden lg:inline-block"
-      aria-hidden="true"
-    ></span>
-
-    <div class="relative z-2">
-      <!-- Eyebrow Pill Badge -->
-      <div class="reveal-on-scroll">
-        <span
-          class="inline-flex items-center gap-2 rounded-full bg-orange px-4 py-2 text-xs sm:text-[13px] font-bold font-display tracking-[0.03em] text-cloud shadow-pop-sm"
-        >
-          <Sparkles class="size-4 text-cloud animate-pulse" />
-          DIGITAL MARKETING, CREATIVE & TECHNOLOGY
-        </span>
-      </div>
-
-      <!-- Headline -->
-      <h1
-        class="mt-6 font-display text-4xl sm:text-5xl lg:text-[62px] font-bold leading-[1.04] tracking-[-0.03em] text-cloud reveal-on-scroll"
-        data-reveal-delay="100"
-      >
-        Digital marketing built to scale <span class="relative inline-block whitespace-nowrap text-orange-bright"
-          >real businesses<svg
-            viewBox="0 0 220 20"
-            width="100%"
-            height="16"
-            class="absolute -bottom-2 left-0"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-            ><path
-              d="M4 13 C60 4 160 4 216 11"
-              stroke="var(--color-orange)"
-              stroke-width="5"
-              fill="none"
-              stroke-linecap="round"></path></svg
-          ></span
-        >.
-      </h1>
-
-      <!-- Supporting Copy -->
-      <p 
-        class="mt-6 max-w-[490px] text-lg sm:text-[19px] leading-[1.6] text-sky font-body reveal-on-scroll"
-        data-reveal-delay="200"
-      >
-        Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
-      </p>
-
-      <!-- Action Buttons -->
-      <div class="mt-8 flex flex-wrap gap-4 reveal-on-scroll" data-reveal-delay="300">
-        <a
-          href={`${site.basePath}/#contact`}
-          class="rounded-full bg-orange px-7 py-4 font-bold text-cloud shadow-pop-white transition-[transform,box-shadow] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0_var(--color-cloud)] flex items-center gap-2"
-        >
-          <span>Discuss Your Project</span>
-          <span class="text-cloud">→</span>
-        </a>
-        <a
-          href={`${site.basePath}/#work`}
-          class="rounded-full border-2 border-cloud bg-cloud px-7 py-4 font-bold text-navy transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-pop-sm"
-        >
-          View Our Work
-        </a>
-      </div>
-
-      <!-- Quick Metric Badges -->
-      <div class="mt-9 flex flex-wrap items-center gap-3 reveal-on-scroll" data-reveal-delay="400">
-        <div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold text-cloud backdrop-blur-md">
-          <TrendingUp class="size-4 text-orange-glow" />
-          <span>PKR 30M+ Revenue Supported</span>
+  <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8">
+    <div class="grid items-center gap-12 lg:grid-cols-12">
+      
+      <!-- Left Column: Copy & CTAs & Proof Points -->
+      <div class="lg:col-span-7 space-y-8">
+        
+        <!-- Eyebrow Badge -->
+        <div class="reveal-on-scroll">
+          <span class="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-400 backdrop-blur-md">
+            <Sparkles class="size-3.5 text-blue-400" />
+            <span>GROWTH AGENCY & PERFORMANCE SYSTEMS</span>
+          </span>
         </div>
-        <div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold text-cloud backdrop-blur-md">
-          <ShoppingBag class="size-4 text-sky" />
-          <span>29,000+ Orders Processed</span>
+
+        <!-- Main Headline -->
+        <h1 class="reveal-on-scroll font-display text-4xl sm:text-5xl lg:text-[60px] font-bold leading-[1.06] tracking-tight text-white" data-reveal-delay="100">
+          Digital marketing built to scale <span class="bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent">real businesses</span>.
+        </h1>
+
+        <!-- Supporting Text -->
+        <p class="reveal-on-scroll text-lg sm:text-xl leading-relaxed text-slate-300 font-body max-w-2xl" data-reveal-delay="200">
+          Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
+        </p>
+
+        <!-- Primary & Secondary CTA Buttons -->
+        <div class="reveal-on-scroll flex flex-wrap gap-4 pt-2" data-reveal-delay="300">
+          <a
+            href={`${site.basePath}/#contact`}
+            class="group inline-flex items-center gap-2 rounded-full bg-blue-600 px-7 py-4 font-display text-base font-bold text-white shadow-xl shadow-blue-600/25 hover:bg-blue-500 hover:shadow-blue-500/35 hover:-translate-y-0.5 transition-all"
+          >
+            <span>Discuss Your Project</span>
+            <ArrowRight class="size-4 text-white group-hover:translate-x-1 transition-transform" />
+          </a>
+          <a
+            href={`${site.basePath}/#work`}
+            class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-slate-900/60 px-7 py-4 font-display text-base font-bold text-slate-200 hover:border-white/30 hover:bg-slate-800/80 hover:text-white transition-all backdrop-blur-sm"
+          >
+            View Our Work
+          </a>
+        </div>
+
+        <!-- Verified Proof Points Grid (4 Verified Proof Items) -->
+        <div class="reveal-on-scroll pt-6 border-t border-white/10" data-reveal-delay="400">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            
+            <div class="rounded-xl border border-white/10 bg-slate-900/40 p-3.5 backdrop-blur-sm">
+              <div class="flex items-center gap-1.5 text-blue-400 font-display text-lg sm:text-xl font-bold">
+                <TrendingUp class="size-4 shrink-0" />
+                <span>PKR 30M+</span>
+              </div>
+              <p class="text-xs text-slate-400 font-medium mt-1">Revenue Supported</p>
+            </div>
+
+            <div class="rounded-xl border border-white/10 bg-slate-900/40 p-3.5 backdrop-blur-sm">
+              <div class="flex items-center gap-1.5 text-blue-400 font-display text-lg sm:text-xl font-bold">
+                <ShoppingBag class="size-4 shrink-0" />
+                <span>29,000+</span>
+              </div>
+              <p class="text-xs text-slate-400 font-medium mt-1">Product Sales</p>
+            </div>
+
+            <div class="rounded-xl border border-white/10 bg-slate-900/40 p-3.5 backdrop-blur-sm">
+              <div class="flex items-center gap-1.5 text-blue-400 font-display text-lg sm:text-xl font-bold">
+                <Award class="size-4 shrink-0" />
+                <span>PKR 4.2M+</span>
+              </div>
+              <p class="text-xs text-slate-400 font-medium mt-1">Qurbani Sales</p>
+            </div>
+
+            <div class="rounded-xl border border-white/10 bg-slate-900/40 p-3.5 backdrop-blur-sm">
+              <div class="flex items-center gap-1.5 text-blue-400 font-display text-lg sm:text-xl font-bold">
+                <CheckCircle2 class="size-4 shrink-0" />
+                <span>150+</span>
+              </div>
+              <p class="text-xs text-slate-400 font-medium mt-1">Animals Sold</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Premium Layered Visual Composition -->
+      <div class="lg:col-span-5 relative reveal-on-scroll" data-reveal-delay="200">
+        <div class="relative mx-auto max-w-[480px] lg:max-w-none">
+          
+          <!-- Base Card Window (Realistic Browser Frame) -->
+          <div class="overflow-hidden rounded-2xl border border-white/15 bg-slate-900/90 shadow-2xl shadow-blue-950/50 backdrop-blur-xl">
+            <!-- Browser Header Bar -->
+            <div class="flex items-center justify-between border-b border-white/10 bg-slate-950/80 px-4 py-3">
+              <div class="flex items-center gap-1.5">
+                <span class="size-3 rounded-full bg-red-500/80"></span>
+                <span class="size-3 rounded-full bg-yellow-500/80"></span>
+                <span class="size-3 rounded-full bg-green-500/80"></span>
+              </div>
+              <div class="rounded-md border border-white/10 bg-slate-900/80 px-3 py-1 text-[11px] font-mono text-slate-400">
+                startsdigital.com/work/black-gold-fertilizer
+              </div>
+              <div class="text-xs text-slate-500 font-mono">LIVE</div>
+            </div>
+
+            <!-- Browser Content Frame -->
+            <div class="relative p-2 bg-slate-950/60">
+              <img
+                src={`${site.basePath}/images/hero-business.webp`}
+                alt="Starts Digital Campaign Showcase"
+                width="600"
+                height="400"
+                loading="eager"
+                class="w-full h-auto rounded-lg object-cover border border-white/10 shadow-md"
+              />
+            </div>
+          </div>
+
+          <!-- Overlaid Floating Glass Card 1 (Bottom Left) -->
+          <div class="absolute -bottom-6 -left-6 z-20 hidden sm:flex items-center gap-3 rounded-xl border border-white/15 bg-slate-900/90 p-4 shadow-xl shadow-black/50 backdrop-blur-xl animate-float">
+            <div class="size-10 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400">
+              <TrendingUp class="size-5" />
+            </div>
+            <div>
+              <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">E-Commerce Scale</div>
+              <div class="text-sm font-bold text-white font-display">PKR 30M+ Revenue Managed</div>
+            </div>
+          </div>
+
+          <!-- Overlaid Floating Glass Card 2 (Top Right) -->
+          <div class="absolute -top-6 -right-6 z-20 hidden sm:flex items-center gap-3 rounded-xl border border-white/15 bg-slate-900/90 p-4 shadow-xl shadow-black/50 backdrop-blur-xl">
+            <div class="size-10 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+              <CheckCircle2 class="size-5" />
+            </div>
+            <div>
+              <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">Verified Campaigns</div>
+              <div class="text-sm font-bold text-white font-display">29,000+ Orders Processed</div>
+            </div>
+          </div>
+
         </div>
       </div>
+
     </div>
-
-    <!-- RICHER KEPLER ORBIT GRAPHIC WITH 3D CSS ELEMENTS & ORBITING ICONS (Task 1 & 7) -->
-    <div class="relative z-2 flex aspect-square items-center justify-center max-w-[440px] mx-auto lg:max-w-none reveal-on-scroll" data-reveal-delay="200">
-      <!-- Outer Orbit Ring (Rotates clockwise) -->
-      <div
-        class="absolute h-[92%] w-[92%] rounded-full border-2 border-dashed border-white/35 animate-orbit-spin flex items-center justify-center"
-      >
-        <!-- Orbiting Icon 1: Megaphone -->
-        <span
-          class="absolute -top-[16px] left-1/2 -ml-[16px] size-8 rounded-full bg-orange text-cloud shadow-pop-sm flex items-center justify-center p-1.5"
-          title="Paid Advertising"
-        >
-          <Megaphone class="size-4" />
-        </span>
-        <!-- Orbiting Icon 2: Search -->
-        <span
-          class="absolute -bottom-[16px] left-1/2 -ml-[16px] size-8 rounded-full bg-sky text-navy shadow-pop-sm flex items-center justify-center p-1.5"
-          title="SEO & Search"
-        >
-          <Search class="size-4" />
-        </span>
-      </div>
-
-      <!-- Inner Orbit Ring (Rotates counter-clockwise) -->
-      <div
-        class="absolute h-[68%] w-[68%] rounded-full border-2 border-white/30 animate-orbit-spin-rev flex items-center justify-center"
-      >
-        <!-- Orbiting Icon 3: Code -->
-        <span
-          class="absolute -left-[14px] top-1/2 -mt-[14px] size-7 rounded-full bg-cloud text-ink shadow-sm flex items-center justify-center p-1.5"
-          title="Web Architecture"
-        >
-          <Code2 class="size-3.5" />
-        </span>
-        <!-- Orbiting Icon 4: Analytics Chart -->
-        <span
-          class="absolute -right-[14px] top-1/2 -mt-[14px] size-7 rounded-full bg-orange-bright text-cloud shadow-sm flex items-center justify-center p-1.5"
-          title="Analytics"
-        >
-          <BarChart3 class="size-3.5" />
-        </span>
-      </div>
-
-      <!-- Center 3D Orbit Core (Chunky Kepler Icon Frame) -->
-      <div
-        class="relative flex h-[44%] w-[44%] items-center justify-center rounded-[28px] bg-orange shadow-pop-lg border-2 border-ink group"
-      >
-        <span
-          class="absolute h-6 w-14 -rotate-[28deg] rounded-full border-[3px] border-cloud"
-        ></span>
-        <span class="size-5 rounded-full bg-cloud shadow-md"></span>
-        <span class="absolute top-2 right-2 text-cloud/40 text-xs">✦</span>
-      </div>
-
-      <!-- Floating 3D CSS Spheres & Torus Graphics (Task 7) -->
-      <div 
-        class="absolute top-[6%] left-[8%] size-10 rounded-full bg-gradient-to-tr from-orange-deep via-orange to-orange-glow shadow-[inset_-3px_-3px_8px_rgba(0,0,0,0.4),0_6px_16px_rgba(249,115,22,0.4)] animate-drift"
-        aria-hidden="true"
-      ></div>
-
-      <div 
-        class="absolute bottom-[10%] right-[10%] size-8 rounded-full border-4 border-sky bg-navy-deep/60 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)] animate-drift-alt"
-        aria-hidden="true"
-      ></div>
-
-      <!-- Decorative Orbit Stars -->
-      <span class="absolute top-[8%] right-[8%] text-[30px] text-orange pointer-events-none">✦</span>
-      <span class="absolute bottom-[12%] left-[4%] text-2xl text-cloud pointer-events-none">✦</span>
-    </div>
-  </header>
+  </div>
 </section>

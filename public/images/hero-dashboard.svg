@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 650" role="img" aria-label="Digital marketing dashboard illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#121B45"/><stop offset="1" stop-color="#070A1A"/></linearGradient>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00E5FF"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FF4ECD"/><stop offset="1" stop-color="#FFB703"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="25" stdDeviation="25" flood-color="#000" flood-opacity=".45"/></filter>
+  </defs>
+  <rect x="18" y="28" width="884" height="594" rx="42" fill="url(#bg)" stroke="#28356F"/>
+  <circle cx="160" cy="115" r="80" fill="#00E5FF" opacity=".13"/>
+  <circle cx="780" cy="520" r="115" fill="#FF4ECD" opacity=".12"/>
+  <g filter="url(#shadow)">
+    <rect x="90" y="90" width="540" height="360" rx="30" fill="#0E1432" stroke="#33407F"/>
+    <circle cx="128" cy="126" r="7" fill="#FF4ECD"/><circle cx="154" cy="126" r="7" fill="#FFB703"/><circle cx="180" cy="126" r="7" fill="#00E5FF"/>
+    <rect x="120" y="165" width="120" height="22" rx="11" fill="#27305E"/>
+    <rect x="120" y="205" width="250" height="22" rx="11" fill="#1A234F"/>
+    <rect x="120" y="245" width="200" height="22" rx="11" fill="#1A234F"/>
+    <polyline points="120,382 190,335 270,354 350,276 430,300 575,210" fill="none" stroke="url(#g1)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="575" cy="210" r="16" fill="#00E5FF"/>
+    <rect x="425" y="164" width="160" height="74" rx="18" fill="#151D43" stroke="#344080"/>
+    <text x="449" y="197" fill="#fff" font-size="26" font-weight="900" font-family="Arial">4.8x</text>
+    <text x="449" y="220" fill="#9EA8C7" font-size="14" font-family="Arial">ROAS Growth</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="595" y="150" width="190" height="365" rx="36" fill="#0B102B" stroke="#3F4C96"/>
+    <rect x="626" y="186" width="128" height="220" rx="22" fill="url(#g2)" opacity=".9"/>
+    <circle cx="690" cy="298" r="42" fill="#fff" opacity=".9"/>
+    <path d="M680 276l34 22-34 22z" fill="#7C3AED"/>
+    <rect x="626" y="428" width="128" height="14" rx="7" fill="#26305F"/>
+    <rect x="626" y="456" width="92" height="14" rx="7" fill="#26305F"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="150" y="470" width="240" height="80" rx="22" fill="#101A42" stroke="#2B3977"/>
+    <text x="178" y="503" fill="#fff" font-family="Arial" font-size="20" font-weight="800">Meta + TikTok</text>
+    <text x="178" y="530" fill="#9EA8C7" font-family="Arial" font-size="15">Creative testing active</text>
+    <circle cx="338" cy="510" r="23" fill="url(#g1)"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="450" y="495" width="260" height="86" rx="22" fill="#101A42" stroke="#2B3977"/>
+    <text x="482" y="530" fill="#fff" font-family="Arial" font-size="20" font-weight="800">SEO Score 94%</text>
+    <rect x="482" y="550" width="170" height="12" rx="6" fill="#25305F"/>
+    <rect x="482" y="550" width="142" height="12" rx="6" fill="url(#g1)"/>
+  </g>
+</svg>

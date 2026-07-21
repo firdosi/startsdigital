@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" role="img" aria-label="Contact illustration">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00E5FF"/><stop offset=".55" stop-color="#7C3AED"/><stop offset="1" stop-color="#FF4ECD"/></linearGradient></defs>
+  <rect width="560" height="420" rx="38" fill="#0B102B"/>
+  <rect x="64" y="70" width="432" height="280" rx="30" fill="#111A3F" stroke="#2B3977"/>
+  <circle cx="128" cy="132" r="34" fill="url(#g)"/>
+  <rect x="182" y="105" width="220" height="18" rx="9" fill="#fff" opacity=".9"/>
+  <rect x="182" y="138" width="168" height="15" rx="8" fill="#9EA8C7" opacity=".8"/>
+  <rect x="102" y="206" width="356" height="20" rx="10" fill="#25305F"/>
+  <rect x="102" y="250" width="298" height="20" rx="10" fill="#25305F"/>
+  <rect x="102" y="294" width="170" height="34" rx="17" fill="url(#g)"/>
+  <path d="M415 260c40 6 70 37 74 78-46-3-78-31-86-75z" fill="#00E5FF" opacity=".16"/>
+  <path d="M431 279c22 5 38 21 43 43-26-3-42-17-49-41z" fill="#FF4ECD" opacity=".32"/>
+</svg>

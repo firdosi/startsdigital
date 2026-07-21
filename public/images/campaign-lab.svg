@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-label="Campaign lab graphic">
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00E5FF"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+    <linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FF4ECD"/><stop offset="1" stop-color="#FFB703"/></linearGradient>
+  </defs>
+  <rect width="720" height="520" rx="46" fill="#0B102B"/>
+  <rect x="54" y="58" width="612" height="404" rx="32" fill="#111A3F" stroke="#30407F"/>
+  <rect x="88" y="95" width="220" height="132" rx="24" fill="#151F4A"/>
+  <rect x="334" y="95" width="298" height="132" rx="24" fill="#151F4A"/>
+  <rect x="88" y="255" width="544" height="168" rx="24" fill="#151F4A"/>
+  <circle cx="132" cy="140" r="20" fill="url(#a)"/>
+  <text x="166" y="134" fill="#fff" font-family="Arial" font-weight="800" font-size="24">Creative Tests</text>
+  <text x="166" y="168" fill="#9EA8C7" font-family="Arial" font-size="18">56 active variations</text>
+  <polyline points="366,180 420,148 470,166 518,122 596,136" fill="none" stroke="url(#b)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="366" y="136" fill="#fff" font-family="Arial" font-weight="800" font-size="32">+78%</text>
+  <text x="366" y="166" fill="#9EA8C7" font-family="Arial" font-size="16">Qualified leads</text>
+  <g fill="url(#a)"><rect x="124" y="350" width="46" height="42" rx="10"/><rect x="194" y="315" width="46" height="77" rx="10"/><rect x="264" y="286" width="46" height="106" rx="10"/><rect x="334" y="330" width="46" height="62" rx="10"/><rect x="404" y="275" width="46" height="117" rx="10"/></g>
+  <rect x="490" y="296" width="104" height="104" rx="24" fill="url(#b)" opacity=".9"/>
+  <path d="M525 325l45 23-45 24z" fill="#fff"/>
+</svg>

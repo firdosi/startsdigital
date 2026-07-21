@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="DigitalPro logo">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#ef0b16"/><stop offset="1" stop-color="#ff675d"/></linearGradient></defs>
+  <rect width="120" height="120" rx="28" fill="#fff2f1"/>
+  <path d="M28 79V42h27c19 0 33 12 33 29 0 6-2 13-6 18h-24c8-2 13-8 13-17 0-10-7-16-18-16H45v23H28Z" fill="#230506"/>
+  <path d="M55 24h38v17H75v49H55V24Z" fill="url(#g)"/>
+  <circle cx="92" cy="29" r="9" fill="#230506"/>
+</svg>
