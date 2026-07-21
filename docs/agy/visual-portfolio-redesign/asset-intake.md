@@ -11,16 +11,25 @@ This document serves as the centralized asset intake and tracking checklist for 
 
 ---
 
+## Public Asset Path Contract
+
+- Client logos: `public/brands/<brand-slug>/logo.svg`
+- Featured work visuals: `public/work/<project-slug>/showcase.webp`
+- Hero visuals: `public/hero/<filename>.webp`
+- Service visuals: `public/services/<filename>.webp`
+- Founder assets: `public/founder/<filename>.webp`
+- Platform assets: `public/platforms/<platform-slug>.svg`
+
+These paths must remain aligned with production-asset-manifest.md.
+
+---
+
 ## Minimum Release Gate Status
 
 To prevent partial text-only layouts or broken image regions on production, the redesigned pages will only go public once the following asset threshold is met:
 *   [ ] **At least 6 approved brand logos** received in transparent format.
-    *   *Clarification*: Plain brand-name text fallbacks do not count toward this 6 approved-logo requirement. Only received, approved, and optimized real logos count.
+    *   *Clarification*: If public usage is approved but logo usage is not approved, the brand may appear only as normal text in a secondary experience listing. It must not appear in the logo wall or be styled to imitate a logo. Only received, approved, and optimized real logos count toward the 6 approved-logo requirement.
     *   *Clarification*: Platform/tool logos do not count toward the 6 client-brand logos.
-    *   *Clarification*: An approved brand without an approved logo may appear as normal text only in secondary experience listings. It must not:
-        *   Appear in the logo wall
-        *   Count toward the six-logo release gate
-        *   Be styled to imitate a missing logo
 *   [ ] **Black Gold Fertilizer**: Approved logo + 1 real desktop screenshot or ad visual.
 *   [ ] **Wajib Livestock**: Approved brand naming + approved logo + 1 real campaign or livestock visual.
 *   [ ] **RK Reno Solutions**: Approved logo + 1 real website screenshot.
@@ -59,23 +68,23 @@ All publication and logo approvals remain pending until the user confirms them. 
 ### 1. Black Gold Fertilizer
 *   **Brand name**: Black Gold Fertilizer
 *   **Asset type**: Client Logo
-*   **Required filename**: `logo.png` / `logo.svg`
+*   **Required filename**: `logo.svg`
 *   **Source owner**: Black Gold Fertilizer
 *   **Source URL**: N/A
 *   **Original dimensions**: Variable
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
-*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Black Gold Fertilizer logo`
 *   **Public usage approved**: [ ] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/brands/black-gold-fertilizer/logo.png`
+*   **Final repository path**: `public/brands/black-gold-fertilizer/logo.svg`
 *   **Notes**: Contrast-adjusted for light neutral tiles. Never stretch or crop brand logos to fill the box.
 
 *   **Brand name**: Black Gold Fertilizer
 *   **Asset type**: E-commerce desktop screenshot
-*   **Required filename**: `desktop-screenshot.webp`
+*   **Required filename**: `showcase.webp`
 *   **Source owner**: Black Gold Fertilizer
 *   **Source URL**: N/A
 *   **Original dimensions**: 1920 x 1080 px
@@ -86,7 +95,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Logo usage approved**: N/A
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/projects/black-gold-fertilizer/desktop-screenshot.webp`
+*   **Final repository path**: `public/work/black-gold-fertilizer/showcase.webp`
 *   **Notes**: Straight flat screenshot frame only.
 
 ---
@@ -96,23 +105,23 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Route status**: Old Qurbani route `/work/qurbani-campaign/` and files remain unchanged pending approval.
 *   **Brand name**: Wajib Livestock
 *   **Asset type**: Client Logo
-*   **Required filename**: `logo.png` / `logo.svg`
+*   **Required filename**: `logo.svg`
 *   **Source owner**: Wajib Livestock
 *   **Source URL**: N/A
 *   **Original dimensions**: Variable
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
-*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Wajib Livestock logo`
 *   **Public usage approved**: [ ] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/brands/wajib-livestock/logo.png`
+*   **Final repository path**: `public/brands/wajib-livestock/logo.svg`
 *   **Notes**: Name approval pending. Never stretch or crop brand logos to fill the box.
 
 *   **Brand name**: Wajib Livestock
 *   **Asset type**: Campaign creative photography
-*   **Required filename**: `campaign-photo.webp`
+*   **Required filename**: `showcase.webp`
 *   **Source owner**: Wajib Livestock
 *   **Source URL**: N/A
 *   **Original dimensions**: 1200 x 1200 px
@@ -123,7 +132,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Logo usage approved**: N/A
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/projects/wajib-livestock/campaign-photo.webp`
+*   **Final repository path**: `public/work/wajib-livestock/showcase.webp`
 *   **Notes**: No fake dashboard widgets or browser chrome mockups.
 
 ---
@@ -131,23 +140,23 @@ All publication and logo approvals remain pending until the user confirms them. 
 ### 3. RK Reno Solutions
 *   **Brand name**: RK Reno Solutions
 *   **Asset type**: Client Logo
-*   **Required filename**: `logo.png` / `logo.svg`
+*   **Required filename**: `logo.svg`
 *   **Source owner**: RK Reno Solutions
 *   **Source URL**: N/A
 *   **Original dimensions**: Variable
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
-*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `RK Reno Solutions logo`
 *   **Public usage approved**: [ ] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/brands/rk-reno-solutions/logo.png`
-*   **Notes**: Falls back to styled plain text block if logo files are not supplied. Never stretch or crop brand logos to fill the box.
+*   **Final repository path**: `public/brands/rk-reno-solutions/logo.svg`
+*   **Notes**: If public usage is approved but logo usage is not approved, the brand may appear only as normal text in a secondary experience listing. It must not appear in the logo wall or be styled to imitate a logo. Never stretch or crop brand logos to fill the box.
 
 *   **Brand name**: RK Reno Solutions
 *   **Asset type**: Website screenshot
-*   **Required filename**: `website-screenshot.webp`
+*   **Required filename**: `showcase.webp`
 *   **Source owner**: RK Reno Solutions
 *   **Source URL**: N/A
 *   **Original dimensions**: 1920 x 1080 px
@@ -158,7 +167,7 @@ All publication and logo approvals remain pending until the user confirms them. 
 *   **Logo usage approved**: N/A
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/projects/rk-reno-solutions/website-screenshot.webp`
+*   **Final repository path**: `public/work/rk-reno-solutions/showcase.webp`
 *   **Notes**: Flat screenshot inside neutral frames.
 
 ---
@@ -166,18 +175,18 @@ All publication and logo approvals remain pending until the user confirms them. 
 ### 4. Viral Naturals
 *   **Brand name**: Viral Naturals
 *   **Asset type**: Client Logo
-*   **Required filename**: `logo.png` / `logo.svg`
+*   **Required filename**: `logo.svg`
 *   **Source owner**: Viral Naturals
 *   **Source URL**: N/A
 *   **Original dimensions**: Variable
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
-*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Viral Naturals logo`
 *   **Public usage approved**: [ ] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/brands/viral-naturals/logo.png`
+*   **Final repository path**: `public/brands/viral-naturals/logo.svg`
 *   **Notes**: Omit if approval not confirmed. Never stretch or crop brand logos to fill the box.
 
 ---
@@ -185,18 +194,18 @@ All publication and logo approvals remain pending until the user confirms them. 
 ### 5. Convort AI
 *   **Brand name**: Convort AI
 *   **Asset type**: Client Logo
-*   **Required filename**: `logo.png` / `logo.svg`
+*   **Required filename**: `logo.svg`
 *   **Source owner**: Convort AI
 *   **Source URL**: N/A
 *   **Original dimensions**: Variable
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
-*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Convort AI logo`
 *   **Public usage approved**: [ ] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/brands/convort-ai/logo.png`
+*   **Final repository path**: `public/brands/convort-ai/logo.svg`
 *   **Notes**: Dynamic tech card grid. Never stretch or crop brand logos to fill the box.
 
 ---
@@ -204,37 +213,37 @@ All publication and logo approvals remain pending until the user confirms them. 
 ### 6. Clearzone Immigration
 *   **Brand name**: Clearzone Immigration
 *   **Asset type**: Client Logo
-*   **Required filename**: `logo.png` / `logo.svg`
+*   **Required filename**: `logo.svg`
 *   **Source owner**: Clearzone Immigration
 *   **Source URL**: N/A
 *   **Original dimensions**: Variable
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
-*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Clearzone Immigration logo`
 *   **Public usage approved**: [ ] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/brands/clearzone/logo.png`
-*   **Notes**: Wordmark text layout fallback. Never stretch or crop brand logos to fill the box.
+*   **Final repository path**: `public/brands/clearzone-immigration/logo.svg`
+*   **Notes**: If public usage is approved but logo usage is not approved, the brand may appear only as normal text in a secondary experience listing. It must not appear in the logo wall or be styled to imitate a logo. Never stretch or crop brand logos to fill the box.
 
 ---
 
 ### 7. Europa Immigration
 *   **Brand name**: Europa Immigration
 *   **Asset type**: Client Logo
-*   **Required filename**: `logo.png` / `logo.svg`
+*   **Required filename**: `logo.svg`
 *   **Source owner**: Europa Immigration
 *   **Source URL**: N/A
 *   **Original dimensions**: Variable
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
-*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Europa Immigration logo`
 *   **Public usage approved**: [ ] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/brands/europa-immigration/logo.png`
+*   **Final repository path**: `public/brands/europa-immigration/logo.svg`
 *   **Notes**: Neutral sector list entry. Never stretch or crop brand logos to fill the box.
 
 ---
@@ -242,56 +251,56 @@ All publication and logo approvals remain pending until the user confirms them. 
 ### 8. Quick Immigration Service
 *   **Brand name**: Quick Immigration Service
 *   **Asset type**: Client Logo
-*   **Required filename**: `logo.png` / `logo.svg`
+*   **Required filename**: `logo.svg`
 *   **Source owner**: Quick Immigration Service
 *   **Source URL**: N/A
 *   **Original dimensions**: Variable
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
-*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Quick Immigration Service logo`
 *   **Public usage approved**: [ ] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/brands/quick-immigration/logo.png`
-*   **Notes**: Text fallback. Never stretch or crop brand logos to fill the box.
+*   **Final repository path**: `public/brands/quick-immigration-service/logo.svg`
+*   **Notes**: If public usage is approved but logo usage is not approved, the brand may appear only as normal text in a secondary experience listing. It must not appear in the logo wall or be styled to imitate a logo. Never stretch or crop brand logos to fill the box.
 
 ---
 
 ### 9. Shopinq Online
 *   **Brand name**: Shopinq Online
 *   **Asset type**: Client Logo
-*   **Required filename**: `logo.png` / `logo.svg`
+*   **Required filename**: `logo.svg`
 *   **Source owner**: Shopinq Online
 *   **Source URL**: N/A
 *   **Original dimensions**: Variable
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
-*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Shopinq Online logo`
 *   **Public usage approved**: [ ] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/brands/shopinq/logo.png`
-*   **Notes**: Approved brand asset. Never stretch or crop brand logos to fill the box.
+*   **Final repository path**: `public/brands/shopinq-online/logo.svg`
+*   **Notes**: Approval remains pending until explicitly confirmed by the user. Never stretch or crop brand logos to fill the box.
 
 ---
 
 ### 10. Super Safety Covers
 *   **Brand name**: Super Safety Covers
 *   **Asset type**: Client Logo
-*   **Required filename**: `logo.png` / `logo.svg`
+*   **Required filename**: `logo.svg`
 *   **Source owner**: Super Safety Covers
 *   **Source URL**: N/A
 *   **Original dimensions**: Variable
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
-*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Super Safety Covers logo`
 *   **Public usage approved**: [ ] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/brands/super-safety-covers/logo.png`
+*   **Final repository path**: `public/brands/super-safety-covers/logo.svg`
 *   **Notes**: Omit completely if publicApproved is not confirmed. Never stretch or crop brand logos to fill the box.
 
 ---
@@ -299,18 +308,18 @@ All publication and logo approvals remain pending until the user confirms them. 
 ### 11. Riyadh Finish Pro
 *   **Brand name**: Riyadh Finish Pro
 *   **Asset type**: Client Logo
-*   **Required filename**: `logo.png` / `logo.svg`
+*   **Required filename**: `logo.svg`
 *   **Source owner**: Riyadh Finish Pro
 *   **Source URL**: N/A
 *   **Original dimensions**: Variable
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
-*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Riyadh Finish Pro logo`
 *   **Public usage approved**: [ ] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/brands/riyadh-finish-pro/logo.png`
+*   **Final repository path**: `public/brands/riyadh-finish-pro/logo.svg`
 *   **Notes**: Construction client. Never stretch or crop brand logos to fill the box.
 
 ---
@@ -318,18 +327,18 @@ All publication and logo approvals remain pending until the user confirms them. 
 ### 12. Unique Lahore Lab Sahiwal
 *   **Brand name**: Unique Lahore Lab Sahiwal
 *   **Asset type**: Client Logo
-*   **Required filename**: `logo.png` / `logo.svg`
+*   **Required filename**: `logo.svg`
 *   **Source owner**: Unique Lahore Lab Sahiwal
 *   **Source URL**: N/A
 *   **Original dimensions**: Variable
 *   **Recommended display bounding box**: 240 x 80 px, preserve original aspect ratio
-*   **Format**: Transparent SVG or clean WebP/PNG
+*   **Format**: Transparent SVG (or transparent WebP)
 *   **Alt text**: `Unique Lahore Lab Sahiwal logo`
 *   **Public usage approved**: [ ] Yes / [ ] No
 *   **Logo usage approved**: [ ] Yes / [ ] No
 *   **Received**: [ ] Yes / [x] No
 *   **Optimized**: [ ] Yes / [x] No
-*   **Final repository path**: `public/brands/unique-lahore-lab/logo.png`
+*   **Final repository path**: `public/brands/unique-lahore-lab-sahiwal/logo.svg`
 *   **Notes**: Healthcare laboratory. Never stretch or crop brand logos to fill the box.
 
 ---
@@ -359,7 +368,7 @@ The availability of public brand-resource pages does not imply prior approval fo
 
 ### 2. Facebook
 *   **Official source owner**: Meta Platforms, Inc.
-*   **Official brand-resource URL**: https://about.meta.com/brand/resources/facebook-app/logo/
+*   **Official brand-resource URL**: https://about.meta.com/brand/resources/facebook/logo/
 *   **Asset type**: Platform Logo
 *   **Original filename**: `facebook-original.svg`
 *   **Local optimized filename**: `facebook.svg`
@@ -397,7 +406,7 @@ The availability of public brand-resource pages does not imply prior approval fo
 
 ### 4. Google Ads
 *   **Official source owner**: Google LLC
-*   **Official brand-resource URL**: https://www.google.com/permissions/
+*   **Official brand-resource URL**: N/A
 *   **Asset type**: Platform Logo
 *   **Original filename**: `google-ads-original.svg`
 *   **Local optimized filename**: `google-ads.svg`
