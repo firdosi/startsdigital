@@ -16,21 +16,18 @@ metrics:
   - value: "29,000+"
     label: "product sales supported"
 responsibilities:
-  - "Digital marketing strategy and multi-channel campaign planning."
+  - "Digital marketing strategy and campaign management."
   - "Meta advertising campaign structure and audience targeting."
-  - "Creative testing across product imagery and video ad angles."
-  - "E-commerce landing page conversion optimization."
+  - "Creative testing across product imagery and visual formats."
+  - "E-commerce growth and conversion support."
 heroImage:
   src: "/images/black-gold-official.png"
-  alt: "Official Black Gold Fertilizer 7kg Product Packaging"
-  caption: "Official Black Gold 7kg Organic Fertilizer Pellets Product Packaging"
+  alt: "Official Black Gold Fertilizer Product Packaging"
+  caption: "Official Black Gold 7kg Organic Fertilizer Pellets Packaging"
 gallery:
   - src: "/images/black-gold-web-banner.png"
-    alt: "Black Gold Fertilizer E-Commerce Store Architecture"
-    caption: "Black Gold Fertilizer E-Commerce Store Banner and Product Showcase"
-  - src: "/images/meta-ads.webp"
-    alt: "Black Gold Paid Media Campaign Creative"
-    caption: "Meta Advertising Campaign Creative and Audience Targeting Strategy"
+    alt: "Black Gold Fertilizer Official Website Banner"
+    caption: "Black Gold Fertilizer Official E-Commerce Store Visual"
 featured: true
 order: 1
 seoTitle: "Black Gold Fertilizer Case Study | Starts Digital"
@@ -40,16 +37,16 @@ draft: false
 
 ## Challenge
 
-Scaling digital customer acquisition for organic fertilizer products across diverse agricultural and home gardening demographics while maintaining efficient cost-per-sale metrics.
+Managing digital acquisition campaigns for organic fertilizer products across agricultural and gardening demographics.
 
 ## Approach
 
-Designed a full-funnel digital strategy combining targeted Meta ad creatives with streamlined e-commerce website checkout workflows.
+Designed a digital marketing strategy combining Meta advertising with direct e-commerce website conversion support.
 
 ## Campaign Execution
 
-Tested multiple direct-response ad angles, implemented server-side tracking via Meta Conversions API (CAPI), and optimized product landing page performance for mobile buyers.
+Tested creative ad angles, structured campaign ad sets, and provided ongoing e-commerce website and conversion support.
 
 ## Commercial Outcome
 
-Supported PKR 30M+ in revenue and over 29,000 product sales across multiple fertilizer product categories.
+Contributed to PKR 30M+ in revenue supported and over 29,000 product sales across multiple product categories through managed digital campaigns.

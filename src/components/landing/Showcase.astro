@@ -4,7 +4,6 @@ import {
   Sprout, 
   TrendingUp, 
   Award, 
-  Calendar, 
   Wrench, 
   MapPin, 
   ArrowRight,
@@ -122,22 +121,26 @@ import {
       <article class="reveal-on-scroll rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-12 lg:p-14 shadow-xl hover:shadow-2xl transition-all duration-300 group" data-reveal-delay="100">
         <div class="grid gap-12 lg:grid-cols-12 items-center">
           
-          <!-- Visual Side -->
+          <!-- Branded Colour Composition & Metric Visual Side -->
           <div class="lg:col-span-6 order-2 lg:order-1">
-            <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-[#061d33] p-2.5 shadow-2xl">
-              <img
-                src={`${site.basePath}/images/campaign-lab.webp`}
-                alt="Wajib Livestock Seasonal Qurbani Campaign Creative"
-                width="640"
-                height="400"
-                loading="lazy"
-                class="w-full h-[320px] rounded-xl object-cover group-hover:scale-102 transition-transform duration-300"
-              />
-              <div class="absolute bottom-6 left-6 rounded-xl border border-white/20 bg-[#061d33]/90 p-4 backdrop-blur-md shadow-lg hidden sm:flex items-center gap-3 text-white">
-                <Award class="size-6 text-[#ddff35] shrink-0" />
-                <div>
-                  <div class="text-[11px] font-mono text-slate-300">Seasonal Campaign</div>
-                  <div class="text-xs font-bold font-display text-white">More than 150 animals sold</div>
+            <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-[#061d33] p-8 sm:p-10 shadow-2xl flex flex-col justify-between min-h-[320px]">
+              <div class="space-y-4">
+                <span class="inline-block rounded-full bg-[#39c98a]/20 border border-[#39c98a]/40 px-4 py-1.5 text-xs font-mono font-bold text-[#39c98a] uppercase tracking-wider">
+                  Verified Outcome Summary
+                </span>
+                <h4 class="font-display text-3xl sm:text-4xl font-black text-white uppercase leading-tight">
+                  WAJIB LIVESTOCK EID QURBANI
+                </h4>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/10">
+                <div class="rounded-xl bg-white/10 p-4 border border-white/10">
+                  <span class="font-display text-2xl sm:text-3xl font-black text-[#ddff35] block">150+</span>
+                  <span class="text-xs font-mono text-slate-300 uppercase">Animals Sold</span>
+                </div>
+                <div class="rounded-xl bg-white/10 p-4 border border-white/10">
+                  <span class="font-display text-2xl sm:text-3xl font-black text-[#ff762b] block">PKR 4.2M+</span>
+                  <span class="text-xs font-mono text-slate-300 uppercase">Sales Supported</span>
                 </div>
               </div>
             </div>
@@ -239,22 +242,22 @@ import {
             </div>
           </div>
 
-          <!-- Visual Side: Website Screenshot -->
+          <!-- Visual Side: Genuine Website Screenshot from rkrenosolution.com -->
           <div class="lg:col-span-6">
             <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-[#061d33] p-2.5 shadow-2xl">
               <img
-                src={`${site.basePath}/images/project-seo.webp`}
-                alt="RK Reno Solutions Renovation & HVAC Website Screens"
+                src={`${site.basePath}/brands/rk-reno-solutions/screenshot.png`}
+                alt="Genuine RK Reno Solutions Official Website Screenshot (rkrenosolution.com)"
                 width="640"
                 height="400"
                 loading="lazy"
-                class="w-full h-[320px] rounded-xl object-cover group-hover:scale-102 transition-transform duration-300"
+                class="w-full h-[320px] rounded-xl object-cover object-top group-hover:scale-102 transition-transform duration-300"
               />
               <div class="absolute bottom-6 right-6 rounded-xl border border-white/20 bg-[#061d33]/90 p-4 backdrop-blur-md shadow-lg hidden sm:flex items-center gap-3 text-white">
                 <Wrench class="size-6 text-[#ddff35] shrink-0" />
                 <div>
                   <div class="text-[11px] font-mono text-slate-300">Renovation & Local Search</div>
-                  <div class="text-xs font-bold font-display text-white">Malaysia Local Target Scope</div>
+                  <div class="text-xs font-bold font-display text-white">rkrenosolution.com</div>
                 </div>
               </div>
             </div>

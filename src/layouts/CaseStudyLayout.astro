@@ -109,7 +109,7 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
               <div class="mt-4 flex items-center justify-between text-xs font-mono font-bold text-slate-600 px-2">
                 <span class="inline-flex items-center gap-1.5 uppercase text-[#ff762b]">
                   <ImageIcon class="size-4" />
-                  <span>Featured Visual</span>
+                  <span>Project Visual</span>
                 </span>
                 <span>{data.heroImage.caption}</span>
               </div>
@@ -156,7 +156,7 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
         <div class="lg:col-span-8 space-y-8">
           <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm space-y-6">
             <h2 class="font-display text-2xl font-black uppercase text-[#061d33] border-b border-slate-100 pb-4">
-              Campaign Execution & Responsibilities
+              Campaign Execution & Scope
             </h2>
             <ul class="space-y-3 font-body text-base text-slate-700 leading-relaxed font-medium">
               {
@@ -177,15 +177,14 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
       </Container>
     </section>
 
-    <!-- Project Gallery Visuals Component (gallery) -->
+    <!-- Project Gallery Visuals Component (Rendered ONLY if gallery exists and has items) -->
     {data.gallery && data.gallery.length > 0 && (
       <section class="py-12 bg-white border-t border-b border-[#061d33]/10">
         <Container class="max-w-[1000px] px-6 sm:px-8 space-y-8">
           <div class="flex items-center justify-between">
             <h3 class="font-display text-2xl font-black uppercase text-[#061d33]">
-              CAMPAIGN & VISUAL GALLERY
+              PROJECT GALLERY
             </h3>
-            <span class="text-xs font-mono font-bold uppercase text-[#ff762b]">Verified Assets</span>
           </div>
 
           <div class="grid gap-6 sm:grid-cols-2">

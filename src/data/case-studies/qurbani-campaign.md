@@ -16,18 +16,10 @@ metrics:
   - value: "PKR 4.2M+"
     label: "sales supported"
 responsibilities:
-  - "Seasonal campaign strategy and fast-paced timeline execution."
-  - "Paid social advertising targeting high-intent livestock buyers."
-  - "Lead generation and direct sales routing via WhatsApp."
+  - "Seasonal campaign strategy and timeline execution."
+  - "Paid social advertising for seasonal livestock booking."
+  - "Lead generation and sales inquiry support."
   - "Creative content development for seasonal promotion."
-heroImage:
-  src: "/images/campaign-lab.webp"
-  alt: "Wajib Livestock Seasonal Qurbani Campaign Creative"
-  caption: "Wajib Livestock Eid Qurbani Campaign Creative & Visual Asset"
-gallery:
-  - src: "/images/content-strategy.webp"
-    alt: "Wajib Livestock Lead Qualification Workflow"
-    caption: "Lead Capture & WhatsApp Customer Routing Flow"
 featured: true
 order: 2
 seoTitle: "Wajib Livestock Qurbani Campaign Case Study | Starts Digital"
@@ -37,16 +29,16 @@ draft: false
 
 ## Seasonal Challenge
 
-High-velocity seasonal window requiring rapid customer acquisition and high-trust lead generation for livestock purchases prior to Eid Qurbani.
+Managing high-demand seasonal lead generation and sales support during the Eid Qurbani booking period.
 
 ## Campaign Strategy
 
-Combined targeted paid social advertising with instant WhatsApp lead routing to connect interested buyers directly with sales representatives.
+Implemented a seasonal campaign strategy combining paid social advertising with direct lead generation.
 
 ## Lead and Sales Support
 
-Developed localized campaign creatives and streamlined inquiry handling to ensure fast response times and high conversion rates.
+Developed campaign creative content and provided continuous campaign management to support direct buyer inquiries.
 
 ## Outcome
 
-Successfully supported PKR 4.2M+ in sales and facilitated the sale of more than 150 animals during the seasonal campaign.
+Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.
