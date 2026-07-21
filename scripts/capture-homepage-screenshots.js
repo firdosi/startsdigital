@@ -105,16 +105,62 @@ async function captureAll() {
       return imageStats;
     }
 
+    // Helper: Temporarily set header position to absolute so it appears only at top during full-page screenshot
+    async function setHeaderAbsolute(page) {
+      await page.evaluate(() => {
+        const header = document.querySelector('#main-header') || document.querySelector('header');
+        if (header) {
+          header.dataset.origPosition = header.style.position;
+          header.style.position = 'absolute';
+        }
+      });
+    }
+
+    // Helper: Restore header original position
+    async function restoreHeaderPosition(page) {
+      await page.evaluate(() => {
+        const header = document.querySelector('#main-header') || document.querySelector('header');
+        if (header && header.dataset.origPosition !== undefined) {
+          header.style.position = header.dataset.origPosition;
+          delete header.dataset.origPosition;
+        }
+      });
+    }
+
+    // Helper: Temporarily hide header for focused section screenshots
+    async function hideHeader(page) {
+      await page.evaluate(() => {
+        const header = document.querySelector('#main-header') || document.querySelector('header');
+        if (header) {
+          header.dataset.origDisplay = header.style.display;
+          header.style.display = 'none';
+        }
+      });
+    }
+
+    // Helper: Restore header visibility
+    async function restoreHeaderVisibility(page) {
+      await page.evaluate(() => {
+        const header = document.querySelector('#main-header') || document.querySelector('header');
+        if (header && header.dataset.origDisplay !== undefined) {
+          header.style.display = header.dataset.origDisplay;
+          delete header.dataset.origDisplay;
+        }
+      });
+    }
+
     // 1. Desktop 1440 Full Page & Focused Screenshots
     {
       const page = await browser.newPage();
       await preparePageAndValidateImages(page, 1440, 900);
 
-      // Full-page capture
+      // Full-page capture (Set header to absolute so it doesn't repeat or stick in the middle)
+      await setHeaderAbsolute(page);
       await page.screenshot({
         path: path.join(targetDir, 'desktop-1440-full.png'),
         fullPage: true,
       });
+      await restoreHeaderPosition(page);
 
       // Focused Desktop Hero & Services
       await page.screenshot({
@@ -122,7 +168,8 @@ async function captureAll() {
         clip: { x: 0, y: 0, width: 1440, height: 1600 },
       });
 
-      // Focused Desktop Featured Work (Scroll #work into view & capture section element)
+      // Focused Desktop Featured Work (Hide header, scroll #work into view & capture section element)
+      await hideHeader(page);
       const workSection = page.locator('#work');
       await workSection.scrollIntoViewIfNeeded();
       await workSection.waitFor({ state: 'visible' });
@@ -147,6 +194,7 @@ async function captureAll() {
       await workSection.screenshot({
         path: path.join(targetDir, 'desktop-featured-work.png'),
       });
+      await restoreHeaderVisibility(page);
 
       await page.close();
     }
@@ -155,10 +203,12 @@ async function captureAll() {
     {
       const page = await browser.newPage();
       await preparePageAndValidateImages(page, 768, 1024);
+      await setHeaderAbsolute(page);
       await page.screenshot({
         path: path.join(targetDir, 'tablet-768-full.png'),
         fullPage: true,
       });
+      await restoreHeaderPosition(page);
       await page.close();
     }
 
@@ -167,19 +217,24 @@ async function captureAll() {
       const page = await browser.newPage();
       await preparePageAndValidateImages(page, 375, 812);
 
-      // Full-page capture
+      // Full-page capture (Header set to absolute so it appears only at top)
+      await setHeaderAbsolute(page);
       await page.screenshot({
         path: path.join(targetDir, 'mobile-375-full.png'),
         fullPage: true,
       });
+      await restoreHeaderPosition(page);
 
-      // Focused Mobile Hero
-      await page.screenshot({
+      // Focused Mobile Hero (Scroll explicitly to 0,0, wait 400ms, capture Hero element directly)
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.waitForTimeout(400);
+      const heroSection = page.locator('#hero');
+      await heroSection.screenshot({
         path: path.join(targetDir, 'mobile-hero.png'),
-        clip: { x: 0, y: 0, width: 375, height: 950 },
       });
 
-      // Focused Mobile Featured Work (Scroll #work into view & capture section element)
+      // Focused Mobile Featured Work (Hide header, scroll #work into view & capture section element)
+      await hideHeader(page);
       const mobileWorkSection = page.locator('#work');
       await mobileWorkSection.scrollIntoViewIfNeeded();
       await mobileWorkSection.waitFor({ state: 'visible' });
@@ -204,6 +259,7 @@ async function captureAll() {
       await mobileWorkSection.screenshot({
         path: path.join(targetDir, 'mobile-featured-work.png'),
       });
+      await restoreHeaderVisibility(page);
 
       await page.close();
     }
@@ -225,7 +281,7 @@ async function captureAll() {
   - \`mobile-375-full.png\` (Full page mobile)
   - \`desktop-hero-services.png\` (Focused hero & services review)
   - \`desktop-featured-work.png\` (Focused featured work review - element capture)
-  - \`mobile-hero.png\` (Focused mobile hero review)
+  - \`mobile-hero.png\` (Focused mobile hero review - element capture)
   - \`mobile-featured-work.png\` (Focused mobile featured work review - element capture)
 
 ## Image Validation Result
@@ -240,7 +296,7 @@ Temporary concept assets used. Not approved for production merge.
 `;
 
     fs.writeFileSync(path.join(targetDir, 'README.md'), readmeContent, 'utf-8');
-    console.log(`Successfully generated valid v6 screenshot archive in ${targetDir}`);
+    console.log(`Successfully generated valid screenshot archive in ${targetDir}`);
 
   } catch (err) {
     if (browser) await browser.close().catch(() => {});

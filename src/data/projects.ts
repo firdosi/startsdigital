@@ -19,7 +19,7 @@ export const projectsData: ProjectItem[] = [
     title: 'Wajib Livestock Qurbani Campaign',
     industry: 'Livestock and seasonal e-commerce',
     services: ['Campaign strategy', 'lead generation', 'content and paid social'],
-    result: 'Helped sell 150+ animals and generate PKR 4.2M+ in seasonal sales.'
+    result: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.'
   },
   {
     id: 'rk-reno-solutions',
