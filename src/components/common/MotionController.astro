@@ -4,7 +4,6 @@
 
 <script>
   function initMotionSystem() {
-    // 1. Scroll Reveal System
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -13,9 +12,7 @@
             const el = entry.target as HTMLElement;
             const delay = parseInt(el.dataset.revealDelay || '0', 10);
             if (delay > 0) {
-              setTimeout(() => {
-                el.classList.add('is-revealed');
-              }, delay);
+              setTimeout(() => el.classList.add('is-revealed'), delay);
             } else {
               el.classList.add('is-revealed');
             }
@@ -28,39 +25,44 @@
 
     revealElements.forEach((el) => revealObserver.observe(el));
 
-    // 2. Animated Results Counter System
     const counterElements = document.querySelectorAll('[data-counter-target]');
     const counterObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const el = entry.target as HTMLElement;
-            const targetNum = parseFloat(el.dataset.counterTarget || '0');
-            const exactText = el.dataset.counterExact || el.textContent || '';
-            const prefix = el.dataset.counterPrefix || '';
-            const suffix = el.dataset.counterSuffix || '';
-            const duration = 1600; // ms
-            const startTime = performance.now();
+          if (!entry.isIntersecting) return;
 
-            function updateCounter(currentTime: number) {
-              const elapsed = currentTime - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-              // Ease out quad
-              const easeProgress = 1 - (1 - progress) * (1 - progress);
-              const currentVal = Math.floor(targetNum * easeProgress);
+          const el = entry.target as HTMLElement;
+          const targetNum = parseFloat(el.dataset.counterTarget || '0');
+          const exactText = el.dataset.counterExact || el.textContent || '';
+          const prefix = el.dataset.counterPrefix || '';
+          const suffix = el.dataset.counterSuffix || '';
+          const decimals = parseInt(el.dataset.counterDecimals || '0', 10);
+          const duration = 1400;
+          const startTime = performance.now();
 
-              if (progress < 1) {
-                el.textContent = `${prefix}${currentVal.toLocaleString()}${suffix}`;
-                requestAnimationFrame(updateCounter);
-              } else {
-                // Ensure exact final approved text string
-                el.textContent = exactText;
-              }
-            }
-
-            requestAnimationFrame(updateCounter);
-            counterObserver.unobserve(el);
+          function formatValue(value: number) {
+            return value.toLocaleString(undefined, {
+              minimumFractionDigits: decimals,
+              maximumFractionDigits: decimals,
+            });
           }
+
+          function updateCounter(currentTime: number) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - (1 - progress) * (1 - progress);
+            const currentVal = targetNum * eased;
+
+            if (progress < 1) {
+              el.textContent = `${prefix}${formatValue(currentVal)}${suffix}`;
+              requestAnimationFrame(updateCounter);
+            } else {
+              el.textContent = exactText;
+            }
+          }
+
+          requestAnimationFrame(updateCounter);
+          counterObserver.unobserve(el);
         });
       },
       { threshold: 0.25 }
@@ -69,7 +71,6 @@
     counterElements.forEach((el) => counterObserver.observe(el));
   }
 
-  // Initialize on DOM load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMotionSystem);
   } else {
