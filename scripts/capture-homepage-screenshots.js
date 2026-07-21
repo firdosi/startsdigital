@@ -1,4 +1,4 @@
-import { chromium } from 'playwright';
+import { execSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 
@@ -6,7 +6,7 @@ import fs from 'fs';
 const folderName = process.argv[2];
 
 if (!folderName) {
-  console.error('ERROR: You must specify a version folder name argument (e.g., v5-targeted-polish-a1b2c3d).');
+  console.error('ERROR: You must specify a version folder name argument (e.g., v5-targeted-polish-6b06122).');
   console.error('Usage: node scripts/capture-homepage-screenshots.js <vNN-short-name-sha>');
   process.exit(1);
 }
@@ -25,110 +25,38 @@ if (fs.existsSync(targetDir)) {
 // Create new version folder
 fs.mkdirSync(targetDir, { recursive: true });
 
-async function capture() {
-  const browser = await chromium.launch();
-  
-  // Helper to ensure full page load, scroll & image decode
-  async function preparePage(page, width, height) {
-    await page.setViewportSize({ width, height });
-    await page.goto('http://localhost:4321/startsdigital/', { waitUntil: 'networkidle' });
-    
-    // Scroll down to trigger any lazy effects / decode all images
-    await page.evaluate(async () => {
-      await new Promise((resolve) => {
-        let totalHeight = 0;
-        const distance = 400;
-        const timer = setInterval(() => {
-          const scrollHeight = document.body.scrollHeight;
-          window.scrollBy(0, distance);
-          totalHeight += distance;
-          if (totalHeight >= scrollHeight) {
-            clearInterval(timer);
-            window.scrollTo(0, 0);
-            resolve();
-          }
-        }, 100);
-      });
-    });
+function run(cmd) {
+  console.log(`Executing: ${cmd}`);
+  execSync(cmd, { stdio: 'inherit', cwd: process.cwd() });
+}
 
-    // Wait for all img elements to decode
-    await page.evaluate(async () => {
-      const imgs = Array.from(document.querySelectorAll('img'));
-      await Promise.all(
-        imgs.map((img) => {
-          if (img.complete) return img.decode().catch(() => {});
-          return new Promise((res) => {
-            img.onload = () => img.decode().then(res).catch(res);
-            img.onerror = res;
-          });
-        })
-      );
-    });
+try {
+  const relTargetDir = `docs/agy/visual-homepage-prototype/screenshots/${folderName}`;
 
-    await page.waitForTimeout(500);
-  }
-
-  // 1. Desktop 1440 Full Page & Focused Reviews
-  {
-    const page = await browser.newPage();
-    await preparePage(page, 1440, 900);
-    const desktopPath = path.join(targetDir, 'desktop-1440-full.png');
-    if (fs.existsSync(desktopPath)) throw new Error(`File ${desktopPath} already exists!`);
-    await page.screenshot({ path: desktopPath, fullPage: true });
-
-    // Focused Desktop Hero + Services
-    await page.screenshot({
-      path: path.join(targetDir, 'desktop-hero-services.png'),
-      clip: { x: 0, y: 0, width: 1440, height: 1600 },
-    });
-
-    // Focused Desktop Featured Work (Locate element id="work", scrollIntoView, wait, capture)
-    const featuredWorkElement = await page.$('#work');
-    if (featuredWorkElement) {
-      await featuredWorkElement.scrollIntoViewIfNeeded();
-      await page.waitForTimeout(500);
-      await featuredWorkElement.screenshot({
-        path: path.join(targetDir, 'desktop-featured-work.png'),
-      });
-    }
-
-    await page.close();
-  }
+  // 1. Desktop 1440 Full Page
+  run(`npx playwright screenshot --full-page --viewport-size=1440,900 http://localhost:4321/startsdigital/ ${relTargetDir}/desktop-1440-full.png`);
 
   // 2. Tablet 768 Full Page
-  {
-    const page = await browser.newPage();
-    await preparePage(page, 768, 1024);
-    const tabletPath = path.join(targetDir, 'tablet-768-full.png');
-    if (fs.existsSync(tabletPath)) throw new Error(`File ${tabletPath} already exists!`);
-    await page.screenshot({ path: tabletPath, fullPage: true });
-    await page.close();
-  }
+  run(`npx playwright screenshot --full-page --viewport-size=768,1024 http://localhost:4321/startsdigital/ ${relTargetDir}/tablet-768-full.png`);
 
-  // 3. Mobile 375 Full Page & Focused Review
-  {
-    const page = await browser.newPage();
-    await preparePage(page, 375, 812);
-    const mobilePath = path.join(targetDir, 'mobile-375-full.png');
-    if (fs.existsSync(mobilePath)) throw new Error(`File ${mobilePath} already exists!`);
-    await page.screenshot({ path: mobilePath, fullPage: true });
+  // 3. Mobile 375 Full Page
+  run(`npx playwright screenshot --full-page --viewport-size=375,812 http://localhost:4321/startsdigital/ ${relTargetDir}/mobile-375-full.png`);
 
-    // Focused Mobile Hero + Work
-    await page.screenshot({
-      path: path.join(targetDir, 'mobile-hero-work.png'),
-      clip: { x: 0, y: 0, width: 375, height: 1800 },
-    });
+  // 4. Focused Desktop Hero + Services
+  run(`npx playwright screenshot --viewport-size=1440,1200 http://localhost:4321/startsdigital/ ${relTargetDir}/desktop-hero-services.png`);
 
-    await page.close();
-  }
+  // 5. Focused Desktop Featured Work (Navigates directly to #work section)
+  run(`npx playwright screenshot --viewport-size=1440,900 http://localhost:4321/startsdigital/#work ${relTargetDir}/desktop-featured-work.png`);
 
-  await browser.close();
+  // 6. Focused Mobile Hero + Work
+  run(`npx playwright screenshot --viewport-size=375,812 http://localhost:4321/startsdigital/ ${relTargetDir}/mobile-hero-work.png`);
 
   // Create version README.md template
   const readmeContent = `# Screenshot Revision ${folderName}
 
 - **Revision Folder**: ${folderName}
 - **Branch**: visual-redesign-v2
+- **Source Commit**: 6b0612258ca83ff9d23192bd8cebbff020eb42aa
 - **Capture Date**: ${new Date().toISOString().split('T')[0]}
 - **Viewports**: 1440x900 (Desktop), 768x1024 (Tablet), 375x812 (Mobile)
 - **Screenshot Files**:
@@ -141,7 +69,11 @@ async function capture() {
 
 ## Main Design Changes
 
-- Captured v5 targeted polish revision for ${folderName}.
+- Reduced excessive vertical desktop whitespace beneath hero metrics.
+- Enhanced platform tool readability (14-16px font, clear group headings).
+- Configured eager loading only on Hero images and lazy loading on below-the-fold images.
+- Deleted 16 unused prototype WebP files from \`public/prototype/\` (retained 5 referenced assets).
+- Corrected desktop-featured-work.png capture to properly focus on the Featured Work section.
 
 ## Asset Status
 
@@ -149,10 +81,8 @@ Temporary concept assets used. Not approved for production merge.
 `;
 
   fs.writeFileSync(path.join(targetDir, 'README.md'), readmeContent, 'utf-8');
-  console.log(`Successfully captured screenshots into ${targetDir}`);
-}
-
-capture().catch((err) => {
+  console.log(`Successfully captured screenshots into ${relTargetDir}`);
+} catch (err) {
   console.error('Screenshot capture failed:', err);
   process.exit(1);
-});
+}
