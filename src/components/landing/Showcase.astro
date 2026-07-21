@@ -41,15 +41,16 @@ const projects = [
     accentGradient: 'from-sky-950/80 via-navy to-navy-deep',
   },
 ];
+
+const assetSrc = (src: string | null) => src ? `${site.basePath}${src}` : null;
 ---
 
 <section
   id="work"
   class="relative overflow-hidden bg-linear-160 from-navy to-navy-deep text-cloud py-20 border-b-4 border-ink"
 >
-  <!-- Decorative Kepler Stars -->
   <span class="absolute top-10 right-[8%] text-[34px] text-orange pointer-events-none" aria-hidden="true">✦</span>
-  <span class="absolute bottom-15 left-[5%] size-5 rotate-[20deg] rounded-md bg-orange pointer-events-none" aria-hidden="true"></span>
+  <span class="absolute bottom-15 left-[5%] size-5 rotate-[20deg] rounded-md bg-orange pointer-events-none"></span>
 
   <div class="mx-auto max-w-[1200px] px-6 sm:px-8">
     <SectionHeader
@@ -67,20 +68,18 @@ const projects = [
             data-reveal-delay={idx * 100}
           >
             <div>
-              <!-- Visual Card Frame Composition (Task 9) -->
               <div class:list={['relative flex aspect-16/10 items-center justify-center overflow-hidden rounded-xl border-2 border-ink bg-linear-to-br p-5 shadow-pop-sm', p.accentGradient]}>
-                <!-- Abstract Glow -->
                 <span class="absolute inset-0 bg-radial from-orange/20 to-transparent pointer-events-none"></span>
 
                 <div class="relative z-10 text-center flex flex-col items-center justify-center">
                   {p.logo ? (
                     <img
-                      src={p.logo}
+                      src={assetSrc(p.logo)}
                       alt={`${p.title} logo`}
                       width="180"
                       height="60"
                       loading="lazy"
-                      class="max-h-12 max-w-[180px] object-contain filter drop-shadow-md mb-3"
+                      class="max-h-12 max-w-[180px] object-contain drop-shadow-md mb-3"
                     />
                   ) : (
                     <div class="font-display font-extrabold text-xl text-cloud tracking-wide mb-2">
@@ -88,7 +87,6 @@ const projects = [
                     </div>
                   )}
 
-                  <!-- Metric Badges -->
                   <div class="flex flex-wrap items-center justify-center gap-2 mt-1">
                     <span class="inline-flex items-center gap-1 rounded-full bg-orange px-3 py-1 text-xs font-bold font-display text-cloud shadow-sm">
                       <p.IconPrimary class="size-3.5" />
