@@ -1,12 +1,14 @@
 ---
 import { platforms } from '../../data/platforms';
+import { site } from '../../site.config';
 import SectionHeader from './SectionHeader.astro';
+
+const logoSrc = (logo: string) => logo.startsWith('http') ? logo : `${site.basePath}${logo}`;
 ---
 
 <section id="platforms" class="py-20 bg-linear-160 from-navy to-navy-deep text-cloud border-b-4 border-ink relative overflow-hidden">
-  <!-- Kepler Orbit Decorative Stars (Task 10) -->
   <span class="absolute top-10 right-[6%] text-[30px] text-orange pointer-events-none" aria-hidden="true">✦</span>
-  <span class="absolute bottom-12 left-[5%] size-4 rotate-[15deg] rounded-md bg-orange pointer-events-none" aria-hidden="true"></span>
+  <span class="absolute bottom-12 left-[5%] size-4 rotate-[15deg] rounded-md bg-orange pointer-events-none"></span>
 
   <div class="mx-auto max-w-[1200px] px-6 sm:px-8">
     <SectionHeader
@@ -26,12 +28,12 @@ import SectionHeader from './SectionHeader.astro';
           >
             <div class="size-12 mb-3 flex items-center justify-center">
               <img
-                src={p.logo}
+                src={logoSrc(p.logo)}
                 alt={`${p.name} logo`}
                 width="48"
                 height="48"
                 loading="lazy"
-                class="max-size-10 object-contain group-hover:scale-110 transition-transform duration-200"
+                class="max-h-10 max-w-10 object-contain group-hover:scale-110 transition-transform duration-200"
               />
             </div>
             <h3 class="font-display font-bold text-sm text-navy group-hover:text-orange transition-colors">
