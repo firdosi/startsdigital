@@ -8,18 +8,31 @@ import {
   ArrowRight,
   Sparkles
 } from '@lucide/astro';
+
+const verifiedLogos = [
+  { name: 'Black Gold Fertilizer', logo: '/brands/black-gold-fertilizer/logo.webp' },
+  { name: 'RK Reno Solutions', logo: '/brands/rk-reno-solutions/logo.webp' },
+  { name: 'Convort AI', logo: '/brands/convort-ai/logo.webp' },
+];
+
+const platforms = [
+  { name: 'Meta Ads', logo: '/platforms/meta-ads.svg' },
+  { name: 'Google Ads', logo: '/platforms/google-ads.svg' },
+  { name: 'GA4', logo: '/platforms/ga4.svg' },
+  { name: 'Shopify', logo: '/platforms/shopify.svg' },
+];
 ---
 
 <section id="hero" class="relative overflow-hidden bg-[#090d16] text-white py-16 sm:py-24 border-b border-white/10">
-  <!-- Subtle Mesh Grid & Radial Glow Background -->
+  <!-- Subtle Mesh Grid & Ambient Radial Glow -->
   <div class="pointer-events-none absolute inset-0 bg-grid-pattern opacity-40"></div>
   <div class="pointer-events-none absolute -top-40 right-0 size-[600px] rounded-full bg-blue-600/15 blur-[120px]"></div>
-  <div class="pointer-events-none absolute bottom-0 left-0 size-[500px] rounded-full bg-orange-500/10 blur-[100px]"></div>
+  <div class="pointer-events-none absolute bottom-0 left-0 size-[500px] rounded-full bg-blue-500/10 blur-[100px]"></div>
 
   <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8">
     <div class="grid items-center gap-12 lg:grid-cols-12">
       
-      <!-- Left Column: Copy & CTAs & Proof Points -->
+      <!-- Left Column: Headline, Supporting Copy, CTAs & 4 Verified Proof Badges -->
       <div class="lg:col-span-7 space-y-8">
         
         <!-- Eyebrow Badge -->
@@ -40,7 +53,7 @@ import {
           Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
         </p>
 
-        <!-- Primary & Secondary CTA Buttons -->
+        <!-- Action Buttons -->
         <div class="reveal-on-scroll flex flex-wrap gap-4 pt-2" data-reveal-delay="300">
           <a
             href={`${site.basePath}/#contact`}
@@ -57,7 +70,7 @@ import {
           </a>
         </div>
 
-        <!-- Verified Proof Points Grid (4 Verified Proof Items) -->
+        <!-- 4 Verified Commercial Metrics -->
         <div class="reveal-on-scroll pt-6 border-t border-white/10" data-reveal-delay="400">
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
             
@@ -82,7 +95,7 @@ import {
                 <Award class="size-4 shrink-0" />
                 <span>PKR 4.2M+</span>
               </div>
-              <p class="text-xs text-slate-400 font-medium mt-1">Qurbani Sales</p>
+              <p class="text-xs text-slate-400 font-medium mt-1">Qurbani Sales Supported</p>
             </div>
 
             <div class="rounded-xl border border-white/10 bg-slate-900/40 p-3.5 backdrop-blur-sm">
@@ -98,58 +111,76 @@ import {
 
       </div>
 
-      <!-- Right Column: Premium Layered Visual Composition -->
+      <!-- Right Column: Original Layered Composition (Client Logos, Campaign Creatives, Website Screens, Platform Icons) -->
       <div class="lg:col-span-5 relative reveal-on-scroll" data-reveal-delay="200">
-        <div class="relative mx-auto max-w-[480px] lg:max-w-none">
+        <div class="relative mx-auto max-w-[480px] lg:max-w-none space-y-4">
           
-          <!-- Base Card Window (Realistic Browser Frame) -->
-          <div class="overflow-hidden rounded-2xl border border-white/15 bg-slate-900/90 shadow-2xl shadow-blue-950/50 backdrop-blur-xl">
-            <!-- Browser Header Bar -->
-            <div class="flex items-center justify-between border-b border-white/10 bg-slate-950/80 px-4 py-3">
-              <div class="flex items-center gap-1.5">
-                <span class="size-3 rounded-full bg-red-500/80"></span>
-                <span class="size-3 rounded-full bg-yellow-500/80"></span>
-                <span class="size-3 rounded-full bg-green-500/80"></span>
+          <!-- Outer Glass Container Card -->
+          <div class="rounded-3xl border border-white/15 bg-slate-900/90 p-6 shadow-2xl backdrop-blur-xl space-y-6">
+            
+            <!-- Top Bar: Approved Client Logos -->
+            <div class="space-y-2">
+              <div class="text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400">
+                Verified Client Brands
               </div>
-              <div class="rounded-md border border-white/10 bg-slate-900/80 px-3 py-1 text-[11px] font-mono text-slate-400">
-                startsdigital.com/work/black-gold-fertilizer
+              <div class="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-slate-950/60 p-3">
+                {verifiedLogos.map((brand) => (
+                  <div class="flex items-center justify-center h-8 px-2 rounded bg-white/5">
+                    <img
+                      src={`${site.basePath}${brand.logo}`}
+                      alt={brand.name}
+                      width="100"
+                      height="30"
+                      class="max-h-6 w-auto object-contain filter grayscale opacity-90 hover:grayscale-0 hover:opacity-100 transition-all"
+                    />
+                  </div>
+                ))}
               </div>
-              <div class="text-xs text-slate-500 font-mono">LIVE</div>
             </div>
 
-            <!-- Browser Content Frame -->
-            <div class="relative p-2 bg-slate-950/60">
-              <img
-                src={`${site.basePath}/images/hero-business.webp`}
-                alt="Starts Digital Campaign Showcase"
-                width="600"
-                height="400"
-                loading="eager"
-                class="w-full h-auto rounded-lg object-cover border border-white/10 shadow-md"
-              />
-            </div>
-          </div>
+            <!-- Middle: Real Campaign & Website Screenshots Layer -->
+            <div class="grid grid-cols-2 gap-3">
+              <div class="relative overflow-hidden rounded-xl border border-white/10 bg-slate-950 p-1.5">
+                <img
+                  src={`${site.basePath}/images/meta-ads.webp`}
+                  alt="Meta Advertising Creative"
+                  width="280"
+                  height="200"
+                  loading="eager"
+                  class="w-full h-28 object-cover rounded-lg"
+                />
+                <div class="mt-1 text-[10px] font-mono text-slate-400 text-center">Paid Media Creative</div>
+              </div>
 
-          <!-- Overlaid Floating Glass Card 1 (Bottom Left) -->
-          <div class="absolute -bottom-6 -left-6 z-20 hidden sm:flex items-center gap-3 rounded-xl border border-white/15 bg-slate-900/90 p-4 shadow-xl shadow-black/50 backdrop-blur-xl animate-float">
-            <div class="size-10 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400">
-              <TrendingUp class="size-5" />
+              <div class="relative overflow-hidden rounded-xl border border-white/10 bg-slate-950 p-1.5">
+                <img
+                  src={`${site.basePath}/images/project-seo.webp`}
+                  alt="SEO & Search Architecture"
+                  width="280"
+                  height="200"
+                  loading="eager"
+                  class="w-full h-28 object-cover rounded-lg"
+                />
+                <div class="mt-1 text-[10px] font-mono text-slate-400 text-center">Search & Web Screens</div>
+              </div>
             </div>
-            <div>
-              <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">E-Commerce Scale</div>
-              <div class="text-sm font-bold text-white font-display">PKR 30M+ Revenue Managed</div>
-            </div>
-          </div>
 
-          <!-- Overlaid Floating Glass Card 2 (Top Right) -->
-          <div class="absolute -top-6 -right-6 z-20 hidden sm:flex items-center gap-3 rounded-xl border border-white/15 bg-slate-900/90 p-4 shadow-xl shadow-black/50 backdrop-blur-xl">
-            <div class="size-10 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-              <CheckCircle2 class="size-5" />
+            <!-- Bottom: Platform Icons Strip & Verified Stat Pill -->
+            <div class="pt-2 border-t border-white/10 flex items-center justify-between gap-3">
+              <div class="flex items-center gap-2">
+                {platforms.map((p) => (
+                  <div class="size-8 rounded-lg bg-white/5 border border-white/10 p-1.5 flex items-center justify-center" title={p.name}>
+                    <img src={`${site.basePath}${p.logo}`} alt={p.name} class="size-5 object-contain" />
+                  </div>
+                ))}
+              </div>
+
+              <div class="inline-flex items-center gap-2 rounded-lg border border-blue-500/30 bg-blue-600/20 px-3 py-1.5 text-xs font-bold font-display text-blue-400">
+                <TrendingUp class="size-3.5 text-blue-400" />
+                <span>PKR 30M+ Revenue Supported</span>
+              </div>
             </div>
-            <div>
-              <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">Verified Campaigns</div>
-              <div class="text-sm font-bold text-white font-display">29,000+ Orders Processed</div>
-            </div>
+
           </div>
 
         </div>

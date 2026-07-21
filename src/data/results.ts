@@ -6,18 +6,18 @@ export interface Metric {
 export const resultsData: Metric[] = [
   {
     value: 'PKR 30M+',
-    wording: 'revenue supported across managed campaigns'
+    wording: 'revenue supported'
   },
   {
     value: '29,000+',
-    wording: 'product sales supported'
+    wording: 'product sales'
   },
   {
     value: 'PKR 4.2M+',
-    wording: 'helped generate through a seasonal Qurbani campaign'
+    wording: 'sales supported'
   },
   {
     value: '150+',
-    wording: 'animals sold through the Eid campaign'
+    wording: 'More than 150 animals sold'
   }
 ];

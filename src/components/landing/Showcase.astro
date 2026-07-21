@@ -1,129 +1,271 @@
 ---
-import SectionHeader from './SectionHeader.astro';
 import { site } from '../../site.config';
-import { Sprout, TrendingUp, Award, Calendar, Wrench, MapPin } from '@lucide/astro';
-
-const projects = [
-  {
-    tag: 'E-COMMERCE & ADVERTISING',
-    title: 'Black Gold Fertilizer',
-    logo: '/brands/black-gold-fertilizer/logo.webp',
-    result: 'Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.',
-    href: `${site.basePath}/work/black-gold-fertilizer/`,
-    metricPrimary: 'PKR 30M+ Revenue',
-    metricSecondary: '29,000+ Orders',
-    IconPrimary: Sprout,
-    IconSecondary: TrendingUp,
-    accentGradient: 'from-emerald-950/80 via-navy to-navy-deep',
-  },
-  {
-    tag: 'LIVESTOCK & SEASONAL CAMPAIGN',
-    title: 'Wajib Livestock Qurbani Campaign',
-    logo: null,
-    result: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.',
-    href: `${site.basePath}/work/qurbani-campaign/`,
-    metricPrimary: '150+ Animals Sold',
-    metricSecondary: 'PKR 4.2M+ Sales',
-    IconPrimary: Award,
-    IconSecondary: Calendar,
-    accentGradient: 'from-amber-950/80 via-navy to-navy-deep',
-  },
-  {
-    tag: 'SEO & LOCAL SERVICES',
-    title: 'RK Reno Solutions',
-    logo: '/brands/rk-reno-solutions/logo.webp',
-    result: 'Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.',
-    href: `${site.basePath}/work/rk-reno-solutions/`,
-    metricPrimary: 'KL & Selangor SEO',
-    metricSecondary: 'Renovation & HVAC',
-    IconPrimary: Wrench,
-    IconSecondary: MapPin,
-    accentGradient: 'from-sky-950/80 via-navy to-navy-deep',
-  },
-];
-
-const assetSrc = (src: string | null) => src ? `${site.basePath}${src}` : null;
+import { 
+  Sprout, 
+  TrendingUp, 
+  Award, 
+  Calendar, 
+  Wrench, 
+  MapPin, 
+  ArrowRight,
+  Sparkles,
+  ShoppingBag,
+  CheckCircle2
+} from '@lucide/astro';
 ---
 
-<section
-  id="work"
-  class="relative overflow-hidden bg-linear-160 from-navy to-navy-deep text-cloud py-20 border-b-4 border-ink"
->
-  <span class="absolute top-10 right-[8%] text-[34px] text-orange pointer-events-none" aria-hidden="true">✦</span>
-  <span class="absolute bottom-15 left-[5%] size-5 rotate-[20deg] rounded-md bg-orange pointer-events-none"></span>
+<section id="work" class="py-24 bg-[#f8fafc] border-b border-slate-200/80 text-slate-900 overflow-hidden">
+  <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <div class="max-w-2xl">
+        <span class="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-blue-600 mb-3">
+          <Sparkles class="size-3.5 text-blue-600" />
+          <span>FEATURED WORK & CASE STUDIES</span>
+        </span>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
+          Commercial Execution with Verified Impact
+        </h2>
+      </div>
+      <div>
+        <a
+          href={`${site.basePath}/work/`}
+          class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 font-display text-sm font-bold text-slate-800 hover:border-slate-400 hover:bg-slate-50 transition-all shadow-xs"
+        >
+          <span>View All Case Studies</span>
+          <ArrowRight class="size-4" />
+        </a>
+      </div>
+    </div>
 
-  <div class="mx-auto max-w-[1200px] px-6 sm:px-8">
-    <SectionHeader
-      eyebrow="Featured Work"
-      title="Commercial execution with verified impact"
-      sub="Case studies showcasing revenue scale, lead acquisition, and clean search architecture."
-      on="navy"
-      class="max-w-[640px] mb-14"
-    />
-    <div class="grid gap-8 md:grid-cols-3">
-      {
-        projects.map((p, idx) => (
-          <div 
-            class="reveal-on-scroll rounded-tile border-2 border-ink bg-white/6 p-6 flex flex-col justify-between hover:border-orange/80 transition-all duration-200 group shadow-pop"
-            data-reveal-delay={idx * 100}
-          >
-            <div>
-              <div class:list={['relative flex aspect-16/10 items-center justify-center overflow-hidden rounded-xl border-2 border-ink bg-linear-to-br p-5 shadow-pop-sm', p.accentGradient]}>
-                <span class="absolute inset-0 bg-radial from-orange/20 to-transparent pointer-events-none"></span>
-
-                <div class="relative z-10 text-center flex flex-col items-center justify-center">
-                  {p.logo ? (
-                    <img
-                      src={assetSrc(p.logo)}
-                      alt={`${p.title} logo`}
-                      width="180"
-                      height="60"
-                      loading="lazy"
-                      class="max-h-12 max-w-[180px] object-contain drop-shadow-md mb-3"
-                    />
-                  ) : (
-                    <div class="font-display font-extrabold text-xl text-cloud tracking-wide mb-2">
-                      {p.title}
-                    </div>
-                  )}
-
-                  <div class="flex flex-wrap items-center justify-center gap-2 mt-1">
-                    <span class="inline-flex items-center gap-1 rounded-full bg-orange px-3 py-1 text-xs font-bold font-display text-cloud shadow-sm">
-                      <p.IconPrimary class="size-3.5" />
-                      <span>{p.metricPrimary}</span>
-                    </span>
-                    <span class="inline-flex items-center gap-1 rounded-full bg-cloud/15 border border-white/20 px-3 py-1 text-xs font-semibold font-display text-sky-mist">
-                      <p.IconSecondary class="size-3.5 text-orange-glow" />
-                      <span>{p.metricSecondary}</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <span class="mt-5 block font-mono text-xs font-bold text-orange-glow tracking-wider uppercase">
-                {p.tag}
+    <!-- 3 SUBSTANTIAL EDITORIAL PROJECT SECTIONS (DIFFERENT COMPOSITIONS) -->
+    <div class="space-y-16">
+      
+      <!-- EDITORIAL SECTION 1: BLACK GOLD FERTILIZER (Horizontal Full-Width Light Editorial Hero) -->
+      <article class="reveal-on-scroll rounded-3xl border border-slate-200 bg-white p-8 sm:p-12 lg:p-14 shadow-xl shadow-slate-200/60 hover:shadow-2xl transition-all duration-300 group">
+        <div class="grid gap-12 lg:grid-cols-12 items-center">
+          
+          <div class="lg:col-span-6 space-y-6">
+            <div class="flex items-center gap-3">
+              <span class="rounded-full bg-emerald-100 border border-emerald-200 px-4 py-1 text-xs font-bold font-mono text-emerald-800 uppercase tracking-wider">
+                E-COMMERCE & AGRICULTURE
               </span>
-              <h3 class="mt-2 font-display text-2xl font-bold text-cloud group-hover:text-orange-bright transition-colors">
-                {p.title}
-              </h3>
-              <p class="mt-3 text-sm sm:text-base leading-relaxed text-sky-mist font-body">
-                {p.result}
-              </p>
+              <span class="text-xs font-mono text-slate-400">01 / FEATURED CASE</span>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+            <!-- Brand Logo & Title -->
+            <div class="space-y-3">
+              <img
+                src={`${site.basePath}/brands/black-gold-fertilizer/logo.webp`}
+                alt="Black Gold Fertilizer logo"
+                width="200"
+                height="56"
+                loading="lazy"
+                class="max-h-12 w-auto object-contain"
+              />
+              <h3 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                Black Gold Fertilizer
+              </h3>
+            </div>
+
+            <p class="text-base sm:text-lg text-slate-600 font-body leading-relaxed">
+              Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.
+            </p>
+
+            <!-- Exact Verified Metrics Badges -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <div class="inline-flex items-center gap-2 rounded-xl bg-blue-50 border border-blue-200 px-4 py-2.5 text-sm font-bold font-display text-blue-900">
+                <TrendingUp class="size-4 text-blue-600" />
+                <span>PKR 30M+ revenue supported</span>
+              </div>
+              <div class="inline-flex items-center gap-2 rounded-xl bg-emerald-50 border border-emerald-200 px-4 py-2.5 text-sm font-bold font-display text-emerald-900">
+                <ShoppingBag class="size-4 text-emerald-600" />
+                <span>29,000+ product sales</span>
+              </div>
+            </div>
+
+            <div class="pt-4">
               <a
-                href={p.href}
-                class="inline-flex items-center gap-2 font-bold text-sm text-cloud group-hover:text-orange transition-colors"
+                href={`${site.basePath}/work/black-gold-fertilizer/`}
+                class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-7 py-4 font-display text-sm font-bold text-white shadow-md hover:bg-blue-600 transition-all"
               >
                 <span>Read Case Study</span>
-                <span class="text-orange">→</span>
+                <ArrowRight class="size-4" />
               </a>
-              <span class="text-xs font-mono text-white/40">Verified Case</span>
             </div>
           </div>
-        ))
-      }
+
+          <!-- Visual Side: Agriculture & E-Commerce Campaign Creative Thumbnail -->
+          <div class="lg:col-span-6">
+            <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 p-2.5 shadow-2xl">
+              <img
+                src={`${site.basePath}/images/meta-ads.webp`}
+                alt="Black Gold Fertilizer Agriculture Campaign Creative"
+                width="640"
+                height="400"
+                loading="lazy"
+                class="w-full h-auto rounded-xl object-cover group-hover:scale-102 transition-transform duration-300"
+              />
+              <div class="absolute bottom-6 right-6 rounded-xl border border-white/20 bg-slate-900/90 p-4 backdrop-blur-md shadow-lg hidden sm:flex items-center gap-3 text-white">
+                <Sprout class="size-6 text-emerald-400 shrink-0" />
+                <div>
+                  <div class="text-[11px] font-mono text-slate-400">Agriculture & E-Commerce</div>
+                  <div class="text-xs font-bold font-display text-white">Multi-Category Product Growth</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- EDITORIAL SECTION 2: WAJIB LIVESTOCK QURBANI CAMPAIGN (Asymmetric Dark Editorial Showcase) -->
+      <article class="reveal-on-scroll rounded-3xl border border-slate-800 bg-[#090d16] text-white p-8 sm:p-12 lg:p-14 shadow-2xl shadow-slate-950/50 group" data-reveal-delay="100">
+        <div class="grid gap-12 lg:grid-cols-12 items-center">
+          
+          <!-- Visual Side: Campaign Creative & Livestock Campaign Graphic -->
+          <div class="lg:col-span-6 order-2 lg:order-1">
+            <div class="relative overflow-hidden rounded-2xl border border-white/15 bg-slate-900 p-2.5 shadow-2xl">
+              <img
+                src={`${site.basePath}/images/campaign-lab.webp`}
+                alt="Wajib Livestock Seasonal Qurbani Campaign Creative"
+                width="640"
+                height="400"
+                loading="lazy"
+                class="w-full h-auto rounded-xl object-cover group-hover:scale-102 transition-transform duration-300"
+              />
+              <div class="absolute bottom-6 left-6 rounded-xl border border-white/20 bg-slate-950/90 p-4 backdrop-blur-md shadow-lg hidden sm:flex items-center gap-3 text-white">
+                <Award class="size-6 text-amber-400 shrink-0" />
+                <div>
+                  <div class="text-[11px] font-mono text-slate-400">Seasonal Campaign</div>
+                  <div class="text-xs font-bold font-display text-white">More than 150 animals sold</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 order-1 lg:order-2 space-y-6">
+            <div class="flex items-center gap-3">
+              <span class="rounded-full bg-amber-500/20 border border-amber-500/30 px-4 py-1 text-xs font-bold font-mono text-amber-400 uppercase tracking-wider">
+                LIVESTOCK & SEASONAL E-COMMERCE
+              </span>
+              <span class="text-xs font-mono text-slate-400">02 / FEATURED CASE</span>
+            </div>
+
+            <h3 class="font-display text-3xl sm:text-4xl font-bold text-white group-hover:text-blue-400 transition-colors">
+              Wajib Livestock Qurbani Campaign
+            </h3>
+
+            <p class="text-base sm:text-lg text-slate-300 font-body leading-relaxed">
+              Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.
+            </p>
+
+            <!-- Exact Verified Metrics Badges -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <div class="inline-flex items-center gap-2 rounded-xl bg-amber-500/10 border border-amber-500/30 px-4 py-2.5 text-sm font-bold font-display text-amber-400">
+                <Calendar class="size-4 text-amber-400" />
+                <span>More than 150 animals sold</span>
+              </div>
+              <div class="inline-flex items-center gap-2 rounded-xl bg-slate-800 border border-slate-700 px-4 py-2.5 text-sm font-bold font-display text-slate-200">
+                <TrendingUp class="size-4 text-blue-400" />
+                <span>PKR 4.2M+ sales supported</span>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <a
+                href={`${site.basePath}/work/qurbani-campaign/`}
+                class="inline-flex items-center gap-2 rounded-full bg-blue-600 px-7 py-4 font-display text-sm font-bold text-white shadow-md hover:bg-blue-500 transition-all"
+              >
+                <span>Read Case Study</span>
+                <ArrowRight class="size-4" />
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- EDITORIAL SECTION 3: RK RENO SOLUTIONS (Structured Renovation & Website Screenshot Layout) -->
+      <article class="reveal-on-scroll rounded-3xl border border-slate-200 bg-white p-8 sm:p-12 lg:p-14 shadow-xl shadow-slate-200/60 hover:shadow-2xl transition-all duration-300 group" data-reveal-delay="200">
+        <div class="grid gap-12 lg:grid-cols-12 items-center">
+          
+          <div class="lg:col-span-6 space-y-6">
+            <div class="flex items-center gap-3">
+              <span class="rounded-full bg-sky-100 border border-sky-200 px-4 py-1 text-xs font-bold font-mono text-sky-800 uppercase tracking-wider">
+                RENOVATION & LOCAL SERVICES
+              </span>
+              <span class="text-xs font-mono text-slate-400">03 / FEATURED CASE</span>
+            </div>
+
+            <!-- Brand Logo & Title -->
+            <div class="space-y-3">
+              <img
+                src={`${site.basePath}/brands/rk-reno-solutions/logo.webp`}
+                alt="RK Reno Solutions logo"
+                width="200"
+                height="56"
+                loading="lazy"
+                class="max-h-12 w-auto object-contain"
+              />
+              <h3 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                RK Reno Solutions
+              </h3>
+            </div>
+
+            <p class="text-base sm:text-lg text-slate-600 font-body leading-relaxed">
+              Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.
+            </p>
+
+            <!-- Scope & Region Badges -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <div class="inline-flex items-center gap-2 rounded-xl bg-sky-50 border border-sky-200 px-4 py-2.5 text-sm font-bold font-display text-sky-900">
+                <MapPin class="size-4 text-sky-600" />
+                <span>Kuala Lumpur & Selangor SEO Scope</span>
+              </div>
+              <div class="inline-flex items-center gap-2 rounded-xl bg-slate-100 border border-slate-200 px-4 py-2.5 text-sm font-bold font-display text-slate-800">
+                <Wrench class="size-4 text-slate-600" />
+                <span>Renovation & HVAC Architecture</span>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <a
+                href={`${site.basePath}/work/rk-reno-solutions/`}
+                class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-7 py-4 font-display text-sm font-bold text-white shadow-md hover:bg-blue-600 transition-all"
+              >
+                <span>Read Case Study</span>
+                <ArrowRight class="size-4" />
+              </a>
+            </div>
+          </div>
+
+          <!-- Visual Side: Real Website Screenshot & Construction Context -->
+          <div class="lg:col-span-6">
+            <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 p-2.5 shadow-2xl">
+              <img
+                src={`${site.basePath}/images/project-seo.webp`}
+                alt="RK Reno Solutions Renovation & HVAC Website Screens"
+                width="640"
+                height="400"
+                loading="lazy"
+                class="w-full h-auto rounded-xl object-cover group-hover:scale-102 transition-transform duration-300"
+              />
+              <div class="absolute bottom-6 right-6 rounded-xl border border-white/20 bg-slate-900/90 p-4 backdrop-blur-md shadow-lg hidden sm:flex items-center gap-3 text-white">
+                <Wrench class="size-6 text-sky-400 shrink-0" />
+                <div>
+                  <div class="text-[11px] font-mono text-slate-400">Renovation & Local Search</div>
+                  <div class="text-xs font-bold font-display text-white">Malaysia Local Target Scope</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
     </div>
+
   </div>
 </section>

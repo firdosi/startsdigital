@@ -1,129 +1,112 @@
 ---
-import SectionHeader from './SectionHeader.astro';
-import { TrendingUp, ShoppingBag, Award, HeartHandshake } from '@lucide/astro';
+import { TrendingUp, ShoppingBag, Award, HeartHandshake, CheckCircle2 } from '@lucide/astro';
 
 const metrics = [
   {
     target: '30',
     prefix: 'PKR ',
     suffix: 'M+',
-    decimals: '0',
     exact: 'PKR 30M+',
     label: 'Revenue Supported',
     description: 'Total revenue supported across managed commercial campaigns and e-commerce stores.',
-    highlight: true,
     Icon: TrendingUp,
   },
   {
     target: '29000',
     prefix: '',
     suffix: '+',
-    decimals: '0',
     exact: '29,000+',
     label: 'Product Sales',
-    description: 'E-commerce product orders processed and delivered across multiple product categories.',
-    highlight: false,
+    description: '29,000+ product sales supported across multiple product categories.',
     Icon: ShoppingBag,
   },
   {
     target: '4.2',
     prefix: 'PKR ',
     suffix: 'M+',
-    decimals: '1',
     exact: 'PKR 4.2M+',
-    label: 'Qurbani Sales Supported',
-    description: 'Revenue supported during the seasonal Wajib Livestock Qurbani campaign.',
-    highlight: true,
+    label: 'Sales Supported',
+    description: 'PKR 4.2M+ sales supported during the seasonal Wajib Livestock Qurbani campaign.',
     Icon: Award,
   },
   {
     target: '150',
     prefix: '',
     suffix: '+',
-    decimals: '0',
-    exact: '150+',
-    label: 'Livestock Sold',
-    description: 'Animals sold through high-intent lead routing and direct customer acquisition.',
-    highlight: false,
+    exact: 'More than 150',
+    label: 'Animals Sold',
+    description: 'More than 150 animals sold through seasonal campaign execution.',
     Icon: HeartHandshake,
   },
 ];
 ---
 
-<section
-  id="results"
-  class="border-y-4 border-ink bg-linear-160 from-orange-bright from-0% via-orange via-60% to-orange-deep text-ink relative overflow-hidden"
->
-  <span class="absolute top-8 right-[5%] text-[32px] text-cloud pointer-events-none" aria-hidden="true">✦</span>
+<section id="results" class="relative py-24 bg-[#090d16] text-white border-b border-white/10 overflow-hidden">
+  <!-- Ambient Radial Glow -->
+  <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[650px] rounded-full bg-blue-600/10 blur-[140px]"></div>
 
-  <div class="mx-auto max-w-[1200px] px-6 sm:px-8 py-20">
-    <SectionHeader
-      eyebrow="Results"
-      title="Verified Commercial Performance"
-      sub="Commercial milestones achieved across client accounts without vanity metric padding."
-      on="orange"
-      class="max-w-[620px] mb-12"
-    />
+  <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-blue-400 mb-3">
+        <CheckCircle2 class="size-3.5 text-blue-400" />
+        <span>VERIFIED PERFORMANCE</span>
+      </span>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+        Verified Commercial Results
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-slate-300 font-body leading-relaxed">
+        Commercial milestones achieved across client accounts with 100% verified metrics.
+      </p>
+    </div>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
+    <!-- Metrics Grid -->
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
       {
         metrics.map((m, idx) => (
           <div
-            class:list={[
-              'reveal-on-scroll rounded-[22px] border-2 border-ink p-7 shadow-pop flex flex-col justify-between transition-transform hover:-translate-y-1',
-              m.highlight ? 'bg-navy text-cloud shadow-pop-lg' : 'bg-cloud text-ink',
-            ]}
+            class="reveal-on-scroll rounded-2xl border border-white/15 bg-slate-900/80 p-8 shadow-xl backdrop-blur-xl hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between group"
             data-reveal-delay={idx * 100}
           >
             <div>
-              <div class="flex items-center justify-between mb-4">
-                <span
-                  class:list={[
-                    'font-display text-3xl sm:text-4xl font-bold block leading-tight counter-value',
-                    m.highlight ? 'text-orange-bright' : 'text-navy',
-                  ]}
-                  data-counter-target={m.target}
-                  data-counter-prefix={m.prefix}
-                  data-counter-suffix={m.suffix}
-                  data-counter-decimals={m.decimals}
-                  data-counter-exact={m.exact}
-                >
-                  {m.exact}
-                </span>
-                <span
-                  class:list={[
-                    'size-10 rounded-full border-2 border-ink flex items-center justify-center shadow-pop-sm',
-                    m.highlight ? 'bg-orange text-cloud' : 'bg-sky text-navy',
-                  ]}
-                >
-                  <m.Icon class="size-5" />
+              <div class="flex items-center justify-between mb-6">
+                <div class="size-11 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                  <m.Icon class="size-5.5" />
+                </div>
+                <span class="text-[11px] font-mono text-slate-400 uppercase tracking-wider bg-white/5 px-2.5 py-1 rounded-md border border-white/10">
+                  VERIFIED
                 </span>
               </div>
 
-              <h3
-                class:list={[
-                  'font-display text-lg font-bold uppercase tracking-wider',
-                  m.highlight ? 'text-cloud' : 'text-ink',
-                ]}
+              <!-- Oversized Counter Typography -->
+              <div
+                class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-none counter-value group-hover:text-blue-400 transition-colors"
+                data-counter-target={m.target}
+                data-counter-prefix={m.prefix}
+                data-counter-suffix={m.suffix}
+                data-counter-exact={m.exact}
               >
+                {m.exact}
+              </div>
+
+              <h3 class="mt-4 font-display text-lg font-bold text-slate-100">
                 {m.label}
               </h3>
-              <p
-                class:list={[
-                  'mt-3 text-sm sm:text-base leading-relaxed font-body',
-                  m.highlight ? 'text-sky-mist' : 'text-slate-600',
-                ]}
-              >
+              
+              <p class="mt-2 text-sm text-slate-400 font-body leading-relaxed">
                 {m.description}
               </p>
             </div>
 
-            <div class="mt-6 pt-3 border-t border-line text-xs font-mono text-slate-400">
-              Verified Metric ✦
+            <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+              <span>Performance Track</span>
+              <span class="text-blue-400">Supported Metrics</span>
             </div>
           </div>
         ))
       }
     </div>
+
   </div>
 </section>
