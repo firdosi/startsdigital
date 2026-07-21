@@ -58,7 +58,7 @@ const metrics = [
         <CheckCircle class="size-4 text-[#ddff35]" />
         <span>VERIFIED PERFORMANCE</span>
       </span>
-      <h2 class="font-body font-bold text-3xl sm:text-5xl text-white leading-tight">
+      <h2 class="font-body font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-white leading-[1.15]">
         Verified commercial results
       </h2>
       <p class="text-base sm:text-lg text-slate-300 font-body leading-[1.6] font-normal max-w-2xl mx-auto">
@@ -82,14 +82,14 @@ const metrics = [
                 <div class="size-14 rounded-2xl bg-current/15 flex items-center justify-center backdrop-blur-md">
                   <m.Icon class="size-7" />
                 </div>
-                <span class:list={['text-xs font-mono font-extrabold px-3 py-1 rounded-full uppercase tracking-wider', m.badgeClass]}>
+                <span class:list={['text-xs font-mono font-bold px-3 py-1 rounded-full uppercase tracking-wider', m.badgeClass]}>
                   VERIFIED
                 </span>
               </div>
 
-              <!-- Metric Value -->
+              <!-- Metric Value: Manrope 700, 30-36px mobile, 34-44px desktop -->
               <div
-                class="font-display text-4xl sm:text-5xl font-black uppercase tracking-tight leading-none counter-value mb-4"
+                class="font-body font-bold text-[30px] sm:text-[36px] lg:text-[42px] leading-none counter-value mb-4 tracking-normal"
                 data-counter-target={m.target}
                 data-counter-prefix={m.prefix}
                 data-counter-suffix={m.suffix}
@@ -98,12 +98,12 @@ const metrics = [
                 {m.exact}
               </div>
 
-              <!-- Label (Manrope 600) -->
-              <h3 class="font-body font-semibold text-lg sm:text-xl leading-snug mb-2">
+              <!-- Label: Manrope 600, 14-16px, Natural title case -->
+              <h3 class="font-body font-semibold text-[15px] sm:text-base leading-snug mb-2">
                 {m.label}
               </h3>
               
-              <!-- Description (Manrope 400 leading 1.6) -->
+              <!-- Description: Manrope 400 leading 1.6 -->
               <p class="text-sm leading-[1.6] font-body font-normal opacity-90">
                 {m.description}
               </p>

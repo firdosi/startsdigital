@@ -11,7 +11,7 @@ import {
 ---
 
 <section id="hero" class="relative overflow-hidden bg-[#061d33] text-white pt-12 pb-20 lg:pt-16 lg:pb-24 rounded-b-[40px] lg:rounded-b-[60px] shadow-2xl">
-  <!-- Subtle Decorative Accents & Floating Stickers -->
+  <!-- Subtle Decorative Accents -->
   <div class="pointer-events-none absolute top-12 left-[10%] text-[#ff762b] opacity-60 text-2xl animate-float" aria-hidden="true">✦</div>
   <div class="pointer-events-none absolute top-24 right-[12%] text-[#ddff35] opacity-70 text-3xl animate-float" aria-hidden="true" style="animation-delay: 1.5s;">★</div>
   <div class="pointer-events-none absolute bottom-16 left-[5%] text-[#9a83f5] opacity-50 text-3xl animate-float" aria-hidden="true" style="animation-delay: 2.5s;">✦</div>
@@ -19,9 +19,9 @@ import {
   <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 text-center">
     
     <!-- Centred Editorial Layout -->
-    <div class="max-w-4xl mx-auto space-y-8">
+    <div class="max-w-[800px] mx-auto space-y-8">
       
-      <!-- Decorative Sticker / Eyebrow Pill -->
+      <!-- Decorative Eyebrow Pill -->
       <div class="reveal-on-scroll inline-flex items-center justify-center">
         <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-bold uppercase tracking-widest text-[#ddff35] backdrop-blur-md shadow-sm">
           <Sparkles class="size-4 text-[#ddff35]" />
@@ -29,30 +29,30 @@ import {
         </span>
       </div>
 
-      <!-- Main Short Headline (Anton / Bebas Neue - 7 words) -->
-      <h1 class="reveal-on-scroll font-display text-4xl sm:text-6xl lg:text-[76px] font-black uppercase leading-[0.98] tracking-normal text-white" data-reveal-delay="100">
-        DIGITAL MARKETING BUILT TO SCALE <span class="text-[#ff762b] underline decoration-[#ddff35] decoration-4 underline-offset-8">REAL BUSINESSES</span>.
+      <!-- Hero Headline: Natural sentence case in Manrope 700, 36-42px mobile, 56-68px desktop -->
+      <h1 class="reveal-on-scroll font-body font-bold text-[36px] sm:text-[54px] lg:text-[62px] leading-[1.08] tracking-normal text-white" data-reveal-delay="100">
+        Digital marketing built to scale <span class="text-[#ff762b]">real businesses.</span>
       </h1>
 
-      <!-- Supporting Copy (Manrope 400 leading 1.6) -->
-      <p class="reveal-on-scroll text-lg sm:text-2xl leading-[1.6] text-slate-200 font-body max-w-3xl mx-auto font-normal" data-reveal-delay="200">
+      <!-- Supporting Copy: 16px mobile, 17-19px desktop, max-w 680px, leading 1.6 -->
+      <p class="reveal-on-scroll text-base sm:text-[18px] leading-[1.6] text-slate-200 font-body max-w-[680px] mx-auto font-normal" data-reveal-delay="200">
         Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
       </p>
 
-      <!-- Action Buttons (Manrope 600) -->
+      <!-- Action Buttons: Manrope 600 -->
       <div class="reveal-on-scroll flex flex-wrap items-center justify-center gap-5 pt-4 font-body" data-reveal-delay="300">
         <a
           href={`${site.basePath}/#contact`}
-          class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-8 py-4 font-body font-semibold text-lg text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
+          class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-8 py-4 font-body font-semibold text-base sm:text-lg text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
         >
-          <span>Discuss Your Project</span>
+          <span>Discuss your project</span>
           <ArrowRight class="size-5 text-[#061d33] group-hover:translate-x-1 transition-transform" />
         </a>
         <a
           href={`${site.basePath}/#work`}
-          class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-4 font-body font-semibold text-lg text-white hover:bg-white/20 hover:border-white/50 transition-all backdrop-blur-sm"
+          class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-4 font-body font-semibold text-base sm:text-lg text-white hover:bg-white/20 hover:border-white/50 transition-all backdrop-blur-sm"
         >
-          View Our Work
+          View our work
         </a>
       </div>
 
@@ -70,10 +70,10 @@ import {
             </div>
             <span class="text-[11px] font-mono text-[#ff762b] font-bold uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <div class="font-body font-bold text-3xl sm:text-4xl text-white tracking-normal">
             PKR 30M+
           </div>
-          <p class="text-sm text-slate-300 font-body font-normal mt-1">
+          <p class="text-[15px] text-slate-300 font-body font-semibold mt-1">
             Revenue Supported
           </p>
         </div>
@@ -86,10 +86,10 @@ import {
             </div>
             <span class="text-[11px] font-mono text-[#9a83f5] font-bold uppercase tracking-wider bg-[#9a83f5]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <div class="font-body font-bold text-3xl sm:text-4xl text-white tracking-normal">
             29,000+
           </div>
-          <p class="text-sm text-slate-300 font-body font-normal mt-1">
+          <p class="text-[15px] text-slate-300 font-body font-semibold mt-1">
             Product Sales
           </p>
         </div>
@@ -102,10 +102,10 @@ import {
             </div>
             <span class="text-[11px] font-mono text-[#ddff35] font-bold uppercase tracking-wider bg-[#ddff35]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <div class="font-body font-bold text-3xl sm:text-4xl text-white tracking-normal">
             PKR 4.2M+
           </div>
-          <p class="text-sm text-slate-300 font-body font-normal mt-1">
+          <p class="text-[15px] text-slate-300 font-body font-semibold mt-1">
             Sales Supported
           </p>
         </div>
@@ -118,10 +118,10 @@ import {
             </div>
             <span class="text-[11px] font-mono text-[#ff514b] font-bold uppercase tracking-wider bg-[#ff514b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <div class="font-body font-bold text-3xl sm:text-4xl text-white tracking-normal">
             More Than 150
           </div>
-          <p class="text-sm text-slate-300 font-body font-normal mt-1">
+          <p class="text-[15px] text-slate-300 font-body font-semibold mt-1">
             Animals Sold
           </p>
         </div>

@@ -6,48 +6,48 @@ const columns = [
   {
     heading: 'Services',
     links: [
-      { href: `${site.basePath}/services/`, label: 'All Services & Capabilities' },
-      { href: `${site.basePath}/services/`, label: 'Paid Advertising & Leads' },
-      { href: `${site.basePath}/services/`, label: 'Website Design & E-Commerce' },
-      { href: `${site.basePath}/services/`, label: 'SEO & Local Search' },
-      { href: `${site.basePath}/services/`, label: 'Creative Content' },
-      { href: `${site.basePath}/services/`, label: 'AI Marketing Systems' },
+      { href: `${site.basePath}/services/`, label: 'All services and capabilities' },
+      { href: `${site.basePath}/services/`, label: 'Paid advertising and leads' },
+      { href: `${site.basePath}/services/`, label: 'Website design and e-commerce' },
+      { href: `${site.basePath}/services/`, label: 'SEO and local search' },
+      { href: `${site.basePath}/services/`, label: 'Creative content' },
+      { href: `${site.basePath}/services/`, label: 'AI marketing systems' },
     ],
   },
   {
-    heading: 'Featured Work',
+    heading: 'Featured work',
     links: [
       { href: `${site.basePath}/work/black-gold-fertilizer/`, label: 'Black Gold Fertilizer' },
       { href: `${site.basePath}/work/qurbani-campaign/`, label: 'Wajib Livestock Qurbani' },
       { href: `${site.basePath}/work/rk-reno-solutions/`, label: 'RK Reno Solutions' },
-      { href: `${site.basePath}/work/`, label: 'All Case Studies' },
+      { href: `${site.basePath}/work/`, label: 'All case studies' },
     ],
   },
   {
     heading: 'Company',
     links: [
       { href: `${site.basePath}/about/`, label: 'About Starts Digital' },
-      { href: `${site.basePath}/#results`, label: 'Verified Results' },
-      { href: `${site.basePath}/services/`, label: 'Working Method' },
+      { href: `${site.basePath}/#results`, label: 'Verified results' },
+      { href: `${site.basePath}/services/`, label: 'Working method' },
       { href: `${site.basePath}/#faq`, label: 'FAQ' },
-      { href: `${site.basePath}/contact/`, label: 'Discuss Your Project' },
+      { href: `${site.basePath}/contact/`, label: 'Discuss your project' },
     ],
   },
 ];
 ---
 
-<footer class="bg-[#061d33] border-t border-white/10 text-slate-300">
+<footer class="bg-[#061d33] border-t border-white/10 text-slate-300 font-body">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8 pt-16 pb-12">
     <div class="grid gap-10 md:grid-cols-12">
       
       <!-- Left Column: Agency Overview & Direct Contact -->
       <div class="md:col-span-5 space-y-6">
-        <Logo size="md" />
-        <p class="max-w-[380px] text-base leading-relaxed text-slate-300 font-body font-medium">
+        <Logo />
+        <p class="max-w-[380px] text-[15px] sm:text-base leading-[1.6] text-slate-300 font-body font-normal">
           Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
         </p>
         
-        <div class="pt-2 text-sm space-y-2.5 font-mono text-slate-300">
+        <div class="pt-2 text-[15px] space-y-2.5 font-body text-slate-300 font-normal">
           <div class="flex items-center gap-2">
             <span class="text-slate-400">Email:</span>
             <a href={`mailto:${site.contact.email}`} class="text-[#ddff35] underline hover:text-white transition-colors">
@@ -68,10 +68,10 @@ const columns = [
         {
           columns.map((col) => (
             <div>
-              <h4 class="mb-4 font-display text-base font-bold uppercase tracking-wider text-white">
+              <h4 class="mb-4 font-body text-base font-bold text-white">
                 {col.heading}
               </h4>
-              <ul class="space-y-3 text-sm font-body">
+              <ul class="space-y-3 text-[15px] font-body font-normal">
                 {col.links.map((link) => (
                   <li>
                     <a href={link.href} class="text-slate-300 hover:text-[#ff762b] transition-colors">
@@ -88,11 +88,11 @@ const columns = [
     </div>
 
     <!-- Bottom Copyright Divider -->
-    <div class="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-sm text-slate-400 font-body">
+    <div class="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-[15px] text-slate-400 font-body font-normal">
       <div>
         © {new Date().getFullYear()} Starts Digital. All rights reserved.
       </div>
-      <div class="flex gap-6 font-mono text-xs">
+      <div class="flex gap-6 text-[15px] font-body">
         <a href={`${site.basePath}/contact/`} class="hover:text-white transition-colors">Contact</a>
         <a href={`${site.basePath}/work/`} class="hover:text-white transition-colors">Case Studies</a>
         <a href={`${site.basePath}/#faq`} class="hover:text-white transition-colors">FAQ</a>

@@ -25,7 +25,7 @@
   --color-green: #39c98a;
   --color-coral: #ff514b;
 
-  --font-display: "Anton", "Bebas Neue", system-ui, sans-serif;
+  --font-display: "Manrope", system-ui, sans-serif;
   --font-body: "Manrope", system-ui, sans-serif;
 }
 
@@ -102,10 +102,9 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    line-height: 1.05;
+    font-family: var(--font-body);
+    text-transform: none;
+    letter-spacing: normal;
   }
 
   p {

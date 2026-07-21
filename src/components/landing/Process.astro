@@ -1,5 +1,5 @@
 ---
-import { ChevronDown, Plus, Minus, CheckCircle, Sparkles } from '@lucide/astro';
+import { ChevronDown } from '@lucide/astro';
 
 const stages = [
   {
@@ -109,7 +109,7 @@ const stages = [
       <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
         EXECUTION FRAMEWORK
       </span>
-      <h2 class="font-body font-bold text-3xl sm:text-4xl lg:text-5xl text-[#061d33] leading-tight">
+      <h2 class="font-body font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15]">
         Our working method
       </h2>
       <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal max-w-2xl mx-auto">
@@ -120,7 +120,7 @@ const stages = [
     <!-- Accordion Stack -->
     <div class="space-y-6 max-w-5xl mx-auto">
       {
-        stages.map((stage, idx) => (
+        stages.map((stage) => (
           <div
             class:list={[
               'accordion-item rounded-3xl border-2 transition-all duration-300 overflow-hidden shadow-lg',
@@ -136,13 +136,14 @@ const stages = [
             >
               <div class="flex items-center gap-6">
                 <span class:list={[
-                  'font-mono font-black text-xl sm:text-2xl size-12 rounded-2xl flex items-center justify-center shrink-0',
+                  'font-mono font-bold text-xl sm:text-2xl size-12 rounded-2xl flex items-center justify-center shrink-0',
                   stage.isDefaultOpen ? 'bg-white text-[#ff762b]' : 'bg-[#061d33] text-white'
                 ]}>
                   {stage.id}
                 </span>
                 <div>
-                  <h3 class="font-body font-semibold text-xl sm:text-2xl leading-snug">
+                  <!-- Stage Title: Manrope 700, 18-22px, Natural title case -->
+                  <h3 class="font-body font-bold text-[18px] sm:text-[22px] leading-[1.25]">
                     {stage.title}
                   </h3>
                   <p class:list={[
@@ -175,10 +176,12 @@ const stages = [
                     <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#ff762b] bg-[#ff762b]/10 px-2.5 py-0.5 rounded block w-fit mb-3">
                       {sub.tag}
                     </span>
-                    <h4 class="font-body font-semibold text-base mb-2 text-[#061d33]">
+                    <!-- Sub-panel title: Manrope 600, 16-18px -->
+                    <h4 class="font-body font-semibold text-base sm:text-[18px] mb-2 text-[#061d33] leading-[1.25]">
                       {sub.title}
                     </h4>
-                    <p class="text-sm font-body leading-[1.6] text-slate-700 font-normal">
+                    <!-- Sub-panel desc: Min 15-16px, line-height 1.6 -->
+                    <p class="text-[15px] sm:text-base font-body leading-[1.6] text-slate-700 font-normal">
                       {sub.desc}
                     </p>
                   </div>

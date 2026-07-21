@@ -1,5 +1,4 @@
 ---
-import { site } from '../../site.config';
 import { 
   Megaphone, 
   ShoppingBag, 
@@ -70,7 +69,7 @@ const services = [
       <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
         OUR SERVICES
       </span>
-      <h2 class="font-body font-bold text-3xl sm:text-4xl lg:text-5xl text-[#061d33] leading-tight">
+      <h2 class="font-body font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15]">
         Services designed to drive real results
       </h2>
       <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal max-w-2xl mx-auto">
@@ -95,25 +94,25 @@ const services = [
                 <div class="size-14 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-md">
                   <s.Icon class="size-7" />
                 </div>
-                <span class:list={['text-xs font-mono font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider', s.badgeClass]}>
+                <span class:list={['text-xs font-mono font-bold px-3.5 py-1 rounded-full uppercase tracking-wider', s.badgeClass]}>
                   PHASE {s.id}
                 </span>
               </div>
 
-              <!-- Title (Manrope 600) -->
-              <h3 class="font-body font-semibold text-2xl leading-snug mb-3">
+              <!-- Title: Manrope 700, 19-21px mobile, 20-22px desktop, leading 1.25 -->
+              <h3 class="font-body font-bold text-[19px] sm:text-[21px] leading-[1.25] mb-3">
                 {s.title}
               </h3>
 
-              <!-- Description (Manrope 400 leading 1.6) -->
-              <p class="text-base leading-[1.6] opacity-90 font-body font-normal">
+              <!-- Description: Manrope 400, min 16px, leading 1.6 -->
+              <p class="text-base leading-[1.6] opacity-95 font-body font-normal">
                 {s.description}
               </p>
             </div>
 
-            <!-- Bottom Action Link -->
+            <!-- Bottom Action Link: Manrope 600, min 14px, natural title case -->
             <div class="mt-10 pt-6 border-t border-current/20 flex items-center justify-between font-body">
-              <span class="text-sm font-semibold tracking-wide">Explore Capability</span>
+              <span class="text-sm font-semibold tracking-normal">Explore capability</span>
               <div class="size-10 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <ArrowUpRight class="size-5" />
               </div>
