@@ -4,188 +4,131 @@ import {
   TrendingUp, 
   ShoppingBag, 
   Award, 
-  CheckCircle2, 
+  HeartHandshake, 
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Star
 } from '@lucide/astro';
-
-const verifiedLogos = [
-  { name: 'Black Gold Fertilizer', logo: '/brands/black-gold-fertilizer/logo.webp' },
-  { name: 'RK Reno Solutions', logo: '/brands/rk-reno-solutions/logo.webp' },
-  { name: 'Convort AI', logo: '/brands/convort-ai/logo.webp' },
-];
-
-const platforms = [
-  { name: 'Meta Ads', logo: '/platforms/meta-ads.svg' },
-  { name: 'Google Ads', logo: '/platforms/google-ads.svg' },
-  { name: 'GA4', logo: '/platforms/ga4.svg' },
-  { name: 'Shopify', logo: '/platforms/shopify.svg' },
-];
 ---
 
-<section id="hero" class="relative overflow-hidden bg-[#090d16] text-white py-16 sm:py-24 border-b border-white/10">
-  <!-- Subtle Mesh Grid & Ambient Radial Glow -->
-  <div class="pointer-events-none absolute inset-0 bg-grid-pattern opacity-40"></div>
-  <div class="pointer-events-none absolute -top-40 right-0 size-[600px] rounded-full bg-blue-600/15 blur-[120px]"></div>
-  <div class="pointer-events-none absolute bottom-0 left-0 size-[500px] rounded-full bg-blue-500/10 blur-[100px]"></div>
+<section id="hero" class="relative overflow-hidden bg-[#061d33] text-white pt-12 pb-20 lg:pt-16 lg:pb-24 rounded-b-[40px] lg:rounded-b-[60px] shadow-2xl">
+  <!-- Subtle Decorative Accents & Floating Stickers -->
+  <div class="pointer-events-none absolute top-12 left-[10%] text-[#ff762b] opacity-60 text-2xl animate-float" aria-hidden="true">✦</div>
+  <div class="pointer-events-none absolute top-24 right-[12%] text-[#ddff35] opacity-70 text-3xl animate-float" aria-hidden="true" style="animation-delay: 1.5s;">★</div>
+  <div class="pointer-events-none absolute bottom-16 left-[5%] text-[#9a83f5] opacity-50 text-3xl animate-float" aria-hidden="true" style="animation-delay: 2.5s;">✦</div>
 
-  <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8">
-    <div class="grid items-center gap-12 lg:grid-cols-12">
+  <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 text-center">
+    
+    <!-- Centred Editorial Layout -->
+    <div class="max-w-4xl mx-auto space-y-8">
       
-      <!-- Left Column: Headline, Supporting Copy, CTAs & 4 Verified Proof Badges -->
-      <div class="lg:col-span-7 space-y-8">
-        
-        <!-- Eyebrow Badge -->
-        <div class="reveal-on-scroll">
-          <span class="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-400 backdrop-blur-md">
-            <Sparkles class="size-3.5 text-blue-400" />
-            <span>GROWTH AGENCY & PERFORMANCE SYSTEMS</span>
-          </span>
-        </div>
-
-        <!-- Main Headline -->
-        <h1 class="reveal-on-scroll font-display text-4xl sm:text-5xl lg:text-[60px] font-bold leading-[1.06] tracking-tight text-white" data-reveal-delay="100">
-          Digital marketing built to scale <span class="bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent">real businesses</span>.
-        </h1>
-
-        <!-- Supporting Text -->
-        <p class="reveal-on-scroll text-lg sm:text-xl leading-relaxed text-slate-300 font-body max-w-2xl" data-reveal-delay="200">
-          Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
-        </p>
-
-        <!-- Action Buttons -->
-        <div class="reveal-on-scroll flex flex-wrap gap-4 pt-2" data-reveal-delay="300">
-          <a
-            href={`${site.basePath}/#contact`}
-            class="group inline-flex items-center gap-2 rounded-full bg-blue-600 px-7 py-4 font-display text-base font-bold text-white shadow-xl shadow-blue-600/25 hover:bg-blue-500 hover:shadow-blue-500/35 hover:-translate-y-0.5 transition-all"
-          >
-            <span>Discuss Your Project</span>
-            <ArrowRight class="size-4 text-white group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a
-            href={`${site.basePath}/#work`}
-            class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-slate-900/60 px-7 py-4 font-display text-base font-bold text-slate-200 hover:border-white/30 hover:bg-slate-800/80 hover:text-white transition-all backdrop-blur-sm"
-          >
-            View Our Work
-          </a>
-        </div>
-
-        <!-- 4 Verified Commercial Metrics -->
-        <div class="reveal-on-scroll pt-6 border-t border-white/10" data-reveal-delay="400">
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            
-            <div class="rounded-xl border border-white/10 bg-slate-900/40 p-3.5 backdrop-blur-sm">
-              <div class="flex items-center gap-1.5 text-blue-400 font-display text-lg sm:text-xl font-bold">
-                <TrendingUp class="size-4 shrink-0" />
-                <span>PKR 30M+</span>
-              </div>
-              <p class="text-xs text-slate-400 font-medium mt-1">Revenue Supported</p>
-            </div>
-
-            <div class="rounded-xl border border-white/10 bg-slate-900/40 p-3.5 backdrop-blur-sm">
-              <div class="flex items-center gap-1.5 text-blue-400 font-display text-lg sm:text-xl font-bold">
-                <ShoppingBag class="size-4 shrink-0" />
-                <span>29,000+</span>
-              </div>
-              <p class="text-xs text-slate-400 font-medium mt-1">Product Sales</p>
-            </div>
-
-            <div class="rounded-xl border border-white/10 bg-slate-900/40 p-3.5 backdrop-blur-sm">
-              <div class="flex items-center gap-1.5 text-blue-400 font-display text-lg sm:text-xl font-bold">
-                <Award class="size-4 shrink-0" />
-                <span>PKR 4.2M+</span>
-              </div>
-              <p class="text-xs text-slate-400 font-medium mt-1">Qurbani Sales Supported</p>
-            </div>
-
-            <div class="rounded-xl border border-white/10 bg-slate-900/40 p-3.5 backdrop-blur-sm">
-              <div class="flex items-center gap-1.5 text-blue-400 font-display text-lg sm:text-xl font-bold">
-                <CheckCircle2 class="size-4 shrink-0" />
-                <span>150+</span>
-              </div>
-              <p class="text-xs text-slate-400 font-medium mt-1">Animals Sold</p>
-            </div>
-
-          </div>
-        </div>
-
+      <!-- Decorative Sticker / Eyebrow Pill -->
+      <div class="reveal-on-scroll inline-flex items-center justify-center">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-bold uppercase tracking-widest text-[#ddff35] backdrop-blur-md shadow-sm">
+          <Sparkles class="size-4 text-[#ddff35]" />
+          <span>PERFORMANCE MARKETING & DIGITAL SYSTEMS</span>
+        </span>
       </div>
 
-      <!-- Right Column: Original Layered Composition (Client Logos, Campaign Creatives, Website Screens, Platform Icons) -->
-      <div class="lg:col-span-5 relative reveal-on-scroll" data-reveal-delay="200">
-        <div class="relative mx-auto max-w-[480px] lg:max-w-none space-y-4">
-          
-          <!-- Outer Glass Container Card -->
-          <div class="rounded-3xl border border-white/15 bg-slate-900/90 p-6 shadow-2xl backdrop-blur-xl space-y-6">
-            
-            <!-- Top Bar: Approved Client Logos -->
-            <div class="space-y-2">
-              <div class="text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400">
-                Verified Client Brands
-              </div>
-              <div class="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-slate-950/60 p-3">
-                {verifiedLogos.map((brand) => (
-                  <div class="flex items-center justify-center h-8 px-2 rounded bg-white/5">
-                    <img
-                      src={`${site.basePath}${brand.logo}`}
-                      alt={brand.name}
-                      width="100"
-                      height="30"
-                      class="max-h-6 w-auto object-contain filter grayscale opacity-90 hover:grayscale-0 hover:opacity-100 transition-all"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+      <!-- Main Condensed Headline -->
+      <h1 class="reveal-on-scroll font-display text-4xl sm:text-6xl lg:text-[76px] font-black uppercase leading-[0.98] tracking-normal text-white" data-reveal-delay="100">
+        DIGITAL MARKETING BUILT TO SCALE <span class="text-[#ff762b] underline decoration-[#ddff35] decoration-4 underline-offset-8">REAL BUSINESSES</span>.
+      </h1>
 
-            <!-- Middle: Real Campaign & Website Screenshots Layer -->
-            <div class="grid grid-cols-2 gap-3">
-              <div class="relative overflow-hidden rounded-xl border border-white/10 bg-slate-950 p-1.5">
-                <img
-                  src={`${site.basePath}/images/black-gold-official.png`}
-                  alt="Black Gold Fertilizer Product"
-                  width="280"
-                  height="200"
-                  loading="eager"
-                  class="w-full h-28 object-contain bg-white/5 rounded-lg"
-                />
-                <div class="mt-1 text-[10px] font-mono text-slate-400 text-center">Black Gold Fertilizer</div>
-              </div>
+      <!-- Supporting Copy -->
+      <p class="reveal-on-scroll text-lg sm:text-2xl leading-relaxed text-slate-200 font-body max-w-3xl mx-auto font-medium" data-reveal-delay="200">
+        Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
+      </p>
 
-              <div class="relative overflow-hidden rounded-xl border border-white/10 bg-slate-950 p-1.5">
-                <img
-                  src={`${site.basePath}/images/project-seo.webp`}
-                  alt="SEO & Search Architecture"
-                  width="280"
-                  height="200"
-                  loading="eager"
-                  class="w-full h-28 object-cover rounded-lg"
-                />
-                <div class="mt-1 text-[10px] font-mono text-slate-400 text-center">Search & Web Screens</div>
-              </div>
-            </div>
-
-            <!-- Bottom: Platform Icons Strip & Verified Stat Pill -->
-            <div class="pt-2 border-t border-white/10 flex items-center justify-between gap-3">
-              <div class="flex items-center gap-2">
-                {platforms.map((p) => (
-                  <div class="size-8 rounded-lg bg-white/5 border border-white/10 p-1.5 flex items-center justify-center" title={p.name}>
-                    <img src={`${site.basePath}${p.logo}`} alt={p.name} class="size-5 object-contain" />
-                  </div>
-                ))}
-              </div>
-
-              <div class="inline-flex items-center gap-2 rounded-lg border border-blue-500/30 bg-blue-600/20 px-3 py-1.5 text-xs font-bold font-display text-blue-400">
-                <TrendingUp class="size-3.5 text-blue-400" />
-                <span>PKR 30M+ Revenue Supported</span>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
+      <!-- Action Buttons -->
+      <div class="reveal-on-scroll flex flex-wrap items-center justify-center gap-5 pt-4" data-reveal-delay="300">
+        <a
+          href={`${site.basePath}/#contact`}
+          class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-8 py-4 font-display text-lg font-bold text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
+        >
+          <span>Discuss Your Project</span>
+          <ArrowRight class="size-5 text-[#061d33] group-hover:translate-x-1 transition-transform" />
+        </a>
+        <a
+          href={`${site.basePath}/#work`}
+          class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-4 font-display text-lg font-bold text-white hover:bg-white/20 hover:border-white/50 transition-all backdrop-blur-sm"
+        >
+          View Our Work
+        </a>
       </div>
 
     </div>
+
+    <!-- Verified Floating Metric Cards Section -->
+    <div class="reveal-on-scroll mt-16 lg:mt-20 pt-10 border-t border-white/15" data-reveal-delay="400">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Metric Card 1: Orange Accent -->
+        <div class="rounded-2xl border-2 border-[#ff762b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff762b] transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <div class="size-10 rounded-xl bg-[#ff762b] text-white flex items-center justify-center font-bold">
+              <TrendingUp class="size-5" />
+            </div>
+            <span class="text-[11px] font-mono text-[#ff762b] font-bold uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
+          </div>
+          <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            PKR 30M+
+          </div>
+          <p class="text-sm text-slate-300 font-body font-medium mt-1">
+            Revenue Supported
+          </p>
+        </div>
+
+        <!-- Metric Card 2: Purple Accent -->
+        <div class="rounded-2xl border-2 border-[#9a83f5]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#9a83f5] transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <div class="size-10 rounded-xl bg-[#9a83f5] text-white flex items-center justify-center font-bold">
+              <ShoppingBag class="size-5" />
+            </div>
+            <span class="text-[11px] font-mono text-[#9a83f5] font-bold uppercase tracking-wider bg-[#9a83f5]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
+          </div>
+          <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            29,000+
+          </div>
+          <p class="text-sm text-slate-300 font-body font-medium mt-1">
+            Product Sales
+          </p>
+        </div>
+
+        <!-- Metric Card 3: Lime Accent -->
+        <div class="rounded-2xl border-2 border-[#ddff35]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ddff35] transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <div class="size-10 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center font-bold">
+              <Award class="size-5" />
+            </div>
+            <span class="text-[11px] font-mono text-[#ddff35] font-bold uppercase tracking-wider bg-[#ddff35]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
+          </div>
+          <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            PKR 4.2M+
+          </div>
+          <p class="text-sm text-slate-300 font-body font-medium mt-1">
+            Sales Supported
+          </p>
+        </div>
+
+        <!-- Metric Card 4: Coral Accent -->
+        <div class="rounded-2xl border-2 border-[#ff514b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff514b] transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <div class="size-10 rounded-xl bg-[#ff514b] text-white flex items-center justify-center font-bold">
+              <HeartHandshake class="size-5" />
+            </div>
+            <span class="text-[11px] font-mono text-[#ff514b] font-bold uppercase tracking-wider bg-[#ff514b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
+          </div>
+          <div class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            More Than 150
+          </div>
+          <p class="text-sm text-slate-300 font-body font-medium mt-1">
+            Animals Sold
+          </p>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>

@@ -1,87 +1,204 @@
 ---
-import { processData } from '../../data/process';
-import { Workflow, ArrowRight } from '@lucide/astro';
+import { ChevronDown, Plus, Minus, CheckCircle, Sparkles } from '@lucide/astro';
+
+const stages = [
+  {
+    id: '01',
+    title: 'Understand Your Business',
+    subtitle: 'Comprehensive discovery, market analysis, and unit economics alignment before launching any ad spend.',
+    isDefaultOpen: true,
+    subPanels: [
+      {
+        tag: 'DISCOVERY',
+        title: 'Commercial Goal Alignment',
+        desc: 'We audit your historical revenue, gross margins, customer LTV, and current acquisition channels to determine realistic scaling targets.',
+      },
+      {
+        tag: 'STRATEGY',
+        title: 'Market & Offer Analysis',
+        desc: 'Evaluation of your product offer, pricing strategy, checkout friction, and competitive positioning across target demographics.',
+      },
+      {
+        tag: 'SOLUTION',
+        title: 'Growth Roadmap Design',
+        desc: 'Structuring media budget allocation, creative angles, website optimizations, and attribution setup before launch.',
+      },
+    ],
+    chips: ['AUDIT', 'MARKET FIT', 'UNIT ECONOMICS', 'TARGET PROFILES', 'ATTRIBUTION SETUP'],
+  },
+  {
+    id: '02',
+    title: 'Strategic Planning and Creative Execution',
+    subtitle: 'Deploying high-converting ad creatives, optimized landing pages, and technical lead funnels.',
+    isDefaultOpen: false,
+    subPanels: [
+      {
+        tag: 'CREATIVE',
+        title: 'Ad Creative Development',
+        desc: 'Designing direct-response image and video ad variations tailored for Meta, Google Search, and TikTok feeds.',
+      },
+      {
+        tag: 'ARCHITECTURE',
+        title: 'High-Converting Web Pages',
+        desc: 'Building fast-loading landing pages and e-commerce stores optimized for mobile checkout velocity.',
+      },
+      {
+        tag: 'TECH STACK',
+        title: 'Tracking & Pixel Setup',
+        desc: 'Implementing Meta Conversions API, Google Analytics 4, and server-side tracking for clean data capture.',
+      },
+    ],
+    chips: ['PAID ADS', 'CREATIVE TESTING', 'LANDING PAGES', 'SERVER TRACKING'],
+  },
+  {
+    id: '03',
+    title: 'Collaboration and Optimisation',
+    subtitle: 'Continuous campaign management, budget re-allocation, and iterative creative testing.',
+    isDefaultOpen: false,
+    subPanels: [
+      {
+        tag: 'MEDIA BUYING',
+        title: 'Campaign Management',
+        desc: 'Daily monitoring of ad spend, bid strategies, audience placement, and cost per acquisition metrics.',
+      },
+      {
+        tag: 'CRO',
+        title: 'Conversion Rate Optimization',
+        desc: 'A/B testing headlines, offer copy, CTA placement, and checkout steps to maximize conversion volume.',
+      },
+      {
+        tag: 'REPORTING',
+        title: 'Transparent Performance Reviews',
+        desc: 'Regular review calls discussing verified sales volume, customer lead counts, and next-phase scaling plans.',
+      },
+    ],
+    chips: ['A/B TESTING', 'DAILY OPTIMIZATION', 'SCALE MANAGEMENT', 'DIRECT REPORTING'],
+  },
+  {
+    id: '04',
+    title: 'Delivery, Measurement and Improvement',
+    subtitle: 'Long-term brand building, organic search indexation, and scalable marketing systems.',
+    isDefaultOpen: false,
+    subPanels: [
+      {
+        tag: 'SCALING',
+        title: 'Horizontal & Vertical Scaling',
+        desc: 'Expanding winning ad angles into new geographic regions and scaling budget across proven channels.',
+      },
+      {
+        tag: 'SEO ENGINE',
+        title: 'Organic Search Authority',
+        desc: 'Building sustainable keyword rankings and localized service schema to capture organic demand.',
+      },
+      {
+        tag: 'AUTOMATION',
+        title: 'AI Marketing Workflows',
+        desc: 'Automating lead routing, WhatsApp follow-ups, and customer re-engagement to maximize lifetime value.',
+      },
+    ],
+    chips: ['LONG-TERM GROWTH', 'SEO RANKINGS', 'AI AUTOMATION', 'RETENTION'],
+  },
+];
 ---
 
-<section id="process" class="py-20 bg-[#f8fafc] border-b border-slate-200/80 text-slate-900 overflow-hidden">
+<section id="process" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Section Header -->
-    <div class="text-center max-w-2xl mx-auto mb-14">
-      <span class="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-blue-600 mb-2">
-        <Workflow class="size-3.5 text-blue-600" />
-        <span>EXECUTION FRAMEWORK</span>
+    <div class="max-w-3xl mb-16 text-center mx-auto">
+      <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] mb-3 block">
+        EXECUTION FRAMEWORK
       </span>
-      <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
-        A Continuous Growth Journey
+      <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#061d33] uppercase leading-tight">
+        OUR WORKING METHOD
       </h2>
-      <p class="mt-3 text-base text-slate-600 font-body leading-relaxed">
-        Six disciplined phases designed to eliminate guesswork and turn strategy into measurable business outcomes.
+      <p class="mt-4 text-base sm:text-xl text-slate-700 font-body">
+        A structured, four-stage collaborative process designed to eliminate guesswork and turn strategy into measurable business outcomes.
       </p>
     </div>
 
-    <!-- Desktop: Continuous Horizontal Connected Journey (6 Steps) -->
-    <div class="hidden lg:block relative">
-      <!-- Strong Gradient Journey Line passing behind all nodes -->
-      <div class="absolute top-10 left-12 right-12 h-1.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 rounded-full z-0"></div>
-
-      <div class="grid grid-cols-6 gap-4 relative z-10">
-        {
-          processData.map((p, idx) => (
-            <div
-              class="reveal-on-scroll rounded-2xl border border-slate-200 bg-white p-6 shadow-md hover:shadow-xl hover:border-blue-500/60 transition-all duration-200 flex flex-col justify-between group"
-              data-reveal-delay={idx * 60}
-            >
-              <div>
-                <!-- Node Step Badge -->
-                <div class="size-12 rounded-xl bg-slate-900 border-2 border-blue-500 text-white font-mono font-extrabold text-base flex items-center justify-center mb-5 group-hover:bg-blue-600 group-hover:border-blue-400 transition-colors shadow-sm">
-                  {p.step}
-                </div>
-
-                <h3 class="font-display font-bold text-xl text-slate-900 group-hover:text-blue-600 transition-colors mb-2.5 leading-snug">
-                  {p.title}
-                </h3>
-                
-                <p class="text-sm text-slate-600 font-body leading-relaxed">
-                  {p.description}
-                </p>
-              </div>
-
-              <div class="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono font-bold text-slate-400">
-                <span>Phase {p.step}</span>
-                {idx < processData.length - 1 && (
-                  <ArrowRight class="size-3.5 text-blue-500 group-hover:translate-x-1 transition-transform" />
-                )}
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-
-    <!-- Mobile & Tablet: Continuous Vertical Journey Timeline -->
-    <div class="lg:hidden relative pl-8 border-l-4 border-blue-600/40 space-y-6">
+    <!-- Accordion Stack -->
+    <div class="space-y-6 max-w-5xl mx-auto">
       {
-        processData.map((p, idx) => (
+        stages.map((stage, idx) => (
           <div
-            class="reveal-on-scroll relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm group"
-            data-reveal-delay={idx * 50}
+            class:list={[
+              'accordion-item rounded-3xl border-2 transition-all duration-300 overflow-hidden shadow-lg',
+              stage.isDefaultOpen ? 'border-[#ff762b] bg-[#ff762b] text-white' : 'border-slate-300 bg-white text-[#061d33] hover:border-[#ff762b]'
+            ]}
+            data-accordion-id={stage.id}
           >
-            <!-- Timeline Node Indicator -->
-            <div class="absolute -left-[43px] top-6 size-5 rounded-full border-4 border-blue-600 bg-white shadow-sm"></div>
+            <!-- Accordion Header Row -->
+            <button
+              type="button"
+              class="accordion-toggle w-full px-8 py-7 flex items-center justify-between text-left focus:outline-none cursor-pointer"
+              aria-expanded={stage.isDefaultOpen ? 'true' : 'false'}
+            >
+              <div class="flex items-center gap-6">
+                <span class:list={[
+                  'font-mono font-black text-xl sm:text-2xl size-12 rounded-2xl flex items-center justify-center shrink-0',
+                  stage.isDefaultOpen ? 'bg-white text-[#ff762b]' : 'bg-[#061d33] text-white'
+                ]}>
+                  {stage.id}
+                </span>
+                <div>
+                  <h3 class="font-display text-2xl sm:text-3xl font-black uppercase leading-snug">
+                    {stage.title}
+                  </h3>
+                  <p class:list={[
+                    'text-sm sm:text-base font-body font-medium mt-1',
+                    stage.isDefaultOpen ? 'text-white/90' : 'text-slate-600'
+                  ]}>
+                    {stage.subtitle}
+                  </p>
+                </div>
+              </div>
 
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-xs font-mono font-extrabold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-md">
-                PHASE {p.step}
-              </span>
-              <h3 class="font-display font-bold text-xl text-slate-900">
-                {p.title}
-              </h3>
+              <div class:list={[
+                'size-10 rounded-full flex items-center justify-center shrink-0 ml-4 transition-transform duration-300',
+                stage.isDefaultOpen ? 'bg-white/20 text-white rotate-180' : 'bg-slate-100 text-[#061d33]'
+              ]}>
+                <ChevronDown class="size-6" />
+              </div>
+            </button>
+
+            <!-- Accordion Content Panel -->
+            <div class:list={['accordion-content px-8 pb-8 pt-2', stage.isDefaultOpen ? 'block' : 'hidden']}>
+              
+              <!-- 3 Structured Sub-Panels -->
+              <div class="grid gap-6 sm:grid-cols-3 mt-4">
+                {stage.subPanels.map((sub) => (
+                  <div class:list={[
+                    'rounded-2xl p-6 shadow-sm border',
+                    stage.isDefaultOpen ? 'bg-white text-[#061d33] border-white/20' : 'bg-[#f7f4ed] text-[#061d33] border-slate-200'
+                  ]}>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#ff762b] bg-[#ff762b]/10 px-2.5 py-0.5 rounded block w-fit mb-3">
+                      {sub.tag}
+                    </span>
+                    <h4 class="font-display text-lg font-black uppercase mb-2 text-[#061d33]">
+                      {sub.title}
+                    </h4>
+                    <p class="text-sm font-body leading-relaxed text-slate-700 font-medium">
+                      {sub.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <!-- Colourful Topic Chips -->
+              <div class="mt-8 pt-6 border-t border-current/20 flex flex-wrap items-center gap-2.5">
+                <span class="text-xs font-mono font-bold uppercase mr-2 opacity-80">FOCUS AREAS:</span>
+                {stage.chips.map((chip) => (
+                  <span class:list={[
+                    'text-xs font-mono font-bold px-3 py-1 rounded-full uppercase tracking-wider',
+                    stage.isDefaultOpen ? 'bg-white text-[#061d33]' : 'bg-[#061d33] text-white'
+                  ]}>
+                    {chip}
+                  </span>
+                ))}
+              </div>
+
             </div>
-
-            <p class="text-sm sm:text-base text-slate-600 font-body leading-relaxed">
-              {p.description}
-            </p>
           </div>
         ))
       }
@@ -89,3 +206,41 @@ import { Workflow, ArrowRight } from '@lucide/astro';
 
   </div>
 </section>
+
+<script>
+  const accordionItems = document.querySelectorAll('.accordion-item');
+
+  accordionItems.forEach((item) => {
+    const toggleBtn = item.querySelector('.accordion-toggle');
+    const content = item.querySelector('.accordion-content');
+    const icon = toggleBtn?.querySelector('div:last-child');
+
+    toggleBtn?.addEventListener('click', () => {
+      const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+      
+      // Close all accordion items
+      accordionItems.forEach((otherItem) => {
+        const otherBtn = otherItem.querySelector('.accordion-toggle');
+        const otherContent = otherItem.querySelector('.accordion-content');
+        const otherIcon = otherBtn?.querySelector('div:last-child');
+
+        otherBtn?.setAttribute('aria-expanded', 'false');
+        otherContent?.classList.add('hidden');
+        otherItem.classList.remove('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
+        otherItem.classList.add('border-slate-300', 'bg-white', 'text-[#061d33]');
+        otherIcon?.classList.remove('bg-white/20', 'text-white', 'rotate-180');
+        otherIcon?.classList.add('bg-slate-100', 'text-[#061d33]');
+      });
+
+      // Toggle current item if it was closed
+      if (!isOpen) {
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        content?.classList.remove('hidden');
+        item.classList.remove('border-slate-300', 'bg-white', 'text-[#061d33]');
+        item.classList.add('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
+        icon?.classList.remove('bg-slate-100', 'text-[#061d33]');
+        icon?.classList.add('bg-white/20', 'text-white', 'rotate-180');
+      }
+    });
+  });
+</script>

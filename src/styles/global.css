@@ -1,35 +1,31 @@
 @import "tailwindcss";
 
 /*
- * Starts Digital — Premium Dark-First Growth Agency Design System
+ * Starts Digital — Boost-Inspired Editorial Growth Agency Design System
+ * 70% Cream (#f7f4ed), 20% Deep Navy (#061d33), 10% Vibrant Accents
  */
 @theme {
-  /* Colors */
-  --color-dark-bg: #090d16;        /* Near black main dark background */
-  --color-dark-surface: #0f172a;   /* Deep slate for dark cards/containers */
-  --color-dark-card: #141e33;      /* Elevated dark card background */
-  --color-dark-border: rgba(255, 255, 255, 0.08);
+  --color-cream: #f7f4ed;
+  --color-cream-card: #ffffff;
+  --color-cream-subtle: #efece4;
 
-  --color-light-bg: #f8fafc;       /* Slate off-white light background */
-  --color-light-surface: #ffffff;  /* Pure white light cards */
-  --color-light-border: rgba(15, 23, 42, 0.08);
+  --color-navy: #061d33;
+  --color-navy-dark: #030f1c;
+  --color-navy-card: #0a2540;
 
-  --color-accent-blue: #2563eb;    /* Electric blue main primary accent */
-  --color-accent-blue-bright: #3b82f6;
-  --color-accent-blue-glow: rgba(37, 99, 235, 0.25);
+  --color-orange: #ff762b;
+  --color-orange-hover: #e56017;
 
-  --color-accent-orange: #f97316;  /* Selective warm orange accent */
-  --color-accent-orange-bright: #fb923c;
-  
-  --color-slate-950: #020617;
-  --color-slate-900: #0f172a;
-  --color-slate-800: #1e293b;
-  --color-slate-700: #334155;
-  --color-slate-400: #94a3b8;
-  --color-slate-300: #cbd5e1;
+  --color-purple: #9a83f5;
+  --color-purple-dark: #7c3aed;
 
-  /* Typography */
-  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --color-lime: #ddff35;
+  --color-lime-hover: #c9eb1e;
+
+  --color-green: #39c98a;
+  --color-coral: #ff514b;
+
+  --font-display: "Anton", "Bebas Neue", system-ui, sans-serif;
   --font-body: "Manrope", system-ui, sans-serif;
 }
 
@@ -51,36 +47,25 @@
   }
 }
 
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
-
 @keyframes float-subtle {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-8px) rotate(1deg);
   }
 }
 
 .animate-marquee-left {
   display: flex;
   width: max-content;
-  animation: marquee-left 48s linear infinite;
+  animation: marquee-left 45s linear infinite;
 }
 
 .animate-marquee-right {
   display: flex;
   width: max-content;
-  animation: marquee-right 48s linear infinite;
+  animation: marquee-right 45s linear infinite;
 }
 
 .marquee-container:hover .animate-marquee-left,
@@ -89,13 +74,13 @@
 }
 
 .animate-float {
-  animation: float-subtle 6s ease-in-out infinite;
+  animation: float-subtle 5s ease-in-out infinite;
 }
 
-/* Scroll Reveal Utility Classes */
+/* Editorial Scroll Reveal Utility */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(24px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
@@ -105,23 +90,10 @@
   transform: translateY(0);
 }
 
-/* Subtle Grid Pattern Overlay */
-.bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-.bg-grid-pattern-dark {
-  background-image: linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
 @layer base {
   body {
-    background-color: var(--color-dark-bg);
-    color: var(--color-slate-300);
+    background-color: var(--color-cream);
+    color: var(--color-navy);
     font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.6;
@@ -131,8 +103,9 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    text-wrap: balance;
-    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
   }
 
   p {
@@ -140,7 +113,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent-blue);
+    outline: 2px solid var(--color-orange);
     outline-offset: 2px;
   }
 }

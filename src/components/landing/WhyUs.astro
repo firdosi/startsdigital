@@ -1,112 +1,162 @@
 ---
+import { site } from '../../site.config';
 import { 
   Layers, 
   Globe2, 
   Cpu, 
   ShieldCheck, 
-  Quote,
-  Sparkles
+  TrendingUp, 
+  ShoppingBag, 
+  Award, 
+  HeartHandshake 
 } from '@lucide/astro';
 
-const proofPoints = [
+const trustPillars = [
   {
     num: '01',
-    title: 'Strategy and execution managed together',
+    title: 'Strategy & Execution Managed Together',
     body: 'Single-point ownership. We engineer ad campaigns, website checkout, and landing pages in unison without blame-shifting between teams.',
     Icon: Layers,
+    accentColor: 'border-[#ff762b] text-[#ff762b]',
   },
   {
     num: '02',
-    title: 'Multi-industry campaign experience',
+    title: 'Multi-Industry Campaign Experience',
     body: 'Proven execution across e-commerce brands, agricultural suppliers, seasonal livestock retail, and local service contractors in Pakistan, Malaysia, and the Gulf.',
     Icon: Globe2,
+    accentColor: 'border-[#9a83f5] text-[#9a83f5]',
   },
   {
     num: '03',
-    title: 'Marketing and technical capabilities',
-    body: 'Custom lightweight web architecture, technical SEO schema, and conversion architecture combined with performance media buying.',
+    title: 'Marketing & Technical Integration',
+    body: 'Custom web architecture, technical SEO schema, and conversion architecture combined with performance media buying.',
     Icon: Cpu,
+    accentColor: 'border-[#39c98a] text-[#39c98a]',
   },
   {
     num: '04',
-    title: 'Direct communication & transparency',
+    title: 'Direct Transparency & Account Ownership',
     body: 'Work directly with senior strategists and founders. No junior account managers, fake dashboards, or hidden data layers.',
     Icon: ShieldCheck,
+    accentColor: 'border-[#ff514b] text-[#ff514b]',
   },
 ];
 ---
 
-<section id="about" class="relative py-24 bg-[#090d16] text-white border-b border-white/10 overflow-hidden">
-  <!-- Subtle Radial Glow Background -->
-  <div class="pointer-events-none absolute bottom-0 right-0 size-[500px] rounded-full bg-blue-600/10 blur-[130px]"></div>
-
-  <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8">
+<section id="about" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
+  <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
-    <div class="grid gap-12 lg:grid-cols-12 items-start">
-      
-      <!-- Left Side: Large Editorial Statement & Founder Perspective Card -->
-      <div class="lg:col-span-5 space-y-8">
-        
-        <div>
-          <span class="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-blue-400 mb-3">
-            <Sparkles class="size-3.5 text-blue-400" />
-            <span>EDITORIAL CREDIBILITY</span>
-          </span>
-          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            Why Starts Digital
-          </h2>
-          <p class="mt-4 text-xl font-display font-semibold text-blue-400 leading-snug">
-            We replace fragmented freelancer teams with a cohesive growth architecture.
-          </p>
-        </div>
-
-        <p class="text-base text-slate-300 font-body leading-relaxed">
+    <!-- Top Header Row: Heading Left, Paragraph Right -->
+    <div class="grid gap-8 lg:grid-cols-12 items-end mb-16">
+      <div class="lg:col-span-7">
+        <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] mb-3 block">
+          EDITORIAL CREDIBILITY
+        </span>
+        <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#061d33] uppercase leading-none">
+          WHY BRANDS TRUST STARTS DIGITAL
+        </h2>
+      </div>
+      <div class="lg:col-span-5">
+        <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-medium">
           Most marketing failures happen in the gaps between the ad creator, the developer, and the business operator. Starts Digital closes those gaps by taking single-point responsibility for campaign strategy, technical web infrastructure, and conversion optimization.
         </p>
+      </div>
+    </div>
 
-        <!-- Founder / Operator Perspective Glass Card -->
-        <div class="rounded-2xl border border-white/15 bg-slate-900/90 p-7 shadow-xl backdrop-blur-xl space-y-4">
-          <div class="flex items-center gap-3 text-blue-400">
-            <Quote class="size-6 text-blue-400" />
-            <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-300">OPERATOR PERSPECTIVE</span>
-          </div>
-          <p class="text-sm sm:text-base text-slate-200 font-body leading-relaxed italic">
-            "We don’t treat ad campaigns as isolated experiments. Every ad dollar spent is connected directly to your landing page speed, offer positioning, and actual sales volume."
-          </p>
-          <div class="pt-2 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
-            <span>Direct Founder Oversight</span>
-            <span class="text-blue-400 font-bold">100% Account Ownership</span>
-          </div>
+    <!-- Central Real Visual Showcase with Floating Verified Metric Badges -->
+    <div class="relative max-w-4xl mx-auto my-16">
+      
+      <!-- Main Center Visual Card -->
+      <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-3.5 shadow-2xl relative z-10 overflow-hidden">
+        <img
+          src={`${site.basePath}/images/project-seo.webp`}
+          alt="Starts Digital Real Client Project Screenshot"
+          width="900"
+          height="500"
+          loading="lazy"
+          class="w-full h-[320px] sm:h-[420px] rounded-2xl object-cover"
+        />
+        <div class="p-4 bg-[#061d33] text-white rounded-xl mt-3 flex items-center justify-between">
+          <span class="font-display text-sm sm:text-base font-bold uppercase tracking-wider text-[#ddff35]">Hands-on Growth Execution</span>
+          <span class="text-xs font-mono text-slate-300">RK Reno Solutions & E-Commerce Projects</span>
         </div>
-
       </div>
 
-      <!-- Right Side: 4 Numbered Editorial Proof Points -->
-      <div class="lg:col-span-7 space-y-6">
-        {
-          proofPoints.map((point, idx) => (
-            <div
-              class="reveal-on-scroll rounded-2xl border border-white/10 bg-slate-900/60 p-7 backdrop-blur-md hover:border-blue-500/40 hover:bg-slate-900/90 transition-all duration-200 group"
-              data-reveal-delay={idx * 80}
-            >
-              <div class="flex items-start gap-5">
-                <div class="size-11 shrink-0 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 font-mono font-bold text-sm group-hover:scale-105 transition-transform">
+      <!-- Floating Verified Metric Badge 1 (Top Left) -->
+      <div class="hidden sm:flex absolute -top-8 -left-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#ff762b] bg-white p-4 shadow-xl text-[#061d33] animate-float">
+        <div class="size-10 rounded-xl bg-[#ff762b] text-white flex items-center justify-center font-bold">
+          <TrendingUp class="size-5" />
+        </div>
+        <div>
+          <div class="font-display text-xl font-black text-[#061d33]">PKR 30M+</div>
+          <div class="text-xs font-bold text-slate-600">Revenue Supported</div>
+        </div>
+      </div>
+
+      <!-- Floating Verified Metric Badge 2 (Top Right) -->
+      <div class="hidden sm:flex absolute -top-8 -right-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#9a83f5] bg-white p-4 shadow-xl text-[#061d33] animate-float" style="animation-delay: 1.2s;">
+        <div class="size-10 rounded-xl bg-[#9a83f5] text-white flex items-center justify-center font-bold">
+          <ShoppingBag class="size-5" />
+        </div>
+        <div>
+          <div class="font-display text-xl font-black text-[#061d33]">29,000+</div>
+          <div class="text-xs font-bold text-slate-600">Product Sales</div>
+        </div>
+      </div>
+
+      <!-- Floating Verified Metric Badge 3 (Bottom Left) -->
+      <div class="hidden sm:flex absolute -bottom-8 -left-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#ddff35] bg-[#061d33] p-4 shadow-xl text-white animate-float" style="animation-delay: 2s;">
+        <div class="size-10 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center font-bold">
+          <Award class="size-5" />
+        </div>
+        <div>
+          <div class="font-display text-xl font-black text-[#ddff35]">PKR 4.2M+</div>
+          <div class="text-xs font-bold text-slate-300">Sales Supported</div>
+        </div>
+      </div>
+
+      <!-- Floating Verified Metric Badge 4 (Bottom Right) -->
+      <div class="hidden sm:flex absolute -bottom-8 -right-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#ff514b] bg-white p-4 shadow-xl text-[#061d33] animate-float" style="animation-delay: 2.8s;">
+        <div class="size-10 rounded-xl bg-[#ff514b] text-white flex items-center justify-center font-bold">
+          <HeartHandshake class="size-5" />
+        </div>
+        <div>
+          <div class="font-display text-xl font-black text-[#061d33]">More Than 150</div>
+          <div class="text-xs font-bold text-slate-600">Animals Sold</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 4 Key Trust Pillars Cards -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-20">
+      {
+        trustPillars.map((point, idx) => (
+          <div
+            class="reveal-on-scroll rounded-3xl border border-slate-200 bg-white p-7 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            data-reveal-delay={idx * 80}
+          >
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="font-display text-2xl font-black text-[#061d33]/40 group-hover:text-[#ff762b] transition-colors">
                   {point.num}
-                </div>
-                <div class="space-y-2">
-                  <h3 class="font-display text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
-                    {point.title}
-                  </h3>
-                  <p class="text-sm sm:text-base text-slate-300 font-body leading-relaxed">
-                    {point.body}
-                  </p>
+                </span>
+                <div class:list={['size-11 rounded-2xl border-2 flex items-center justify-center font-bold', point.accentColor]}>
+                  <point.Icon class="size-5" />
                 </div>
               </div>
-            </div>
-          ))
-        }
-      </div>
 
+              <h3 class="font-display text-xl font-black uppercase text-[#061d33] mb-3 leading-snug">
+                {point.title}
+              </h3>
+              
+              <p class="text-sm text-slate-700 font-body leading-relaxed font-medium">
+                {point.body}
+              </p>
+            </div>
+          </div>
+        ))
+      }
     </div>
 
   </div>

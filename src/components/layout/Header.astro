@@ -4,26 +4,25 @@ import { site } from '../../site.config';
 
 const links = [
   { href: `${site.basePath}/#services`, label: 'Services' },
-  { href: `${site.basePath}/#work`, label: 'Featured Work' },
+  { href: `${site.basePath}/#work`, label: 'Work' },
   { href: `${site.basePath}/#results`, label: 'Results' },
-  { href: `${site.basePath}/#platforms`, label: 'Platforms' },
-  { href: `${site.basePath}/#about`, label: 'Why Us' },
-  { href: `${site.basePath}/#process`, label: 'Process' },
+  { href: `${site.basePath}/#about`, label: 'About' },
   { href: `${site.basePath}/#faq`, label: 'FAQ' },
+  { href: `${site.basePath}/#contact`, label: 'Contact' },
 ];
 ---
 
 <header
   id="main-header"
-  class="sticky top-0 z-50 border-b border-white/10 bg-[#090d16]/85 backdrop-blur-md transition-all duration-200"
+  class="relative z-50 bg-[#061d33] text-white border-b border-white/10 transition-all duration-200"
 >
-  <div class="mx-auto flex max-w-[1280px] items-center justify-between gap-8 px-6 sm:px-8 py-4">
+  <div class="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-6 sm:px-8 py-5">
     <Logo />
     
-    <!-- Desktop Links -->
-    <nav class="hidden gap-7 text-[14px] font-semibold md:flex text-slate-300">
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden gap-8 text-[15px] font-medium md:flex text-slate-200">
       {links.map((link) => (
-        <a href={link.href} class="hover:text-white transition-colors">
+        <a href={link.href} class="hover:text-[#ff762b] transition-colors">
           {link.label}
         </a>
       ))}
@@ -32,16 +31,8 @@ const links = [
     <!-- Right Actions -->
     <div class="flex items-center gap-4">
       <a
-        href={site.contact.whatsapp}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hidden text-[14px] font-semibold text-slate-300 hover:text-white sm:inline"
-      >
-        WhatsApp
-      </a>
-      <a
         href={`${site.basePath}/#contact`}
-        class="rounded-full bg-blue-600 px-5 py-2.5 text-[14px] font-bold text-white shadow-lg shadow-blue-600/20 hover:bg-blue-500 hover:shadow-blue-500/30 transition-all"
+        class="hidden sm:inline-flex items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-bold text-[#061d33] shadow-md hover:bg-[#ddff35] hover:text-[#061d33] transition-all transform hover:-translate-y-0.5"
       >
         Discuss Your Project
       </a>
@@ -50,7 +41,7 @@ const links = [
       <button
         id="mobile-menu-toggle"
         type="button"
-        class="flex size-10 items-center justify-center rounded-lg border border-white/10 bg-slate-900/60 text-slate-200 hover:border-white/20 hover:text-white md:hidden focus:outline-none"
+        class="flex size-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 md:hidden focus:outline-none"
         aria-label="Toggle navigation"
         aria-expanded="false"
       >
@@ -64,43 +55,28 @@ const links = [
   <!-- Mobile Dropdown Navigation -->
   <div
     id="mobile-menu-drawer"
-    class="hidden border-t border-white/10 bg-[#090d16] px-8 py-6 md:hidden"
+    class="hidden border-t border-white/10 bg-[#061d33] px-8 py-6 md:hidden"
   >
-    <div class="flex flex-col gap-4 text-base font-semibold text-slate-200">
+    <div class="flex flex-col gap-4 text-base font-semibold text-white">
       {links.map((link) => (
-        <a href={link.href} class="mobile-link hover:text-blue-400 py-1 transition-colors">
+        <a href={link.href} class="mobile-link hover:text-[#ff762b] py-1 transition-colors">
           {link.label}
         </a>
       ))}
       <a
-        href={site.contact.whatsapp}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="mobile-link text-blue-400 font-bold py-1 flex items-center gap-2"
+        href={`${site.basePath}/#contact`}
+        class="mobile-link mt-2 rounded-full bg-[#ff762b] px-6 py-3 text-center text-sm font-bold text-white shadow-md hover:bg-[#e56017] transition-all"
       >
-        <span>WhatsApp Chat</span>
-        <span class="text-xs font-mono text-slate-400">(+92 339 4135544)</span>
+        Discuss Your Project
       </a>
     </div>
   </div>
 </header>
 
 <script>
-  const nav = document.getElementById('main-header');
   const toggleBtn = document.getElementById('mobile-menu-toggle');
   const drawer = document.getElementById('mobile-menu-drawer');
   const mobileLinks = document.querySelectorAll('.mobile-link');
-
-  const onScroll = () => {
-    if (!nav) return;
-    if (window.scrollY > 10) {
-      nav.classList.add('shadow-xl', 'shadow-black/40', 'bg-[#090d16]/95');
-    } else {
-      nav.classList.remove('shadow-xl', 'shadow-black/40', 'bg-[#090d16]/95');
-    }
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
   toggleBtn?.addEventListener('click', () => {
     const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';

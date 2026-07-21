@@ -3,11 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/landing/Hero.astro';
 import BrandMarquee from '../components/landing/BrandMarquee.astro';
 import Features from '../components/landing/Features.astro';
-import Showcase from '../components/landing/Showcase.astro';
-import Results from '../components/landing/Results.astro';
-import PlatformGrid from '../components/landing/PlatformGrid.astro';
 import WhyUs from '../components/landing/WhyUs.astro';
 import Process from '../components/landing/Process.astro';
+import ManifestoBanner from '../components/landing/ManifestoBanner.astro';
+import Showcase from '../components/landing/Showcase.astro';
+import Results from '../components/landing/Results.astro';
+import AboutOperator from '../components/landing/AboutOperator.astro';
+import PlatformGrid from '../components/landing/PlatformGrid.astro';
 import Faq from '../components/landing/Faq.astro';
 import FinalCta from '../components/landing/FinalCta.astro';
 import MotionController from '../components/common/MotionController.astro';
@@ -18,34 +20,40 @@ import { site } from '../site.config';
   title={`${site.name} — Digital Marketing, Paid Ads, Websites & AI Systems`}
   description={site.description}
 >
-  {/* 1. Hero with Layered Visual Composition & Verified Metrics */}
+  {/* 1. Header & Navy Rounded Hero with Centred Headline & 4 Verified Metric Cards */}
   <Hero />
 
-  {/* 2. Clients, Brands & Business Partners */}
+  {/* 2. Clients, Brands & Business Partners (Cream Background, Larger Logos) */}
   <BrandMarquee />
 
-  {/* 3. Capabilities / Services (Varied Editorial Layout) */}
+  {/* 3. Our Services (Cream Background, 6 Colourful Cards in 3x2 Grid) */}
   <Features />
 
-  {/* 4. Featured Work (3 Distinct Large Visual Compositions) */}
-  <Showcase />
-
-  {/* 5. Verified Commercial Results (Oversized Typography & Counters) */}
-  <Results />
-
-  {/* 6. Platforms & Tools We Work With (12 Official Logotypes) */}
-  <PlatformGrid />
-
-  {/* 7. Why Starts Digital (Editorial Credibility & Operator Perspective) */}
+  {/* 4. Why Brands Trust Starts Digital (Cream Background, Central Visual, Floating Metrics) */}
   <WhyUs />
 
-  {/* 8. Working Process (Horizontal Desktop / Vertical Mobile Journey) */}
+  {/* 5. Our Working Method (Cream Background, 4-Stage Accordion, Stage 1 Open Default) */}
   <Process />
 
-  {/* 9. Frequently Asked Questions (Clean Accordion) */}
+  {/* 6. Purple Manifesto Banner (Purple Banner, Stickers, CTA) */}
+  <ManifestoBanner />
+
+  {/* 7. Our Featured Projects (Cream Background, 3 Large Visual Projects) */}
+  <Showcase />
+
+  {/* 8. Verified Commercial Results (Deep Navy Band, 4 Large Colourful Metric Blocks) */}
+  <Results />
+
+  {/* 9. About / Honest Operator Credibility Section */}
+  <AboutOperator />
+
+  {/* 10. Platforms & Tools We Work With (Clean Cream Grid) */}
+  <PlatformGrid />
+
+  {/* 11. Frequently Asked Questions (Boost Split Layout, Plus/Minus Accordion) */}
   <Faq />
 
-  {/* 10. Final Call to Action (Bold Conversion Section) */}
+  {/* 12. Final CTA (Rounded Navy Block on Cream, Lime/Green Buttons, Sticker Labels) */}
   <FinalCta />
 
   {/* Motion Controller System */}
