@@ -1,54 +1,37 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-// Section Components
-import Hero from '../components/sections/Hero.astro';
-import BrandExperience from '../components/sections/BrandExperience.astro';
-import Services from '../components/sections/Services.astro';
-import FeaturedWork from '../components/sections/FeaturedWork.astro';
-import Results from '../components/sections/Results.astro';
-import PlatformsTools from '../components/sections/PlatformsTools.astro';
-import WhyUs from '../components/sections/WhyUs.astro';
-import FounderSection from '../components/sections/FounderSection.astro';
-import Process from '../components/sections/Process.astro';
-import FAQ from '../components/sections/FAQ.astro';
-import ContactCTA from '../components/sections/ContactCTA.astro';
+import Hero from '../components/landing/Hero.astro';
+import Features from '../components/landing/Features.astro';
+import Showcase from '../components/landing/Showcase.astro';
+import Results from '../components/landing/Results.astro';
+import WhyUs from '../components/landing/WhyUs.astro';
+import Faq from '../components/landing/Faq.astro';
+import FinalCta from '../components/landing/FinalCta.astro';
+import { site } from '../site.config';
 ---
 
 <BaseLayout 
-  title="Digital Strategy, Marketing & Technology Agency" 
-  description="Starts Digital helps businesses grow through performance marketing, website development, technical SEO, creative content and practical AI digital systems."
+  title={`${site.name} — Digital Strategy, Paid Advertising & Growth`}
+  description={site.description}
 >
-  {/* 1. Hero Section (Dark Editorial) */}
+  {/* 1. Hero with Orbit Graphic & Brand Strip */}
   <Hero />
 
-  {/* 2. Brand Experience Continuous Marquee (Dark Editorial) */}
-  <BrandExperience />
+  {/* 2. Capabilities (Kepler Features Section Adaptation) */}
+  <Features />
 
-  {/* 3. Core Services Bento Box (Dark Editorial) */}
-  <Services />
+  {/* 3. Featured Work (Kepler Showcase Section Adaptation) */}
+  <Showcase />
 
-  {/* 4. Editorial Featured Work Showcase (Dark Editorial) */}
-  <FeaturedWork />
-
-  {/* 5. Commercial Results (Dark Editorial) */}
+  {/* 4. Verified Commercial Results (Kepler Pricing Section Visual Adaptation) */}
   <Results />
 
-  {/* 6. Platforms & Tools (Dark Editorial) */}
-  <PlatformsTools />
-
-  {/* 7. Why Starts Digital / Operating Model (Dark Editorial) */}
+  {/* 5. Why Starts Digital (Kepler Testimonials Section Visual Adaptation) */}
   <WhyUs />
 
-  {/* 8. Founder Section (Disabled until verified media is provided) */}
-  <FounderSection enabled={false} />
+  {/* 6. Frequently Asked Questions (Kepler FAQ Accordion) */}
+  <Faq />
 
-  {/* 9. Methodology & Process Timeline (Dark Editorial) */}
-  <Process />
-
-  {/* 10. Frequently Asked Questions (Dark Editorial) */}
-  <FAQ />
-
-  {/* 11. Final Contact CTA (Dark Editorial) */}
-  <ContactCTA />
+  {/* 7. Final Call to Action (Kepler Final CTA Banner) */}
+  <FinalCta />
 </BaseLayout>

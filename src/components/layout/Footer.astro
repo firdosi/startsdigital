@@ -1,89 +1,74 @@
 ---
-import Container from '../ui/Container.astro';
-import { footerNavLinks } from '../../data/navigation';
-import { siteConfig } from '../../data/site';
+import Logo from './Logo.astro';
+import { site } from '../../site.config';
+
+const columns = [
+  {
+    heading: 'Services',
+    links: [
+      { href: `${site.basePath}/#services`, label: 'Paid Advertising' },
+      { href: `${site.basePath}/#services`, label: 'Websites & E-Commerce' },
+      { href: `${site.basePath}/#services`, label: 'SEO & Local Search' },
+      { href: `${site.basePath}/#services`, label: 'Creative Content' },
+      { href: `${site.basePath}/#services`, label: 'AI Marketing Systems' },
+      { href: `${site.basePath}/#services`, label: 'Campaign Strategy' },
+    ],
+  },
+  {
+    heading: 'Featured Work',
+    links: [
+      { href: `${site.basePath}/work/black-gold-fertilizer/`, label: 'Black Gold Fertilizer' },
+      { href: `${site.basePath}/work/qurbani-campaign/`, label: 'Wajib Livestock' },
+      { href: `${site.basePath}/work/rk-reno-solutions/`, label: 'RK Reno Solutions' },
+    ],
+  },
+  {
+    heading: 'Company',
+    links: [
+      { href: `${site.basePath}/#about`, label: 'About Us' },
+      { href: `${site.basePath}/#results`, label: 'Verified Results' },
+      { href: `${site.basePath}/#faq`, label: 'FAQ' },
+      { href: `${site.basePath}/#contact`, label: 'Contact Us' },
+    ],
+  },
+];
 ---
 
-<footer class="bg-slate-950 text-slate-400 border-t border-white/10 pt-16 pb-12 font-body">
-  <Container>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12 mb-16">
-      
-      <!-- Brand & Summary Column (2 Cols) -->
-      <div class="lg:col-span-2 space-y-4">
-        <a
-          href={`${siteConfig.basePath}/`}
-          class="font-heading text-3xl font-extrabold tracking-tight text-white inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md"
-          aria-label="Starts Digital Home"
-        >
-          Starts<span class="text-blue-500">Digital</span>
-        </a>
-
-        <p class="text-sm text-slate-300 leading-relaxed max-w-sm">
-          Performance digital agency specializing in paid media acquisition, conversion-focused websites, technical SEO, creative content, and practical AI systems.
-        </p>
-
-        <div class="pt-2 text-xs font-mono text-slate-400">
-          Pakistan • Malaysia • International Remote Execution
+<footer class="bg-ink text-sky-mist">
+  <div
+    class="mx-auto grid max-w-[1200px] gap-8 px-8 pt-[60px] pb-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]"
+  >
+    <div>
+      <Logo size="sm" />
+      <p class="mt-4 max-w-[280px] text-sm leading-relaxed text-slate-400">
+        {site.description}
+      </p>
+      <div class="mt-4 text-xs font-mono text-slate-400">
+        <div>Email: <a href={`mailto:${site.contact.email}`} class="text-sky hover:text-orange">{site.contact.email}</a></div>
+        <div class="mt-1">Phone: <a href={site.contact.whatsapp} class="text-sky hover:text-orange">{site.contact.phone}</a></div>
+      </div>
+    </div>
+    {
+      columns.map((col) => (
+        <div>
+          <div class="mb-3.5 font-display text-sm font-bold text-cloud uppercase tracking-wider">{col.heading}</div>
+          <div class="flex flex-col gap-2.5 text-sm">
+            {col.links.map((link) => (
+              <a href={link.href} class="text-sky-mist hover:text-orange transition-colors">
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
-
-      <!-- Navigation Column (1 Col) -->
-      <div>
-        <h3 class="font-heading text-sm font-bold uppercase tracking-wider text-white mb-4">
-          Navigation
-        </h3>
-        <ul class="space-y-2.5 text-sm">
-          {
-            footerNavLinks.map((link) => (
-              <li>
-                <a
-                  href={link.href}
-                  class="text-slate-300 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <!-- Core Services Column (1 Col) -->
-      <div>
-        <h3 class="font-heading text-sm font-bold uppercase tracking-wider text-white mb-4">
-          Capabilities
-        </h3>
-        <ul class="space-y-2.5 text-sm">
-          <li><a href="#services" class="text-slate-300 hover:text-white transition-colors">Paid Advertising & ROAS</a></li>
-          <li><a href="#services" class="text-slate-300 hover:text-white transition-colors">Websites & E-Commerce</a></li>
-          <li><a href="#services" class="text-slate-300 hover:text-white transition-colors">Technical SEO & Local Search</a></li>
-          <li><a href="#services" class="text-slate-300 hover:text-white transition-colors">Creative Content & Video</a></li>
-          <li><a href="#services" class="text-slate-300 hover:text-white transition-colors">AI Marketing Automation</a></li>
-        </ul>
-      </div>
-
-      <!-- Case Studies & Direct Contact (1 Col) -->
-      <div>
-        <h3 class="font-heading text-sm font-bold uppercase tracking-wider text-white mb-4">
-          Case Studies
-        </h3>
-        <ul class="space-y-2.5 text-sm">
-          <li><a href={`${siteConfig.basePath}/work/black-gold-fertilizer/`} class="text-slate-300 hover:text-white transition-colors">Black Gold Fertilizer</a></li>
-          <li><a href={`${siteConfig.basePath}/work/qurbani-campaign/`} class="text-slate-300 hover:text-white transition-colors">Wajib Livestock Qurbani Campaign</a></li>
-          <li><a href={`${siteConfig.basePath}/work/rk-reno-solutions/`} class="text-slate-300 hover:text-white transition-colors">RK Reno Solutions</a></li>
-        </ul>
-      </div>
-
+      ))
+    }
+  </div>
+  <div class="border-t border-white/10">
+    <div
+      class="mx-auto flex max-w-[1200px] flex-wrap justify-between gap-3 px-8 py-5 text-[13px] text-slate-400"
+    >
+      <span>© {new Date().getFullYear()} Starts Digital. All rights reserved.</span>
+      <span>Built with Astro ✦ Kepler Theme (MIT License)</span>
     </div>
-
-    <!-- Bottom Copyright & Legal Strip -->
-    <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-      <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
-
-      <div class="flex items-center gap-6">
-        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
-        <a href="#services" class="hover:text-white transition-colors">Services</a>
-      </div>
-    </div>
-  </Container>
+  </div>
 </footer>

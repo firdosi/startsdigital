@@ -24,3 +24,4 @@ pnpm-debug.log*
 
 # Private local asset intake (Never commit unredacted source assets, credentials, or client files)
 private-assets/
+oldweb/

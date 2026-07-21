@@ -1,142 +1,111 @@
 ---
-import { headerNavLinks } from '../../data/navigation';
-import Button from '../ui/Button.astro';
-import Container from '../ui/Container.astro';
-import MobileMenu from './MobileMenu.astro';
-import { siteConfig } from '../../data/site';
+import Logo from './Logo.astro';
+import { site } from '../../site.config';
+
+const links = [
+  { href: `${site.basePath}/#services`, label: 'Services' },
+  { href: `${site.basePath}/#work`, label: 'Work' },
+  { href: `${site.basePath}/#results`, label: 'Results' },
+  { href: `${site.basePath}/#about`, label: 'About' },
+  { href: `${site.basePath}/#faq`, label: 'FAQ' },
+  { href: `${site.basePath}/#contact`, label: 'Contact' },
+];
 ---
 
-<header
+<nav
   id="main-header"
-  class="fixed top-0 left-0 right-0 z-50 w-full border-b border-white/10 bg-slate-950/80 backdrop-blur-md transition-all duration-300 shadow-lg shadow-slate-950/50"
+  class="sticky top-0 z-50 border-b-[3px] border-orange bg-ink/96 backdrop-blur-xl transition-shadow duration-250"
 >
-  <Container class="flex h-20 items-center justify-between">
-    <!-- Brand Logo -->
-    <a
-      href={`${siteConfig.basePath}/`}
-      class="font-heading text-2xl font-extrabold tracking-tight text-white hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md px-1 py-0.5"
-      aria-label="Starts Digital Home"
-    >
-      Starts<span class="text-blue-500">Digital</span>
-    </a>
-
-    <!-- Desktop Navigation Links -->
-    <nav class="hidden md:flex items-center gap-8" aria-label="Main Navigation">
-      {
-        headerNavLinks.map((link) => (
-          <a
-            href={link.href}
-            class="font-heading text-sm font-semibold text-slate-300 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 px-2 py-1 rounded-md"
-          >
-            {link.label}
-          </a>
-        ))
-      }
-    </nav>
-
-    <!-- Desktop Call to Action -->
-    <div class="hidden md:block">
-      <Button 
-        href={siteConfig.links.contact} 
-        variant="primary" 
-        class="!px-5 !py-2.5 font-semibold text-sm !bg-blue-600 hover:!bg-blue-500 !text-white border-0 shadow-lg shadow-blue-600/25 transition-all hover:scale-[1.02]"
-      >
-        Discuss Your Project
-      </Button>
+  <div class="mx-auto flex max-w-[1200px] items-center justify-between gap-8 px-6 sm:px-8 py-4">
+    <Logo />
+    
+    <!-- Desktop Links -->
+    <div class="hidden gap-7 text-[15px] font-semibold md:flex">
+      {links.map((link) => (
+        <a href={link.href} class="text-sky hover:text-orange transition-colors">
+          {link.label}
+        </a>
+      ))}
     </div>
 
-    <!-- Mobile Menu Toggle Button (44px min touch target) -->
-    <button
-      id="mobile-menu-toggle"
-      class="relative z-50 w-11 h-11 flex items-center justify-center text-white hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md md:hidden"
-      aria-controls="mobile-menu"
-      aria-expanded="false"
-      aria-label="Toggle Navigation Menu"
-    >
-      <span class="sr-only">Toggle navigation menu</span>
-      <!-- Hamburger Icon Lines -->
-      <div class="flex h-5 w-6 flex-col justify-between">
-        <span class="hamburger-line h-[2px] w-full bg-current transition-all duration-300 origin-left"></span>
-        <span class="hamburger-line h-[2px] w-full bg-current transition-all duration-300"></span>
-        <span class="hamburger-line h-[2px] w-full bg-current transition-all duration-300 origin-left"></span>
-      </div>
-    </button>
-  </Container>
-</header>
+    <!-- Right Actions -->
+    <div class="flex items-center gap-3.5">
+      <a
+        href={site.contact.whatsapp}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden text-[15px] font-semibold text-cloud hover:text-orange sm:inline"
+      >
+        WhatsApp
+      </a>
+      <a
+        href={`${site.basePath}/#contact`}
+        class="rounded-full bg-orange px-5 py-2.5 text-[15px] font-bold text-cloud shadow-[3px_3px_0_var(--color-cloud)] transition-[transform,box-shadow] hover:-translate-x-px hover:-translate-y-px hover:shadow-[4px_4px_0_var(--color-cloud)]"
+      >
+        Discuss Your Project
+      </a>
 
-<!-- Mobile Navigation Drawer -->
-<MobileMenu id="mobile-menu" />
+      <!-- Mobile Menu Toggle Button -->
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        class="flex size-10 items-center justify-center rounded-lg border-2 border-cloud/20 text-cloud hover:border-orange hover:text-orange md:hidden focus:outline-none"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+      >
+        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
 
-<!-- Overlay Backdrop for Mobile Menu -->
-<div
-  id="mobile-menu-overlay"
-  class="fixed inset-0 z-30 hidden bg-slate-950/80 backdrop-blur-sm transition-opacity duration-300"
-  aria-hidden="true"
-></div>
+  <!-- Mobile Dropdown Navigation -->
+  <div
+    id="mobile-menu-drawer"
+    class="hidden border-t border-white/10 bg-ink px-8 py-6 md:hidden"
+  >
+    <div class="flex flex-col gap-4 text-base font-semibold">
+      {links.map((link) => (
+        <a href={link.href} class="mobile-link text-sky hover:text-orange py-1">
+          {link.label}
+        </a>
+      ))}
+      <a
+        href={site.contact.whatsapp}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-link text-orange font-bold py-1"
+      >
+        WhatsApp Chat (+92 339 4135544)
+      </a>
+    </div>
+  </div>
+</nav>
 
 <script>
+  const nav = document.getElementById('main-header');
   const toggleBtn = document.getElementById('mobile-menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const overlay = document.getElementById('mobile-menu-overlay');
-  const lines = document.querySelectorAll('.hamburger-line');
-  const navLinks = document.querySelectorAll('.mobile-nav-link');
-  const body = document.body;
+  const drawer = document.getElementById('mobile-menu-drawer');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
 
-  let isOpen = false;
-
-  function toggleMobileMenu(open: boolean) {
-    if (!toggleBtn || !mobileMenu || !overlay) return;
-    
-    isOpen = open;
-    toggleBtn.setAttribute('aria-expanded', String(isOpen));
-    
-    if (isOpen) {
-      mobileMenu.classList.remove('translate-x-full');
-      overlay.classList.remove('hidden');
-      body.classList.add('overflow-hidden');
-      
-      if (lines[0] && lines[1] && lines[2]) {
-        (lines[0] as HTMLElement).style.transform = 'rotate(45deg) translate(4px, 1.5px)';
-        (lines[1] as HTMLElement).style.opacity = '0';
-        (lines[2] as HTMLElement).style.transform = 'rotate(-45deg) translate(4px, -1.5px)';
-      }
-      
-      setTimeout(() => {
-        const firstLink = mobileMenu.querySelector('a');
-        if (firstLink) firstLink.focus();
-      }, 100);
-    } else {
-      mobileMenu.classList.add('translate-x-full');
-      overlay.classList.add('hidden');
-      body.classList.remove('overflow-hidden');
-      
-      if (lines[0] && lines[1] && lines[2]) {
-        (lines[0] as HTMLElement).style.transform = 'none';
-        (lines[1] as HTMLElement).style.opacity = '1';
-        (lines[2] as HTMLElement).style.transform = 'none';
-      }
-      
-      toggleBtn.focus();
-    }
-  }
+  const onScroll = () => {
+    if (!nav) return;
+    nav.style.boxShadow = window.scrollY > 8 ? '0 6px 20px rgb(15 30 66 / 0.25)' : 'none';
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   toggleBtn?.addEventListener('click', () => {
-    toggleMobileMenu(!isOpen);
+    const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
+    drawer?.classList.toggle('hidden');
   });
 
-  overlay?.addEventListener('click', () => {
-    toggleMobileMenu(false);
-  });
-
-  navLinks.forEach((link) => {
+  mobileLinks.forEach((link) => {
     link.addEventListener('click', () => {
-      toggleMobileMenu(false);
+      toggleBtn?.setAttribute('aria-expanded', 'false');
+      drawer?.classList.add('hidden');
     });
-  });
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isOpen) {
-      toggleMobileMenu(false);
-    }
   });
 </script>

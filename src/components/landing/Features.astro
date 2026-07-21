@@ -1,0 +1,94 @@
+---
+import SectionHeader from './SectionHeader.astro';
+
+const services = [
+  {
+    title: 'Paid Advertising and Lead Generation',
+    body: 'Precision Meta Ads and Google Ads campaigns engineered for immediate customer acquisition, lead volume, and high ROAS.',
+    chip: 'bg-orange-soft',
+    icon: 'triangle',
+  },
+  {
+    title: 'Website Design and E-Commerce',
+    body: 'Custom high-converting websites and WooCommerce platforms designed for fast load speed, mobile checkout, and SEO.',
+    chip: 'bg-sky',
+    icon: 'circle',
+  },
+  {
+    title: 'SEO and Local Search',
+    body: 'Technical search engine optimization and local service landing pages built to capture organic demand across commercial keywords.',
+    chip: 'bg-orange-soft',
+    icon: 'diamond',
+  },
+  {
+    title: 'Creative Content',
+    body: 'Performance ad creatives, short-form video editing, product graphics, and social content tailored for feed conversion.',
+    chip: 'bg-sky',
+    icon: 'ring',
+  },
+  {
+    title: 'AI Marketing Systems',
+    body: 'Automated lead qualification workflows, AI content pipelines, and automated customer routing systems for operational scale.',
+    chip: 'bg-orange-soft',
+    icon: 'sparkle',
+  },
+  {
+    title: 'Campaign Strategy',
+    body: 'Commercial positioning, marketing budget allocation, multi-channel rollout plans, and data-backed scale advisory.',
+    chip: 'bg-sky',
+    icon: 'pill',
+  },
+];
+---
+
+<section
+  id="services"
+  class="border-y-4 border-ink bg-linear-160 from-orange-bright from-0% via-orange via-55% to-orange-deep text-ink"
+>
+  <div class="mx-auto max-w-[1200px] px-6 sm:px-8 pt-18 pb-21">
+    <SectionHeader
+      eyebrow="Capabilities"
+      title="End-to-end growth capabilities"
+      sub="No fragmented freelancers or blame-shifting. We manage media, web architecture, search, and creative as one system."
+      on="orange"
+    />
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        services.map((s, i) => (
+          <div
+            class:list={[
+              'rounded-card border-2 border-ink bg-cloud p-7 shadow-pop transition-[transform,box-shadow] duration-180 hover:translate-y-[-4px] hover:rotate-0 hover:shadow-pop-lg',
+              i % 2 === 0 ? '-rotate-1' : 'rotate-1',
+            ]}
+          >
+            <span
+              class:list={[
+                'mb-4.5 flex size-13 items-center justify-center rounded-chip',
+                s.chip,
+              ]}
+            >
+              {s.icon === 'triangle' && (
+                <span class="size-0 border-x-11 border-b-[18px] border-x-transparent border-b-orange" />
+              )}
+              {s.icon === 'circle' && <span class="size-5 rounded-full bg-navy" />}
+              {s.icon === 'diamond' && (
+                <span class="size-5 rotate-45 rounded-[3px] bg-orange" />
+              )}
+              {s.icon === 'ring' && (
+                <span class="size-[22px] rounded-full border-4 border-navy" />
+              )}
+              {s.icon === 'sparkle' && (
+                <span class="text-[26px] leading-none text-orange">✦</span>
+              )}
+              {s.icon === 'pill' && (
+                <span class="h-3.5 w-[22px] rounded-md border-[3px] border-navy" />
+              )}
+            </span>
+            <h3 class="font-display text-[21px] font-bold text-navy leading-snug">{s.title}</h3>
+            <p class="mt-2.5 text-[15px] leading-relaxed text-slate-700 font-body">{s.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

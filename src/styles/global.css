@@ -1,119 +1,144 @@
 @import "tailwindcss";
 
+/*
+ * Kepler design tokens — navy / orange design system & warm paper neutrals.
+ */
 @theme {
-  --color-brand-navy: #07111F;
-  --color-brand-black: #0B0D10;
-  --color-brand-dark: #030712;
-  --color-brand-card: #0B1120;
-  --color-brand-white: #F7F7F3;
-  --color-brand-pure-white: #FFFFFF;
-  --color-brand-grey: #E8EBEF;
-  --color-brand-light-border: #E4E7EC;
-  --color-brand-blue: #246BFD;
-  --color-brand-teal: #10A8A0;
-  --color-brand-text: #667085;
-  --color-brand-muted-dark: #98A2B3;
+  /* Colors */
+  --color-navy: #1e3a8a; /* primary brand, dark sections, headings on light */
+  --color-navy-deep: #152a63; /* deep gradients, footer */
+  --color-ink: #0f1e42; /* near-black text on light */
+  --color-orange: #f97316; /* primary accent, CTAs */
+  --color-orange-bright: #fb923c; /* gradient start, highlighted words on navy */
+  --color-orange-deep: #ea580c; /* gradient end */
+  --color-orange-glow: #fdba74; /* eyebrow text on navy */
+  --color-orange-soft: #ffedd5; /* tinted backgrounds, chips */
+  --color-sky: #dbeafe; /* soft blue tints, nav links */
+  --color-sky-mist: #c7d2fe; /* secondary text on navy */
+  --color-paper: #fbfaf7; /* warm off-white page background (never pure #fff) */
+  --color-cloud: #ffffff; /* cards on paper */
+  --color-line: rgb(15 30 66 / 0.1); /* hairline borders */
 
-  --font-heading: "Manrope Variable", "Manrope", system-ui, sans-serif;
-  --font-body: "Inter Variable", "Inter", system-ui, sans-serif;
+  /* Typography */
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+
+  /* Hard offset shadows — comic/pop feel. ぼかしは使わない */
+  --shadow-pop-sm: 3px 3px 0 var(--color-ink);
+  --shadow-pop: 6px 6px 0 var(--color-ink);
+  --shadow-pop-lg: 8px 8px 0 var(--color-ink);
+  --shadow-pop-orange: 6px 6px 0 var(--color-orange);
+  --shadow-pop-white: 5px 5px 0 var(--color-cloud);
+
+  /* Radii — chunky: cards 14–20px, buttons pill(999px は rounded-full を使う) */
+  --radius-card: 20px;
+  --radius-tile: 16px;
+  --radius-chip: 14px;
+
+  /* Motion */
+  --animate-orbit-spin: orbit-spin 26s linear infinite;
+  --animate-orbit-spin-rev: orbit-spin-rev 18s linear infinite;
+  --animate-drift: drift 6s ease-in-out infinite;
+  --animate-drift-alt: drift-alt 7s ease-in-out infinite;
+
+  @keyframes orbit-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes orbit-spin-rev {
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--r, 0deg));
+    }
+    50% {
+      transform: translateY(-14px) rotate(var(--r, 0deg));
+    }
+  }
+  @keyframes drift-alt {
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--r, 0deg));
+    }
+    50% {
+      transform: translateY(12px) rotate(var(--r, 0deg));
+    }
+  }
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    font-family: var(--font-body);
-    background-color: #030712;
-    color: #f8fafc;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-    max-width: 100vw;
-  }
-
   body {
-    margin: 0;
-    background-color: #030712;
-    color: #f8fafc;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-    max-width: 100vw;
   }
 
-  /* Support prefers-reduced-motion */
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-    
-    *,
-    ::before,
-    ::after {
-      animation-delay: -1ms !important;
-      animation-duration: 1ms !important;
-      animation-iteration-count: 1 !important;
-      background-attachment: initial !important;
-      scroll-behavior: auto !important;
-      transition-duration: 0s !important;
-      transition-delay: 0s !important;
-    }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
   }
 
-  /* Custom focus states */
-  a:focus,
-  button:focus {
-    outline: none;
+  p {
+    text-wrap: pretty;
   }
 
-  a:focus-visible,
-  button:focus-visible {
-    outline: 2px solid var(--color-brand-blue);
-    outline-offset: 4px;
+  /* Accessibility: focus rings visible (orange 2px) */
+  :focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 2px;
   }
 }
 
-/* Custom Animation Utilities */
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
+@layer components {
+  .prose {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-ink);
   }
-  100% {
-    transform: translateX(-50%);
+
+  .prose > * + * {
+    margin-top: 1.15em;
   }
-}
 
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.4;
-    transform: scale(1);
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    color: var(--color-navy);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
   }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
+  .prose h2 {
+    margin-top: 2em;
+    font-size: 1.6rem;
   }
-}
-
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0px);
+  .prose h3 {
+    margin-top: 1.6em;
+    font-size: 1.3rem;
   }
-  50% {
-    transform: translateY(-8px);
+
+  .prose a {
+    color: var(--color-orange-deep);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 2px;
   }
-}
+  .prose a:hover {
+    color: var(--color-orange);
+  }
 
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 30s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 6s ease-in-out infinite;
-}
-
-.animate-float-slow {
-  animation: floatSlow 5s ease-in-out infinite;
+  .prose strong {
+    color: var(--color-navy);
+    font-weight: 700;
+  }
 }

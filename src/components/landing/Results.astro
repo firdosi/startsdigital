@@ -1,0 +1,85 @@
+---
+import SectionHeader from './SectionHeader.astro';
+
+const metrics = [
+  {
+    number: 'PKR 30M+',
+    label: 'Revenue Supported',
+    description: 'Total revenue supported across managed commercial campaigns and e-commerce stores.',
+    highlight: true,
+  },
+  {
+    number: '29,000+',
+    label: 'Product Sales',
+    description: 'E-commerce product orders processed and delivered across multiple product categories.',
+    highlight: false,
+  },
+  {
+    number: 'PKR 4.2M+',
+    label: 'Qurbani Sales Supported',
+    description: 'Revenue supported during the seasonal Wajib Livestock Qurbani campaign.',
+    highlight: true,
+  },
+  {
+    number: '150+',
+    label: 'Livestock Sold',
+    description: 'Animals sold through high-intent lead routing and direct customer acquisition.',
+    highlight: false,
+  },
+];
+---
+
+<section
+  id="results"
+  class="border-y-4 border-ink bg-linear-160 from-orange-bright from-0% via-orange via-60% to-orange-deep text-ink"
+>
+  <div class="mx-auto max-w-[1200px] px-6 sm:px-8 py-20">
+    <SectionHeader
+      eyebrow="Results"
+      title="Verified commercial performance"
+      sub="Commercial milestones achieved across client accounts without vanity metric padding."
+      on="orange"
+      class="max-w-[620px] mb-12"
+    />
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
+      {
+        metrics.map((m) => (
+          <div
+            class:list={[
+              'rounded-[22px] border-2 border-ink p-7 shadow-pop flex flex-col justify-between transition-transform hover:-translate-y-1',
+              m.highlight ? 'bg-navy text-cloud shadow-pop-lg' : 'bg-cloud text-ink',
+            ]}
+          >
+            <div>
+              <span
+                class:list={[
+                  'font-display text-3xl sm:text-4xl font-bold block leading-tight',
+                  m.highlight ? 'text-orange-bright' : 'text-navy',
+                ]}
+              >
+                {m.number}
+              </span>
+              <h3
+                class:list={[
+                  'mt-3 font-display text-lg font-bold uppercase tracking-wider',
+                  m.highlight ? 'text-cloud' : 'text-ink',
+                ]}
+              >
+                {m.label}
+              </h3>
+              <p
+                class:list={[
+                  'mt-3 text-sm leading-relaxed font-body',
+                  m.highlight ? 'text-sky-mist' : 'text-slate-600',
+                ]}
+              >
+                {m.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

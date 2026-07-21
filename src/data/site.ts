@@ -1,32 +1,33 @@
+import { site } from '../site.config';
+
 export const siteConfig = {
-  name: 'Starts Digital',
-  tagline: 'AI-Powered Digital Strategy & Growth',
-  description: 'Starts Digital provides digital strategy, Meta advertising, SEO, website development, creative content and practical AI marketing solutions for growing businesses.',
+  name: site.name,
+  tagline: 'Digital Strategy, Paid Advertising & Growth',
+  description: site.description,
   
-  // Deployment Configuration (Centralized for easy domain migrations)
+  // Deployment Configuration
   url: 'https://firdosi.github.io',
-  basePath: '/startsdigital',
+  basePath: site.basePath,
   
   // SEO Metadata Defaults
   defaultLanguage: 'en',
-  author: 'Starts Digital Agency',
+  author: site.author,
   
   // Centralized Contact Details
   contact: {
-    email: 'firdosidigital@gmail.com',
-    phone: '+92 339 4135544',
+    email: site.contact.email,
+    phone: site.contact.phone,
     whatsappNumber: '+923394135544',
-    whatsappUrl: 'https://wa.me/923394135544'
+    whatsappUrl: site.contact.whatsapp,
   },
   
-  // Interactive / Contact Links
+  // Interactive Links
   links: {
-    whatsapp: 'https://wa.me/923394135544',
+    whatsapp: site.contact.whatsapp,
     contact: '#contact',
   }
 } as const;
 
-// Helper to construct fully qualified URLs or base paths
 export function getAssetPath(path: string): string {
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
   return `${siteConfig.basePath}${cleanPath}`;

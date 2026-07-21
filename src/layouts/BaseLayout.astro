@@ -1,6 +1,7 @@
 ---
-// Font imports for local self-hosting via Fontsource Variable packages
-import '@fontsource-variable/inter';
+import '@fontsource/space-grotesk/500.css';
+import '@fontsource/space-grotesk/600.css';
+import '@fontsource/space-grotesk/700.css';
 import '@fontsource-variable/manrope';
 import '../styles/global.css';
 
@@ -8,63 +9,43 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import SEO from '../components/seo/SEO.astro';
 import StructuredData from '../components/seo/StructuredData.astro';
-import { siteConfig } from '../data/site';
+import { site } from '../site.config';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: 'website' | 'article';
   noindex?: boolean;
-  canonicalUrl?: string;
-  ogType?: 'website' | 'article';
-  ogImage?: string;
 }
 
-const { 
-  title, 
-  description, 
-  noindex = false,
-  canonicalUrl,
-  ogType,
-  ogImage
-} = Astro.props;
+const seo = Astro.props;
 ---
 
-<!doctype html>
-<html lang={siteConfig.defaultLanguage} class="h-full selection:bg-brand-blue/20 selection:text-brand-black">
+<html lang={site.locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href={`${siteConfig.basePath}/favicon.svg`} />
-    
-    <SEO 
-      title={title} 
-      description={description} 
-      noindex={noindex} 
-      canonicalUrl={canonicalUrl}
-      ogType={ogType}
-      ogImage={ogImage}
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href={`${site.basePath}/favicon.svg`} />
+    <link rel="sitemap" href={`${site.basePath}/sitemap-index.xml`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
     />
+    <SEO {...seo} />
     <StructuredData />
     <slot name="head" />
   </head>
-  <body class="flex min-h-full flex-col bg-slate-950 text-slate-100 antialiased overflow-x-hidden w-full max-w-full">
-    <!-- Accessibility Skip Link -->
-    <a 
-      href="#main-content" 
-      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-brand-blue focus:px-4 focus:py-2 focus:text-white focus:font-semibold focus:outline-none"
-    >
-      Skip to content
-    </a>
-
-    <!-- Header Navigation -->
-    <Header />
-
-    <!-- Main Content Area -->
-    <main id="main-content" class="flex-grow outline-none overflow-x-hidden w-full max-w-full" tabindex="-1">
-      <slot />
-    </main>
-
-    <!-- Footer -->
-    <Footer />
+  <body>
+    <div class="max-w-full overflow-x-clip">
+      <Header />
+      <main id="main-content">
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>
