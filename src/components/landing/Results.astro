@@ -1,42 +1,62 @@
 ---
 import SectionHeader from './SectionHeader.astro';
+import { TrendingUp, ShoppingBag, Award, HeartHandshake } from '@lucide/astro';
 
 const metrics = [
   {
-    number: 'PKR 30M+',
+    target: '30000000',
+    prefix: 'PKR ',
+    suffix: 'M+',
+    exact: 'PKR 30M+',
     label: 'Revenue Supported',
     description: 'Total revenue supported across managed commercial campaigns and e-commerce stores.',
     highlight: true,
+    Icon: TrendingUp,
   },
   {
-    number: '29,000+',
+    target: '29000',
+    prefix: '',
+    suffix: '+',
+    exact: '29,000+',
     label: 'Product Sales',
     description: 'E-commerce product orders processed and delivered across multiple product categories.',
     highlight: false,
+    Icon: ShoppingBag,
   },
   {
-    number: 'PKR 4.2M+',
+    target: '4200000',
+    prefix: 'PKR ',
+    suffix: 'M+',
+    exact: 'PKR 4.2M+',
     label: 'Qurbani Sales Supported',
     description: 'Revenue supported during the seasonal Wajib Livestock Qurbani campaign.',
     highlight: true,
+    Icon: Award,
   },
   {
-    number: '150+',
+    target: '150',
+    prefix: '',
+    suffix: '+',
+    exact: '150+',
     label: 'Livestock Sold',
     description: 'Animals sold through high-intent lead routing and direct customer acquisition.',
     highlight: false,
+    Icon: HeartHandshake,
   },
 ];
 ---
 
 <section
   id="results"
-  class="border-y-4 border-ink bg-linear-160 from-orange-bright from-0% via-orange via-60% to-orange-deep text-ink"
+  class="border-y-4 border-ink bg-linear-160 from-orange-bright from-0% via-orange via-60% to-orange-deep text-ink relative overflow-hidden"
 >
+  <!-- Decorative Kepler Element -->
+  <span class="absolute top-8 right-[5%] text-[32px] text-cloud pointer-events-none" aria-hidden="true">✦</span>
+
   <div class="mx-auto max-w-[1200px] px-6 sm:px-8 py-20">
     <SectionHeader
       eyebrow="Results"
-      title="Verified commercial performance"
+      title="Verified Commercial Performance"
       sub="Commercial milestones achieved across client accounts without vanity metric padding."
       on="orange"
       class="max-w-[620px] mb-12"
@@ -44,25 +64,41 @@ const metrics = [
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
       {
-        metrics.map((m) => (
+        metrics.map((m, idx) => (
           <div
             class:list={[
-              'rounded-[22px] border-2 border-ink p-7 shadow-pop flex flex-col justify-between transition-transform hover:-translate-y-1',
+              'reveal-on-scroll rounded-[22px] border-2 border-ink p-7 shadow-pop flex flex-col justify-between transition-transform hover:-translate-y-1',
               m.highlight ? 'bg-navy text-cloud shadow-pop-lg' : 'bg-cloud text-ink',
             ]}
+            data-reveal-delay={idx * 100}
           >
             <div>
-              <span
-                class:list={[
-                  'font-display text-3xl sm:text-4xl font-bold block leading-tight',
-                  m.highlight ? 'text-orange-bright' : 'text-navy',
-                ]}
-              >
-                {m.number}
-              </span>
+              <div class="flex items-center justify-between mb-4">
+                <span
+                  class:list={[
+                    'font-display text-3xl sm:text-4xl font-bold block leading-tight counter-value',
+                    m.highlight ? 'text-orange-bright' : 'text-navy',
+                  ]}
+                  data-counter-target={m.target}
+                  data-counter-prefix={m.prefix}
+                  data-counter-suffix={m.suffix}
+                  data-counter-exact={m.exact}
+                >
+                  {m.exact}
+                </span>
+                <span
+                  class:list={[
+                    'size-10 rounded-full border-2 border-ink flex items-center justify-center shadow-pop-sm',
+                    m.highlight ? 'bg-orange text-cloud' : 'bg-sky text-navy',
+                  ]}
+                >
+                  <m.Icon class="size-5" />
+                </span>
+              </div>
+
               <h3
                 class:list={[
-                  'mt-3 font-display text-lg font-bold uppercase tracking-wider',
+                  'font-display text-lg font-bold uppercase tracking-wider',
                   m.highlight ? 'text-cloud' : 'text-ink',
                 ]}
               >
@@ -70,12 +106,16 @@ const metrics = [
               </h3>
               <p
                 class:list={[
-                  'mt-3 text-sm leading-relaxed font-body',
+                  'mt-3 text-sm sm:text-base leading-relaxed font-body',
                   m.highlight ? 'text-sky-mist' : 'text-slate-600',
                 ]}
               >
                 {m.description}
               </p>
+            </div>
+
+            <div class="mt-6 pt-3 border-t border-line text-xs font-mono text-slate-400">
+              Verified Metric ✦
             </div>
           </div>
         ))

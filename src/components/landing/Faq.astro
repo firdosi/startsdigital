@@ -4,7 +4,80 @@ import SectionHeader from './SectionHeader.astro';
 const items = [
   {
     q: 'What specific industries and business types do you work with?',
-    a: 'We specialize in growth-stage e-commerce brands, agricultural suppliers, seasonal retail such as Qurbani campaigns, local service contractors including renovation and HVAC, and professional services across Pakistan, Malaysia, and the Gulf region.',
+    a: 'We specialize in growth-stage e-commerce brands, agricultural suppliers, seasonal retail (such as Qurbani campaigns), local service contractors (renovation & HVAC), and professional services across Pakistan, Malaysia, and the Gulf region.',
   },
   {
-    q: 'How do
+    q: 'How do you track commercial results instead of vanity metrics?',
+    a: 'We set up clean conversion tracking via Meta Pixel, Conversions API (CAPI), and Google Analytics 4. We measure success on actual bank revenue, cost-per-lead, and customer acquisition cost—not impressions or clicks.',
+  },
+  {
+    q: 'What is your typical project timeframe?',
+    a: 'Media campaigns and lead generation funnels can launch within 7–10 days after strategy approval. Custom website builds and SEO architectures typically take 2 to 4 weeks depending on scope.',
+  },
+  {
+    q: 'Can Starts Digital manage our complete digital marketing end-to-end?',
+    a: 'Yes. Our single-point operating model handles media buying, creative ad design, landing page engineering, conversion rate optimization, and technical SEO as one unified system.',
+  },
+];
+---
+
+<section
+  id="faq"
+  class="border-y-4 border-ink bg-linear-160 from-orange-bright from-0% via-orange via-60% to-orange-deep relative overflow-hidden"
+>
+  <!-- Kepler Orbit Decorative Element -->
+  <span class="absolute top-10 right-[6%] text-[30px] text-cloud pointer-events-none" aria-hidden="true">✦</span>
+
+  <div class="mx-auto max-w-[820px] px-6 sm:px-8 py-20">
+    <SectionHeader eyebrow="FAQ" title="Questions, Answered" on="orange" class="mb-11" />
+    <div id="faq-list" class="flex flex-col gap-4">
+      {
+        items.map((item, i) => (
+          <div 
+            class="reveal-on-scroll overflow-hidden rounded-2xl border-2 border-ink bg-cloud shadow-pop"
+            data-reveal-delay={i * 80}
+          >
+            <button
+              type="button"
+              data-faq-toggle
+              aria-expanded={i === 0 ? 'true' : 'false'}
+              class="flex w-full cursor-pointer items-center justify-between gap-4 px-6 sm:px-8 py-[22px] text-left font-display text-lg sm:text-xl font-bold text-ink"
+            >
+              <span>{item.q}</span>
+              <span
+                data-faq-icon
+                class:list={[
+                  'text-2xl font-bold text-orange transition-transform duration-200 shrink-0 size-8 rounded-full bg-orange-soft flex items-center justify-center',
+                  i === 0 && 'rotate-45',
+                ]}
+              >
+                +
+              </span>
+            </button>
+            <p data-faq-answer hidden={i !== 0} class="px-6 sm:px-8 pb-6 text-base sm:text-lg leading-relaxed text-slate-700 font-body">
+              {item.a}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const list = document.getElementById('faq-list');
+  const toggles = list?.querySelectorAll<HTMLButtonElement>('[data-faq-toggle]') ?? [];
+
+  toggles.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const wasOpen = btn.getAttribute('aria-expanded') === 'true';
+      toggles.forEach((other) => {
+        const open = other === btn && !wasOpen;
+        other.setAttribute('aria-expanded', String(open));
+        other.querySelector('[data-faq-icon]')?.classList.toggle('rotate-45', open);
+        const answer = other.parentElement?.querySelector<HTMLElement>('[data-faq-answer]');
+        if (answer) answer.hidden = !open;
+      });
+    });
+  });
+</script>

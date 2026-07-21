@@ -1,5 +1,6 @@
 ---
 import SectionHeader from './SectionHeader.astro';
+import { Layers, Globe2, Cpu, ShieldCheck } from '@lucide/astro';
 
 const points = [
   {
@@ -7,55 +8,65 @@ const points = [
     body: 'Single-point ownership. We engineer ad campaigns, website checkout, and landing pages in unison without blame-shifting.',
     tag: 'UNIFIED MODEL',
     tilt: '-rotate-[1deg]',
+    Icon: Layers,
   },
   {
     title: 'Multi-industry campaign experience',
     body: 'Proven execution across e-commerce, agricultural products, seasonal livestock, and local services in Pakistan, Malaysia, and the Gulf.',
     tag: 'VERSATILE TRACK RECORD',
     tilt: 'rotate-1',
+    Icon: Globe2,
   },
   {
     title: 'Marketing and technical capabilities',
     body: 'Custom light web architecture, technical SEO, and conversion optimization combined with performance media management.',
     tag: 'TECH + CREATIVE',
     tilt: '-rotate-1',
+    Icon: Cpu,
   },
   {
     title: 'Direct communication & transparency',
     body: 'Work directly with senior strategists. No junior account managers or hidden data layers. Clean reporting backed by verified metrics.',
     tag: 'DIRECT ACCESS',
     tilt: 'rotate-[0.8deg]',
+    Icon: ShieldCheck,
   },
 ];
 ---
 
-<section id="about" class="relative overflow-hidden bg-linear-160 from-navy to-navy-deep text-cloud py-20">
+<section id="about" class="relative overflow-hidden bg-linear-160 from-navy to-navy-deep text-cloud py-20 border-b-4 border-ink">
   <span class="absolute top-12.5 left-[6%] text-[28px] text-orange pointer-events-none" aria-hidden="true">✦</span>
   <span class="absolute right-[7%] bottom-10 size-5 rotate-[18deg] rounded-md bg-orange pointer-events-none" aria-hidden="true"></span>
   
   <div class="mx-auto max-w-[1200px] px-6 sm:px-8">
     <SectionHeader
       eyebrow="Why Starts Digital"
-      title="Built for commercial execution"
+      title="Built for Commercial Execution"
       sub="We replace fragmented freelancer teams with a cohesive growth architecture."
       on="navy"
       class="max-w-[640px] mb-14"
     />
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
       {
-        points.map((p) => (
+        points.map((p, idx) => (
           <div
             class:list={[
-              'rounded-card border-2 border-ink bg-cloud p-7 shadow-pop-orange transition-transform duration-180 hover:rotate-0 flex flex-col justify-between',
+              'reveal-on-scroll rounded-card border-2 border-ink bg-cloud p-7 shadow-pop-orange transition-transform duration-180 hover:rotate-0 flex flex-col justify-between',
               p.tilt,
             ]}
+            data-reveal-delay={idx * 90}
           >
             <div>
-              <span class="inline-block rounded-full bg-orange-soft px-3 py-1 text-[11px] font-bold font-display text-orange-deep uppercase tracking-wider mb-4">
-                {p.tag}
-              </span>
+              <div class="flex items-center justify-between mb-4">
+                <span class="inline-block rounded-full bg-orange-soft px-3 py-1 text-[11px] font-bold font-display text-orange-deep uppercase tracking-wider">
+                  {p.tag}
+                </span>
+                <span class="size-9 rounded-full bg-paper border border-line flex items-center justify-center">
+                  <p.Icon class="size-4.5 text-navy" />
+                </span>
+              </div>
               <h3 class="font-display text-xl font-bold text-navy leading-snug">{p.title}</h3>
-              <p class="mt-3 text-[14px] leading-relaxed text-slate-700 font-body">{p.body}</p>
+              <p class="mt-3 text-[15px] sm:text-[16px] leading-relaxed text-slate-700 font-body">{p.body}</p>
             </div>
           </div>
         ))

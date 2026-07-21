@@ -15,7 +15,7 @@
   --color-orange-soft: #ffedd5; /* tinted backgrounds, chips */
   --color-sky: #dbeafe; /* soft blue tints, nav links */
   --color-sky-mist: #c7d2fe; /* secondary text on navy */
-  --color-paper: #fbfaf7; /* warm off-white page background (never pure #fff) */
+  --color-paper: #fbfaf7; /* warm off-white page background */
   --color-cloud: #ffffff; /* cards on paper */
   --color-line: rgb(15 30 66 / 0.1); /* hairline borders */
 
@@ -23,52 +23,128 @@
   --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-body: "Manrope", system-ui, sans-serif;
 
-  /* Hard offset shadows — comic/pop feel. ぼかしは使わない */
+  /* Hard offset shadows — comic/pop feel */
   --shadow-pop-sm: 3px 3px 0 var(--color-ink);
   --shadow-pop: 6px 6px 0 var(--color-ink);
   --shadow-pop-lg: 8px 8px 0 var(--color-ink);
   --shadow-pop-orange: 6px 6px 0 var(--color-orange);
   --shadow-pop-white: 5px 5px 0 var(--color-cloud);
 
-  /* Radii — chunky: cards 14–20px, buttons pill(999px は rounded-full を使う) */
+  /* Radii */
   --radius-card: 20px;
   --radius-tile: 16px;
   --radius-chip: 14px;
+}
 
-  /* Motion */
-  --animate-orbit-spin: orbit-spin 26s linear infinite;
-  --animate-orbit-spin-rev: orbit-spin-rev 18s linear infinite;
-  --animate-drift: drift 6s ease-in-out infinite;
-  --animate-drift-alt: drift-alt 7s ease-in-out infinite;
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
-  @keyframes orbit-spin {
-    to {
-      transform: rotate(360deg);
-    }
+@keyframes orbit-spin-rev {
+  from {
+    transform: rotate(0deg);
   }
-  @keyframes orbit-spin-rev {
-    to {
-      transform: rotate(-360deg);
-    }
+  to {
+    transform: rotate(-360deg);
   }
-  @keyframes drift {
-    0%,
-    100% {
-      transform: translateY(0) rotate(var(--r, 0deg));
-    }
-    50% {
-      transform: translateY(-14px) rotate(var(--r, 0deg));
-    }
+}
+
+@keyframes drift {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
   }
-  @keyframes drift-alt {
-    0%,
-    100% {
-      transform: translateY(0) rotate(var(--r, 0deg));
-    }
-    50% {
-      transform: translateY(12px) rotate(var(--r, 0deg));
-    }
+  50% {
+    transform: translateY(-14px) rotate(var(--r, 0deg));
   }
+}
+
+@keyframes drift-alt {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(12px) rotate(var(--r, 0deg));
+  }
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.03);
+  }
+}
+
+.animate-orbit-spin {
+  animation: orbit-spin 26s linear infinite !important;
+}
+
+.animate-orbit-spin-rev {
+  animation: orbit-spin-rev 18s linear infinite !important;
+}
+
+.animate-drift {
+  animation: drift 6s ease-in-out infinite !important;
+}
+
+.animate-drift-alt {
+  animation: drift-alt 7s ease-in-out infinite !important;
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 35s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 35s linear infinite;
+}
+
+.marquee-container:hover .animate-marquee-left,
+.marquee-container:hover .animate-marquee-right {
+  animation-play-state: paused;
+}
+
+/* Scroll Reveal Utility Classes */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px) scale(0.98);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 @layer base {
@@ -76,14 +152,13 @@
     background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  h1,
-  h2,
-  h3,
-  h4 {
+  h1, h2, h3, h4 {
     font-family: var(--font-display);
     text-wrap: balance;
   }
@@ -92,53 +167,24 @@
     text-wrap: pretty;
   }
 
-  /* Accessibility: focus rings visible (orange 2px) */
   :focus-visible {
     outline: 2px solid var(--color-orange);
     outline-offset: 2px;
   }
 }
 
-@layer components {
-  .prose {
-    font-size: 1.0625rem;
-    line-height: 1.75;
-    color: var(--color-ink);
+@media (prefers-reduced-motion: reduce) {
+  .animate-orbit-spin,
+  .animate-orbit-spin-rev,
+  .animate-drift,
+  .animate-drift-alt,
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none !important;
   }
-
-  .prose > * + * {
-    margin-top: 1.15em;
-  }
-
-  .prose h2,
-  .prose h3,
-  .prose h4 {
-    color: var(--color-navy);
-    letter-spacing: -0.02em;
-    line-height: 1.25;
-  }
-  .prose h2 {
-    margin-top: 2em;
-    font-size: 1.6rem;
-  }
-  .prose h3 {
-    margin-top: 1.6em;
-    font-size: 1.3rem;
-  }
-
-  .prose a {
-    color: var(--color-orange-deep);
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    text-decoration-thickness: 2px;
-  }
-  .prose a:hover {
-    color: var(--color-orange);
-  }
-
-  .prose strong {
-    color: var(--color-navy);
-    font-weight: 700;
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

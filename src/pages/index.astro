@@ -1,12 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/landing/Hero.astro';
+import BrandMarquee from '../components/landing/BrandMarquee.astro';
 import Features from '../components/landing/Features.astro';
+import PlatformGrid from '../components/landing/PlatformGrid.astro';
 import Showcase from '../components/landing/Showcase.astro';
 import Results from '../components/landing/Results.astro';
 import WhyUs from '../components/landing/WhyUs.astro';
 import Faq from '../components/landing/Faq.astro';
 import FinalCta from '../components/landing/FinalCta.astro';
+import MotionController from '../components/common/MotionController.astro';
 import { site } from '../site.config';
 ---
 
@@ -14,24 +17,33 @@ import { site } from '../site.config';
   title={`${site.name} — Digital Strategy, Paid Advertising & Growth`}
   description={site.description}
 >
-  {/* 1. Hero with Orbit Graphic & Brand Strip */}
+  {/* 1. Hero with Kepler Orbit Graphic & 3D Elements */}
   <Hero />
 
-  {/* 2. Capabilities (Kepler Features Section Adaptation) */}
+  {/* 2. Clients, Brands & Business Partners (2 Opposite Scrolling Marquees) */}
+  <BrandMarquee />
+
+  {/* 3. Capabilities (Kepler Features Adaptation with Lucide Icons) */}
   <Features />
 
-  {/* 3. Featured Work (Kepler Showcase Section Adaptation) */}
+  {/* 4. Platforms & Tools We Work With (12 Official Platform Logos) */}
+  <PlatformGrid />
+
+  {/* 5. Featured Work (Kepler Showcase Visual Compositions) */}
   <Showcase />
 
-  {/* 4. Verified Commercial Results (Kepler Pricing Section Visual Adaptation) */}
+  {/* 6. Verified Commercial Results (Animated Counters) */}
   <Results />
 
-  {/* 5. Why Starts Digital (Kepler Testimonials Section Visual Adaptation) */}
+  {/* 7. Why Starts Digital (Kepler Card Grid) */}
   <WhyUs />
 
-  {/* 6. Frequently Asked Questions (Kepler FAQ Accordion) */}
+  {/* 8. Frequently Asked Questions (Kepler Accordion) */}
   <Faq />
 
-  {/* 7. Final Call to Action (Kepler Final CTA Banner) */}
+  {/* 9. Final Call to Action (Kepler Banner) */}
   <FinalCta />
+
+  {/* 10. Motion Controller (IntersectionObserver Scroll Reveals & Counters) */}
+  <MotionController />
 </BaseLayout>

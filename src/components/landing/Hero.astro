@@ -1,44 +1,60 @@
 ---
-import { brands } from '../../data/brands';
 import { site } from '../../site.config';
+import { 
+  Search, 
+  BarChart3, 
+  ShoppingBag, 
+  Megaphone, 
+  Code2, 
+  Sparkles,
+  TrendingUp
+} from '@lucide/astro';
 ---
 
-<section id="hero" class="bg-linear-160 from-navy to-navy-deep text-cloud overflow-hidden">
+<section id="hero" class="bg-linear-160 from-navy via-navy to-navy-deep text-cloud overflow-hidden relative border-b-4 border-ink">
   <header
     id="top"
-    class="relative mx-auto grid max-w-[1200px] items-center gap-10 px-6 sm:px-8 pt-16 pb-12 lg:grid-cols-[1.05fr_.95fr]"
+    class="relative mx-auto grid max-w-[1200px] items-center gap-12 px-6 sm:px-8 pt-16 pb-14 lg:grid-cols-[1.05fr_.95fr]"
   >
-    <!-- Color Glows -->
+    <!-- Ambient Color Glows -->
     <span
-      class="pointer-events-none absolute -top-[90px] -right-[70px] z-0 size-[660px] bg-radial from-orange/55 to-transparent to-62%"
+      class="pointer-events-none absolute -top-[90px] -right-[70px] z-0 size-[660px] bg-radial from-orange/50 via-orange/15 to-transparent to-65%"
       aria-hidden="true"
     ></span>
     <span
-      class="pointer-events-none absolute -bottom-40 -left-[100px] z-0 size-[560px] bg-radial from-[rgb(96_165_250/0.45)] to-transparent to-64%"
+      class="pointer-events-none absolute -bottom-40 -left-[100px] z-0 size-[560px] bg-radial from-[rgb(96_165_250/0.4)] to-transparent to-64%"
       aria-hidden="true"
     ></span>
 
-    <!-- Floating Stickers -->
+    <!-- Drifting Kepler Shapes (Task 1 & 10) -->
     <span
-      class="absolute top-14 left-[44%] z-1 size-[22px] rounded-md bg-orange [--r:18deg] animate-drift hidden sm:inline-block"
+      class="absolute top-14 left-[46%] z-1 size-[24px] rounded-md bg-orange [--r:18deg] animate-drift hidden sm:inline-block shadow-pop-sm"
       aria-hidden="true"
     ></span>
     <span
-      class="absolute top-50 left-1.5 z-1 size-4 rounded-full bg-cloud [--r:0deg] animate-drift-alt hidden sm:inline-block"
+      class="absolute top-52 left-2 z-1 size-4 rounded-full bg-cloud [--r:0deg] animate-drift-alt hidden sm:inline-block shadow-sm"
+      aria-hidden="true"
+    ></span>
+    <span
+      class="absolute bottom-24 right-8 z-1 size-5 rotate-45 rounded-[4px] bg-orange-bright [--r:45deg] animate-drift hidden lg:inline-block"
       aria-hidden="true"
     ></span>
 
     <div class="relative z-2">
-      <!-- Eyebrow Pill -->
-      <span
-        class="inline-flex items-center gap-2 rounded-full bg-orange px-3.5 py-[7px] text-[13px] font-bold tracking-[0.03em] text-cloud shadow-sm"
-      >
-        ✦ DIGITAL MARKETING, CREATIVE & TECHNOLOGY
-      </span>
+      <!-- Eyebrow Pill Badge -->
+      <div class="reveal-on-scroll">
+        <span
+          class="inline-flex items-center gap-2 rounded-full bg-orange px-4 py-2 text-xs sm:text-[13px] font-bold font-display tracking-[0.03em] text-cloud shadow-pop-sm"
+        >
+          <Sparkles class="size-4 text-cloud animate-pulse" />
+          DIGITAL MARKETING, CREATIVE & TECHNOLOGY
+        </span>
+      </div>
 
       <!-- Headline -->
       <h1
-        class="mt-5 font-display text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-cloud"
+        class="mt-6 font-display text-4xl sm:text-5xl lg:text-[62px] font-bold leading-[1.04] tracking-[-0.03em] text-cloud reveal-on-scroll"
+        data-reveal-delay="100"
       >
         Digital marketing built to scale <span class="relative inline-block whitespace-nowrap text-orange-bright"
           >real businesses<svg
@@ -59,77 +75,110 @@ import { site } from '../../site.config';
       </h1>
 
       <!-- Supporting Copy -->
-      <p class="mt-6.5 max-w-[480px] text-lg sm:text-[19px] leading-[1.55] text-sky font-body">
+      <p 
+        class="mt-6 max-w-[490px] text-lg sm:text-[19px] leading-[1.6] text-sky font-body reveal-on-scroll"
+        data-reveal-delay="200"
+      >
         Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
       </p>
 
       <!-- Action Buttons -->
-      <div class="mt-8 flex flex-wrap gap-3.5">
+      <div class="mt-8 flex flex-wrap gap-4 reveal-on-scroll" data-reveal-delay="300">
         <a
           href={`${site.basePath}/#contact`}
-          class="rounded-full bg-orange px-7 py-[15px] font-bold text-cloud shadow-pop-white transition-[transform,box-shadow] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0_var(--color-cloud)]"
+          class="rounded-full bg-orange px-7 py-4 font-bold text-cloud shadow-pop-white transition-[transform,box-shadow] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0_var(--color-cloud)] flex items-center gap-2"
         >
-          Discuss Your Project →
+          <span>Discuss Your Project</span>
+          <span class="text-cloud">→</span>
         </a>
         <a
           href={`${site.basePath}/#work`}
-          class="rounded-full border-2 border-cloud bg-cloud px-7 py-[15px] font-bold text-navy transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5"
+          class="rounded-full border-2 border-cloud bg-cloud px-7 py-4 font-bold text-navy transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 shadow-pop-sm"
         >
           View Our Work
         </a>
       </div>
 
-      <!-- Quick Verified Metric Pills -->
-      <div class="mt-8.5 flex flex-wrap items-center gap-4 text-xs font-semibold text-sky-mist">
-        <span class="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-cloud">PKR 30M+ Revenue Supported</span>
-        <span class="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-cloud">29,000+ Product Sales</span>
+      <!-- Quick Metric Badges -->
+      <div class="mt-9 flex flex-wrap items-center gap-3 reveal-on-scroll" data-reveal-delay="400">
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold text-cloud backdrop-blur-md">
+          <TrendingUp class="size-4 text-orange-glow" />
+          <span>PKR 30M+ Revenue Supported</span>
+        </div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold text-cloud backdrop-blur-md">
+          <ShoppingBag class="size-4 text-sky" />
+          <span>29,000+ Orders Processed</span>
+        </div>
       </div>
     </div>
 
-    <!-- ORBIT GRAPHIC (Kepler Theme Signature Component) -->
-    <div class="relative z-2 flex aspect-square items-center justify-center max-w-[420px] mx-auto lg:max-w-none">
+    <!-- RICHER KEPLER ORBIT GRAPHIC WITH 3D CSS ELEMENTS & ORBITING ICONS (Task 1 & 7) -->
+    <div class="relative z-2 flex aspect-square items-center justify-center max-w-[440px] mx-auto lg:max-w-none reveal-on-scroll" data-reveal-delay="200">
+      <!-- Outer Orbit Ring (Rotates clockwise) -->
       <div
-        class="absolute h-[88%] w-[88%] rounded-full border-2 border-dashed border-white/40 animate-orbit-spin"
+        class="absolute h-[92%] w-[92%] rounded-full border-2 border-dashed border-white/35 animate-orbit-spin flex items-center justify-center"
+      >
+        <!-- Orbiting Icon 1: Megaphone -->
+        <span
+          class="absolute -top-[16px] left-1/2 -ml-[16px] size-8 rounded-full bg-orange text-cloud shadow-pop-sm flex items-center justify-center p-1.5"
+          title="Paid Advertising"
+        >
+          <Megaphone class="size-4" />
+        </span>
+        <!-- Orbiting Icon 2: Search -->
+        <span
+          class="absolute -bottom-[16px] left-1/2 -ml-[16px] size-8 rounded-full bg-sky text-navy shadow-pop-sm flex items-center justify-center p-1.5"
+          title="SEO & Search"
+        >
+          <Search class="size-4" />
+        </span>
+      </div>
+
+      <!-- Inner Orbit Ring (Rotates counter-clockwise) -->
+      <div
+        class="absolute h-[68%] w-[68%] rounded-full border-2 border-white/30 animate-orbit-spin-rev flex items-center justify-center"
+      >
+        <!-- Orbiting Icon 3: Code -->
+        <span
+          class="absolute -left-[14px] top-1/2 -mt-[14px] size-7 rounded-full bg-cloud text-ink shadow-sm flex items-center justify-center p-1.5"
+          title="Web Architecture"
+        >
+          <Code2 class="size-3.5" />
+        </span>
+        <!-- Orbiting Icon 4: Analytics Chart -->
+        <span
+          class="absolute -right-[14px] top-1/2 -mt-[14px] size-7 rounded-full bg-orange-bright text-cloud shadow-sm flex items-center justify-center p-1.5"
+          title="Analytics"
+        >
+          <BarChart3 class="size-3.5" />
+        </span>
+      </div>
+
+      <!-- Center 3D Orbit Core (Chunky Kepler Icon Frame) -->
+      <div
+        class="relative flex h-[44%] w-[44%] items-center justify-center rounded-[28px] bg-orange shadow-pop-lg border-2 border-ink group"
       >
         <span
-          class="absolute -top-[9px] left-1/2 -ml-[9px] size-[18px] rounded-full bg-orange shadow-[0_0_0_4px_rgb(249_115_22/0.3)]"
+          class="absolute h-6 w-14 -rotate-[28deg] rounded-full border-[3px] border-cloud"
         ></span>
+        <span class="size-5 rounded-full bg-cloud shadow-md"></span>
+        <span class="absolute top-2 right-2 text-cloud/40 text-xs">✦</span>
       </div>
-      <div
-        class="absolute h-[62%] w-[62%] rounded-full border-2 border-white/30 animate-orbit-spin-rev"
-      >
-        <span
-          class="absolute -bottom-[7px] left-1/2 -ml-[7px] size-3.5 rounded bg-cloud"
-        ></span>
-      </div>
-      <div
-        class="relative flex h-[40%] w-[40%] items-center justify-center rounded-[26px] bg-orange shadow-pop-lg"
-      >
-        <span
-          class="absolute h-5 w-11 -rotate-[28deg] rounded-full border-[3px] border-cloud"
-        ></span>
-        <span class="size-4 rounded-full bg-cloud"></span>
-      </div>
-      <span class="absolute top-[8%] right-[10%] text-[26px] text-orange">✦</span>
-      <span class="absolute bottom-[10%] left-[6%] text-xl text-cloud">✦</span>
+
+      <!-- Floating 3D CSS Spheres & Torus Graphics (Task 7) -->
+      <div 
+        class="absolute top-[6%] left-[8%] size-10 rounded-full bg-gradient-to-tr from-orange-deep via-orange to-orange-glow shadow-[inset_-3px_-3px_8px_rgba(0,0,0,0.4),0_6px_16px_rgba(249,115,22,0.4)] animate-drift"
+        aria-hidden="true"
+      ></div>
+
+      <div 
+        class="absolute bottom-[10%] right-[10%] size-8 rounded-full border-4 border-sky bg-navy-deep/60 shadow-[inset_0_2px_4px_rgba(255,255,255,0.3)] animate-drift-alt"
+        aria-hidden="true"
+      ></div>
+
+      <!-- Decorative Orbit Stars -->
+      <span class="absolute top-[8%] right-[8%] text-[30px] text-orange pointer-events-none">✦</span>
+      <span class="absolute bottom-[12%] left-[4%] text-2xl text-cloud pointer-events-none">✦</span>
     </div>
   </header>
-
-  <!-- KEPLER LOGO STRIP (15 Approved Brand Names as Normal Typography) -->
-  <div class="mx-auto max-w-[1200px] px-6 sm:px-8 pt-2 pb-16">
-    <p
-      class="mb-6 text-center text-[13px] font-bold tracking-[0.14em] text-white/70 uppercase font-display"
-    >
-      BRANDS & PROJECTS WE HAVE WORKED WITH
-    </p>
-    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-      {
-        brands.map((brand) => (
-          <span class="font-display text-lg sm:text-[21px] font-bold text-white/85 hover:text-orange transition-colors">
-            {brand.name}
-          </span>
-        ))
-      }
-    </div>
-  </div>
 </section>

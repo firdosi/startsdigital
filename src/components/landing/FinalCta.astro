@@ -1,35 +1,47 @@
 ---
 import { site } from '../../site.config';
+import { ArrowRight, MessageSquare } from '@lucide/astro';
 ---
 
-<section id="contact" class="relative overflow-hidden bg-linear-160 from-navy to-navy-deep text-cloud">
-  <!-- Orbit Stickers -->
+<section id="contact" class="relative overflow-hidden bg-linear-160 from-navy to-navy-deep text-cloud border-b-4 border-ink">
+  <!-- Orbit Stickers & Stars (Task 10) -->
   <span class="absolute top-7.5 right-[12%] text-[30px] text-orange pointer-events-none" aria-hidden="true">✦</span>
   <span class="absolute bottom-10 left-[10%] size-[22px] rotate-[15deg] rounded-md bg-orange pointer-events-none" aria-hidden="true"></span>
   <span class="absolute top-15 left-[20%] size-3.5 rounded-full bg-cloud opacity-50 pointer-events-none" aria-hidden="true"></span>
 
-  <div class="relative z-2 mx-auto max-w-[820px] px-6 sm:px-8 py-[90px] text-center">
+  <div class="relative z-2 mx-auto max-w-[840px] px-6 sm:px-8 py-[90px] text-center reveal-on-scroll">
+    <span class="inline-flex items-center gap-2 rounded-full bg-orange px-4 py-1.5 text-xs font-bold font-display uppercase tracking-wider text-cloud mb-4 shadow-pop-sm">
+      ✦ START YOUR GROWTH STRATEGY
+    </span>
     <h2 class="font-display text-3xl sm:text-4xl lg:text-[52px] font-bold tracking-[-0.02em] text-cloud leading-tight">
       Ready to build stronger digital growth?
     </h2>
-    <p class="mx-auto mt-4.5 max-w-[520px] text-lg sm:text-[19px] text-sky-mist font-body">
+    <p class="mx-auto mt-5 max-w-[540px] text-lg sm:text-[20px] leading-relaxed text-sky-mist font-body">
       Speak directly with our team to review your paid ad campaigns, website conversion architecture, and search opportunities.
     </p>
-    <div class="mt-8.5 flex flex-wrap justify-center gap-3.5">
+
+    <div class="mt-9 flex flex-wrap justify-center gap-4">
       <a
         href={`mailto:${site.contact.email}`}
-        class="rounded-full bg-orange px-8 py-4 font-bold text-cloud shadow-pop-white transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5"
+        class="rounded-full bg-orange px-8 py-4 font-bold text-cloud shadow-pop-white transition-[transform,box-shadow] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0_var(--color-cloud)] flex items-center gap-2 text-base"
       >
-        Discuss Your Project →
+        <span>Discuss Your Project</span>
+        <ArrowRight class="size-5 text-cloud" />
       </a>
       <a
         href={site.contact.whatsapp}
         target="_blank"
         rel="noopener noreferrer"
-        class="rounded-full border-2 border-white/50 bg-transparent px-8 py-4 font-bold text-cloud transition-colors hover:bg-white/10"
+        class="rounded-full border-2 border-cloud/50 bg-cloud/10 px-8 py-4 font-bold text-cloud transition-colors hover:bg-cloud/20 flex items-center gap-2 text-base shadow-pop-sm"
       >
-        Chat on WhatsApp
+        <MessageSquare class="size-5 text-orange-glow" />
+        <span>Chat on WhatsApp</span>
       </a>
+    </div>
+
+    <!-- Direct Contact Notes -->
+    <div class="mt-8 text-xs sm:text-sm font-mono text-sky/70">
+      Direct Email: <a href={`mailto:${site.contact.email}`} class="underline hover:text-orange">{site.contact.email}</a> &nbsp;·&nbsp; Direct WhatsApp: <a href={site.contact.whatsapp} class="underline hover:text-orange">{site.contact.phone}</a>
     </div>
   </div>
 </section>

@@ -36,23 +36,23 @@ const columns = [
 
 <footer class="bg-ink text-sky-mist">
   <div
-    class="mx-auto grid max-w-[1200px] gap-10 px-6 sm:px-8 pt-16 pb-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]"
+    class="mx-auto grid max-w-[1200px] gap-8 px-8 pt-[60px] pb-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]"
   >
     <div>
       <Logo size="sm" />
-      <p class="mt-4 max-w-[320px] text-[15px] leading-7 text-slate-300">
+      <p class="mt-4 max-w-[280px] text-sm leading-relaxed text-slate-400">
         {site.description}
       </p>
-      <div class="mt-5 space-y-2 text-sm font-mono text-slate-300">
+      <div class="mt-4 text-xs font-mono text-slate-400">
         <div>Email: <a href={`mailto:${site.contact.email}`} class="text-sky hover:text-orange">{site.contact.email}</a></div>
-        <div>Phone: <a href={site.contact.whatsapp} class="text-sky hover:text-orange">{site.contact.phone}</a></div>
+        <div class="mt-1">Phone: <a href={site.contact.whatsapp} class="text-sky hover:text-orange">{site.contact.phone}</a></div>
       </div>
     </div>
     {
       columns.map((col) => (
         <div>
-          <div class="mb-4 font-display text-[15px] font-bold text-cloud uppercase tracking-wider">{col.heading}</div>
-          <div class="flex flex-col gap-3 text-[15px] leading-6">
+          <div class="mb-3.5 font-display text-sm font-bold text-cloud uppercase tracking-wider">{col.heading}</div>
+          <div class="flex flex-col gap-2.5 text-sm">
             {col.links.map((link) => (
               <a href={link.href} class="text-sky-mist hover:text-orange transition-colors">
                 {link.label}
@@ -65,7 +65,7 @@ const columns = [
   </div>
   <div class="border-t border-white/10">
     <div
-      class="mx-auto flex max-w-[1200px] flex-wrap justify-between gap-3 px-6 sm:px-8 py-6 text-sm text-slate-400"
+      class="mx-auto flex max-w-[1200px] flex-wrap justify-between gap-3 px-8 py-5 text-[13px] text-slate-400"
     >
       <span>© {new Date().getFullYear()} Starts Digital. All rights reserved.</span>
       <span>Built with Astro ✦ Kepler Theme (MIT License)</span>

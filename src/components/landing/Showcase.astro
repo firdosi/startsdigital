@@ -1,40 +1,53 @@
 ---
 import SectionHeader from './SectionHeader.astro';
 import { site } from '../../site.config';
+import { Sprout, TrendingUp, Award, Calendar, Wrench, MapPin } from '@lucide/astro';
 
 const projects = [
   {
     tag: 'E-COMMERCE & ADVERTISING',
     title: 'Black Gold Fertilizer',
+    logo: '/brands/black-gold-fertilizer/logo.webp',
     result: 'Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.',
     href: `${site.basePath}/work/black-gold-fertilizer/`,
-    metric: 'PKR 30M+ Revenue',
-    accentColor: 'from-orange/20 to-navy',
+    metricPrimary: 'PKR 30M+ Revenue',
+    metricSecondary: '29,000+ Orders',
+    IconPrimary: Sprout,
+    IconSecondary: TrendingUp,
+    accentGradient: 'from-emerald-950/80 via-navy to-navy-deep',
   },
   {
     tag: 'LIVESTOCK & SEASONAL CAMPAIGN',
     title: 'Wajib Livestock Qurbani Campaign',
+    logo: null,
     result: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.',
     href: `${site.basePath}/work/qurbani-campaign/`,
-    metric: '150+ Animals Sold',
-    accentColor: 'from-orange-bright/20 to-navy',
+    metricPrimary: '150+ Animals Sold',
+    metricSecondary: 'PKR 4.2M+ Sales',
+    IconPrimary: Award,
+    IconSecondary: Calendar,
+    accentGradient: 'from-amber-950/80 via-navy to-navy-deep',
   },
   {
     tag: 'SEO & LOCAL SERVICES',
     title: 'RK Reno Solutions',
+    logo: '/brands/rk-reno-solutions/logo.webp',
     result: 'Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.',
     href: `${site.basePath}/work/rk-reno-solutions/`,
-    metric: 'KL & Selangor SEO',
-    accentColor: 'from-sky/20 to-navy',
+    metricPrimary: 'KL & Selangor SEO',
+    metricSecondary: 'Renovation & HVAC',
+    IconPrimary: Wrench,
+    IconSecondary: MapPin,
+    accentGradient: 'from-sky-950/80 via-navy to-navy-deep',
   },
 ];
 ---
 
 <section
   id="work"
-  class="relative overflow-hidden bg-linear-160 from-navy to-navy-deep text-cloud py-20"
+  class="relative overflow-hidden bg-linear-160 from-navy to-navy-deep text-cloud py-20 border-b-4 border-ink"
 >
-  <!-- Decorative Stars -->
+  <!-- Decorative Kepler Stars -->
   <span class="absolute top-10 right-[8%] text-[34px] text-orange pointer-events-none" aria-hidden="true">✦</span>
   <span class="absolute bottom-15 left-[5%] size-5 rotate-[20deg] rounded-md bg-orange pointer-events-none" aria-hidden="true"></span>
 
@@ -48,17 +61,43 @@ const projects = [
     />
     <div class="grid gap-8 md:grid-cols-3">
       {
-        projects.map((p) => (
-          <div class="rounded-tile border border-white/14 bg-white/6 p-6 flex flex-col justify-between hover:border-orange/60 transition-all group">
+        projects.map((p, idx) => (
+          <div 
+            class="reveal-on-scroll rounded-tile border-2 border-ink bg-white/6 p-6 flex flex-col justify-between hover:border-orange/80 transition-all duration-200 group shadow-pop"
+            data-reveal-delay={idx * 100}
+          >
             <div>
-              <!-- Kepler Pattern Graphic Frame -->
-              <div class:list={['flex aspect-16/10 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-linear-to-br p-4', p.accentColor]}>
-                <div class="text-center">
-                  <span class="inline-block rounded-full bg-orange px-3.5 py-1 text-xs font-bold font-display text-cloud shadow-sm mb-2">
-                    {p.metric}
-                  </span>
-                  <div class="text-[11px] font-mono text-sky-mist tracking-widest uppercase opacity-80">
-                    {p.tag}
+              <!-- Visual Card Frame Composition (Task 9) -->
+              <div class:list={['relative flex aspect-16/10 items-center justify-center overflow-hidden rounded-xl border-2 border-ink bg-linear-to-br p-5 shadow-pop-sm', p.accentGradient]}>
+                <!-- Abstract Glow -->
+                <span class="absolute inset-0 bg-radial from-orange/20 to-transparent pointer-events-none"></span>
+
+                <div class="relative z-10 text-center flex flex-col items-center justify-center">
+                  {p.logo ? (
+                    <img
+                      src={p.logo}
+                      alt={`${p.title} logo`}
+                      width="180"
+                      height="60"
+                      loading="lazy"
+                      class="max-h-12 max-w-[180px] object-contain filter drop-shadow-md mb-3"
+                    />
+                  ) : (
+                    <div class="font-display font-extrabold text-xl text-cloud tracking-wide mb-2">
+                      {p.title}
+                    </div>
+                  )}
+
+                  <!-- Metric Badges -->
+                  <div class="flex flex-wrap items-center justify-center gap-2 mt-1">
+                    <span class="inline-flex items-center gap-1 rounded-full bg-orange px-3 py-1 text-xs font-bold font-display text-cloud shadow-sm">
+                      <p.IconPrimary class="size-3.5" />
+                      <span>{p.metricPrimary}</span>
+                    </span>
+                    <span class="inline-flex items-center gap-1 rounded-full bg-cloud/15 border border-white/20 px-3 py-1 text-xs font-semibold font-display text-sky-mist">
+                      <p.IconSecondary class="size-3.5 text-orange-glow" />
+                      <span>{p.metricSecondary}</span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -69,12 +108,12 @@ const projects = [
               <h3 class="mt-2 font-display text-2xl font-bold text-cloud group-hover:text-orange-bright transition-colors">
                 {p.title}
               </h3>
-              <p class="mt-3 text-sm leading-relaxed text-sky-mist font-body">
+              <p class="mt-3 text-sm sm:text-base leading-relaxed text-sky-mist font-body">
                 {p.result}
               </p>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-white/10">
+            <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
               <a
                 href={p.href}
                 class="inline-flex items-center gap-2 font-bold text-sm text-cloud group-hover:text-orange transition-colors"
@@ -82,6 +121,7 @@ const projects = [
                 <span>Read Case Study</span>
                 <span class="text-orange">→</span>
               </a>
+              <span class="text-xs font-mono text-white/40">Verified Case</span>
             </div>
           </div>
         ))
