@@ -43,10 +43,30 @@ async function captureAll() {
   try {
     browser = await chromium.launch();
 
+    // Preflight Helper: Validate required screenshot target elements exist exactly once
+    async function validatePreflightTargets(page) {
+      const headerCount = await page.locator('#main-header, header').count();
+      const heroCount = await page.locator('#hero').count();
+      const workCount = await page.locator('#work').count();
+
+      if (headerCount !== 1) {
+        throw new Error(`Preflight Validation Error: Expected exactly 1 header element (#main-header or header), found ${headerCount}.`);
+      }
+      if (heroCount !== 1) {
+        throw new Error(`Preflight Validation Error: Expected exactly 1 #hero section, found ${heroCount}.`);
+      }
+      if (workCount !== 1) {
+        throw new Error(`Preflight Validation Error: Expected exactly 1 #work section, found ${workCount}.`);
+      }
+    }
+
     // Helper: Scroll page, wait for all images to complete & decode, return validation metrics
     async function preparePageAndValidateImages(page, width, height) {
       await page.setViewportSize({ width, height });
       await page.goto('http://localhost:4321/startsdigital/', { waitUntil: 'networkidle' });
+
+      // Run preflight element validation
+      await validatePreflightTargets(page);
 
       // Step 1: Scroll through page in controlled steps to trigger lazy-loaded images
       await page.evaluate(async () => {
@@ -156,11 +176,14 @@ async function captureAll() {
 
       // Full-page capture (Set header to absolute so it doesn't repeat or stick in the middle)
       await setHeaderAbsolute(page);
-      await page.screenshot({
-        path: path.join(targetDir, 'desktop-1440-full.png'),
-        fullPage: true,
-      });
-      await restoreHeaderPosition(page);
+      try {
+        await page.screenshot({
+          path: path.join(targetDir, 'desktop-1440-full.png'),
+          fullPage: true,
+        });
+      } finally {
+        await restoreHeaderPosition(page);
+      }
 
       // Focused Desktop Hero & Services
       await page.screenshot({
@@ -169,8 +192,10 @@ async function captureAll() {
       });
 
       // Focused Desktop Featured Work (Hide header, scroll #work into view & capture section element)
-      await hideHeader(page);
       const workSection = page.locator('#work');
+      if (await workSection.count() !== 1) {
+        throw new Error('Expected exactly one #work section.');
+      }
       await workSection.scrollIntoViewIfNeeded();
       await workSection.waitFor({ state: 'visible' });
       await page.waitForTimeout(500);
@@ -191,10 +216,14 @@ async function captureAll() {
         );
       });
 
-      await workSection.screenshot({
-        path: path.join(targetDir, 'desktop-featured-work.png'),
-      });
-      await restoreHeaderVisibility(page);
+      await hideHeader(page);
+      try {
+        await workSection.screenshot({
+          path: path.join(targetDir, 'desktop-featured-work.png'),
+        });
+      } finally {
+        await restoreHeaderVisibility(page);
+      }
 
       await page.close();
     }
@@ -204,11 +233,14 @@ async function captureAll() {
       const page = await browser.newPage();
       await preparePageAndValidateImages(page, 768, 1024);
       await setHeaderAbsolute(page);
-      await page.screenshot({
-        path: path.join(targetDir, 'tablet-768-full.png'),
-        fullPage: true,
-      });
-      await restoreHeaderPosition(page);
+      try {
+        await page.screenshot({
+          path: path.join(targetDir, 'tablet-768-full.png'),
+          fullPage: true,
+        });
+      } finally {
+        await restoreHeaderPosition(page);
+      }
       await page.close();
     }
 
@@ -219,23 +251,39 @@ async function captureAll() {
 
       // Full-page capture (Header set to absolute so it appears only at top)
       await setHeaderAbsolute(page);
-      await page.screenshot({
-        path: path.join(targetDir, 'mobile-375-full.png'),
-        fullPage: true,
-      });
-      await restoreHeaderPosition(page);
+      try {
+        await page.screenshot({
+          path: path.join(targetDir, 'mobile-375-full.png'),
+          fullPage: true,
+        });
+      } finally {
+        await restoreHeaderPosition(page);
+      }
 
-      // Focused Mobile Hero (Scroll explicitly to 0,0, wait 400ms, capture Hero element directly)
+      // Focused Mobile Hero (Scroll explicitly to 0,0, wait 400ms, hide header, capture #hero section element directly)
       await page.evaluate(() => window.scrollTo(0, 0));
       await page.waitForTimeout(400);
+
       const heroSection = page.locator('#hero');
-      await heroSection.screenshot({
-        path: path.join(targetDir, 'mobile-hero.png'),
-      });
+      if (await heroSection.count() !== 1) {
+        throw new Error('Expected exactly one #hero section.');
+      }
+      await heroSection.waitFor({ state: 'visible' });
+
+      await hideHeader(page);
+      try {
+        await heroSection.screenshot({
+          path: path.join(targetDir, 'mobile-hero.png'),
+        });
+      } finally {
+        await restoreHeaderVisibility(page);
+      }
 
       // Focused Mobile Featured Work (Hide header, scroll #work into view & capture section element)
-      await hideHeader(page);
       const mobileWorkSection = page.locator('#work');
+      if (await mobileWorkSection.count() !== 1) {
+        throw new Error('Expected exactly one #work section.');
+      }
       await mobileWorkSection.scrollIntoViewIfNeeded();
       await mobileWorkSection.waitFor({ state: 'visible' });
       await page.waitForTimeout(500);
@@ -256,10 +304,14 @@ async function captureAll() {
         );
       });
 
-      await mobileWorkSection.screenshot({
-        path: path.join(targetDir, 'mobile-featured-work.png'),
-      });
-      await restoreHeaderVisibility(page);
+      await hideHeader(page);
+      try {
+        await mobileWorkSection.screenshot({
+          path: path.join(targetDir, 'mobile-featured-work.png'),
+        });
+      } finally {
+        await restoreHeaderVisibility(page);
+      }
 
       await page.close();
     }
