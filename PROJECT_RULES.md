@@ -33,3 +33,31 @@ This repository enforces strict rules for development. All future AI coding agen
 - Documentation must use valid repository-relative links.
 
 - Local brain-folder Markdown files are not considered delivered until copied to GitHub.
+
+## Screenshot Versioning
+
+- Every new screenshot generation must use a new folder.
+- Existing screenshot files and folders must never be overwritten.
+- Existing screenshots must never be deleted unless the user explicitly requests deletion.
+- Each screenshot folder must represent one specific design revision.
+- Folder naming format:
+
+  vNN-short-revision-name-commit-prefix
+
+Example:
+
+  v5-real-client-assets-d4e91ab
+
+- Every folder must contain a README.md recording:
+  - Revision name
+  - Branch
+  - Commit SHA
+  - Capture date
+  - Viewports
+  - Screenshot filenames
+  - Main design changes
+  - Whether assets are temporary or production-approved
+
+- Full-page and focused screenshots from the same revision must stay inside the same version folder.
+- Screenshot links in documentation must point to the versioned folder.
+- Never capture directly into the parent screenshots directory.

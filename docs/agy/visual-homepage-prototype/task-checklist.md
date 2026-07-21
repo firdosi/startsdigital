@@ -1,6 +1,6 @@
 # Starts Digital - Visual Homepage Prototype Task Checklist
 
-This document tracks the tasks completed for the bold, image-led visual homepage redesign on branch `visual-redesign-v2`.
+This document tracks the tasks completed for the visual homepage prototype on branch `visual-redesign-v2`.
 
 ---
 
@@ -41,11 +41,11 @@ This document tracks the tasks completed for the bold, image-led visual homepage
 - [x] Reduce mobile page length: 3 main service category panels, concise deliverables, compact platform groups, shortened process descriptions
 - [x] Enforce minimum 16px font size on mobile body copy
 
-## 6. Verification & Quality Assurance
+## 6. Verification & Screenshot Archive Management
 
+- [x] Enforce strict mandatory Screenshot Versioning policy in [PROJECT_RULES.md](../../../PROJECT_RULES.md)
+- [x] Create versioned folder `screenshots/v4-image-led-redesign-a712770/` containing revision screenshots and `README.md`
+- [x] Archive historical screenshot revisions in dedicated folders (`v1-initial-prototype-b944ab0`, `v2-integrity-cleanup-12097b1`, `v3-presentation-polish-cc24ed8`)
+- [x] Create reusable automated capture script [capture-homepage-screenshots.js](../../../scripts/capture-homepage-screenshots.js) with version directory protection
 - [x] Run `npm run check` (`astro check`) and resolve all TypeScript/Astro errors (0 errors)
 - [x] Run `npm run build` to verify static production build (0 errors)
-- [x] Verify responsive layout across 320px, 375px, 430px, 768px, 1024px, 1440px
-- [x] Ensure no blank grey image frames appear in screenshots
-- [x] Regenerate full-page screenshots (`desktop-1440-full.png`, `tablet-768-full.png`, `mobile-375-full.png`)
-- [x] Generate focused review screenshots (`desktop-hero-services.png`, `desktop-featured-work.png`, `mobile-hero-work.png`)
