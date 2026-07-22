@@ -26,3 +26,5 @@ pnpm-debug.log*
 private-assets/
 oldweb/
 Boost/
+motion-review-*/
+typography-tech-*/

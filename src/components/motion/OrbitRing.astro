@@ -1,0 +1,69 @@
+---
+interface Props {
+  color?: 'orange' | 'purple' | 'lime' | 'green' | 'blue';
+  size?: number;
+  class?: string;
+  duration?: string;
+}
+
+const { color = 'lime', size = 280, class: className = '', duration = '25s' } = Astro.props;
+
+const strokeColors = {
+  orange: '#ff762b',
+  purple: '#9a83f5',
+  lime: '#ddff35',
+  green: '#39c98a',
+  blue: '#2563eb',
+};
+
+const strokeColor = strokeColors[color];
+---
+
+<div
+  aria-hidden="true"
+  class:list={['pointer-events-none absolute flex items-center justify-center animate-spin-slow', className]}
+  style={`width: ${size}px; height: ${size}px; animation-duration: ${duration};`}
+>
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 200 200"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-full h-full opacity-60"
+  >
+    <defs>
+      <linearGradient id={`orbitGrad-${color}`} x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color={strokeColor} stop-opacity="0.8" />
+        <stop offset="50%" stop-color={strokeColor} stop-opacity="0.2" />
+        <stop offset="100%" stop-color={strokeColor} stop-opacity="0.9" />
+      </linearGradient>
+    </defs>
+    <!-- Outer dashed ring -->
+    <ellipse
+      cx="100"
+      cy="100"
+      rx="90"
+      ry="40"
+      stroke={`url(#orbitGrad-${color})`}
+      stroke-width="1.5"
+      stroke-dasharray="6 8"
+      transform="rotate(-15 100 100)"
+    />
+    <!-- Solid accent ring -->
+    <ellipse
+      cx="100"
+      cy="100"
+      rx="75"
+      ry="30"
+      stroke={strokeColor}
+      stroke-width="1"
+      stroke-opacity="0.4"
+      transform="rotate(-15 100 100)"
+    />
+    <!-- Satellite node 1 -->
+    <circle cx="170" cy="80" r="4" fill={strokeColor} class="shadow-sm" />
+    <!-- Satellite node 2 -->
+    <circle cx="30" cy="120" r="3" fill="#ffffff" />
+  </svg>
+</div>

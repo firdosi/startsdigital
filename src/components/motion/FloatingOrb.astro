@@ -1,0 +1,38 @@
+---
+interface Props {
+  color?: 'orange' | 'purple' | 'lime' | 'green' | 'blue';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  class?: string;
+  duration?: string;
+}
+
+const { color = 'orange', size = 'md', class: className = '', duration = '12s' } = Astro.props;
+
+const colorGradients = {
+  orange: 'from-[#ff762b]/30 via-[#ff762b]/15 to-transparent border-[#ff762b]/20 shadow-[#ff762b]/20',
+  purple: 'from-[#9a83f5]/30 via-[#9a83f5]/15 to-transparent border-[#9a83f5]/20 shadow-[#9a83f5]/20',
+  lime: 'from-[#ddff35]/25 via-[#ddff35]/10 to-transparent border-[#ddff35]/20 shadow-[#ddff35]/15',
+  green: 'from-[#39c98a]/30 via-[#39c98a]/15 to-transparent border-[#39c98a]/20 shadow-[#39c98a]/20',
+  blue: 'from-[#2563eb]/30 via-[#2563eb]/15 to-transparent border-[#2563eb]/20 shadow-[#2563eb]/20',
+};
+
+const sizeClasses = {
+  sm: 'size-24 blur-lg',
+  md: 'size-40 blur-xl',
+  lg: 'size-64 blur-2xl',
+  xl: 'size-96 blur-3xl',
+};
+---
+
+<div
+  aria-hidden="true"
+  class:list={[
+    'pointer-events-none absolute rounded-full bg-gradient-to-br border shadow-2xl backdrop-blur-sm animate-pulse-glow',
+    colorGradients[color],
+    sizeClasses[size],
+    className
+  ]}
+  style={`animation-duration: ${duration};`}
+>
+  <div class="absolute inset-2 rounded-full bg-white/10 blur-sm"></div>
+</div>

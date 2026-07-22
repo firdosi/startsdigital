@@ -1,6 +1,6 @@
 ---
 import { site } from '../../site.config';
-import { CheckCircle2, ArrowRight } from '@lucide/astro';
+import { CheckCircle, ArrowRight } from '@lucide/astro';
 
 const experiencePoints = [
   {
@@ -22,33 +22,35 @@ const experiencePoints = [
 ];
 ---
 
-<section id="operator" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+<section id="operator" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <div class="grid gap-12 lg:grid-cols-12 items-center">
       
-      <!-- Left Side: Editorial Content -->
+      <!-- Left Side: Editorial Content with Fade-Left -->
       <div class="lg:col-span-7 space-y-8">
         <div class="space-y-3">
-          <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
+          <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
             HONEST OPERATOR CREDIBILITY
           </span>
-          <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
-          <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+          <!-- Sora 700 section heading -->
+          <h2 data-motion="fade-left" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
             Hands-on experience across marketing, websites and business growth
           </h2>
         </div>
 
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
+        <p data-motion="fade-left" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
           We don't operate like a bloated agency with junior account managers. Starts Digital was built by active marketers and developers who work directly on your campaigns, code, and growth strategy.
         </p>
 
-        <!-- Experience Pillars Grid: Sora 600 min 18px title, Inter 400 16px body -->
+        <!-- Experience Pillars Grid: Staggered Fade-Up & Rotate-In icons -->
         <div class="grid gap-4 sm:grid-cols-2 pt-2">
-          {experiencePoints.map((item) => (
-            <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm space-y-2">
+          {experiencePoints.map((item, idx) => (
+            <div data-motion="fade-up" data-motion-delay={300 + idx * 80} class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm space-y-2 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
               <div class="flex items-center gap-2.5 font-heading font-semibold text-[18px] text-[#061d33] leading-snug">
-                <CheckCircle2 class="size-5 text-[#ff762b] shrink-0" />
+                <div data-motion="rotate-in" data-motion-delay={350 + idx * 80}>
+                  <CheckCircle class="size-5 text-[#ff762b] shrink-0" />
+                </div>
                 <span>{item.title}</span>
               </div>
               <p class="text-base text-slate-600 font-body leading-[1.6] font-normal">
@@ -58,20 +60,20 @@ const experiencePoints = [
           ))}
         </div>
 
-        <div class="pt-4 flex flex-wrap items-center gap-4">
+        <div data-motion="fade-up" data-motion-delay="600" class="pt-4 flex flex-wrap items-center gap-4">
           <a
             href={`${site.basePath}/#contact`}
-            class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
+            class="group inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
           >
             <span>Work with us directly</span>
-            <ArrowRight class="size-4" />
+            <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
       </div>
 
-      <!-- Right Side: Real Project Visual Card -->
-      <div class="lg:col-span-5">
-        <div class="rounded-3xl border-2 border-[#061d33]/15 bg-[#061d33] p-4 shadow-2xl text-white space-y-6">
+      <!-- Right Side: Real Project Visual Card with Fade-Right & Gentle Float -->
+      <div data-motion="fade-right" data-motion-delay="250" class="lg:col-span-5">
+        <div class="rounded-3xl border-2 border-[#061d33]/15 bg-[#061d33] p-4 shadow-2xl text-white space-y-6 animate-float-gentle">
           <div class="relative overflow-hidden rounded-2xl bg-slate-900 p-2">
             <img
               src={`${site.basePath}/images/black-gold-official.png`}

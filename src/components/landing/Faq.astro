@@ -21,46 +21,50 @@ const items = [
 ];
 ---
 
-<section id="faq" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+<section id="faq" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <div class="grid gap-12 lg:grid-cols-12 items-start">
       
       <!-- Left Column: Title & Subtitle -->
       <div class="lg:col-span-5 space-y-4 lg:sticky lg:top-28">
-        <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
+        <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
           CLEAR ANSWERS
         </span>
-        <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
-        <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+        <!-- Sora 700 section heading -->
+        <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Your questions answered
         </h2>
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
+        <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
           Everything you need to know about working with Starts Digital. Clear timelines, transparent tracking systems, and direct senior execution.
         </p>
       </div>
 
-      <!-- Right Column: Plus/Minus Accordion Rows -->
+      <!-- Right Column: Smooth Grid Height Accordion Rows -->
       <div class="lg:col-span-7 space-y-4" id="faq-list">
         {
           items.map((item, i) => (
             <div 
-              class="reveal-on-scroll overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:border-[#ff762b]"
-              data-reveal-delay={i * 70}
+              data-motion="fade-up"
+              data-motion-delay={i * 80}
+              class:list={[
+                'faq-item overflow-hidden rounded-2xl border-2 transition-all duration-300 shadow-sm',
+                i === 0 ? 'border-[#ff762b] bg-white shadow-md' : 'border-slate-200 bg-white hover:border-[#ff762b]'
+              ]}
             >
-              <!-- FAQ Question: Inter 600, 16px mobile, 17px desktop, leading 1.45 -->
+              <!-- FAQ Question -->
               <button
                 type="button"
                 data-faq-toggle
                 aria-expanded={i === 0 ? 'true' : 'false'}
-                class="flex w-full cursor-pointer items-center justify-between gap-4 px-7 py-6 text-left font-body text-[16px] sm:text-[17px] leading-[1.45] font-semibold text-[#061d33] hover:text-[#ff762b] transition-colors"
+                class="flex w-full cursor-pointer items-center justify-between gap-4 px-7 py-6 text-left font-body text-[16px] sm:text-[17px] leading-[1.45] font-semibold text-[#061d33] hover:text-[#ff762b] transition-colors focus:outline-none"
               >
                 <span>{item.q}</span>
                 <span
                   data-faq-icon
                   class:list={[
-                    'shrink-0 size-9 rounded-full bg-[#f7f4ed] flex items-center justify-center text-[#061d33] font-bold transition-all duration-200',
-                    i === 0 && 'bg-[#ff762b] text-white rotate-180',
+                    'shrink-0 size-9 rounded-full flex items-center justify-center font-bold transition-all duration-300',
+                    i === 0 ? 'bg-[#ff762b] text-white rotate-180' : 'bg-[#f7f4ed] text-[#061d33]'
                   ]}
                 >
                   <Plus class:list={['size-5', i === 0 && 'hidden']} data-icon-plus />
@@ -68,13 +72,17 @@ const items = [
                 </span>
               </button>
               
-              <!-- FAQ Answer: Inter 400, 16px, leading 1.65 -->
+              <!-- FAQ Answer: CSS Grid Interpolation -->
               <div
-                data-faq-answer
-                hidden={i !== 0}
-                class="px-7 pb-6 text-base leading-[1.65] text-slate-700 font-body border-t border-slate-100 pt-4 font-normal"
+                data-faq-answer-wrapper
+                class:list={[
+                  'grid transition-[grid-template-rows,opacity] duration-300 ease-out px-7',
+                  i === 0 ? 'grid-rows-[1fr] opacity-100 pb-6 pt-0' : 'grid-rows-[0fr] opacity-0 pb-0 pt-0'
+                ]}
               >
-                {item.a}
+                <div class="overflow-hidden text-base leading-[1.65] text-slate-700 font-body border-t border-slate-100 pt-4 font-normal">
+                  {item.a}
+                </div>
               </div>
             </div>
           ))
@@ -87,36 +95,56 @@ const items = [
 </section>
 
 <script>
-  const list = document.getElementById('faq-list');
-  const toggles = list?.querySelectorAll<HTMLButtonElement>('[data-faq-toggle]') ?? [];
+  const faqList = document.getElementById('faq-list');
+  const faqItems = faqList?.querySelectorAll('.faq-item') ?? [];
 
-  toggles.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const wasOpen = btn.getAttribute('aria-expanded') === 'true';
-      
-      toggles.forEach((other) => {
-        const open = other === btn && !wasOpen;
-        other.setAttribute('aria-expanded', String(open));
-        
-        const icon = other.querySelector('[data-faq-icon]');
-        const plusIcon = other.querySelector('[data-icon-plus]');
-        const minusIcon = other.querySelector('[data-icon-minus]');
+  faqItems.forEach((item) => {
+    const toggleBtn = item.querySelector<HTMLButtonElement>('[data-faq-toggle]');
+    const wrapper = item.querySelector<HTMLElement>('[data-faq-answer-wrapper]');
+    const icon = item.querySelector<HTMLElement>('[data-faq-icon]');
+    const plusIcon = item.querySelector<HTMLElement>('[data-icon-plus]');
+    const minusIcon = item.querySelector<HTMLElement>('[data-icon-minus]');
 
-        if (icon) {
-          icon.classList.toggle('bg-[#ff762b]', open);
-          icon.classList.toggle('text-white', open);
-          icon.classList.toggle('bg-[#f7f4ed]', !open);
-          icon.classList.toggle('text-[#061d33]', !open);
-        }
+    toggleBtn?.addEventListener('click', () => {
+      const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
 
-        if (plusIcon && minusIcon) {
-          plusIcon.classList.toggle('hidden', open);
-          minusIcon.classList.toggle('hidden', !open);
-        }
+      // Close all other items
+      faqItems.forEach((other) => {
+        const otherBtn = other.querySelector<HTMLButtonElement>('[data-faq-toggle]');
+        const otherWrapper = other.querySelector<HTMLElement>('[data-faq-answer-wrapper]');
+        const otherIcon = other.querySelector<HTMLElement>('[data-faq-icon]');
+        const otherPlus = other.querySelector<HTMLElement>('[data-icon-plus]');
+        const otherMinus = other.querySelector<HTMLElement>('[data-icon-minus]');
 
-        const answer = other.parentElement?.querySelector<HTMLElement>('[data-faq-answer]');
-        if (answer) answer.hidden = !open;
+        otherBtn?.setAttribute('aria-expanded', 'false');
+        otherWrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-6');
+        otherWrapper?.classList.add('grid-rows-[0fr]', 'opacity-0', 'pb-0');
+
+        other.classList.remove('border-[#ff762b]', 'shadow-md');
+        other.classList.add('border-slate-200');
+
+        otherIcon?.classList.remove('bg-[#ff762b]', 'text-white', 'rotate-180');
+        otherIcon?.classList.add('bg-[#f7f4ed]', 'text-[#061d33]');
+
+        otherPlus?.classList.remove('hidden');
+        otherMinus?.classList.add('hidden');
       });
+
+      // Toggle clicked item if it was closed
+      if (!isOpen) {
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        wrapper?.classList.remove('grid-rows-[0fr]', 'opacity-0', 'pb-0');
+        wrapper?.classList.add('grid-rows-[1fr]', 'opacity-100', 'pb-6');
+
+        item.classList.remove('border-slate-200');
+        item.classList.add('border-[#ff762b]', 'shadow-md');
+
+        icon?.classList.remove('bg-[#f7f4ed]', 'text-[#061d33]');
+        icon?.classList.add('bg-[#ff762b]', 'text-white', 'rotate-180');
+
+        plusIcon?.classList.add('hidden');
+        minusIcon?.classList.remove('hidden');
+      }
     });
   });
 </script>

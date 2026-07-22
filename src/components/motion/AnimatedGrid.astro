@@ -1,0 +1,23 @@
+---
+interface Props {
+  class?: string;
+  opacity?: number;
+}
+
+const { class: className = '', opacity = 0.15 } = Astro.props;
+---
+
+<div
+  aria-hidden="true"
+  class:list={['pointer-events-none absolute inset-0 overflow-hidden', className]}
+  style={`opacity: ${opacity};`}
+>
+  <!-- CSS Pattern Grid -->
+  <div
+    class="w-full h-full bg-[radial-[#061d33]_1px,transparent_1px] [background-size:24px_24px] dark:bg-[radial-white_1px,transparent_1px]"
+    style="background-image: radial-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px); background-size: 32px 32px;"
+  ></div>
+  
+  <!-- Subtle Moving Ambient Light Beam -->
+  <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-gradient-to-r from-[#ff762b]/20 to-[#9a83f5]/20 blur-3xl animate-pulse-glow"></div>
+</div>

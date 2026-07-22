@@ -47,18 +47,20 @@ const values = [
   type="website"
 >
   <!-- Deep Navy Rounded Hero Header -->
-  <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 rounded-b-[40px] shadow-2xl">
+  <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 rounded-b-[40px] shadow-2xl overflow-hidden">
     <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
-      <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35]">
-        <span>ABOUT STARTS DIGITAL</span>
-      </span>
+      <div data-motion="scale-in">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35]">
+          <span>ABOUT STARTS DIGITAL</span>
+        </span>
+      </div>
       
       <!-- Hero Headline: Sora 700 -->
-      <h1 class="font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] text-white leading-[1.08] tracking-[-0.035em] max-w-[800px] mx-auto">
+      <h1 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] text-white leading-[1.08] tracking-[-0.035em] max-w-[800px] mx-auto">
         Marketing, technology and execution <span class="text-[#ff762b]">working as one.</span>
       </h1>
       
-      <p class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.65] font-normal">
+      <p data-motion="fade-up" data-motion-delay="200" class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.65] font-normal">
         Starts Digital combines campaign strategy, paid advertising, websites, SEO, creative content and practical technology systems to support business growth.
       </p>
     </Container>
@@ -71,16 +73,16 @@ const values = [
   <AboutOperator />
 
   <!-- Core Operating Values Section -->
-  <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+  <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
     <Container class="max-w-[1280px] px-6 sm:px-8 space-y-16">
       <div class="text-center max-w-3xl mx-auto space-y-3">
-        <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
+        <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
           OUR GUIDING PRINCIPLES
         </span>
-        <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+        <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Operating values that drive performance
         </h2>
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
+        <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
           Disciplined principles that govern our client relationships, technical execution, and daily decision-making.
         </p>
       </div>
@@ -88,12 +90,13 @@ const values = [
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {values.map((v, idx) => (
           <div 
-            class="reveal-on-scroll rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 shadow-lg hover:shadow-2xl hover:border-[#ff762b] transition-all duration-300 flex flex-col justify-between group"
-            data-reveal-delay={idx * 80}
+            data-motion="fade-up"
+            data-motion-delay={idx * 80}
+            class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 shadow-lg hover:shadow-2xl hover:border-[#ff762b] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
           >
             <div>
               <div class="flex items-center justify-between mb-6">
-                <div class:list={['size-12 rounded-2xl border-2 flex items-center justify-center font-bold bg-[#f7f4ed]', v.colorClass]}>
+                <div class:list={['size-12 rounded-2xl border-2 flex items-center justify-center font-bold bg-[#f7f4ed] group-hover:rotate-6 transition-transform', v.colorClass]}>
                   <v.Icon class="size-6" />
                 </div>
                 <span class="text-xs font-mono font-medium text-slate-400">0{idx + 1}</span>

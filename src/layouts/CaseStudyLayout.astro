@@ -5,7 +5,7 @@ import FinalCta from '../components/landing/FinalCta.astro';
 import MotionController from '../components/common/MotionController.astro';
 import { getCollection } from 'astro:content';
 import { site } from '../site.config';
-import { ArrowRight, CheckCircle2, ArrowLeft, Image as ImageIcon } from '@lucide/astro';
+import { ArrowRight, CheckCircle, ArrowLeft, Image as ImageIcon } from '@lucide/astro';
 
 interface Props {
   entry: {
@@ -45,14 +45,16 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
   type="article"
   image={data.ogImage}
 >
-  <div class="bg-[#f7f4ed] min-h-screen text-[#061d33]">
+  <div class="bg-[#f7f4ed] min-h-screen text-[#061d33] overflow-hidden">
     <!-- Deep Navy Hero Header Section -->
     <section class="bg-[#061d33] text-white pt-16 pb-20 sm:pt-20 sm:pb-24 border-b border-white/10 relative overflow-hidden rounded-b-[40px] shadow-2xl">
       <Container class="relative max-w-[1000px] px-6 sm:px-8 space-y-6">
         <div class="flex items-center justify-between gap-4">
-          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.05em] text-[#ddff35]">
-            <span>{data.industry}</span>
-          </span>
+          <div data-motion="scale-in">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.05em] text-[#ddff35]">
+              <span>{data.industry}</span>
+            </span>
+          </div>
 
           <a 
             href={`${site.basePath}/work/`}
@@ -63,22 +65,23 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
           </a>
         </div>
 
-        <h1 class="font-heading font-bold text-[32px] sm:text-[46px] lg:text-[54px] text-white leading-[1.12] tracking-[-0.025em]">
+        <!-- Headline Clip-Up -->
+        <h1 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[32px] sm:text-[46px] lg:text-[54px] text-white leading-[1.12] tracking-[-0.025em]">
           {data.title}
         </h1>
-        <p class="font-body text-lg sm:text-xl text-slate-200 leading-[1.65] max-w-3xl font-normal">
+        <p data-motion="fade-up" data-motion-delay="200" class="font-body text-lg sm:text-xl text-slate-200 leading-[1.65] max-w-3xl font-normal">
           {data.description}
         </p>
       </Container>
     </section>
 
-    <!-- Key Metrics Cards -->
+    <!-- Key Metrics Cards (Pop-In) -->
     <section class="py-10 bg-white border-b border-[#061d33]/10">
       <Container class="max-w-[1000px] px-6 sm:px-8">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {
-            data.metrics.map((metric) => (
-              <div class="rounded-2xl border-2 border-[#061d33]/15 bg-[#f7f4ed] p-6 shadow-sm font-body">
+            data.metrics.map((metric, idx) => (
+              <div data-motion="pop-in" data-motion-delay={idx * 100} class="rounded-2xl border-2 border-[#061d33]/15 bg-[#f7f4ed] p-6 shadow-sm font-body hover:shadow-md transition-shadow">
                 <span class="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-[#ff762b] block tracking-[-0.025em]">
                   {metric.value}
                 </span>
@@ -92,16 +95,16 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
       </Container>
     </section>
 
-    <!-- Primary Hero Visual Component (heroImage) -->
+    <!-- Primary Hero Visual Component (heroImage) with Clip-Left Mask -->
     {data.heroImage && (
       <section class="pt-12 pb-4 bg-[#f7f4ed]">
         <Container class="max-w-[1000px] px-6 sm:px-8">
-          <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-4 sm:p-6 shadow-xl overflow-hidden group">
+          <div data-motion="clip-left" data-motion-delay="150" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-4 sm:p-6 shadow-xl overflow-hidden group">
             <div class="relative overflow-hidden rounded-2xl bg-[#061d33]/5 border border-slate-200">
               <img 
                 src={`${site.basePath}${data.heroImage.src}`} 
                 alt={data.heroImage.alt}
-                class="w-full max-h-[500px] object-cover sm:object-contain bg-slate-900/5 group-hover:scale-102 transition-transform duration-500"
+                class="w-full max-h-[500px] object-cover sm:object-contain bg-slate-900/5 group-hover:scale-103 transition-transform duration-500"
               />
             </div>
             {data.heroImage.caption && (
@@ -122,7 +125,7 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
     <section class="py-12 sm:py-16">
       <Container class="max-w-[1000px] px-6 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
         <!-- Sidebar -->
-        <div class="lg:col-span-4 space-y-6">
+        <div data-motion="fade-right" data-motion-delay="200" class="lg:col-span-4 space-y-6">
           <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-6 sticky top-8">
             <div>
               <span class="block font-mono text-xs font-medium tracking-[0.05em] text-[#ff762b] uppercase mb-1">
@@ -141,7 +144,7 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
                 {
                   data.services.map((service) => (
                     <li class="flex items-center gap-2">
-                      <CheckCircle2 class="size-4 text-[#ff762b] shrink-0" />
+                      <CheckCircle class="size-4 text-[#ff762b] shrink-0" />
                       <span>{service}</span>
                     </li>
                   ))
@@ -151,8 +154,8 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
           </div>
         </div>
 
-        <!-- Main Content (Markdown Body) -->
-        <div class="lg:col-span-8 space-y-8">
+        <!-- Main Content -->
+        <div data-motion="fade-left" data-motion-delay="250" class="lg:col-span-8 space-y-8">
           <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm space-y-6">
             <h2 class="font-heading font-semibold text-xl sm:text-2xl text-[#061d33] border-b border-slate-100 pb-4">
               Campaign execution and scope
@@ -181,14 +184,14 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
       <section class="py-12 bg-white border-t border-b border-[#061d33]/10">
         <Container class="max-w-[1000px] px-6 sm:px-8 space-y-8">
           <div class="flex items-center justify-between">
-            <h3 class="font-heading font-semibold text-xl sm:text-2xl text-[#061d33]">
+            <h3 data-motion="clip-up" class="font-heading font-semibold text-xl sm:text-2xl text-[#061d33]">
               Project gallery
             </h3>
           </div>
 
           <div class="grid gap-6 sm:grid-cols-2">
-            {data.gallery.map((img) => (
-              <div class="rounded-2xl border border-slate-200 bg-[#f7f4ed] p-3 shadow-md overflow-hidden group">
+            {data.gallery.map((img, idx) => (
+              <div data-motion="fade-up" data-motion-delay={idx * 100} class="rounded-2xl border border-slate-200 bg-[#f7f4ed] p-3 shadow-md overflow-hidden group">
                 <div class="relative overflow-hidden rounded-xl bg-white border border-slate-200">
                   <img 
                     src={`${site.basePath}${img.src}`} 
@@ -211,20 +214,20 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
     <!-- Previous / Next Project Navigation -->
     <section class="py-16 bg-[#f7f4ed] border-t border-[#061d33]/10">
       <Container class="max-w-[1000px] px-6 sm:px-8">
-        <div class="text-xs font-mono font-medium uppercase tracking-[0.06em] text-slate-500 mb-6 text-center">
+        <div data-motion="scale-in" class="text-xs font-mono font-medium uppercase tracking-[0.06em] text-slate-500 mb-6 text-center">
           EXPLORE MORE CASE STUDIES
         </div>
 
         <div class="grid gap-6 sm:grid-cols-2">
-          <!-- Previous Project Link -->
           {prevStudy && (
             <a 
+              data-motion="fade-right"
               href={`${site.basePath}/work/${prevStudy.id}/`}
-              class="rounded-2xl border-2 border-[#061d33]/15 bg-white p-6 shadow-md hover:border-[#ff762b] hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+              class="rounded-2xl border-2 border-[#061d33]/15 bg-white p-6 shadow-md hover:border-[#ff762b] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
             >
               <div class="space-y-2">
                 <span class="inline-flex items-center gap-1 text-xs font-mono font-medium uppercase text-[#ff762b]">
-                  <ArrowLeft class="size-3.5" />
+                  <ArrowLeft class="size-3.5 group-hover:-translate-x-1 transition-transform" />
                   <span>Previous case study</span>
                 </span>
                 <h4 class="font-heading font-semibold text-lg sm:text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-snug">
@@ -237,16 +240,16 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
             </a>
           )}
 
-          <!-- Next Project Link -->
           {nextStudy && (
             <a 
+              data-motion="fade-left"
               href={`${site.basePath}/work/${nextStudy.id}/`}
-              class="rounded-2xl border-2 border-[#061d33]/15 bg-white p-6 shadow-md hover:border-[#ff762b] hover:shadow-xl transition-all duration-300 flex flex-col justify-between text-right group"
+              class="rounded-2xl border-2 border-[#061d33]/15 bg-white p-6 shadow-md hover:border-[#ff762b] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-right group"
             >
               <div class="space-y-2">
                 <span class="inline-flex items-center gap-1 justify-end text-xs font-mono font-medium uppercase text-[#ff762b]">
                   <span>Next case study</span>
-                  <ArrowRight class="size-3.5" />
+                  <ArrowRight class="size-3.5 group-hover:translate-x-1 transition-transform" />
                 </span>
                 <h4 class="font-heading font-semibold text-lg sm:text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-snug">
                   {nextStudy.data.title}

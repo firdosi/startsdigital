@@ -1,0 +1,43 @@
+---
+interface Props {
+  color?: 'orange' | 'purple' | 'lime' | 'green' | 'blue';
+  size?: number;
+  class?: string;
+}
+
+const { color = 'purple', size = 48, class: className = '' } = Astro.props;
+
+const colorSchemes = {
+  orange: { top: '#ff762b', left: '#e56017', right: '#c24b0c' },
+  purple: { top: '#9a83f5', left: '#7c3aed', right: '#6d28d9' },
+  lime: { top: '#ddff35', left: '#c9eb1e', right: '#aacc00' },
+  green: { top: '#39c98a', left: '#32b57c', right: '#279463' },
+  blue: { top: '#3b82f6', left: '#2563eb', right: '#1d4ed8' },
+};
+
+const scheme = colorSchemes[color];
+---
+
+<div
+  aria-hidden="true"
+  class:list={['pointer-events-none absolute animate-float-gentle', className]}
+  style={`width: ${size}px; height: ${size * 1.15}px;`}
+>
+  <svg
+    width={size}
+    height={size * 1.15}
+    viewBox="0 0 100 115"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-full h-full drop-shadow-lg"
+  >
+    <!-- Top Face -->
+    <path d="M50 5 L95 30 L50 55 L5 30 Z" fill={scheme.top} fill-opacity="0.95" />
+    <!-- Left Face -->
+    <path d="M5 30 L50 55 L50 110 L5 85 Z" fill={scheme.left} fill-opacity="0.85" />
+    <!-- Right Face -->
+    <path d="M50 55 L95 30 L95 85 L50 110 Z" fill={scheme.right} fill-opacity="0.75" />
+    <!-- Subtle Inner Highlight Line -->
+    <path d="M50 55 L50 110" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.3" />
+  </svg>
+</div>

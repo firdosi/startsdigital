@@ -13,6 +13,7 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import SEO from '../components/seo/SEO.astro';
 import StructuredData from '../components/seo/StructuredData.astro';
+import { ClientRouter } from 'astro:transitions';
 import { site } from '../site.config';
 
 interface Props {
@@ -35,6 +36,7 @@ const seo = Astro.props;
     <link rel="sitemap" href={`${site.basePath}/sitemap-index.xml`} />
     <SEO {...seo} />
     <StructuredData />
+    <ClientRouter fallback="swap" />
     <slot name="head" />
   </head>
   <body class="bg-[#f7f4ed] text-[#061d33] antialiased selection:bg-[#ff762b] selection:text-white font-body">

@@ -1,6 +1,9 @@
 ---
 import { site } from '../../site.config';
 import { ArrowRight, MessageSquare, Sparkles } from '@lucide/astro';
+import FloatingOrb from '../motion/FloatingOrb.astro';
+import OrbitRing from '../motion/OrbitRing.astro';
+import SectionSpark from '../motion/SectionSpark.astro';
 
 const stickers = [
   'PAID ADVERTISING',
@@ -13,13 +16,20 @@ const stickers = [
 <section id="contact" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33]">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
-    <!-- Rounded Navy CTA Block -->
-    <div class="reveal-on-scroll relative overflow-hidden rounded-[40px] bg-[#061d33] text-white p-10 sm:p-16 lg:p-20 shadow-2xl text-center">
+    <!-- Rounded Navy CTA Block with Ambient 3D Motion Elements -->
+    <div class="relative overflow-hidden rounded-[40px] bg-[#061d33] text-white p-10 sm:p-16 lg:p-20 shadow-2xl text-center">
       
-      <!-- Decorative Sticker Chips Row -->
-      <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
-        {stickers.map((sticker) => (
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
+      <!-- Ambient Decorative Motion Elements (Edges only) -->
+      <FloatingOrb color="orange" size="lg" class="-top-20 -left-20" duration="14s" />
+      <FloatingOrb color="purple" size="lg" class="-bottom-20 -right-20" duration="16s" />
+      <OrbitRing color="lime" size={220} class="top-6 right-6 hidden md:flex" duration="26s" />
+      <SectionSpark color="lime" size="lg" class="top-8 left-12" delay="0.5s" />
+      <SectionSpark color="coral" size="md" class="bottom-8 right-16" delay="1.8s" />
+
+      <!-- Decorative Sticker Chips Row: Scale-In -->
+      <div data-motion="scale-in" data-motion-delay="0" class="flex flex-wrap items-center justify-center gap-3 mb-8 relative z-10">
+        {stickers.map((sticker, idx) => (
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md animate-float-gentle" style={`animation-delay: ${idx * 0.5}s;`}>
             <Sparkles class="size-3.5 text-[#ddff35]" />
             <span>{sticker}</span>
           </span>
@@ -28,18 +38,18 @@ const stickers = [
 
       <div class="relative z-10 max-w-4xl mx-auto space-y-8 font-body">
         
-        <!-- Headline: Sora 700, 33px mobile, 46px desktop, leading 1.12 -->
-        <h2 class="font-heading font-bold text-[33px] sm:text-[46px] text-white leading-[1.12] tracking-[-0.025em]">
+        <!-- Headline: Clip-Up Reveal -->
+        <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[33px] sm:text-[46px] text-white leading-[1.12] tracking-[-0.025em]">
           Ready to build stronger digital growth?
         </h2>
 
-        <!-- Description: Inter 400, 16px mobile, 17px desktop, leading 1.65 -->
-        <p class="text-[16px] sm:text-[17px] leading-[1.65] text-slate-200 font-body max-w-2xl mx-auto font-normal">
+        <!-- Description: Fade-Up -->
+        <p data-motion="fade-up" data-motion-delay="200" class="text-[16px] sm:text-[17px] leading-[1.65] text-slate-200 font-body max-w-2xl mx-auto font-normal">
           Speak directly with our team to review your paid campaigns, website conversion architecture and growth opportunities.
         </p>
 
-        <!-- Buttons: Inter 600, min 16px, min 48px height -->
-        <div class="flex flex-wrap items-center justify-center gap-5 pt-4">
+        <!-- Buttons: Staggered Pop-In -->
+        <div data-motion="pop-in" data-motion-delay="300" class="flex flex-wrap items-center justify-center gap-5 pt-4">
           <a
             href={`mailto:${site.contact.email}`}
             class="group inline-flex items-center justify-center min-h-[48px] gap-3 rounded-full bg-[#ddff35] px-9 py-4 font-body font-semibold text-base text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
@@ -59,8 +69,8 @@ const stickers = [
           </a>
         </div>
 
-        <!-- Contact Quick Details: Inter 500 min 15px -->
-        <div class="pt-6 text-[15px] font-body font-medium text-slate-300">
+        <!-- Contact Quick Details -->
+        <div data-motion="fade-up" data-motion-delay="400" class="pt-6 text-[15px] font-body font-medium text-slate-300">
           Email: <a href={`mailto:${site.contact.email}`} class="text-white underline hover:text-[#ddff35]">{site.contact.email}</a>
           <span class="mx-3 text-slate-500">|</span>
           WhatsApp: <a href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer" class="text-white underline hover:text-[#39c98a]">{site.contact.phone}</a>

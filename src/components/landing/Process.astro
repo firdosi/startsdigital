@@ -105,24 +105,32 @@ const stages = [
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Section Header -->
-    <div class="max-w-3xl mb-16 text-center mx-auto space-y-3">
-      <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
+    <div class="max-w-3xl mb-12 text-center mx-auto space-y-3">
+      <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
         EXECUTION FRAMEWORK
       </span>
-      <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
-      <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+      <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
         Our working method
       </h2>
-      <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
+      <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
         A structured, four-stage collaborative process designed to eliminate guesswork and turn strategy into measurable business outcomes.
       </p>
+    </div>
+
+    <!-- Animated Stage Progress Connector Bar -->
+    <div data-motion="scale-in" data-motion-delay="250" class="relative max-w-5xl mx-auto mb-10 hidden md:block">
+      <div class="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+        <div id="process-progress-line" class="h-full bg-gradient-to-r from-[#ff762b] via-[#9a83f5] to-[#39c98a] w-1/4 transition-all duration-500 ease-out rounded-full"></div>
+      </div>
     </div>
 
     <!-- Accordion Stack -->
     <div class="space-y-6 max-w-5xl mx-auto">
       {
-        stages.map((stage) => (
+        stages.map((stage, idx) => (
           <div
+            data-motion="fade-up"
+            data-motion-delay={idx * 100}
             class:list={[
               'accordion-item rounded-3xl border-2 transition-all duration-300 overflow-hidden shadow-lg',
               stage.isDefaultOpen ? 'border-[#ff762b] bg-[#ff762b] text-white' : 'border-slate-300 bg-white text-[#061d33] hover:border-[#ff762b]'
@@ -137,7 +145,7 @@ const stages = [
             >
               <div class="flex items-center gap-6">
                 <span class:list={[
-                  'font-mono font-medium text-xl sm:text-2xl size-12 rounded-2xl flex items-center justify-center shrink-0',
+                  'font-mono font-medium text-xl sm:text-2xl size-12 rounded-2xl flex items-center justify-center shrink-0 transition-colors duration-300',
                   stage.isDefaultOpen ? 'bg-white text-[#ff762b]' : 'bg-[#061d33] text-white'
                 ]}>
                   {stage.id}
@@ -148,7 +156,7 @@ const stages = [
                     {stage.title}
                   </h3>
                   <p class:list={[
-                    'text-base font-body font-normal mt-1 leading-[1.6]',
+                    'text-base font-body font-normal mt-1 leading-[1.6] transition-colors duration-300',
                     stage.isDefaultOpen ? 'text-white/90' : 'text-slate-600'
                   ]}>
                     {stage.subtitle}
@@ -164,44 +172,51 @@ const stages = [
               </div>
             </button>
 
-            <!-- Accordion Content Panel -->
-            <div class:list={['accordion-content px-8 pb-8 pt-2', stage.isDefaultOpen ? 'block' : 'hidden']}>
-              
-              <!-- 3 Structured Sub-Panels -->
-              <div class="grid gap-6 sm:grid-cols-3 mt-4">
-                {stage.subPanels.map((sub) => (
-                  <div class:list={[
-                    'rounded-2xl p-6 shadow-sm border',
-                    stage.isDefaultOpen ? 'bg-white text-[#061d33] border-white/20' : 'bg-[#f7f4ed] text-[#061d33] border-slate-200'
-                  ]}>
-                    <span class="text-[11px] font-mono font-medium uppercase tracking-[0.05em] text-[#ff762b] bg-[#ff762b]/10 px-2.5 py-0.5 rounded block w-fit mb-3">
-                      {sub.tag}
+            <!-- Smooth CSS Grid Height Transition Container -->
+            <div
+              class:list={[
+                'accordion-wrapper grid transition-[grid-template-rows,opacity] duration-300 ease-out px-8',
+                stage.isDefaultOpen ? 'grid-rows-[1fr] opacity-100 pb-8 pt-2' : 'grid-rows-[0fr] opacity-0 pb-0 pt-0'
+              ]}
+            >
+              <div class="overflow-hidden space-y-6">
+                
+                <!-- 3 Structured Sub-Panels -->
+                <div class="grid gap-6 sm:grid-cols-3 mt-4">
+                  {stage.subPanels.map((sub) => (
+                    <div class:list={[
+                      'rounded-2xl p-6 shadow-sm border transition-all duration-300',
+                      stage.isDefaultOpen ? 'bg-white text-[#061d33] border-white/20' : 'bg-[#f7f4ed] text-[#061d33] border-slate-200'
+                    ]}>
+                      <span class="text-[11px] font-mono font-medium uppercase tracking-[0.05em] text-[#ff762b] bg-[#ff762b]/10 px-2.5 py-0.5 rounded block w-fit mb-3">
+                        {sub.tag}
+                      </span>
+                      <!-- Sub-panel title: Sora 600, 17px -->
+                      <h4 class="font-heading font-semibold text-[17px] mb-2 text-[#061d33] leading-[1.25]">
+                        {sub.title}
+                      </h4>
+                      <!-- Sub-panel desc: Inter 400, 16px, leading 1.6 -->
+                      <p class="text-base font-body leading-[1.6] text-slate-700 font-normal">
+                        {sub.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <!-- Colourful Topic Chips (JetBrains Mono 500) -->
+                <div class="pt-4 border-t border-current/20 flex flex-wrap items-center gap-2.5 font-mono">
+                  <span class="text-xs font-medium uppercase mr-2 opacity-80">FOCUS AREAS:</span>
+                  {stage.chips.map((chip) => (
+                    <span class:list={[
+                      'text-[12px] sm:text-[13px] font-mono font-medium px-3 py-1 rounded-full uppercase tracking-[0.05em] transition-all',
+                      stage.isDefaultOpen ? 'bg-white text-[#061d33]' : 'bg-[#061d33] text-white'
+                    ]}>
+                      {chip}
                     </span>
-                    <!-- Sub-panel title: Sora 600, 17px -->
-                    <h4 class="font-heading font-semibold text-[17px] mb-2 text-[#061d33] leading-[1.25]">
-                      {sub.title}
-                    </h4>
-                    <!-- Sub-panel desc: Inter 400, 16px, leading 1.6 -->
-                    <p class="text-base font-body leading-[1.6] text-slate-700 font-normal">
-                      {sub.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
-              <!-- Colourful Topic Chips (JetBrains Mono 500, min 12px) -->
-              <div class="mt-8 pt-6 border-t border-current/20 flex flex-wrap items-center gap-2.5 font-mono">
-                <span class="text-xs font-medium uppercase mr-2 opacity-80">FOCUS AREAS:</span>
-                {stage.chips.map((chip) => (
-                  <span class:list={[
-                    'text-[12px] sm:text-[13px] font-mono font-medium px-3 py-1 rounded-full uppercase tracking-[0.05em]',
-                    stage.isDefaultOpen ? 'bg-white text-[#061d33]' : 'bg-[#061d33] text-white'
-                  ]}>
-                    {chip}
-                  </span>
-                ))}
               </div>
-
             </div>
           </div>
         ))
@@ -213,35 +228,48 @@ const stages = [
 
 <script>
   const accordionItems = document.querySelectorAll('.accordion-item');
+  const progressLine = document.getElementById('process-progress-line');
 
-  accordionItems.forEach((item) => {
+  accordionItems.forEach((item, index) => {
     const toggleBtn = item.querySelector('.accordion-toggle');
-    const content = item.querySelector('.accordion-content');
+    const wrapper = item.querySelector('.accordion-wrapper');
     const icon = toggleBtn?.querySelector('div:last-child');
 
     toggleBtn?.addEventListener('click', () => {
       const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
       
+      // Close all stages
       accordionItems.forEach((otherItem) => {
         const otherBtn = otherItem.querySelector('.accordion-toggle');
-        const otherContent = otherItem.querySelector('.accordion-content');
+        const otherWrapper = otherItem.querySelector('.accordion-wrapper');
         const otherIcon = otherBtn?.querySelector('div:last-child');
 
         otherBtn?.setAttribute('aria-expanded', 'false');
-        otherContent?.classList.add('hidden');
+        otherWrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-8', 'pt-2');
+        otherWrapper?.classList.add('grid-rows-[0fr]', 'opacity-0', 'pb-0', 'pt-0');
+        
         otherItem.classList.remove('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
         otherItem.classList.add('border-slate-300', 'bg-white', 'text-[#061d33]');
+        
         otherIcon?.classList.remove('bg-white/20', 'text-white', 'rotate-180');
         otherIcon?.classList.add('bg-slate-100', 'text-[#061d33]');
       });
 
+      // Toggle current item if it was closed
       if (!isOpen) {
         toggleBtn.setAttribute('aria-expanded', 'true');
-        content?.classList.remove('hidden');
+        wrapper?.classList.remove('grid-rows-[0fr]', 'opacity-0', 'pb-0', 'pt-0');
+        wrapper?.classList.add('grid-rows-[1fr]', 'opacity-100', 'pb-8', 'pt-2');
+        
         item.classList.remove('border-slate-300', 'bg-white', 'text-[#061d33]');
         item.classList.add('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
+        
         icon?.classList.remove('bg-slate-100', 'text-[#061d33]');
         icon?.classList.add('bg-white/20', 'text-white', 'rotate-180');
+
+        if (progressLine) {
+          progressLine.style.width = `${((index + 1) / 4) * 100}%`;
+        }
       }
     });
   });

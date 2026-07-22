@@ -1,6 +1,9 @@
 ---
 import { ArrowRight, Sparkles } from '@lucide/astro';
 import { site } from '../../site.config';
+import FloatingOrb from '../motion/FloatingOrb.astro';
+import SectionSpark from '../motion/SectionSpark.astro';
+import AnimatedGrid from '../motion/AnimatedGrid.astro';
 
 const stickers = [
   'PAID ADVERTISING',
@@ -11,35 +14,41 @@ const stickers = [
 ---
 
 <section class="py-16 lg:py-24 bg-[#9a83f5] text-white border-b border-[#061d33]/10 overflow-hidden relative">
-  <!-- Subtle Background Stars -->
-  <div class="pointer-events-none absolute top-10 left-10 text-white/40 text-3xl animate-float">✦</div>
-  <div class="pointer-events-none absolute bottom-10 right-10 text-[#ddff35]/70 text-4xl animate-float" style="animation-delay: 1.5s;">★</div>
+  <!-- Subtle Background Grid & Orbs -->
+  <AnimatedGrid opacity={0.1} />
+  <FloatingOrb color="purple" size="xl" class="-top-30 -left-30" duration="18s" />
+  <FloatingOrb color="lime" size="lg" class="-bottom-20 -right-20" duration="14s" />
+
+  <!-- Sparks -->
+  <SectionSpark color="coral" size="md" class="top-10 left-10" delay="0s" />
+  <SectionSpark color="lime" size="lg" class="bottom-10 right-12" delay="1.2s" />
+  <SectionSpark color="orange" size="sm" class="top-12 right-20" delay="2.4s" />
 
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8 text-center relative z-10">
     
-    <!-- Decorative Sticker Chips Row (JetBrains Mono 500) -->
-    <div class="reveal-on-scroll flex flex-wrap items-center justify-center gap-3 mb-8">
-      {stickers.map((sticker) => (
-        <span class="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-white backdrop-blur-md shadow-sm">
+    <!-- Decorative Sticker Chips Row: Scale-In -->
+    <div data-motion="scale-in" data-motion-delay="0" class="flex flex-wrap items-center justify-center gap-3 mb-8">
+      {stickers.map((sticker, idx) => (
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-white backdrop-blur-md shadow-sm animate-float-gentle" style={`animation-delay: ${idx * 0.6}s;`}>
           <Sparkles class="size-3 text-[#ddff35]" />
           <span>{sticker}</span>
         </span>
       ))}
     </div>
 
-    <!-- Main Manifesto Headline: Sora 700, 27-34px mobile, 36-48px desktop, leading 1.15 -->
-    <h2 class="reveal-on-scroll font-heading font-bold text-[27px] sm:text-[36px] lg:text-[48px] leading-[1.15] text-white max-w-5xl mx-auto tracking-[-0.025em]" data-reveal-delay="100">
-      Digital growth powered by strategy, creative and technology that delivers <span class="text-[#ddff35] underline decoration-white decoration-4 underline-offset-8">real business impact</span>.
+    <!-- Main Manifesto Headline: Clip-Up -->
+    <h2 data-motion="clip-up" data-motion-delay="120" class="font-heading font-bold text-[27px] sm:text-[36px] lg:text-[48px] leading-[1.15] text-white max-w-5xl mx-auto tracking-[-0.025em]">
+      Digital growth powered by strategy, creative and technology that delivers <span class="text-[#ddff35] underline decoration-white decoration-4 underline-offset-8 transition-colors hover:text-white">real business impact</span>.
     </h2>
 
-    <!-- Action Button (Inter 600) -->
-    <div class="reveal-on-scroll mt-10" data-reveal-delay="200">
+    <!-- Action Button: Pop-In -->
+    <div data-motion="pop-in" data-motion-delay="240" class="mt-10">
       <a
         href={`${site.basePath}/#contact`}
-        class="inline-flex items-center gap-3 rounded-full bg-[#061d33] px-9 py-4 font-body font-semibold text-base sm:text-lg text-white shadow-2xl hover:bg-[#ff762b] hover:shadow-2xl hover:-translate-y-1 transition-all"
+        class="group inline-flex items-center justify-center min-h-[48px] gap-3 rounded-full bg-[#061d33] px-9 py-4 font-body font-semibold text-base sm:text-lg text-white shadow-2xl hover:bg-[#ff762b] hover:shadow-2xl hover:-translate-y-1 transition-all"
       >
         <span>Discuss your project</span>
-        <ArrowRight class="size-5 text-[#ddff35]" />
+        <ArrowRight class="size-5 text-[#ddff35] group-hover:translate-x-1 transition-transform" />
       </a>
     </div>
 

@@ -1,38 +1,76 @@
 ---
-// MotionController.astro — Reliable Reveal & Counter Animation System
+// MotionController.astro — Reusable Hardware-Accelerated Intersection Observer Motion Architecture
 ---
 
 <script>
-  function initMotionSystem() {
-    const revealElements = document.querySelectorAll('.reveal-on-scroll');
-    
-    // Safety Fallback: Guarantee reveal after 1.5s so no card is ever permanently hidden
+  function initMotionArchitecture() {
+    // 1. Mark motion as initialized so CSS pre-animation hidden states take effect safely
+    document.documentElement.classList.add('motion-initialized');
+
+    const motionElements = document.querySelectorAll<HTMLElement>('[data-motion], .reveal-on-scroll');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Safety Fallback: Guarantee reveal after 1.2s so no element is ever trapped invisible
     setTimeout(() => {
-      revealElements.forEach((el) => el.classList.add('is-revealed'));
-    }, 1500);
+      motionElements.forEach((el) => {
+        el.classList.add('is-motion-revealed', 'is-revealed');
+      });
+    }, 1200);
+
+    if (prefersReducedMotion) {
+      motionElements.forEach((el) => {
+        el.classList.add('is-motion-revealed', 'is-revealed');
+      });
+      return;
+    }
 
     if ('IntersectionObserver' in window) {
-      const revealObserver = new IntersectionObserver(
+      // Single observer for all motion elements
+      const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               const el = entry.target as HTMLElement;
-              const delay = parseInt(el.dataset.revealDelay || '0', 10);
-              if (delay > 0) {
-                setTimeout(() => el.classList.add('is-revealed'), delay);
+              
+              // Handle group stagger if present
+              const delayAttr = el.dataset.motionDelay || el.dataset.revealDelay || '0';
+              const durationAttr = el.dataset.motionDuration || '700';
+
+              el.style.setProperty('--motion-del', `${delayAttr}ms`);
+              el.style.setProperty('--motion-dur', `${durationAttr}ms`);
+
+              if (parseInt(delayAttr, 10) > 0) {
+                setTimeout(() => {
+                  el.classList.add('is-motion-revealed', 'is-revealed');
+                }, parseInt(delayAttr, 10));
               } else {
-                el.classList.add('is-revealed');
+                el.classList.add('is-motion-revealed', 'is-revealed');
               }
-              revealObserver.unobserve(el);
+
+              // Disconnect observer after animation completes
+              observer.unobserve(el);
             }
           });
         },
-        { threshold: 0.1 }
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
       );
 
-      revealElements.forEach((el) => revealObserver.observe(el));
+      motionElements.forEach((el) => observer.observe(el));
 
-      const counterElements = document.querySelectorAll('[data-counter-target]');
+      // Handle grouped stagger elements automatically
+      const groups = document.querySelectorAll<HTMLElement>('[data-motion-group]');
+      groups.forEach((group) => {
+        const staggerMs = parseInt(group.dataset.motionStagger || '80', 10);
+        const children = group.querySelectorAll<HTMLElement>('[data-motion], .reveal-on-scroll');
+        children.forEach((child, index) => {
+          if (!child.dataset.motionDelay) {
+            child.dataset.motionDelay = String(index * staggerMs);
+          }
+        });
+      });
+
+      // Counter Observer
+      const counterElements = document.querySelectorAll<HTMLElement>('[data-counter-target]');
       const counterObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -47,8 +85,8 @@
             const duration = 1200;
             const startTime = performance.now();
 
-            function formatValue(value: number) {
-              return value.toLocaleString(undefined, {
+            function formatValue(val: number) {
+              return val.toLocaleString(undefined, {
                 minimumFractionDigits: decimals,
                 maximumFractionDigits: decimals,
               });
@@ -57,14 +95,15 @@
             function updateCounter(currentTime: number) {
               const elapsed = currentTime - startTime;
               const progress = Math.min(elapsed / duration, 1);
-              const eased = 1 - (1 - progress) * (1 - progress);
+              // cubic-bezier(0.16, 1, 0.3, 1) easeOutQuint equivalent
+              const eased = 1 - Math.pow(1 - progress, 4);
               const currentVal = targetNum * eased;
 
               if (progress < 1) {
                 el.textContent = `${prefix}${formatValue(currentVal)}${suffix}`;
                 requestAnimationFrame(updateCounter);
               } else {
-                // Always finish with exact approved text string
+                // Guaranteed final exact value string
                 el.textContent = exactText;
               }
             }
@@ -77,15 +116,37 @@
       );
 
       counterElements.forEach((el) => counterObserver.observe(el));
+
+      // Header Scroll Shadow Controller
+      const header = document.getElementById('main-header');
+      if (header) {
+        let ticked = false;
+        window.addEventListener('scroll', () => {
+          if (!ticked) {
+            requestAnimationFrame(() => {
+              if (window.scrollY > 20) {
+                header.classList.add('shadow-xl', 'bg-[#061d33]/95', 'backdrop-blur-md');
+              } else {
+                header.classList.remove('shadow-xl', 'bg-[#061d33]/95', 'backdrop-blur-md');
+              }
+              ticked = false;
+            });
+            ticked = true;
+          }
+        }, { passive: true });
+      }
+
     } else {
-      // Direct fallback for legacy environments
-      revealElements.forEach((el) => el.classList.add('is-revealed'));
+      // Direct fallback for environments without IntersectionObserver
+      motionElements.forEach((el) => {
+        el.classList.add('is-motion-revealed', 'is-revealed');
+      });
     }
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMotionSystem);
+    document.addEventListener('DOMContentLoaded', initMotionArchitecture);
   } else {
-    initMotionSystem();
+    initMotionArchitecture();
   }
 </script>

@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import { site } from '../../site.config';
+import { ArrowRight } from '@lucide/astro';
 
 const links = [
   { href: `${site.basePath}/`, label: 'Home' },
@@ -14,58 +15,68 @@ const links = [
 
 <header
   id="main-header"
-  class="relative z-50 bg-[#061d33] text-white border-b border-white/10 transition-all duration-200 font-body"
+  class="sticky top-0 z-50 bg-[#061d33] text-white border-b border-white/10 transition-all duration-300 font-body"
 >
   <div class="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-6 sm:px-8 py-5.5 sm:py-6">
     <Logo />
     
-    <!-- Desktop Navigation Links: Inter 600 min 15px -->
+    <!-- Desktop Navigation Links with Animated Underline -->
     <nav class="hidden gap-8 text-[15px] sm:text-[16px] font-semibold md:flex text-slate-200 font-body">
       {links.map((link) => (
-        <a href={link.href} class="hover:text-[#ff762b] transition-colors">
-          {link.label}
+        <a
+          href={link.href}
+          class="relative py-1 text-slate-200 hover:text-white transition-colors duration-200 group/nav"
+        >
+          <span>{link.label}</span>
+          <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-[#ff762b] group-hover/nav:w-full transition-all duration-300 rounded-full"></span>
         </a>
       ))}
     </nav>
 
-    <!-- Right Actions: Inter 600 button -->
+    <!-- Right Actions: CTA button with arrow movement -->
     <div class="flex items-center gap-4 font-body">
       <a
         href={`${site.basePath}/contact/`}
-        class="hidden sm:inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-[15px] sm:text-[16px] font-semibold text-[#061d33] shadow-md hover:bg-[#ddff35] hover:text-[#061d33] transition-all transform hover:-translate-y-0.5"
+        class="hidden sm:inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[15px] sm:text-[16px] font-semibold text-[#061d33] shadow-md hover:bg-[#ddff35] hover:text-[#061d33] transition-all transform hover:-translate-y-0.5 group/cta"
       >
-        Discuss your project
+        <span>Discuss your project</span>
+        <ArrowRight class="size-4 text-[#061d33] group-hover/cta:translate-x-1 transition-transform" />
       </a>
 
       <!-- Mobile Menu Toggle Button -->
       <button
         id="mobile-menu-toggle"
         type="button"
-        class="flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 md:hidden focus:outline-none"
+        class="flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 md:hidden focus:outline-none transition-transform duration-200 active:scale-95"
         aria-label="Toggle navigation"
         aria-expanded="false"
       >
-        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg class="size-6 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Dropdown Navigation: Inter 600 min 16px -->
+  <!-- Mobile Dropdown Navigation with Smooth Height & Staggered Links -->
   <div
     id="mobile-menu-drawer"
-    class="hidden border-t border-white/10 bg-[#061d33] px-8 py-6 md:hidden font-body"
+    class="grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-in-out border-t border-white/10 bg-[#061d33] px-8 md:hidden font-body overflow-hidden"
   >
-    <div class="flex flex-col gap-4 text-base font-semibold text-white">
-      {links.map((link) => (
-        <a href={link.href} class="mobile-link hover:text-[#ff762b] py-1.5 transition-colors text-base font-semibold">
+    <div class="overflow-hidden py-6 flex flex-col gap-4 text-base font-semibold text-white">
+      {links.map((link, idx) => (
+        <a
+          href={link.href}
+          class="mobile-link hover:text-[#ff762b] py-1.5 transition-all text-base font-semibold translate-y-2 opacity-0 duration-300"
+          style={`transition-delay: ${idx * 40}ms;`}
+        >
           {link.label}
         </a>
       ))}
       <a
         href={`${site.basePath}/contact/`}
-        class="mobile-link mt-2 rounded-full bg-[#ff762b] px-6 py-3.5 text-center text-base font-semibold text-white shadow-md hover:bg-[#e56017] transition-all"
+        class="mobile-link mt-2 rounded-full bg-[#ff762b] px-6 py-3.5 text-center text-base font-semibold text-white shadow-md hover:bg-[#e56017] transition-all translate-y-2 opacity-0 duration-300"
+        style="transition-delay: 240ms;"
       >
         Discuss your project
       </a>
@@ -76,18 +87,33 @@ const links = [
 <script>
   const toggleBtn = document.getElementById('mobile-menu-toggle');
   const drawer = document.getElementById('mobile-menu-drawer');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
+  const mobileLinks = document.querySelectorAll<HTMLElement>('.mobile-link');
 
   toggleBtn?.addEventListener('click', () => {
     const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
     toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
-    drawer?.classList.toggle('hidden');
+    
+    if (!isExpanded) {
+      drawer?.classList.remove('grid-rows-[0fr]', 'opacity-0');
+      drawer?.classList.add('grid-rows-[1fr]', 'opacity-100');
+      mobileLinks.forEach((link) => {
+        link.classList.remove('translate-y-2', 'opacity-0');
+      });
+    } else {
+      drawer?.classList.remove('grid-rows-[1fr]', 'opacity-100');
+      drawer?.classList.add('grid-rows-[0fr]', 'opacity-0');
+      mobileLinks.forEach((link) => {
+        link.classList.add('translate-y-2', 'opacity-0');
+      });
+    }
   });
 
   mobileLinks.forEach((link) => {
     link.addEventListener('click', () => {
       toggleBtn?.setAttribute('aria-expanded', 'false');
-      drawer?.classList.add('hidden');
+      drawer?.classList.remove('grid-rows-[1fr]', 'opacity-100');
+      drawer?.classList.add('grid-rows-[0fr]', 'opacity-0');
+      mobileLinks.forEach((l) => l.classList.add('translate-y-2', 'opacity-0'));
     });
   });
 </script>

@@ -36,12 +36,15 @@ const columns = [
 ];
 ---
 
-<footer class="bg-[#061d33] border-t border-white/10 text-slate-300 font-body">
+<footer class="bg-[#061d33] border-t border-white/10 text-slate-300 font-body relative overflow-hidden">
+  <!-- Top Divider Highlight Sweep -->
+  <div data-motion="clip-left" class="h-0.5 w-full bg-gradient-to-r from-[#ff762b] via-[#9a83f5] to-[#ddff35]"></div>
+
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8 pt-16 pb-12">
     <div class="grid gap-10 md:grid-cols-12">
       
       <!-- Left Column: Agency Overview & Direct Contact -->
-      <div class="md:col-span-5 space-y-6">
+      <div data-motion="fade-up" data-motion-delay="0" class="md:col-span-5 space-y-6">
         <Logo />
         <p class="max-w-[380px] text-[15px] sm:text-[16px] leading-[1.65] text-slate-300 font-body font-normal">
           Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
@@ -63,20 +66,20 @@ const columns = [
         </div>
       </div>
 
-      <!-- Right Columns: Navigation Links -->
+      <!-- Right Columns: Navigation Links with Staggered Entrances -->
       <div class="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
         {
-          columns.map((col) => (
-            <div>
-              <!-- Column title: Sora 600, 17px -->
+          columns.map((col, idx) => (
+            <div data-motion="fade-up" data-motion-delay={100 + idx * 80}>
+              <!-- Column title: Sora 600 -->
               <h4 class="mb-4 font-heading font-semibold text-[17px] text-white">
                 {col.heading}
               </h4>
-              <!-- Links: Inter 400, min 15px, leading 1.65 -->
+              <!-- Links: Inter 400, min 15px -->
               <ul class="space-y-3 text-[15px] sm:text-[16px] font-body font-normal">
                 {col.links.map((link) => (
                   <li>
-                    <a href={link.href} class="text-slate-300 hover:text-[#ff762b] transition-colors">
+                    <a href={link.href} class="text-slate-300 hover:text-[#ff762b] hover:underline transition-colors">
                       {link.label}
                     </a>
                   </li>
@@ -89,8 +92,8 @@ const columns = [
 
     </div>
 
-    <!-- Bottom Copyright Divider: Min 14px -->
-    <div class="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-[14px] sm:text-[15px] text-slate-400 font-body font-normal">
+    <!-- Bottom Copyright Divider -->
+    <div data-motion="fade-up" data-motion-delay="350" class="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-[14px] sm:text-[15px] text-slate-400 font-body font-normal">
       <div>
         © {new Date().getFullYear()} Starts Digital. All rights reserved.
       </div>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  iconBg?: string;
+  class?: string;
+}
+
+const { iconBg = 'bg-white/20', class: className = '' } = Astro.props;
+---
+
+<div class:list={['relative size-14 shrink-0 group/tile', className]}>
+  <!-- Layer 1: Rotated Backing Plate -->
+  <div class="absolute inset-0 rounded-2xl bg-white/20 rotate-6 group-hover/tile:rotate-12 transition-transform duration-300 shadow-md"></div>
+  
+  <!-- Layer 2: Front Icon Plate -->
+  <div class:list={['relative size-14 rounded-2xl flex items-center justify-center backdrop-blur-md border border-white/30 shadow-lg group-hover/tile:-translate-y-1 transition-transform duration-300', iconBg]}>
+    <slot />
+  </div>
+
+  <!-- Layer 3: Corner Spark Accent -->
+  <div class="absolute -top-1 -right-1 text-xs text-[#ddff35] opacity-0 group-hover/tile:opacity-100 group-hover/tile:scale-125 transition-all duration-300 pointer-events-none">
+    ✦
+  </div>
+</div>

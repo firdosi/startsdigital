@@ -1,5 +1,10 @@
 ---
 import { site } from '../../site.config';
+import FloatingOrb from '../motion/FloatingOrb.astro';
+import OrbitRing from '../motion/OrbitRing.astro';
+import IsometricCube from '../motion/IsometricCube.astro';
+import AnimatedGrid from '../motion/AnimatedGrid.astro';
+import SectionSpark from '../motion/SectionSpark.astro';
 import { 
   TrendingUp, 
   ShoppingBag, 
@@ -11,36 +16,59 @@ import {
 ---
 
 <section id="hero" class="relative overflow-hidden bg-[#061d33] text-white pt-12 pb-20 lg:pt-16 lg:pb-24 rounded-b-[40px] lg:rounded-b-[60px] shadow-2xl">
-  <!-- Subtle Decorative Accents -->
-  <div class="pointer-events-none absolute top-12 left-[10%] text-[#ff762b] opacity-60 text-2xl animate-float" aria-hidden="true">✦</div>
-  <div class="pointer-events-none absolute top-24 right-[12%] text-[#ddff35] opacity-70 text-3xl animate-float" aria-hidden="true" style="animation-delay: 1.5s;">★</div>
-  <div class="pointer-events-none absolute bottom-16 left-[5%] text-[#9a83f5] opacity-50 text-3xl animate-float" aria-hidden="true" style="animation-delay: 2.5s;">✦</div>
+  <!-- Tech Background Grid -->
+  <AnimatedGrid opacity={0.12} />
 
-  <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 text-center">
+  <!-- 3D Decorative System around Outer Edges (aria-hidden) -->
+  <FloatingOrb color="orange" size="lg" class="-top-20 -left-20 hidden md:block" duration="14s" />
+  <FloatingOrb color="purple" size="lg" class="top-10 -right-20 hidden md:block" duration="16s" />
+  
+  <OrbitRing color="lime" size={240} class="top-8 left-[4%] hidden lg:flex" duration="28s" />
+  <OrbitRing color="blue" size={200} class="bottom-12 right-[5%] hidden lg:flex" duration="22s" />
+  
+  <IsometricCube color="purple" size={44} class="top-16 right-[10%] hidden sm:block" />
+  <IsometricCube color="orange" size={36} class="bottom-20 left-[6%] hidden sm:block" />
+
+  <!-- Floating Data Chips (Outer Edges) -->
+  <div aria-hidden="true" class="pointer-events-none absolute top-28 left-[8%] hidden xl:flex items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-3.5 py-1.5 text-xs font-mono text-[#ddff35] backdrop-blur-md animate-float-gentle">
+    <span class="size-2 rounded-full bg-[#ddff35] animate-ping"></span>
+    <span>ROI Engine Active</span>
+  </div>
+
+  <div aria-hidden="true" class="pointer-events-none absolute bottom-28 right-[8%] hidden xl:flex items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-3.5 py-1.5 text-xs font-mono text-[#9a83f5] backdrop-blur-md animate-float-gentle" style="animation-delay: 2s;">
+    <span class="size-2 rounded-full bg-[#9a83f5]"></span>
+    <span>Attribution Stream</span>
+  </div>
+
+  <SectionSpark color="orange" size="md" class="top-12 left-[12%]" delay="0s" />
+  <SectionSpark color="lime" size="lg" class="top-20 right-[14%]" delay="1.5s" />
+  <SectionSpark color="purple" size="md" class="bottom-16 left-[8%]" delay="2.5s" />
+
+  <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 text-center z-10">
     
     <!-- Centred Editorial Layout -->
     <div class="max-w-[760px] mx-auto space-y-8">
       
-      <!-- Decorative Eyebrow Pill (JetBrains Mono 500) -->
-      <div class="reveal-on-scroll inline-flex items-center justify-center">
+      <!-- 1. Eyebrow Pill: Scale-In -->
+      <div data-motion="scale-in" data-motion-delay="0" class="inline-flex items-center justify-center">
         <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md shadow-sm">
           <Sparkles class="size-4 text-[#ddff35]" />
           <span>PERFORMANCE MARKETING & DIGITAL SYSTEMS</span>
         </span>
       </div>
 
-      <!-- Hero Headline: Sora 700, 40px mobile, 50px tablet, 64px desktop, leading 1.08 -->
-      <h1 class="reveal-on-scroll font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] leading-[1.08] tracking-[-0.035em] text-white max-w-[760px] mx-auto" data-reveal-delay="100">
+      <!-- 2. Hero Headline: Clip-Up -->
+      <h1 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] leading-[1.08] tracking-[-0.035em] text-white max-w-[760px] mx-auto">
         Digital marketing built to scale <span class="text-[#ff762b]">real businesses.</span>
       </h1>
 
-      <!-- Supporting Copy: Inter 400, 16px mobile, 18px desktop, max-w 680px, leading 1.65 -->
-      <p class="reveal-on-scroll text-[16px] sm:text-[18px] leading-[1.65] text-slate-200 font-body max-w-[680px] mx-auto font-normal" data-reveal-delay="200">
+      <!-- 3. Supporting Copy: Fade-Up -->
+      <p data-motion="fade-up" data-motion-delay="200" class="text-[16px] sm:text-[18px] leading-[1.65] text-slate-200 font-body max-w-[680px] mx-auto font-normal">
         Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
       </p>
 
-      <!-- Action Buttons: Inter 600, min 16px, min 48px height -->
-      <div class="reveal-on-scroll flex flex-wrap items-center justify-center gap-5 pt-4 font-body" data-reveal-delay="300">
+      <!-- 4. Action Buttons: Pop-In Stagger -->
+      <div data-motion="pop-in" data-motion-delay="300" class="flex flex-wrap items-center justify-center gap-5 pt-4 font-body">
         <a
           href={`${site.basePath}/#contact`}
           class="group inline-flex items-center justify-center min-h-[48px] gap-3 rounded-full bg-[#ddff35] px-8 py-3.5 font-body font-semibold text-base text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
@@ -58,37 +86,46 @@ import {
 
     </div>
 
-    <!-- Verified Floating Metric Cards Section -->
-    <div class="reveal-on-scroll mt-16 lg:mt-20 pt-10 border-t border-white/15" data-reveal-delay="400">
+    <!-- 5. Verified Metric Cards Section: Left-to-Right Stagger -->
+    <div class="mt-16 lg:mt-20 pt-10 border-t border-white/15">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
         <!-- Metric Card 1 -->
-        <div class="rounded-2xl border-2 border-[#ff762b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff762b] transition-all font-body">
+        <div data-motion="fade-up" data-motion-delay="400" class="rounded-2xl border-2 border-[#ff762b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff762b] hover:-translate-y-1.5 transition-all duration-300 font-body">
           <div class="flex items-center justify-between mb-3">
-            <div class="size-10 rounded-xl bg-[#ff762b] text-white flex items-center justify-center font-bold">
+            <div class="size-10 rounded-xl bg-[#ff762b] text-white flex items-center justify-center font-bold group-hover:rotate-6 transition-transform">
               <TrendingUp class="size-5" />
             </div>
             <span class="text-[11px] font-mono text-[#ff762b] font-medium uppercase tracking-[0.06em] bg-[#ff762b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <!-- Metric Value: Sora 700, 32px mobile, 40px desktop -->
-          <div class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]">
+          <div
+            class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]"
+            data-counter-target="30"
+            data-counter-prefix="PKR "
+            data-counter-suffix="M+"
+            data-counter-exact="PKR 30M+"
+          >
             PKR 30M+
           </div>
-          <!-- Metric Label: Inter 600 (Not JetBrains Mono per Rule 12) -->
           <p class="text-[15px] font-body font-semibold text-slate-200 mt-1">
             Revenue Supported
           </p>
         </div>
 
         <!-- Metric Card 2 -->
-        <div class="rounded-2xl border-2 border-[#9a83f5]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#9a83f5] transition-all font-body">
+        <div data-motion="fade-up" data-motion-delay="500" class="rounded-2xl border-2 border-[#9a83f5]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#9a83f5] hover:-translate-y-1.5 transition-all duration-300 font-body">
           <div class="flex items-center justify-between mb-3">
-            <div class="size-10 rounded-xl bg-[#9a83f5] text-white flex items-center justify-center font-bold">
+            <div class="size-10 rounded-xl bg-[#9a83f5] text-white flex items-center justify-center font-bold group-hover:rotate-6 transition-transform">
               <ShoppingBag class="size-5" />
             </div>
             <span class="text-[11px] font-mono text-[#9a83f5] font-medium uppercase tracking-[0.06em] bg-[#9a83f5]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]">
+          <div
+            class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]"
+            data-counter-target="29000"
+            data-counter-suffix="+"
+            data-counter-exact="29,000+"
+          >
             29,000+
           </div>
           <p class="text-[15px] font-body font-semibold text-slate-200 mt-1">
@@ -97,14 +134,21 @@ import {
         </div>
 
         <!-- Metric Card 3 -->
-        <div class="rounded-2xl border-2 border-[#ddff35]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ddff35] transition-all font-body">
+        <div data-motion="fade-up" data-motion-delay="600" class="rounded-2xl border-2 border-[#ddff35]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ddff35] hover:-translate-y-1.5 transition-all duration-300 font-body">
           <div class="flex items-center justify-between mb-3">
-            <div class="size-10 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center font-bold">
+            <div class="size-10 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center font-bold group-hover:rotate-6 transition-transform">
               <Award class="size-5" />
             </div>
             <span class="text-[11px] font-mono text-[#ddff35] font-medium uppercase tracking-[0.06em] bg-[#ddff35]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]">
+          <div
+            class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]"
+            data-counter-target="4.2"
+            data-counter-prefix="PKR "
+            data-counter-suffix="M+"
+            data-counter-decimals="1"
+            data-counter-exact="PKR 4.2M+"
+          >
             PKR 4.2M+
           </div>
           <p class="text-[15px] font-body font-semibold text-slate-200 mt-1">
@@ -113,14 +157,19 @@ import {
         </div>
 
         <!-- Metric Card 4 -->
-        <div class="rounded-2xl border-2 border-[#ff514b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff514b] transition-all font-body">
+        <div data-motion="fade-up" data-motion-delay="700" class="rounded-2xl border-2 border-[#ff514b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff514b] hover:-translate-y-1.5 transition-all duration-300 font-body">
           <div class="flex items-center justify-between mb-3">
-            <div class="size-10 rounded-xl bg-[#ff514b] text-white flex items-center justify-center font-bold">
+            <div class="size-10 rounded-xl bg-[#ff514b] text-white flex items-center justify-center font-bold group-hover:rotate-6 transition-transform">
               <HeartHandshake class="size-5" />
             </div>
             <span class="text-[11px] font-mono text-[#ff514b] font-medium uppercase tracking-[0.06em] bg-[#ff514b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]">
+          <div
+            class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]"
+            data-counter-target="150"
+            data-counter-prefix="More Than "
+            data-counter-exact="More Than 150"
+          >
             More Than 150
           </div>
           <p class="text-[15px] font-body font-semibold text-slate-200 mt-1">

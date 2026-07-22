@@ -9,7 +9,7 @@ import {
   Mail, 
   MessageSquare, 
   Send, 
-  CheckCircle2, 
+  CheckCircle, 
   Clock, 
   ShieldCheck 
 } from '@lucide/astro';
@@ -21,25 +21,27 @@ import {
   type="website"
 >
   <!-- Deep Navy Rounded Hero Header -->
-  <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 rounded-b-[40px] shadow-2xl">
+  <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 rounded-b-[40px] shadow-2xl overflow-hidden">
     <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
-      <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35]">
-        <span>CONTACT</span>
-      </span>
+      <div data-motion="scale-in">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35]">
+          <span>CONTACT</span>
+        </span>
+      </div>
       
       <!-- Hero Headline: Sora 700 -->
-      <h1 class="font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] text-white leading-[1.08] tracking-[-0.035em] max-w-[800px] mx-auto">
+      <h1 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] text-white leading-[1.08] tracking-[-0.035em] max-w-[800px] mx-auto">
         Let’s talk about your next <span class="text-[#ff762b]">growth opportunity.</span>
       </h1>
       
-      <p class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.65] font-normal">
+      <p data-motion="fade-up" data-motion-delay="200" class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.65] font-normal">
         Tell us about your business, current challenges and goals. We will review where Starts Digital may be able to help.
       </p>
     </Container>
   </section>
 
   <!-- Contact Cards & Form Section -->
-  <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+  <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
     <Container class="max-w-[1280px] px-6 sm:px-8">
       
       <div class="grid gap-12 lg:grid-cols-12 items-start">
@@ -47,25 +49,27 @@ import {
         <!-- Left Column: Clickable Contact Cards & Assurance -->
         <div class="lg:col-span-5 space-y-8">
           <div class="space-y-3">
-            <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
+            <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
               DIRECT CHANNELS
             </span>
-            <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
-            <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+            <!-- Sora 700 section heading -->
+            <h2 data-motion="fade-left" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
               Get in touch directly
             </h2>
-            <p class="text-base text-slate-700 font-body leading-[1.65] font-normal">
+            <p data-motion="fade-left" data-motion-delay="200" class="text-base text-slate-700 font-body leading-[1.65] font-normal">
               We respond promptly to project enquiries with honest commercial evaluations and direct strategic feedback.
             </p>
           </div>
 
           <!-- Clickable Email Card -->
           <a
+            data-motion="fade-up"
+            data-motion-delay="300"
             href={`mailto:${site.contact.email}`}
-            class="block rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 shadow-lg hover:border-[#ff762b] hover:shadow-xl transition-all duration-300 group"
+            class="block rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 shadow-lg hover:border-[#ff762b] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
           >
             <div class="flex items-center gap-4">
-              <div class="size-14 rounded-2xl bg-[#ff762b] text-white flex items-center justify-center font-bold shrink-0">
+              <div class="size-14 rounded-2xl bg-[#ff762b] text-white flex items-center justify-center font-bold shrink-0 group-hover:rotate-6 transition-transform">
                 <Mail class="size-7" />
               </div>
               <div>
@@ -80,13 +84,15 @@ import {
 
           <!-- Clickable WhatsApp Card -->
           <a
+            data-motion="fade-up"
+            data-motion-delay="400"
             href={site.contact.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            class="block rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 shadow-lg hover:border-[#39c98a] hover:shadow-xl transition-all duration-300 group"
+            class="block rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 shadow-lg hover:border-[#39c98a] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
           >
             <div class="flex items-center gap-4">
-              <div class="size-14 rounded-2xl bg-[#39c98a] text-white flex items-center justify-center font-bold shrink-0">
+              <div class="size-14 rounded-2xl bg-[#39c98a] text-white flex items-center justify-center font-bold shrink-0 group-hover:rotate-6 transition-transform">
                 <MessageSquare class="size-7" />
               </div>
               <div>
@@ -100,7 +106,7 @@ import {
           </a>
 
           <!-- Expectation Guarantees -->
-          <div class="rounded-2xl border border-slate-300 bg-white/60 p-6 space-y-3 font-body text-sm font-normal text-slate-700">
+          <div data-motion="fade-up" data-motion-delay="500" class="rounded-2xl border border-slate-300 bg-white/60 p-6 space-y-3 font-body text-sm font-normal text-slate-700">
             <div class="flex items-center gap-2 text-[#061d33] font-semibold font-body uppercase text-xs tracking-wider">
               <ShieldCheck class="size-5 text-[#ff762b]" />
               <span>COMMERCIAL ASSURANCE</span>
@@ -110,17 +116,16 @@ import {
               <span>Response within 24 business hours</span>
             </div>
             <div class="flex items-center gap-2">
-              <CheckCircle2 class="size-4 text-slate-500 shrink-0" />
+              <CheckCircle class="size-4 text-slate-500 shrink-0" />
               <span>No pushy sales calls or junior account managers</span>
             </div>
           </div>
         </div>
 
         <!-- Right Column: Professional Interactive Form -->
-        <div class="lg:col-span-7">
+        <div data-motion="fade-right" data-motion-delay="250" class="lg:col-span-7">
           <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-12 shadow-2xl space-y-6">
             <div>
-              <!-- Form title: Sora 600 -->
               <h3 class="font-heading font-semibold text-2xl sm:text-3xl text-[#061d33] mb-2 leading-tight">
                 Tell us about your project
               </h3>
@@ -217,7 +222,7 @@ import {
                 ></textarea>
               </div>
 
-              <!-- Action Choice Buttons: Inter 600 min 16px -->
+              <!-- Action Choice Buttons -->
               <div class="pt-2 grid gap-4 sm:grid-cols-2 font-body">
                 <button
                   type="button"

@@ -9,22 +9,22 @@ const unverifiedBrands = brands.filter((b) => !b.logoApproved || !b.logo);
 
 <section id="brands" class="py-20 bg-[#f7f4ed] text-[#061d33] overflow-hidden">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8 mb-12 text-center space-y-3">
-    <!-- JetBrains Mono 500 eyebrow -->
-    <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
+    <!-- Eyebrow Tag -->
+    <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
       TRUSTED ACROSS INDUSTRIES
     </span>
-    <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
-    <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+    <!-- Section Heading -->
+    <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
       Clients, brands and business partners
     </h2>
-    <!-- Inter 400 body copy: min 16px -->
-    <p class="text-base sm:text-[18px] text-slate-700 max-w-2xl mx-auto font-body leading-[1.65] font-normal">
+    <!-- Body Copy -->
+    <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-[18px] text-slate-700 max-w-2xl mx-auto font-body leading-[1.65] font-normal">
       Proven execution delivered across growth-stage e-commerce, agriculture, regional services, and international consultation.
     </p>
   </div>
 
-  <!-- Row 1: Verified Brand Logos Marquee -->
-  <div class="marquee-container overflow-hidden py-6 bg-white border-y border-[#061d33]/10">
+  <!-- Row 1: Verified Brand Logos Marquee with Edge Fade Mask & Pause on Hover -->
+  <div class="marquee-container overflow-hidden py-6 bg-white border-y border-[#061d33]/10 relative [mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)]">
     <div class="animate-marquee-left flex items-center gap-8 px-4">
       {
         [...verifiedBrands, ...verifiedBrands, ...verifiedBrands, ...verifiedBrands].map((b) => (
@@ -35,7 +35,7 @@ const unverifiedBrands = brands.filter((b) => !b.logoApproved || !b.logo);
               width="200"
               height="60"
               loading="lazy"
-              class="max-h-[56px] w-auto object-contain filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-200"
+              class="max-h-[56px] w-auto object-contain filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
             />
           </div>
         ))
@@ -43,13 +43,13 @@ const unverifiedBrands = brands.filter((b) => !b.logoApproved || !b.logo);
     </div>
   </div>
 
-  <!-- Row 2: Unverified Brands Typography Strip (Inter 600 or Mono tag) -->
-  <div class="marquee-container overflow-hidden py-4 bg-[#efece4] border-b border-[#061d33]/10">
+  <!-- Row 2: Unverified Brands Typography Strip with Opposite Direction -->
+  <div class="marquee-container overflow-hidden py-4 bg-[#efece4] border-b border-[#061d33]/10 relative [mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)]">
     <div class="animate-marquee-right flex items-center gap-6 px-4">
       {
-        [...unverifiedBrands, ...unverifiedBrands, ...unverifiedBrands].map((b) => (
-          <div class="h-14 shrink-0 rounded-xl border border-slate-300 bg-white px-6 py-2.5 flex items-center justify-center shadow-xs hover:border-[#ff762b] transition-colors">
-            <span class="font-mono font-medium text-sm text-[#061d33] tracking-[0.04em] whitespace-nowrap">
+        [...unverifiedBrands, ...unverifiedBrands, ...unverifiedBrands, ...unverifiedBrands].map((b) => (
+          <div class="h-14 shrink-0 rounded-xl border border-slate-300 bg-white px-6 py-2.5 flex items-center justify-center shadow-xs hover:border-[#ff762b] transition-colors group">
+            <span class="font-mono font-medium text-sm text-[#061d33] tracking-[0.04em] whitespace-nowrap group-hover:text-[#ff762b] transition-colors">
               {b.name}
             </span>
           </div>

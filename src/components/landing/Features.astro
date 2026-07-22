@@ -1,4 +1,5 @@
 ---
+import MotionIconTile from '../motion/MotionIconTile.astro';
 import { 
   Megaphone, 
   ShoppingBag, 
@@ -16,6 +17,7 @@ const services = [
     description: 'Precision Meta Ads and Google Ads campaigns engineered for commercial customer acquisition, lead funnels, and performance scaling.',
     colorClass: 'bg-[#ff762b] text-white hover:bg-[#e56017]',
     badgeClass: 'bg-white/20 text-white',
+    offsetClass: 'translate-y-0',
     Icon: Megaphone,
   },
   {
@@ -24,6 +26,7 @@ const services = [
     description: 'Custom high-converting websites, WooCommerce platforms, and Shopify stores built for lightning speed and checkout friction reduction.',
     colorClass: 'bg-[#9a83f5] text-white hover:bg-[#8b5cf6]',
     badgeClass: 'bg-white/20 text-white',
+    offsetClass: 'translate-y-0 sm:translate-y-3',
     Icon: ShoppingBag,
   },
   {
@@ -32,6 +35,7 @@ const services = [
     description: 'Technical search engine optimization, structured schema markup, and local service landing pages to capture high-intent search demand.',
     colorClass: 'bg-[#ff514b] text-white hover:bg-[#e6453f]',
     badgeClass: 'bg-white/20 text-white',
+    offsetClass: 'translate-y-0 lg:translate-y-1',
     Icon: Search,
   },
   {
@@ -40,6 +44,7 @@ const services = [
     description: 'Performance ad creatives, short-form video editing, product graphics, and social content tailored for audience engagement and conversion.',
     colorClass: 'bg-[#39c98a] text-white hover:bg-[#32b57c]',
     badgeClass: 'bg-white/20 text-white',
+    offsetClass: 'translate-y-0',
     Icon: Video,
   },
   {
@@ -48,6 +53,7 @@ const services = [
     description: 'Practical use of AI for lead qualification workflows, avatar video creation, content pipelines, and automated customer routing.',
     colorClass: 'bg-[#061d33] text-white hover:bg-[#0a2540]',
     badgeClass: 'bg-white/20 text-white',
+    offsetClass: 'translate-y-0 sm:translate-y-3',
     Icon: Bot,
   },
   {
@@ -56,6 +62,7 @@ const services = [
     description: 'Commercial positioning, marketing budget allocation, multi-channel rollout plans, and data-backed performance advisory.',
     colorClass: 'bg-[#ddff35] text-[#061d33] hover:bg-[#c9eb1e]',
     badgeClass: 'bg-[#061d33]/15 text-[#061d33]',
+    offsetClass: 'translate-y-0 lg:translate-y-1',
     Icon: BarChart3,
   },
 ];
@@ -66,37 +73,39 @@ const services = [
     
     <!-- Section Header -->
     <div class="max-w-3xl mb-16 text-center mx-auto space-y-3">
-      <!-- JetBrains Mono 500 eyebrow -->
-      <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
+      <!-- Eyebrow Tag -->
+      <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
         OUR SERVICES
       </span>
-      <!-- Sora 700 heading: 31px mobile, 36px tablet, 44px desktop -->
-      <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+      <!-- Heading Clips Upward -->
+      <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
         Services designed to drive real results
       </h2>
-      <!-- Inter 400 subtitle -->
-      <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
+      <!-- Intro Fades Right -->
+      <p data-motion="fade-right" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
         We replace fragmented workflows with unified growth capabilities spanning paid media, web engineering, SEO, and AI automation.
       </p>
     </div>
 
-    <!-- 6 Colourful Cards Grid -->
+    <!-- 6 Colourful Cards Grid with 3x2 Stagger & MotionIconTile -->
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {
         services.map((s, idx) => (
           <div
+            data-motion="fade-up"
+            data-motion-delay={idx * 90}
             class:list={[
-              'reveal-on-scroll rounded-3xl p-8 lg:p-10 shadow-xl flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-1.5 group cursor-pointer',
-              s.colorClass
+              'rounded-3xl p-8 lg:p-10 shadow-xl flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl group cursor-pointer border border-white/10',
+              s.colorClass,
+              s.offsetClass
             ]}
-            data-reveal-delay={idx * 80}
           >
             <div>
-              <!-- Top Row: Icon & Step Badge -->
+              <!-- Top Row: Layered 3D Icon Tile & Step Badge -->
               <div class="flex items-center justify-between mb-8">
-                <div class="size-14 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-md">
+                <MotionIconTile iconBg="bg-white/20">
                   <s.Icon class="size-7" />
-                </div>
+                </MotionIconTile>
                 <span class:list={['text-xs font-mono font-medium px-3.5 py-1 rounded-full uppercase tracking-[0.05em]', s.badgeClass]}>
                   PHASE {s.id}
                 </span>
@@ -113,10 +122,10 @@ const services = [
               </p>
             </div>
 
-            <!-- Bottom Action Link: Inter 600 min 15px (Not JetBrains Mono!) -->
+            <!-- Bottom Action Link: Inter 600 min 15px with animated arrow -->
             <div class="mt-10 pt-6 border-t border-current/20 flex items-center justify-between font-body">
               <span class="text-[15px] sm:text-[16px] font-semibold tracking-normal">Explore capability</span>
-              <div class="size-10 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <div class="size-10 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-115 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">
                 <ArrowUpRight class="size-5" />
               </div>
             </div>

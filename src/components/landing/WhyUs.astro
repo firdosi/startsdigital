@@ -49,26 +49,31 @@ const trustPillars = [
     <!-- Top Header Row -->
     <div class="grid gap-8 lg:grid-cols-12 items-end mb-16">
       <div class="lg:col-span-7 space-y-3">
-        <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
+        <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
           EDITORIAL CREDIBILITY
         </span>
         <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
-        <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+        <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Why brands trust Starts Digital
         </h2>
       </div>
       <div class="lg:col-span-5">
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
+        <p data-motion="fade-left" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
           Most marketing failures happen in the gaps between the ad creator, the developer, and the business operator. Starts Digital closes those gaps by taking single-point responsibility for campaign strategy, technical web infrastructure, and conversion optimization.
         </p>
       </div>
     </div>
 
-    <!-- Central Real Visual Showcase with Floating Verified Metric Badges -->
+    <!-- Layered Central Visual Composition with Floating Verified Metric Badges -->
     <div class="relative max-w-4xl mx-auto my-16">
       
-      <!-- Main Center Visual Card -->
-      <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-3.5 shadow-2xl relative z-10 overflow-hidden">
+      <!-- Depth Layer 1 (Back) -->
+      <div aria-hidden="true" class="absolute inset-0 rounded-3xl bg-[#ff762b]/15 rotate-2 scale-[0.98] pointer-events-none transition-transform duration-500"></div>
+      <!-- Depth Layer 2 (Middle) -->
+      <div aria-hidden="true" class="absolute inset-0 rounded-3xl bg-[#9a83f5]/15 -rotate-2 scale-[0.99] pointer-events-none transition-transform duration-500"></div>
+
+      <!-- Main Center Visual Card with Horizontal Image Mask Reveal -->
+      <div data-motion="clip-left" data-motion-duration="900" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-3.5 shadow-2xl relative z-10 overflow-hidden">
         <img
           src={`${site.basePath}/brands/rk-reno-solutions/screenshot.png`}
           alt="RK Reno Solutions Genuine Website Screenshot"
@@ -84,8 +89,8 @@ const trustPillars = [
         </div>
       </div>
 
-      <!-- Floating Verified Metric Badge 1 (Inter 600 min 14px label, Sora 700 value) -->
-      <div class="hidden sm:flex absolute -top-8 -left-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#ff762b] bg-white p-4 shadow-xl text-[#061d33] animate-float font-body">
+      <!-- Floating Verified Metric Badge 1 (Top Left) -->
+      <div data-motion="fade-right" data-motion-delay="300" class="hidden sm:flex absolute -top-8 -left-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#ff762b] bg-white p-4 shadow-xl text-[#061d33] animate-float-gentle font-body">
         <div class="size-10 rounded-xl bg-[#ff762b] text-white flex items-center justify-center font-bold">
           <TrendingUp class="size-5" />
         </div>
@@ -95,8 +100,8 @@ const trustPillars = [
         </div>
       </div>
 
-      <!-- Floating Verified Metric Badge 2 -->
-      <div class="hidden sm:flex absolute -top-8 -right-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#9a83f5] bg-white p-4 shadow-xl text-[#061d33] animate-float font-body" style="animation-delay: 1.2s;">
+      <!-- Floating Verified Metric Badge 2 (Top Right) -->
+      <div data-motion="fade-left" data-motion-delay="400" class="hidden sm:flex absolute -top-8 -right-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#9a83f5] bg-white p-4 shadow-xl text-[#061d33] animate-float-gentle font-body" style="animation-delay: 1.2s;">
         <div class="size-10 rounded-xl bg-[#9a83f5] text-white flex items-center justify-center font-bold">
           <ShoppingBag class="size-5" />
         </div>
@@ -106,8 +111,8 @@ const trustPillars = [
         </div>
       </div>
 
-      <!-- Floating Verified Metric Badge 3 -->
-      <div class="hidden sm:flex absolute -bottom-8 -left-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#ddff35] bg-[#061d33] p-4 shadow-xl text-white animate-float font-body" style="animation-delay: 2s;">
+      <!-- Floating Verified Metric Badge 3 (Bottom Left) -->
+      <div data-motion="fade-right" data-motion-delay="500" class="hidden sm:flex absolute -bottom-8 -left-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#ddff35] bg-[#061d33] p-4 shadow-xl text-white animate-float-gentle font-body" style="animation-delay: 2s;">
         <div class="size-10 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center font-bold">
           <Award class="size-5" />
         </div>
@@ -117,8 +122,8 @@ const trustPillars = [
         </div>
       </div>
 
-      <!-- Floating Verified Metric Badge 4 -->
-      <div class="hidden sm:flex absolute -bottom-8 -right-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#ff514b] bg-white p-4 shadow-xl text-[#061d33] animate-float font-body" style="animation-delay: 2.8s;">
+      <!-- Floating Verified Metric Badge 4 (Bottom Right) -->
+      <div data-motion="fade-left" data-motion-delay="600" class="hidden sm:flex absolute -bottom-8 -right-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#ff514b] bg-white p-4 shadow-xl text-[#061d33] animate-float-gentle font-body" style="animation-delay: 2.8s;">
         <div class="size-10 rounded-xl bg-[#ff514b] text-white flex items-center justify-center font-bold">
           <HeartHandshake class="size-5" />
         </div>
@@ -130,20 +135,21 @@ const trustPillars = [
 
     </div>
 
-    <!-- 4 Key Trust Pillars Cards: Sora 600 min 18px title, Inter 400 16px body -->
+    <!-- 4 Key Trust Pillars Cards: Staggered Fade-Up -->
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-20">
       {
         trustPillars.map((point, idx) => (
           <div
-            class="reveal-on-scroll rounded-3xl border border-slate-200 bg-white p-7 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
-            data-reveal-delay={idx * 80}
+            data-motion="fade-up"
+            data-motion-delay={idx * 90}
+            class="rounded-3xl border border-slate-200 bg-white p-7 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group"
           >
             <div>
               <div class="flex items-center justify-between mb-6">
                 <span class="font-mono text-xl font-medium text-[#061d33]/40 group-hover:text-[#ff762b] transition-colors">
                   {point.num}
                 </span>
-                <div class:list={['size-11 rounded-2xl border-2 flex items-center justify-center font-bold', point.accentColor]}>
+                <div class:list={['size-11 rounded-2xl border-2 flex items-center justify-center font-bold group-hover:rotate-6 transition-transform', point.accentColor]}>
                   <point.Icon class="size-5" />
                 </div>
               </div>

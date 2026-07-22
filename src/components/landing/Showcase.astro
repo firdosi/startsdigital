@@ -17,35 +17,35 @@ import {
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
       <div class="space-y-3">
-        <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
+        <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
           FEATURED WORK & CASE STUDIES
         </span>
         <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
-        <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+        <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Our featured projects
         </h2>
       </div>
-      <div>
+      <div data-motion="pop-in" data-motion-delay="200">
         <a
           href={`${site.basePath}/work/`}
-          class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-7 py-3.5 font-body font-semibold text-[15px] text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-md"
+          class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-7 py-3.5 font-body font-semibold text-[15px] text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-md group/cta"
         >
           <span>View all case studies</span>
-          <ArrowRight class="size-4" />
+          <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
         </a>
       </div>
     </div>
 
-    <!-- 3 Large Image-Led Editorial Project Cards -->
+    <!-- 3 Large Image-Led Editorial Project Cards with Alternating Entrances -->
     <div class="space-y-16">
       
-      <!-- PROJECT 1: BLACK GOLD FERTILIZER -->
-      <article class="reveal-on-scroll rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-12 lg:p-14 shadow-xl hover:shadow-2xl transition-all duration-300 group">
+      <!-- PROJECT 1: BLACK GOLD FERTILIZER (Fade Left) -->
+      <article data-motion="fade-left" data-motion-delay="0" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-12 lg:p-14 shadow-xl hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 group">
         <div class="grid gap-12 lg:grid-cols-12 items-center">
           
           <div class="lg:col-span-6 space-y-6">
             <div class="flex items-center gap-3">
-              <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-4 py-1 text-[13px] sm:text-[14px] font-mono font-medium text-[#ff762b] uppercase tracking-[0.05em]">
+              <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-4 py-1 text-[13px] sm:text-[14px] font-mono font-medium text-[#ff762b] uppercase tracking-[0.05em] group-hover:translate-x-0.5 transition-transform">
                 E-COMMERCE & AGRICULTURE
               </span>
               <span class="text-[13px] font-mono font-medium text-slate-400">01 / FEATURED CASE</span>
@@ -72,8 +72,8 @@ import {
               Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.
             </p>
 
-            <!-- Verified Metrics Badges (Inter 600 min 14px) -->
-            <div class="flex flex-wrap items-center gap-3 pt-2 font-body">
+            <!-- Verified Metrics Badges (Pop-In) -->
+            <div data-motion="pop-in" data-motion-delay="200" class="flex flex-wrap items-center gap-3 pt-2 font-body">
               <div class="inline-flex items-center gap-2 rounded-xl bg-[#ff762b]/10 border border-[#ff762b]/30 px-4 py-2.5 text-[14px] font-semibold text-[#061d33]">
                 <TrendingUp class="size-4 text-[#ff762b]" />
                 <span>PKR 30M+ revenue supported</span>
@@ -91,13 +91,13 @@ import {
                 class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-[15px] sm:text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
               >
                 <span>Read case study</span>
-                <ArrowRight class="size-4" />
+                <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>
 
-          <!-- Visual Side: Official Product Packaging Visual -->
-          <div class="lg:col-span-6">
+          <!-- Visual Side: Mask Clip-Left Reveal & Image Scale 1.04 -->
+          <div data-motion="clip-left" data-motion-delay="150" class="lg:col-span-6">
             <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-[#061d33] p-4 shadow-2xl font-body">
               <img
                 src={`${site.basePath}/images/black-gold-official.png`}
@@ -105,7 +105,7 @@ import {
                 width="640"
                 height="400"
                 loading="lazy"
-                class="w-full h-[320px] rounded-xl object-contain bg-white/5 p-4 group-hover:scale-102 transition-transform duration-300"
+                class="w-full h-[320px] rounded-xl object-contain bg-white/5 p-4 group-hover:scale-104 transition-transform duration-500"
               />
               <div class="absolute bottom-6 right-6 rounded-xl border border-white/20 bg-[#061d33]/90 p-4 backdrop-blur-md shadow-lg hidden sm:flex items-center gap-3 text-white">
                 <Sprout class="size-6 text-[#39c98a] shrink-0" />
@@ -120,12 +120,12 @@ import {
         </div>
       </article>
 
-      <!-- PROJECT 2: WAJIB LIVESTOCK QURBANI CAMPAIGN -->
-      <article class="reveal-on-scroll rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-12 lg:p-14 shadow-xl hover:shadow-2xl transition-all duration-300 group" data-reveal-delay="100">
+      <!-- PROJECT 2: WAJIB LIVESTOCK QURBANI CAMPAIGN (Fade Right) -->
+      <article data-motion="fade-right" data-motion-delay="100" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-12 lg:p-14 shadow-xl hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 group">
         <div class="grid gap-12 lg:grid-cols-12 items-center">
           
-          <!-- Branded Colour Composition & Metric Visual Side -->
-          <div class="lg:col-span-6 order-2 lg:order-1">
+          <!-- Branded Colour Composition Visual Side -->
+          <div data-motion="clip-left" data-motion-delay="200" class="lg:col-span-6 order-2 lg:order-1">
             <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-[#061d33] p-8 sm:p-10 shadow-2xl flex flex-col justify-between min-h-[320px]">
               <div class="space-y-4">
                 <span class="inline-block rounded-full bg-[#39c98a]/20 border border-[#39c98a]/40 px-4 py-1.5 text-[13px] sm:text-[14px] font-mono font-medium text-[#39c98a] uppercase tracking-[0.05em]">
@@ -151,7 +151,7 @@ import {
 
           <div class="lg:col-span-6 order-1 lg:order-2 space-y-6">
             <div class="flex items-center gap-3">
-              <span class="rounded-full bg-[#39c98a]/15 border border-[#39c98a]/30 px-4 py-1 text-[13px] sm:text-[14px] font-mono font-medium text-[#39c98a] uppercase tracking-[0.05em]">
+              <span class="rounded-full bg-[#39c98a]/15 border border-[#39c98a]/30 px-4 py-1 text-[13px] sm:text-[14px] font-mono font-medium text-[#39c98a] uppercase tracking-[0.05em] group-hover:translate-x-0.5 transition-transform">
                 LIVESTOCK & SEASONAL E-COMMERCE
               </span>
               <span class="text-[13px] font-mono font-medium text-slate-400">02 / FEATURED CASE</span>
@@ -167,7 +167,7 @@ import {
             </p>
 
             <!-- Verified Metrics Badges -->
-            <div class="flex flex-wrap items-center gap-3 pt-2 font-body">
+            <div data-motion="pop-in" data-motion-delay="300" class="flex flex-wrap items-center gap-3 pt-2 font-body">
               <div class="inline-flex items-center gap-2 rounded-xl bg-[#ddff35]/20 border border-[#ddff35]/40 px-4 py-2.5 text-[14px] font-semibold text-[#061d33]">
                 <HeartHandshake class="size-4 text-[#061d33]" />
                 <span>More than 150 animals sold</span>
@@ -184,7 +184,7 @@ import {
                 class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-[15px] sm:text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
               >
                 <span>Read case study</span>
-                <ArrowRight class="size-4" />
+                <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>
@@ -192,13 +192,13 @@ import {
         </div>
       </article>
 
-      <!-- PROJECT 3: RK RENO SOLUTIONS -->
-      <article class="reveal-on-scroll rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-12 lg:p-14 shadow-xl hover:shadow-2xl transition-all duration-300 group" data-reveal-delay="200">
+      <!-- PROJECT 3: RK RENO SOLUTIONS (Fade Left) -->
+      <article data-motion="fade-left" data-motion-delay="200" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-12 lg:p-14 shadow-xl hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 group">
         <div class="grid gap-12 lg:grid-cols-12 items-center">
           
           <div class="lg:col-span-6 space-y-6">
             <div class="flex items-center gap-3">
-              <span class="rounded-full bg-[#9a83f5]/15 border border-[#9a83f5]/30 px-4 py-1 text-[13px] sm:text-[14px] font-mono font-medium text-[#9a83f5] uppercase tracking-[0.05em]">
+              <span class="rounded-full bg-[#9a83f5]/15 border border-[#9a83f5]/30 px-4 py-1 text-[13px] sm:text-[14px] font-mono font-medium text-[#9a83f5] uppercase tracking-[0.05em] group-hover:translate-x-0.5 transition-transform">
                 RENOVATION & LOCAL SERVICES
               </span>
               <span class="text-[13px] font-mono font-medium text-slate-400">03 / FEATURED CASE</span>
@@ -224,7 +224,7 @@ import {
             </p>
 
             <!-- Scope Badges -->
-            <div class="flex flex-wrap items-center gap-3 pt-2 font-body">
+            <div data-motion="pop-in" data-motion-delay="350" class="flex flex-wrap items-center gap-3 pt-2 font-body">
               <div class="inline-flex items-center gap-2 rounded-xl bg-[#061d33]/10 border border-[#061d33]/20 px-4 py-2.5 text-[14px] font-semibold text-[#061d33]">
                 <MapPin class="size-4 text-[#ff762b]" />
                 <span>Kuala Lumpur & Selangor SEO Scope</span>
@@ -241,13 +241,13 @@ import {
                 class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-[15px] sm:text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
               >
                 <span>Read case study</span>
-                <ArrowRight class="size-4" />
+                <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>
 
           <!-- Visual Side: Genuine Website Screenshot from rkrenosolution.com -->
-          <div class="lg:col-span-6">
+          <div data-motion="clip-left" data-motion-delay="300" class="lg:col-span-6">
             <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-[#061d33] p-2.5 shadow-2xl font-body">
               <img
                 src={`${site.basePath}/brands/rk-reno-solutions/screenshot.png`}
@@ -255,7 +255,7 @@ import {
                 width="640"
                 height="400"
                 loading="lazy"
-                class="w-full h-[320px] rounded-xl object-cover object-top group-hover:scale-102 transition-transform duration-300"
+                class="w-full h-[320px] rounded-xl object-cover object-top group-hover:scale-104 transition-transform duration-500"
               />
               <div class="absolute bottom-6 right-6 rounded-xl border border-white/20 bg-[#061d33]/90 p-4 backdrop-blur-md shadow-lg hidden sm:flex items-center gap-3 text-white">
                 <Wrench class="size-6 text-[#ddff35] shrink-0" />
