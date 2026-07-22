@@ -189,12 +189,12 @@ html.motion-initialized [data-motion="rotate-in"]:not(.is-motion-revealed) {
 }
 
 /* Continuous decorative animation pausing when section is offscreen */
-section:not(#hero):not(.is-section-visible) .animate-float,
-section:not(#hero):not(.is-section-visible) .animate-float-gentle,
-section:not(#hero):not(.is-section-visible) .animate-spin-slow,
-section:not(#hero):not(.is-section-visible) .animate-pulse-glow,
-section:not(#hero):not(.is-section-visible) .animate-marquee-left,
-section:not(#hero):not(.is-section-visible) .animate-marquee-right {
+section:not(.is-section-visible) .animate-float,
+section:not(.is-section-visible) .animate-float-gentle,
+section:not(.is-section-visible) .animate-spin-slow,
+section:not(.is-section-visible) .animate-pulse-glow,
+section:not(.is-section-visible) .animate-marquee-left,
+section:not(.is-section-visible) .animate-marquee-right {
   animation-play-state: paused !important;
 }
 

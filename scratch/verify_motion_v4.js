@@ -120,10 +120,37 @@ server.listen(3364, async () => {
   assert(!statesAfter4s.resultsCard1, 'Results card 1 STILL unrevealed after 4 seconds idle');
   assert(!statesAfter4s.faqList, 'FAQ list STILL unrevealed after 4 seconds idle');
 
-  // 3. Scroll to Services
-  console.log('\nTest 3: Scroll to Services');
+  // 3. Scroll to Services & Verify Hero Ambient Motion Offscreen Pausing
+  console.log('\nTest 3: Scroll to Services & Verify Hero Ambient Motion Offscreen Pausing');
+
+  // Verify Hero ambient motion running at top
+  const heroOrbitAtTop = await page.evaluate(() => {
+    const ring = document.querySelector('#hero .animate-spin-slow');
+    return ring ? getComputedStyle(ring).animationPlayState : 'running';
+  });
+  assert(heroOrbitAtTop === 'running', 'Hero ambient orbit animation is RUNNING at top of page');
+
   await page.evaluate(() => document.getElementById('services')?.scrollIntoView());
   await page.waitForTimeout(600);
+
+  const heroOrbitScrolled = await page.evaluate(() => {
+    const ring = document.querySelector('#hero .animate-spin-slow');
+    return ring ? getComputedStyle(ring).animationPlayState : 'paused';
+  });
+  assert(heroOrbitScrolled === 'paused', 'Hero ambient orbit animation becomes PAUSED after scrolling beyond Hero');
+
+  // Scroll back to top to verify resume
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(400);
+  const heroOrbitResumed = await page.evaluate(() => {
+    const ring = document.querySelector('#hero .animate-spin-slow');
+    return ring ? getComputedStyle(ring).animationPlayState : 'running';
+  });
+  assert(heroOrbitResumed === 'running', 'Hero ambient orbit animation RESUMES when returning to top of page');
+
+  // Scroll back to services for subsequent tests
+  await page.evaluate(() => document.getElementById('services')?.scrollIntoView());
+  await page.waitForTimeout(500);
 
   const servicesRevealed = await page.evaluate(() => {
     const card1 = document.querySelector('#services [data-motion]');
@@ -135,7 +162,7 @@ server.listen(3364, async () => {
   });
 
   assert(servicesRevealed.card1Revealed, 'Service card 1 becomes revealed after scrolling into view');
-  assert(servicesRevealed.uniqueDelays > 2, `Service cards use distinct delays (${servicesRevealed.uniqueDelays} unique delay values)`);
+  assert(servicesRevealed.uniqueDelays > 2, `Service cards use distinct CSS transition delays (${servicesRevealed.uniqueDelays} unique delay values)`);
 
   // 4. Scroll to Featured Work
   console.log('\nTest 4: Scroll to Featured Work');

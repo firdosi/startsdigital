@@ -30,10 +30,6 @@
     });
 
     const heroSection = document.getElementById('hero') || document.querySelector('main > section:first-of-type') || document.querySelector('section:first-of-type');
-    if (heroSection) {
-      heroSection.classList.add('is-section-visible');
-    }
-
     const heroElements = heroSection ? Array.from(heroSection.querySelectorAll<HTMLElement>('[data-motion], .reveal-on-scroll')) : [];
     const allMotionElements = Array.from(document.querySelectorAll<HTMLElement>('[data-motion], .reveal-on-scroll'));
     const belowFoldElements = allMotionElements.filter((el) => !heroSection || !heroSection.contains(el));
@@ -43,20 +39,13 @@
         el.classList.add('is-motion-revealed', 'is-revealed');
       });
     } else {
-      // Reveal Hero section elements automatically on initial page load
+      // Reveal Hero section elements automatically on initial page load (CSS handles transition delay)
       heroElements.forEach((el) => {
         const delayAttr = el.dataset.motionDelay || '0';
         const durationAttr = el.dataset.motionDuration || '700';
         el.style.setProperty('--motion-del', `${delayAttr}ms`);
         el.style.setProperty('--motion-dur', `${durationAttr}ms`);
-        const delayMs = parseInt(delayAttr, 10);
-        if (delayMs > 0) {
-          setTimeout(() => {
-            el.classList.add('is-motion-revealed', 'is-revealed');
-          }, delayMs);
-        } else {
-          el.classList.add('is-motion-revealed', 'is-revealed');
-        }
+        el.classList.add('is-motion-revealed', 'is-revealed');
       });
 
       // Observe below-the-fold elements individually with strict viewport thresholds
@@ -72,14 +61,7 @@
                 el.style.setProperty('--motion-del', `${delayAttr}ms`);
                 el.style.setProperty('--motion-dur', `${durationAttr}ms`);
 
-                const delayMs = parseInt(delayAttr, 10);
-                if (delayMs > 0) {
-                  setTimeout(() => {
-                    el.classList.add('is-motion-revealed', 'is-revealed');
-                  }, delayMs);
-                } else {
-                  el.classList.add('is-motion-revealed', 'is-revealed');
-                }
+                el.classList.add('is-motion-revealed', 'is-revealed');
 
                 // Unobserve so entrance plays ONCE and never replays
                 scrollObserver.unobserve(el);
@@ -92,7 +74,7 @@
         belowFoldElements.forEach((el) => scrollObserver.observe(el));
         activeObservers.push(scrollObserver);
 
-        // Section Observer for continuous decorative animation pausing
+        // Section Observer for continuous decorative animation pausing (including Hero)
         const sections = document.querySelectorAll<HTMLElement>('section, footer');
         const sectionObserver = new IntersectionObserver(
           (entries) => {
