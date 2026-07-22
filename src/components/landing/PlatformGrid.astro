@@ -10,13 +10,14 @@ const logoSrc = (logo: string) => logo.startsWith('http') ? logo : `${site.baseP
     
     <!-- Section Header -->
     <div class="max-w-3xl mb-16 text-center mx-auto space-y-3">
-      <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
+      <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
         TECH STACK & ECOSYSTEM
       </span>
-      <h2 class="font-body font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15]">
+      <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
+      <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
         Platforms and tools we work with
       </h2>
-      <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal max-w-2xl mx-auto">
+      <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
         Engineered integration across advertising networks, analytics engines, CMS platforms, and customer channels.
       </p>
     </div>
@@ -39,11 +40,12 @@ const logoSrc = (logo: string) => logo.startsWith('http') ? logo : `${site.baseP
                 class="max-h-9 max-w-9 object-contain"
               />
             </div>
-            <!-- Title (Manrope 600) -->
+            <!-- Title: Inter 600 16px -->
             <h3 class="font-body font-semibold text-base text-[#061d33] group-hover:text-[#ff762b] transition-colors">
               {p.name}
             </h3>
-            <span class="mt-1 font-mono text-xs text-slate-500 font-medium">
+            <!-- Category Tag: JetBrains Mono 500 -->
+            <span class="mt-1 font-mono text-[12px] text-slate-500 font-medium">
               {p.category}
             </span>
           </div>

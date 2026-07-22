@@ -70,8 +70,8 @@ const services = [
       <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
         OUR SERVICES
       </span>
-      <!-- Sora 700 heading -->
-      <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.12] tracking-[-0.025em]">
+      <!-- Sora 700 heading: 31px mobile, 36px tablet, 44px desktop -->
+      <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
         Services designed to drive real results
       </h2>
       <!-- Inter 400 subtitle -->
@@ -80,7 +80,7 @@ const services = [
       </p>
     </div>
 
-    <!-- 6 Colourful Cards Grid (Responsive 3x2 Desktop Layout) -->
+    <!-- 6 Colourful Cards Grid -->
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {
         services.map((s, idx) => (
@@ -102,8 +102,8 @@ const services = [
                 </span>
               </div>
 
-              <!-- Title: Sora 600, 19-22px, leading 1.25 -->
-              <h3 class="font-heading font-semibold text-[19px] sm:text-[22px] leading-[1.25] mb-3">
+              <!-- Title: Sora 600, 20px mobile, 21px desktop, leading 1.3 -->
+              <h3 class="font-heading font-semibold text-[20px] sm:text-[21px] leading-[1.3] mb-3">
                 {s.title}
               </h3>
 
@@ -113,9 +113,9 @@ const services = [
               </p>
             </div>
 
-            <!-- Bottom Action Link: Inter 600, min 14px -->
+            <!-- Bottom Action Link: Inter 600 min 15px (Not JetBrains Mono!) -->
             <div class="mt-10 pt-6 border-t border-current/20 flex items-center justify-between font-body">
-              <span class="text-[14px] sm:text-[15px] font-semibold tracking-normal">Explore capability</span>
+              <span class="text-[15px] sm:text-[16px] font-semibold tracking-normal">Explore capability</span>
               <div class="size-10 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <ArrowUpRight class="size-5" />
               </div>

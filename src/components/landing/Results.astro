@@ -58,7 +58,8 @@ const metrics = [
         <CheckCircle class="size-4 text-[#ddff35]" />
         <span>VERIFIED PERFORMANCE</span>
       </span>
-      <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-white leading-[1.12] tracking-[-0.025em]">
+      <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
+      <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-white leading-[1.15] tracking-[-0.025em]">
         Verified commercial results
       </h2>
       <p class="text-base sm:text-lg text-slate-300 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
@@ -87,9 +88,9 @@ const metrics = [
                 </span>
               </div>
 
-              <!-- Metric Value: Sora 700, 29-34px mobile, 34-42px desktop -->
+              <!-- Metric Value: Sora 700, 32px mobile, 40px desktop -->
               <div
-                class="font-heading font-bold text-[29px] sm:text-[34px] lg:text-[42px] leading-none counter-value mb-4 tracking-[-0.025em]"
+                class="font-heading font-bold text-[32px] sm:text-[40px] leading-none counter-value mb-4 tracking-[-0.025em]"
                 data-counter-target={m.target}
                 data-counter-prefix={m.prefix}
                 data-counter-suffix={m.suffix}
@@ -98,18 +99,18 @@ const metrics = [
                 {m.exact}
               </div>
 
-              <!-- Label: Inter 600, 14-16px, Natural title case -->
-              <h3 class="font-body font-semibold text-[15px] sm:text-base leading-snug mb-2">
+              <!-- Metric Label: Inter 600 15px, Natural title case -->
+              <h3 class="font-body font-semibold text-[15px] leading-snug mb-2">
                 {m.label}
               </h3>
               
-              <!-- Description: Inter 400 leading 1.65 -->
-              <p class="text-sm leading-[1.65] font-body font-normal opacity-90">
+              <!-- Supporting text: Inter 400 15-16px, leading 1.55 -->
+              <p class="text-[15px] sm:text-base leading-[1.55] font-body font-normal opacity-90">
                 {m.description}
               </p>
             </div>
 
-            <div class="mt-8 pt-4 border-t border-current/20 flex items-center justify-between text-xs font-mono font-medium uppercase tracking-[0.05em]">
+            <div class="mt-8 pt-4 border-t border-current/20 flex items-center justify-between text-xs font-body font-semibold uppercase tracking-wider">
               <span>Performance Track</span>
               <span>100% Verified</span>
             </div>

@@ -49,16 +49,16 @@ const values = [
   <!-- Deep Navy Rounded Hero Header -->
   <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 rounded-b-[40px] shadow-2xl">
     <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
-      <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-bold uppercase tracking-widest text-[#ddff35]">
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35]">
         <span>ABOUT STARTS DIGITAL</span>
       </span>
       
-      <!-- Hero Headline: Manrope 700, natural sentence case -->
-      <h1 class="font-body font-bold text-[36px] sm:text-[54px] lg:text-[62px] text-white leading-[1.08] tracking-normal max-w-[800px] mx-auto">
+      <!-- Hero Headline: Sora 700 -->
+      <h1 class="font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] text-white leading-[1.08] tracking-[-0.035em] max-w-[800px] mx-auto">
         Marketing, technology and execution <span class="text-[#ff762b]">working as one.</span>
       </h1>
       
-      <p class="font-body text-base sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.6] font-normal">
+      <p class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.65] font-normal">
         Starts Digital combines campaign strategy, paid advertising, websites, SEO, creative content and practical technology systems to support business growth.
       </p>
     </Container>
@@ -74,13 +74,13 @@ const values = [
   <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="max-w-[1280px] px-6 sm:px-8 space-y-16">
       <div class="text-center max-w-3xl mx-auto space-y-3">
-        <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
+        <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
           OUR GUIDING PRINCIPLES
         </span>
-        <h2 class="font-body font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15]">
+        <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Operating values that drive performance
         </h2>
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal max-w-2xl mx-auto">
+        <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
           Disciplined principles that govern our client relationships, technical execution, and daily decision-making.
         </p>
       </div>
@@ -96,15 +96,15 @@ const values = [
                 <div class:list={['size-12 rounded-2xl border-2 flex items-center justify-center font-bold bg-[#f7f4ed]', v.colorClass]}>
                   <v.Icon class="size-6" />
                 </div>
-                <span class="text-xs font-mono font-bold text-slate-400">0{idx + 1}</span>
+                <span class="text-xs font-mono font-medium text-slate-400">0{idx + 1}</span>
               </div>
 
-              <!-- Title (Manrope 700) -->
-              <h3 class="font-body font-bold text-xl text-[#061d33] mb-3 leading-snug">
+              <!-- Title: Sora 600 min 18px -->
+              <h3 class="font-heading font-semibold text-[18px] sm:text-xl text-[#061d33] mb-3 leading-snug">
                 {v.title}
               </h3>
               
-              <!-- Body (Manrope 400 leading 1.6) -->
+              <!-- Body: Inter 400 16px, leading 1.6 -->
               <p class="text-base text-slate-700 font-body leading-[1.6] font-normal">
                 {v.desc}
               </p>

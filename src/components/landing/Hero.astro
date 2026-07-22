@@ -19,7 +19,7 @@ import {
   <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 text-center">
     
     <!-- Centred Editorial Layout -->
-    <div class="max-w-[720px] mx-auto space-y-8">
+    <div class="max-w-[760px] mx-auto space-y-8">
       
       <!-- Decorative Eyebrow Pill (JetBrains Mono 500) -->
       <div class="reveal-on-scroll inline-flex items-center justify-center">
@@ -29,28 +29,28 @@ import {
         </span>
       </div>
 
-      <!-- Hero Headline: Sora 700, 38px mobile, 54-62px desktop, leading 1.06, tracking -0.035em -->
-      <h1 class="reveal-on-scroll font-heading font-bold text-[38px] sm:text-[54px] lg:text-[62px] leading-[1.06] tracking-[-0.035em] text-white" data-reveal-delay="100">
+      <!-- Hero Headline: Sora 700, 40px mobile, 50px tablet, 64px desktop, leading 1.08 -->
+      <h1 class="reveal-on-scroll font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] leading-[1.08] tracking-[-0.035em] text-white max-w-[760px] mx-auto" data-reveal-delay="100">
         Digital marketing built to scale <span class="text-[#ff762b]">real businesses.</span>
       </h1>
 
       <!-- Supporting Copy: Inter 400, 16px mobile, 18px desktop, max-w 680px, leading 1.65 -->
-      <p class="reveal-on-scroll text-base sm:text-[18px] leading-[1.65] text-slate-200 font-body max-w-[680px] mx-auto font-normal" data-reveal-delay="200">
+      <p class="reveal-on-scroll text-[16px] sm:text-[18px] leading-[1.65] text-slate-200 font-body max-w-[680px] mx-auto font-normal" data-reveal-delay="200">
         Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
       </p>
 
-      <!-- Action Buttons: Inter 600 -->
+      <!-- Action Buttons: Inter 600, min 16px, min 48px height -->
       <div class="reveal-on-scroll flex flex-wrap items-center justify-center gap-5 pt-4 font-body" data-reveal-delay="300">
         <a
           href={`${site.basePath}/#contact`}
-          class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-8 py-4 font-body font-semibold text-base text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
+          class="group inline-flex items-center justify-center min-h-[48px] gap-3 rounded-full bg-[#ddff35] px-8 py-3.5 font-body font-semibold text-base text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
         >
           <span>Discuss your project</span>
           <ArrowRight class="size-5 text-[#061d33] group-hover:translate-x-1 transition-transform" />
         </a>
         <a
           href={`${site.basePath}/#work`}
-          class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-4 font-body font-semibold text-base text-white hover:bg-white/20 hover:border-white/50 transition-all backdrop-blur-sm"
+          class="inline-flex items-center justify-center min-h-[48px] gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-3.5 font-body font-semibold text-base text-white hover:bg-white/20 hover:border-white/50 transition-all backdrop-blur-sm"
         >
           View our work
         </a>
@@ -70,11 +70,12 @@ import {
             </div>
             <span class="text-[11px] font-mono text-[#ff762b] font-medium uppercase tracking-[0.06em] bg-[#ff762b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <!-- Metric Value: Sora 700 -->
-          <div class="font-heading font-bold text-[30px] sm:text-[34px] lg:text-[40px] text-white tracking-[-0.025em]">
+          <!-- Metric Value: Sora 700, 32px mobile, 40px desktop -->
+          <div class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]">
             PKR 30M+
           </div>
-          <p class="text-[14px] text-slate-300 font-mono font-medium mt-1">
+          <!-- Metric Label: Inter 600 (Not JetBrains Mono per Rule 12) -->
+          <p class="text-[15px] font-body font-semibold text-slate-200 mt-1">
             Revenue Supported
           </p>
         </div>
@@ -87,10 +88,10 @@ import {
             </div>
             <span class="text-[11px] font-mono text-[#9a83f5] font-medium uppercase tracking-[0.06em] bg-[#9a83f5]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-heading font-bold text-[30px] sm:text-[34px] lg:text-[40px] text-white tracking-[-0.025em]">
+          <div class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]">
             29,000+
           </div>
-          <p class="text-[14px] text-slate-300 font-mono font-medium mt-1">
+          <p class="text-[15px] font-body font-semibold text-slate-200 mt-1">
             Product Sales
           </p>
         </div>
@@ -103,10 +104,10 @@ import {
             </div>
             <span class="text-[11px] font-mono text-[#ddff35] font-medium uppercase tracking-[0.06em] bg-[#ddff35]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-heading font-bold text-[30px] sm:text-[34px] lg:text-[40px] text-white tracking-[-0.025em]">
+          <div class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]">
             PKR 4.2M+
           </div>
-          <p class="text-[14px] text-slate-300 font-mono font-medium mt-1">
+          <p class="text-[15px] font-body font-semibold text-slate-200 mt-1">
             Sales Supported
           </p>
         </div>
@@ -119,10 +120,10 @@ import {
             </div>
             <span class="text-[11px] font-mono text-[#ff514b] font-medium uppercase tracking-[0.06em] bg-[#ff514b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-heading font-bold text-[30px] sm:text-[34px] lg:text-[40px] text-white tracking-[-0.025em]">
+          <div class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]">
             More Than 150
           </div>
-          <p class="text-[14px] text-slate-300 font-mono font-medium mt-1">
+          <p class="text-[15px] font-body font-semibold text-slate-200 mt-1">
             Animals Sold
           </p>
         </div>

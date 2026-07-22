@@ -28,21 +28,21 @@ const stickers = [
 
       <div class="relative z-10 max-w-4xl mx-auto space-y-8 font-body">
         
-        <!-- Headline: Sora 700, 30-35px mobile, 42-50px desktop, leading 1.1 -->
-        <h2 class="font-heading font-bold text-[30px] sm:text-[40px] lg:text-[48px] text-white leading-[1.1] tracking-[-0.025em]">
+        <!-- Headline: Sora 700, 33px mobile, 46px desktop, leading 1.12 -->
+        <h2 class="font-heading font-bold text-[33px] sm:text-[46px] text-white leading-[1.12] tracking-[-0.025em]">
           Ready to build stronger digital growth?
         </h2>
 
-        <!-- Description: Inter 400, leading 1.65 -->
-        <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body max-w-2xl mx-auto font-normal">
+        <!-- Description: Inter 400, 16px mobile, 17px desktop, leading 1.65 -->
+        <p class="text-[16px] sm:text-[17px] leading-[1.65] text-slate-200 font-body max-w-2xl mx-auto font-normal">
           Speak directly with our team to review your paid campaigns, website conversion architecture and growth opportunities.
         </p>
 
-        <!-- Buttons: Inter 600 -->
+        <!-- Buttons: Inter 600, min 16px, min 48px height -->
         <div class="flex flex-wrap items-center justify-center gap-5 pt-4">
           <a
             href={`mailto:${site.contact.email}`}
-            class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-9 py-4 font-body font-semibold text-[15px] sm:text-[16px] text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
+            class="group inline-flex items-center justify-center min-h-[48px] gap-3 rounded-full bg-[#ddff35] px-9 py-4 font-body font-semibold text-base text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
           >
             <span>Discuss your project</span>
             <ArrowRight class="size-5 text-[#061d33] group-hover:translate-x-1 transition-transform" />
@@ -52,15 +52,15 @@ const stickers = [
             href={site.contact.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 rounded-full bg-[#39c98a] px-9 py-4 font-body font-semibold text-[15px] sm:text-[16px] text-white shadow-xl hover:bg-[#32b57c] hover:shadow-2xl hover:-translate-y-1 transition-all"
+            class="inline-flex items-center justify-center min-h-[48px] gap-3 rounded-full bg-[#39c98a] px-9 py-4 font-body font-semibold text-base text-white shadow-xl hover:bg-[#32b57c] hover:shadow-2xl hover:-translate-y-1 transition-all"
           >
             <MessageSquare class="size-5 text-white" />
             <span>Chat on WhatsApp</span>
           </a>
         </div>
 
-        <!-- Contact Quick Details -->
-        <div class="pt-6 text-xs sm:text-sm font-mono font-medium text-slate-300">
+        <!-- Contact Quick Details: Inter 500 min 15px -->
+        <div class="pt-6 text-[15px] font-body font-medium text-slate-300">
           Email: <a href={`mailto:${site.contact.email}`} class="text-white underline hover:text-[#ddff35]">{site.contact.email}</a>
           <span class="mx-3 text-slate-500">|</span>
           WhatsApp: <a href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer" class="text-white underline hover:text-[#39c98a]">{site.contact.phone}</a>

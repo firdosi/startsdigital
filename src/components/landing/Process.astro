@@ -109,7 +109,8 @@ const stages = [
       <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
         EXECUTION FRAMEWORK
       </span>
-      <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.12] tracking-[-0.025em]">
+      <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
+      <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
         Our working method
       </h2>
       <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
@@ -142,12 +143,12 @@ const stages = [
                   {stage.id}
                 </span>
                 <div>
-                  <!-- Stage Title: Sora 700, 18-22px -->
-                  <h3 class="font-heading font-bold text-[18px] sm:text-[22px] leading-[1.25]">
+                  <!-- Stage Title: Sora 600, 19 to 21px -->
+                  <h3 class="font-heading font-semibold text-[19px] sm:text-[21px] leading-[1.25]">
                     {stage.title}
                   </h3>
                   <p class:list={[
-                    'text-sm sm:text-base font-body font-normal mt-1 leading-[1.65]',
+                    'text-base font-body font-normal mt-1 leading-[1.6]',
                     stage.isDefaultOpen ? 'text-white/90' : 'text-slate-600'
                   ]}>
                     {stage.subtitle}
@@ -176,24 +177,24 @@ const stages = [
                     <span class="text-[11px] font-mono font-medium uppercase tracking-[0.05em] text-[#ff762b] bg-[#ff762b]/10 px-2.5 py-0.5 rounded block w-fit mb-3">
                       {sub.tag}
                     </span>
-                    <!-- Sub-panel title: Sora 600, 16-18px -->
-                    <h4 class="font-heading font-semibold text-base sm:text-[18px] mb-2 text-[#061d33] leading-[1.25]">
+                    <!-- Sub-panel title: Sora 600, 17px -->
+                    <h4 class="font-heading font-semibold text-[17px] mb-2 text-[#061d33] leading-[1.25]">
                       {sub.title}
                     </h4>
-                    <!-- Sub-panel desc: Inter 400, 15-16px, leading 1.65 -->
-                    <p class="text-[15px] sm:text-base font-body leading-[1.65] text-slate-700 font-normal">
+                    <!-- Sub-panel desc: Inter 400, 16px, leading 1.6 -->
+                    <p class="text-base font-body leading-[1.6] text-slate-700 font-normal">
                       {sub.desc}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <!-- Colourful Topic Chips (JetBrains Mono 500) -->
+              <!-- Colourful Topic Chips (JetBrains Mono 500, min 12px) -->
               <div class="mt-8 pt-6 border-t border-current/20 flex flex-wrap items-center gap-2.5 font-mono">
                 <span class="text-xs font-medium uppercase mr-2 opacity-80">FOCUS AREAS:</span>
                 {stage.chips.map((chip) => (
                   <span class:list={[
-                    'text-xs font-mono font-medium px-3 py-1 rounded-full uppercase tracking-[0.05em]',
+                    'text-[12px] sm:text-[13px] font-mono font-medium px-3 py-1 rounded-full uppercase tracking-[0.05em]',
                     stage.isDefaultOpen ? 'bg-white text-[#061d33]' : 'bg-[#061d33] text-white'
                   ]}>
                     {chip}
@@ -221,7 +222,6 @@ const stages = [
     toggleBtn?.addEventListener('click', () => {
       const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
       
-      // Close all accordion items
       accordionItems.forEach((otherItem) => {
         const otherBtn = otherItem.querySelector('.accordion-toggle');
         const otherContent = otherItem.querySelector('.accordion-content');
@@ -235,7 +235,6 @@ const stages = [
         otherIcon?.classList.add('bg-slate-100', 'text-[#061d33]');
       });
 
-      // Toggle current item if it was closed
       if (!isOpen) {
         toggleBtn.setAttribute('aria-expanded', 'true');
         content?.classList.remove('hidden');

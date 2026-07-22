@@ -20,7 +20,8 @@ import {
         <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
           FEATURED WORK & CASE STUDIES
         </span>
-        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.12] tracking-[-0.025em]">
+        <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
+        <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Our featured projects
         </h2>
       </div>
@@ -60,18 +61,18 @@ import {
                 loading="lazy"
                 class="max-h-12 w-auto object-contain"
               />
-              <!-- Project Title: Sora 600, 25-31px, leading 1.2 -->
-              <h3 class="font-heading font-semibold text-[25px] sm:text-[28px] lg:text-[31px] text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-[1.2]">
+              <!-- Project Title: Sora 700, 23px mobile, 28px desktop -->
+              <h3 class="font-heading font-bold text-[23px] sm:text-[28px] text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-[1.2]">
                 Black Gold Fertilizer
               </h3>
             </div>
 
-            <!-- Project Result: Inter 400, 16-17px, leading 1.65 -->
-            <p class="text-base sm:text-[17px] text-slate-700 font-body leading-[1.65] font-normal">
+            <!-- Project Result: Inter 400 16px -->
+            <p class="text-base text-slate-700 font-body leading-[1.65] font-normal">
               Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.
             </p>
 
-            <!-- Verified Metrics Badges -->
+            <!-- Verified Metrics Badges (Inter 600 min 14px) -->
             <div class="flex flex-wrap items-center gap-3 pt-2 font-body">
               <div class="inline-flex items-center gap-2 rounded-xl bg-[#ff762b]/10 border border-[#ff762b]/30 px-4 py-2.5 text-[14px] font-semibold text-[#061d33]">
                 <TrendingUp class="size-4 text-[#ff762b]" />
@@ -84,9 +85,10 @@ import {
             </div>
 
             <div class="pt-4">
+              <!-- Case-study link: Inter 600 min 15px -->
               <a
                 href={`${site.basePath}/work/black-gold-fertilizer/`}
-                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
+                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-[15px] sm:text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
               >
                 <span>Read case study</span>
                 <ArrowRight class="size-4" />
@@ -108,7 +110,7 @@ import {
               <div class="absolute bottom-6 right-6 rounded-xl border border-white/20 bg-[#061d33]/90 p-4 backdrop-blur-md shadow-lg hidden sm:flex items-center gap-3 text-white">
                 <Sprout class="size-6 text-[#39c98a] shrink-0" />
                 <div>
-                  <div class="text-[13px] font-mono font-medium text-slate-300">Agriculture & E-Commerce</div>
+                  <div class="text-[13px] font-body font-medium text-slate-300">Agriculture & E-Commerce</div>
                   <div class="text-sm font-semibold text-white">Multi-Category Product Growth</div>
                 </div>
               </div>
@@ -137,11 +139,11 @@ import {
               <div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/10 font-body">
                 <div class="rounded-xl bg-white/10 p-4 border border-white/10">
                   <span class="font-heading font-bold text-2xl sm:text-3xl text-[#ddff35] block">150+</span>
-                  <span class="text-xs font-mono font-medium text-slate-300 uppercase">Animals Sold</span>
+                  <span class="text-xs font-body font-semibold text-slate-200 uppercase">Animals Sold</span>
                 </div>
                 <div class="rounded-xl bg-white/10 p-4 border border-white/10">
                   <span class="font-heading font-bold text-2xl sm:text-3xl text-[#ff762b] block">PKR 4.2M+</span>
-                  <span class="text-xs font-mono font-medium text-slate-300 uppercase">Sales Supported</span>
+                  <span class="text-xs font-body font-semibold text-slate-200 uppercase">Sales Supported</span>
                 </div>
               </div>
             </div>
@@ -155,12 +157,12 @@ import {
               <span class="text-[13px] font-mono font-medium text-slate-400">02 / FEATURED CASE</span>
             </div>
 
-            <!-- Project Title -->
-            <h3 class="font-heading font-semibold text-[25px] sm:text-[28px] lg:text-[31px] text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-[1.2]">
+            <!-- Project Title: Sora 700, 23px mobile, 28px desktop -->
+            <h3 class="font-heading font-bold text-[23px] sm:text-[28px] text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-[1.2]">
               Wajib Livestock Qurbani Campaign
             </h3>
 
-            <p class="text-base sm:text-[17px] text-slate-700 font-body leading-[1.65] font-normal">
+            <p class="text-base text-slate-700 font-body leading-[1.65] font-normal">
               Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.
             </p>
 
@@ -179,7 +181,7 @@ import {
             <div class="pt-4">
               <a
                 href={`${site.basePath}/work/qurbani-campaign/`}
-                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
+                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-[15px] sm:text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
               >
                 <span>Read case study</span>
                 <ArrowRight class="size-4" />
@@ -212,12 +214,12 @@ import {
                 loading="lazy"
                 class="max-h-12 w-auto object-contain"
               />
-              <h3 class="font-heading font-semibold text-[25px] sm:text-[28px] lg:text-[31px] text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-[1.2]">
+              <h3 class="font-heading font-bold text-[23px] sm:text-[28px] text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-[1.2]">
                 RK Reno Solutions
               </h3>
             </div>
 
-            <p class="text-base sm:text-[17px] text-slate-700 font-body leading-[1.65] font-normal">
+            <p class="text-base text-slate-700 font-body leading-[1.65] font-normal">
               Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.
             </p>
 
@@ -236,7 +238,7 @@ import {
             <div class="pt-4">
               <a
                 href={`${site.basePath}/work/rk-reno-solutions/`}
-                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
+                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-[15px] sm:text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
               >
                 <span>Read case study</span>
                 <ArrowRight class="size-4" />
@@ -258,7 +260,7 @@ import {
               <div class="absolute bottom-6 right-6 rounded-xl border border-white/20 bg-[#061d33]/90 p-4 backdrop-blur-md shadow-lg hidden sm:flex items-center gap-3 text-white">
                 <Wrench class="size-6 text-[#ddff35] shrink-0" />
                 <div>
-                  <div class="text-[13px] font-mono font-medium text-slate-300">Renovation & Local Search</div>
+                  <div class="text-[13px] font-body font-medium text-slate-300">Renovation & Local Search</div>
                   <div class="text-sm font-semibold text-white">rkrenosolution.com</div>
                 </div>
               </div>

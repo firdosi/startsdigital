@@ -30,16 +30,16 @@ const toolkitItems = [
   <!-- Deep Navy Rounded Hero Header -->
   <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 rounded-b-[40px] shadow-2xl">
     <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
-      <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-bold uppercase tracking-widest text-[#ddff35]">
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35]">
         <span>SERVICES</span>
       </span>
       
-      <!-- Hero Headline: Manrope 700, 36-42px mobile, 56-68px desktop, natural sentence case -->
-      <h1 class="font-body font-bold text-[36px] sm:text-[54px] lg:text-[62px] text-white leading-[1.08] tracking-normal max-w-[800px] mx-auto">
+      <!-- Hero Headline: Sora 700, 40px mobile, 50px tablet, 64px desktop -->
+      <h1 class="font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] text-white leading-[1.08] tracking-[-0.035em] max-w-[800px] mx-auto">
         Everything your business needs to <span class="text-[#ff762b]">grow online.</span>
       </h1>
       
-      <p class="font-body text-base sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.6] font-normal">
+      <p class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.65] font-normal">
         One connected team for paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
       </p>
     </Container>
@@ -55,13 +55,13 @@ const toolkitItems = [
   <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="max-w-[1280px] px-6 sm:px-8 space-y-16">
       <div class="text-center max-w-3xl mx-auto space-y-3">
-        <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
+        <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
           CAPABILITIES & STACK
         </span>
-        <h2 class="font-body font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15]">
+        <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Explore our complete growth toolkit
         </h2>
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal max-w-2xl mx-auto">
+        <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
           Unified capabilities covering paid acquisition, web infrastructure, search optimization, and AI automation.
         </p>
       </div>
@@ -69,15 +69,13 @@ const toolkitItems = [
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {toolkitItems.map((item, idx) => (
           <div 
-            class="reveal-on-scroll rounded-2xl border-2 border-[#061d33]/15 bg-white p-6 shadow-md hover:shadow-xl hover:border-[#ff762b] transition-all duration-300 group"
+            class="reveal-on-scroll rounded-2xl border-2 border-[#061d33]/15 bg-white p-6 shadow-md hover:shadow-xl hover:border-[#ff762b] transition-all duration-300 group space-y-2"
             data-reveal-delay={idx * 40}
           >
-            <div class="flex items-center gap-3 mb-3">
-              <h3 class="font-body font-semibold text-base sm:text-lg text-[#061d33] leading-snug">
-                {item.name}
-              </h3>
-            </div>
-            <p class="text-sm text-slate-600 font-body leading-[1.6] font-normal">
+            <h3 class="font-heading font-semibold text-[18px] text-[#061d33] leading-snug">
+              {item.name}
+            </h3>
+            <p class="text-base text-slate-600 font-body leading-[1.6] font-normal">
               {item.desc}
             </p>
           </div>

@@ -33,7 +33,8 @@ const experiencePoints = [
           <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
             HONEST OPERATOR CREDIBILITY
           </span>
-          <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.12] tracking-[-0.025em]">
+          <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
+          <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
             Hands-on experience across marketing, websites and business growth
           </h2>
         </div>
@@ -42,15 +43,15 @@ const experiencePoints = [
           We don't operate like a bloated agency with junior account managers. Starts Digital was built by active marketers and developers who work directly on your campaigns, code, and growth strategy.
         </p>
 
-        <!-- Experience Pillars Grid -->
+        <!-- Experience Pillars Grid: Sora 600 min 18px title, Inter 400 16px body -->
         <div class="grid gap-4 sm:grid-cols-2 pt-2">
           {experiencePoints.map((item) => (
-            <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <div class="flex items-center gap-2 font-heading font-semibold text-base sm:text-[17px] text-[#061d33] mb-2 leading-snug">
+            <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm space-y-2">
+              <div class="flex items-center gap-2.5 font-heading font-semibold text-[18px] text-[#061d33] leading-snug">
                 <CheckCircle2 class="size-5 text-[#ff762b] shrink-0" />
                 <span>{item.title}</span>
               </div>
-              <p class="text-sm text-slate-600 font-body leading-[1.65] font-normal">
+              <p class="text-base text-slate-600 font-body leading-[1.6] font-normal">
                 {item.desc}
               </p>
             </div>
@@ -87,7 +88,7 @@ const experiencePoints = [
               <span>DIRECT FOUNDER OVERSIGHT</span>
               <span>100% ACCOUNT OWNERSHIP</span>
             </div>
-            <p class="text-sm font-body text-slate-200 leading-[1.65] font-normal italic">
+            <p class="text-base font-body text-slate-200 leading-[1.6] font-normal italic">
               "We take personal responsibility for performance. Every ad campaign, landing page, and automated workflow is reviewed directly against real revenue metrics."
             </p>
           </div>
