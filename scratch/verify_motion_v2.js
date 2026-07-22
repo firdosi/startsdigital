@@ -39,7 +39,7 @@ const server = http.createServer((req, res) => {
   fs.createReadStream(filePath).pipe(res);
 });
 
-server.listen(3358, async () => {
+server.listen(3361, async () => {
   console.log('Running Enhanced Motion V2 Verification Suite...');
   const browser = await chromium.launch();
 
@@ -66,7 +66,7 @@ server.listen(3358, async () => {
 
   for (const vp of viewports) {
     const page = await browser.newPage({ viewport: vp });
-    await page.goto('http://localhost:3358/startsdigital/', { waitUntil: 'networkidle' });
+    await page.goto('http://localhost:3361/startsdigital/', { waitUntil: 'networkidle' });
     await page.waitForTimeout(500);
 
     const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
@@ -78,7 +78,7 @@ server.listen(3358, async () => {
 
   // 2. Measure Computed Transform Changes Over Time (t1 vs t2)
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-  await page.goto('http://localhost:3358/startsdigital/', { waitUntil: 'networkidle' });
+  await page.goto('http://localhost:3361/startsdigital/', { waitUntil: 'networkidle' });
 
   // A. Hero Orbit Ring Movement
   const orbitT1 = await page.evaluate(() => {
@@ -161,7 +161,7 @@ server.listen(3358, async () => {
 
   // 6. View-Transitions Lifecycle Navigation Test: Home -> Services -> Work -> About -> Contact -> Home
   console.log('Testing View-Transitions Lifecycle Navigation (Home -> Services -> Work -> About -> Contact -> Home)...');
-  await page.goto('http://localhost:3358/startsdigital/', { waitUntil: 'networkidle' });
+  await page.goto('http://localhost:3361/startsdigital/', { waitUntil: 'networkidle' });
   await page.waitForTimeout(500);
 
   // Navigate to Services
@@ -203,7 +203,7 @@ server.listen(3358, async () => {
   // 8. Reduced Motion Mode Verification
   const reducedMotionPage = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   await reducedMotionPage.emulateMedia({ reducedMotion: 'reduce' });
-  await reducedMotionPage.goto('http://localhost:3358/startsdigital/', { waitUntil: 'networkidle' });
+  await reducedMotionPage.goto('http://localhost:3361/startsdigital/', { waitUntil: 'networkidle' });
   await reducedMotionPage.waitForTimeout(500);
 
   const reducedAnimations = await reducedMotionPage.evaluate(() => {

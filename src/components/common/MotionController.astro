@@ -73,53 +73,6 @@
 
       motionElements.forEach((el) => observer.observe(el));
       activeObservers.push(observer);
-
-      // Counter Observer
-      const counterElements = document.querySelectorAll<HTMLElement>('[data-counter-target]');
-      const counterObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-
-            const el = entry.target as HTMLElement;
-            const targetNum = parseFloat(el.dataset.counterTarget || '0');
-            const exactText = el.dataset.counterExact || el.textContent || '';
-            const prefix = el.dataset.counterPrefix || '';
-            const suffix = el.dataset.counterSuffix || '';
-            const decimals = parseInt(el.dataset.counterDecimals || '0', 10);
-            const duration = 1200;
-            const startTime = performance.now();
-
-            function formatValue(val: number) {
-              return val.toLocaleString(undefined, {
-                minimumFractionDigits: decimals,
-                maximumFractionDigits: decimals,
-              });
-            }
-
-            function updateCounter(currentTime: number) {
-              const elapsed = currentTime - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-              const eased = 1 - Math.pow(1 - progress, 4);
-              const currentVal = targetNum * eased;
-
-              if (progress < 1) {
-                el.textContent = `${prefix}${formatValue(currentVal)}${suffix}`;
-                requestAnimationFrame(updateCounter);
-              } else {
-                el.textContent = exactText;
-              }
-            }
-
-            requestAnimationFrame(updateCounter);
-            counterObserver.unobserve(el);
-          });
-        },
-        { threshold: 0.15 }
-      );
-
-      counterElements.forEach((el) => counterObserver.observe(el));
-      activeObservers.push(counterObserver);
     } else {
       motionElements.forEach((el) => {
         el.classList.add('is-motion-revealed', 'is-revealed');
