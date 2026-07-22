@@ -27,21 +27,21 @@ const items = [
     <div class="grid gap-12 lg:grid-cols-12 items-start">
       
       <!-- Left Column: Title & Subtitle -->
-      <div class="lg:col-span-5 space-y-4 lg:sticky lg:top-28">
+      <div data-motion="fade-left" data-motion-delay="0" class="lg:col-span-5 space-y-4 lg:sticky lg:top-28">
         <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
           CLEAR ANSWERS
         </span>
         <!-- Sora 700 section heading -->
-        <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+        <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Your questions answered
         </h2>
-        <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
+        <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
           Everything you need to know about working with Starts Digital. Clear timelines, transparent tracking systems, and direct senior execution.
         </p>
       </div>
 
       <!-- Right Column: Smooth Grid Height Accordion Rows -->
-      <div class="lg:col-span-7 space-y-4" id="faq-list">
+      <div data-motion="fade-right" data-motion-delay="100" class="lg:col-span-7 space-y-4" id="faq-list">
         {
           items.map((item, i) => (
             <div 

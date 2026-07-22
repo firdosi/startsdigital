@@ -178,9 +178,33 @@ html.motion-initialized [data-motion="blur-in"]:not(.is-motion-revealed) {
   transform: translateY(16px);
 }
 
+html.motion-initialized [data-motion="scale-panel"]:not(.is-motion-revealed) {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
 html.motion-initialized [data-motion="rotate-in"]:not(.is-motion-revealed) {
   opacity: 0;
   transform: scale(0.9) rotate(-4deg);
+}
+
+/* Continuous decorative animation pausing when section is offscreen */
+section:not(#hero):not(.is-section-visible) .animate-float,
+section:not(#hero):not(.is-section-visible) .animate-float-gentle,
+section:not(#hero):not(.is-section-visible) .animate-spin-slow,
+section:not(#hero):not(.is-section-visible) .animate-pulse-glow,
+section:not(#hero):not(.is-section-visible) .animate-marquee-left,
+section:not(#hero):not(.is-section-visible) .animate-marquee-right {
+  animation-play-state: paused !important;
+}
+
+section.is-section-visible .animate-float,
+section.is-section-visible .animate-float-gentle,
+section.is-section-visible .animate-spin-slow,
+section.is-section-visible .animate-pulse-glow,
+section.is-section-visible .animate-marquee-left,
+section.is-section-visible .animate-marquee-right {
+  animation-play-state: running;
 }
 
 /* Motion reveal transition rules */

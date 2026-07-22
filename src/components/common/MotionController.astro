@@ -29,54 +29,92 @@
       });
     });
 
-    const motionElements = document.querySelectorAll<HTMLElement>('[data-motion], .reveal-on-scroll');
+    const heroSection = document.getElementById('hero') || document.querySelector('main > section:first-of-type') || document.querySelector('section:first-of-type');
+    if (heroSection) {
+      heroSection.classList.add('is-section-visible');
+    }
 
-    // Safety Fallback: Guarantee reveal after 1.2s so content is never stuck hidden
-    setTimeout(() => {
-      motionElements.forEach((el) => {
-        el.classList.add('is-motion-revealed', 'is-revealed');
-      });
-    }, 1200);
+    const heroElements = heroSection ? Array.from(heroSection.querySelectorAll<HTMLElement>('[data-motion], .reveal-on-scroll')) : [];
+    const allMotionElements = Array.from(document.querySelectorAll<HTMLElement>('[data-motion], .reveal-on-scroll'));
+    const belowFoldElements = allMotionElements.filter((el) => !heroSection || !heroSection.contains(el));
 
     if (prefersReducedMotion) {
-      motionElements.forEach((el) => {
+      allMotionElements.forEach((el) => {
         el.classList.add('is-motion-revealed', 'is-revealed');
       });
-    } else if ('IntersectionObserver' in window) {
-      // Main Motion Observer
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const el = entry.target as HTMLElement;
-              const delayAttr = el.dataset.motionDelay || el.dataset.revealDelay || '0';
-              const durationAttr = el.dataset.motionDuration || '700';
-
-              el.style.setProperty('--motion-del', `${delayAttr}ms`);
-              el.style.setProperty('--motion-dur', `${durationAttr}ms`);
-
-              const delayMs = parseInt(delayAttr, 10);
-              if (delayMs > 0) {
-                setTimeout(() => {
-                  el.classList.add('is-motion-revealed', 'is-revealed');
-                }, delayMs);
-              } else {
-                el.classList.add('is-motion-revealed', 'is-revealed');
-              }
-
-              observer.unobserve(el);
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-      );
-
-      motionElements.forEach((el) => observer.observe(el));
-      activeObservers.push(observer);
     } else {
-      motionElements.forEach((el) => {
-        el.classList.add('is-motion-revealed', 'is-revealed');
+      // Reveal Hero section elements automatically on initial page load
+      heroElements.forEach((el) => {
+        const delayAttr = el.dataset.motionDelay || '0';
+        const durationAttr = el.dataset.motionDuration || '700';
+        el.style.setProperty('--motion-del', `${delayAttr}ms`);
+        el.style.setProperty('--motion-dur', `${durationAttr}ms`);
+        const delayMs = parseInt(delayAttr, 10);
+        if (delayMs > 0) {
+          setTimeout(() => {
+            el.classList.add('is-motion-revealed', 'is-revealed');
+          }, delayMs);
+        } else {
+          el.classList.add('is-motion-revealed', 'is-revealed');
+        }
       });
+
+      // Observe below-the-fold elements individually with strict viewport thresholds
+      if ('IntersectionObserver' in window) {
+        const scrollObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const el = entry.target as HTMLElement;
+                const delayAttr = el.dataset.motionDelay || el.dataset.revealDelay || '0';
+                const durationAttr = el.dataset.motionDuration || '700';
+
+                el.style.setProperty('--motion-del', `${delayAttr}ms`);
+                el.style.setProperty('--motion-dur', `${durationAttr}ms`);
+
+                const delayMs = parseInt(delayAttr, 10);
+                if (delayMs > 0) {
+                  setTimeout(() => {
+                    el.classList.add('is-motion-revealed', 'is-revealed');
+                  }, delayMs);
+                } else {
+                  el.classList.add('is-motion-revealed', 'is-revealed');
+                }
+
+                // Unobserve so entrance plays ONCE and never replays
+                scrollObserver.unobserve(el);
+              }
+            });
+          },
+          { threshold: 0.2, rootMargin: '0px 0px -15% 0px' }
+        );
+
+        belowFoldElements.forEach((el) => scrollObserver.observe(el));
+        activeObservers.push(scrollObserver);
+
+        // Section Observer for continuous decorative animation pausing
+        const sections = document.querySelectorAll<HTMLElement>('section, footer');
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const sec = entry.target as HTMLElement;
+              if (entry.isIntersecting) {
+                sec.classList.add('is-section-visible');
+              } else {
+                sec.classList.remove('is-section-visible');
+              }
+            });
+          },
+          { threshold: 0.05, rootMargin: '0px 0px 0px 0px' }
+        );
+
+        sections.forEach((sec) => sectionObserver.observe(sec));
+        activeObservers.push(sectionObserver);
+      } else {
+        belowFoldElements.forEach((el) => {
+          el.classList.add('is-motion-revealed', 'is-revealed');
+        });
+      }
     }
 
     // 2. Header Scroll Controller (Idempotent)

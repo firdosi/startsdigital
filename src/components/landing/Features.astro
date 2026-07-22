@@ -77,23 +77,23 @@ const services = [
       <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
         OUR SERVICES
       </span>
-      <!-- Heading Clips Upward -->
-      <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+      <!-- Heading Fades Upward First -->
+      <h2 data-motion="fade-up" data-motion-delay="0" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
         Services designed to drive real results
       </h2>
-      <!-- Intro Fades Right -->
-      <p data-motion="fade-right" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
+      <!-- Intro Fades Upward -->
+      <p data-motion="fade-up" data-motion-delay="100" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
         We replace fragmented workflows with unified growth capabilities spanning paid media, web engineering, SEO, and AI automation.
       </p>
     </div>
 
-    <!-- 6 Colourful Cards Grid with 3x2 Stagger & MotionIconTile -->
+    <!-- 6 Colourful Cards Grid with 100ms Stagger -->
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {
         services.map((s, idx) => (
           <div
             data-motion="fade-up"
-            data-motion-delay={idx * 90}
+            data-motion-delay={idx * 100}
             class:list={[
               'rounded-3xl p-8 lg:p-10 shadow-xl flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl group cursor-pointer border border-white/10',
               s.colorClass,

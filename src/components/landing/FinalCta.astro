@@ -17,7 +17,7 @@ const stickers = [
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Rounded Navy CTA Block with Ambient 3D Motion Elements -->
-    <div class="relative overflow-hidden rounded-[40px] bg-[#061d33] text-white p-10 sm:p-16 lg:p-20 shadow-2xl text-center">
+    <div data-motion="scale-panel" data-motion-delay="0" class="relative overflow-hidden rounded-[40px] bg-[#061d33] text-white p-10 sm:p-16 lg:p-20 shadow-2xl text-center">
       
       <!-- Ambient Decorative Motion Elements (Edges only) -->
       <FloatingOrb color="orange" size="lg" class="-top-20 -left-20" duration="14s" />
@@ -27,7 +27,7 @@ const stickers = [
       <SectionSpark color="coral" size="md" class="bottom-8 right-16" delay="1.8s" />
 
       <!-- Decorative Sticker Chips Row: Scale-In -->
-      <div data-motion="scale-in" data-motion-delay="0" class="flex flex-wrap items-center justify-center gap-3 mb-8 relative z-10">
+      <div data-motion="scale-in" data-motion-delay="100" class="flex flex-wrap items-center justify-center gap-3 mb-8 relative z-10">
         {stickers.map((sticker, idx) => (
           <span class="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md animate-float-gentle" style={`animation-delay: ${idx * 0.5}s;`}>
             <Sparkles class="size-3.5 text-[#ddff35]" />
@@ -38,18 +38,18 @@ const stickers = [
 
       <div class="relative z-10 max-w-4xl mx-auto space-y-8 font-body">
         
-        <!-- Headline: Clip-Up Reveal -->
-        <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[33px] sm:text-[46px] text-white leading-[1.12] tracking-[-0.025em]">
+        <!-- Headline: Fade-Up Reveal -->
+        <h2 data-motion="fade-up" data-motion-delay="200" class="font-heading font-bold text-[33px] sm:text-[46px] text-white leading-[1.12] tracking-[-0.025em]">
           Ready to build stronger digital growth?
         </h2>
 
         <!-- Description: Fade-Up -->
-        <p data-motion="fade-up" data-motion-delay="200" class="text-[16px] sm:text-[17px] leading-[1.65] text-slate-200 font-body max-w-2xl mx-auto font-normal">
+        <p data-motion="fade-up" data-motion-delay="280" class="text-[16px] sm:text-[17px] leading-[1.65] text-slate-200 font-body max-w-2xl mx-auto font-normal">
           Speak directly with our team to review your paid campaigns, website conversion architecture and growth opportunities.
         </p>
 
         <!-- Buttons: Staggered Pop-In -->
-        <div data-motion="pop-in" data-motion-delay="300" class="flex flex-wrap items-center justify-center gap-5 pt-4">
+        <div data-motion="pop-in" data-motion-delay="360" class="flex flex-wrap items-center justify-center gap-5 pt-4">
           <a
             href={`mailto:${site.contact.email}`}
             class="group inline-flex items-center justify-center min-h-[48px] gap-3 rounded-full bg-[#ddff35] px-9 py-4 font-body font-semibold text-base text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"

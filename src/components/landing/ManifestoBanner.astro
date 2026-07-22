@@ -13,7 +13,7 @@ const stickers = [
 ];
 ---
 
-<section class="py-16 lg:py-24 bg-[#9a83f5] text-white border-b border-[#061d33]/10 overflow-hidden relative">
+<section class="py-16 lg:py-24 bg-[#9a83f5] text-white border-b border-[#061d33]/10 overflow-hidden relative" data-motion="scale-in" data-motion-delay="0">
   <!-- Subtle Background Grid & Orbs -->
   <AnimatedGrid opacity={0.1} />
   <FloatingOrb color="purple" size="xl" class="-top-30 -left-30" duration="18s" />
@@ -26,8 +26,13 @@ const stickers = [
 
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8 text-center relative z-10">
     
-    <!-- Decorative Sticker Chips Row: Scale-In -->
-    <div data-motion="scale-in" data-motion-delay="0" class="flex flex-wrap items-center justify-center gap-3 mb-8">
+    <!-- Main Manifesto Headline: Fades Upward First -->
+    <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[27px] sm:text-[36px] lg:text-[48px] leading-[1.15] text-white max-w-5xl mx-auto tracking-[-0.025em]">
+      Digital growth powered by strategy, creative and technology that delivers <span class="text-[#ddff35] underline decoration-white decoration-4 underline-offset-8 transition-colors hover:text-white">real business impact</span>.
+    </h2>
+
+    <!-- Decorative Sticker Chips Row: Pop-In Afterward -->
+    <div data-motion="pop-in" data-motion-delay="200" class="flex flex-wrap items-center justify-center gap-3 mt-8 mb-8">
       {stickers.map((sticker, idx) => (
         <span class="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-white backdrop-blur-md shadow-sm animate-float-gentle" style={`animation-delay: ${idx * 0.6}s;`}>
           <Sparkles class="size-3 text-[#ddff35]" />
@@ -36,13 +41,8 @@ const stickers = [
       ))}
     </div>
 
-    <!-- Main Manifesto Headline: Clip-Up -->
-    <h2 data-motion="clip-up" data-motion-delay="120" class="font-heading font-bold text-[27px] sm:text-[36px] lg:text-[48px] leading-[1.15] text-white max-w-5xl mx-auto tracking-[-0.025em]">
-      Digital growth powered by strategy, creative and technology that delivers <span class="text-[#ddff35] underline decoration-white decoration-4 underline-offset-8 transition-colors hover:text-white">real business impact</span>.
-    </h2>
-
     <!-- Action Button: Pop-In -->
-    <div data-motion="pop-in" data-motion-delay="240" class="mt-10">
+    <div data-motion="pop-in" data-motion-delay="300" class="mt-8">
       <a
         href={`${site.basePath}/#contact`}
         class="group inline-flex items-center justify-center min-h-[48px] gap-3 rounded-full bg-[#061d33] px-9 py-4 font-body font-semibold text-base sm:text-lg text-white shadow-2xl hover:bg-[#ff762b] hover:shadow-2xl hover:-translate-y-1 transition-all"
