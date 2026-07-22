@@ -1,16 +1,37 @@
 ---
-// MotionController.astro — Reusable Hardware-Accelerated Intersection Observer Motion Architecture
+// MotionController.astro — Idempotent Motion Lifecycle & View Transition Controller
 ---
 
 <script>
-  function initMotionArchitecture() {
-    // 1. Mark motion as initialized so CSS pre-animation hidden states take effect safely
+  let activeObservers: IntersectionObserver[] = [];
+  let headerScrollBound = false;
+
+  function cleanupMotionSystem() {
+    activeObservers.forEach((obs) => obs.disconnect());
+    activeObservers = [];
+  }
+
+  function initMotionSystem() {
+    cleanupMotionSystem();
     document.documentElement.classList.add('motion-initialized');
 
-    const motionElements = document.querySelectorAll<HTMLElement>('[data-motion], .reveal-on-scroll');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Safety Fallback: Guarantee reveal after 1.2s so no element is ever trapped invisible
+    // 1. Assign automatic data-motion-delay to data-motion-group children BEFORE observing
+    const groups = document.querySelectorAll<HTMLElement>('[data-motion-group]');
+    groups.forEach((group) => {
+      const staggerMs = parseInt(group.dataset.motionStagger || '80', 10);
+      const children = group.querySelectorAll<HTMLElement>('[data-motion], .reveal-on-scroll');
+      children.forEach((child, index) => {
+        if (!child.dataset.motionDelay) {
+          child.dataset.motionDelay = String(index * staggerMs);
+        }
+      });
+    });
+
+    const motionElements = document.querySelectorAll<HTMLElement>('[data-motion], .reveal-on-scroll');
+
+    // Safety Fallback: Guarantee reveal after 1.2s so content is never stuck hidden
     setTimeout(() => {
       motionElements.forEach((el) => {
         el.classList.add('is-motion-revealed', 'is-revealed');
@@ -21,53 +42,37 @@
       motionElements.forEach((el) => {
         el.classList.add('is-motion-revealed', 'is-revealed');
       });
-      return;
-    }
-
-    if ('IntersectionObserver' in window) {
-      // Single observer for all motion elements
+    } else if ('IntersectionObserver' in window) {
+      // Main Motion Observer
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               const el = entry.target as HTMLElement;
-              
-              // Handle group stagger if present
               const delayAttr = el.dataset.motionDelay || el.dataset.revealDelay || '0';
               const durationAttr = el.dataset.motionDuration || '700';
 
               el.style.setProperty('--motion-del', `${delayAttr}ms`);
               el.style.setProperty('--motion-dur', `${durationAttr}ms`);
 
-              if (parseInt(delayAttr, 10) > 0) {
+              const delayMs = parseInt(delayAttr, 10);
+              if (delayMs > 0) {
                 setTimeout(() => {
                   el.classList.add('is-motion-revealed', 'is-revealed');
-                }, parseInt(delayAttr, 10));
+                }, delayMs);
               } else {
                 el.classList.add('is-motion-revealed', 'is-revealed');
               }
 
-              // Disconnect observer after animation completes
               observer.unobserve(el);
             }
           });
         },
-        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
       );
 
       motionElements.forEach((el) => observer.observe(el));
-
-      // Handle grouped stagger elements automatically
-      const groups = document.querySelectorAll<HTMLElement>('[data-motion-group]');
-      groups.forEach((group) => {
-        const staggerMs = parseInt(group.dataset.motionStagger || '80', 10);
-        const children = group.querySelectorAll<HTMLElement>('[data-motion], .reveal-on-scroll');
-        children.forEach((child, index) => {
-          if (!child.dataset.motionDelay) {
-            child.dataset.motionDelay = String(index * staggerMs);
-          }
-        });
-      });
+      activeObservers.push(observer);
 
       // Counter Observer
       const counterElements = document.querySelectorAll<HTMLElement>('[data-counter-target]');
@@ -95,7 +100,6 @@
             function updateCounter(currentTime: number) {
               const elapsed = currentTime - startTime;
               const progress = Math.min(elapsed / duration, 1);
-              // cubic-bezier(0.16, 1, 0.3, 1) easeOutQuint equivalent
               const eased = 1 - Math.pow(1 - progress, 4);
               const currentVal = targetNum * eased;
 
@@ -103,7 +107,6 @@
                 el.textContent = `${prefix}${formatValue(currentVal)}${suffix}`;
                 requestAnimationFrame(updateCounter);
               } else {
-                // Guaranteed final exact value string
                 el.textContent = exactText;
               }
             }
@@ -116,18 +119,29 @@
       );
 
       counterElements.forEach((el) => counterObserver.observe(el));
+      activeObservers.push(counterObserver);
+    } else {
+      motionElements.forEach((el) => {
+        el.classList.add('is-motion-revealed', 'is-revealed');
+      });
+    }
 
-      // Header Scroll Shadow Controller
+    // 2. Header Scroll Controller (Idempotent)
+    if (!headerScrollBound) {
+      headerScrollBound = true;
       const header = document.getElementById('main-header');
       if (header) {
         let ticked = false;
         window.addEventListener('scroll', () => {
           if (!ticked) {
             requestAnimationFrame(() => {
-              if (window.scrollY > 20) {
-                header.classList.add('shadow-xl', 'bg-[#061d33]/95', 'backdrop-blur-md');
-              } else {
-                header.classList.remove('shadow-xl', 'bg-[#061d33]/95', 'backdrop-blur-md');
+              const currentHeader = document.getElementById('main-header');
+              if (currentHeader) {
+                if (window.scrollY > 20) {
+                  currentHeader.classList.add('shadow-xl', 'bg-[#061d33]/95', 'backdrop-blur-md');
+                } else {
+                  currentHeader.classList.remove('shadow-xl', 'bg-[#061d33]/95', 'backdrop-blur-md');
+                }
               }
               ticked = false;
             });
@@ -135,18 +149,151 @@
           }
         }, { passive: true });
       }
+    }
 
-    } else {
-      // Direct fallback for environments without IntersectionObserver
-      motionElements.forEach((el) => {
-        el.classList.add('is-motion-revealed', 'is-revealed');
+    // 3. Mobile Navigation Toggle (Idempotent)
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const drawer = document.getElementById('mobile-menu-drawer');
+    const mobileLinks = document.querySelectorAll<HTMLElement>('.mobile-link');
+
+    if (toggleBtn && !toggleBtn.dataset.bound) {
+      toggleBtn.dataset.bound = 'true';
+      toggleBtn.addEventListener('click', () => {
+        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+        toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
+
+        if (!isExpanded) {
+          drawer?.classList.remove('grid-rows-[0fr]', 'opacity-0');
+          drawer?.classList.add('grid-rows-[1fr]', 'opacity-100');
+          mobileLinks.forEach((link) => link.classList.remove('translate-y-2', 'opacity-0'));
+        } else {
+          drawer?.classList.remove('grid-rows-[1fr]', 'opacity-100');
+          drawer?.classList.add('grid-rows-[0fr]', 'opacity-0');
+          mobileLinks.forEach((link) => link.classList.add('translate-y-2', 'opacity-0'));
+        }
+      });
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          toggleBtn?.setAttribute('aria-expanded', 'false');
+          drawer?.classList.remove('grid-rows-[1fr]', 'opacity-100');
+          drawer?.classList.add('grid-rows-[0fr]', 'opacity-0');
+          mobileLinks.forEach((l) => l.classList.add('translate-y-2', 'opacity-0'));
+        });
       });
     }
+
+    // 4. Working Method Accordion Reinitialization (Idempotent)
+    const processAccordionItems = document.querySelectorAll<HTMLElement>('.accordion-item');
+    const progressLine = document.getElementById('process-progress-line');
+
+    processAccordionItems.forEach((item, index) => {
+      const toggle = item.querySelector<HTMLElement>('.accordion-toggle');
+      if (toggle && !toggle.dataset.bound) {
+        toggle.dataset.bound = 'true';
+        const wrapper = item.querySelector<HTMLElement>('.accordion-wrapper');
+        const icon = toggle.querySelector<HTMLElement>('div:last-child');
+
+        toggle.addEventListener('click', () => {
+          const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+
+          processAccordionItems.forEach((otherItem) => {
+            const otherToggle = otherItem.querySelector<HTMLElement>('.accordion-toggle');
+            const otherWrapper = otherItem.querySelector<HTMLElement>('.accordion-wrapper');
+            const otherIcon = otherToggle?.querySelector<HTMLElement>('div:last-child');
+
+            otherToggle?.setAttribute('aria-expanded', 'false');
+            otherWrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-8', 'pt-2');
+            otherWrapper?.classList.add('grid-rows-[0fr]', 'opacity-0', 'pb-0', 'pt-0');
+
+            otherItem.classList.remove('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
+            otherItem.classList.add('border-slate-300', 'bg-white', 'text-[#061d33]');
+
+            otherIcon?.classList.remove('bg-white/20', 'text-white', 'rotate-180');
+            otherIcon?.classList.add('bg-slate-100', 'text-[#061d33]');
+          });
+
+          if (!isOpen) {
+            toggle.setAttribute('aria-expanded', 'true');
+            wrapper?.classList.remove('grid-rows-[0fr]', 'opacity-0', 'pb-0', 'pt-0');
+            wrapper?.classList.add('grid-rows-[1fr]', 'opacity-100', 'pb-8', 'pt-2');
+
+            item.classList.remove('border-slate-300', 'bg-white', 'text-[#061d33]');
+            item.classList.add('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
+
+            icon?.classList.remove('bg-slate-100', 'text-[#061d33]');
+            icon?.classList.add('bg-white/20', 'text-white', 'rotate-180');
+
+            if (progressLine) {
+              progressLine.style.width = `${((index + 1) / 4) * 100}%`;
+            }
+          }
+        });
+      }
+    });
+
+    // 5. FAQ Accordion Reinitialization (Idempotent)
+    const faqList = document.getElementById('faq-list');
+    const faqItems = faqList?.querySelectorAll<HTMLElement>('.faq-item') ?? [];
+
+    faqItems.forEach((item) => {
+      const toggleBtn = item.querySelector<HTMLButtonElement>('[data-faq-toggle]');
+      if (toggleBtn && !toggleBtn.dataset.bound) {
+        toggleBtn.dataset.bound = 'true';
+        const wrapper = item.querySelector<HTMLElement>('[data-faq-answer-wrapper]');
+        const icon = item.querySelector<HTMLElement>('[data-faq-icon]');
+        const plusIcon = item.querySelector<HTMLElement>('[data-icon-plus]');
+        const minusIcon = item.querySelector<HTMLElement>('[data-icon-minus]');
+
+        toggleBtn.addEventListener('click', () => {
+          const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+
+          faqItems.forEach((other) => {
+            const otherBtn = other.querySelector<HTMLButtonElement>('[data-faq-toggle]');
+            const otherWrapper = other.querySelector<HTMLElement>('[data-faq-answer-wrapper]');
+            const otherIcon = other.querySelector<HTMLElement>('[data-faq-icon]');
+            const otherPlus = other.querySelector<HTMLElement>('[data-icon-plus]');
+            const otherMinus = other.querySelector<HTMLElement>('[data-icon-minus]');
+
+            otherBtn?.setAttribute('aria-expanded', 'false');
+            otherWrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-6');
+            otherWrapper?.classList.add('grid-rows-[0fr]', 'opacity-0', 'pb-0');
+
+            other.classList.remove('border-[#ff762b]', 'shadow-md');
+            other.classList.add('border-slate-200');
+
+            otherIcon?.classList.remove('bg-[#ff762b]', 'text-white', 'rotate-180');
+            otherIcon?.classList.add('bg-[#f7f4ed]', 'text-[#061d33]');
+
+            otherPlus?.classList.remove('hidden');
+            otherMinus?.classList.add('hidden');
+          });
+
+          if (!isOpen) {
+            toggleBtn.setAttribute('aria-expanded', 'true');
+            wrapper?.classList.remove('grid-rows-[0fr]', 'opacity-0', 'pb-0');
+            wrapper?.classList.add('grid-rows-[1fr]', 'opacity-100', 'pb-6');
+
+            item.classList.remove('border-slate-200');
+            item.classList.add('border-[#ff762b]', 'shadow-md');
+
+            icon?.classList.remove('bg-[#f7f4ed]', 'text-[#061d33]');
+            icon?.classList.add('bg-[#ff762b]', 'text-white', 'rotate-180');
+
+            plusIcon?.classList.add('hidden');
+            minusIcon?.classList.remove('hidden');
+          }
+        });
+      }
+    });
   }
 
+  // Bind to both DOMContentLoaded and Astro ClientRouter page-load event
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMotionArchitecture);
+    document.addEventListener('DOMContentLoaded', initMotionSystem);
   } else {
-    initMotionArchitecture();
+    initMotionSystem();
   }
+
+  document.addEventListener('astro:page-load', initMotionSystem);
 </script>

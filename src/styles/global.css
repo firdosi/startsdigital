@@ -247,6 +247,17 @@ html.motion-initialized .reveal-on-scroll.is-revealed {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  .animate-ping,
   .animate-marquee-left,
   .animate-marquee-right,
   .animate-float,

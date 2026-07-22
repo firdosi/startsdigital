@@ -83,37 +83,3 @@ const links = [
     </div>
   </div>
 </header>
-
-<script>
-  const toggleBtn = document.getElementById('mobile-menu-toggle');
-  const drawer = document.getElementById('mobile-menu-drawer');
-  const mobileLinks = document.querySelectorAll<HTMLElement>('.mobile-link');
-
-  toggleBtn?.addEventListener('click', () => {
-    const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-    toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
-    
-    if (!isExpanded) {
-      drawer?.classList.remove('grid-rows-[0fr]', 'opacity-0');
-      drawer?.classList.add('grid-rows-[1fr]', 'opacity-100');
-      mobileLinks.forEach((link) => {
-        link.classList.remove('translate-y-2', 'opacity-0');
-      });
-    } else {
-      drawer?.classList.remove('grid-rows-[1fr]', 'opacity-100');
-      drawer?.classList.add('grid-rows-[0fr]', 'opacity-0');
-      mobileLinks.forEach((link) => {
-        link.classList.add('translate-y-2', 'opacity-0');
-      });
-    }
-  });
-
-  mobileLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      toggleBtn?.setAttribute('aria-expanded', 'false');
-      drawer?.classList.remove('grid-rows-[1fr]', 'opacity-100');
-      drawer?.classList.add('grid-rows-[0fr]', 'opacity-0');
-      mobileLinks.forEach((l) => l.classList.add('translate-y-2', 'opacity-0'));
-    });
-  });
-</script>
