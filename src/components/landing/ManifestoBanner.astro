@@ -17,23 +17,23 @@ const stickers = [
 
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8 text-center relative z-10">
     
-    <!-- Decorative Sticker Chips Row -->
+    <!-- Decorative Sticker Chips Row (JetBrains Mono 500) -->
     <div class="reveal-on-scroll flex flex-wrap items-center justify-center gap-3 mb-8">
       {stickers.map((sticker) => (
-        <span class="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-widest text-white backdrop-blur-md shadow-sm">
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-white backdrop-blur-md shadow-sm">
           <Sparkles class="size-3 text-[#ddff35]" />
           <span>{sticker}</span>
         </span>
       ))}
     </div>
 
-    <!-- Main Manifesto Headline: Manrope 700, 27-34px mobile, 36-48px desktop, leading 1.15 -->
-    <h2 class="reveal-on-scroll font-body font-bold text-[27px] sm:text-[36px] lg:text-[48px] leading-[1.15] text-white max-w-5xl mx-auto" data-reveal-delay="100">
+    <!-- Main Manifesto Headline: Sora 700, 27-34px mobile, 36-48px desktop, leading 1.15 -->
+    <h2 class="reveal-on-scroll font-heading font-bold text-[27px] sm:text-[36px] lg:text-[48px] leading-[1.15] text-white max-w-5xl mx-auto tracking-[-0.025em]" data-reveal-delay="100">
       Digital growth powered by strategy, creative and technology that delivers <span class="text-[#ddff35] underline decoration-white decoration-4 underline-offset-8">real business impact</span>.
     </h2>
 
-    <!-- Action Button (Manrope 600) -->
-    <div class="reveal-on-scroll mt-10" data-reveal-delay="200 font-body">
+    <!-- Action Button (Inter 600) -->
+    <div class="reveal-on-scroll mt-10" data-reveal-delay="200">
       <a
         href={`${site.basePath}/#contact`}
         class="inline-flex items-center gap-3 rounded-full bg-[#061d33] px-9 py-4 font-body font-semibold text-base sm:text-lg text-white shadow-2xl hover:bg-[#ff762b] hover:shadow-2xl hover:-translate-y-1 transition-all"

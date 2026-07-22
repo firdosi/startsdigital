@@ -43,7 +43,7 @@ const columns = [
       <!-- Left Column: Agency Overview & Direct Contact -->
       <div class="md:col-span-5 space-y-6">
         <Logo />
-        <p class="max-w-[380px] text-[15px] sm:text-base leading-[1.6] text-slate-300 font-body font-normal">
+        <p class="max-w-[380px] text-[15px] sm:text-base leading-[1.65] text-slate-300 font-body font-normal">
           Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
         </p>
         
@@ -68,10 +68,12 @@ const columns = [
         {
           columns.map((col) => (
             <div>
-              <h4 class="mb-4 font-body text-base font-bold text-white">
+              <!-- Column title: Sora 600, 16-17px -->
+              <h4 class="mb-4 font-heading font-semibold text-[16px] sm:text-[17px] text-white">
                 {col.heading}
               </h4>
-              <ul class="space-y-3 text-[15px] font-body font-normal">
+              <!-- Links: Inter 400, 15-16px, leading 1.65 -->
+              <ul class="space-y-3 text-[15px] sm:text-base font-body font-normal">
                 {col.links.map((link) => (
                   <li>
                     <a href={link.href} class="text-slate-300 hover:text-[#ff762b] transition-colors">

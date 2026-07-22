@@ -4,6 +4,11 @@ import fs from 'fs';
 import path from 'path';
 
 const distDir = path.resolve('dist');
+const outputDir = path.resolve('typography-tech-v2');
+
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir, { recursive: true });
+}
 
 function serveStatic(req, res) {
   let urlPath = req.url.replace(/^\/startsdigital/, '');
@@ -47,14 +52,14 @@ async function run() {
   // Desktop 1440px
   const desktopPage = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   await desktopPage.goto('http://localhost:3344/', { waitUntil: 'networkidle' });
-  const desktopPath = path.resolve('desktop-typography-review.png');
+  const desktopPath = path.join(outputDir, 'desktop.png');
   await desktopPage.screenshot({ path: desktopPath, fullPage: true });
   console.log('Saved:', desktopPath);
 
   // Mobile 375px
   const mobilePage = await browser.newPage({ viewport: { width: 375, height: 812 } });
   await mobilePage.goto('http://localhost:3344/', { waitUntil: 'networkidle' });
-  const mobilePath = path.resolve('mobile-typography-review.png');
+  const mobilePath = path.join(outputDir, 'mobile.png');
   await mobilePage.screenshot({ path: mobilePath, fullPage: true });
   console.log('Saved:', mobilePath);
 

@@ -19,7 +19,7 @@ const stickers = [
       <!-- Decorative Sticker Chips Row -->
       <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
         {stickers.map((sticker) => (
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-widest text-[#ddff35] backdrop-blur-md">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
             <Sparkles class="size-3.5 text-[#ddff35]" />
             <span>{sticker}</span>
           </span>
@@ -28,21 +28,21 @@ const stickers = [
 
       <div class="relative z-10 max-w-4xl mx-auto space-y-8 font-body">
         
-        <!-- Headline: Manrope 700, 30-36px mobile, 38-52px desktop, natural sentence case, leading 1.15 -->
-        <h2 class="font-body font-bold text-[30px] sm:text-[40px] lg:text-[50px] text-white leading-[1.15] tracking-normal">
+        <!-- Headline: Sora 700, 30-35px mobile, 42-50px desktop, leading 1.1 -->
+        <h2 class="font-heading font-bold text-[30px] sm:text-[40px] lg:text-[48px] text-white leading-[1.1] tracking-[-0.025em]">
           Ready to build stronger digital growth?
         </h2>
 
-        <!-- Description (Manrope 400 leading 1.6) -->
-        <p class="text-base sm:text-lg leading-[1.6] text-slate-200 font-body max-w-2xl mx-auto font-normal">
+        <!-- Description: Inter 400, leading 1.65 -->
+        <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body max-w-2xl mx-auto font-normal">
           Speak directly with our team to review your paid campaigns, website conversion architecture and growth opportunities.
         </p>
 
-        <!-- Buttons (Manrope 600) -->
+        <!-- Buttons: Inter 600 -->
         <div class="flex flex-wrap items-center justify-center gap-5 pt-4">
           <a
             href={`mailto:${site.contact.email}`}
-            class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-9 py-4 font-body font-semibold text-base sm:text-lg text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
+            class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-9 py-4 font-body font-semibold text-[15px] sm:text-[16px] text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
           >
             <span>Discuss your project</span>
             <ArrowRight class="size-5 text-[#061d33] group-hover:translate-x-1 transition-transform" />
@@ -52,7 +52,7 @@ const stickers = [
             href={site.contact.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 rounded-full bg-[#39c98a] px-9 py-4 font-body font-semibold text-base sm:text-lg text-white shadow-xl hover:bg-[#32b57c] hover:shadow-2xl hover:-translate-y-1 transition-all"
+            class="inline-flex items-center gap-3 rounded-full bg-[#39c98a] px-9 py-4 font-body font-semibold text-[15px] sm:text-[16px] text-white shadow-xl hover:bg-[#32b57c] hover:shadow-2xl hover:-translate-y-1 transition-all"
           >
             <MessageSquare class="size-5 text-white" />
             <span>Chat on WhatsApp</span>
@@ -60,7 +60,7 @@ const stickers = [
         </div>
 
         <!-- Contact Quick Details -->
-        <div class="pt-6 text-xs sm:text-sm font-mono text-slate-300">
+        <div class="pt-6 text-xs sm:text-sm font-mono font-medium text-slate-300">
           Email: <a href={`mailto:${site.contact.email}`} class="text-white underline hover:text-[#ddff35]">{site.contact.email}</a>
           <span class="mx-3 text-slate-500">|</span>
           WhatsApp: <a href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer" class="text-white underline hover:text-[#39c98a]">{site.contact.phone}</a>

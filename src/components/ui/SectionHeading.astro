@@ -22,21 +22,21 @@ const alignmentClasses = {
   center: 'text-center mx-auto',
 };
 
-const titleColor = theme === 'light' ? 'text-brand-black' : 'text-brand-white';
-const descColor = theme === 'light' ? 'text-brand-text' : 'text-brand-muted-dark';
+const titleColor = theme === 'light' ? 'text-[#061d33]' : 'text-white';
+const descColor = theme === 'light' ? 'text-slate-700' : 'text-slate-300';
 ---
 
-<div class={`max-w-3xl ${alignmentClasses[alignment]} ${className}`}>
+<div class={`max-w-3xl space-y-3 ${alignmentClasses[alignment]} ${className}`}>
   {eyebrow && (
-    <span class="inline-block text-xs font-bold tracking-[0.15em] text-brand-teal uppercase mb-3 font-heading">
+    <span class="block text-xs font-medium tracking-[0.06em] text-[#ff762b] uppercase font-mono">
       {eyebrow}
     </span>
   )}
-  <h2 class={`font-heading text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${titleColor} leading-tight`}>
+  <h2 class={`font-heading text-[28px] sm:text-[36px] lg:text-[44px] font-bold tracking-[-0.025em] ${titleColor} leading-[1.12]`}>
     {title}
   </h2>
   {description && (
-    <p class={`mt-4 text-base sm:text-lg ${descColor} font-light leading-relaxed`}>
+    <p class={`text-base sm:text-lg ${descColor} font-body font-normal leading-[1.65]`}>
       {description}
     </p>
   )}

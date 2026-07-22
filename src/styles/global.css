@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 /*
- * Starts Digital — Boost-Inspired Editorial Growth Agency Design System
- * 70% Cream (#f7f4ed), 20% Deep Navy (#061d33), 10% Vibrant Accents
+ * Starts Digital — Boost-Inspired Tech-Forward Growth Agency Design System
+ * Heading: Sora, Body: Inter, Mono: JetBrains Mono
  */
 @theme {
   --color-cream: #f7f4ed;
@@ -25,8 +25,10 @@
   --color-green: #39c98a;
   --color-coral: #ff514b;
 
-  --font-display: "Manrope", system-ui, sans-serif;
-  --font-body: "Manrope", system-ui, sans-serif;
+  --font-heading: "Sora", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Sora", system-ui, sans-serif;
 }
 
 @keyframes marquee-left {
@@ -96,15 +98,16 @@
     color: var(--color-navy);
     font-family: var(--font-body);
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-body);
+    font-family: var(--font-heading);
     text-transform: none;
-    letter-spacing: normal;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
   }
 
   p {

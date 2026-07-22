@@ -14,13 +14,13 @@ const links = [
 
 <header
   id="main-header"
-  class="relative z-50 bg-[#061d33] text-white border-b border-white/10 transition-all duration-200"
+  class="relative z-50 bg-[#061d33] text-white border-b border-white/10 transition-all duration-200 font-body"
 >
   <div class="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-6 sm:px-8 py-5">
     <Logo />
     
-    <!-- Desktop Navigation Links -->
-    <nav class="hidden gap-8 text-[15px] font-medium md:flex text-slate-200">
+    <!-- Desktop Navigation Links: Inter 500 15px -->
+    <nav class="hidden gap-8 text-[15px] font-medium md:flex text-slate-200 font-body">
       {links.map((link) => (
         <a href={link.href} class="hover:text-[#ff762b] transition-colors">
           {link.label}
@@ -28,13 +28,13 @@ const links = [
       ))}
     </nav>
 
-    <!-- Right Actions -->
-    <div class="flex items-center gap-4">
+    <!-- Right Actions: Inter 600 button -->
+    <div class="flex items-center gap-4 font-body">
       <a
         href={`${site.basePath}/contact/`}
-        class="hidden sm:inline-flex items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-bold text-[#061d33] shadow-md hover:bg-[#ddff35] hover:text-[#061d33] transition-all transform hover:-translate-y-0.5"
+        class="hidden sm:inline-flex items-center justify-center rounded-full bg-white px-6 py-2.5 text-[15px] font-semibold text-[#061d33] shadow-md hover:bg-[#ddff35] hover:text-[#061d33] transition-all transform hover:-translate-y-0.5"
       >
-        Discuss Your Project
+        Discuss your project
       </a>
 
       <!-- Mobile Menu Toggle Button -->
@@ -55,7 +55,7 @@ const links = [
   <!-- Mobile Dropdown Navigation -->
   <div
     id="mobile-menu-drawer"
-    class="hidden border-t border-white/10 bg-[#061d33] px-8 py-6 md:hidden"
+    class="hidden border-t border-white/10 bg-[#061d33] px-8 py-6 md:hidden font-body"
   >
     <div class="flex flex-col gap-4 text-base font-semibold text-white">
       {links.map((link) => (
@@ -65,9 +65,9 @@ const links = [
       ))}
       <a
         href={`${site.basePath}/contact/`}
-        class="mobile-link mt-2 rounded-full bg-[#ff762b] px-6 py-3 text-center text-sm font-bold text-white shadow-md hover:bg-[#e56017] transition-all"
+        class="mobile-link mt-2 rounded-full bg-[#ff762b] px-6 py-3 text-center text-[15px] font-semibold text-white shadow-md hover:bg-[#e56017] transition-all"
       >
-        Discuss Your Project
+        Discuss your project
       </a>
     </div>
   </div>

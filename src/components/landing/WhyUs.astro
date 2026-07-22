@@ -49,15 +49,15 @@ const trustPillars = [
     <!-- Top Header Row: Heading Left, Paragraph Right -->
     <div class="grid gap-8 lg:grid-cols-12 items-end mb-16">
       <div class="lg:col-span-7 space-y-3">
-        <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
+        <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
           EDITORIAL CREDIBILITY
         </span>
-        <h2 class="font-body font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15]">
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.12] tracking-[-0.025em]">
           Why brands trust Starts Digital
         </h2>
       </div>
       <div class="lg:col-span-5">
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal">
+        <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
           Most marketing failures happen in the gaps between the ad creator, the developer, and the business operator. Starts Digital closes those gaps by taking single-point responsibility for campaign strategy, technical web infrastructure, and conversion optimization.
         </p>
       </div>
@@ -76,10 +76,10 @@ const trustPillars = [
           loading="lazy"
           class="w-full h-[320px] sm:h-[420px] rounded-2xl object-cover"
         />
-        <!-- External HTML Caption (16px minimum, Manrope 600) -->
+        <!-- External HTML Caption: Inter 600, 16px minimum -->
         <div class="p-4 bg-[#061d33] text-white rounded-xl mt-3 flex items-center justify-between font-body">
           <span class="text-base font-semibold text-[#ddff35]">RK Reno Solutions website and local SEO project</span>
-          <span class="text-sm font-mono text-slate-300">E-Commerce & Local Services</span>
+          <span class="text-sm font-mono font-medium text-slate-300">E-Commerce & Local Services</span>
         </div>
       </div>
 
@@ -89,7 +89,7 @@ const trustPillars = [
           <TrendingUp class="size-5" />
         </div>
         <div>
-          <div class="font-bold text-xl text-[#061d33]">PKR 30M+</div>
+          <div class="font-heading font-bold text-xl text-[#061d33]">PKR 30M+</div>
           <div class="text-[15px] font-semibold text-slate-700">Revenue Supported</div>
         </div>
       </div>
@@ -100,7 +100,7 @@ const trustPillars = [
           <ShoppingBag class="size-5" />
         </div>
         <div>
-          <div class="font-bold text-xl text-[#061d33]">29,000+</div>
+          <div class="font-heading font-bold text-xl text-[#061d33]">29,000+</div>
           <div class="text-[15px] font-semibold text-slate-700">Product Sales</div>
         </div>
       </div>
@@ -111,7 +111,7 @@ const trustPillars = [
           <Award class="size-5" />
         </div>
         <div>
-          <div class="font-bold text-xl text-[#ddff35]">PKR 4.2M+</div>
+          <div class="font-heading font-bold text-xl text-[#ddff35]">PKR 4.2M+</div>
           <div class="text-[15px] font-semibold text-slate-200">Sales Supported</div>
         </div>
       </div>
@@ -122,7 +122,7 @@ const trustPillars = [
           <HeartHandshake class="size-5" />
         </div>
         <div>
-          <div class="font-bold text-xl text-[#061d33]">More Than 150</div>
+          <div class="font-heading font-bold text-xl text-[#061d33]">More Than 150</div>
           <div class="text-[15px] font-semibold text-slate-700">Animals Sold</div>
         </div>
       </div>
@@ -139,7 +139,7 @@ const trustPillars = [
           >
             <div>
               <div class="flex items-center justify-between mb-6">
-                <span class="font-mono text-xl font-bold text-[#061d33]/40 group-hover:text-[#ff762b] transition-colors">
+                <span class="font-mono text-xl font-medium text-[#061d33]/40 group-hover:text-[#ff762b] transition-colors">
                   {point.num}
                 </span>
                 <div class:list={['size-11 rounded-2xl border-2 flex items-center justify-center font-bold', point.accentColor]}>
@@ -147,13 +147,13 @@ const trustPillars = [
                 </div>
               </div>
 
-              <!-- Card Title (Manrope 700) -->
-              <h3 class="font-body font-bold text-lg sm:text-xl text-[#061d33] mb-3 leading-[1.25]">
+              <!-- Card Title: Sora 600 -->
+              <h3 class="font-heading font-semibold text-lg sm:text-xl text-[#061d33] mb-3 leading-[1.25]">
                 {point.title}
               </h3>
               
-              <!-- Body (Manrope 400 leading 1.6) -->
-              <p class="text-base text-slate-700 font-body leading-[1.6] font-normal">
+              <!-- Body: Inter 400, leading 1.65 -->
+              <p class="text-base text-slate-700 font-body leading-[1.65] font-normal">
                 {point.body}
               </p>
             </div>

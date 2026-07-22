@@ -9,13 +9,16 @@ const unverifiedBrands = brands.filter((b) => !b.logoApproved || !b.logo);
 
 <section id="brands" class="py-20 bg-[#f7f4ed] text-[#061d33] overflow-hidden">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8 mb-12 text-center space-y-3">
-    <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
+    <!-- JetBrains Mono 500 eyebrow -->
+    <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
       TRUSTED ACROSS INDUSTRIES
     </span>
-    <h2 class="font-body font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15]">
+    <!-- Sora 700 section heading -->
+    <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.12] tracking-[-0.025em]">
       Clients, brands and business partners
     </h2>
-    <p class="text-base sm:text-lg text-slate-700 max-w-2xl mx-auto font-body leading-[1.6] font-normal">
+    <!-- Inter 400 body copy -->
+    <p class="text-base sm:text-lg text-slate-700 max-w-2xl mx-auto font-body leading-[1.65] font-normal">
       Proven execution delivered across growth-stage e-commerce, agriculture, regional services, and international consultation.
     </p>
   </div>
@@ -46,8 +49,8 @@ const unverifiedBrands = brands.filter((b) => !b.logoApproved || !b.logo);
       {
         [...unverifiedBrands, ...unverifiedBrands, ...unverifiedBrands].map((b) => (
           <div class="h-14 shrink-0 rounded-xl border border-slate-300 bg-white px-6 py-2.5 flex items-center justify-center shadow-xs hover:border-[#ff762b] transition-colors">
-            <!-- Brand name in Manrope 600 -->
-            <span class="font-body font-semibold text-base text-[#061d33] tracking-normal whitespace-nowrap">
+            <!-- JetBrains Mono 500 brand tag -->
+            <span class="font-mono font-medium text-sm text-[#061d33] tracking-[0.04em] whitespace-nowrap">
               {b.name}
             </span>
           </div>

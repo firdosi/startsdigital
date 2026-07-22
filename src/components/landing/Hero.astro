@@ -19,38 +19,38 @@ import {
   <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 text-center">
     
     <!-- Centred Editorial Layout -->
-    <div class="max-w-[800px] mx-auto space-y-8">
+    <div class="max-w-[720px] mx-auto space-y-8">
       
-      <!-- Decorative Eyebrow Pill -->
+      <!-- Decorative Eyebrow Pill (JetBrains Mono 500) -->
       <div class="reveal-on-scroll inline-flex items-center justify-center">
-        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-bold uppercase tracking-widest text-[#ddff35] backdrop-blur-md shadow-sm">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md shadow-sm">
           <Sparkles class="size-4 text-[#ddff35]" />
           <span>PERFORMANCE MARKETING & DIGITAL SYSTEMS</span>
         </span>
       </div>
 
-      <!-- Hero Headline: Natural sentence case in Manrope 700, 36-42px mobile, 56-68px desktop -->
-      <h1 class="reveal-on-scroll font-body font-bold text-[36px] sm:text-[54px] lg:text-[62px] leading-[1.08] tracking-normal text-white" data-reveal-delay="100">
+      <!-- Hero Headline: Sora 700, 38px mobile, 54-62px desktop, leading 1.06, tracking -0.035em -->
+      <h1 class="reveal-on-scroll font-heading font-bold text-[38px] sm:text-[54px] lg:text-[62px] leading-[1.06] tracking-[-0.035em] text-white" data-reveal-delay="100">
         Digital marketing built to scale <span class="text-[#ff762b]">real businesses.</span>
       </h1>
 
-      <!-- Supporting Copy: 16px mobile, 17-19px desktop, max-w 680px, leading 1.6 -->
-      <p class="reveal-on-scroll text-base sm:text-[18px] leading-[1.6] text-slate-200 font-body max-w-[680px] mx-auto font-normal" data-reveal-delay="200">
+      <!-- Supporting Copy: Inter 400, 16px mobile, 18px desktop, max-w 680px, leading 1.65 -->
+      <p class="reveal-on-scroll text-base sm:text-[18px] leading-[1.65] text-slate-200 font-body max-w-[680px] mx-auto font-normal" data-reveal-delay="200">
         Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
       </p>
 
-      <!-- Action Buttons: Manrope 600 -->
+      <!-- Action Buttons: Inter 600 -->
       <div class="reveal-on-scroll flex flex-wrap items-center justify-center gap-5 pt-4 font-body" data-reveal-delay="300">
         <a
           href={`${site.basePath}/#contact`}
-          class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-8 py-4 font-body font-semibold text-base sm:text-lg text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
+          class="group inline-flex items-center gap-3 rounded-full bg-[#ddff35] px-8 py-4 font-body font-semibold text-base text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
         >
           <span>Discuss your project</span>
           <ArrowRight class="size-5 text-[#061d33] group-hover:translate-x-1 transition-transform" />
         </a>
         <a
           href={`${site.basePath}/#work`}
-          class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-4 font-body font-semibold text-base sm:text-lg text-white hover:bg-white/20 hover:border-white/50 transition-all backdrop-blur-sm"
+          class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-4 font-body font-semibold text-base text-white hover:bg-white/20 hover:border-white/50 transition-all backdrop-blur-sm"
         >
           View our work
         </a>
@@ -62,66 +62,67 @@ import {
     <div class="reveal-on-scroll mt-16 lg:mt-20 pt-10 border-t border-white/15" data-reveal-delay="400">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
-        <!-- Metric Card 1: Orange Accent -->
+        <!-- Metric Card 1 -->
         <div class="rounded-2xl border-2 border-[#ff762b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff762b] transition-all font-body">
           <div class="flex items-center justify-between mb-3">
             <div class="size-10 rounded-xl bg-[#ff762b] text-white flex items-center justify-center font-bold">
               <TrendingUp class="size-5" />
             </div>
-            <span class="text-[11px] font-mono text-[#ff762b] font-bold uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
+            <span class="text-[11px] font-mono text-[#ff762b] font-medium uppercase tracking-[0.06em] bg-[#ff762b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-body font-bold text-3xl sm:text-4xl text-white tracking-normal">
+          <!-- Metric Value: Sora 700 -->
+          <div class="font-heading font-bold text-[30px] sm:text-[34px] lg:text-[40px] text-white tracking-[-0.025em]">
             PKR 30M+
           </div>
-          <p class="text-[15px] text-slate-300 font-body font-semibold mt-1">
+          <p class="text-[14px] text-slate-300 font-mono font-medium mt-1">
             Revenue Supported
           </p>
         </div>
 
-        <!-- Metric Card 2: Purple Accent -->
+        <!-- Metric Card 2 -->
         <div class="rounded-2xl border-2 border-[#9a83f5]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#9a83f5] transition-all font-body">
           <div class="flex items-center justify-between mb-3">
             <div class="size-10 rounded-xl bg-[#9a83f5] text-white flex items-center justify-center font-bold">
               <ShoppingBag class="size-5" />
             </div>
-            <span class="text-[11px] font-mono text-[#9a83f5] font-bold uppercase tracking-wider bg-[#9a83f5]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
+            <span class="text-[11px] font-mono text-[#9a83f5] font-medium uppercase tracking-[0.06em] bg-[#9a83f5]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-body font-bold text-3xl sm:text-4xl text-white tracking-normal">
+          <div class="font-heading font-bold text-[30px] sm:text-[34px] lg:text-[40px] text-white tracking-[-0.025em]">
             29,000+
           </div>
-          <p class="text-[15px] text-slate-300 font-body font-semibold mt-1">
+          <p class="text-[14px] text-slate-300 font-mono font-medium mt-1">
             Product Sales
           </p>
         </div>
 
-        <!-- Metric Card 3: Lime Accent -->
+        <!-- Metric Card 3 -->
         <div class="rounded-2xl border-2 border-[#ddff35]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ddff35] transition-all font-body">
           <div class="flex items-center justify-between mb-3">
             <div class="size-10 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center font-bold">
               <Award class="size-5" />
             </div>
-            <span class="text-[11px] font-mono text-[#ddff35] font-bold uppercase tracking-wider bg-[#ddff35]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
+            <span class="text-[11px] font-mono text-[#ddff35] font-medium uppercase tracking-[0.06em] bg-[#ddff35]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-body font-bold text-3xl sm:text-4xl text-white tracking-normal">
+          <div class="font-heading font-bold text-[30px] sm:text-[34px] lg:text-[40px] text-white tracking-[-0.025em]">
             PKR 4.2M+
           </div>
-          <p class="text-[15px] text-slate-300 font-body font-semibold mt-1">
+          <p class="text-[14px] text-slate-300 font-mono font-medium mt-1">
             Sales Supported
           </p>
         </div>
 
-        <!-- Metric Card 4: Coral Accent -->
+        <!-- Metric Card 4 -->
         <div class="rounded-2xl border-2 border-[#ff514b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff514b] transition-all font-body">
           <div class="flex items-center justify-between mb-3">
             <div class="size-10 rounded-xl bg-[#ff514b] text-white flex items-center justify-center font-bold">
               <HeartHandshake class="size-5" />
             </div>
-            <span class="text-[11px] font-mono text-[#ff514b] font-bold uppercase tracking-wider bg-[#ff514b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
+            <span class="text-[11px] font-mono text-[#ff514b] font-medium uppercase tracking-[0.06em] bg-[#ff514b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
           </div>
-          <div class="font-body font-bold text-3xl sm:text-4xl text-white tracking-normal">
+          <div class="font-heading font-bold text-[30px] sm:text-[34px] lg:text-[40px] text-white tracking-[-0.025em]">
             More Than 150
           </div>
-          <p class="text-[15px] text-slate-300 font-body font-semibold mt-1">
+          <p class="text-[14px] text-slate-300 font-mono font-medium mt-1">
             Animals Sold
           </p>
         </div>

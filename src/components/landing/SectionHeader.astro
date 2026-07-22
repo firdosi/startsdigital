@@ -10,17 +10,17 @@ const { eyebrow, title, sub, on = 'dark', class: className = 'max-w-[640px] mb-1
 const isDark = on === 'dark' || on === 'navy';
 ---
 
-<div class:list={['mx-auto text-center', className]}>
+<div class:list={['mx-auto text-center space-y-3', className]}>
   <span
     class:list={[
-      'text-xs font-bold font-mono tracking-widest uppercase',
-      isDark ? 'text-blue-400' : 'text-blue-600',
+      'text-xs font-medium font-mono tracking-[0.06em] uppercase block',
+      isDark ? 'text-[#ddff35]' : 'text-[#ff762b]',
     ]}>{eyebrow}</span
   >
   <h2
     class:list={[
-      'mt-2.5 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight',
-      isDark ? 'text-white' : 'text-slate-900',
+      'font-heading font-bold text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.12] tracking-[-0.025em]',
+      isDark ? 'text-white' : 'text-[#061d33]',
     ]}
   >
     {title}
@@ -29,8 +29,8 @@ const isDark = on === 'dark' || on === 'navy';
     sub && (
       <p
         class:list={[
-          'mt-3.5 text-base sm:text-lg font-body leading-relaxed',
-          isDark ? 'text-slate-300' : 'text-slate-600',
+          'text-base sm:text-lg font-body leading-[1.65] font-normal max-w-2xl mx-auto',
+          isDark ? 'text-slate-300' : 'text-slate-700',
         ]}
       >
         {sub}

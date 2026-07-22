@@ -66,13 +66,16 @@ const services = [
     
     <!-- Section Header -->
     <div class="max-w-3xl mb-16 text-center mx-auto space-y-3">
-      <span class="text-xs font-bold font-mono uppercase tracking-widest text-[#ff762b] block">
+      <!-- JetBrains Mono 500 eyebrow -->
+      <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
         OUR SERVICES
       </span>
-      <h2 class="font-body font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15]">
+      <!-- Sora 700 heading -->
+      <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.12] tracking-[-0.025em]">
         Services designed to drive real results
       </h2>
-      <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.6] font-normal max-w-2xl mx-auto">
+      <!-- Inter 400 subtitle -->
+      <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
         We replace fragmented workflows with unified growth capabilities spanning paid media, web engineering, SEO, and AI automation.
       </p>
     </div>
@@ -94,25 +97,25 @@ const services = [
                 <div class="size-14 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-md">
                   <s.Icon class="size-7" />
                 </div>
-                <span class:list={['text-xs font-mono font-bold px-3.5 py-1 rounded-full uppercase tracking-wider', s.badgeClass]}>
+                <span class:list={['text-xs font-mono font-medium px-3.5 py-1 rounded-full uppercase tracking-[0.05em]', s.badgeClass]}>
                   PHASE {s.id}
                 </span>
               </div>
 
-              <!-- Title: Manrope 700, 19-21px mobile, 20-22px desktop, leading 1.25 -->
-              <h3 class="font-body font-bold text-[19px] sm:text-[21px] leading-[1.25] mb-3">
+              <!-- Title: Sora 600, 19-22px, leading 1.25 -->
+              <h3 class="font-heading font-semibold text-[19px] sm:text-[22px] leading-[1.25] mb-3">
                 {s.title}
               </h3>
 
-              <!-- Description: Manrope 400, min 16px, leading 1.6 -->
-              <p class="text-base leading-[1.6] opacity-95 font-body font-normal">
+              <!-- Description: Inter 400, min 16px, leading 1.65 -->
+              <p class="text-base leading-[1.65] opacity-95 font-body font-normal">
                 {s.description}
               </p>
             </div>
 
-            <!-- Bottom Action Link: Manrope 600, min 14px, natural title case -->
+            <!-- Bottom Action Link: Inter 600, min 14px -->
             <div class="mt-10 pt-6 border-t border-current/20 flex items-center justify-between font-body">
-              <span class="text-sm font-semibold tracking-normal">Explore capability</span>
+              <span class="text-[14px] sm:text-[15px] font-semibold tracking-normal">Explore capability</span>
               <div class="size-10 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <ArrowUpRight class="size-5" />
               </div>
