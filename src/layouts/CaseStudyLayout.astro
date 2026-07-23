@@ -104,6 +104,10 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
               <img 
                 src={`${site.basePath}${data.heroImage.src}`} 
                 alt={data.heroImage.alt}
+                width="1000"
+                height="500"
+                loading="eager"
+                decoding="async"
                 class="w-full max-h-[500px] object-cover sm:object-contain bg-slate-900/5 group-hover:scale-103 transition-transform duration-500"
               />
             </div>

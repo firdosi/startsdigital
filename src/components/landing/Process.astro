@@ -125,14 +125,12 @@ const stages = [
     </div>
 
     <!-- Accordion Stack -->
-    <div class="space-y-6 max-w-5xl mx-auto">
+    <div data-motion="fade-up" data-motion-delay="250" class="space-y-6 max-w-5xl mx-auto">
       {
-        stages.map((stage, idx) => (
+        stages.map((stage) => (
           <div
-            data-motion={stage.isDefaultOpen ? 'scale-in' : 'fade-up'}
-            data-motion-delay={idx * 100}
             class:list={[
-              'accordion-item rounded-3xl border-2 transition-all duration-300 overflow-hidden shadow-lg',
+              'accordion-item rounded-3xl border-2 transition-colors duration-300 overflow-hidden shadow-lg',
               stage.isDefaultOpen ? 'border-[#ff762b] bg-[#ff762b] text-white' : 'border-slate-300 bg-white text-[#061d33] hover:border-[#ff762b]'
             ]}
             data-accordion-id={stage.id}
@@ -140,12 +138,12 @@ const stages = [
             <!-- Accordion Header Row -->
             <button
               type="button"
-              class="accordion-toggle w-full px-8 py-7 flex items-center justify-between text-left focus:outline-none cursor-pointer"
+              class="accordion-toggle w-full px-8 py-7 flex items-center justify-between text-left focus:outline-none cursor-pointer select-none"
               aria-expanded={stage.isDefaultOpen ? 'true' : 'false'}
             >
-              <div class="flex items-center gap-6">
+              <div class="flex items-center gap-6 pointer-events-none">
                 <span class:list={[
-                  'font-mono font-medium text-xl sm:text-2xl size-12 rounded-2xl flex items-center justify-center shrink-0 transition-colors duration-300',
+                  'accordion-step-num font-mono font-medium text-xl sm:text-2xl size-12 rounded-2xl flex items-center justify-center shrink-0 transition-colors duration-300',
                   stage.isDefaultOpen ? 'bg-white text-[#ff762b]' : 'bg-[#061d33] text-white'
                 ]}>
                   {stage.id}
@@ -156,7 +154,7 @@ const stages = [
                     {stage.title}
                   </h3>
                   <p class:list={[
-                    'text-base font-body font-normal mt-1 leading-[1.6] transition-colors duration-300',
+                    'accordion-subtitle text-base font-body font-normal mt-1 leading-[1.6] transition-colors duration-300',
                     stage.isDefaultOpen ? 'text-white/90' : 'text-slate-600'
                   ]}>
                     {stage.subtitle}
@@ -165,7 +163,7 @@ const stages = [
               </div>
 
               <div class:list={[
-                'size-10 rounded-full flex items-center justify-center shrink-0 ml-4 transition-transform duration-300',
+                'accordion-icon size-10 rounded-full flex items-center justify-center shrink-0 ml-4 transition-transform duration-300 pointer-events-none',
                 stage.isDefaultOpen ? 'bg-white/20 text-white rotate-180' : 'bg-slate-100 text-[#061d33]'
               ]}>
                 <ChevronDown class="size-6" />
@@ -175,7 +173,7 @@ const stages = [
             <!-- Smooth CSS Grid Height Transition Container -->
             <div
               class:list={[
-                'accordion-wrapper grid transition-[grid-template-rows,opacity] duration-300 ease-out px-8',
+                'accordion-wrapper grid transition-[grid-template-rows,opacity] duration-300 ease-out px-8 overflow-hidden',
                 stage.isDefaultOpen ? 'grid-rows-[1fr] opacity-100 pb-8 pt-2' : 'grid-rows-[0fr] opacity-0 pb-0 pt-0'
               ]}
             >

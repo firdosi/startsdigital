@@ -165,7 +165,9 @@
       if (toggle && !toggle.dataset.bound) {
         toggle.dataset.bound = 'true';
         const wrapper = item.querySelector<HTMLElement>('.accordion-wrapper');
-        const icon = toggle.querySelector<HTMLElement>('div:last-child');
+        const stepNum = item.querySelector<HTMLElement>('.accordion-step-num');
+        const subTitle = item.querySelector<HTMLElement>('.accordion-subtitle');
+        const icon = item.querySelector<HTMLElement>('.accordion-icon');
 
         toggle.addEventListener('click', () => {
           const isOpen = toggle.getAttribute('aria-expanded') === 'true';
@@ -173,7 +175,9 @@
           processAccordionItems.forEach((otherItem) => {
             const otherToggle = otherItem.querySelector<HTMLElement>('.accordion-toggle');
             const otherWrapper = otherItem.querySelector<HTMLElement>('.accordion-wrapper');
-            const otherIcon = otherToggle?.querySelector<HTMLElement>('div:last-child');
+            const otherStepNum = otherItem.querySelector<HTMLElement>('.accordion-step-num');
+            const otherSubTitle = otherItem.querySelector<HTMLElement>('.accordion-subtitle');
+            const otherIcon = otherItem.querySelector<HTMLElement>('.accordion-icon');
 
             otherToggle?.setAttribute('aria-expanded', 'false');
             otherWrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-8', 'pt-2');
@@ -182,8 +186,20 @@
             otherItem.classList.remove('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
             otherItem.classList.add('border-slate-300', 'bg-white', 'text-[#061d33]');
 
-            otherIcon?.classList.remove('bg-white/20', 'text-white', 'rotate-180');
-            otherIcon?.classList.add('bg-slate-100', 'text-[#061d33]');
+            if (otherStepNum) {
+              otherStepNum.classList.remove('bg-white', 'text-[#ff762b]');
+              otherStepNum.classList.add('bg-[#061d33]', 'text-white');
+            }
+
+            if (otherSubTitle) {
+              otherSubTitle.classList.remove('text-white/90');
+              otherSubTitle.classList.add('text-slate-600');
+            }
+
+            if (otherIcon) {
+              otherIcon.classList.remove('bg-white/20', 'text-white', 'rotate-180');
+              otherIcon.classList.add('bg-slate-100', 'text-[#061d33]');
+            }
           });
 
           if (!isOpen) {
@@ -194,8 +210,20 @@
             item.classList.remove('border-slate-300', 'bg-white', 'text-[#061d33]');
             item.classList.add('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
 
-            icon?.classList.remove('bg-slate-100', 'text-[#061d33]');
-            icon?.classList.add('bg-white/20', 'text-white', 'rotate-180');
+            if (stepNum) {
+              stepNum.classList.remove('bg-[#061d33]', 'text-white');
+              stepNum.classList.add('bg-white', 'text-[#ff762b]');
+            }
+
+            if (subTitle) {
+              subTitle.classList.remove('text-slate-600');
+              subTitle.classList.add('text-white/90');
+            }
+
+            if (icon) {
+              icon.classList.remove('bg-slate-100', 'text-[#061d33]');
+              icon.classList.add('bg-white/20', 'text-white', 'rotate-180');
+            }
 
             if (progressLine) {
               progressLine.style.width = `${((index + 1) / 4) * 100}%`;
