@@ -8,6 +8,7 @@ export interface Brand {
   services: string[];
   logo?: string;
   logoApproved: boolean;
+  darkLogoContainer?: boolean;
   website?: string;
   facebook?: string;
   instagram?: string;
@@ -23,7 +24,7 @@ export const brands: Brand[] = [
     id: 'black-gold-fertilizer',
     name: 'Black Gold Fertilizer',
     category: 'ecommerce',
-    industry: 'Agriculture & Lawn-Care E-Commerce',
+    industry: 'Agriculture',
     role: 'Digital Marketing & E-Commerce Growth',
     summary: 'Managed digital marketing, Meta advertising, creative production, website optimisation, analytics, customer retention and digital sales support for a Pakistan-wide lawn-care e-commerce brand.',
     services: [
@@ -47,7 +48,7 @@ export const brands: Brand[] = [
     id: 'wajib-livestock',
     name: 'Wajib Livestock',
     category: 'ecommerce',
-    industry: 'Livestock & Seasonal E-Commerce',
+    industry: 'Livestock',
     role: 'Seasonal Digital Campaign & Sales Support',
     summary: 'Supported seasonal Qurbani marketing through paid social advertising, lead generation, campaign creative, WhatsApp routing and digital sales support.',
     services: [
@@ -60,6 +61,7 @@ export const brands: Brand[] = [
     ],
     logo: '/brands/wajib-livestock/logo.webp',
     logoApproved: true,
+    darkLogoContainer: true,
     website: 'https://wajib.pk',
     facebook: 'https://www.facebook.com/profile.php?id=61579219484606',
     featured: true,
@@ -71,7 +73,7 @@ export const brands: Brand[] = [
     id: 'rk-reno-solutions',
     name: 'RK Reno Solutions',
     category: 'construction',
-    industry: 'Renovation & Local Services',
+    industry: 'Renovation',
     role: 'Website, Content & Local SEO',
     summary: 'Built a structured search foundation for renovation and air-conditioning services targeting Kuala Lumpur and Selangor.',
     services: [
@@ -92,9 +94,9 @@ export const brands: Brand[] = [
   },
   {
     id: 'convort-ai',
-    name: 'Convort AI',
+    name: 'ConvortAI',
     category: 'technology',
-    industry: 'AI Software & Technology',
+    industry: 'AI Technology',
     role: 'Product Development & Growth Partner',
     summary: 'Starts Digital is an ongoing technology and growth partner for ConvortAI. We developed the ConvortAI web application and continue to support product development, project management, social media marketing, creative production and the wider digital growth operation.',
     services: [
@@ -117,7 +119,7 @@ export const brands: Brand[] = [
     id: 'right-link-advisors',
     name: 'Right Link Advisors',
     category: 'immigration',
-    industry: 'Immigration & Advisory',
+    industry: 'Immigration',
     role: 'Digital Marketing & Campaign Creative',
     summary: 'Digital campaign and creative support for an immigration advisory brand.',
     services: [
@@ -139,7 +141,7 @@ export const brands: Brand[] = [
     id: 'rapidline-immigration-services',
     name: 'Rapidline Immigration Services',
     category: 'immigration',
-    industry: 'Immigration Services',
+    industry: 'Immigration',
     role: 'Paid Social & Immigration Campaign Support',
     summary: 'Campaign planning, advertising creative and lead-generation support for immigration services.',
     services: [
@@ -161,7 +163,7 @@ export const brands: Brand[] = [
     id: 'rapidzone',
     name: 'Rapidzone',
     category: 'business-services',
-    industry: 'Business Setup & Corporate Services',
+    industry: 'Business Services',
     role: 'Digital Brand & Business-Services Marketing',
     summary: 'Digital marketing and brand support for a UAE business-services company.',
     services: [
@@ -184,7 +186,7 @@ export const brands: Brand[] = [
     id: 'viral-naturals',
     name: 'Viral Naturals',
     category: 'ecommerce',
-    industry: 'Consumer Wellness & E-Commerce',
+    industry: 'E-Commerce',
     role: 'Consumer Brand & E-Commerce Development',
     summary: 'Brand, product-positioning, e-commerce and advertising creative development for a consumer wellness business.',
     services: [
@@ -207,7 +209,7 @@ export const brands: Brand[] = [
     id: 'clearzone-immigration',
     name: 'Clearzone Immigration',
     category: 'immigration',
-    industry: 'Immigration & Relocation',
+    industry: 'Immigration',
     role: 'Immigration Campaign Strategy & Creative',
     summary: 'Creative strategy and paid-social campaign support for immigration and company-setup services.',
     services: [
@@ -229,7 +231,7 @@ export const brands: Brand[] = [
     id: 'riyadh-finish-pro',
     name: 'Riyadh Finish Pro',
     category: 'construction',
-    industry: 'Construction & Finishing Services',
+    industry: 'Construction',
     role: 'Website & Local-Service Marketing',
     summary: 'Website, content and digital marketing support for construction and finishing services in Riyadh.',
     services: [
@@ -252,7 +254,7 @@ export const brands: Brand[] = [
     id: 'shopinq-online',
     name: 'Shopinq Online',
     category: 'ecommerce',
-    industry: 'Consumer E-Commerce',
+    industry: 'E-Commerce',
     role: 'E-Commerce Marketing & Operations',
     summary: 'E-commerce product marketing, promotion, customer communication and digital sales support.',
     services: [
@@ -274,7 +276,7 @@ export const brands: Brand[] = [
     id: 'super-safety-covers',
     name: 'Super Safety Covers',
     category: 'ecommerce',
-    industry: 'Protective Products & E-Commerce',
+    industry: 'E-Commerce',
     role: 'Product Marketing & E-Commerce Creative',
     summary: 'Digital marketing and creative support for a protective-cover e-commerce product line.',
     services: [
@@ -296,7 +298,7 @@ export const brands: Brand[] = [
     id: 'unique-lahore-lab-sahiwal',
     name: 'Unique Lahore Lab Sahiwal',
     category: 'healthcare',
-    industry: 'Healthcare & Diagnostics',
+    industry: 'Healthcare',
     role: 'Healthcare Digital Marketing Support',
     summary: 'Digital marketing and content support for a healthcare diagnostics brand.',
     services: [
@@ -307,11 +309,12 @@ export const brands: Brand[] = [
       'Campaign Messaging',
       'Brand Communication'
     ],
-    logo: '/brands/unique-lahore-lab-sahiwal/logo.webp',
-    logoApproved: true,
+    logo: undefined,
+    logoApproved: false,
     facebook: 'https://www.facebook.com/profile.php?id=100054656280926',
     featured: false,
     active: true,
     order: 13
   }
 ];
+

@@ -2,40 +2,37 @@
 import { brands } from '../../data/brands';
 import { site } from '../../site.config';
 
-// Verified real logo brands only
+// Verified real logo brands only (12 approved brands)
 const verifiedBrands = brands.filter((b) => b.logoApproved && b.logo);
 ---
 
-<section id="brands" class="py-20 bg-[#f7f4ed] text-[#061d33] overflow-hidden">
-  <div class="mx-auto max-w-[1280px] px-6 sm:px-8 mb-12 text-center space-y-3">
-    <!-- Eyebrow Tag -->
-    <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
-      CLIENT WORK & PORTFOLIO
-    </span>
-    <!-- Section Heading -->
-    <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
-      Selected Client Experience
-    </h2>
-    <!-- Body Copy -->
-    <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-[18px] text-slate-700 max-w-2xl mx-auto font-body leading-[1.65] font-normal">
-      Proven execution delivered across growth-stage e-commerce, agriculture, regional services, and technology.
-    </p>
-  </div>
+<section id="brands" class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
+  <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+    
+    <!-- Section Header -->
+    <div class="mb-10 text-center space-y-3 max-w-2xl mx-auto">
+      <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
+        CLIENT WORK & PORTFOLIO
+      </span>
+      <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+        Selected Client Experience
+      </h2>
+      <p data-motion="fade-up" data-motion-delay="200" class="text-sm sm:text-base text-slate-700 font-body leading-relaxed font-normal">
+        Proven execution delivered across growth-stage e-commerce, agriculture, regional services, and technology.
+      </p>
+    </div>
 
-  <!-- Verified Brand Logos Marquee with Edge Fade Mask & Pause on Hover -->
-  <div class="marquee-container overflow-hidden py-8 bg-white border-y border-[#061d33]/10 relative [mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)]">
-    <div class="animate-marquee-left flex items-center gap-8 px-4">
+    <!-- Static Responsive Approved Logo Grid (12 Brands, No Grayscale, Full Contrast) -->
+    <div data-motion="fade-up" data-motion-delay="250" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5">
       {
-        [...verifiedBrands, ...verifiedBrands, ...verifiedBrands, ...verifiedBrands].map((b) => {
+        verifiedBrands.map((b) => {
           const destUrl = b.website || b.facebook;
-          return destUrl ? (
-            <a
-              href={destUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Visit ${b.name} official page`}
-              class="h-28 w-[260px] shrink-0 rounded-2xl border border-slate-200 bg-[#f7f4ed]/50 px-6 py-4 flex flex-col items-center justify-center relative hover:border-[#ff762b] hover:bg-white transition-all shadow-sm group"
-            >
+          const containerClass = b.darkLogoContainer
+            ? 'bg-[#061d33] border-[#061d33] shadow-md hover:border-[#ff762b]'
+            : 'bg-white border-slate-200/90 shadow-xs hover:border-[#ff762b] hover:shadow-md';
+
+          const content = (
+            <div class={`h-24 sm:h-28 rounded-2xl border ${containerClass} p-3.5 flex flex-col items-center justify-center relative transition-all duration-300 group hover:-translate-y-1`}>
               {b.isTechnologyPartner && (
                 <span class="absolute top-2 right-2 rounded-md bg-[#061d33] px-2 py-0.5 text-[9px] font-mono font-bold uppercase text-[#ddff35]">
                   Technology Partner
@@ -44,26 +41,30 @@ const verifiedBrands = brands.filter((b) => b.logoApproved && b.logo);
               <img
                 src={`${site.basePath}${b.logo}`}
                 alt={`${b.name} logo`}
-                width="200"
-                height="60"
+                width="160"
+                height="48"
                 loading="lazy"
-                class="max-h-[56px] w-auto object-contain filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
-              />
-            </a>
-          ) : (
-            <div class="h-28 w-[260px] shrink-0 rounded-2xl border border-slate-200 bg-[#f7f4ed]/50 px-6 py-4 flex items-center justify-center relative shadow-sm">
-              <img
-                src={`${site.basePath}${b.logo}`}
-                alt={`${b.name} logo`}
-                width="200"
-                height="60"
-                loading="lazy"
-                class="max-h-[56px] w-auto object-contain filter grayscale opacity-80"
+                class="max-h-12 sm:max-h-14 w-auto max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-300"
               />
             </div>
+          );
+
+          return destUrl ? (
+            <a
+              href={destUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit ${b.name} official page`}
+              class="block"
+            >
+              {content}
+            </a>
+          ) : (
+            <div>{content}</div>
           );
         })
       }
     </div>
+
   </div>
 </section>
