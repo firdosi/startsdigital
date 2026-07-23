@@ -7,7 +7,8 @@ import {
   MapPin, 
   ArrowRight,
   ShoppingBag,
-  HeartHandshake
+  HeartHandshake,
+  ExternalLink
 } from '@lucide/astro';
 ---
 
@@ -30,7 +31,7 @@ import {
           href={`${site.basePath}/work/`}
           class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-7 py-3.5 font-body font-semibold text-[15px] text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-md group/cta"
         >
-          <span>View all case studies</span>
+          <span>View all client work</span>
           <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
         </a>
       </div>
@@ -69,7 +70,7 @@ import {
 
             <!-- Project Result: Inter 400 16px -->
             <p class="text-base text-slate-700 font-body leading-[1.65] font-normal">
-              Contributed to PKR 30M+ in revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.
+              Contributed to PKR 30M+ in delivered-order revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.
             </p>
 
             <!-- Verified Metrics Badges (Pop-In) -->
@@ -84,14 +85,34 @@ import {
               </div>
             </div>
 
-            <div class="pt-4">
-              <!-- Case-study link: Inter 600 min 15px -->
+            <!-- Action Buttons: Case study, Official Website, Facebook -->
+            <div class="flex flex-wrap items-center gap-3 pt-4 font-body">
               <a
                 href={`${site.basePath}/work/black-gold-fertilizer/`}
-                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-[15px] sm:text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
+                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-7 py-3.5 text-sm font-semibold text-white shadow-md hover:bg-[#ff762b] transition-all"
               >
                 <span>Read case study</span>
                 <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="https://blackgoldfertilizer.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Black Gold Fertilizer official website"
+                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-5 py-3.5 text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
+              >
+                <span>Visit Website</span>
+                <ExternalLink class="size-3.5" />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61561083447093"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Black Gold Fertilizer official Facebook page"
+                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-5 py-3.5 text-sm font-semibold text-[#1877f2] hover:border-[#1877f2] hover:bg-white transition-all shadow-xs"
+              >
+                <img src={`${site.basePath}/platforms/facebook.svg`} alt="" class="size-3.5" />
+                <span>Facebook</span>
               </a>
             </div>
           </div>
@@ -178,13 +199,34 @@ import {
               </div>
             </div>
 
-            <div class="pt-4">
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center gap-3 pt-4 font-body">
               <a
                 href={`${site.basePath}/work/qurbani-campaign/`}
-                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-[15px] sm:text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
+                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-7 py-3.5 text-sm font-semibold text-white shadow-md hover:bg-[#ff762b] transition-all"
               >
                 <span>Read case study</span>
                 <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="https://wajib.pk"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Wajib Livestock official website"
+                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-5 py-3.5 text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
+              >
+                <span>Visit Website</span>
+                <ExternalLink class="size-3.5" />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61579219484606"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Wajib Livestock official Facebook page"
+                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-5 py-3.5 text-sm font-semibold text-[#1877f2] hover:border-[#1877f2] hover:bg-white transition-all shadow-xs"
+              >
+                <img src={`${site.basePath}/platforms/facebook.svg`} alt="" class="size-3.5" />
+                <span>Facebook</span>
               </a>
             </div>
           </div>
@@ -235,13 +277,24 @@ import {
               </div>
             </div>
 
-            <div class="pt-4">
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center gap-3 pt-4 font-body">
               <a
                 href={`${site.basePath}/work/rk-reno-solutions/`}
-                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-[15px] sm:text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
+                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-7 py-3.5 text-sm font-semibold text-white shadow-md hover:bg-[#ff762b] transition-all"
               >
                 <span>Read case study</span>
                 <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="https://rkrenosolution.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit RK Reno Solutions official website"
+                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-5 py-3.5 text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
+              >
+                <span>Visit Website</span>
+                <ExternalLink class="size-3.5" />
               </a>
             </div>
           </div>
@@ -274,3 +327,4 @@ import {
 
   </div>
 </section>
+

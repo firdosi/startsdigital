@@ -2,9 +2,8 @@
 import { brands } from '../../data/brands';
 import { site } from '../../site.config';
 
-// Verified logo brands vs Unverified typography brands
+// Verified real logo brands only
 const verifiedBrands = brands.filter((b) => b.logoApproved && b.logo);
-const unverifiedBrands = brands.filter((b) => !b.logoApproved || !b.logo);
 ---
 
 <section id="brands" class="py-20 bg-[#f7f4ed] text-[#061d33] overflow-hidden">
@@ -19,41 +18,51 @@ const unverifiedBrands = brands.filter((b) => !b.logoApproved || !b.logo);
     </h2>
     <!-- Body Copy -->
     <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-[18px] text-slate-700 max-w-2xl mx-auto font-body leading-[1.65] font-normal">
-      Proven execution delivered across growth-stage e-commerce, agriculture, regional services, and international consultation.
+      Proven execution delivered across growth-stage e-commerce, agriculture, regional services, and technology.
     </p>
   </div>
 
-  <!-- Row 1: Verified Brand Logos Marquee with Edge Fade Mask & Pause on Hover -->
-  <div class="marquee-container overflow-hidden py-6 bg-white border-y border-[#061d33]/10 relative [mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)]">
+  <!-- Verified Brand Logos Marquee with Edge Fade Mask & Pause on Hover -->
+  <div class="marquee-container overflow-hidden py-8 bg-white border-y border-[#061d33]/10 relative [mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)]">
     <div class="animate-marquee-left flex items-center gap-8 px-4">
       {
-        [...verifiedBrands, ...verifiedBrands, ...verifiedBrands, ...verifiedBrands].map((b) => (
-          <div class="h-24 w-[240px] shrink-0 rounded-2xl border border-slate-200 bg-[#f7f4ed]/50 px-6 py-4 flex items-center justify-center hover:border-[#ff762b] hover:bg-white transition-all shadow-sm group">
-            <img
-              src={`${site.basePath}${b.logo}`}
-              alt={`${b.name} logo`}
-              width="200"
-              height="60"
-              loading="lazy"
-              class="max-h-[56px] w-auto object-contain filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
-            />
-          </div>
-        ))
-      }
-    </div>
-  </div>
-
-  <!-- Row 2: Unverified Brands Typography Strip with Opposite Direction -->
-  <div class="marquee-container overflow-hidden py-4 bg-[#efece4] border-b border-[#061d33]/10 relative [mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)]">
-    <div class="animate-marquee-right flex items-center gap-6 px-4">
-      {
-        [...unverifiedBrands, ...unverifiedBrands, ...unverifiedBrands, ...unverifiedBrands].map((b) => (
-          <div class="h-14 shrink-0 rounded-xl border border-slate-300 bg-white px-6 py-2.5 flex items-center justify-center shadow-xs hover:border-[#ff762b] transition-colors group">
-            <span class="font-mono font-medium text-sm text-[#061d33] tracking-[0.04em] whitespace-nowrap group-hover:text-[#ff762b] transition-colors">
-              {b.name}
-            </span>
-          </div>
-        ))
+        [...verifiedBrands, ...verifiedBrands, ...verifiedBrands, ...verifiedBrands].map((b) => {
+          const destUrl = b.website || b.facebook;
+          return destUrl ? (
+            <a
+              href={destUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit ${b.name} official page`}
+              class="h-28 w-[260px] shrink-0 rounded-2xl border border-slate-200 bg-[#f7f4ed]/50 px-6 py-4 flex flex-col items-center justify-center relative hover:border-[#ff762b] hover:bg-white transition-all shadow-sm group"
+            >
+              {b.isTechnologyPartner && (
+                <span class="absolute top-2 right-2 rounded-md bg-[#061d33] px-2 py-0.5 text-[9px] font-mono font-bold uppercase text-[#ddff35]">
+                  Technology Partner
+                </span>
+              )}
+              <img
+                src={`${site.basePath}${b.logo}`}
+                alt={`${b.name} logo`}
+                width="200"
+                height="60"
+                loading="lazy"
+                class="max-h-[56px] w-auto object-contain filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
+              />
+            </a>
+          ) : (
+            <div class="h-28 w-[260px] shrink-0 rounded-2xl border border-slate-200 bg-[#f7f4ed]/50 px-6 py-4 flex items-center justify-center relative shadow-sm">
+              <img
+                src={`${site.basePath}${b.logo}`}
+                alt={`${b.name} logo`}
+                width="200"
+                height="60"
+                loading="lazy"
+                class="max-h-[56px] w-auto object-contain filter grayscale opacity-80"
+              />
+            </div>
+          );
+        })
       }
     </div>
   </div>

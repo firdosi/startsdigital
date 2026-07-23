@@ -6,12 +6,14 @@ import FinalCta from '../../components/landing/FinalCta.astro';
 import MotionController from '../../components/common/MotionController.astro';
 import { brands } from '../../data/brands';
 import { site } from '../../site.config';
-import { ArrowRight } from '@lucide/astro';
+import { ExternalLink, Cpu, CheckCircle } from '@lucide/astro';
+
+const convort = brands.find((b) => b.id === 'convort-ai');
 ---
 
 <BaseLayout 
-  title="Client Work & Portfolio — Starts Digital"
-  description="Public CV-style client portfolio and selected project experience supported by Starts Digital."
+  title="Client Portfolio & Selected Experience — Starts Digital"
+  description="Official client portfolio, featured case studies, and ConvortAI technology partnership."
   type="website"
 >
   <!-- Deep Navy Rounded Hero Header -->
@@ -19,7 +21,7 @@ import { ArrowRight } from '@lucide/astro';
     <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
       <div data-motion="scale-in">
         <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35]">
-          <span>OUR WORK</span>
+          <span>OUR WORK & CLIENT EXPERIENCE</span>
         </span>
       </div>
       
@@ -29,13 +31,89 @@ import { ArrowRight } from '@lucide/astro';
       </h1>
       
       <p data-motion="fade-up" data-motion-delay="200" class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.65] font-normal">
-        Selected campaigns, websites and growth projects supported by Starts Digital across e-commerce, services, consultation and technology.
+        Official client portfolio, featured case studies, and verified brand presences supported by Starts Digital.
       </p>
     </Container>
   </section>
 
   <!-- 3 Large Image-Led Featured Projects -->
   <Showcase />
+
+  <!-- Featured Technology Partner Section: ConvortAI -->
+  {convort && (
+    <section id="convort-partner" class="py-16 lg:py-24 bg-[#061d33] text-white relative overflow-hidden border-b border-white/10">
+      <Container class="max-w-[1280px] px-6 sm:px-8">
+        <div data-motion="fade-up" class="rounded-3xl border-2 border-[#ddff35]/30 bg-gradient-to-br from-[#061d33] via-[#0b2947] to-[#061d33] p-8 sm:p-12 lg:p-14 shadow-2xl space-y-8 relative overflow-hidden">
+          
+          <!-- Decorative Glow Accent -->
+          <div class="absolute -right-20 -top-20 size-80 rounded-full bg-[#ff762b]/15 blur-3xl pointer-events-none"></div>
+
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 pb-8 border-b border-white/15">
+            <div class="space-y-4">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="inline-flex items-center gap-2 rounded-full border border-[#ddff35]/50 bg-[#ddff35]/15 px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-[0.08em] text-[#ddff35]">
+                  <Cpu class="size-4 text-[#ddff35]" />
+                  <span>TECHNOLOGY PARTNER</span>
+                </span>
+                <span class="text-xs font-mono text-slate-400">Official Partnership</span>
+              </div>
+
+              <h2 class="font-heading font-bold text-[32px] sm:text-[42px] text-white leading-tight">
+                ConvortAI
+              </h2>
+              <p class="font-heading font-semibold text-lg text-[#ff762b]">
+                {convort.role}
+              </p>
+            </div>
+
+            <!-- ConvortAI Official Logo Badge -->
+            <div class="shrink-0 bg-white rounded-2xl p-6 shadow-xl border border-white/20 flex items-center justify-center max-w-[280px] w-full h-[120px]">
+              <img 
+                src={`${site.basePath}${convort.logo}`} 
+                alt="ConvortAI official logo"
+                class="max-h-16 max-w-[220px] object-contain"
+              />
+            </div>
+          </div>
+
+          <!-- Public Summary -->
+          <p class="font-body text-base sm:text-lg text-slate-200 leading-[1.7] max-w-4xl">
+            {convort.summary}
+          </p>
+
+          <!-- Service Tags -->
+          <div class="space-y-3 pt-2">
+            <div class="text-xs font-mono font-medium uppercase tracking-[0.06em] text-slate-400">
+              Partnership Capabilities
+            </div>
+            <div class="flex flex-wrap gap-2.5">
+              {convort.services.map((service) => (
+                <span class="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-xs sm:text-sm font-body font-medium text-white">
+                  <CheckCircle class="size-3.5 text-[#39c98a]" />
+                  <span>{service}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <div class="pt-4 flex flex-wrap items-center gap-4">
+            <a
+              href="https://convortai.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit ConvortAI official website"
+              class="inline-flex items-center gap-2.5 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-lg group"
+            >
+              <span>Visit ConvortAI Website</span>
+              <ExternalLink class="size-4 group-hover:scale-110 transition-transform" />
+            </a>
+          </div>
+
+        </div>
+      </Container>
+    </section>
+  )}
 
   <!-- Selected Client Experience Section (All 15 Public Brands) -->
   <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
@@ -48,7 +126,7 @@ import { ArrowRight } from '@lucide/astro';
           Brands We Have Worked With
         </h2>
         <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
-          Explore individual project profiles for all 15 public brands across e-commerce, immigration, local services, technology, and healthcare.
+          Explore official client presences and web destinations for work completed across e-commerce, services, consultation, and technology.
         </p>
       </div>
 
@@ -60,61 +138,74 @@ import { ArrowRight } from '@lucide/astro';
             class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 shadow-md hover:shadow-xl hover:border-[#ff762b] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
           >
             <div class="space-y-5">
-              <!-- Top Row: Logo or Clean Text Identity -->
+              <!-- Top Row: Logo Container & Relationship Badge -->
               <div class="flex items-center justify-between gap-4 pb-4 border-b border-slate-100">
                 {b.logo && b.logoApproved ? (
-                  <div class="h-14 w-32 rounded-xl bg-[#f7f4ed] p-2 flex items-center justify-center border border-slate-200 group-hover:scale-105 transition-transform shrink-0">
+                  <div class="h-16 w-36 rounded-xl bg-[#f7f4ed] p-2.5 flex items-center justify-center border border-slate-200 group-hover:scale-105 transition-transform shrink-0">
                     <img 
                       src={`${site.basePath}${b.logo}`} 
                       alt={`${b.name} logo`} 
-                      class="max-h-10 max-w-[110px] object-contain"
+                      class="max-h-12 max-w-[125px] object-contain"
                     />
                   </div>
                 ) : (
-                  <div class="h-14 px-4 rounded-xl bg-[#061d33] text-[#ddff35] flex items-center justify-center font-heading font-bold text-lg shrink-0 group-hover:scale-105 transition-transform">
+                  <div class="h-16 px-4 rounded-xl bg-[#061d33] text-[#ddff35] flex items-center justify-center font-heading font-bold text-base shrink-0 group-hover:scale-105 transition-transform text-center">
                     {b.name}
                   </div>
                 )}
 
-                <span class="inline-block rounded-full bg-[#f7f4ed] border border-slate-200 px-3 py-1 text-[11px] font-mono font-medium text-slate-600 uppercase">
-                  {b.industry}
+                <span class={`inline-block rounded-full px-3 py-1 text-[11px] font-mono font-medium uppercase ${b.isTechnologyPartner ? 'bg-[#061d33] text-[#ddff35]' : 'bg-[#f7f4ed] border border-slate-200 text-slate-600'}`}>
+                  {b.isTechnologyPartner ? 'Technology Partner' : b.industry}
                 </span>
               </div>
 
               <!-- Brand Name & High-level Role -->
-              <div class="space-y-1.5">
+              <div class="space-y-1">
                 <h3 class="font-heading font-bold text-xl sm:text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
                   {b.name}
                 </h3>
-                <p class="text-xs font-mono font-semibold text-[#ff762b] uppercase tracking-wide">
-                  Role: {b.role}
+                <p class="text-xs font-mono font-semibold text-slate-500 uppercase tracking-wide">
+                  {b.role}
                 </p>
-              </div>
-
-              <!-- Two-line Professional Summary -->
-              <p class="text-sm text-slate-600 font-body leading-relaxed line-clamp-2">
-                {b.summary}
-              </p>
-
-              <!-- Three or Four Service Tags -->
-              <div class="flex flex-wrap gap-1.5 pt-2">
-                {b.services.slice(0, 4).map((service) => (
-                  <span class="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-body font-medium text-slate-700">
-                    {service}
-                  </span>
-                ))}
               </div>
             </div>
 
-            <!-- View Project Profile Link -->
-            <div class="pt-6 mt-6 border-t border-slate-100">
-              <a
-                href={`${site.basePath}/work/clients/${b.id}/`}
-                class="inline-flex items-center gap-2 text-sm font-body font-semibold text-[#061d33] group-hover:text-[#ff762b] transition-colors"
-              >
-                <span>View Project Profile</span>
-                <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+            <!-- Separate Official Buttons (Website and Facebook) -->
+            <div class="pt-6 mt-6 border-t border-slate-100 flex flex-wrap items-center gap-2.5">
+              {b.website && (
+                <a
+                  href={b.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${b.name} official website`}
+                  class="inline-flex items-center gap-1.5 rounded-full bg-[#061d33] px-4 py-2 text-xs font-body font-semibold text-white hover:bg-[#ff762b] transition-colors shadow-xs"
+                >
+                  <span>Website</span>
+                  <ExternalLink class="size-3" />
+                </a>
+              )}
+
+              {b.facebook && (
+                <a
+                  href={b.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${b.name} official Facebook page`}
+                  class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2 text-xs font-body font-semibold text-[#1877f2] hover:border-[#1877f2] hover:bg-white transition-colors shadow-xs"
+                >
+                  <img src={`${site.basePath}/platforms/facebook.svg`} alt="" class="size-3" />
+                  <span>Facebook</span>
+                </a>
+              )}
+
+              {b.caseStudyLink && (
+                <a
+                  href={`${site.basePath}${b.caseStudyLink}`}
+                  class="inline-flex items-center gap-1 rounded-full border border-[#ff762b]/30 bg-[#ff762b]/10 px-3.5 py-2 text-xs font-body font-semibold text-[#ff762b] hover:bg-[#ff762b] hover:text-white transition-colors ml-auto"
+                >
+                  <span>Case Study</span>
+                </a>
+              )}
             </div>
           </article>
         ))}
@@ -127,4 +218,3 @@ import { ArrowRight } from '@lucide/astro';
 
   <MotionController />
 </BaseLayout>
-
