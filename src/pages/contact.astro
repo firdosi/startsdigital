@@ -41,7 +41,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
 
 <BaseLayout 
   title="Contact Starts Digital — Start a Project"
-  description="Selected client work, featured case studies and public brand pages supported by Starts Digital. Send a structured project inquiry through WhatsApp or email."
+  description="Share your business goals, current challenges and required services with Starts Digital. Prepare a structured project inquiry for WhatsApp or email."
   type="website"
 >
   <!-- Deep Navy Rounded Hero Header -->
@@ -475,7 +475,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
 
   <MotionController />
 
-  <!-- Interactive Dispatch & Validation Script with Duplicate Binding Guard -->
+  <!-- Interactive Dispatch & Live Validation Script with Duplicate Binding Guard -->
   <script>
     const SERVICE_ALLOWLIST: Record<string, string> = {
       'paid-advertising': 'Paid Advertising',
@@ -522,6 +522,37 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
         contextBanner.classList.remove('hidden');
         contextBanner.classList.add('flex');
       }
+
+      const fieldSpecs = [
+        { id: 'name', event: 'input', checkValid: (el: HTMLInputElement) => !!el.value.trim() },
+        { id: 'company', event: 'input', checkValid: (el: HTMLInputElement) => !!el.value.trim() },
+        { id: 'email', event: 'input', checkValid: (el: HTMLInputElement) => !!el.value.trim() && el.validity.valid },
+        { id: 'website', event: 'input', checkValid: (el: HTMLInputElement) => !el.value.trim() || el.validity.valid },
+        { id: 'service', event: 'change', checkValid: (el: HTMLSelectElement) => !!el.value },
+        { id: 'goal', event: 'change', checkValid: (el: HTMLSelectElement) => !!el.value },
+        { id: 'message', event: 'input', checkValid: (el: HTMLTextAreaElement) => !!el.value.trim() },
+      ];
+
+      // Attach live error-clearing event listeners
+      fieldSpecs.forEach(({ id, event, checkValid }) => {
+        const el = document.getElementById(id) as HTMLElement & { value: string; validity?: ValidityState };
+        const errEl = document.getElementById(`${id}-error`);
+
+        if (el) {
+          el.addEventListener(event, () => {
+            if (el.getAttribute('aria-invalid') === 'true' || (errEl && !errEl.classList.contains('hidden'))) {
+              const valid = checkValid(el as any);
+              if (valid) {
+                el.removeAttribute('aria-invalid');
+                if (errEl) errEl.classList.add('hidden');
+              } else {
+                el.setAttribute('aria-invalid', 'true');
+                if (errEl) errEl.classList.remove('hidden');
+              }
+            }
+          });
+        }
+      });
 
       function buildMessageText() {
         const nameVal = (document.getElementById('name') as HTMLInputElement)?.value.trim() || '';
@@ -580,20 +611,10 @@ ${pageUrl}`
       }
 
       function validateForm(): boolean {
-        const fields = [
-          { id: 'name', isRequired: true, checkValid: (el: HTMLInputElement) => !!el.value.trim() },
-          { id: 'company', isRequired: true, checkValid: (el: HTMLInputElement) => !!el.value.trim() },
-          { id: 'email', isRequired: true, checkValid: (el: HTMLInputElement) => !!el.value.trim() && el.validity.valid },
-          { id: 'website', isRequired: false, checkValid: (el: HTMLInputElement) => !el.value.trim() || el.validity.valid },
-          { id: 'service', isRequired: true, checkValid: (el: HTMLSelectElement) => !!el.value },
-          { id: 'goal', isRequired: true, checkValid: (el: HTMLSelectElement) => !!el.value },
-          { id: 'message', isRequired: true, checkValid: (el: HTMLTextAreaElement) => !!el.value.trim() },
-        ];
-
         let isValid = true;
         let firstInvalidEl: HTMLElement | null = null;
 
-        fields.forEach(({ id, checkValid }) => {
+        fieldSpecs.forEach(({ id, checkValid }) => {
           const el = document.getElementById(id) as HTMLElement & { value: string; validity?: ValidityState };
           const errEl = document.getElementById(`${id}-error`);
           
