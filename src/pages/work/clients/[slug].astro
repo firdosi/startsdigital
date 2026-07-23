@@ -1,0 +1,282 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Container from '../../../components/ui/Container.astro';
+import FinalCta from '../../../components/landing/FinalCta.astro';
+import MotionController from '../../../components/common/MotionController.astro';
+import { brands, type Brand } from '../../../data/brands';
+import { site } from '../../../site.config';
+import { 
+  ArrowLeft, 
+  ArrowRight, 
+  CheckCircle2, 
+  ExternalLink, 
+  Briefcase
+} from '@lucide/astro';
+
+export async function getStaticPaths() {
+  return brands.map((brand) => ({
+    params: { slug: brand.id },
+    props: { brand },
+  }));
+}
+
+interface Props {
+  brand: Brand;
+}
+
+const { brand } = Astro.props;
+
+const pageTitle = `${brand.name} — Client Project Profile | Starts Digital`;
+const pageDescription = brand.summary;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  type="website"
+>
+  <!-- Deep Navy Rounded Header -->
+  <section class="relative bg-[#061d33] text-white pt-12 pb-16 lg:pt-16 lg:pb-24 rounded-b-[40px] shadow-2xl overflow-hidden">
+    <Container class="max-w-[1280px] px-6 sm:px-8 space-y-6">
+      <!-- Breadcrumb -->
+      <div data-motion="fade-up" class="flex items-center gap-2 text-xs font-mono font-medium text-slate-300">
+        <a href={`${site.basePath}/work/`} class="hover:text-[#ff762b] transition-colors flex items-center gap-1">
+          <ArrowLeft class="size-3.5" />
+          <span>Work</span>
+        </a>
+        <span>/</span>
+        <span class="text-[#ddff35]">Clients</span>
+        <span>/</span>
+        <span class="text-white">{brand.name}</span>
+      </div>
+
+      <div class="grid gap-8 lg:grid-cols-12 items-center pt-2">
+        <div class="lg:col-span-8 space-y-4">
+          <div data-motion="scale-in" class="flex flex-wrap items-center gap-3">
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35]">
+              {brand.industry}
+            </span>
+            {brand.period && (
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-slate-300">
+                {brand.period}
+              </span>
+            )}
+          </div>
+
+          <!-- Brand Title & High-level Role -->
+          <h1 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[36px] sm:text-[46px] lg:text-[56px] text-white leading-[1.1] tracking-[-0.03em]">
+            {brand.name}
+          </h1>
+
+          <p data-motion="fade-up" data-motion-delay="200" class="font-heading font-medium text-lg sm:text-xl text-[#ff762b] leading-snug">
+            {brand.role}
+          </p>
+        </div>
+
+        <!-- Logo Identity Badge -->
+        <div data-motion="pop-in" data-motion-delay="150" class="lg:col-span-4 flex justify-start lg:justify-end">
+          {brand.logo && brand.logoApproved ? (
+            <div class="rounded-3xl bg-white p-6 shadow-xl border border-white/20 flex items-center justify-center max-w-[260px] w-full h-[140px]">
+              <img 
+                src={`${site.basePath}${brand.logo}`} 
+                alt={`${brand.name} official logo`}
+                class="max-h-20 max-w-[200px] object-contain"
+              />
+            </div>
+          ) : (
+            <div class="rounded-3xl bg-gradient-to-br from-white/15 to-white/5 border border-white/20 p-6 shadow-xl flex items-center justify-center max-w-[260px] w-full h-[140px] text-center">
+              <span class="font-heading font-bold text-3xl sm:text-4xl text-white tracking-wider">
+                {brand.name}
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Project Details & Summary Section -->
+  <section class="py-16 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="max-w-[1280px] px-6 sm:px-8 space-y-16">
+      
+      <!-- Summary & Overview -->
+      <div class="grid gap-10 lg:grid-cols-12 items-start">
+        <div data-motion="fade-up" class="lg:col-span-7 space-y-6">
+          <div class="space-y-2">
+            <span class="text-xs font-mono font-medium text-[#ff762b] uppercase tracking-[0.06em] block">
+              PROJECT OVERVIEW
+            </span>
+            <h2 class="font-heading font-bold text-[28px] sm:text-[34px] text-[#061d33] leading-tight">
+              Short Professional Summary
+            </h2>
+          </div>
+
+          <p class="font-body text-base sm:text-lg text-slate-700 leading-[1.7]">
+            {brand.summary}
+          </p>
+
+          {brand.website && (
+            <div class="pt-2">
+              <a 
+                href={brand.website} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="inline-flex items-center gap-2 text-sm font-body font-semibold text-[#061d33] hover:text-[#ff762b] transition-colors underline underline-offset-4"
+              >
+                <span>Visit Client Website</span>
+                <ExternalLink class="size-4" />
+              </a>
+            </div>
+          )}
+        </div>
+
+        <!-- High-level Role & Metadata Card -->
+        <div data-motion="fade-left" data-motion-delay="150" class="lg:col-span-5 rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 shadow-lg space-y-6">
+          <div class="flex items-center gap-3 pb-4 border-b border-[#061d33]/10">
+            <div class="size-11 rounded-2xl bg-[#061d33] text-[#ddff35] flex items-center justify-center shrink-0">
+              <Briefcase class="size-5" />
+            </div>
+            <div>
+              <div class="text-xs font-mono font-medium text-slate-500 uppercase">Starts Digital Role</div>
+              <div class="font-heading font-semibold text-base text-[#061d33]">{brand.role}</div>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="text-xs font-mono font-medium text-slate-500 uppercase">Industry Sector</div>
+            <div class="font-body font-medium text-slate-800 bg-[#f7f4ed] rounded-xl px-4 py-2 border border-slate-200">
+              {brand.industry}
+            </div>
+          </div>
+
+          {brand.caseStudyLink && (
+            <div class="pt-2">
+              <a
+                href={`${site.basePath}${brand.caseStudyLink}`}
+                class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#061d33] px-6 py-3.5 font-body font-semibold text-sm text-white hover:bg-[#ff762b] transition-colors shadow-md group"
+              >
+                <span>Read Full Case Study</span>
+                <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <!-- Services Provided Section -->
+      <div data-motion="fade-up" class="space-y-8 pt-8 border-t border-[#061d33]/10">
+        <div class="space-y-2">
+          <span class="text-xs font-mono font-medium text-[#ff762b] uppercase tracking-[0.06em] block">
+            DELIVERED CAPABILITIES
+          </span>
+          <h2 class="font-heading font-bold text-[28px] sm:text-[34px] text-[#061d33]">
+            Services Provided
+          </h2>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {brand.services.map((service, idx) => (
+            <div 
+              data-motion="fade-up"
+              data-motion-delay={idx * 50}
+              class="rounded-2xl border border-[#061d33]/15 bg-white p-5 flex items-center gap-3.5 shadow-xs hover:border-[#ff762b] transition-colors"
+            >
+              <CheckCircle2 class="size-5 text-[#ff762b] shrink-0" />
+              <span class="font-body font-medium text-slate-800 text-sm sm:text-base">
+                {service}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Public Portfolio Gallery (Rendered ONLY when real assets exist) -->
+      {brand.galleryAssets && brand.galleryAssets.length > 0 && (
+        <div data-motion="fade-up" class="space-y-8 pt-8 border-t border-[#061d33]/10">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div class="space-y-2">
+              <span class="text-xs font-mono font-medium text-[#ff762b] uppercase tracking-[0.06em] block">
+                VERIFIED ASSETS
+              </span>
+              <h2 class="font-heading font-bold text-[28px] sm:text-[34px] text-[#061d33]">
+                Public Portfolio Gallery
+              </h2>
+            </div>
+            <p class="text-xs font-mono text-slate-500">
+              Only genuine, publicly posted client visuals displayed.
+            </p>
+          </div>
+
+          <div class="grid gap-8 md:grid-cols-2">
+            {brand.galleryAssets.map((asset, idx) => (
+              <div 
+                data-motion="fade-up"
+                data-motion-delay={idx * 100}
+                class="rounded-3xl border-2 border-[#061d33]/15 bg-white overflow-hidden shadow-lg hover:shadow-xl transition-all group"
+              >
+                <div class="bg-[#061d33] p-4 flex justify-center items-center overflow-hidden h-[300px]">
+                  <img 
+                    src={`${site.basePath}${asset.sourceFile}`}
+                    alt={asset.description}
+                    class="h-full w-full object-contain group-hover:scale-103 transition-transform duration-500"
+                  />
+                </div>
+                <div class="p-6 space-y-2 bg-white">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="inline-block rounded-full bg-[#061d33]/10 px-3 py-1 text-xs font-mono font-semibold text-[#061d33] uppercase">
+                      {asset.assetType}
+                    </span>
+                    {asset.publicSourceUrl && (
+                      <a 
+                        href={asset.publicSourceUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="text-xs font-mono text-slate-500 hover:text-[#ff762b] flex items-center gap-1"
+                      >
+                        <span>Source</span>
+                        <ExternalLink class="size-3" />
+                      </a>
+                    )}
+                  </div>
+                  <p class="font-body text-sm text-slate-700 font-medium leading-relaxed pt-1">
+                    {asset.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Optional Full Case Study Link Card (For Black Gold, Wajib, RK Reno) -->
+      {brand.caseStudyLink && (
+        <div data-motion="fade-up" class="rounded-3xl bg-[#061d33] text-white p-8 sm:p-10 border-2 border-white/10 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="space-y-2 text-center md:text-left">
+            <span class="inline-block text-xs font-mono font-medium text-[#ddff35] uppercase tracking-[0.06em]">
+              FEATURED CASE STUDY AVAILABLE
+            </span>
+            <h3 class="font-heading font-bold text-2xl sm:text-3xl text-white">
+              Explore the detailed case study for {brand.name}
+            </h3>
+            <p class="font-body text-slate-300 text-sm sm:text-base max-w-xl">
+              Read how Starts Digital planned and executed strategy, marketing services, and digital growth support for this client.
+            </p>
+          </div>
+          <a
+            href={`${site.basePath}${brand.caseStudyLink}`}
+            class="shrink-0 inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-lg group"
+          >
+            <span>View Detailed Case Study</span>
+            <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </div>
+      )}
+
+    </Container>
+  </section>
+
+  <!-- Final Contact CTA -->
+  <FinalCta />
+
+  <MotionController />
+</BaseLayout>

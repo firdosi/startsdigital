@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import MotionController from '../../components/common/MotionController.astro';
+import { site } from '../../site.config';
+import { Shield, Mail, Database, Eye, Lock } from '@lucide/astro';
+---
+
+<BaseLayout
+  title="Privacy Policy — Starts Digital"
+  description="Privacy policy detailing how Starts Digital collects, uses, and protects personal information submitted through direct inquiries."
+  type="website"
+>
+  <!-- Deep Navy Header -->
+  <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-24 rounded-b-[40px] shadow-2xl overflow-hidden">
+    <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
+      <div data-motion="scale-in">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35]">
+          <Shield class="size-4 text-[#ddff35]" />
+          <span>DATA PROTECTION</span>
+        </span>
+      </div>
+
+      <h1 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[56px] text-white leading-[1.1] tracking-[-0.03em] max-w-[840px] mx-auto">
+        Privacy Policy
+      </h1>
+
+      <p data-motion="fade-up" data-motion-delay="200" class="font-body text-base sm:text-lg text-slate-200 max-w-[640px] mx-auto leading-[1.65]">
+        This privacy policy explains how Starts Digital handles information provided when accessing our website or communicating directly with us.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="max-w-[960px] px-6 sm:px-8 space-y-10">
+
+      <!-- Contact Form & Direct Enquiries -->
+      <div data-motion="fade-up" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-10 shadow-lg space-y-4">
+        <div class="flex items-center gap-3 text-[#ff762b]">
+          <Mail class="size-6 shrink-0" />
+          <h2 class="font-heading font-bold text-2xl text-[#061d33]">
+            1. Contact Form, Email & WhatsApp Enquiries
+          </h2>
+        </div>
+        <p class="font-body text-slate-700 leading-relaxed">
+          When you submit project inquiries through our contact forms, email us directly, or reach out via WhatsApp, we collect the personal information you voluntarily provide (such as your name, business email address, telephone number, and project description). This information is used solely to evaluate your request, communicate regarding potential engagements, and provide client support services.
+        </p>
+      </div>
+
+      <!-- Analytics & Cookies -->
+      <div data-motion="fade-up" data-motion-delay="100" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-10 shadow-lg space-y-4">
+        <div class="flex items-center gap-3 text-[#9a83f5]">
+          <Eye class="size-6 shrink-0" />
+          <h2 class="font-heading font-bold text-2xl text-[#061d33]">
+            2. Analytics and Cookies
+          </h2>
+        </div>
+        <p class="font-body text-slate-700 leading-relaxed">
+          Our static website does not set unnecessary tracking cookies or collect invasive personal profiling data. Standard web host log data (such as anonymized IP addresses, browser user agents, and page access timestamps) may be processed by host infrastructure strictly for security, performance monitoring, and bandwidth diagnostics.
+        </p>
+      </div>
+
+      <!-- Data Retention -->
+      <div data-motion="fade-up" data-motion-delay="150" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-10 shadow-lg space-y-4">
+        <div class="flex items-center gap-3 text-[#39c98a]">
+          <Database class="size-6 shrink-0" />
+          <h2 class="font-heading font-bold text-2xl text-[#061d33]">
+            3. Data Retention & Protection
+          </h2>
+        </div>
+        <p class="font-body text-slate-700 leading-relaxed">
+          Communication records and inquiry details are retained only as long as necessary to fulfill project requirements, legal recordkeeping, or professional client communication. We maintain administrative safeguards to protect submitted information against unauthorized access, disclosure, or loss.
+        </p>
+      </div>
+
+      <!-- User Rights & Contact -->
+      <div data-motion="fade-up" data-motion-delay="200" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-10 shadow-lg space-y-4">
+        <div class="flex items-center gap-3 text-[#ff514b]">
+          <Lock class="size-6 shrink-0" />
+          <h2 class="font-heading font-bold text-2xl text-[#061d33]">
+            4. User Rights & Contact Information
+          </h2>
+        </div>
+        <p class="font-body text-slate-700 leading-relaxed">
+          You may request access to, correction of, or deletion of your personal inquiry records at any time. For privacy requests or questions regarding our data protection practices, please contact us at:
+        </p>
+        <div class="pt-2">
+          <a 
+            href={`mailto:${site.contact.email}`} 
+            class="font-mono font-semibold text-[#061d33] hover:text-[#ff762b] transition-colors underline text-lg"
+          >
+            {site.contact.email}
+          </a>
+        </div>
+      </div>
+
+    </Container>
+  </section>
+
+  <MotionController />
+</BaseLayout>

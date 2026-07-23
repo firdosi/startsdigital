@@ -92,15 +92,16 @@ const columns = [
 
     </div>
 
-    <!-- Bottom Copyright Divider -->
+    <!-- Bottom Copyright & Legal Links Divider -->
     <div data-motion="fade-up" data-motion-delay="350" class="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-[14px] sm:text-[15px] text-slate-400 font-body font-normal">
       <div>
         © {new Date().getFullYear()} Starts Digital. All rights reserved.
       </div>
-      <div class="flex gap-6 text-[14px] sm:text-[15px] font-body">
+      <div class="flex flex-wrap items-center gap-6 text-[14px] sm:text-[15px] font-body">
+        <a href={`${site.basePath}/legal/`} class="hover:text-white transition-colors">Legal Notice</a>
+        <a href={`${site.basePath}/privacy/`} class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href={`${site.basePath}/terms/`} class="hover:text-white transition-colors">Terms of Use</a>
         <a href={`${site.basePath}/contact/`} class="hover:text-white transition-colors">Contact</a>
-        <a href={`${site.basePath}/work/`} class="hover:text-white transition-colors">Case Studies</a>
-        <a href={`${site.basePath}/#faq`} class="hover:text-white transition-colors">FAQ</a>
       </div>
     </div>
   </div>
