@@ -195,7 +195,8 @@ export const brands: Brand[] = [
       'Creative Direction',
       'Conversion Content'
     ],
-    logoApproved: false,
+    logo: '/brands/viral-naturals/logo.webp',
+    logoApproved: true,
     website: 'https://viralnaturals.com',
     facebook: 'https://www.facebook.com/ViralNaturals/',
     featured: false,
@@ -203,44 +204,26 @@ export const brands: Brand[] = [
     order: 8
   },
   {
-    id: 'shopinq-online',
-    name: 'Shopinq Online',
-    category: 'ecommerce',
-    industry: 'Consumer E-Commerce',
-    role: 'E-Commerce Marketing & Operations',
-    summary: 'E-commerce product marketing, promotion, customer communication and digital sales support.',
+    id: 'clearzone-immigration',
+    name: 'Clearzone Immigration',
+    category: 'immigration',
+    industry: 'Immigration & Relocation',
+    role: 'Immigration Campaign Strategy & Creative',
+    summary: 'Creative strategy and paid-social campaign support for immigration and company-setup services.',
     services: [
-      'Product Marketing',
+      'Campaign Strategy',
+      'Video Scripts',
+      'Ad Creative',
+      'Lead-Generation Messaging',
       'Paid Social Support',
-      'Creative Content',
-      'Customer Communication',
-      'Order Support',
-      'E-Commerce Growth'
+      'Content Direction'
     ],
-    logoApproved: false,
+    logo: '/brands/clearzone-immigration/logo.webp',
+    logoApproved: true,
+    website: 'http://clearzoneimmigration.com',
     featured: false,
     active: true,
     order: 9
-  },
-  {
-    id: 'super-safety-covers',
-    name: 'Super Safety Covers',
-    category: 'ecommerce',
-    industry: 'Protective Products & E-Commerce',
-    role: 'Product Marketing & E-Commerce Creative',
-    summary: 'Digital marketing and creative support for a protective-cover e-commerce product line.',
-    services: [
-      'Product Positioning',
-      'Ad Creative',
-      'Social Content',
-      'E-Commerce Promotion',
-      'Customer Acquisition',
-      'Sales Support'
-    ],
-    logoApproved: false,
-    featured: false,
-    active: true,
-    order: 10
   },
   {
     id: 'riyadh-finish-pro',
@@ -261,27 +244,7 @@ export const brands: Brand[] = [
     website: 'https://riyadhfinishpro.com',
     featured: false,
     active: true,
-    order: 11
-  },
-  {
-    id: 'clearzone-immigration',
-    name: 'Clearzone Immigration',
-    category: 'immigration',
-    industry: 'Immigration & Relocation',
-    role: 'Immigration Campaign Strategy & Creative',
-    summary: 'Creative strategy and paid-social campaign support for immigration and company-setup services.',
-    services: [
-      'Campaign Strategy',
-      'Video Scripts',
-      'Ad Creative',
-      'Lead-Generation Messaging',
-      'Paid Social Support',
-      'Content Direction'
-    ],
-    logoApproved: false,
-    featured: false,
-    active: true,
-    order: 12
+    order: 10
   },
   {
     id: 'europa-immigration',
@@ -297,6 +260,47 @@ export const brands: Brand[] = [
       'Paid Social Support',
       'Lead-Generation Messaging',
       'Audience Localisation'
+    ],
+    logoApproved: false,
+    website: 'https://europaimmigration.com',
+    featured: false,
+    active: true,
+    order: 11
+  },
+  {
+    id: 'shopinq-online',
+    name: 'Shopinq Online',
+    category: 'ecommerce',
+    industry: 'Consumer E-Commerce',
+    role: 'E-Commerce Marketing & Operations',
+    summary: 'E-commerce product marketing, promotion, customer communication and digital sales support.',
+    services: [
+      'Product Marketing',
+      'Paid Social Support',
+      'Creative Content',
+      'Customer Communication',
+      'Order Support',
+      'E-Commerce Growth'
+    ],
+    logoApproved: false,
+    featured: false,
+    active: true,
+    order: 12
+  },
+  {
+    id: 'super-safety-covers',
+    name: 'Super Safety Covers',
+    category: 'ecommerce',
+    industry: 'Protective Products & E-Commerce',
+    role: 'Product Marketing & E-Commerce Creative',
+    summary: 'Digital marketing and creative support for a protective-cover e-commerce product line.',
+    services: [
+      'Product Positioning',
+      'Ad Creative',
+      'Social Content',
+      'E-Commerce Promotion',
+      'Customer Acquisition',
+      'Sales Support'
     ],
     logoApproved: false,
     featured: false,

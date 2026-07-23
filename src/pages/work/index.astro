@@ -9,6 +9,9 @@ import { site } from '../../site.config';
 import { ExternalLink, Cpu, CheckCircle } from '@lucide/astro';
 
 const convort = brands.find((b) => b.id === 'convort-ai');
+
+// Display only genuine verified logos (zero text placeholders)
+const verifiedBrands = brands.filter((b) => b.logoApproved && b.logo);
 ---
 
 <BaseLayout 
@@ -55,7 +58,6 @@ const convort = brands.find((b) => b.id === 'convort-ai');
                   <Cpu class="size-4 text-[#ddff35]" />
                   <span>TECHNOLOGY PARTNER</span>
                 </span>
-                <span class="text-xs font-mono text-slate-400">Official Partnership</span>
               </div>
 
               <h2 class="font-heading font-bold text-[32px] sm:text-[42px] text-white leading-tight">
@@ -115,7 +117,7 @@ const convort = brands.find((b) => b.id === 'convort-ai');
     </section>
   )}
 
-  <!-- Selected Client Experience Section (All 15 Public Brands) -->
+  <!-- Selected Client Experience Section -->
   <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
     <Container class="max-w-[1280px] px-6 sm:px-8 space-y-16">
       <div class="text-center max-w-3xl mx-auto space-y-3">
@@ -131,7 +133,7 @@ const convort = brands.find((b) => b.id === 'convort-ai');
       </div>
 
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {brands.map((b, idx) => (
+        {verifiedBrands.map((b, idx) => (
           <article 
             data-motion="fade-up"
             data-motion-delay={idx * 40}
@@ -140,19 +142,13 @@ const convort = brands.find((b) => b.id === 'convort-ai');
             <div class="space-y-5">
               <!-- Top Row: Logo Container & Relationship Badge -->
               <div class="flex items-center justify-between gap-4 pb-4 border-b border-slate-100">
-                {b.logo && b.logoApproved ? (
-                  <div class="h-16 w-36 rounded-xl bg-[#f7f4ed] p-2.5 flex items-center justify-center border border-slate-200 group-hover:scale-105 transition-transform shrink-0">
-                    <img 
-                      src={`${site.basePath}${b.logo}`} 
-                      alt={`${b.name} logo`} 
-                      class="max-h-12 max-w-[125px] object-contain"
-                    />
-                  </div>
-                ) : (
-                  <div class="h-16 px-4 rounded-xl bg-[#061d33] text-[#ddff35] flex items-center justify-center font-heading font-bold text-base shrink-0 group-hover:scale-105 transition-transform text-center">
-                    {b.name}
-                  </div>
-                )}
+                <div class="h-16 w-36 rounded-xl bg-[#f7f4ed] p-2.5 flex items-center justify-center border border-slate-200 group-hover:scale-105 transition-transform shrink-0">
+                  <img 
+                    src={`${site.basePath}${b.logo}`} 
+                    alt={`${b.name} logo`} 
+                    class="max-h-12 max-w-[125px] object-contain"
+                  />
+                </div>
 
                 <span class={`inline-block rounded-full px-3 py-1 text-[11px] font-mono font-medium uppercase ${b.isTechnologyPartner ? 'bg-[#061d33] text-[#ddff35]' : 'bg-[#f7f4ed] border border-slate-200 text-slate-600'}`}>
                   {b.isTechnologyPartner ? 'Technology Partner' : b.industry}
