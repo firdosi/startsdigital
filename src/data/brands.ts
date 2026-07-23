@@ -240,32 +240,13 @@ export const brands: Brand[] = [
       'Creative Direction',
       'Digital Strategy'
     ],
-    logoApproved: false,
+    logo: '/brands/riyadh-finish-pro/logo.webp',
+    logoApproved: true,
     website: 'https://riyadhfinishpro.com',
+    facebook: 'https://www.facebook.com/RiyadhFinishPro/',
     featured: false,
     active: true,
     order: 10
-  },
-  {
-    id: 'europa-immigration',
-    name: 'Europa Immigration',
-    category: 'immigration',
-    industry: 'International Immigration',
-    role: 'Gulf-to-Europe Campaign & Creative Support',
-    summary: 'Paid-social strategy, scripts and campaign creative for immigration services targeting South Asian audiences in Gulf markets.',
-    services: [
-      'Campaign Strategy',
-      'Roman Urdu and Hindi Scripts',
-      'Video Creative',
-      'Paid Social Support',
-      'Lead-Generation Messaging',
-      'Audience Localisation'
-    ],
-    logoApproved: false,
-    website: 'https://europaimmigration.com',
-    featured: false,
-    active: true,
-    order: 11
   },
   {
     id: 'shopinq-online',
@@ -282,10 +263,12 @@ export const brands: Brand[] = [
       'Order Support',
       'E-Commerce Growth'
     ],
-    logoApproved: false,
+    logo: '/brands/shopinq-online/logo.webp',
+    logoApproved: true,
+    facebook: 'https://www.facebook.com/shopinq.online/',
     featured: false,
     active: true,
-    order: 12
+    order: 11
   },
   {
     id: 'super-safety-covers',
@@ -302,30 +285,12 @@ export const brands: Brand[] = [
       'Customer Acquisition',
       'Sales Support'
     ],
-    logoApproved: false,
+    logo: '/brands/super-safety-covers/logo.webp',
+    logoApproved: true,
+    facebook: 'https://www.facebook.com/SuperSafetyCovers/',
     featured: false,
     active: true,
-    order: 13
-  },
-  {
-    id: 'quick-immigration-service',
-    name: 'Quick Immigration Service',
-    category: 'immigration',
-    industry: 'Immigration Consultancy',
-    role: 'Digital Campaign & Lead-Generation Support',
-    summary: 'Digital marketing, campaign creative and lead-generation support for immigration services.',
-    services: [
-      'Campaign Planning',
-      'Ad Copy',
-      'Creative Support',
-      'Paid Social',
-      'Lead Generation',
-      'Social Content'
-    ],
-    logoApproved: false,
-    featured: false,
-    active: true,
-    order: 14
+    order: 12
   },
   {
     id: 'unique-lahore-lab-sahiwal',
@@ -342,9 +307,11 @@ export const brands: Brand[] = [
       'Campaign Messaging',
       'Brand Communication'
     ],
-    logoApproved: false,
+    logo: '/brands/unique-lahore-lab-sahiwal/logo.webp',
+    logoApproved: true,
+    facebook: 'https://www.facebook.com/profile.php?id=100054656280926',
     featured: false,
     active: true,
-    order: 15
+    order: 13
   }
 ];
