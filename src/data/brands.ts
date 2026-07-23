@@ -109,6 +109,7 @@ export const brands: Brand[] = [
     ],
     logo: '/brands/convort-ai/logo.webp',
     logoApproved: true,
+    darkLogoContainer: true,
     website: 'https://convortai.com/',
     featured: true,
     active: true,
