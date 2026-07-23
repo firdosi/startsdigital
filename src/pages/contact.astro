@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/ui/Container.astro';
 import Faq from '../components/landing/Faq.astro';
-import FinalCta from '../components/landing/FinalCta.astro';
 import MotionController from '../components/common/MotionController.astro';
 import { site } from '../site.config';
 import { 
@@ -11,7 +10,6 @@ import {
   Send, 
   CheckCircle, 
   ShieldCheck,
-  ArrowRight,
   Info,
   Sparkles
 } from '@lucide/astro';
@@ -43,7 +41,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
 
 <BaseLayout 
   title="Contact Starts Digital — Start a Project"
-  description="Share your business goals, current challenges and required support. Open your project brief directly in WhatsApp or email for a direct strategic evaluation."
+  description="Selected client work, featured case studies and public brand pages supported by Starts Digital. Send a structured project inquiry through WhatsApp or email."
   type="website"
 >
   <!-- Deep Navy Rounded Hero Header -->
@@ -80,10 +78,10 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
               DIRECT COMMUNICATIONS
             </span>
             <h2 data-motion="fade-left" data-motion-delay="100" class="font-heading font-bold text-[30px] sm:text-[36px] lg:text-[42px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
-              Connect directly with our execution team
+              Connect directly with our team
             </h2>
             <p data-motion="fade-left" data-motion-delay="200" class="text-base text-slate-700 font-body leading-[1.65] font-normal">
-              We respond promptly to structured project inquiries with direct strategic feedback and clear next steps.
+              Send a structured project inquiry through WhatsApp or email with your business goals and requirements.
             </p>
           </div>
 
@@ -106,7 +104,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                 <span class="font-heading font-semibold text-[18px] sm:text-xl text-[#061d33] group-hover:text-[#39c98a] transition-colors">
                   {site.contact.phone}
                 </span>
-                <p class="text-xs text-slate-600 font-body mt-0.5 font-normal">Fastest channel for project scope & voice notes</p>
+                <p class="text-xs text-slate-600 font-body mt-0.5 font-normal">Use WhatsApp for project details and voice notes</p>
               </div>
             </div>
           </a>
@@ -128,24 +126,24 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                 <span class="font-heading font-semibold text-[18px] sm:text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors">
                   {site.contact.email}
                 </span>
-                <p class="text-xs text-slate-600 font-body mt-0.5 font-normal">Direct inbox monitored daily</p>
+                <p class="text-xs text-slate-600 font-body mt-0.5 font-normal">Send a detailed project brief by email</p>
               </div>
             </div>
           </a>
 
-          <!-- Expectations -->
+          <!-- Expectations Box -->
           <div data-motion="fade-up" data-motion-delay="500" class="rounded-2xl border border-slate-300 bg-white/70 p-6 space-y-3 font-body text-sm font-normal text-slate-700">
             <div class="flex items-center gap-2 text-[#061d33] font-semibold font-body uppercase text-xs tracking-wider">
               <ShieldCheck class="size-5 text-[#ff762b]" />
-              <span>DIRECT EXECUTIVE COMMUNICATION</span>
+              <span>DIRECT CONTACT OPTIONS</span>
             </div>
             <div class="flex items-center gap-2">
               <CheckCircle class="size-4 text-[#39c98a] shrink-0" />
-              <span>Direct access to senior strategy & technical leads</span>
+              <span>Send your project details through WhatsApp or email</span>
             </div>
             <div class="flex items-center gap-2">
               <CheckCircle class="size-4 text-[#39c98a] shrink-0" />
-              <span>No junior sales reps or aggressive follow-up tactics</span>
+              <span>Choose the channel that is most convenient for you</span>
             </div>
           </div>
         </div>
@@ -198,10 +196,11 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                     name="name"
                     required
                     autocomplete="name"
+                    aria-describedby="name-error"
                     placeholder="e.g. John Smith"
                     class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                   />
-                  <span id="name-error" class="hidden text-xs text-red-600 font-body mt-1">Please enter your full name.</span>
+                  <span id="name-error" aria-live="polite" class="hidden text-xs text-red-600 font-body mt-1">Please enter your full name.</span>
                 </div>
 
                 <div>
@@ -213,10 +212,11 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                     id="company" 
                     name="company"
                     required
+                    aria-describedby="company-error"
                     placeholder="e.g. Black Gold Fertilizer"
                     class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                   />
-                  <span id="company-error" class="hidden text-xs text-red-600 font-body mt-1">Please enter your business or brand name.</span>
+                  <span id="company-error" aria-live="polite" class="hidden text-xs text-red-600 font-body mt-1">Please enter your business or brand name.</span>
                 </div>
               </div>
 
@@ -232,10 +232,11 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                     name="email"
                     required
                     autocomplete="email"
+                    aria-describedby="email-error"
                     placeholder="name@company.com"
                     class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                   />
-                  <span id="email-error" class="hidden text-xs text-red-600 font-body mt-1">Please enter a valid email address.</span>
+                  <span id="email-error" aria-live="polite" class="hidden text-xs text-red-600 font-body mt-1">Please enter a valid email address.</span>
                 </div>
 
                 <div>
@@ -262,9 +263,11 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                   type="url" 
                   id="website" 
                   name="website"
-                  placeholder="https://example.com or instagram.com/yourbrand"
+                  aria-describedby="website-error"
+                  placeholder="https://example.com or https://instagram.com/yourbrand"
                   class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                 />
+                <span id="website-error" aria-live="polite" class="hidden text-xs text-red-600 font-body mt-1">Please enter a valid URL (starting with http:// or https://).</span>
               </div>
 
               <!-- 6. Service Needed & 7. Primary Business Goal -->
@@ -277,6 +280,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                     id="service" 
                     name="service"
                     required
+                    aria-describedby="service-error"
                     class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                   >
                     <option value="" disabled selected={!preselectedService}>Select a service...</option>
@@ -289,7 +293,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                     <option value="Multiple Services" selected={preselectedService === 'Multiple Services'}>Multiple Services</option>
                     <option value="Not Sure Yet" selected={preselectedService === 'Not Sure Yet'}>Not Sure Yet</option>
                   </select>
-                  <span id="service-error" class="hidden text-xs text-red-600 font-body mt-1">Please select a service requirement.</span>
+                  <span id="service-error" aria-live="polite" class="hidden text-xs text-red-600 font-body mt-1">Please select a service requirement.</span>
                 </div>
 
                 <div>
@@ -300,6 +304,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                     id="goal" 
                     name="goal"
                     required
+                    aria-describedby="goal-error"
                     class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                   >
                     <option value="" disabled selected>Select primary goal...</option>
@@ -312,7 +317,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                     <option value="Launch a New Business or Product">Launch a New Business or Product</option>
                     <option value="Other">Other</option>
                   </select>
-                  <span id="goal-error" class="hidden text-xs text-red-600 font-body mt-1">Please select your primary business goal.</span>
+                  <span id="goal-error" aria-live="polite" class="hidden text-xs text-red-600 font-body mt-1">Please select your primary business goal.</span>
                 </div>
               </div>
 
@@ -326,7 +331,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                   name="budget"
                   class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                 >
-                  <option value="Not Decided Yet" selected>Select approximate budget...</option>
+                  <option value="" disabled selected>Select approximate budget...</option>
                   <option value="Under PKR 100,000">Under PKR 100,000</option>
                   <option value="PKR 100,000 to 250,000">PKR 100,000 to 250,000</option>
                   <option value="PKR 250,000 to 500,000">PKR 250,000 to 500,000</option>
@@ -346,14 +351,14 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                   name="message"
                   rows="4"
                   required
-                  aria-describedby="details-help"
+                  aria-describedby="details-help message-error"
                   placeholder="Tell us what you sell, your target market, current challenge and expected outcome..."
                   class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                 ></textarea>
                 <p id="details-help" class="text-xs text-slate-500 font-body mt-1.5 font-normal">
                   Tell us what you sell, your target market, current challenge and expected outcome.
                 </p>
-                <span id="message-error" class="hidden text-xs text-red-600 font-body mt-1">Please provide project details.</span>
+                <span id="message-error" aria-live="polite" class="hidden text-xs text-red-600 font-body mt-1">Please provide project details.</span>
               </div>
 
               <!-- Action Choice Buttons -->
@@ -468,12 +473,9 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
   <!-- FAQ Section -->
   <Faq />
 
-  <!-- Approved Navy CTA Panel -->
-  <FinalCta />
-
   <MotionController />
 
-  <!-- Interactive Dispatch & Validation Script -->
+  <!-- Interactive Dispatch & Validation Script with Duplicate Binding Guard -->
   <script>
     const SERVICE_ALLOWLIST: Record<string, string> = {
       'paid-advertising': 'Paid Advertising',
@@ -494,13 +496,17 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
 
     function initContactForm() {
       const form = document.getElementById('contact-form') as HTMLFormElement;
+      if (!form) return;
+
+      // Prevent duplicate listener binding
+      if (form.dataset.bound === 'true') return;
+      form.dataset.bound = 'true';
+
       const btnWhatsApp = document.getElementById('btn-send-whatsapp');
       const btnEmail = document.getElementById('btn-send-email');
       const serviceSelect = document.getElementById('service') as HTMLSelectElement;
       const contextBanner = document.getElementById('case-study-context-note');
       const contextName = document.getElementById('case-study-name');
-
-      if (!form) return;
 
       // Handle URL parameters dynamically on client load
       const urlParams = new URLSearchParams(window.location.search);
@@ -525,7 +531,8 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
         const websiteVal = (document.getElementById('website') as HTMLInputElement)?.value.trim() || '';
         const serviceVal = (document.getElementById('service') as HTMLSelectElement)?.value || 'Not selected';
         const goalVal = (document.getElementById('goal') as HTMLSelectElement)?.value || 'Not selected';
-        const budgetVal = (document.getElementById('budget') as HTMLSelectElement)?.value || 'Not Decided Yet';
+        const rawBudgetVal = (document.getElementById('budget') as HTMLSelectElement)?.value;
+        const budgetVal = rawBudgetVal ? rawBudgetVal : 'Not decided yet';
         const detailsVal = (document.getElementById('message') as HTMLTextAreaElement)?.value.trim() || '';
 
         const phoneText = phoneVal ? phoneVal : 'Not provided';
@@ -573,47 +580,42 @@ ${pageUrl}`
       }
 
       function validateForm(): boolean {
-        // Clear errors
-        ['name', 'company', 'email', 'service', 'goal', 'message'].forEach(id => {
-          const errEl = document.getElementById(`${id}-error`);
-          if (errEl) errEl.classList.add('hidden');
-        });
+        const fields = [
+          { id: 'name', isRequired: true, checkValid: (el: HTMLInputElement) => !!el.value.trim() },
+          { id: 'company', isRequired: true, checkValid: (el: HTMLInputElement) => !!el.value.trim() },
+          { id: 'email', isRequired: true, checkValid: (el: HTMLInputElement) => !!el.value.trim() && el.validity.valid },
+          { id: 'website', isRequired: false, checkValid: (el: HTMLInputElement) => !el.value.trim() || el.validity.valid },
+          { id: 'service', isRequired: true, checkValid: (el: HTMLSelectElement) => !!el.value },
+          { id: 'goal', isRequired: true, checkValid: (el: HTMLSelectElement) => !!el.value },
+          { id: 'message', isRequired: true, checkValid: (el: HTMLTextAreaElement) => !!el.value.trim() },
+        ];
 
         let isValid = true;
-        const nameEl = document.getElementById('name') as HTMLInputElement;
-        const companyEl = document.getElementById('company') as HTMLInputElement;
-        const emailEl = document.getElementById('email') as HTMLInputElement;
-        const serviceEl = document.getElementById('service') as HTMLSelectElement;
-        const goalEl = document.getElementById('goal') as HTMLSelectElement;
-        const messageEl = document.getElementById('message') as HTMLTextAreaElement;
+        let firstInvalidEl: HTMLElement | null = null;
 
-        if (!nameEl?.value.trim()) {
-          document.getElementById('name-error')?.classList.remove('hidden');
-          isValid = false;
-        }
-        if (!companyEl?.value.trim()) {
-          document.getElementById('company-error')?.classList.remove('hidden');
-          isValid = false;
-        }
-        if (!emailEl?.value.trim() || !emailEl.validity.valid) {
-          document.getElementById('email-error')?.classList.remove('hidden');
-          isValid = false;
-        }
-        if (!serviceEl?.value) {
-          document.getElementById('service-error')?.classList.remove('hidden');
-          isValid = false;
-        }
-        if (!goalEl?.value) {
-          document.getElementById('goal-error')?.classList.remove('hidden');
-          isValid = false;
-        }
-        if (!messageEl?.value.trim()) {
-          document.getElementById('message-error')?.classList.remove('hidden');
-          isValid = false;
-        }
+        fields.forEach(({ id, checkValid }) => {
+          const el = document.getElementById(id) as HTMLElement & { value: string; validity?: ValidityState };
+          const errEl = document.getElementById(`${id}-error`);
+          
+          if (el) {
+            const valid = checkValid(el as any);
+            if (!valid) {
+              isValid = false;
+              el.setAttribute('aria-invalid', 'true');
+              if (errEl) errEl.classList.remove('hidden');
+              if (!firstInvalidEl) firstInvalidEl = el;
+            } else {
+              el.removeAttribute('aria-invalid');
+              if (errEl) errEl.classList.add('hidden');
+            }
+          }
+        });
 
         if (!isValid) {
           form.reportValidity();
+          if (firstInvalidEl) {
+            (firstInvalidEl as HTMLElement).focus();
+          }
         }
 
         return isValid;
