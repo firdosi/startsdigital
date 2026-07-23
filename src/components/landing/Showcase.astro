@@ -129,14 +129,19 @@ const { showAllWorkButton = true } = Astro.props;
           <!-- Genuine Product Visual Frame -->
           <div class="lg:col-span-6">
             <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-gradient-to-br from-[#061d33] to-[#0d3459] p-3 shadow-xl font-body">
-              <img
-                src={`${site.basePath}/images/black-gold-official.png`}
-                alt="Official Black Gold Fertilizer Product Packaging"
-                width="640"
-                height="400"
-                loading="lazy"
-                class="w-full h-[280px] sm:h-[320px] rounded-xl object-contain bg-white/10 p-4 group-hover:scale-103 transition-transform duration-500"
-              />
+              <picture>
+                <source srcset={`${site.basePath}/images/black-gold-official.avif`} type="image/avif" />
+                <source srcset={`${site.basePath}/images/black-gold-official-sm.webp`} type="image/webp" />
+                <img
+                  src={`${site.basePath}/images/black-gold-official.png`}
+                  alt="Official Black Gold Fertilizer Product Packaging"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-[280px] sm:h-[320px] rounded-xl object-contain bg-white/10 p-4 group-hover:scale-103 transition-transform duration-500"
+                />
+              </picture>
               <div class="absolute bottom-5 right-5 rounded-xl border border-white/20 bg-[#061d33]/90 px-3.5 py-2.5 backdrop-blur-md shadow-lg hidden sm:flex items-center gap-2.5 text-white">
                 <Sprout class="size-5 text-[#39c98a] shrink-0" />
                 <div>
@@ -311,14 +316,18 @@ const { showAllWorkButton = true } = Astro.props;
                 <div class="size-2.5 rounded-full bg-green-500/80"></div>
                 <span class="text-[11px] font-mono text-slate-400 ml-2">rkrenosolution.com</span>
               </div>
-              <img
-                src={`${site.basePath}/brands/rk-reno-solutions/screenshot.png`}
-                alt="Genuine RK Reno Solutions Official Website Screenshot (rkrenosolution.com)"
-                width="640"
-                height="400"
-                loading="lazy"
-                class="w-full h-[280px] sm:h-[320px] rounded-xl object-cover object-top group-hover:scale-103 transition-transform duration-500"
-              />
+              <picture>
+                <source srcset={`${site.basePath}/brands/rk-reno-solutions/screenshot.webp`} type="image/webp" />
+                <img
+                  src={`${site.basePath}/brands/rk-reno-solutions/screenshot.png`}
+                  alt="Genuine RK Reno Solutions Official Website Screenshot (rkrenosolution.com)"
+                  width="640"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-[280px] sm:h-[320px] rounded-xl object-cover object-top group-hover:scale-103 transition-transform duration-500"
+                />
+              </picture>
             </div>
           </div>
 

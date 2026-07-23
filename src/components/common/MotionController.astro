@@ -39,13 +39,15 @@
         el.classList.add('is-motion-revealed', 'is-revealed');
       });
     } else {
-      // Reveal Hero section elements automatically on initial page load (CSS handles transition delay)
-      heroElements.forEach((el) => {
-        const delayAttr = el.dataset.motionDelay || '0';
-        const durationAttr = el.dataset.motionDuration || '700';
-        el.style.setProperty('--motion-del', `${delayAttr}ms`);
-        el.style.setProperty('--motion-dur', `${durationAttr}ms`);
-        el.classList.add('is-motion-revealed', 'is-revealed');
+      // Reveal Hero section elements asynchronously on initial frame to avoid main-thread layout thrashing
+      requestAnimationFrame(() => {
+        heroElements.forEach((el) => {
+          const delayAttr = el.dataset.motionDelay || '0';
+          const durationAttr = el.dataset.motionDuration || '700';
+          el.style.setProperty('--motion-del', `${delayAttr}ms`);
+          el.style.setProperty('--motion-dur', `${durationAttr}ms`);
+          el.classList.add('is-motion-revealed', 'is-revealed');
+        });
       });
 
       // Observe below-the-fold elements individually with strict viewport thresholds
