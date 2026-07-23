@@ -54,6 +54,7 @@ const verifiedBrands = brands.filter((b) => b.logoApproved && b.logo);
               href={destUrl}
               target="_blank"
               rel="noopener noreferrer"
+              data-track={b.website ? 'client-website' : 'client-facebook'}
               aria-label={`Visit ${b.name} official page`}
               class="block"
             >

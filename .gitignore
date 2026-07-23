@@ -22,9 +22,10 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# Private local asset intake (Never commit unredacted source assets, credentials, or client files)
+# Private local asset intake & scratch files
 private-assets/
 oldweb/
 Boost/
 motion-review-*/
 typography-tech-*/
+scratch/

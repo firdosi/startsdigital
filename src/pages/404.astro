@@ -1,26 +1,61 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../components/ui/Button.astro';
 import Container from '../components/ui/Container.astro';
-import { siteConfig } from '../data/site';
+import { site } from '../site.config';
+import { ArrowRight, Home, Briefcase, Cpu, Mail } from '@lucide/astro';
 ---
 
-<BaseLayout title="404 Page Not Found" description="The page you requested was not found.">
-  <section class="flex min-h-[50vh] items-center justify-center py-24 md:py-32">
-    <Container class="text-center flex flex-col items-center justify-center space-y-6">
-      <span class="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase font-heading">
-        Error 404
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-brand-white">
-        Lost in navigation.
-      </h1>
-      <p class="font-body text-base text-brand-text max-w-md leading-relaxed">
-        The page you are looking for doesn't exist, has been moved, or is currently under development.
-      </p>
-      <div class="pt-4">
-        <Button href={`${siteConfig.basePath}/`} variant="primary">
-          Return to Homepage
-        </Button>
+<BaseLayout 
+  title="Page Not Found | Starts Digital" 
+  description="The page you requested could not be found. Return to Starts Digital homepage or explore our services and portfolio."
+  noindex={true}
+>
+  <section class="py-24 sm:py-32 bg-[#061d33] text-white min-h-[60vh] flex items-center">
+    <Container class="max-w-3xl text-center space-y-8">
+      <div class="space-y-4">
+        <span class="inline-block rounded-full bg-[#ff762b]/20 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-[#ff762b] border border-[#ff762b]/30">
+          404 Error
+        </span>
+        <h1 class="font-heading font-bold text-4xl sm:text-5xl text-white leading-tight">
+          Page Not Found
+        </h1>
+        <p class="font-body text-base sm:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
+          The page you requested could not be found or may have been moved. Return to the homepage or navigate directly to our core services and portfolio.
+        </p>
+      </div>
+
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href={`${site.basePath}/`}
+          class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-6 py-3 text-sm font-semibold text-white hover:bg-[#e06018] transition-colors shadow-lg"
+        >
+          <Home class="size-4" />
+          <span>Return Homepage</span>
+        </a>
+
+        <a
+          href={`${site.basePath}/services/`}
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+        >
+          <Cpu class="size-4" />
+          <span>Our Services</span>
+        </a>
+
+        <a
+          href={`${site.basePath}/work/`}
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+        >
+          <Briefcase class="size-4" />
+          <span>Selected Work</span>
+        </a>
+
+        <a
+          href={`${site.basePath}/contact/`}
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+        >
+          <Mail class="size-4" />
+          <span>Contact Us</span>
+        </a>
       </div>
     </Container>
   </section>

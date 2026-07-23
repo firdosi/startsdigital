@@ -1,20 +1,155 @@
 ---
-import { siteConfig } from '../../data/site';
+import { site } from '../../site.config';
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": siteConfig.name,
-  "url": `${siteConfig.url}${siteConfig.basePath}/`,
-  "logo": `${siteConfig.url}${siteConfig.basePath}/favicon.svg`,
-  "email": siteConfig.contact.email,
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "sales",
-    "email": siteConfig.contact.email,
-    "url": `${siteConfig.url}${siteConfig.basePath}/#contact`
+interface Props {
+  type?: 'homepage' | 'case-study' | 'page';
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  type = 'page',
+  title = site.defaultTitle,
+  description = site.defaultDescription,
+  image,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const fullUrl = currentPath.startsWith(site.basePath)
+  ? `${site.domain}${currentPath}`
+  : `${site.siteUrl}${currentPath}`;
+const absoluteUrl = fullUrl.replace(/\/$/, '') + '/';
+
+const absoluteOgImage = image
+  ? (image.startsWith('http') ? image : `${site.siteUrl}${image}`)
+  : `${site.siteUrl}${site.defaultOgImage}`;
+
+// 1. Organization Schema
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${site.siteUrl}/#organization`,
+  name: site.businessName,
+  url: `${site.siteUrl}/`,
+  logo: `${site.siteUrl}/favicon.svg`,
+  email: site.email,
+  telephone: site.phone,
+  areaServed: ['Pakistan', 'International'],
+  knowsAbout: [
+    'Digital marketing',
+    'Paid advertising',
+    'Website development',
+    'SEO',
+    'Creative content',
+    'AI marketing systems'
+  ]
+};
+
+// 2. WebSite Schema (Homepage)
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${site.siteUrl}/#website`,
+  url: `${site.siteUrl}/`,
+  name: site.businessName,
+  description: site.defaultDescription,
+  publisher: {
+    '@id': `${site.siteUrl}/#organization`
   }
 };
+
+// 3. ProfessionalService Schema (Homepage)
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${site.siteUrl}/#service`,
+  name: site.businessName,
+  url: `${site.siteUrl}/`,
+  email: site.email,
+  telephone: site.phone,
+  areaServed: ['Pakistan', 'International'],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Digital Marketing & Growth Services',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Paid Advertising and Lead Generation' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Website Design and E-Commerce' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SEO and Local Search' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Creative Content Production' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Marketing Systems' } }
+    ]
+  }
+};
+
+// 4. BreadcrumbList Schema
+const pathSegments = currentPath
+  .replace(site.basePath, '')
+  .split('/')
+  .filter(Boolean);
+
+const breadcrumbItems = [
+  {
+    '@type': 'ListItem',
+    position: 1,
+    name: 'Home',
+    item: `${site.siteUrl}/`
+  }
+];
+
+let cumPath = `${site.siteUrl}`;
+pathSegments.forEach((segment, idx) => {
+  cumPath += `/${segment}`;
+  const label = segment
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+  breadcrumbItems.push({
+    '@type': 'ListItem',
+    position: idx + 2,
+    name: label,
+    item: cumPath.replace(/\/$/, '') + '/'
+  });
+});
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbItems
+};
+
+// 5. Page Schema (WebPage or CreativeWork)
+const pageSchema = type === 'case-study'
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      headline: title,
+      description: description,
+      url: absoluteUrl,
+      image: absoluteOgImage,
+      author: {
+        '@id': `${site.siteUrl}/#organization`
+      },
+      publisher: {
+        '@id': `${site.siteUrl}/#organization`
+      }
+    }
+  : {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: title,
+      description: description,
+      url: absoluteUrl,
+      publisher: {
+        '@id': `${site.siteUrl}/#organization`
+      }
+    };
+
+const schemas = type === 'homepage'
+  ? [orgSchema, websiteSchema, serviceSchema]
+  : [pageSchema, breadcrumbSchema];
 ---
 
-<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+{schemas.map((s) => (
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(s)} />
+))}

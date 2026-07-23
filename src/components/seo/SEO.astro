@@ -1,5 +1,5 @@
 ---
-import { siteConfig } from '../../data/site';
+import { site } from '../../site.config';
 
 interface Props {
   title?: string;
@@ -11,23 +11,29 @@ interface Props {
 }
 
 const {
-  title = siteConfig.tagline,
-  description = siteConfig.description,
+  title = site.defaultTitle,
+  description = site.defaultDescription,
   canonicalUrl,
   ogType = 'website',
   ogImage,
   noindex = false,
 } = Astro.props;
 
-const siteName = siteConfig.name;
-const formattedTitle = title === siteName ? title : `${title} | ${siteName}`;
+const siteName = site.businessName;
+const formattedTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 
 // Compute canonical and OG paths
 const pathname = Astro.url.pathname;
-const computedCanonical = canonicalUrl || `${siteConfig.url}${pathname}`;
+const cleanPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
+const baseCanonical = cleanPath.startsWith(site.basePath)
+  ? `${site.domain}${cleanPath}`
+  : `${site.siteUrl}${cleanPath}`;
+
+const computedCanonical = canonicalUrl || (baseCanonical.endsWith('/') ? baseCanonical : `${baseCanonical}/`);
+
 const computedOgImage = ogImage
-  ? (ogImage.startsWith('http') ? ogImage : `${siteConfig.url}${siteConfig.basePath}${ogImage}`)
-  : undefined;
+  ? (ogImage.startsWith('http') ? ogImage : `${site.siteUrl}${ogImage.startsWith('/') ? ogImage : '/' + ogImage}`)
+  : `${site.siteUrl}${site.defaultOgImage}`;
 ---
 
 <title>{formattedTitle}</title>
@@ -35,7 +41,7 @@ const computedOgImage = ogImage
 <link rel="canonical" href={computedCanonical} />
 
 {noindex ? (
-  <meta name="robots" content="noindex, nofollow" />
+  <meta name="robots" content="noindex, follow" />
 ) : (
   <meta name="robots" content="index, follow" />
 )}
@@ -45,7 +51,7 @@ const computedOgImage = ogImage
 <meta property="og:url" content={computedCanonical} />
 <meta property="og:title" content={formattedTitle} />
 <meta property="og:description" content={description} />
-{computedOgImage && <meta property="og:image" content={computedOgImage} />}
+<meta property="og:image" content={computedOgImage} />
 <meta property="og:site_name" content={siteName} />
 
 <!-- Twitter -->
@@ -53,4 +59,4 @@ const computedOgImage = ogImage
 <meta name="twitter:url" content={computedCanonical} />
 <meta name="twitter:title" content={formattedTitle} />
 <meta name="twitter:description" content={description} />
-{computedOgImage && <meta name="twitter:image" content={computedOgImage} />}
+<meta name="twitter:image" content={computedOgImage} />

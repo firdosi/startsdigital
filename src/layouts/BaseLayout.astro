@@ -21,22 +21,32 @@ interface Props {
   description?: string;
   image?: string;
   type?: 'website' | 'article';
+  schemaType?: 'homepage' | 'case-study' | 'page';
   noindex?: boolean;
 }
 
-const seo = Astro.props;
+const { title, description, image, type, schemaType, noindex } = Astro.props;
+const currentPath = Astro.url.pathname;
+const calculatedSchemaType = schemaType || (currentPath === `${site.basePath}/` || currentPath === `${site.basePath}` || currentPath === '/' ? 'homepage' : (currentPath.includes('/work/') && currentPath !== `${site.basePath}/work/` ? 'case-study' : 'page'));
 ---
 
-<html lang={site.locale}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Favicon & App Icons -->
     <link rel="icon" type="image/svg+xml" href={`${site.basePath}/favicon.svg`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${site.basePath}/favicon-32x32.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${site.basePath}/apple-touch-icon.png`} />
+    <link rel="manifest" href={`${site.basePath}/site.webmanifest`} />
     <link rel="sitemap" href={`${site.basePath}/sitemap-index.xml`} />
-    <SEO {...seo} />
-    <StructuredData />
+    
+    <SEO title={title} description={description} ogImage={image} ogType={type} noindex={noindex} />
+    <StructuredData type={calculatedSchemaType} title={title} description={description} image={image} />
     <ClientRouter fallback="swap" />
+    
     <script is:inline>
       if (typeof window !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.classList.add('motion-initialized');
@@ -55,9 +65,17 @@ const seo = Astro.props;
     <slot name="head" />
   </head>
   <body class="bg-[#f7f4ed] text-[#061d33] antialiased selection:bg-[#ff762b] selection:text-white font-body">
+    <!-- Accessibility Skip to Main Content Link -->
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-5 focus:py-3 focus:bg-[#061d33] focus:text-white focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#ff762b]"
+    >
+      Skip to main content
+    </a>
+
     <div class="max-w-full overflow-x-clip bg-[#f7f4ed]">
       <Header />
-      <main id="main-content">
+      <main id="main-content" tabindex="-1">
         <slot />
       </main>
       <Footer />

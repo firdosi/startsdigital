@@ -1,0 +1,21 @@
+{
+  "name": "Starts Digital",
+  "short_name": "Starts Digital",
+  "description": "Digital marketing, paid advertising, websites, SEO, creative content and AI-powered marketing systems.",
+  "start_url": "/startsdigital/",
+  "display": "standalone",
+  "background_color": "#061d33",
+  "theme_color": "#061d33",
+  "icons": [
+    {
+      "src": "/startsdigital/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/startsdigital/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

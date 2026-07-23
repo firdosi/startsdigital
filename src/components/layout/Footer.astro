@@ -53,13 +53,13 @@ const columns = [
         <div class="pt-2 text-[15px] sm:text-[16px] space-y-2.5 font-body text-slate-300 font-normal">
           <div class="flex items-center gap-2">
             <span class="text-slate-400">Email:</span>
-            <a href={`mailto:${site.contact.email}`} class="text-[#ddff35] underline hover:text-white transition-colors font-medium">
+            <a href={`mailto:${site.contact.email}`} data-track="contact-email" class="text-[#ddff35] underline hover:text-white transition-colors font-medium">
               {site.contact.email}
             </a>
           </div>
           <div class="flex items-center gap-2">
             <span class="text-slate-400">WhatsApp:</span>
-            <a href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer" class="text-[#39c98a] underline hover:text-white transition-colors font-medium">
+            <a href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer" data-track="contact-whatsapp" class="text-[#39c98a] underline hover:text-white transition-colors font-medium">
               {site.contact.phone}
             </a>
           </div>
