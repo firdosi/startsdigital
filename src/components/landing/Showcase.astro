@@ -9,6 +9,12 @@ import {
   ShoppingBag,
   ExternalLink
 } from '@lucide/astro';
+
+interface Props {
+  showAllWorkButton?: boolean;
+}
+
+const { showAllWorkButton = true } = Astro.props;
 ---
 
 <section id="work" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
@@ -25,15 +31,17 @@ import {
           Our featured projects
         </h2>
       </div>
-      <div data-motion="pop-in" data-motion-delay="200">
-        <a
-          href={`${site.basePath}/work/`}
-          class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-7 py-3.5 font-body font-semibold text-[15px] text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-md group/cta"
-        >
-          <span>View all client work</span>
-          <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
-        </a>
-      </div>
+      {showAllWorkButton && (
+        <div data-motion="pop-in" data-motion-delay="200">
+          <a
+            href={`${site.basePath}/work/`}
+            class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-7 py-3.5 font-body font-semibold text-[15px] text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-md group/cta"
+          >
+            <span>View all client work</span>
+            <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
+          </a>
+        </div>
+      )}
     </div>
 
     <!-- 3 Featured Case-Study Cards -->

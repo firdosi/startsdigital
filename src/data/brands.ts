@@ -222,7 +222,7 @@ export const brands: Brand[] = [
     ],
     logo: '/brands/clearzone-immigration/logo.webp',
     logoApproved: true,
-    website: 'http://clearzoneimmigration.com',
+    website: 'https://clearzoneimmigration.com',
     featured: false,
     active: true,
     order: 9
@@ -309,12 +309,11 @@ export const brands: Brand[] = [
       'Campaign Messaging',
       'Brand Communication'
     ],
-    logo: undefined,
-    logoApproved: false,
+    logo: '/brands/unique-lahore-lab-sahiwal/logo.webp',
+    logoApproved: true,
     facebook: 'https://www.facebook.com/profile.php?id=100054656280926',
     featured: false,
     active: true,
     order: 13
   }
 ];
-

@@ -30,7 +30,7 @@ const regularBrands = regularBrandIds
 
 <BaseLayout 
   title="Client Portfolio & Selected Experience — Starts Digital"
-  description="Official client portfolio, featured case studies, and ConvortAI technology partnership."
+  description="Selected client work, featured case studies and public brand pages supported by Starts Digital."
   type="website"
 >
   <!-- Deep Navy Rounded Hero Header -->
@@ -48,13 +48,13 @@ const regularBrands = regularBrandIds
       </h1>
       
       <p data-motion="fade-up" data-motion-delay="200" class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.65] font-normal">
-        Official client portfolio, featured case studies, and verified brand presences supported by Starts Digital.
+        Selected client work, featured case studies and public brand pages supported by Starts Digital.
       </p>
     </Container>
   </section>
 
-  <!-- 3 Large Image-Led Featured Projects -->
-  <Showcase />
+  <!-- 3 Large Image-Led Featured Projects (Self-link hidden on Work page) -->
+  <Showcase showAllWorkButton={false} />
 
   <!-- Featured Technology Partner Section: ConvortAI -->
   {convort && (
@@ -142,7 +142,7 @@ const regularBrands = regularBrandIds
           Brands We Have Worked With
         </h2>
         <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
-          Explore official client presences and web destinations for work completed across e-commerce, services, consultation, and technology.
+          Explore client websites and public social pages for work completed across e-commerce, services, consultation and technology.
         </p>
       </div>
 
