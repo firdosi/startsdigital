@@ -160,6 +160,17 @@ const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[curren
                 }
               </ul>
             </div>
+            <!-- Case Study Contact Action -->
+            <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+              <a
+                href={`${site.basePath}/contact/?source=${entry.id}`}
+                data-track="case-study-contact"
+                class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#ff762b] px-4 py-3.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#e56017] transition-colors shadow-md"
+              >
+                <span>Start a Project Like This</span>
+                <ArrowRight class="size-4" />
+              </a>
+            </div>
           </div>
         </div>
 

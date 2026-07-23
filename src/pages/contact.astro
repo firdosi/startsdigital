@@ -10,14 +10,40 @@ import {
   MessageSquare, 
   Send, 
   CheckCircle, 
-  Clock, 
-  ShieldCheck 
+  ShieldCheck,
+  ArrowRight,
+  Info,
+  Sparkles
 } from '@lucide/astro';
+
+// Allowlist mappings for service and source parameters
+const SERVICE_ALLOWLIST: Record<string, string> = {
+  'paid-advertising': 'Paid Advertising',
+  'website-development': 'Website Design and Development',
+  'seo': 'SEO',
+  'creative-content': 'Creative Content',
+  'social-media-marketing': 'Social Media Marketing',
+  'ai-marketing-systems': 'AI Marketing Systems',
+  'multiple-services': 'Multiple Services',
+  'not-sure-yet': 'Not Sure Yet',
+};
+
+const SOURCE_ALLOWLIST: Record<string, string> = {
+  'black-gold-fertilizer': 'Black Gold Fertilizer',
+  'qurbani-campaign': 'Wajib Livestock Qurbani Campaign',
+  'rk-reno-solutions': 'RK Reno Solutions',
+};
+
+const initialService = Astro.url.searchParams.get('service');
+const initialSource = Astro.url.searchParams.get('source');
+
+const preselectedService = (initialService && SERVICE_ALLOWLIST[initialService]) ? SERVICE_ALLOWLIST[initialService] : '';
+const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOURCE_ALLOWLIST[initialSource] : '';
 ---
 
 <BaseLayout 
-  title="Contact Starts Digital — Discuss Your Growth Strategy"
-  description="Tell us about your business, current challenges and goals. Speak directly with our team to evaluate your paid campaigns, web architecture and growth roadmap."
+  title="Contact Starts Digital — Start a Project"
+  description="Share your business goals, current challenges and required support. Open your project brief directly in WhatsApp or email for a direct strategic evaluation."
   type="website"
 >
   <!-- Deep Navy Rounded Hero Header -->
@@ -25,47 +51,72 @@ import {
     <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
       <div data-motion="scale-in">
         <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35]">
-          <span>CONTACT</span>
+          <Sparkles class="size-3.5 text-[#ddff35]" />
+          <span>PROJECT INQUIRY</span>
         </span>
       </div>
       
-      <!-- Hero Headline: Sora 700 -->
-      <h1 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] text-white leading-[1.08] tracking-[-0.035em] max-w-[800px] mx-auto">
-        Let’s talk about your next <span class="text-[#ff762b]">growth opportunity.</span>
+      <!-- Hero Headline -->
+      <h1 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[38px] sm:text-[50px] lg:text-[64px] text-white leading-[1.08] tracking-[-0.035em] max-w-[840px] mx-auto">
+        Let’s discuss what you want to <span class="text-[#ff762b]">grow.</span>
       </h1>
       
-      <p data-motion="fade-up" data-motion-delay="200" class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.65] font-normal">
-        Tell us about your business, current challenges and goals. We will review where Starts Digital may be able to help.
+      <p data-motion="fade-up" data-motion-delay="200" class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[700px] mx-auto leading-[1.65] font-normal">
+        Share your business goals, current challenges and the support you need. Your project brief can be opened directly in WhatsApp or email.
       </p>
     </Container>
   </section>
 
   <!-- Contact Cards & Form Section -->
-  <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
+  <section class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
     <Container class="max-w-[1280px] px-6 sm:px-8">
       
       <div class="grid gap-12 lg:grid-cols-12 items-start">
         
-        <!-- Left Column: Clickable Contact Cards & Assurance -->
+        <!-- Left Column: Clickable Contact Cards & Direct Info -->
         <div class="lg:col-span-5 space-y-8">
           <div class="space-y-3">
             <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
-              DIRECT CHANNELS
+              DIRECT COMMUNICATIONS
             </span>
-            <!-- Sora 700 section heading -->
-            <h2 data-motion="fade-left" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
-              Get in touch directly
+            <h2 data-motion="fade-left" data-motion-delay="100" class="font-heading font-bold text-[30px] sm:text-[36px] lg:text-[42px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+              Connect directly with our execution team
             </h2>
             <p data-motion="fade-left" data-motion-delay="200" class="text-base text-slate-700 font-body leading-[1.65] font-normal">
-              We respond promptly to project enquiries with honest commercial evaluations and direct strategic feedback.
+              We respond promptly to structured project inquiries with direct strategic feedback and clear next steps.
             </p>
           </div>
+
+          <!-- Clickable WhatsApp Card -->
+          <a
+            data-motion="fade-up"
+            data-motion-delay="300"
+            href={site.contact.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="contact-whatsapp"
+            class="block rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 shadow-lg hover:border-[#39c98a] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+          >
+            <div class="flex items-center gap-4">
+              <div class="size-14 rounded-2xl bg-[#39c98a] text-white flex items-center justify-center font-bold shrink-0 group-hover:rotate-6 transition-transform">
+                <MessageSquare class="size-7" />
+              </div>
+              <div>
+                <span class="text-xs font-mono font-medium uppercase text-slate-500 block">WhatsApp Direct</span>
+                <span class="font-heading font-semibold text-[18px] sm:text-xl text-[#061d33] group-hover:text-[#39c98a] transition-colors">
+                  {site.contact.phone}
+                </span>
+                <p class="text-xs text-slate-600 font-body mt-0.5 font-normal">Fastest channel for project scope & voice notes</p>
+              </div>
+            </div>
+          </a>
 
           <!-- Clickable Email Card -->
           <a
             data-motion="fade-up"
-            data-motion-delay="300"
+            data-motion-delay="400"
             href={`mailto:${site.contact.email}`}
+            data-track="contact-email"
             class="block rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 shadow-lg hover:border-[#ff762b] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
           >
             <div class="flex items-center gap-4">
@@ -82,176 +133,333 @@ import {
             </div>
           </a>
 
-          <!-- Clickable WhatsApp Card -->
-          <a
-            data-motion="fade-up"
-            data-motion-delay="400"
-            href={site.contact.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="block rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 shadow-lg hover:border-[#39c98a] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
-          >
-            <div class="flex items-center gap-4">
-              <div class="size-14 rounded-2xl bg-[#39c98a] text-white flex items-center justify-center font-bold shrink-0 group-hover:rotate-6 transition-transform">
-                <MessageSquare class="size-7" />
-              </div>
-              <div>
-                <span class="text-xs font-mono font-medium uppercase text-slate-500 block">WhatsApp Direct Chat</span>
-                <span class="font-heading font-semibold text-[18px] sm:text-xl text-[#061d33] group-hover:text-[#39c98a] transition-colors">
-                  {site.contact.phone}
-                </span>
-                <p class="text-xs text-slate-600 font-body mt-0.5 font-normal">Quick voice note or chat consultation</p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Expectation Guarantees -->
-          <div data-motion="fade-up" data-motion-delay="500" class="rounded-2xl border border-slate-300 bg-white/60 p-6 space-y-3 font-body text-sm font-normal text-slate-700">
+          <!-- Expectations -->
+          <div data-motion="fade-up" data-motion-delay="500" class="rounded-2xl border border-slate-300 bg-white/70 p-6 space-y-3 font-body text-sm font-normal text-slate-700">
             <div class="flex items-center gap-2 text-[#061d33] font-semibold font-body uppercase text-xs tracking-wider">
               <ShieldCheck class="size-5 text-[#ff762b]" />
-              <span>COMMERCIAL ASSURANCE</span>
+              <span>DIRECT EXECUTIVE COMMUNICATION</span>
             </div>
             <div class="flex items-center gap-2">
-              <Clock class="size-4 text-slate-500 shrink-0" />
-              <span>Response within 24 business hours</span>
+              <CheckCircle class="size-4 text-[#39c98a] shrink-0" />
+              <span>Direct access to senior strategy & technical leads</span>
             </div>
             <div class="flex items-center gap-2">
-              <CheckCircle class="size-4 text-slate-500 shrink-0" />
-              <span>No pushy sales calls or junior account managers</span>
+              <CheckCircle class="size-4 text-[#39c98a] shrink-0" />
+              <span>No junior sales reps or aggressive follow-up tactics</span>
             </div>
           </div>
         </div>
 
-        <!-- Right Column: Professional Interactive Form -->
+        <!-- Right Column: Structured Project Brief Form -->
         <div data-motion="fade-right" data-motion-delay="250" class="lg:col-span-7">
-          <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 sm:p-12 shadow-2xl space-y-6">
+          <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-6 sm:p-10 lg:p-12 shadow-2xl space-y-6">
+            
             <div>
-              <h3 class="font-heading font-semibold text-2xl sm:text-3xl text-[#061d33] mb-2 leading-tight">
-                Tell us about your project
+              <h3 class="font-heading font-bold text-2xl sm:text-3xl text-[#061d33] mb-2 leading-tight">
+                Project Brief Form
               </h3>
               <p class="text-base text-slate-600 font-body leading-[1.65] font-normal">
-                Choose your preferred channel below (Email or WhatsApp) to send your inquiry directly to our execution team.
+                Fill in your details below to generate your structured brief for WhatsApp or Email.
               </p>
+            </div>
+
+            <!-- Verified Case Study Context Banner (Shown when URL source param is present) -->
+            <div 
+              id="case-study-context-note"
+              class:list={[
+                'rounded-2xl border border-[#ff762b]/30 bg-[#ff762b]/10 p-4 flex items-start gap-3 text-sm text-[#061d33]',
+                caseStudySource ? 'block' : 'hidden'
+              ]}
+            >
+              <Info class="size-5 text-[#ff762b] shrink-0 mt-0.5" />
+              <div>
+                <span class="font-semibold block">Case Study Context</span>
+                <span id="case-study-context-text">
+                  You are contacting us after viewing the <strong id="case-study-name">{caseStudySource}</strong> case study.
+                </span>
+              </div>
             </div>
 
             <!-- Form -->
             <form 
               id="contact-form"
               class="space-y-5"
+              novalidate
             >
+              <!-- 1. Full Name & 2. Business Name -->
               <div class="grid gap-5 sm:grid-cols-2">
                 <div>
-                  <label for="name" class="block font-mono text-xs font-medium uppercase text-[#061d33] mb-2">
-                    Your Name *
+                  <label for="name" class="block font-mono text-xs font-semibold uppercase text-[#061d33] mb-2">
+                    1. Full Name <span class="text-[#ff762b]">*</span>
                   </label>
                   <input 
                     type="text" 
                     id="name" 
+                    name="name"
                     required
-                    placeholder="e.g. John Doe"
+                    autocomplete="name"
+                    placeholder="e.g. John Smith"
                     class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                   />
+                  <span id="name-error" class="hidden text-xs text-red-600 font-body mt-1">Please enter your full name.</span>
                 </div>
-                <div>
-                  <label for="email" class="block font-mono text-xs font-medium uppercase text-[#061d33] mb-2">
-                    Email Address *
-                  </label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    required
-                    placeholder="name@company.com"
-                    class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
-                  />
-                </div>
-              </div>
 
-              <div class="grid gap-5 sm:grid-cols-2">
                 <div>
-                  <label for="phone" class="block font-mono text-xs font-medium uppercase text-[#061d33] mb-2">
-                    Phone / WhatsApp
-                  </label>
-                  <input 
-                    type="text" 
-                    id="phone" 
-                    placeholder="+92 300 0000000"
-                    class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
-                  />
-                </div>
-                <div>
-                  <label for="company" class="block font-mono text-xs font-medium uppercase text-[#061d33] mb-2">
-                    Company / Brand Name
+                  <label for="company" class="block font-mono text-xs font-semibold uppercase text-[#061d33] mb-2">
+                    2. Business / Brand Name <span class="text-[#ff762b]">*</span>
                   </label>
                   <input 
                     type="text" 
                     id="company" 
-                    placeholder="Your Business Name"
+                    name="company"
+                    required
+                    placeholder="e.g. Black Gold Fertilizer"
+                    class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
+                  />
+                  <span id="company-error" class="hidden text-xs text-red-600 font-body mt-1">Please enter your business or brand name.</span>
+                </div>
+              </div>
+
+              <!-- 3. Email & 4. Phone -->
+              <div class="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label for="email" class="block font-mono text-xs font-semibold uppercase text-[#061d33] mb-2">
+                    3. Email Address <span class="text-[#ff762b]">*</span>
+                  </label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    required
+                    autocomplete="email"
+                    placeholder="name@company.com"
+                    class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
+                  />
+                  <span id="email-error" class="hidden text-xs text-red-600 font-body mt-1">Please enter a valid email address.</span>
+                </div>
+
+                <div>
+                  <label for="phone" class="block font-mono text-xs font-semibold uppercase text-[#061d33] mb-2">
+                    4. WhatsApp / Phone Number <span class="text-slate-400 font-normal">(Optional)</span>
+                  </label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone"
+                    autocomplete="tel"
+                    placeholder="+92 339 4135544"
                     class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                   />
                 </div>
               </div>
 
+              <!-- 5. Website or Social Page -->
               <div>
-                <label for="service" class="block font-mono text-xs font-medium uppercase text-[#061d33] mb-2">
-                  Service Needed *
+                <label for="website" class="block font-mono text-xs font-semibold uppercase text-[#061d33] mb-2">
+                  5. Website or Social Page <span class="text-slate-400 font-normal">(Optional)</span>
+                </label>
+                <input 
+                  type="url" 
+                  id="website" 
+                  name="website"
+                  placeholder="https://example.com or instagram.com/yourbrand"
+                  class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
+                />
+              </div>
+
+              <!-- 6. Service Needed & 7. Primary Business Goal -->
+              <div class="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label for="service" class="block font-mono text-xs font-semibold uppercase text-[#061d33] mb-2">
+                    6. Service Needed <span class="text-[#ff762b]">*</span>
+                  </label>
+                  <select 
+                    id="service" 
+                    name="service"
+                    required
+                    class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
+                  >
+                    <option value="" disabled selected={!preselectedService}>Select a service...</option>
+                    <option value="Paid Advertising" selected={preselectedService === 'Paid Advertising'}>Paid Advertising</option>
+                    <option value="Website Design and Development" selected={preselectedService === 'Website Design and Development'}>Website Design and Development</option>
+                    <option value="SEO" selected={preselectedService === 'SEO'}>SEO</option>
+                    <option value="Creative Content" selected={preselectedService === 'Creative Content'}>Creative Content</option>
+                    <option value="Social Media Marketing" selected={preselectedService === 'Social Media Marketing'}>Social Media Marketing</option>
+                    <option value="AI Marketing Systems" selected={preselectedService === 'AI Marketing Systems'}>AI Marketing Systems</option>
+                    <option value="Multiple Services" selected={preselectedService === 'Multiple Services'}>Multiple Services</option>
+                    <option value="Not Sure Yet" selected={preselectedService === 'Not Sure Yet'}>Not Sure Yet</option>
+                  </select>
+                  <span id="service-error" class="hidden text-xs text-red-600 font-body mt-1">Please select a service requirement.</span>
+                </div>
+
+                <div>
+                  <label for="goal" class="block font-mono text-xs font-semibold uppercase text-[#061d33] mb-2">
+                    7. Primary Business Goal <span class="text-[#ff762b]">*</span>
+                  </label>
+                  <select 
+                    id="goal" 
+                    name="goal"
+                    required
+                    class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
+                  >
+                    <option value="" disabled selected>Select primary goal...</option>
+                    <option value="Generate More Leads">Generate More Leads</option>
+                    <option value="Increase Online Sales">Increase Online Sales</option>
+                    <option value="Build or Improve a Website">Build or Improve a Website</option>
+                    <option value="Improve Search Visibility">Improve Search Visibility</option>
+                    <option value="Improve Social Media Content">Improve Social Media Content</option>
+                    <option value="Automate Marketing Tasks">Automate Marketing Tasks</option>
+                    <option value="Launch a New Business or Product">Launch a New Business or Product</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <span id="goal-error" class="hidden text-xs text-red-600 font-body mt-1">Please select your primary business goal.</span>
+                </div>
+              </div>
+
+              <!-- 8. Monthly Budget -->
+              <div>
+                <label for="budget" class="block font-mono text-xs font-semibold uppercase text-[#061d33] mb-2">
+                  8. Monthly Marketing Budget <span class="text-slate-400 font-normal">(Optional)</span>
                 </label>
                 <select 
-                  id="service" 
-                  required
+                  id="budget" 
+                  name="budget"
                   class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                 >
-                  <option value="Paid Advertising & Lead Gen">Paid Advertising and Lead Generation</option>
-                  <option value="Website Design & E-Commerce">Website Design and E-Commerce</option>
-                  <option value="SEO & Local Search">SEO and Local Search</option>
-                  <option value="Creative Content">Creative Content</option>
-                  <option value="AI Marketing Systems">AI Marketing Systems</option>
-                  <option value="Campaign Strategy">Campaign Strategy & Full Execution</option>
+                  <option value="Not Decided Yet" selected>Select approximate budget...</option>
+                  <option value="Under PKR 100,000">Under PKR 100,000</option>
+                  <option value="PKR 100,000 to 250,000">PKR 100,000 to 250,000</option>
+                  <option value="PKR 250,000 to 500,000">PKR 250,000 to 500,000</option>
+                  <option value="PKR 500,000+">PKR 500,000+</option>
+                  <option value="International Budget">International Budget</option>
+                  <option value="Not Decided Yet">Not Decided Yet</option>
                 </select>
               </div>
 
+              <!-- 9. Project Details -->
               <div>
-                <label for="message" class="block font-mono text-xs font-medium uppercase text-[#061d33] mb-2">
-                  Project Details & Goals *
+                <label for="message" class="block font-mono text-xs font-semibold uppercase text-[#061d33] mb-2">
+                  9. Project Details <span class="text-[#ff762b]">*</span>
                 </label>
                 <textarea 
                   id="message" 
+                  name="message"
                   rows="4"
                   required
-                  placeholder="Tell us about your current campaigns, website, and growth objectives..."
+                  aria-describedby="details-help"
+                  placeholder="Tell us what you sell, your target market, current challenge and expected outcome..."
                   class="w-full rounded-xl border border-slate-300 bg-[#f7f4ed]/50 px-4 py-3.5 text-base font-body text-[#061d33] focus:border-[#ff762b] focus:bg-white focus:outline-none transition-all"
                 ></textarea>
+                <p id="details-help" class="text-xs text-slate-500 font-body mt-1.5 font-normal">
+                  Tell us what you sell, your target market, current challenge and expected outcome.
+                </p>
+                <span id="message-error" class="hidden text-xs text-red-600 font-body mt-1">Please provide project details.</span>
               </div>
 
               <!-- Action Choice Buttons -->
-              <div class="pt-2 grid gap-4 sm:grid-cols-2 font-body">
-                <button
-                  type="button"
-                  id="btn-send-email"
-                  data-track="contact-email"
-                  class="w-full inline-flex items-center justify-center min-h-[48px] gap-2 rounded-2xl bg-[#061d33] px-6 py-4 font-body font-semibold text-base text-white shadow-lg hover:bg-[#ff762b] transition-all cursor-pointer"
-                >
-                  <Send class="size-5 text-[#ddff35]" />
-                  <span>Send via Email</span>
-                </button>
-
+              <div class="pt-4 flex flex-col sm:flex-row gap-4 font-body">
                 <button
                   type="button"
                   id="btn-send-whatsapp"
                   data-track="contact-whatsapp"
-                  class="w-full inline-flex items-center justify-center min-h-[48px] gap-2 rounded-2xl bg-[#39c98a] px-6 py-4 font-body font-semibold text-base text-white shadow-lg hover:bg-[#2fb078] transition-all cursor-pointer"
+                  class="w-full sm:w-1/2 inline-flex items-center justify-center min-h-[52px] gap-2.5 rounded-2xl bg-[#39c98a] px-6 py-4 font-body font-semibold text-base text-white shadow-lg hover:bg-[#2fb078] active:scale-98 transition-all cursor-pointer"
                 >
                   <MessageSquare class="size-5 text-white" />
-                  <span>Send via WhatsApp</span>
+                  <span>Open Project Brief in WhatsApp</span>
+                </button>
+
+                <button
+                  type="button"
+                  id="btn-send-email"
+                  data-track="contact-email"
+                  class="w-full sm:w-1/2 inline-flex items-center justify-center min-h-[52px] gap-2.5 rounded-2xl border-2 border-[#061d33] bg-white px-6 py-4 font-body font-semibold text-base text-[#061d33] shadow-md hover:bg-[#061d33] hover:text-white active:scale-98 transition-all cursor-pointer group"
+                >
+                  <Send class="size-5 text-[#061d33] group-hover:text-white transition-colors" />
+                  <span>Open Project Brief in Email</span>
                 </button>
               </div>
 
-              <p class="text-xs text-center text-slate-500 font-mono">
-                Note: Selecting Email opens your email client addressing {site.contact.email}. Selecting WhatsApp opens WhatsApp directly with your pre-filled inquiry.
-              </p>
+              <!-- Privacy Statement -->
+              <div class="pt-3 text-center border-t border-slate-100">
+                <p class="text-xs text-slate-600 font-body font-normal max-w-lg mx-auto">
+                  Your details are used only to prepare your WhatsApp or email message. This website does not store or submit the form to a database.
+                </p>
+              </div>
+
+              <!-- No-JS Fallback Message -->
+              <noscript>
+                <div class="mt-6 rounded-2xl border-2 border-[#061d33] bg-[#061d33] text-white p-6 space-y-3 font-body">
+                  <h4 class="font-heading font-semibold text-lg text-[#ddff35]">JavaScript is Disabled</h4>
+                  <p class="text-sm text-slate-200">
+                    You can still get in touch with us directly via your preferred channel:
+                  </p>
+                  <div class="flex flex-wrap gap-4 pt-2">
+                    <a href={site.contact.whatsapp} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-xl bg-[#39c98a] px-4 py-2 text-sm font-semibold text-white">
+                      <span>Chat on WhatsApp ({site.contact.phone})</span>
+                    </a>
+                    <a href={`mailto:${site.contact.email}`} class="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-[#061d33]">
+                      <span>Send Email ({site.contact.email})</span>
+                    </a>
+                  </div>
+                </div>
+              </noscript>
             </form>
           </div>
         </div>
 
+      </div>
+
+      <!-- What Happens Next Section -->
+      <div class="mt-20 pt-16 border-t border-[#061d33]/15">
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+          <span data-motion="scale-in" class="text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ff762b]">
+            TRANSPARENT PROCESS
+          </span>
+          <h3 data-motion="clip-up" class="font-heading font-bold text-2xl sm:text-3xl text-[#061d33]">
+            What Happens Next
+          </h3>
+        </div>
+
+        <div data-motion-group data-motion-stagger="100" class="grid gap-6 sm:grid-cols-3 font-body">
+          <!-- Step 1 -->
+          <div data-motion="fade-up" class="rounded-2xl border border-slate-300 bg-white p-6 shadow-md space-y-3">
+            <div class="size-10 rounded-xl bg-[#061d33] text-[#ddff35] flex items-center justify-center font-heading font-bold text-lg">
+              1
+            </div>
+            <h4 class="font-heading font-semibold text-lg text-[#061d33]">
+              Share Your Goals
+            </h4>
+            <p class="text-sm text-slate-600 leading-[1.6] font-normal">
+              Send the business context, service requirement and expected outcome.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div data-motion="fade-up" class="rounded-2xl border border-slate-300 bg-white p-6 shadow-md space-y-3">
+            <div class="size-10 rounded-xl bg-[#061d33] text-[#ddff35] flex items-center justify-center font-heading font-bold text-lg">
+              2
+            </div>
+            <h4 class="font-heading font-semibold text-lg text-[#061d33]">
+              Scope Review
+            </h4>
+            <p class="text-sm text-slate-600 leading-[1.6] font-normal">
+              Starts Digital reviews the requirement and identifies the most practical next step.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div data-motion="fade-up" class="rounded-2xl border border-slate-300 bg-white p-6 shadow-md space-y-3">
+            <div class="size-10 rounded-xl bg-[#061d33] text-[#ddff35] flex items-center justify-center font-heading font-bold text-lg">
+              3
+            </div>
+            <h4 class="font-heading font-semibold text-lg text-[#061d33]">
+              Direct Discussion
+            </h4>
+            <p class="text-sm text-slate-600 leading-[1.6] font-normal">
+              Continue the conversation through WhatsApp or email.
+            </p>
+          </div>
+        </div>
       </div>
 
     </Container>
@@ -265,40 +473,173 @@ import {
 
   <MotionController />
 
-  <!-- Client-side Interactive Form Dispatcher -->
+  <!-- Interactive Dispatch & Validation Script -->
   <script>
-    const form = document.getElementById('contact-form') as HTMLFormElement;
-    const btnEmail = document.getElementById('btn-send-email');
-    const btnWhatsApp = document.getElementById('btn-send-whatsapp');
+    const SERVICE_ALLOWLIST: Record<string, string> = {
+      'paid-advertising': 'Paid Advertising',
+      'website-development': 'Website Design and Development',
+      'seo': 'SEO',
+      'creative-content': 'Creative Content',
+      'social-media-marketing': 'Social Media Marketing',
+      'ai-marketing-systems': 'AI Marketing Systems',
+      'multiple-services': 'Multiple Services',
+      'not-sure-yet': 'Not Sure Yet',
+    };
 
-    function getFormData() {
-      const name = (document.getElementById('name') as HTMLInputElement)?.value.trim() || 'Not specified';
-      const email = (document.getElementById('email') as HTMLInputElement)?.value.trim() || 'Not specified';
-      const phone = (document.getElementById('phone') as HTMLInputElement)?.value.trim() || 'Not specified';
-      const company = (document.getElementById('company') as HTMLInputElement)?.value.trim() || 'Not specified';
-      const service = (document.getElementById('service') as HTMLSelectElement)?.value || 'General Inquiry';
-      const message = (document.getElementById('message') as HTMLTextAreaElement)?.value.trim() || '';
+    const SOURCE_ALLOWLIST: Record<string, string> = {
+      'black-gold-fertilizer': 'Black Gold Fertilizer',
+      'qurbani-campaign': 'Wajib Livestock Qurbani Campaign',
+      'rk-reno-solutions': 'RK Reno Solutions',
+    };
 
-      return { name, email, phone, company, service, message };
+    function initContactForm() {
+      const form = document.getElementById('contact-form') as HTMLFormElement;
+      const btnWhatsApp = document.getElementById('btn-send-whatsapp');
+      const btnEmail = document.getElementById('btn-send-email');
+      const serviceSelect = document.getElementById('service') as HTMLSelectElement;
+      const contextBanner = document.getElementById('case-study-context-note');
+      const contextName = document.getElementById('case-study-name');
+
+      if (!form) return;
+
+      // Handle URL parameters dynamically on client load
+      const urlParams = new URLSearchParams(window.location.search);
+      const serviceParam = urlParams.get('service');
+      const sourceParam = urlParams.get('source');
+
+      if (serviceParam && SERVICE_ALLOWLIST[serviceParam] && serviceSelect) {
+        serviceSelect.value = SERVICE_ALLOWLIST[serviceParam];
+      }
+
+      if (sourceParam && SOURCE_ALLOWLIST[sourceParam] && contextBanner && contextName) {
+        contextName.textContent = SOURCE_ALLOWLIST[sourceParam];
+        contextBanner.classList.remove('hidden');
+        contextBanner.classList.add('flex');
+      }
+
+      function buildMessageText() {
+        const nameVal = (document.getElementById('name') as HTMLInputElement)?.value.trim() || '';
+        const companyVal = (document.getElementById('company') as HTMLInputElement)?.value.trim() || '';
+        const emailVal = (document.getElementById('email') as HTMLInputElement)?.value.trim() || '';
+        const phoneVal = (document.getElementById('phone') as HTMLInputElement)?.value.trim() || '';
+        const websiteVal = (document.getElementById('website') as HTMLInputElement)?.value.trim() || '';
+        const serviceVal = (document.getElementById('service') as HTMLSelectElement)?.value || 'Not selected';
+        const goalVal = (document.getElementById('goal') as HTMLSelectElement)?.value || 'Not selected';
+        const budgetVal = (document.getElementById('budget') as HTMLSelectElement)?.value || 'Not Decided Yet';
+        const detailsVal = (document.getElementById('message') as HTMLTextAreaElement)?.value.trim() || '';
+
+        const phoneText = phoneVal ? phoneVal : 'Not provided';
+        const websiteText = websiteVal ? websiteVal : 'Not provided';
+        const pageUrl = window.location.href;
+
+        return {
+          companyVal,
+          serviceVal,
+          bodyText: 
+`Hello Starts Digital,
+
+I would like to discuss a project.
+
+Name:
+${nameVal}
+
+Business:
+${companyVal}
+
+Email:
+${emailVal}
+
+Phone / WhatsApp:
+${phoneText}
+
+Website / Social Page:
+${websiteText}
+
+Service Needed:
+${serviceVal}
+
+Primary Goal:
+${goalVal}
+
+Approximate Budget:
+${budgetVal}
+
+Project Details:
+${detailsVal}
+
+Source Page:
+${pageUrl}`
+        };
+      }
+
+      function validateForm(): boolean {
+        // Clear errors
+        ['name', 'company', 'email', 'service', 'goal', 'message'].forEach(id => {
+          const errEl = document.getElementById(`${id}-error`);
+          if (errEl) errEl.classList.add('hidden');
+        });
+
+        let isValid = true;
+        const nameEl = document.getElementById('name') as HTMLInputElement;
+        const companyEl = document.getElementById('company') as HTMLInputElement;
+        const emailEl = document.getElementById('email') as HTMLInputElement;
+        const serviceEl = document.getElementById('service') as HTMLSelectElement;
+        const goalEl = document.getElementById('goal') as HTMLSelectElement;
+        const messageEl = document.getElementById('message') as HTMLTextAreaElement;
+
+        if (!nameEl?.value.trim()) {
+          document.getElementById('name-error')?.classList.remove('hidden');
+          isValid = false;
+        }
+        if (!companyEl?.value.trim()) {
+          document.getElementById('company-error')?.classList.remove('hidden');
+          isValid = false;
+        }
+        if (!emailEl?.value.trim() || !emailEl.validity.valid) {
+          document.getElementById('email-error')?.classList.remove('hidden');
+          isValid = false;
+        }
+        if (!serviceEl?.value) {
+          document.getElementById('service-error')?.classList.remove('hidden');
+          isValid = false;
+        }
+        if (!goalEl?.value) {
+          document.getElementById('goal-error')?.classList.remove('hidden');
+          isValid = false;
+        }
+        if (!messageEl?.value.trim()) {
+          document.getElementById('message-error')?.classList.remove('hidden');
+          isValid = false;
+        }
+
+        if (!isValid) {
+          form.reportValidity();
+        }
+
+        return isValid;
+      }
+
+      btnWhatsApp?.addEventListener('click', () => {
+        if (!validateForm()) return;
+        const { bodyText } = buildMessageText();
+        const encodedText = encodeURIComponent(bodyText);
+        window.open(`https://wa.me/923394135544?text=${encodedText}`, '_blank');
+      });
+
+      btnEmail?.addEventListener('click', () => {
+        if (!validateForm()) return;
+        const { companyVal, serviceVal, bodyText } = buildMessageText();
+        const subject = encodeURIComponent(`Project Inquiry: ${companyVal} - ${serviceVal}`);
+        const encodedBody = encodeURIComponent(bodyText);
+        window.location.href = `mailto:firdosidigital@gmail.com?subject=${subject}&body=${encodedBody}`;
+      });
     }
 
-    btnEmail?.addEventListener('click', () => {
-      if (!form.reportValidity()) return;
-      const data = getFormData();
-      const subject = encodeURIComponent(`Starts Digital Project Inquiry: ${data.service}`);
-      const body = encodeURIComponent(
-        `Name: ${data.name}\nEmail: ${data.email}\nPhone/WhatsApp: ${data.phone}\nCompany: ${data.company}\nService Needed: ${data.service}\n\nProject Details:\n${data.message}`
-      );
-      window.location.href = `mailto:firdosidigital@gmail.com?subject=${subject}&body=${body}`;
-    });
-
-    btnWhatsApp?.addEventListener('click', () => {
-      if (!form.reportValidity()) return;
-      const data = getFormData();
-      const text = encodeURIComponent(
-        `Hello Starts Digital,\n\nI would like to discuss a project:\n\n*Name:* ${data.name}\n*Email:* ${data.email}\n*Phone:* ${data.phone}\n*Company:* ${data.company}\n*Service Needed:* ${data.service}\n\n*Project Details:*\n${data.message}`
-      );
-      window.open(`https://wa.me/923394135544?text=${text}`, '_blank');
-    });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initContactForm);
+    } else {
+      initContactForm();
+    }
+    document.addEventListener('astro:page-load', initContactForm);
   </script>
 </BaseLayout>

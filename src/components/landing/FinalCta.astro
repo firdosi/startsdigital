@@ -51,10 +51,11 @@ const stickers = [
         <!-- Buttons: Staggered Pop-In -->
         <div data-motion="pop-in" data-motion-delay="360" class="flex flex-wrap items-center justify-center gap-5 pt-4">
           <a
-            href={`mailto:${site.contact.email}`}
+            href={`${site.basePath}/contact/`}
+            data-track="primary-cta"
             class="group inline-flex items-center justify-center min-h-[48px] gap-3 rounded-full bg-[#ddff35] px-9 py-4 font-body font-semibold text-base text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
           >
-            <span>Discuss your project</span>
+            <span>Start a Project</span>
             <ArrowRight class="size-5 text-[#061d33] group-hover:translate-x-1 transition-transform" />
           </a>
           
@@ -62,10 +63,11 @@ const stickers = [
             href={site.contact.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="contact-whatsapp"
             class="inline-flex items-center justify-center min-h-[48px] gap-3 rounded-full bg-[#39c98a] px-9 py-4 font-body font-semibold text-base text-white shadow-xl hover:bg-[#32b57c] hover:shadow-2xl hover:-translate-y-1 transition-all"
           >
             <MessageSquare class="size-5 text-white" />
-            <span>Chat on WhatsApp</span>
+            <span>Discuss on WhatsApp</span>
           </a>
         </div>
 

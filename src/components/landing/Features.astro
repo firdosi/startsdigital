@@ -1,5 +1,6 @@
 ---
 import MotionIconTile from '../motion/MotionIconTile.astro';
+import { site } from '../../site.config';
 import { 
   Megaphone, 
   ShoppingBag, 
@@ -13,6 +14,7 @@ import {
 const services = [
   {
     id: '01',
+    slug: 'paid-advertising',
     title: 'Paid Advertising and Lead Generation',
     description: 'Precision Meta Ads and Google Ads campaigns engineered for commercial customer acquisition, lead funnels, and performance scaling.',
     colorClass: 'bg-[#ff762b] text-white hover:bg-[#e56017]',
@@ -22,6 +24,7 @@ const services = [
   },
   {
     id: '02',
+    slug: 'website-development',
     title: 'Website Design and E-Commerce',
     description: 'Custom high-converting websites, WooCommerce platforms, and Shopify stores built for lightning speed and checkout friction reduction.',
     colorClass: 'bg-[#9a83f5] text-white hover:bg-[#8b5cf6]',
@@ -31,6 +34,7 @@ const services = [
   },
   {
     id: '03',
+    slug: 'seo',
     title: 'SEO and Local Search',
     description: 'Technical search engine optimization, structured schema markup, and local service landing pages to capture high-intent search demand.',
     colorClass: 'bg-[#ff514b] text-white hover:bg-[#e6453f]',
@@ -40,6 +44,7 @@ const services = [
   },
   {
     id: '04',
+    slug: 'creative-content',
     title: 'Creative Content',
     description: 'Performance ad creatives, short-form video editing, product graphics, and social content tailored for audience engagement and conversion.',
     colorClass: 'bg-[#39c98a] text-white hover:bg-[#32b57c]',
@@ -49,6 +54,7 @@ const services = [
   },
   {
     id: '05',
+    slug: 'ai-marketing-systems',
     title: 'AI Marketing Systems',
     description: 'Practical use of AI for lead qualification workflows, avatar video creation, content pipelines, and automated customer routing.',
     colorClass: 'bg-[#061d33] text-white hover:bg-[#0a2540]',
@@ -58,6 +64,7 @@ const services = [
   },
   {
     id: '06',
+    slug: 'multiple-services',
     title: 'Campaign Strategy',
     description: 'Commercial positioning, marketing budget allocation, multi-channel rollout plans, and data-backed performance advisory.',
     colorClass: 'bg-[#ddff35] text-[#061d33] hover:bg-[#c9eb1e]',
@@ -68,34 +75,36 @@ const services = [
 ];
 ---
 
-<section id="services" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+<section id="services" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] relative">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
-    <!-- Section Header -->
-    <div class="max-w-3xl mb-16 text-center mx-auto space-y-3">
-      <!-- Eyebrow Tag -->
-      <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
-        OUR SERVICES
-      </span>
-      <!-- Heading Fades Upward First -->
-      <h2 data-motion="fade-up" data-motion-delay="0" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
-        Services designed to drive real results
+    <div class="mb-16 text-center max-w-3xl mx-auto space-y-4">
+      <div data-motion="scale-in">
+        <span class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/20 bg-white px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ff762b] shadow-xs">
+          <span>OUR CAPABILITIES</span>
+        </span>
+      </div>
+
+      <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[33px] sm:text-[42px] lg:text-[50px] text-[#061d33] leading-[1.12] tracking-[-0.025em]">
+        End-to-end digital services built for business growth.
       </h2>
-      <!-- Intro Fades Upward -->
-      <p data-motion="fade-up" data-motion-delay="100" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
-        We replace fragmented workflows with unified growth capabilities spanning paid media, web engineering, SEO, and AI automation.
+
+      <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
+        From customer acquisition campaigns to high-performing web platforms, we build and manage digital infrastructure.
       </p>
     </div>
 
-    <!-- 6 Colourful Cards Grid with 100ms Stagger -->
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- 6-Card Services Grid with Staggered Entrance -->
+    <div data-motion-group data-motion-stagger="100" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         services.map((s, idx) => (
-          <div
+          <a
+            href={`${site.basePath}/contact/?service=${s.slug}`}
+            data-track="service-contact"
             data-motion="fade-up"
             data-motion-delay={idx * 100}
             class:list={[
-              'rounded-3xl p-8 lg:p-10 shadow-xl flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl group cursor-pointer border border-white/10',
+              'rounded-3xl p-8 lg:p-10 shadow-xl flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl group cursor-pointer border border-white/10 no-underline',
               s.colorClass,
               s.offsetClass
             ]}
@@ -111,26 +120,26 @@ const services = [
                 </span>
               </div>
 
-              <!-- Title: Sora 600, 20px mobile, 21px desktop, leading 1.3 -->
+              <!-- Title -->
               <h3 class="font-heading font-semibold text-[20px] sm:text-[21px] leading-[1.3] mb-3">
                 {s.title}
               </h3>
 
-              <!-- Description: Inter 400, min 16px, leading 1.65 -->
+              <!-- Description -->
               <p class="text-base leading-[1.65] opacity-95 font-body font-normal">
                 {s.description}
               </p>
             </div>
 
-            <!-- Bottom Action Link: Inter 600 min 15px with animated arrow -->
+            <!-- Bottom Action Link -->
             <div class="mt-10 pt-6 border-t border-current/20 flex items-center justify-between font-body">
-              <span class="text-[15px] sm:text-[16px] font-semibold tracking-normal">Explore capability</span>
+              <span class="text-[15px] sm:text-[16px] font-semibold tracking-normal">Start a Project</span>
               <div class="size-10 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-115 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">
                 <ArrowUpRight class="size-5" />
               </div>
             </div>
 
-          </div>
+          </a>
         ))
       }
     </div>

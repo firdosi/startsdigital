@@ -69,17 +69,18 @@ import {
       <!-- 4. Action Buttons: Pop-In -->
       <div data-motion="pop-in" data-motion-delay="360" class="flex flex-wrap items-center justify-center gap-5 pt-4 font-body">
         <a
-          href={`${site.basePath}/#contact`}
+          href={`${site.basePath}/contact/`}
+          data-track="primary-cta"
           class="group inline-flex items-center justify-center min-h-[48px] gap-3 rounded-full bg-[#ddff35] px-8 py-3.5 font-body font-semibold text-base text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
         >
-          <span>Discuss your project</span>
+          <span>Start a Project</span>
           <ArrowRight class="size-5 text-[#061d33] group-hover:translate-x-1 transition-transform" />
         </a>
         <a
-          href={`${site.basePath}/#work`}
+          href={`${site.basePath}/work/`}
           class="inline-flex items-center justify-center min-h-[48px] gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-3.5 font-body font-semibold text-base text-white hover:bg-white/20 hover:border-white/50 transition-all backdrop-blur-sm"
         >
-          View our work
+          View Our Work
         </a>
       </div>
 
