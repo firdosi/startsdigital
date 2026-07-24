@@ -24,7 +24,7 @@ export const siteConfig = {
   // Interactive Links
   links: {
     whatsapp: site.contact.whatsapp,
-    contact: '#contact',
+    contact: `${site.basePath}/contact/`,
   }
 } as const;
 

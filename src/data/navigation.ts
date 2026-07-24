@@ -11,7 +11,7 @@ export const headerNavLinks: NavItem[] = [
   { label: 'Services', href: `${siteConfig.basePath}/#services` },
   { label: 'Work', href: getAssetPath('/work/') },
   { label: 'About', href: `${siteConfig.basePath}/#about` },
-  { label: 'Contact', href: `${siteConfig.basePath}/#contact` },
+  { label: 'Contact', href: getAssetPath('/contact/') },
 ];
 
 export const footerNavLinks: NavItem[] = [

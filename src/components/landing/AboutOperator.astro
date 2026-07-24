@@ -5,19 +5,19 @@ import { CheckCircle, ArrowRight } from '@lucide/astro';
 const experiencePoints = [
   {
     title: 'Multi-Channel Media Buying',
-    desc: 'Hands-on management of Meta Ads and Google Search campaigns with zero outsourced middleman layers.',
+    desc: 'Planning and managing Meta Ads and Google Search campaigns around clear business objectives and measurable outcomes.',
   },
   {
     title: 'Custom Web & E-Commerce Engineering',
-    desc: 'Building fast-loading WooCommerce and Shopify platforms structured specifically for mobile conversion velocity.',
+    desc: 'Building responsive websites and e-commerce experiences structured for usability, performance and clear customer journeys.',
   },
   {
     title: 'Search Architecture & Local Intent',
-    desc: 'Engineering schema-marked, localized landing pages that index for commercial search queries in target markets.',
+    desc: 'Creating structured, location-focused service pages and technical SEO foundations for relevant commercial searches.',
   },
   {
     title: 'AI Workflow Integration',
-    desc: 'Deploying practical AI automation for lead qualification, content pipelines, and customer response routing.',
+    desc: 'Building practical workflows for lead routing, content support and customer-response processes.',
   },
 ];
 ---
@@ -40,7 +40,7 @@ const experiencePoints = [
         </div>
 
         <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
-          We don't operate like a bloated agency with junior account managers. Starts Digital was built by active marketers and developers who work directly on your campaigns, code, and growth strategy.
+          Starts Digital supports businesses across paid advertising, websites, e-commerce, SEO, creative production and AI-enabled marketing workflows. Each project is scoped around the client’s goals, available assets and required deliverables.
         </p>
 
         <!-- Experience Pillars Grid: Staggered Fade-Up -->
@@ -62,38 +62,50 @@ const experiencePoints = [
 
         <div class="pt-4 flex flex-wrap items-center gap-4">
           <a
-            href={`${site.basePath}/#contact`}
+            href={`${site.basePath}/contact/`}
+            data-track="primary-cta"
             class="group inline-flex items-center gap-2 rounded-full bg-[#061d33] px-8 py-4 font-body font-semibold text-base text-white shadow-md hover:bg-[#ff762b] transition-all"
           >
-            <span>Work with us directly</span>
+            <span>Discuss your project</span>
             <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
       </div>
 
-      <!-- Right Side: Real Project Visual Card with Fade-Right -->
+      <!-- Right Side: Typography-Led Information Panel with Fade-Right -->
       <div data-motion="fade-right" data-motion-delay="150" class="lg:col-span-5">
-        <div class="rounded-3xl border-2 border-[#061d33]/15 bg-[#061d33] p-4 shadow-2xl text-white space-y-6 animate-float-gentle">
-          <div class="relative overflow-hidden rounded-2xl bg-slate-900 p-2">
-            <img
-              src={`${site.basePath}/images/black-gold-official.png`}
-              alt="Starts Digital Campaign Strategy Packaging Visual"
-              width="500"
-              height="340"
-              loading="lazy"
-              class="w-full h-[280px] rounded-xl object-cover"
-            />
+        <div class="rounded-3xl border-2 border-[#061d33]/15 bg-[#061d33] p-7 sm:p-8 shadow-2xl text-white space-y-6">
+          <div class="space-y-3">
+            <span class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
+              PROJECT DELIVERY
+            </span>
+            <h3 class="font-heading font-bold text-2xl sm:text-3xl text-white leading-tight">
+              Strategy, execution and technical support in one workflow.
+            </h3>
           </div>
 
-          <div class="p-4 space-y-3 bg-white/5 rounded-2xl border border-white/10 font-body">
-            <div class="flex items-center justify-between text-xs font-mono font-medium text-[#ddff35] uppercase tracking-[0.06em]">
-              <span>DIRECT FOUNDER OVERSIGHT</span>
-              <span>100% ACCOUNT OWNERSHIP</span>
+          <div class="space-y-3 pt-2 font-body">
+            <div class="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm font-semibold text-slate-100">
+              <div class="size-2 rounded-full bg-[#ff762b] shrink-0"></div>
+              <span>Paid Advertising</span>
             </div>
-            <p class="text-base font-body text-slate-200 leading-[1.6] font-normal italic">
-              "We take personal responsibility for performance. Every ad campaign, landing page, and automated workflow is reviewed directly against real revenue metrics."
-            </p>
+            <div class="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm font-semibold text-slate-100">
+              <div class="size-2 rounded-full bg-[#ff762b] shrink-0"></div>
+              <span>Websites & E-Commerce</span>
+            </div>
+            <div class="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm font-semibold text-slate-100">
+              <div class="size-2 rounded-full bg-[#ff762b] shrink-0"></div>
+              <span>SEO & Local Search</span>
+            </div>
+            <div class="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm font-semibold text-slate-100">
+              <div class="size-2 rounded-full bg-[#ff762b] shrink-0"></div>
+              <span>Creative & AI Workflows</span>
+            </div>
           </div>
+
+          <p class="text-xs sm:text-sm text-slate-300 font-body leading-relaxed font-normal pt-1 border-t border-white/10">
+            The exact scope depends on the selected services, project requirements and available client assets.
+          </p>
         </div>
       </div>
 

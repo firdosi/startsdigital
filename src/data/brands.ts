@@ -37,6 +37,7 @@ export const brands: Brand[] = [
     ],
     logo: '/brands/black-gold-fertilizer/logo.webp',
     logoApproved: true,
+    darkLogoContainer: true,
     website: 'https://blackgoldfertilizer.com',
     facebook: 'https://www.facebook.com/profile.php?id=61561083447093',
     featured: true,
