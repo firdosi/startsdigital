@@ -1,5 +1,6 @@
 ---
 import { site } from '../../site.config';
+import SectionEyebrow from '../common/SectionEyebrow.astro';
 import { 
   Layers, 
   Globe2, 
@@ -49,9 +50,11 @@ const trustPillars = [
     <!-- Top Header Row -->
     <div class="grid gap-8 lg:grid-cols-12 items-end mb-16" data-motion="fade-left" data-motion-delay="0">
       <div class="lg:col-span-7 space-y-3">
-        <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
-          EDITORIAL CREDIBILITY
-        </span>
+        <SectionEyebrow
+          label="EDITORIAL CREDIBILITY"
+          align="left"
+          delay={0}
+        />
         <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
         <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Why brands trust Starts Digital

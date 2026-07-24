@@ -1,5 +1,6 @@
 ---
 import { ChevronDown } from '@lucide/astro';
+import SectionEyebrow from '../common/SectionEyebrow.astro';
 
 const stages = [
   {
@@ -106,9 +107,11 @@ const stages = [
     
     <!-- Section Header -->
     <div class="max-w-3xl mb-12 text-center mx-auto space-y-3">
-      <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
-        EXECUTION FRAMEWORK
-      </span>
+      <SectionEyebrow
+        label="EXECUTION FRAMEWORK"
+        align="center"
+        delay={0}
+      />
       <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
         Our working method
       </h2>

@@ -1,0 +1,40 @@
+---
+interface Props {
+  label: string;
+  align?: 'left' | 'center';
+  motion?: boolean;
+  delay?: number;
+  class?: string;
+}
+
+const {
+  label,
+  align = 'left',
+  motion = true,
+  delay = 0,
+  class: className = '',
+} = Astro.props;
+
+const alignmentClasses = align === 'center' ? 'justify-center' : 'justify-start';
+
+const motionProps = motion
+  ? {
+      'data-motion': 'scale-in',
+      ...(delay > 0 ? { 'data-motion-delay': delay } : {}),
+    }
+  : {};
+---
+
+<div
+  class:list={[
+    'flex items-center gap-2.5',
+    alignmentClasses,
+    className,
+  ]}
+  {...motionProps}
+>
+  <span class="w-7 h-[2px] bg-[#ff762b] shrink-0" aria-hidden="true"></span>
+  <span class="font-mono font-semibold text-[13px] sm:text-[14px] uppercase tracking-[0.08em] leading-[1.4] text-[#ff762b]">
+    {label}
+  </span>
+</div>

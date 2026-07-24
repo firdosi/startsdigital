@@ -1,6 +1,7 @@
 ---
 import MotionIconTile from '../motion/MotionIconTile.astro';
 import { site } from '../../site.config';
+import SectionEyebrow from '../common/SectionEyebrow.astro';
 import { 
   Megaphone, 
   ShoppingBag, 
@@ -79,11 +80,11 @@ const services = [
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <div class="mb-16 text-center max-w-3xl mx-auto space-y-4">
-      <div data-motion="scale-in">
-        <span class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/20 bg-white px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ff762b] shadow-xs">
-          <span>OUR CAPABILITIES</span>
-        </span>
-      </div>
+      <SectionEyebrow
+        label="OUR CAPABILITIES"
+        align="center"
+        delay={0}
+      />
 
       <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[33px] sm:text-[42px] lg:text-[50px] text-[#061d33] leading-[1.12] tracking-[-0.025em]">
         End-to-end digital services built for business growth.

@@ -1,6 +1,7 @@
 ---
 import { platforms } from '../../data/platforms';
 import { site } from '../../site.config';
+import SectionEyebrow from '../common/SectionEyebrow.astro';
 
 const logoSrc = (logo: string) => logo.startsWith('http') ? logo : `${site.basePath}${logo}`;
 ---
@@ -10,9 +11,11 @@ const logoSrc = (logo: string) => logo.startsWith('http') ? logo : `${site.baseP
     
     <!-- Section Header -->
     <div class="max-w-3xl mb-16 text-center mx-auto space-y-3">
-      <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
-        TECH STACK & ECOSYSTEM
-      </span>
+      <SectionEyebrow
+        label="TECH STACK & ECOSYSTEM"
+        align="center"
+        delay={0}
+      />
       <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
         Platforms and tools we work with
       </h2>

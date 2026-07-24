@@ -1,5 +1,6 @@
 ---
 import { Plus, Minus } from '@lucide/astro';
+import SectionEyebrow from '../common/SectionEyebrow.astro';
 
 const items = [
   {
@@ -28,9 +29,11 @@ const items = [
       
       <!-- Left Column: Title & Subtitle -->
       <div data-motion="fade-left" data-motion-delay="0" class="lg:col-span-5 space-y-4 lg:sticky lg:top-28">
-        <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
-          CLEAR ANSWERS
-        </span>
+        <SectionEyebrow
+          label="FREQUENTLY ASKED QUESTIONS"
+          align="left"
+          delay={0}
+        />
         <!-- Sora 700 section heading -->
         <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Your questions answered

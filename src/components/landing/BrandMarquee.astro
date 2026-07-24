@@ -1,9 +1,19 @@
 ---
-import { brands } from '../../data/brands';
+import { brands, type Brand } from '../../data/brands';
 import { site } from '../../site.config';
+import SectionEyebrow from '../common/SectionEyebrow.astro';
 
-// Verified real logo brands only (12 approved brands)
-const verifiedBrands = brands.filter((b) => b.logoApproved && b.logo);
+// Verified active brands (13 approved brands sorted by order)
+const activeBrands = brands
+  .filter((b) => b.active && b.logoApproved && b.logo)
+  .sort((a, b) => a.order - b.order);
+
+const fitClasses: Record<NonNullable<Brand['logoFit']>, string> = {
+  compact: 'max-h-9 sm:max-h-10 max-w-[75%]',
+  standard: 'max-h-11 sm:max-h-12 max-w-[85%]',
+  wide: 'max-h-9 sm:max-h-10 max-w-[90%]',
+  large: 'max-h-13 sm:max-h-14 max-w-[90%]',
+};
 ---
 
 <section id="brands" class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
@@ -11,9 +21,11 @@ const verifiedBrands = brands.filter((b) => b.logoApproved && b.logo);
     
     <!-- Section Header -->
     <div class="mb-10 text-center space-y-3 max-w-2xl mx-auto">
-      <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
-        CLIENT WORK & PORTFOLIO
-      </span>
+      <SectionEyebrow
+        label="CLIENT WORK & PORTFOLIO"
+        align="center"
+        delay={0}
+      />
       <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
         Selected Client Experience
       </h2>
@@ -22,22 +34,17 @@ const verifiedBrands = brands.filter((b) => b.logoApproved && b.logo);
       </p>
     </div>
 
-    <!-- Static Responsive Approved Logo Grid (12 Brands, No Grayscale, Full Contrast) -->
-    <div data-motion="fade-up" data-motion-delay="250" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5">
-      {
-        verifiedBrands.map((b) => {
-          const destUrl = b.website || b.facebook;
-          const containerClass = b.darkLogoContainer
-            ? 'bg-[#061d33] border-[#061d33] shadow-md hover:border-[#ff762b]'
-            : 'bg-white border-slate-200/90 shadow-xs hover:border-[#ff762b] hover:shadow-md';
+    <!-- Unified Editorial Client Wall Panel -->
+    <div data-motion="fade-up" data-motion-delay="250" class="rounded-3xl border border-[#061d33]/10 bg-white/70 px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10 shadow-xs">
+      
+      <!-- Centred Flex-Wrap Grid (2/row mobile, 3/row tablet, 5/row desktop, final row centred) -->
+      <div class="flex flex-wrap justify-center items-stretch gap-3 sm:gap-4 lg:gap-5">
+        {
+          activeBrands.map((b) => {
+            const destUrl = b.website || b.facebook;
+            const fitClass = fitClasses[b.logoFit || 'standard'];
 
-          const content = (
-            <div class={`h-24 sm:h-28 rounded-2xl border ${containerClass} p-3.5 flex flex-col items-center justify-center relative transition-all duration-300 group hover:-translate-y-1`}>
-              {b.isTechnologyPartner && (
-                <span class="absolute top-2 right-2 rounded-md bg-[#061d33] px-2 py-0.5 text-[9px] font-mono font-bold uppercase text-[#ddff35]">
-                  Technology Partner
-                </span>
-              )}
+            const logoElement = (
               <img
                 src={`${site.basePath}${b.logo}`}
                 alt={`${b.name} logo`}
@@ -45,27 +52,62 @@ const verifiedBrands = brands.filter((b) => b.logoApproved && b.logo);
                 height="48"
                 loading="lazy"
                 decoding="async"
-                class="max-h-12 sm:max-h-14 w-auto max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-300"
+                class={`w-auto object-contain transition-transform duration-300 group-hover:scale-103 ${fitClass}`}
               />
-            </div>
-          );
+            );
 
-          return destUrl ? (
-            <a
-              href={destUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-track={b.website ? 'client-website' : 'client-facebook'}
-              aria-label={`Visit ${b.name} official page`}
-              class="block"
-            >
-              {content}
-            </a>
-          ) : (
-            <div>{content}</div>
-          );
-        })
-      }
+            const content = (
+              <div class="w-full h-full flex flex-col items-center justify-between p-3 sm:p-4 rounded-2xl bg-white/40 hover:bg-white transition-all duration-300 group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]">
+                
+                <!-- Logo Presentation Container -->
+                <div class="w-full flex-1 flex items-center justify-center min-h-[70px] sm:min-h-[80px]">
+                  {b.darkLogoContainer ? (
+                    <div class="w-full h-14 sm:h-16 rounded-xl bg-[#061d33] px-3.5 py-2 flex items-center justify-center border border-[#061d33]/20 shadow-xs">
+                      {logoElement}
+                    </div>
+                  ) : (
+                    <div class="w-full h-14 sm:h-16 flex items-center justify-center p-2">
+                      {logoElement}
+                    </div>
+                  )}
+                </div>
+
+                <!-- Reserved Technology Partner Caption Region -->
+                <div class="mt-2 text-center h-4 flex items-center justify-center">
+                  {b.isTechnologyPartner ? (
+                    <span class="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-[0.08em] text-[#061d33] block">
+                      TECHNOLOGY PARTNER
+                    </span>
+                  ) : (
+                    <span class="text-[10px] sm:text-[11px] font-mono block opacity-0 pointer-events-none" aria-hidden="true">
+                      PARTNER
+                    </span>
+                  )}
+                </div>
+
+              </div>
+            );
+
+            return destUrl ? (
+              <a
+                href={destUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track={b.website ? 'client-website' : 'client-facebook'}
+                aria-label={`Visit ${b.name} official page`}
+                class="w-[calc(50%-0.4rem)] sm:w-[calc(33.333%-0.7rem)] lg:w-[calc(20%-0.8rem)] min-h-[110px] sm:min-h-[120px] flex block focus-visible:outline-none"
+              >
+                {content}
+              </a>
+            ) : (
+              <div class="w-[calc(50%-0.4rem)] sm:w-[calc(33.333%-0.7rem)] lg:w-[calc(20%-0.8rem)] min-h-[110px] sm:min-h-[120px] flex">
+                {content}
+              </div>
+            );
+          })
+        }
+      </div>
+
     </div>
 
   </div>

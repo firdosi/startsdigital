@@ -1,5 +1,6 @@
 ---
 import { site } from '../../site.config';
+import SectionEyebrow from '../common/SectionEyebrow.astro';
 import { 
   Sprout, 
   TrendingUp, 
@@ -23,9 +24,11 @@ const { showAllWorkButton = true } = Astro.props;
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
       <div class="space-y-3">
-        <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
-          FEATURED WORK & CASE STUDIES
-        </span>
+        <SectionEyebrow
+          label="FEATURED WORK & CASE STUDIES"
+          align="left"
+          delay={0}
+        />
         <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
         <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Our featured projects

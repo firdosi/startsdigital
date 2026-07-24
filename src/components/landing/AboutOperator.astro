@@ -1,5 +1,6 @@
 ---
 import { site } from '../../site.config';
+import SectionEyebrow from '../common/SectionEyebrow.astro';
 import { CheckCircle, ArrowRight } from '@lucide/astro';
 
 const experiencePoints = [
@@ -30,9 +31,11 @@ const experiencePoints = [
       <!-- Left Side: Editorial Content with Fade-Left -->
       <div data-motion="fade-left" data-motion-delay="0" class="lg:col-span-7 space-y-8">
         <div class="space-y-3">
-          <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
-            HONEST OPERATOR CREDIBILITY
-          </span>
+          <SectionEyebrow
+          label="HONEST OPERATOR CREDIBILITY"
+          align="left"
+          delay={0}
+        />
           <!-- Sora 700 section heading -->
           <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
             Hands-on experience across marketing, websites and business growth
