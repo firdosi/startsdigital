@@ -315,3 +315,12 @@ html.motion-initialized .reveal-on-scroll.is-revealed {
     animation-duration: 65s !important; /* Slower on mobile */
   }
 }
+
+:focus-visible,
+a:focus-visible {
+  outline: 2px solid #ff762b !important;
+  outline-color: #ff762b !important;
+  outline-style: solid !important;
+  outline-width: 2px !important;
+  outline-offset: 2px !important;
+}

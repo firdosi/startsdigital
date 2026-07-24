@@ -57,12 +57,12 @@ const fitClasses: Record<NonNullable<Brand['logoFit']>, string> = {
             );
 
             const content = (
-              <div class="w-full h-full flex flex-col items-center justify-between p-3 sm:p-4 rounded-2xl bg-white/40 hover:bg-white transition-all duration-300 group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]">
+              <div class="w-full h-full flex flex-col items-center justify-between p-3 sm:p-4 rounded-2xl bg-white/40 hover:bg-white transition-all duration-300 group">
                 
                 <!-- Logo Presentation Container -->
                 <div class="w-full flex-1 flex items-center justify-center min-h-[70px] sm:min-h-[80px]">
                   {b.darkLogoContainer ? (
-                    <div class="w-full h-14 sm:h-16 rounded-xl bg-[#061d33] px-3.5 py-2 flex items-center justify-center border border-[#061d33]/20 shadow-xs">
+                    <div class="w-full max-w-[170px] h-14 sm:h-16 rounded-xl bg-[#061d33] px-3.5 py-2 flex items-center justify-center border border-[#061d33]/20 shadow-xs">
                       {logoElement}
                     </div>
                   ) : (
@@ -95,12 +95,12 @@ const fitClasses: Record<NonNullable<Brand['logoFit']>, string> = {
                 rel="noopener noreferrer"
                 data-track={b.website ? 'client-website' : 'client-facebook'}
                 aria-label={`Visit ${b.name} official page`}
-                class="w-[calc(50%-0.4rem)] sm:w-[calc(33.333%-0.7rem)] lg:w-[calc(20%-0.8rem)] min-h-[110px] sm:min-h-[120px] flex block focus-visible:outline-none"
+                class="w-[calc(50%_-_0.375rem)] sm:w-[calc(33.333333%_-_0.666667rem)] lg:w-[calc(20%_-_1rem)] min-h-[110px] sm:min-h-[120px] flex rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] focus-visible:outline-orange transition-all duration-300"
               >
                 {content}
               </a>
             ) : (
-              <div class="w-[calc(50%-0.4rem)] sm:w-[calc(33.333%-0.7rem)] lg:w-[calc(20%-0.8rem)] min-h-[110px] sm:min-h-[120px] flex">
+              <div class="w-[calc(50%_-_0.375rem)] sm:w-[calc(33.333333%_-_0.666667rem)] lg:w-[calc(20%_-_1rem)] min-h-[110px] sm:min-h-[120px] flex rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] focus-visible:outline-orange transition-all duration-300">
                 {content}
               </div>
             );
