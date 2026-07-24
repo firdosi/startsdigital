@@ -12,8 +12,8 @@
 * **Evidence Branch**: `audit-phase-0-evidence`
 * **Direct Branch URL**: `https://github.com/firdosi/startsdigital/tree/audit-phase-0-evidence`
 * **Direct Evidence Folder**: `https://github.com/firdosi/startsdigital/tree/audit-phase-0-evidence/audit-evidence/phase-0`
-* **Commit Message**: `docs: add Phase 0 audit evidence files under audit-evidence/phase-0/`
-* **Total Files Committed**: 48 files
+* **Commit Message**: `Fix Phase 0 evidence links and complete motion inventory`
+* **Total Files Committed**: 81 files
 * **`main` Branch Status**: Untouched, 100% clean working tree.
 
 ---
@@ -31,7 +31,7 @@ The current website state is described as an **Early Foundation**.
 
 | Operational Category | Current State | Evidence Reference | Blocking Gaps | Confidence Level |
 | :--- | :--- | :--- | :--- | :--- |
-| **Technical Foundation** | **Solid** | Astro build clean, site.config.mjs single source of truth | Domain acquisition & custom URL migration | **High** |
+| **Technical Foundation** | **Solid** | Astro build clean, site.config.mjs single source of truth | Custom domain acquisition & URL migration | **High** |
 | **Visual Quality** | **Developing** | Dark navy design system, clear typography | White Black Gold logo contrast (`DEF-01`), section label sizing (`DEF-07`) | **High** |
 | **Motion Quality** | **Developing** | Safe CSS grid accordions fixed | Observer `rootMargin` late reveal (`DEF-08`), hover matrix transform conflict (`DEF-09`) | **High** |
 | **Responsive Quality** | **Developing** | Responsive across 390px, 768px, 1440px | Contact section vertical stack length on 390px mobile (`DEF-16`) | **High** |
@@ -46,37 +46,37 @@ The current website state is described as an **Early Foundation**.
 
 ---
 
-## 4. Corrected Roadmap Phase Mapping
+## 4. Binding Roadmap Phase Mapping
 
 | Roadmap Phase | Target Scope | Items Assigned |
 | :--- | :--- | :--- |
-| **Phase 0** | Baseline Audit | Complete evidence capture, motion inventory, readiness dashboard, defect register |
-| **Phase 1** | Immediate Defect Repair | Invisible Black Gold logo (`DEF-01`), unsupported company claims (`DEF-06`), About Operator image misuse (`DEF-05`), section label sizing (`DEF-07`) |
-| **Phase 2** | Design System & Typography | Logo optical sizing system (`DEF-11`), badge standardization (`DEF-12`), button & card token system, shadow/border tokens |
-| **Phase 3** | Motion & Interaction System | Scroll observer `rootMargin` optimization (`DEF-08`), entrance animation stagger, hover-transform separation (`DEF-09`), hydration reload flash fix (`DEF-15`) |
-| **Phase 4** | Homepage Hierarchy & Narrative | Homepage section order, content hierarchy, team preview layout planning, brand presentation |
-| **Phase 5** | Dedicated Service Pages | Build 6 individual service pages (`/services/paid-advertising/`, `/services/website-development/`, `/services/seo/`, `/services/creative-content/`, `/services/social-media-marketing/`, `/services/ai-marketing-systems/`) |
-| **Phase 6** | Portfolio Expansion | Fair portfolio architecture across all 13 brands, expanded brand media, mini case studies, dedicated ConvortAI Technology Partner case study (`DEF-10`) |
-| **Phase 7** | Genuine Team & About Page | Genuine founder info, approved team member bios & photos, About page company history |
+| **Phase 0** | Baseline Audit | Complete evidence capture, 52-item motion inventory, readiness dashboard, defect register |
+| **Phase 1** | Immediate Defect Repair | Invisible Black Gold logo (`DEF-01`), unsupported company claims (`DEF-06`), About Operator image misuse (`DEF-05`) |
+| **Phase 2** | Design System, Typography & Logos | Section-label typography (`DEF-07`), shared section-label system (`PROPOSED COMPONENT: src/components/common/SectionHeader.astro`), logo optical sizing (`DEF-11`), logo containers, button tokens, card tokens, borders, shadows, radius, spacing system, featured-card height consistency (`DEF-14`), mobile contact spacing (`DEF-16`) |
+| **Phase 3** | Motion & Interaction System | Observer trigger settings (`DEF-08`), entrance sequencing, generated stagger system, hover-transform isolation (`DEF-09`), hero initial-load motion (`DEF-15`), continuous animation, reduced-motion behavior, navigation lifecycle behavior |
+| **Phase 4** | Homepage Hierarchy & Storytelling | Homepage content hierarchy, section ordering, homepage team-preview planning, overall brand visual presentation |
+| **Phase 5** | Dedicated Service Pages | Build 6 individual service pages (`PROPOSED COMPONENT: src/pages/services/[slug].astro`) |
+| **Phase 6** | Portfolio Architecture | Portfolio rebalancing across all 13 brands, equal visual respect for all 13 brands, expanded media, mini case studies, ConvortAI case study (`DEF-10`) |
+| **Phase 7** | Genuine Team & Founder Presentation | Genuine founder info, approved team member bios & photos, About page company story (`DEF-02`) |
 
 ---
 
-## 5. Corrected Defect Register & Component Paths
+## 5. Corrected Defect Register & Current Component Paths
 
 | ID | Severity | Category | Current File Path | Description | Recommended Fix | Assigned Phase |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **DEF-01** | **P0** | Visual | `src/components/landing/Showcase.astro` & `src/components/landing/BrandMarquee.astro` | White Black Gold logo artwork rendered inside white container (`bg-white`). | Change logo container background to dark navy `#061d33`. | **Phase 1** |
+| **DEF-01** | **P0** | Visual | `src/components/landing/Showcase.astro` & `BrandMarquee.astro` | White Black Gold logo artwork rendered inside white container (`bg-white`). | Change logo container background to dark navy `#061d33`. | **Phase 1** |
 | **DEF-02** | **P1** | Credibility | `src/components/landing/AboutOperator.astro` & `src/pages/about.astro` | Zero team members, founders, or personnel shown anywhere on website. | Collect team specifications and build genuine team grid. | **Phase 7** |
 | **DEF-03** | **P1** | Architecture | `src/pages/services.astro` | Services page is a single-page summary; individual service pages missing. | Build 6 dedicated service sub-pages (`PROPOSED COMPONENT: src/pages/services/[slug].astro`). | **Phase 5** |
 | **DEF-04** | **P1** | Brand Equity | `src/components/landing/Showcase.astro` | Portfolio imbalance: 3 brands dominate featured space while 10 receive link tiles. | Redesign portfolio layout with fair category/industry groupings. | **Phase 6** |
 | **DEF-05** | **P1** | Content | `src/components/landing/AboutOperator.astro` | Reuses Black Gold fertilizer product packaging image (`black-gold-official.png`). | Replace with genuine agency workflow screenshot, founder portrait, or creative collage. | **Phase 1** |
 | **DEF-06** | **P1** | Content | `src/components/landing/AboutOperator.astro` | Claims "zero outsourced middleman layers" and "no junior sales reps". | Tone down claims to focus on direct communication and structured brief delivery. | **Phase 1** |
-| **DEF-07** | **P1** | Visual | `src/components/common/SectionHeader.astro` | Orange section identifier labels (`text-xs font-mono`) render at ~12px font size. | Standardise section labels to `text-xs sm:text-sm font-semibold tracking-wider`. | **Phase 1** |
+| **DEF-07** | **P2** | Visual | `src/components/landing/BrandMarquee.astro`, `Features.astro`, `WhyUs.astro`, `Process.astro`, `Showcase.astro`, `AboutOperator.astro`, `PlatformGrid.astro`, `Faq.astro` | Orange section identifier labels (`text-xs font-mono`) render at ~12px font size directly inside components. | Standardise via `PROPOSED COMPONENT: src/components/common/SectionHeader.astro` (`text-xs sm:text-sm font-semibold tracking-wider`). | **Phase 2** |
 | **DEF-08** | **P2** | Motion | `src/components/common/MotionController.astro` | Observer uses `rootMargin: 0px 0px -15% 0px` and `threshold: 0.2`. | Adjust observer `rootMargin` to `-5%` and `threshold` to `0.1`. | **Phase 3** |
 | **DEF-09** | **P2** | Motion | `src/components/landing/Features.astro` & `Showcase.astro` | CSS reveal transform (`translateY(24px)`) conflicts with hover transform. | Wrap reveal on parent container and isolate hover transform to inner div. | **Phase 3** |
 | **DEF-10** | **P1** | Brand Equity | `src/pages/work.astro` | ConvortAI is verified Technology Partner but lacks a full case study layout. | Build dedicated ConvortAI case study page (`PROPOSED PAGE: src/pages/work/convort-ai.astro`). | **Phase 6** |
 | **DEF-11** | **P2** | Visual | `src/components/landing/BrandMarquee.astro` | Logos displayed in fixed grid boxes without optical sizing normalization. | Apply per-logo max-height and optical padding rules. | **Phase 2** |
-| **DEF-12** | **P2** | Visual | `src/components/common/SectionHeader.astro` | Mix of plain text section labels and rounded pill badges creates visual inconsistency. | Establish strict Design Tokens for Badges. | **Phase 2** |
+| **DEF-12** | **P2** | Visual | Global Components | Mix of plain text section labels and rounded pill badges creates visual inconsistency. | Establish strict Design Tokens for Badges. | **Phase 2** |
 | **DEF-13** | **P2** | Content | `src/components/landing/AboutOperator.astro` | Unattributed quotation: *"We take personal responsibility for performance..."*. | Add explicit speaker attribution or convert to body prose. | **Phase 1** |
 | **DEF-14** | **P2** | Visual | `src/components/landing/Showcase.astro` | Featured case cards have varying vertical heights across viewports. | Standardise card inner padding, flex alignment, and media box aspect ratios. | **Phase 2** |
 | **DEF-15** | **P2** | Motion | `src/components/landing/Hero.astro` | Fast reloads can cause 1-frame opacity flash before observer attaches. | Inline opacity fallbacks or set hero section to render fully visible by default. | **Phase 3** |
@@ -87,12 +87,12 @@ The current website state is described as an **Early Foundation**.
 
 ## 6. Motion Inventory Reference
 
-Full item-by-item motion inventory available at:  
+Full 52-row element-by-element motion inventory available at:  
 [FULL_MOTION_INVENTORY.md](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/reports/FULL_MOTION_INVENTORY.md)
 
 ---
 
-## 7. Motion Recording Index with Timestamps
+## 7. Motion Recording Index with Semantic Filenames & Timestamps
 
 1. [01_homepage_desktop_normal_scroll.webm](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/recordings/01_homepage_desktop_normal_scroll.webm) — (00:01 Hero status badge, 00:02 Metric cards, 00:03 Brand marquee, 00:04 Showcase cards)
 2. [02_homepage_desktop_fast_scroll.webm](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/recordings/02_homepage_desktop_fast_scroll.webm) — (00:01 Late reveal on fast scroll, `DEF-08`)
@@ -118,9 +118,12 @@ Full item-by-item motion inventory available at:
 * **Homepage**: [390px natural](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/homepage_390_natural.png) | [390px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/homepage_390_settled.png) | [768px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/homepage_768_settled.png) | [1440px natural](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/homepage_1440_natural.png) | [1440px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/homepage_1440_settled.png)
 * **Services**: [390px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/services_390_settled.png) | [768px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/services_768_settled.png) | [1440px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/services_1440_settled.png)
 * **Work**: [390px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/work_390_settled.png) | [768px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/work_768_settled.png) | [1440px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/work_1440_settled.png)
-* **About**: [390px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/about_390_settled.png) | [1440px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/about_1440_settled.png)
-* **Contact**: [390px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/contact_390_settled.png) | [1440px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/contact_1440_settled.png)
-* **Interactive States**: [Mobile menu open](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/mobile_menu_open.png) | [Validation error](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/contact_validation_error.png) | [Service preselected](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/contact_service_preselected.png) | [Source context](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/contact_source_context.png) | [Method stage 1](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/working_method_stage1.png) | [Method stage 2](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/working_method_stage2.png) | [FAQ open](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/faq_open.png) | [Footer mobile](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/footer_mobile.png)
+* **About**: [390px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/about_390_settled.png) | [768px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/about_768_settled.png) | [1440px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/about_1440_settled.png)
+* **Contact**: [390px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/contact_390_settled.png) | [768px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/contact_768_settled.png) | [1440px settled](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/contact_1440_settled.png)
+* **Case Study Black Gold Fertilizer**: [390px](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/work_black-gold-fertilizer_390_settled.png) | [768px](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/work_black-gold-fertilizer_768_settled.png) | [1440px](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/work_black-gold-fertilizer_1440_settled.png)
+* **Case Study Wajib Qurbani Campaign**: [390px](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/work_qurbani-campaign_390_settled.png) | [768px](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/work_qurbani-campaign_768_settled.png) | [1440px](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/work_qurbani-campaign_1440_settled.png)
+* **Case Study RK Reno Solutions**: [390px](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/work_rk-reno-solutions_390_settled.png) | [768px](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/work_rk-reno-solutions_768_settled.png) | [1440px](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/work_rk-reno-solutions_1440_settled.png)
+* **Interactive States**: [Mobile menu open](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/mobile_menu_open.png) | [Validation error](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/contact_validation_error.png) | [Service preselected](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/contact_service_preselected.png) | [Source context](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/contact_source_context.png) | [Working method accordion](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/recordings/10_working_method_accordion.webm) | [FAQ open](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/faq_open.png) | [Footer mobile](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/screenshots/footer_mobile.png)
 
 ### All 8 Contact Sheets (Direct GitHub URLs)
 * **Contact Sheet A (Homepage Complete Sections)**: [contact_sheet_A_homepage_sections.png](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-0-evidence/audit-evidence/phase-0/contact-sheets/contact_sheet_A_homepage_sections.png)
@@ -136,13 +139,13 @@ Full item-by-item motion inventory available at:
 
 ## 9. Corrected Brand Coverage Matrix (Using Strictly Verified Facts)
 
-ConvortAI is kept distinct as the verified **Technology Partner**. All unverified metrics, fake leads, sales numbers, and search ranking claims for non-approved brands have been removed.
+ConvortAI is kept distinct as the verified **Technology Partner**. All unverified metrics, fake leads, sales numbers, and search ranking claims for non-approved brands have been completely removed.
 
 | Brand Name | Verified Approved Role & Services | Approved Result Evidence Available | Available Media Assets | Services Demonstrated | Potential Future Use |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Black Gold Fertilizer** | E-Commerce Growth & Performance Marketing | PKR 30M+ delivered orders, 29,000+ sales over 24 months | WebP Logo, Product Packaging Render (`black-gold-official.png`) | Performance marketing, Meta Ads, web shop | Featured Case Study #1 (Fix dark container logo contrast) |
-| **Wajib Livestock** | Seasonal Campaign Strategy & Media Buying | 150+ animals sold, PKR 4.2M+ sales during Eid Qurbani | WebP Logo, Campaign Banner Visuals | Social media ads, seasonal campaign strategy | Featured Case Study #2 |
-| **RK Reno Solutions** | Web Architecture & Local Search Foundation | Renovations & AC service digital presence in KL & Selangor | WebP Logo, Website Screenshot (`screenshot.png`/`webp`) | Web design, local SEO foundation | Featured Case Study #3 |
+| **Black Gold Fertilizer** | E-Commerce Growth & Performance Marketing | PKR 30M+ delivered orders, 29,000+ sales over 24 months | WebP Logo, Product Packaging Render (`black-gold-official.png`) | Performance marketing, Meta Ads, web shop | Featured Case Study (`/work/black-gold-fertilizer/`) |
+| **Wajib Livestock** | Seasonal Campaign Strategy & Media Buying | 150+ animals sold, PKR 4.2M+ sales during Eid Qurbani | WebP Logo, Campaign Banner Artwork | Social media ads, seasonal campaign strategy | Featured Case Study (`/work/qurbani-campaign/`) |
+| **RK Reno Solutions** | Web Architecture & Local Search Foundation | Renovations & AC service digital presence in KL & Selangor | WebP Logo, Website Screenshot (`screenshot.png`/`webp`) | Web design, local SEO foundation | Featured Case Study (`/work/rk-reno-solutions/`) |
 | **ConvortAI** | Technology Partner & Growth Partner | Web application engineering, AI lead conversion product development | WebP Logo, Tech Partner Badge | Web app engineering, AI automation, product growth | **Technology Partner (Dedicated Case Study - Phase 6)** |
 | **Right Link Advisors** | Immigration & Visa Consultancy Services | Verified client engagement | WebP Logo | Paid advertising, lead generation strategy | Category Featured Card (Immigration Sector) |
 | **Rapidline Immigration** | Immigration Services | Verified client engagement | WebP Logo | Performance marketing, social media strategy | Category Featured Card (Immigration Sector) |
@@ -174,7 +177,7 @@ Before Phase 7 implementation, approved specifications must be provided using th
 11. Sort Order Priority: [1, 2, 3...]
 ```
 
-#### Adaptable Layout Options Based on Actual Roster Size
+### Adaptable Visual Layout Options Based on Roster Size:
 * **1 Person**: Centered Founder/Operator profile card with direct contact CTA.
 * **2 People**: Balanced 2-column executive bio grid.
 * **3–4 People**: 3 or 4-card horizontal operator grid with role badges.
@@ -188,27 +191,25 @@ Before Phase 7 implementation, approved specifications must be provided using th
 ### Confirmed P0 Issue (1)
 * **DEF-01**: White Black Gold logo artwork rendered inside `bg-white` containers (`Showcase.astro` line 64, `BrandMarquee.astro` line 30). Logo becomes completely invisible on white backgrounds.
 
-### Confirmed P1 Issues (7)
-1. **DEF-02**: Zero team members, founders, or personnel shown anywhere on website (Severe credibility gap).
-2. **DEF-03**: `/services/` is a single-page summary; 6 dedicated individual service sub-pages are missing.
-3. **DEF-04**: Portfolio imbalance where 3 brands dominate all featured space while 10 receive link tiles.
-4. **DEF-05**: Reuses Black Gold productpackaging image (`black-gold-official.png`) inside general agency credibility card (`AboutOperator.astro`).
-5. **DEF-06**: Unsupported corporate claims ("zero outsourced middleman layers", "no junior sales reps").
-6. **DEF-07**: Orange section identifier labels (`text-xs font-mono`) render at ~12px font size.
-7. **DEF-10**: ConvortAI is verified Technology Partner but lacks a full case study layout.
+### Confirmed P1 Issues (5)
+1. **DEF-02**: Zero team members, founders, or personnel shown anywhere on website (Severe credibility gap - Phase 7).
+2. **DEF-03**: `/services/` is a single-page summary; 6 dedicated individual service sub-pages are missing (Phase 5).
+3. **DEF-04**: Portfolio imbalance where 3 brands dominate all featured space while 10 receive link tiles (Phase 6).
+4. **DEF-05**: Reuses Black Gold product packaging image (`black-gold-official.png`) inside general agency credibility card (`AboutOperator.astro` - Phase 1).
+5. **DEF-06**: Unsupported corporate claims ("zero outsourced middleman layers", "no junior sales reps" - Phase 1).
+6. **DEF-10**: ConvortAI is verified Technology Partner but lacks a full case study layout (Phase 6).
 
 ### Unconfirmed Issues Requiring Further Observation (2)
-1. **Scroll Observer Trigger Margin**: `rootMargin: 0px 0px -15% 0px` causes late reveal on fast scrolling. Test environment confirms `rootMargin: -5%` resolves late pop-in; requires full cross-browser verification in Phase 3.
-2. **1-Frame Hero Reload Hydration Flash**: Flash of un-hydrated hero text observed during hard page reloads (`05_homepage_hard_reload.webm`). Requires inline fallback CSS testing in Phase 3.
+1. **Scroll Observer Trigger Margin (`DEF-08`)**: `rootMargin: 0px 0px -15% 0px` causes late reveal on fast scrolling. Test environment confirms `rootMargin: -5%` resolves late pop-in; requires full cross-browser verification in Phase 3.
+2. **1-Frame Hero Reload Hydration Flash (`DEF-15`)**: Flash of un-hydrated hero text observed during hard page reloads (`05_homepage_hard_reload.webm`). Requires inline fallback CSS testing in Phase 3.
 
 ---
 
 ## 12. Recommended Phase 1 Repair Batches
 
-* **Batch 1A: Visual Reliability & Logo Contrast (`DEF-01`, `DEF-05`, `DEF-07`)**
+* **Batch 1A: Visual Reliability & Logo Contrast (`DEF-01`, `DEF-05`)**
   * Update Black Gold logo container styling to `#061d33` dark fill across client grid & featured cards.
   * Replace `black-gold-official.png` on `AboutOperator.astro` with genuine agency workflow visual or founder portrait.
-  * Increase section label font size to `text-xs sm:text-sm font-semibold tracking-wider`.
 * **Batch 1B: Credibility Copy Cleanup (`DEF-06`, `DEF-13`)**
   * Remove unverified "zero outsourced / junior account manager" claims.
   * Attribute or convert standalone quotation in `AboutOperator.astro`.
