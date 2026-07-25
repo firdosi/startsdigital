@@ -1,14 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/landing/Hero.astro';
+import ProjectProof from '../components/landing/ProjectProof.astro';
 import BrandMarquee from '../components/landing/BrandMarquee.astro';
 import Features from '../components/landing/Features.astro';
-import WhyUs from '../components/landing/WhyUs.astro';
-import Process from '../components/landing/Process.astro';
-import ManifestoBanner from '../components/landing/ManifestoBanner.astro';
 import Showcase from '../components/landing/Showcase.astro';
-import Results from '../components/landing/Results.astro';
-import AboutOperator from '../components/landing/AboutOperator.astro';
+import Process from '../components/landing/Process.astro';
 import PlatformGrid from '../components/landing/PlatformGrid.astro';
 import Faq from '../components/landing/Faq.astro';
 import FinalCta from '../components/landing/FinalCta.astro';
@@ -17,43 +14,34 @@ import { site } from '../site.config';
 ---
 
 <BaseLayout 
-  title={`${site.name} — Digital Marketing, Paid Ads, Websites & AI Systems`}
+  title={`${site.name} — Strategy, Execution & Digital Growth`}
   description={site.description}
 >
-  {/* 1. Header & Navy Rounded Hero with Centred Headline & 4 Verified Metric Cards */}
+  {/* 1. Hero V2 (Editorial Split Layout & Grounded Project-Proof Summary) */}
   <Hero />
 
-  {/* 2. Clients, Brands & Business Partners (Cream Background, Larger Logos) */}
+  {/* 2. Contextual Project Proof (Detailed Project Narrative & Metrics in Context) */}
+  <ProjectProof />
+
+  {/* 3. Selected Client Experience (Approved Editorial Client Index) */}
   <BrandMarquee />
 
-  {/* 3. Our Services (Cream Background, 6 Colourful Cards in 3x2 Grid) */}
+  {/* 4. Services Overview / Capabilities (Editorial 6-Service Capabilities Grid) */}
   <Features />
 
-  {/* 4. Why Brands Trust Starts Digital (Cream Background, Central Visual, Floating Metrics) */}
-  <WhyUs />
-
-  {/* 5. Our Working Method (Cream Background, 4-Stage Accordion, Stage 1 Open Default) */}
-  <Process />
-
-  {/* 6. Purple Manifesto Banner (Purple Banner, Stickers, CTA) */}
-  <ManifestoBanner />
-
-  {/* 7. Our Featured Projects (Cream Background, 3 Large Visual Projects) */}
+  {/* 5. Featured Work (Selected Projects Across E-Commerce, Agriculture & Local Services) */}
   <Showcase />
 
-  {/* 8. Verified Commercial Results (Deep Navy Band, 4 Large Colourful Metric Blocks) */}
-  <Results />
+  {/* 6. Working Method (Execution Accordion Framework) */}
+  <Process />
 
-  {/* 9. About / Honest Operator Credibility Section */}
-  <AboutOperator />
-
-  {/* 10. Platforms & Tools We Work With (Clean Cream Grid) */}
+  {/* 7. Platforms & Tools */}
   <PlatformGrid />
 
-  {/* 11. Frequently Asked Questions (Boost Split Layout, Plus/Minus Accordion) */}
+  {/* 8. Frequently Asked Questions */}
   <Faq />
 
-  {/* 12. Final CTA (Rounded Navy Block on Cream, Lime/Green Buttons, Sticker Labels) */}
+  {/* 9. Final CTA */}
   <FinalCta />
 
   {/* Motion Controller System */}

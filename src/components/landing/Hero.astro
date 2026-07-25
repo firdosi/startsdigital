@@ -1,184 +1,163 @@
 ---
 import { site } from '../../site.config';
-import FloatingOrb from '../motion/FloatingOrb.astro';
-import OrbitRing from '../motion/OrbitRing.astro';
-import IsometricCube from '../motion/IsometricCube.astro';
+import { homepageContent } from '../../data/homepage';
 import AnimatedGrid from '../motion/AnimatedGrid.astro';
+import FloatingOrb from '../motion/FloatingOrb.astro';
 import SectionSpark from '../motion/SectionSpark.astro';
-import { 
-  TrendingUp, 
-  ShoppingBag, 
-  Award, 
-  HeartHandshake, 
-  ArrowRight,
-  Sparkles
-} from '@lucide/astro';
+import { ArrowRight, Sparkles } from '@lucide/astro';
+
+const { hero } = homepageContent;
 ---
 
-<section id="hero" class="relative overflow-hidden bg-[#061d33] text-white pt-12 pb-20 lg:pt-16 lg:pb-24 rounded-b-[40px] lg:rounded-b-[60px] shadow-2xl">
-  <!-- Tech Background Grid -->
-  <AnimatedGrid opacity={0.12} />
+<section id="hero" class="relative overflow-hidden bg-[#061d33] text-white pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl">
+  <!-- Subtle Animated Tech Background Grid -->
+  <AnimatedGrid opacity={0.10} />
 
-  <!-- 
-    3D Decorative System: Restrained Load
-    - Desktop: 5 elements (Orb, Ring, Cube, Spark, Chip)
-    - Tablet: 3 elements (Orb, Cube, Spark)
-    - Mobile: 2 elements (Orb, Spark)
-  -->
-  <!-- 1. Glossy Orb (Mobile + Tablet + Desktop) -->
-  <FloatingOrb color="orange" size="lg" class="-top-20 -left-20" duration="14s" />
+  <!-- Restrained Decorative Accent Elements (Orb & Spark) -->
+  <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
+  <SectionSpark color="orange" size="md" class="top-10 right-[8%] pointer-events-none" delay="0s" />
 
-  <!-- 2. Orbit Ring (Desktop only) -->
-  <OrbitRing color="lime" size={240} class="top-8 left-[4%] hidden lg:flex" duration="28s" />
-
-  <!-- 3. Isometric Cube (Tablet + Desktop) -->
-  <IsometricCube color="purple" size={44} class="top-16 right-[10%] hidden md:block" />
-
-  <!-- 4. Section Spark (Mobile + Tablet + Desktop) -->
-  <SectionSpark color="orange" size="md" class="top-12 right-[12%]" delay="0s" />
-
-  <!-- 5. Floating Data Chip (Desktop only) -->
-  <div aria-hidden="true" class="hero-chip pointer-events-none absolute top-28 left-[8%] hidden xl:flex items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-3.5 py-1.5 text-xs font-mono text-[#ddff35] backdrop-blur-md animate-float-gentle">
-    <span class="size-2 rounded-full bg-[#ddff35]"></span>
-    <span>ROI Engine Active</span>
-  </div>
-
-  <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 text-center z-10">
-    
-    <!-- Centred Editorial Layout -->
-    <div class="max-w-[760px] mx-auto space-y-8">
+  <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
       
-      <!-- 1. Eyebrow Pill: Scale-In -->
-      <div data-motion="scale-in" data-motion-delay="0" class="inline-flex items-center justify-center">
-        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md shadow-sm">
-          <Sparkles class="size-4 text-[#ddff35]" />
-          <span>PERFORMANCE MARKETING & DIGITAL SYSTEMS</span>
-        </span>
-      </div>
-
-      <!-- 2. Hero Headline: Clip-Up -->
-      <h1 data-motion="clip-up" data-motion-delay="120" class="font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] leading-[1.08] tracking-[-0.035em] text-white max-w-[760px] mx-auto">
-        Digital marketing built to scale <span class="text-[#ff762b]">real businesses.</span>
-      </h1>
-
-      <!-- 3. Supporting Copy: Fade-Up -->
-      <p data-motion="fade-up" data-motion-delay="240" class="text-[16px] sm:text-[18px] leading-[1.65] text-slate-200 font-body max-w-[680px] mx-auto font-normal">
-        Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
-      </p>
-
-      <!-- 4. Action Buttons: Pop-In -->
-      <div data-motion="pop-in" data-motion-delay="360" class="flex flex-wrap items-center justify-center gap-5 pt-4 font-body">
-        <a
-          href={`${site.basePath}/contact/`}
-          data-track="primary-cta"
-          class="group inline-flex items-center justify-center min-h-[48px] gap-3 rounded-full bg-[#ddff35] px-8 py-3.5 font-body font-semibold text-base text-[#061d33] shadow-xl hover:bg-[#c9eb1e] hover:shadow-2xl hover:-translate-y-1 transition-all"
-        >
-          <span>Start a Project</span>
-          <ArrowRight class="size-5 text-[#061d33] group-hover:translate-x-1 transition-transform" />
-        </a>
-        <a
-          href={`${site.basePath}/work/`}
-          class="inline-flex items-center justify-center min-h-[48px] gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-3.5 font-body font-semibold text-base text-white hover:bg-white/20 hover:border-white/50 transition-all backdrop-blur-sm"
-        >
-          View Our Work
-        </a>
-      </div>
-
-    </div>
-
-    <!-- 5. Verified Metric Cards Section: Left-to-Right Stagger -->
-    <div class="mt-16 lg:mt-20 pt-10 border-t border-white/15" data-motion-group data-motion-stagger="90" data-motion-delay="480">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Left Column: Positioning, Explanation & CTAs (55% width on desktop -> col-span-7) -->
+      <div class="lg:col-span-7 space-y-6 sm:space-y-7 text-left">
         
-        <!-- Metric Card 1 -->
-        <div data-motion="fade-up" class="rounded-2xl border-2 border-[#ff762b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff762b] hover:-translate-y-1.5 transition-all duration-300 font-body">
-          <div class="flex items-center justify-between mb-3">
-            <div class="size-10 rounded-xl bg-[#ff762b] text-white flex items-center justify-center font-bold group-hover:rotate-6 transition-transform">
-              <TrendingUp class="size-5" />
-            </div>
-            <span class="text-[11px] font-mono text-[#ff762b] font-medium uppercase tracking-[0.06em] bg-[#ff762b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
-          </div>
-          <div
-            class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]"
-            data-counter-target="30"
-            data-counter-prefix="PKR "
-            data-counter-suffix="M+"
-            data-counter-exact="PKR 30M+"
-          >
-            PKR 30M+
-          </div>
-          <p class="text-[15px] font-body font-semibold text-slate-200 mt-1">
-            Revenue Supported
-          </p>
+        <!-- Eyebrow Pill -->
+        <div data-motion="scale-in" data-motion-delay="0" class="inline-flex items-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
+            <Sparkles class="size-3.5 text-[#ddff35]" />
+            <span>{hero.eyebrow}</span>
+          </span>
         </div>
 
-        <!-- Metric Card 2 -->
-        <div data-motion="fade-up" class="rounded-2xl border-2 border-[#9a83f5]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#9a83f5] hover:-translate-y-1.5 transition-all duration-300 font-body">
-          <div class="flex items-center justify-between mb-3">
-            <div class="size-10 rounded-xl bg-[#9a83f5] text-white flex items-center justify-center font-bold group-hover:rotate-6 transition-transform">
-              <ShoppingBag class="size-5" />
-            </div>
-            <span class="text-[11px] font-mono text-[#9a83f5] font-medium uppercase tracking-[0.06em] bg-[#9a83f5]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
-          </div>
-          <div
-            class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]"
-            data-counter-target="29000"
-            data-counter-suffix="+"
-            data-counter-exact="29,000+"
+        <!-- Hero Headline -->
+        <h1 data-motion="clip-up" data-motion-delay="120" class="font-heading font-bold text-[34px] sm:text-[46px] lg:text-[54px] leading-[1.1] tracking-[-0.03em] text-white">
+          {hero.headline}
+        </h1>
+
+        <!-- Supporting Paragraph -->
+        <p data-motion="fade-up" data-motion-delay="240" class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body max-w-2xl font-normal">
+          {hero.paragraph}
+        </p>
+
+        <!-- Action Buttons -->
+        <div data-motion="pop-in" data-motion-delay="360" class="flex flex-wrap items-center gap-4 pt-2 font-body">
+          <a
+            href={`${site.basePath}${hero.primaryCta.href}`}
+            data-track="primary-cta"
+            class="group inline-flex items-center justify-center min-h-[48px] gap-2.5 rounded-full bg-[#ddff35] px-7 py-3 font-body font-semibold text-base text-[#061d33] shadow-lg hover:bg-[#c9eb1e] hover:-translate-y-0.5 transition-all"
           >
-            29,000+
-          </div>
-          <p class="text-[15px] font-body font-semibold text-slate-200 mt-1">
-            Product Sales
-          </p>
+            <span>{hero.primaryCta.label}</span>
+            <ArrowRight class="size-4 text-[#061d33] group-hover:translate-x-1 transition-transform" />
+          </a>
+          <a
+            href={`${site.basePath}${hero.secondaryCta.href}`}
+            class="inline-flex items-center justify-center min-h-[48px] gap-2 rounded-full border border-white/30 bg-white/10 px-7 py-3 font-body font-semibold text-base text-white hover:bg-white/20 transition-all backdrop-blur-sm"
+          >
+            {hero.secondaryCta.label}
+          </a>
         </div>
 
-        <!-- Metric Card 3 -->
-        <div data-motion="fade-up" class="rounded-2xl border-2 border-[#ddff35]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ddff35] hover:-translate-y-1.5 transition-all duration-300 font-body">
-          <div class="flex items-center justify-between mb-3">
-            <div class="size-10 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center font-bold group-hover:rotate-6 transition-transform">
-              <Award class="size-5" />
-            </div>
-            <span class="text-[11px] font-mono text-[#ddff35] font-medium uppercase tracking-[0.06em] bg-[#ddff35]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
-          </div>
-          <div
-            class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]"
-            data-counter-target="4.2"
-            data-counter-prefix="PKR "
-            data-counter-suffix="M+"
-            data-counter-decimals="1"
-            data-counter-exact="PKR 4.2M+"
-          >
-            PKR 4.2M+
-          </div>
-          <p class="text-[15px] font-body font-semibold text-slate-200 mt-1">
-            Sales Supported
-          </p>
-        </div>
-
-        <!-- Metric Card 4 -->
-        <div data-motion="fade-up" class="rounded-2xl border-2 border-[#ff514b]/40 bg-[#0a2540] p-6 shadow-xl text-left relative overflow-hidden group hover:border-[#ff514b] hover:-translate-y-1.5 transition-all duration-300 font-body">
-          <div class="flex items-center justify-between mb-3">
-            <div class="size-10 rounded-xl bg-[#ff514b] text-white flex items-center justify-center font-bold group-hover:rotate-6 transition-transform">
-              <HeartHandshake class="size-5" />
-            </div>
-            <span class="text-[11px] font-mono text-[#ff514b] font-medium uppercase tracking-[0.06em] bg-[#ff514b]/10 px-2.5 py-0.5 rounded">VERIFIED</span>
-          </div>
-          <div
-            class="font-heading font-bold text-[32px] sm:text-[40px] text-white tracking-[-0.025em]"
-            data-counter-target="150"
-            data-counter-prefix="More Than "
-            data-counter-exact="More Than 150"
-          >
-            More Than 150
-          </div>
-          <p class="text-[15px] font-body font-semibold text-slate-200 mt-1">
-            Animals Sold
+        <!-- Supporting Service Line (Restrained Editorial Text) -->
+        <div data-motion="fade-up" data-motion-delay="420" class="pt-3 border-t border-white/15">
+          <p class="text-xs sm:text-sm font-mono text-slate-300 flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
+            {hero.serviceLine.map((item, idx) => (
+              <>
+                <span class="whitespace-nowrap">{item}</span>
+                {idx < hero.serviceLine.length - 1 && (
+                  <span class="text-[#ff762b] opacity-60">•</span>
+                )}
+              </>
+            ))}
           </p>
         </div>
 
       </div>
-    </div>
 
+      <!-- Right Column: Grounded Project-Proof Panels (45% width on desktop -> col-span-5) -->
+      <div data-motion="fade-up" data-motion-delay="300" class="lg:col-span-5 space-y-4">
+        
+        <!-- Header Label -->
+        <div class="flex items-center gap-2">
+          <span class="size-2 rounded-full bg-[#ff762b]"></span>
+          <span class="text-xs font-mono font-semibold uppercase tracking-[0.08em] text-[#ff762b]">
+            {hero.proofHeaderLabel}
+          </span>
+        </div>
+
+        <!-- Proof Panel 1: Black Gold Fertilizer -->
+        {hero.proofCards.slice(0, 1).map((card) => (
+          <a
+            href={`${site.basePath}${card.href}`}
+            class="group block rounded-2xl border border-white/15 bg-white/5 p-5 sm:p-6 backdrop-blur-md hover:border-[#ff762b]/60 hover:bg-white/10 transition-all duration-300 shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+          >
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div>
+                <h2 class="font-heading font-bold text-lg sm:text-xl text-white group-hover:text-[#ff762b] transition-colors">
+                  {card.brand}
+                </h2>
+                <p class="text-xs font-mono text-slate-300 mt-0.5">{card.context}</p>
+              </div>
+              <ArrowRight class="size-4 text-slate-400 group-hover:text-[#ff762b] group-hover:translate-x-1 transition-all shrink-0 mt-1" />
+            </div>
+
+            <!-- Metric Summary Text -->
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-body mb-4">
+              {card.summary}
+            </p>
+
+            <!-- Metrics Badges -->
+            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
+              {card.metrics.map((m) => (
+                <div class="bg-[#061d33]/60 rounded-xl p-2.5 border border-white/10">
+                  <div class="font-heading font-bold text-lg sm:text-xl text-[#ddff35]">
+                    {m.value}
+                  </div>
+                  <div class="text-[11px] font-mono text-slate-300 mt-0.5">{m.label}</div>
+                </div>
+              ))}
+            </div>
+          </a>
+        ))}
+
+        <!-- Proof Panel 2: Wajib Livestock -->
+        {hero.proofCards.slice(1, 2).map((card) => (
+          <a
+            href={`${site.basePath}${card.href}`}
+            class="group block rounded-2xl border border-white/15 bg-white/5 p-5 sm:p-6 backdrop-blur-md hover:border-[#ddff35]/60 hover:bg-white/10 transition-all duration-300 shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+          >
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div>
+                <h2 class="font-heading font-bold text-lg sm:text-xl text-white group-hover:text-[#ddff35] transition-colors">
+                  {card.brand}
+                </h2>
+                <p class="text-xs font-mono text-slate-300 mt-0.5">{card.context}</p>
+              </div>
+              <ArrowRight class="size-4 text-slate-400 group-hover:text-[#ddff35] group-hover:translate-x-1 transition-all shrink-0 mt-1" />
+            </div>
+
+            <!-- Metric Summary Text -->
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-body mb-4">
+              {card.summary}
+            </p>
+
+            <!-- Metrics Badges -->
+            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
+              {card.metrics.map((m) => (
+                <div class="bg-[#061d33]/60 rounded-xl p-2.5 border border-white/10">
+                  <div class="font-heading font-bold text-lg sm:text-xl text-[#ff762b]">
+                    {m.value}
+                  </div>
+                  <div class="text-[11px] font-mono text-slate-300 mt-0.5">{m.label}</div>
+                </div>
+              ))}
+            </div>
+          </a>
+        ))}
+
+      </div>
+
+    </div>
   </div>
 </section>

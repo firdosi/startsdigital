@@ -1,143 +1,74 @@
 ---
-import MotionIconTile from '../motion/MotionIconTile.astro';
 import { site } from '../../site.config';
+import { homepageContent } from '../../data/homepage';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
-import { 
-  Megaphone, 
-  ShoppingBag, 
-  Search, 
-  Video, 
-  Bot, 
-  BarChart3, 
-  ArrowUpRight
-} from '@lucide/astro';
+import { ArrowRight, Check } from '@lucide/astro';
 
-const services = [
-  {
-    id: '01',
-    slug: 'paid-advertising',
-    title: 'Paid Advertising and Lead Generation',
-    description: 'Precision Meta Ads and Google Ads campaigns engineered for commercial customer acquisition, lead funnels, and performance scaling.',
-    colorClass: 'bg-[#ff762b] text-white hover:bg-[#e56017]',
-    badgeClass: 'bg-white/20 text-white',
-    offsetClass: 'translate-y-0',
-    Icon: Megaphone,
-  },
-  {
-    id: '02',
-    slug: 'website-development',
-    title: 'Website Design and E-Commerce',
-    description: 'Custom high-converting websites, WooCommerce platforms, and Shopify stores built for lightning speed and checkout friction reduction.',
-    colorClass: 'bg-[#9a83f5] text-white hover:bg-[#8b5cf6]',
-    badgeClass: 'bg-white/20 text-white',
-    offsetClass: 'translate-y-0 sm:translate-y-3',
-    Icon: ShoppingBag,
-  },
-  {
-    id: '03',
-    slug: 'seo',
-    title: 'SEO and Local Search',
-    description: 'Technical search engine optimization, structured schema markup, and local service landing pages to capture high-intent search demand.',
-    colorClass: 'bg-[#ff514b] text-white hover:bg-[#e6453f]',
-    badgeClass: 'bg-white/20 text-white',
-    offsetClass: 'translate-y-0 lg:translate-y-1',
-    Icon: Search,
-  },
-  {
-    id: '04',
-    slug: 'creative-content',
-    title: 'Creative Content',
-    description: 'Performance ad creatives, short-form video editing, product graphics, and social content tailored for audience engagement and conversion.',
-    colorClass: 'bg-[#39c98a] text-white hover:bg-[#32b57c]',
-    badgeClass: 'bg-white/20 text-white',
-    offsetClass: 'translate-y-0',
-    Icon: Video,
-  },
-  {
-    id: '05',
-    slug: 'ai-marketing-systems',
-    title: 'AI Marketing Systems',
-    description: 'Practical use of AI for lead qualification workflows, avatar video creation, content pipelines, and automated customer routing.',
-    colorClass: 'bg-[#061d33] text-white hover:bg-[#0a2540]',
-    badgeClass: 'bg-white/20 text-white',
-    offsetClass: 'translate-y-0 sm:translate-y-3',
-    Icon: Bot,
-  },
-  {
-    id: '06',
-    slug: 'multiple-services',
-    title: 'Campaign Strategy',
-    description: 'Commercial positioning, marketing budget allocation, multi-channel rollout plans, and data-backed performance advisory.',
-    colorClass: 'bg-[#ddff35] text-[#061d33] hover:bg-[#c9eb1e]',
-    badgeClass: 'bg-[#061d33]/15 text-[#061d33]',
-    offsetClass: 'translate-y-0 lg:translate-y-1',
-    Icon: BarChart3,
-  },
-];
+const { services } = homepageContent;
 ---
 
-<section id="services" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] relative">
+<section id="services" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 relative">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
-    <div class="mb-16 text-center max-w-3xl mx-auto space-y-4">
+    <!-- Section Header -->
+    <div class="mb-12 sm:mb-16 text-center max-w-2xl mx-auto space-y-3">
       <SectionEyebrow
-        label="OUR CAPABILITIES"
+        label={services.eyebrow}
         align="center"
         delay={0}
       />
 
-      <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[33px] sm:text-[42px] lg:text-[50px] text-[#061d33] leading-[1.12] tracking-[-0.025em]">
-        End-to-end digital services built for business growth.
+      <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+        {services.heading}
       </h2>
 
-      <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
-        From customer acquisition campaigns to high-performing web platforms, we build and manage digital infrastructure.
+      <p data-motion="fade-up" data-motion-delay="200" class="text-sm sm:text-base text-slate-700 font-body leading-relaxed font-normal">
+        {services.paragraph}
       </p>
     </div>
 
-    <!-- 6-Card Services Grid with Staggered Entrance -->
-    <div data-motion-group data-motion-stagger="100" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- 6-Service Editorial Grid -->
+    <div data-motion="fade-up" data-motion-delay="250" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
-        services.map((s, idx) => (
+        services.items.map((service) => (
           <a
-            href={`${site.basePath}/contact/?service=${s.slug}`}
-            data-track="service-contact"
-            data-motion="fade-up"
-            data-motion-delay={idx * 100}
-            class:list={[
-              'rounded-3xl p-8 lg:p-10 shadow-xl flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl group cursor-pointer border border-white/10 no-underline',
-              s.colorClass,
-              s.offsetClass
-            ]}
+            href={`${site.basePath}/services/`}
+            data-track="service-link"
+            class="group rounded-2xl border border-[#061d33]/12 bg-white p-6 sm:p-7 shadow-xs hover:border-[#ff762b]/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
           >
             <div>
-              <!-- Top Row: Layered 3D Icon Tile & Step Badge -->
-              <div class="flex items-center justify-between mb-8">
-                <MotionIconTile iconBg="bg-white/20">
-                  <s.Icon class="size-7" />
-                </MotionIconTile>
-                <span class:list={['text-xs font-mono font-medium px-3.5 py-1 rounded-full uppercase tracking-[0.05em]', s.badgeClass]}>
-                  PHASE {s.id}
+              <!-- Top Row: Number & Icon/Accent -->
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-1 rounded">
+                  SERVICE {service.number}
                 </span>
+                <ArrowRight class="size-4 text-slate-400 group-hover:text-[#ff762b] group-hover:translate-x-1 transition-all" />
               </div>
 
               <!-- Title -->
-              <h3 class="font-heading font-semibold text-[20px] sm:text-[21px] leading-[1.3] mb-3">
-                {s.title}
+              <h3 class="font-heading font-bold text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors mb-2.5">
+                {service.title}
               </h3>
 
               <!-- Description -->
-              <p class="text-base leading-[1.65] opacity-95 font-body font-normal">
-                {s.description}
+              <p class="text-xs sm:text-sm text-slate-600 font-body leading-relaxed mb-5">
+                {service.description}
               </p>
             </div>
 
-            <!-- Bottom Action Link -->
-            <div class="mt-10 pt-6 border-t border-current/20 flex items-center justify-between font-body">
-              <span class="text-[15px] sm:text-[16px] font-semibold tracking-normal">Start a Project</span>
-              <div class="size-10 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-115 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">
-                <ArrowUpRight class="size-5" />
-              </div>
+            <!-- Practical Deliverables -->
+            <div class="pt-4 border-t border-[#061d33]/8">
+              <span class="text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 block mb-2">
+                PRACTICAL DELIVERABLES
+              </span>
+              <ul class="grid grid-cols-2 gap-x-2 gap-y-1.5">
+                {service.deliverables.map((d) => (
+                  <li class="flex items-center gap-1.5 text-xs font-body text-[#061d33]">
+                    <Check class="size-3 text-[#ff762b] shrink-0" />
+                    <span class="truncate">{d}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
           </a>

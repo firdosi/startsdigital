@@ -23,16 +23,18 @@ const { showAllWorkButton = true } = Astro.props;
     
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-      <div class="space-y-3">
+      <div class="space-y-3 max-w-2xl">
         <SectionEyebrow
-          label="FEATURED WORK & CASE STUDIES"
+          label="SELECTED WORK"
           align="left"
           delay={0}
         />
-        <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
         <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
-          Our featured projects
+          Different businesses require different combinations of strategy and execution.
         </h2>
+        <p data-motion="fade-up" data-motion-delay="200" class="text-sm sm:text-base text-slate-700 font-body leading-relaxed font-normal">
+          Explore selected projects across e-commerce, seasonal campaigns, local services and technology.
+        </p>
       </div>
       {showAllWorkButton && (
         <div data-motion="pop-in" data-motion-delay="200">

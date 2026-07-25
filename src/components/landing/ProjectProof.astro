@@ -1,0 +1,121 @@
+---
+import { site } from '../../site.config';
+import { homepageContent } from '../../data/homepage';
+import SectionEyebrow from '../common/SectionEyebrow.astro';
+import { ArrowRight, CheckCircle2 } from '@lucide/astro';
+
+const { projectProof } = homepageContent;
+---
+
+<section id="project-proof" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10">
+  <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+    
+    <!-- Section Header -->
+    <div class="mb-12 sm:mb-16 text-center space-y-3 max-w-2xl mx-auto">
+      <SectionEyebrow
+        label={projectProof.eyebrow}
+        align="center"
+        delay={0}
+      />
+      <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+        {projectProof.heading}
+      </h2>
+      <p data-motion="fade-up" data-motion-delay="200" class="text-sm sm:text-base text-slate-700 font-body leading-relaxed font-normal">
+        {projectProof.paragraph}
+      </p>
+    </div>
+
+    <!-- Editorial Project Rows -->
+    <div class="space-y-8 sm:space-y-10">
+      {projectProof.projects.map((project, idx) => (
+        <div
+          data-motion="fade-up"
+          data-motion-delay={300 + idx * 100}
+          class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 lg:p-10 shadow-xs hover:border-[#ff762b]/40 transition-all duration-300 group"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Project Detail Column (7 cols desktop) -->
+            <div class="lg:col-span-7 space-y-5">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="inline-block px-3 py-1 rounded-full bg-[#f7f4ed] text-[#061d33] font-mono text-xs font-semibold uppercase tracking-wider border border-[#061d33]/10">
+                  {project.sector}
+                </span>
+                <span class="text-xs font-mono text-slate-500">Case Study</span>
+              </div>
+
+              <h3 class="font-heading font-bold text-2xl sm:text-3xl text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+                {project.brand}
+              </h3>
+
+              <div class="space-y-2 text-sm sm:text-base text-slate-700 font-body">
+                <p class="leading-relaxed">
+                  <strong class="font-semibold text-[#061d33]">Services & Execution:</strong> {project.workDescription}
+                </p>
+                <p class="leading-relaxed bg-[#f7f4ed] p-3.5 rounded-xl border border-[#061d33]/8 text-[#061d33]">
+                  <strong class="font-semibold text-[#061d33]">Outcome:</strong> {project.resultSummary}
+                </p>
+              </div>
+
+              <!-- Metric Pills -->
+              <div class="flex flex-wrap gap-4 pt-2">
+                {project.metrics.map((m) => (
+                  <div class="flex items-center gap-2 text-xs font-mono font-semibold text-[#061d33]">
+                    <CheckCircle2 class="size-4 text-[#ff762b]" />
+                    <span>{m.label}: <span class="text-[#ff762b] font-bold">{m.value}</span></span>
+                  </div>
+                ))}
+              </div>
+
+              <div class="pt-2">
+                <a
+                  href={`${site.basePath}${project.link}`}
+                  class="inline-flex items-center gap-2 font-heading font-semibold text-sm text-[#061d33] group-hover:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] transition-colors"
+                >
+                  <span>Explore Case Study</span>
+                  <ArrowRight class="size-4 text-[#ff762b] group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+            </div>
+
+            <!-- Project Visual Column (5 cols desktop) -->
+            <div class="lg:col-span-5">
+              {project.imagePath ? (
+                <a href={`${site.basePath}${project.link}`} class="block overflow-hidden rounded-2xl border border-[#061d33]/10 bg-[#061d33] aspect-[4/3] relative group-hover:shadow-md transition-all">
+                  <img
+                    src={`${site.basePath}${project.imagePath}`}
+                    alt={`${project.brand} project visual`}
+                    width="600"
+                    height="450"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#061d33]/60 via-transparent to-transparent pointer-events-none"></div>
+                  <div class="absolute bottom-4 left-4 right-4 text-white font-mono text-xs font-medium flex items-center justify-between">
+                    <span>{project.brand}</span>
+                    <span class="bg-[#ff762b] text-white px-2.5 py-0.5 rounded text-[10px] font-bold uppercase">Featured</span>
+                  </div>
+                </a>
+              ) : (
+                <a href={`${site.basePath}${project.link}`} class="block overflow-hidden rounded-2xl border border-[#061d33]/15 bg-[#061d33] p-8 aspect-[4/3] flex flex-col justify-between relative group-hover:border-[#ff762b]/50 transition-all text-white">
+                  <div class="space-y-2">
+                    <span class="text-xs font-mono uppercase tracking-widest text-[#ff762b] font-semibold">Seasonal Campaign</span>
+                    <h4 class="font-heading font-bold text-2xl text-white">{project.brand}</h4>
+                    <p class="text-xs text-slate-300 font-body">{project.sector}</p>
+                  </div>
+                  <div class="pt-6 border-t border-white/15 flex items-center justify-between">
+                    <span class="text-2xl font-heading font-bold text-[#ddff35]">150+ Animals Sold</span>
+                    <ArrowRight class="size-5 text-[#ff762b] group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </a>
+              )}
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
