@@ -9,10 +9,10 @@ const activeBrands = brands
   .sort((a, b) => a.order - b.order);
 
 const fitClasses: Record<NonNullable<Brand['logoFit']>, string> = {
-  compact: 'max-h-9 sm:max-h-10 max-w-[75%]',
-  standard: 'max-h-11 sm:max-h-12 max-w-[85%]',
-  wide: 'max-h-9 sm:max-h-10 max-w-[90%]',
-  large: 'max-h-13 sm:max-h-14 max-w-[90%]',
+  compact: 'max-h-7 sm:max-h-8 max-w-[70%]',
+  standard: 'max-h-8 sm:max-h-9 max-w-[80%]',
+  wide: 'max-h-9 sm:max-h-10 max-w-[88%]',
+  large: 'max-h-10 sm:max-h-11 max-w-[92%]',
 };
 ---
 
@@ -26,7 +26,7 @@ const fitClasses: Record<NonNullable<Brand['logoFit']>, string> = {
         align="center"
         delay={0}
       />
-      <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+      <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
         Selected Client Experience
       </h2>
       <p data-motion="fade-up" data-motion-delay="200" class="text-sm sm:text-base text-slate-700 font-body leading-relaxed font-normal">
@@ -34,11 +34,11 @@ const fitClasses: Record<NonNullable<Brand['logoFit']>, string> = {
       </p>
     </div>
 
-    <!-- Unified Editorial Client Wall Panel -->
-    <div data-motion="fade-up" data-motion-delay="250" class="rounded-3xl border border-[#061d33]/10 bg-white/70 px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10 shadow-xs">
+    <!-- Unified Editorial Client Wall Panel (Lighter Warm-White Panel, No Individual Cards) -->
+    <div data-motion="fade-up" data-motion-delay="250" class="rounded-3xl border border-[#061d33]/10 bg-white/70 px-4 py-5 sm:px-6 sm:py-6 lg:px-8 lg:py-8 shadow-xs">
       
       <!-- Centred Flex-Wrap Grid (2/row mobile, 3/row tablet, 5/row desktop, final row centred) -->
-      <div class="flex flex-wrap justify-center items-stretch gap-3 sm:gap-4 lg:gap-5">
+      <div class="flex flex-wrap justify-center items-stretch gap-x-3 gap-y-4 sm:gap-x-4 sm:gap-y-5 lg:gap-x-5 lg:gap-y-6">
         {
           activeBrands.map((b) => {
             const destUrl = b.website || b.facebook;
@@ -57,23 +57,23 @@ const fitClasses: Record<NonNullable<Brand['logoFit']>, string> = {
             );
 
             const content = (
-              <div class="w-full h-full flex flex-col items-center justify-between p-3 sm:p-4 rounded-2xl bg-white/40 hover:bg-white transition-all duration-300 group">
+              <div class="w-full h-full flex flex-col items-center justify-between p-1.5 sm:p-2 bg-transparent transition-all duration-300 group">
                 
                 <!-- Logo Presentation Container -->
-                <div class="w-full flex-1 flex items-center justify-center min-h-[70px] sm:min-h-[80px]">
+                <div class="w-full flex-1 flex items-center justify-center min-h-[50px] sm:min-h-[60px]">
                   {b.darkLogoContainer ? (
-                    <div class="w-full max-w-[170px] h-14 sm:h-16 rounded-xl bg-[#061d33] px-3.5 py-2 flex items-center justify-center border border-[#061d33]/20 shadow-xs">
+                    <div class="w-full max-w-[148px] h-11 sm:h-12 rounded-xl bg-[#061d33] px-3 py-1.5 flex items-center justify-center border border-[#061d33]/20 shadow-xs">
                       {logoElement}
                     </div>
                   ) : (
-                    <div class="w-full h-14 sm:h-16 flex items-center justify-center p-2">
+                    <div class="w-full h-11 sm:h-12 flex items-center justify-center p-1">
                       {logoElement}
                     </div>
                   )}
                 </div>
 
                 <!-- Reserved Technology Partner Caption Region -->
-                <div class="mt-2 text-center h-4 flex items-center justify-center">
+                <div class="mt-1 text-center h-3.5 flex items-center justify-center">
                   {b.isTechnologyPartner ? (
                     <span class="text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-[0.08em] text-[#061d33] block">
                       TECHNOLOGY PARTNER
@@ -95,12 +95,12 @@ const fitClasses: Record<NonNullable<Brand['logoFit']>, string> = {
                 rel="noopener noreferrer"
                 data-track={b.website ? 'client-website' : 'client-facebook'}
                 aria-label={`Visit ${b.name} official page`}
-                class="client-logo-link w-[calc(50%_-_0.375rem)] sm:w-[calc(33.333333%_-_0.666667rem)] lg:w-[calc(20%_-_1rem)] min-h-[110px] sm:min-h-[120px] flex rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] transition-all duration-300"
+                class="client-logo-link w-[calc(50%_-_0.375rem)] sm:w-[calc(33.333333%_-_0.666667rem)] lg:w-[calc(20%_-_1rem)] min-h-[82px] sm:min-h-[96px] flex rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] transition-all duration-300"
               >
                 {content}
               </a>
             ) : (
-              <div class="w-[calc(50%_-_0.375rem)] sm:w-[calc(33.333333%_-_0.666667rem)] lg:w-[calc(20%_-_1rem)] min-h-[110px] sm:min-h-[120px] flex rounded-2xl transition-all duration-300">
+              <div class="w-[calc(50%_-_0.375rem)] sm:w-[calc(33.333333%_-_0.666667rem)] lg:w-[calc(20%_-_1rem)] min-h-[82px] sm:min-h-[96px] flex rounded-xl transition-all duration-300">
                 {content}
               </div>
             );

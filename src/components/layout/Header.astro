@@ -21,7 +21,7 @@ const links = [
     <Logo />
     
     <!-- Desktop Navigation Links with Animated Underline -->
-    <nav class="hidden gap-8 text-[15px] sm:text-[16px] font-semibold md:flex text-slate-200 font-body">
+    <nav class="hidden gap-8 text-[15px] sm:text-[16px] font-semibold lg:flex text-slate-200 font-body">
       {links.map((link) => (
         <a
           href={link.href}
@@ -38,7 +38,7 @@ const links = [
       <a
         href={`${site.basePath}/contact/`}
         data-track="primary-cta"
-        class="hidden sm:inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[15px] sm:text-[16px] font-semibold text-[#061d33] shadow-md hover:bg-[#ddff35] hover:text-[#061d33] transition-all transform hover:-translate-y-0.5 group/cta"
+        class="hidden lg:inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[15px] sm:text-[16px] font-semibold text-[#061d33] shadow-md hover:bg-[#ddff35] hover:text-[#061d33] transition-all transform hover:-translate-y-0.5 group/cta"
       >
         <span>Start a Project</span>
         <ArrowRight class="size-4 text-[#061d33] group-hover/cta:translate-x-1 transition-transform" />
@@ -48,7 +48,7 @@ const links = [
       <button
         id="mobile-menu-toggle"
         type="button"
-        class="flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 md:hidden focus:outline-none transition-transform duration-200 active:scale-95"
+        class="flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 lg:hidden focus:outline-none transition-transform duration-200 active:scale-95"
         aria-label="Toggle navigation"
         aria-expanded="false"
       >
@@ -62,7 +62,7 @@ const links = [
   <!-- Mobile Dropdown Navigation with Smooth Height & Staggered Links -->
   <div
     id="mobile-menu-drawer"
-    class="grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-in-out border-t border-white/10 bg-[#061d33] px-8 md:hidden font-body overflow-hidden"
+    class="grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-in-out border-t border-white/10 bg-[#061d33] px-8 lg:hidden font-body overflow-hidden"
   >
     <div class="overflow-hidden py-6 flex flex-col gap-4 text-base font-semibold text-white">
       {links.map((link, idx) => (
