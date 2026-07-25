@@ -6,15 +6,23 @@ export interface ServiceOverviewItem {
   deliverables: string[];
 }
 
-export interface ProofProject {
+export interface ProjectProofItem {
   id: string;
   brand: string;
   sector: string;
-  workDescription: string;
-  resultSummary: string;
-  metrics: Array<{ label: string; value: string }>;
+  relationship?: string;
+  extendedRelationship?: string;
+  contribution: string;
   link: string;
   imagePath?: string;
+  logoPath?: string;
+  tags: string[];
+}
+
+export interface EngagementStep {
+  number: string;
+  title: string;
+  description: string;
 }
 
 export interface HomepageContent {
@@ -38,7 +46,7 @@ export interface HomepageContent {
     eyebrow: string;
     heading: string;
     paragraph: string;
-    projects: ProofProject[];
+    items: ProjectProofItem[];
   };
   services: {
     eyebrow: string;
@@ -50,6 +58,16 @@ export interface HomepageContent {
     eyebrow: string;
     heading: string;
     paragraph: string;
+  };
+  engagementPath: {
+    eyebrow: string;
+    heading: string;
+    paragraph: string;
+    steps: EngagementStep[];
+    checklistHeader: string;
+    checklistItems: string[];
+    primaryCta: { label: string; href: string };
+    secondaryTextLink: string;
   };
   process: {
     eyebrow: string;
@@ -115,35 +133,40 @@ export const homepageContent: HomepageContent = {
     heading: 'Results make more sense when the work behind them is visible.',
     paragraph:
       'Selected projects show how strategy, advertising, websites, creative production and ongoing execution were combined around real business requirements.',
-    projects: [
+    items: [
       {
-        id: 'black-gold-fertilizer',
-        brand: 'Black Gold Fertilizer',
-        sector: 'Agriculture & E-commerce',
-        workDescription:
-          'Strategy, Meta advertising, creative testing, e-commerce growth and website support.',
-        resultSummary:
-          'Supported PKR 30M+ in delivered-order revenue, 29,000+ product sales and 22,000+ delivered sales over 24 months.',
-        metrics: [
-          { label: 'Delivered Revenue', value: 'PKR 30M+' },
-          { label: 'Product Sales', value: '29,000+' }
-        ],
-        link: '/work/black-gold-fertilizer/',
-        imagePath: '/work/black-gold-fertilizer/hero.webp'
+        id: 'rk-reno-solutions',
+        brand: 'RK Reno Solutions',
+        sector: 'Renovation & Local Services',
+        contribution:
+          'Website structure, service content and local SEO foundations for renovation and air-conditioning services in Kuala Lumpur and Selangor.',
+        link: '/work/rk-reno-solutions/',
+        imagePath: '/brands/rk-reno-solutions/screenshot.webp',
+        tags: [
+          'Website Structure',
+          'Service Content',
+          'Local SEO Foundation',
+          'Location-Focused Pages'
+        ]
       },
       {
-        id: 'wajib-livestock',
-        brand: 'Wajib Livestock',
-        sector: 'Livestock & Seasonal Campaigns',
-        workDescription:
-          'Campaign strategy, paid social, lead generation, creative production and sales support.',
-        resultSummary:
-          'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.',
-        metrics: [
-          { label: 'Campaign Sales', value: 'PKR 4.2M+' },
-          { label: 'Animals Sold', value: '150+' }
-        ],
-        link: '/work/qurbani-campaign/'
+        id: 'convort-ai',
+        brand: 'ConvortAI',
+        sector: 'Technology Product Development',
+        relationship: 'Technology Partner',
+        extendedRelationship: 'Product Development & Growth Partner',
+        contribution:
+          'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
+        link: '/work/#convortai',
+        logoPath: '/brands/convort-ai/logo.webp',
+        tags: [
+          'Web Application Development',
+          'Product Development',
+          'Project Management',
+          'Social Media',
+          'Creative Production',
+          'Growth Support'
+        ]
       }
     ]
   },
@@ -238,6 +261,48 @@ export const homepageContent: HomepageContent = {
     paragraph:
       'Explore selected projects across e-commerce, seasonal campaigns, local services and technology.'
   },
+  engagementPath: {
+    eyebrow: 'STARTING A PROJECT',
+    heading: 'A useful first conversation starts with the right context.',
+    paragraph:
+      'Share what the business is trying to achieve, what is currently in place and where support is needed. That information helps define a realistic scope before execution begins.',
+    steps: [
+      {
+        number: '01',
+        title: 'Share the Business Context',
+        description:
+          'Provide the business, market, current channels, main challenge and the result you are trying to achieve.'
+      },
+      {
+        number: '02',
+        title: 'Define the Required Scope',
+        description:
+          'Identify which services, assets, platforms and deliverables are relevant to the project.'
+      },
+      {
+        number: '03',
+        title: 'Agree the Next Working Step',
+        description:
+          'Confirm responsibilities, communication channels, priorities and the work that should begin first.'
+      }
+    ],
+    checklistHeader: 'Useful information to include',
+    checklistItems: [
+      'Business or product',
+      'Target market',
+      'Current website or social links',
+      'Required services',
+      'Main challenge',
+      'Available assets',
+      'Indicative budget',
+      'Preferred timeline'
+    ],
+    primaryCta: {
+      label: 'Prepare Your Project Inquiry',
+      href: '/contact/'
+    },
+    secondaryTextLink: 'Prefer WhatsApp?'
+  },
   process: {
     eyebrow: 'WORKING METHOD',
     heading: 'A clear path from business requirement to active execution.',
@@ -254,7 +319,7 @@ export const homepageContent: HomepageContent = {
     },
     secondaryCta: {
       label: 'WhatsApp',
-      href: 'https://wa.me/923001234567'
+      href: '/contact/'
     }
   }
 };

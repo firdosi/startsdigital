@@ -2,7 +2,7 @@
 import { site } from '../../site.config';
 import { homepageContent } from '../../data/homepage';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
-import { ArrowRight, CheckCircle2 } from '@lucide/astro';
+import { ArrowRight, CheckCircle2, Cpu } from '@lucide/astro';
 
 const { projectProof } = homepageContent;
 ---
@@ -20,57 +20,83 @@ const { projectProof } = homepageContent;
       <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
         {projectProof.heading}
       </h2>
-      <p data-motion="fade-up" data-motion-delay="200" class="text-sm sm:text-base text-slate-700 font-body leading-relaxed font-normal">
+      <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
         {projectProof.paragraph}
       </p>
     </div>
 
-    <!-- Editorial Project Rows -->
+    <!-- Editorial Project Rows (Alternating Layout) -->
     <div class="space-y-8 sm:space-y-10">
-      {projectProof.projects.map((project, idx) => (
+      
+      <!-- ROW 1: RK RENO SOLUTIONS (Screenshot-Led Row) -->
+      {projectProof.items.slice(0, 1).map((item) => (
         <div
           data-motion="fade-up"
-          data-motion-delay={300 + idx * 100}
+          data-motion-delay="300"
           class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 lg:p-10 shadow-xs hover:border-[#ff762b]/40 transition-all duration-300 group"
         >
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            <!-- Project Detail Column (7 cols desktop) -->
-            <div class="lg:col-span-7 space-y-5">
+            <!-- Project Visual Column (5 cols desktop) -->
+            <div class="lg:col-span-5 order-2 lg:order-1">
+              <a href={`${site.basePath}${item.link}`} class="block overflow-hidden rounded-2xl border border-[#061d33]/15 bg-slate-900 p-2.5 shadow-md relative group-hover:border-[#ff762b]/50 transition-all">
+                <!-- Browser Header Mock -->
+                <div class="flex items-center gap-1.5 pb-2 px-2 border-b border-slate-800 mb-1.5">
+                  <div class="size-2 rounded-full bg-red-500/80"></div>
+                  <div class="size-2 rounded-full bg-yellow-500/80"></div>
+                  <div class="size-2 rounded-full bg-green-500/80"></div>
+                  <span class="text-[11px] font-mono text-slate-400 ml-2">rkrenosolution.com</span>
+                </div>
+                <img
+                  src={`${site.basePath}${item.imagePath}`}
+                  alt={`${item.brand} website screenshot`}
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-[260px] sm:h-[300px] rounded-xl object-cover object-top group-hover:scale-102 transition-transform duration-500"
+                />
+              </a>
+            </div>
+
+            <!-- Project Details Column (7 cols desktop) -->
+            <div class="lg:col-span-7 order-1 lg:order-2 space-y-5">
               <div class="flex flex-wrap items-center gap-3">
                 <span class="inline-block px-3 py-1 rounded-full bg-[#f7f4ed] text-[#061d33] font-mono text-xs font-semibold uppercase tracking-wider border border-[#061d33]/10">
-                  {project.sector}
+                  {item.sector}
                 </span>
-                <span class="text-xs font-mono text-slate-500">Case Study</span>
+                <span class="text-xs font-mono text-slate-500">Website & Local SEO Scope</span>
               </div>
 
               <h3 class="font-heading font-bold text-2xl sm:text-3xl text-[#061d33] group-hover:text-[#ff762b] transition-colors">
-                {project.brand}
+                {item.brand}
               </h3>
 
-              <div class="space-y-2 text-sm sm:text-base text-slate-700 font-body">
+              <div class="space-y-3 text-base text-slate-700 font-body">
                 <p class="leading-relaxed">
-                  <strong class="font-semibold text-[#061d33]">Services & Execution:</strong> {project.workDescription}
-                </p>
-                <p class="leading-relaxed bg-[#f7f4ed] p-3.5 rounded-xl border border-[#061d33]/8 text-[#061d33]">
-                  <strong class="font-semibold text-[#061d33]">Outcome:</strong> {project.resultSummary}
+                  <strong class="font-semibold text-[#061d33]">Starts Digital Contribution:</strong> {item.contribution}
                 </p>
               </div>
 
-              <!-- Metric Pills -->
-              <div class="flex flex-wrap gap-4 pt-2">
-                {project.metrics.map((m) => (
-                  <div class="flex items-center gap-2 text-xs font-mono font-semibold text-[#061d33]">
-                    <CheckCircle2 class="size-4 text-[#ff762b]" />
-                    <span>{m.label}: <span class="text-[#ff762b] font-bold">{m.value}</span></span>
-                  </div>
-                ))}
+              <!-- Demonstrated Services Tags -->
+              <div class="space-y-2 pt-1">
+                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+                  Demonstrated Capabilities
+                </span>
+                <div class="flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <span class="inline-flex items-center gap-1.5 rounded-lg bg-[#f7f4ed] px-3 py-1.5 text-xs font-mono font-medium text-[#061d33] border border-[#061d33]/10">
+                      <CheckCircle2 class="size-3.5 text-[#ff762b]" />
+                      <span>{tag}</span>
+                    </span>
+                  ))}
+                </div>
               </div>
 
               <div class="pt-2">
                 <a
-                  href={`${site.basePath}${project.link}`}
-                  class="inline-flex items-center gap-2 font-heading font-semibold text-sm text-[#061d33] group-hover:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] transition-colors"
+                  href={`${site.basePath}${item.link}`}
+                  class="inline-flex items-center gap-2 font-heading font-semibold text-base text-[#061d33] group-hover:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] transition-colors"
                 >
                   <span>Explore Case Study</span>
                   <ArrowRight class="size-4 text-[#ff762b] group-hover:translate-x-1 transition-transform" />
@@ -78,43 +104,97 @@ const { projectProof } = homepageContent;
               </div>
             </div>
 
-            <!-- Project Visual Column (5 cols desktop) -->
-            <div class="lg:col-span-5">
-              {project.imagePath ? (
-                <a href={`${site.basePath}${project.link}`} class="block overflow-hidden rounded-2xl border border-[#061d33]/10 bg-[#061d33] aspect-[4/3] relative group-hover:shadow-md transition-all">
+          </div>
+        </div>
+      ))}
+
+      <!-- ROW 2: CONVORTAI (Typography & Technology-Led Deep Navy Row) -->
+      {projectProof.items.slice(1, 2).map((item) => (
+        <div
+          data-motion="fade-up"
+          data-motion-delay="400"
+          class="rounded-3xl border-2 border-[#ddff35]/30 bg-[#061d33] text-white p-6 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden group"
+        >
+          <!-- Subtle Glow Accent -->
+          <div class="absolute -right-20 -top-20 size-80 rounded-full bg-[#ff762b]/15 blur-3xl pointer-events-none"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            
+            <!-- Details & Contribution Column (7 cols desktop) -->
+            <div class="lg:col-span-7 space-y-5">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="inline-flex items-center gap-2 rounded-full border border-[#ddff35]/50 bg-[#ddff35]/15 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-[#ddff35]">
+                  <Cpu class="size-3.5 text-[#ddff35]" />
+                  <span>{item.relationship}</span>
+                </span>
+                <span class="text-xs font-mono text-slate-300">{item.sector}</span>
+              </div>
+
+              <div>
+                <h3 class="font-heading font-bold text-2xl sm:text-3xl text-white group-hover:text-[#ddff35] transition-colors">
+                  {item.brand}
+                </h3>
+                <p class="text-sm font-mono text-[#ff762b] font-semibold mt-1">
+                  {item.extendedRelationship}
+                </p>
+              </div>
+
+              <p class="text-base text-slate-200 font-body leading-relaxed">
+                {item.contribution}
+              </p>
+
+              <!-- 6 Contribution Areas Grid -->
+              <div class="space-y-2 pt-1">
+                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+                  Partnership Scope
+                </span>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {item.tags.map((tag) => (
+                    <div class="flex items-center gap-1.5 rounded-lg bg-white/10 px-2.5 py-1.5 text-xs font-mono text-white border border-white/10">
+                      <CheckCircle2 class="size-3 text-[#39c98a] shrink-0" />
+                      <span class="truncate">{tag}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div class="pt-2">
+                <a
+                  href={`${site.basePath}${item.link}`}
+                  class="inline-flex items-center gap-2 font-heading font-semibold text-base text-[#ddff35] group-hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] transition-colors"
+                >
+                  <span>Explore Partner Details</span>
+                  <ArrowRight class="size-4 text-[#ddff35] group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+            </div>
+
+            <!-- Brand Logo Badge Column (5 cols desktop) -->
+            <div class="lg:col-span-5 flex items-center justify-center">
+              <div class="w-full max-w-[320px] aspect-[4/3] rounded-2xl bg-[#0b2947] border border-white/15 p-8 flex flex-col items-center justify-center text-center shadow-lg group-hover:border-[#ddff35]/50 transition-all">
+                <div class="w-full h-16 flex items-center justify-center mb-3">
                   <img
-                    src={`${site.basePath}${project.imagePath}`}
-                    alt={`${project.brand} project visual`}
-                    width="600"
-                    height="450"
+                    src={`${site.basePath}${item.logoPath}`}
+                    alt="ConvortAI official logo"
+                    width="200"
+                    height="60"
                     loading="lazy"
-                    decoding="async"
-                    class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                    class="max-h-12 w-auto object-contain"
                   />
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#061d33]/60 via-transparent to-transparent pointer-events-none"></div>
-                  <div class="absolute bottom-4 left-4 right-4 text-white font-mono text-xs font-medium flex items-center justify-between">
-                    <span>{project.brand}</span>
-                    <span class="bg-[#ff762b] text-white px-2.5 py-0.5 rounded text-[10px] font-bold uppercase">Featured</span>
-                  </div>
-                </a>
-              ) : (
-                <a href={`${site.basePath}${project.link}`} class="block overflow-hidden rounded-2xl border border-[#061d33]/15 bg-[#061d33] p-8 aspect-[4/3] flex flex-col justify-between relative group-hover:border-[#ff762b]/50 transition-all text-white">
-                  <div class="space-y-2">
-                    <span class="text-xs font-mono uppercase tracking-widest text-[#ff762b] font-semibold">Seasonal Campaign</span>
-                    <h4 class="font-heading font-bold text-2xl text-white">{project.brand}</h4>
-                    <p class="text-xs text-slate-300 font-body">{project.sector}</p>
-                  </div>
-                  <div class="pt-6 border-t border-white/15 flex items-center justify-between">
-                    <span class="text-2xl font-heading font-bold text-[#ddff35]">150+ Animals Sold</span>
-                    <ArrowRight class="size-5 text-[#ff762b] group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </a>
-              )}
+                </div>
+                <span class="text-xs font-mono font-semibold text-[#ff762b] uppercase tracking-wider">
+                  TECHNOLOGY PARTNER
+                </span>
+                <span class="text-[11px] font-mono text-slate-400 mt-1">
+                  Product & Growth Support
+                </span>
+              </div>
             </div>
 
           </div>
         </div>
       ))}
+
     </div>
 
   </div>

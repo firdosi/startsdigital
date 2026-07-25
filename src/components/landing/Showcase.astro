@@ -8,7 +8,9 @@ import {
   MapPin, 
   ArrowRight,
   ShoppingBag,
-  ExternalLink
+  ExternalLink,
+  Cpu,
+  CheckCircle2
 } from '@lucide/astro';
 
 interface Props {
@@ -16,31 +18,99 @@ interface Props {
 }
 
 const { showAllWorkButton = true } = Astro.props;
+
+const featuredProjects = [
+  {
+    id: 'black-gold-fertilizer',
+    name: 'Black Gold Fertilizer',
+    category: 'AGRICULTURE',
+    number: '01',
+    description: 'Contributed to PKR 30M+ in delivered-order revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.',
+    logo: '/brands/black-gold-fertilizer/logo.webp',
+    darkLogoContainer: true,
+    link: '/work/black-gold-fertilizer/',
+    website: 'https://blackgoldfertilizer.com',
+    facebook: 'https://www.facebook.com/profile.php?id=61561083447093',
+    image: '/images/black-gold-official.png',
+    metrics: [
+      { label: 'Revenue Supported', value: 'PKR 30M+' },
+      { label: 'Product Sales', value: '29,000+' }
+    ]
+  },
+  {
+    id: 'wajib-livestock',
+    name: 'Wajib Livestock',
+    category: 'LIVESTOCK',
+    number: '02',
+    description: 'Supported seasonal Qurbani marketing through paid social advertising, lead generation, campaign creative, WhatsApp routing, and digital sales support.',
+    logo: '/brands/wajib-livestock/logo.webp',
+    darkLogoContainer: true,
+    link: '/work/qurbani-campaign/',
+    website: 'https://wajib.pk',
+    facebook: 'https://www.facebook.com/profile.php?id=61579219484606',
+    metrics: [
+      { label: 'Animals Sold', value: '150+' },
+      { label: 'Sales Supported', value: 'PKR 4.2M+' }
+    ]
+  },
+  {
+    id: 'rk-reno-solutions',
+    name: 'RK Reno Solutions',
+    category: 'RENOVATION',
+    number: '03',
+    description: 'Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.',
+    logo: '/brands/rk-reno-solutions/logo.webp',
+    darkLogoContainer: false,
+    link: '/work/rk-reno-solutions/',
+    website: 'https://rkrenosolution.com',
+    image: '/brands/rk-reno-solutions/screenshot.webp',
+    scope: [
+      'Kuala Lumpur & Selangor SEO Scope',
+      'Renovation & HVAC Architecture'
+    ]
+  },
+  {
+    id: 'convort-ai',
+    name: 'ConvortAI',
+    category: 'TECHNOLOGY',
+    number: '04',
+    relationship: 'TECHNOLOGY PARTNER',
+    description: 'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
+    logo: '/brands/convort-ai/logo.webp',
+    darkLogoContainer: true,
+    link: '/work/#convortai',
+    website: 'https://convortai.com/',
+    scope: [
+      'Web App Development',
+      'Product & Growth Support'
+    ]
+  }
+];
 ---
 
-<section id="work" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+<section id="work" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
       <div class="space-y-3 max-w-2xl">
         <SectionEyebrow
           label="SELECTED WORK"
           align="left"
           delay={0}
         />
-        <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+        <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[28px] md:text-[36px] lg:text-[40px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Different businesses require different combinations of strategy and execution.
         </h2>
-        <p data-motion="fade-up" data-motion-delay="200" class="text-sm sm:text-base text-slate-700 font-body leading-relaxed font-normal">
+        <p data-motion="fade-up" data-motion-delay="200" class="text-base text-slate-700 font-body leading-relaxed font-normal">
           Explore selected projects across e-commerce, seasonal campaigns, local services and technology.
         </p>
       </div>
       {showAllWorkButton && (
-        <div data-motion="pop-in" data-motion-delay="200">
+        <div data-motion="pop-in" data-motion-delay="200" class="shrink-0">
           <a
             href={`${site.basePath}/work/`}
-            class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-7 py-3.5 font-body font-semibold text-[15px] text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-md group/cta"
+            class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-6 py-3 font-body font-semibold text-sm text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-sm group/cta"
           >
             <span>View all client work</span>
             <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
@@ -49,298 +119,105 @@ const { showAllWorkButton = true } = Astro.props;
       )}
     </div>
 
-    <!-- 3 Featured Case-Study Cards -->
-    <div class="space-y-12">
+    <!-- 4 Featured Case-Study Grid (2x2 Grid Desktop) -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       
-      <!-- PROJECT 1: BLACK GOLD FERTILIZER -->
-      <article data-motion="fade-left" data-motion-delay="0" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 sm:p-10 lg:p-12 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
-        <div class="grid gap-8 lg:grid-cols-12 items-center">
-          
-          <div class="lg:col-span-6 space-y-5">
-            <div class="flex items-center gap-3">
-              <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3.5 py-1 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
-                AGRICULTURE
-              </span>
-              <span class="text-xs font-mono font-medium text-slate-400">01 / FEATURED CASE</span>
-            </div>
+      {featuredProjects.map((p, idx) => (
+        <article
+          data-motion="fade-up"
+          data-motion-delay={idx * 100}
+          class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group"
+        >
+          <div class="space-y-5">
+            <!-- Header Row: Category Tag, Logo Container & Number -->
+            <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
+              <div class="flex items-center gap-2">
+                <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
+                  {p.category}
+                </span>
+                {p.relationship && (
+                  <span class="rounded-full bg-[#061d33] px-2.5 py-0.5 text-[10px] font-mono font-semibold text-[#ddff35] uppercase">
+                    PARTNER
+                  </span>
+                )}
+              </div>
 
-            <!-- Brand Logo & Title -->
-            <div class="space-y-2.5">
-              <div class="h-14 w-44 rounded-xl bg-[#061d33] px-3 py-2 flex items-center justify-center border border-[#061d33]/20 shadow-xs">
+              <!-- Brand Logo Container -->
+              <div class={`h-11 w-32 rounded-xl px-2.5 py-1.5 flex items-center justify-center border ${p.darkLogoContainer ? 'bg-[#061d33] border-[#061d33]' : 'bg-white border-slate-200'}`}>
                 <img
-                  src={`${site.basePath}/brands/black-gold-fertilizer/logo.webp`}
-                  alt="Black Gold Fertilizer logo"
-                  width="180"
-                  height="48"
+                  src={`${site.basePath}${p.logo}`}
+                  alt={`${p.name} logo`}
+                  width="120"
+                  height="36"
                   loading="lazy"
-                  class="max-h-10 w-auto object-contain"
+                  class="max-h-7 w-auto object-contain"
                 />
               </div>
-              <h3 class="font-heading font-bold text-2xl sm:text-3xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
-                Black Gold Fertilizer
-              </h3>
             </div>
 
-            <!-- Summary -->
-            <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-              Contributed to PKR 30M+ in delivered-order revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.
-            </p>
-
-            <!-- Verified Metrics Badges -->
-            <div data-motion="pop-in" data-motion-delay="200" class="flex flex-wrap items-center gap-3 font-body">
-              <div class="inline-flex items-center gap-2 rounded-xl bg-[#ff762b]/10 border border-[#ff762b]/30 px-3.5 py-2 text-xs sm:text-sm font-semibold text-[#061d33]">
-                <TrendingUp class="size-4 text-[#ff762b]" />
-                <span>PKR 30M+ revenue supported</span>
-              </div>
-              <div class="inline-flex items-center gap-2 rounded-xl bg-[#9a83f5]/10 border border-[#9a83f5]/30 px-3.5 py-2 text-xs sm:text-sm font-semibold text-[#061d33]">
-                <ShoppingBag class="size-4 text-[#9a83f5]" />
-                <span>29,000+ product sales</span>
-              </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex flex-wrap items-center gap-3 pt-2 font-body">
-              <a
-                href={`${site.basePath}/work/black-gold-fertilizer/`}
-                data-track="case-study-open"
-                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-6 py-3 text-xs sm:text-sm font-semibold text-white shadow-md hover:bg-[#ff762b] transition-all"
-              >
-                <span>Read case study</span>
-                <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="https://blackgoldfertilizer.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Visit Black Gold Fertilizer official website"
-                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4.5 py-3 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
-              >
-                <span>Visit Website</span>
-                <ExternalLink class="size-3.5" />
-              </a>
-              <a
-                href="https://www.facebook.com/profile.php?id=61561083447093"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Visit Black Gold Fertilizer official Facebook page"
-                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4.5 py-3 text-xs sm:text-sm font-semibold text-[#1877f2] hover:border-[#1877f2] hover:bg-white transition-all shadow-xs"
-              >
-                <img src={`${site.basePath}/platforms/facebook.svg`} alt="" class="size-3.5" />
-                <span>Facebook</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Genuine Product Visual Frame -->
-          <div class="lg:col-span-6">
-            <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-gradient-to-br from-[#061d33] to-[#0d3459] p-3 shadow-xl font-body">
-              <picture>
-                <source srcset={`${site.basePath}/images/black-gold-official.avif`} type="image/avif" />
-                <source srcset={`${site.basePath}/images/black-gold-official-sm.webp`} type="image/webp" />
-                <img
-                  src={`${site.basePath}/images/black-gold-official.png`}
-                  alt="Official Black Gold Fertilizer Product Packaging"
-                  width="640"
-                  height="400"
-                  loading="lazy"
-                  decoding="async"
-                  class="w-full h-[280px] sm:h-[320px] rounded-xl object-contain bg-white/10 p-4 group-hover:scale-103 transition-transform duration-500"
-                />
-              </picture>
-              <div class="absolute bottom-5 right-5 rounded-xl border border-white/20 bg-[#061d33]/90 px-3.5 py-2.5 backdrop-blur-md shadow-lg hidden sm:flex items-center gap-2.5 text-white">
-                <Sprout class="size-5 text-[#39c98a] shrink-0" />
-                <div>
-                  <div class="text-xs font-body font-medium text-slate-300">Agriculture E-Commerce</div>
-                  <div class="text-xs font-semibold text-white">Genuine Product Line</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </article>
-
-      <!-- PROJECT 2: WAJIB LIVESTOCK QURBANI CAMPAIGN (Compact Text-Led Case Study Card) -->
-      <article data-motion="fade-right" data-motion-delay="0" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 sm:p-10 lg:p-12 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
-        <div class="space-y-6">
-          
-          <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100">
-            <div class="flex items-center gap-3">
-              <span class="rounded-full bg-[#39c98a]/15 border border-[#39c98a]/30 px-3.5 py-1 text-xs font-mono font-bold text-[#2e9e6c] uppercase tracking-wider">
-                LIVESTOCK
-              </span>
-              <span class="text-xs font-mono font-medium text-slate-400">02 / FEATURED CASE</span>
-            </div>
-
-            <!-- Dark Navy Container for White Logo -->
-            <div class="h-12 w-40 rounded-xl bg-[#061d33] px-3 py-2 flex items-center justify-center border border-[#061d33]/20 shadow-xs">
-              <img 
-                src={`${site.basePath}/brands/wajib-livestock/logo.webp`}
-                alt="Wajib Livestock logo"
-                width="140"
-                height="40"
-                loading="lazy"
-                class="max-h-8 w-auto object-contain"
-              />
-            </div>
-          </div>
-
-          <div class="grid gap-8 lg:grid-cols-12 items-center">
-            <div class="lg:col-span-7 space-y-4">
-              <h3 class="font-heading font-bold text-2xl sm:text-3xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
-                Wajib Livestock Qurbani Campaign
+            <!-- Title & Description -->
+            <div>
+              <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight mb-2">
+                {p.name}
               </h3>
               <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-                Supported seasonal Qurbani marketing through paid social advertising, lead generation, campaign creative, WhatsApp routing, and digital sales support.
+                {p.description}
               </p>
             </div>
 
-            <!-- Compact Metrics Grid (Replaces Empty Image Area) -->
-            <div class="lg:col-span-5 grid grid-cols-2 gap-4 bg-[#f7f4ed] p-5 rounded-2xl border border-slate-200">
-              <div class="space-y-1">
-                <span class="font-heading font-bold text-2xl sm:text-3xl text-[#061d33] block">150+</span>
-                <span class="text-xs font-body font-semibold text-slate-600 uppercase tracking-wide">Animals Sold</span>
+            <!-- Contextual Highlights (Metrics or Scope) -->
+            {p.metrics && (
+              <div class="grid grid-cols-2 gap-3 p-3.5 rounded-2xl bg-[#f7f4ed] border border-[#061d33]/8">
+                {p.metrics.map((m) => (
+                  <div>
+                    <span class="font-heading font-bold text-lg text-[#061d33] block">{m.value}</span>
+                    <span class="text-xs font-body font-semibold text-slate-600">{m.label}</span>
+                  </div>
+                ))}
               </div>
-              <div class="space-y-1">
-                <span class="font-heading font-bold text-2xl sm:text-3xl text-[#ff762b] block">PKR 4.2M+</span>
-                <span class="text-xs font-body font-semibold text-slate-600 uppercase tracking-wide">Sales Supported</span>
+            )}
+
+            {p.scope && (
+              <div class="flex flex-wrap gap-2 pt-1">
+                {p.scope.map((s) => (
+                  <span class="inline-flex items-center gap-1.5 rounded-lg bg-[#f7f4ed] px-3 py-1.5 text-xs font-mono font-medium text-[#061d33] border border-[#061d33]/10">
+                    <CheckCircle2 class="size-3 text-[#ff762b]" />
+                    <span>{s}</span>
+                  </span>
+                ))}
               </div>
-            </div>
+            )}
           </div>
 
-          <!-- Action Buttons -->
-          <div class="flex flex-wrap items-center gap-3 pt-2 border-t border-slate-100 font-body">
+          <!-- Bottom Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-[#061d33]/8 font-body">
             <a
-              href={`${site.basePath}/work/qurbani-campaign/`}
+              href={`${site.basePath}${p.link}`}
               data-track="case-study-open"
-              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-6 py-3 text-xs sm:text-sm font-semibold text-white shadow-md hover:bg-[#ff762b] transition-all"
+              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs"
             >
-              <span>Read case study</span>
+              <span>Explore project</span>
               <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a
-              href="https://wajib.pk"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit Wajib Livestock official website"
-              class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4.5 py-3 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
-            >
-              <span>Visit Website</span>
-              <ExternalLink class="size-3.5" />
-            </a>
-            <a
-              href="https://www.facebook.com/profile.php?id=61579219484606"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit Wajib Livestock official Facebook page"
-              class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4.5 py-3 text-xs sm:text-sm font-semibold text-[#1877f2] hover:border-[#1877f2] hover:bg-white transition-all shadow-xs"
-            >
-              <img src={`${site.basePath}/platforms/facebook.svg`} alt="" class="size-3.5" />
-              <span>Facebook</span>
-            </a>
-          </div>
 
-        </div>
-      </article>
-
-      <!-- PROJECT 3: RK RENO SOLUTIONS -->
-      <article data-motion="fade-left" data-motion-delay="0" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-7 sm:p-10 lg:p-12 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
-        <div class="grid gap-8 lg:grid-cols-12 items-center">
-          
-          <div class="lg:col-span-6 space-y-5">
-            <div class="flex items-center gap-3">
-              <span class="rounded-full bg-[#9a83f5]/15 border border-[#9a83f5]/30 px-3.5 py-1 text-xs font-mono font-bold text-[#7352eb] uppercase tracking-wider">
-                RENOVATION
-              </span>
-              <span class="text-xs font-mono font-medium text-slate-400">03 / FEATURED CASE</span>
-            </div>
-
-            <!-- Brand Logo & Title -->
-            <div class="space-y-2.5">
-              <div class="h-14 w-44 rounded-xl bg-white p-2 flex items-center border border-slate-200 shadow-xs">
-                <img
-                  src={`${site.basePath}/brands/rk-reno-solutions/logo.webp`}
-                  alt="RK Reno Solutions logo"
-                  width="180"
-                  height="48"
-                  loading="lazy"
-                  class="max-h-10 w-auto object-contain"
-                />
-              </div>
-              <h3 class="font-heading font-bold text-2xl sm:text-3xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
-                RK Reno Solutions
-              </h3>
-            </div>
-
-            <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-              Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.
-            </p>
-
-            <!-- Scope Badges -->
-            <div data-motion="pop-in" data-motion-delay="350" class="flex flex-wrap items-center gap-3 font-body">
-              <div class="inline-flex items-center gap-2 rounded-xl bg-[#061d33]/10 border border-[#061d33]/20 px-3.5 py-2 text-xs sm:text-sm font-semibold text-[#061d33]">
-                <MapPin class="size-4 text-[#ff762b]" />
-                <span>Kuala Lumpur & Selangor SEO Scope</span>
-              </div>
-              <div class="inline-flex items-center gap-2 rounded-xl bg-[#ff514b]/10 border border-[#ff514b]/30 px-3.5 py-2 text-xs sm:text-sm font-semibold text-[#061d33]">
-                <Wrench class="size-4 text-[#ff514b]" />
-                <span>Renovation & HVAC Architecture</span>
-              </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex flex-wrap items-center gap-3 pt-2 font-body">
+            {p.website && (
               <a
-                href={`${site.basePath}/work/rk-reno-solutions/`}
-                data-track="case-study-open"
-                class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-6 py-3 text-xs sm:text-sm font-semibold text-white shadow-md hover:bg-[#ff762b] transition-all"
-              >
-                <span>Read case study</span>
-                <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="https://rkrenosolution.com"
+                href={p.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Visit RK Reno Solutions official website"
-                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4.5 py-3 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
+                aria-label={`Visit ${p.name} official website`}
+                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
               >
-                <span>Visit Website</span>
+                <span>Website</span>
                 <ExternalLink class="size-3.5" />
               </a>
-            </div>
+            )}
           </div>
 
-          <!-- Genuine Website Screenshot Visual -->
-          <div class="lg:col-span-6">
-            <div class="relative overflow-hidden rounded-2xl border-2 border-[#061d33]/15 bg-slate-900 p-2.5 shadow-xl font-body">
-              <!-- Browser Bar Mock -->
-              <div class="flex items-center gap-1.5 pb-2 px-2 border-b border-slate-800 mb-1.5">
-                <div class="size-2.5 rounded-full bg-red-500/80"></div>
-                <div class="size-2.5 rounded-full bg-yellow-500/80"></div>
-                <div class="size-2.5 rounded-full bg-green-500/80"></div>
-                <span class="text-[11px] font-mono text-slate-400 ml-2">rkrenosolution.com</span>
-              </div>
-              <picture>
-                <source srcset={`${site.basePath}/brands/rk-reno-solutions/screenshot.webp`} type="image/webp" />
-                <img
-                  src={`${site.basePath}/brands/rk-reno-solutions/screenshot.png`}
-                  alt="Genuine RK Reno Solutions Official Website Screenshot (rkrenosolution.com)"
-                  width="640"
-                  height="400"
-                  loading="lazy"
-                  decoding="async"
-                  class="w-full h-[280px] sm:h-[320px] rounded-xl object-cover object-top group-hover:scale-103 transition-transform duration-500"
-                />
-              </picture>
-            </div>
-          </div>
-
-        </div>
-      </article>
+        </article>
+      ))}
 
     </div>
 
   </div>
 </section>
-
