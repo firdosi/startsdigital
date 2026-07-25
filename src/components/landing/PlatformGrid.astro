@@ -6,17 +6,17 @@ import SectionEyebrow from '../common/SectionEyebrow.astro';
 const logoSrc = (logo: string) => logo.startsWith('http') ? logo : `${site.basePath}${logo}`;
 ---
 
-<section id="platforms" class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+<section id="platforms" class="py-14 sm:py-16 lg:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Section Header -->
-    <div class="max-w-3xl mb-16 text-center mx-auto space-y-3">
+    <div class="max-w-3xl mb-12 sm:mb-16 text-center mx-auto space-y-3">
       <SectionEyebrow
         label="TECH STACK & ECOSYSTEM"
         align="center"
         delay={0}
       />
-      <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+      <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
         Platforms and tools we work with
       </h2>
       <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">

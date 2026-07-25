@@ -1,94 +1,16 @@
 ---
 import { site } from '../../site.config';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
-import { 
-  Sprout, 
-  TrendingUp, 
-  Wrench, 
-  MapPin, 
-  ArrowRight,
-  ShoppingBag,
-  ExternalLink,
-  Cpu,
-  CheckCircle2
-} from '@lucide/astro';
+import { ArrowRight, ExternalLink, Cpu, CheckCircle2 } from '@lucide/astro';
 
 interface Props {
   showAllWorkButton?: boolean;
 }
 
 const { showAllWorkButton = true } = Astro.props;
-
-const featuredProjects = [
-  {
-    id: 'black-gold-fertilizer',
-    name: 'Black Gold Fertilizer',
-    category: 'AGRICULTURE',
-    number: '01',
-    description: 'Contributed to PKR 30M+ in delivered-order revenue and 29,000+ product sales across multiple product categories through managed digital campaigns.',
-    logo: '/brands/black-gold-fertilizer/logo.webp',
-    darkLogoContainer: true,
-    link: '/work/black-gold-fertilizer/',
-    website: 'https://blackgoldfertilizer.com',
-    facebook: 'https://www.facebook.com/profile.php?id=61561083447093',
-    image: '/images/black-gold-official.png',
-    metrics: [
-      { label: 'Revenue Supported', value: 'PKR 30M+' },
-      { label: 'Product Sales', value: '29,000+' }
-    ]
-  },
-  {
-    id: 'wajib-livestock',
-    name: 'Wajib Livestock',
-    category: 'LIVESTOCK',
-    number: '02',
-    description: 'Supported seasonal Qurbani marketing through paid social advertising, lead generation, campaign creative, WhatsApp routing, and digital sales support.',
-    logo: '/brands/wajib-livestock/logo.webp',
-    darkLogoContainer: true,
-    link: '/work/qurbani-campaign/',
-    website: 'https://wajib.pk',
-    facebook: 'https://www.facebook.com/profile.php?id=61579219484606',
-    metrics: [
-      { label: 'Animals Sold', value: '150+' },
-      { label: 'Sales Supported', value: 'PKR 4.2M+' }
-    ]
-  },
-  {
-    id: 'rk-reno-solutions',
-    name: 'RK Reno Solutions',
-    category: 'RENOVATION',
-    number: '03',
-    description: 'Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.',
-    logo: '/brands/rk-reno-solutions/logo.webp',
-    darkLogoContainer: false,
-    link: '/work/rk-reno-solutions/',
-    website: 'https://rkrenosolution.com',
-    image: '/brands/rk-reno-solutions/screenshot.webp',
-    scope: [
-      'Kuala Lumpur & Selangor SEO Scope',
-      'Renovation & HVAC Architecture'
-    ]
-  },
-  {
-    id: 'convort-ai',
-    name: 'ConvortAI',
-    category: 'TECHNOLOGY',
-    number: '04',
-    relationship: 'TECHNOLOGY PARTNER',
-    description: 'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
-    logo: '/brands/convort-ai/logo.webp',
-    darkLogoContainer: true,
-    link: '/work/#convortai',
-    website: 'https://convortai.com/',
-    scope: [
-      'Web App Development',
-      'Product & Growth Support'
-    ]
-  }
-];
 ---
 
-<section id="work" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+<section id="work" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Section Header -->
@@ -99,7 +21,7 @@ const featuredProjects = [
           align="left"
           delay={0}
         />
-        <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[28px] md:text-[36px] lg:text-[40px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+        <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] md:text-[36px] lg:text-[40px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Different businesses require different combinations of strategy and execution.
         </h2>
         <p data-motion="fade-up" data-motion-delay="200" class="text-base text-slate-700 font-body leading-relaxed font-normal">
@@ -110,7 +32,7 @@ const featuredProjects = [
         <div data-motion="pop-in" data-motion-delay="200" class="shrink-0">
           <a
             href={`${site.basePath}/work/`}
-            class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-6 py-3 font-body font-semibold text-sm text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-sm group/cta"
+            class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-6 py-3 font-body font-semibold text-sm text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-xs group/cta"
           >
             <span>View all client work</span>
             <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
@@ -119,103 +41,300 @@ const featuredProjects = [
       )}
     </div>
 
-    <!-- 4 Featured Case-Study Grid (2x2 Grid Desktop) -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- 4 Differentiated Featured Projects System -->
+    <div class="space-y-8">
       
-      {featuredProjects.map((p, idx) => (
+      <!-- TOP ROW: Two Primary Feature Cards (Black Gold Image-Led & ConvortAI Navy Tech) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- 1. BLACK GOLD FERTILIZER (Image-Led E-Commerce Feature) -->
         <article
           data-motion="fade-up"
-          data-motion-delay={idx * 100}
+          data-motion-delay="100"
           class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group"
         >
           <div class="space-y-5">
-            <!-- Header Row: Category Tag, Logo Container & Number -->
+            <!-- Header Row -->
             <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
-              <div class="flex items-center gap-2">
-                <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
-                  {p.category}
-                </span>
-                {p.relationship && (
-                  <span class="rounded-full bg-[#061d33] px-2.5 py-0.5 text-[10px] font-mono font-semibold text-[#ddff35] uppercase">
-                    PARTNER
-                  </span>
-                )}
-              </div>
-
-              <!-- Brand Logo Container -->
-              <div class={`h-11 w-32 rounded-xl px-2.5 py-1.5 flex items-center justify-center border ${p.darkLogoContainer ? 'bg-[#061d33] border-[#061d33]' : 'bg-white border-slate-200'}`}>
+              <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
+                AGRICULTURE & E-COMMERCE
+              </span>
+              <div class="h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center bg-[#061d33] border border-[#061d33]">
                 <img
-                  src={`${site.basePath}${p.logo}`}
-                  alt={`${p.name} logo`}
-                  width="120"
-                  height="36"
+                  src={`${site.basePath}/brands/black-gold-fertilizer/logo.webp`}
+                  alt="Black Gold Fertilizer logo"
+                  width="110"
+                  height="32"
                   loading="lazy"
-                  class="max-h-7 w-auto object-contain"
+                  class="max-h-6 w-auto object-contain"
                 />
               </div>
             </div>
 
-            <!-- Title & Description -->
+            <!-- Product Visual Media Container -->
+            <div class="overflow-hidden rounded-2xl border border-[#061d33]/10 bg-slate-900 aspect-[16/9] relative">
+              <img
+                src={`${site.basePath}/images/black-gold-official.png`}
+                alt="Black Gold Fertilizer products"
+                width="600"
+                height="337"
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
+              />
+            </div>
+
             <div>
               <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight mb-2">
-                {p.name}
+                Black Gold Fertilizer
               </h3>
               <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-                {p.description}
+                Supported PKR 30M+ in delivered-order revenue, 29,000+ product sales and 22,000+ delivered sales over 24 months.
               </p>
             </div>
 
-            <!-- Contextual Highlights (Metrics or Scope) -->
-            {p.metrics && (
-              <div class="grid grid-cols-2 gap-3 p-3.5 rounded-2xl bg-[#f7f4ed] border border-[#061d33]/8">
-                {p.metrics.map((m) => (
-                  <div>
-                    <span class="font-heading font-bold text-lg text-[#061d33] block">{m.value}</span>
-                    <span class="text-xs font-body font-semibold text-slate-600">{m.label}</span>
-                  </div>
-                ))}
+            <!-- Metrics Badges -->
+            <div class="grid grid-cols-2 gap-3 p-3.5 rounded-2xl bg-[#f7f4ed] border border-[#061d33]/8">
+              <div>
+                <span class="font-heading font-bold text-xl text-[#061d33] block">PKR 30M+</span>
+                <span class="text-xs font-body font-semibold text-slate-600">Supported Revenue</span>
               </div>
-            )}
+              <div>
+                <span class="font-heading font-bold text-xl text-[#061d33] block">29,000+</span>
+                <span class="text-xs font-body font-semibold text-slate-600">Product Sales</span>
+              </div>
+            </div>
+          </div>
 
-            {p.scope && (
-              <div class="flex flex-wrap gap-2 pt-1">
-                {p.scope.map((s) => (
-                  <span class="inline-flex items-center gap-1.5 rounded-lg bg-[#f7f4ed] px-3 py-1.5 text-xs font-mono font-medium text-[#061d33] border border-[#061d33]/10">
-                    <CheckCircle2 class="size-3 text-[#ff762b]" />
+          <!-- Bottom Actions -->
+          <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-[#061d33]/8">
+            <a
+              href={`${site.basePath}/work/black-gold-fertilizer/`}
+              data-track="case-study-open"
+              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs"
+            >
+              <span>Explore case study</span>
+              <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a
+              href="https://blackgoldfertilizer.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
+            >
+              <span>Website</span>
+              <ExternalLink class="size-3.5" />
+            </a>
+          </div>
+        </article>
+
+        <!-- 2. CONVORTAI (Deep Navy Technology Partnership Feature) -->
+        <article
+          data-motion="fade-up"
+          data-motion-delay="200"
+          class="rounded-3xl border border-white/20 bg-[#061d33] text-white p-6 sm:p-8 flex flex-col justify-between shadow-xl group relative overflow-hidden"
+        >
+          <div class="space-y-5">
+            <!-- Header Row -->
+            <div class="flex items-center justify-between gap-3 pb-4 border-b border-white/15">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-[#ddff35]/15 border border-[#ddff35]/40 px-3 py-0.5 text-xs font-mono font-bold text-[#ddff35] uppercase tracking-wider">
+                <Cpu class="size-3.5 text-[#ddff35]" />
+                <span>TECHNOLOGY PARTNER</span>
+              </span>
+              <div class="h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center bg-[#0b2947] border border-white/15">
+                <img
+                  src={`${site.basePath}/brands/convort-ai/logo.webp`}
+                  alt="ConvortAI logo"
+                  width="110"
+                  height="32"
+                  loading="lazy"
+                  class="max-h-6 w-auto object-contain"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 class="font-heading font-bold text-2xl text-white group-hover:text-[#ddff35] transition-colors leading-tight mb-1">
+                ConvortAI
+              </h3>
+              <span class="text-xs font-mono text-[#ff762b] font-semibold block mb-3">
+                Product Development & Growth Partner
+              </span>
+              <p class="text-base text-slate-200 font-body leading-relaxed font-normal">
+                Technology Partner and Product Development & Growth Partner. Starts Digital developed the web application and continues supporting product development, project management, social media, creative production and growth.
+              </p>
+            </div>
+
+            <!-- Contribution Scope Tags -->
+            <div class="space-y-2 pt-1">
+              <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+                Partnership Capabilities
+              </span>
+              <div class="flex flex-wrap gap-2">
+                {['Web App Development', 'Product Development', 'Project Management', 'Social Media', 'Creative Production', 'Growth Support'].map((s) => (
+                  <span class="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-2.5 py-1.5 text-xs font-mono text-white border border-white/15">
+                    <CheckCircle2 class="size-3 text-[#39c98a]" />
                     <span>{s}</span>
                   </span>
                 ))}
               </div>
-            )}
+            </div>
           </div>
 
-          <!-- Bottom Action Buttons -->
-          <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-[#061d33]/8 font-body">
+          <!-- Bottom Actions -->
+          <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-white/15">
             <a
-              href={`${site.basePath}${p.link}`}
+              href={`${site.basePath}/work/#convortai`}
+              class="inline-flex items-center gap-2 rounded-full bg-[#ddff35] px-5 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:bg-[#c9eb1e] transition-all shadow-xs"
+            >
+              <span>Explore partner details</span>
+              <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a
+              href="https://convortai.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 transition-all shadow-xs"
+            >
+              <span>Website</span>
+              <ExternalLink class="size-3.5" />
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- BOTTOM ROW: Two Secondary Feature Cards (Wajib Livestock & RK Reno Solutions) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- 3. WAJIB LIVESTOCK (Seasonal Outcome Feature) -->
+        <article
+          data-motion="fade-up"
+          data-motion-delay="300"
+          class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group"
+        >
+          <div class="space-y-5">
+            <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
+              <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
+                LIVESTOCK & SEASONAL CAMPAIGNS
+              </span>
+              <div class="h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center bg-[#061d33] border border-[#061d33]">
+                <img
+                  src={`${site.basePath}/brands/wajib-livestock/logo.webp`}
+                  alt="Wajib Livestock logo"
+                  width="110"
+                  height="32"
+                  loading="lazy"
+                  class="max-h-6 w-auto object-contain"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight mb-2">
+                Wajib Livestock
+              </h3>
+              <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+                Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 p-3.5 rounded-2xl bg-[#f7f4ed] border border-[#061d33]/8">
+              <div>
+                <span class="font-heading font-bold text-xl text-[#061d33] block">150+</span>
+                <span class="text-xs font-body font-semibold text-slate-600">Animals Sold</span>
+              </div>
+              <div>
+                <span class="font-heading font-bold text-xl text-[#061d33] block">PKR 4.2M+</span>
+                <span class="text-xs font-body font-semibold text-slate-600">Sales Supported</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-[#061d33]/8">
+            <a
+              href={`${site.basePath}/work/qurbani-campaign/`}
               data-track="case-study-open"
               class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs"
             >
-              <span>Explore project</span>
+              <span>Explore campaign study</span>
               <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
+            <a
+              href="https://wajib.pk"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
+            >
+              <span>Website</span>
+              <ExternalLink class="size-3.5" />
+            </a>
+          </div>
+        </article>
 
-            {p.website && (
-              <a
-                href={p.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Visit ${p.name} official website`}
-                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
-              >
-                <span>Website</span>
-                <ExternalLink class="size-3.5" />
-              </a>
-            )}
+        <!-- 4. RK RENO SOLUTIONS (Website & Local SEO Feature) -->
+        <article
+          data-motion="fade-up"
+          data-motion-delay="400"
+          class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group"
+        >
+          <div class="space-y-5">
+            <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
+              <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
+                RENOVATION & LOCAL SERVICES
+              </span>
+              <div class="h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center bg-white border border-slate-200">
+                <img
+                  src={`${site.basePath}/brands/rk-reno-solutions/logo.webp`}
+                  alt="RK Reno Solutions logo"
+                  width="110"
+                  height="32"
+                  loading="lazy"
+                  class="max-h-6 w-auto object-contain"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight mb-2">
+                RK Reno Solutions
+              </h3>
+              <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+                Website, content and local SEO foundation for renovation and air-conditioning services in Kuala Lumpur and Selangor.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-1">
+              {['Kuala Lumpur & Selangor SEO Scope', 'Renovation & HVAC Architecture', 'Location Pages'].map((s) => (
+                <span class="inline-flex items-center gap-1.5 rounded-lg bg-[#f7f4ed] px-3 py-1.5 text-xs font-mono font-medium text-[#061d33] border border-[#061d33]/10">
+                  <CheckCircle2 class="size-3 text-[#ff762b]" />
+                  <span>{s}</span>
+                </span>
+              ))}
+            </div>
           </div>
 
+          <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-[#061d33]/8">
+            <a
+              href={`${site.basePath}/work/rk-reno-solutions/`}
+              data-track="case-study-open"
+              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs"
+            >
+              <span>Explore SEO study</span>
+              <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a
+              href="https://rkrenosolution.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
+            >
+              <span>Website</span>
+              <ExternalLink class="size-3.5" />
+            </a>
+          </div>
         </article>
-      ))}
+
+      </div>
 
     </div>
 

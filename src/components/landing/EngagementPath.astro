@@ -7,7 +7,7 @@ import { ArrowRight, CheckCircle, MessageSquare } from '@lucide/astro';
 const { engagementPath } = homepageContent;
 ---
 
-<section id="engagement-path" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+<section id="engagement-path" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Section Header -->
@@ -26,7 +26,7 @@ const { engagementPath } = homepageContent;
     </div>
 
     <!-- 3 Numbered Steps Grid -->
-    <div data-motion="fade-up" data-motion-delay="250" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12">
+    <div data-motion="fade-up" data-motion-delay="250" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10">
       {engagementPath.steps.map((step) => (
         <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all">
           <div class="space-y-4">
@@ -44,21 +44,21 @@ const { engagementPath } = homepageContent;
       ))}
     </div>
 
-    <!-- Preparation Checklist Box -->
-    <div data-motion="fade-up" data-motion-delay="350" class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 lg:p-10 shadow-xs max-w-4xl mx-auto">
+    <!-- Preparation Checklist Box (Editorial Flatter Design with 16px Body Copy) -->
+    <div data-motion="fade-up" data-motion-delay="350" class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 lg:p-10 max-w-4xl mx-auto">
       <div class="space-y-6">
         <div>
-          <h3 class="font-heading font-bold text-lg sm:text-xl text-[#061d33] mb-1">
+          <h3 class="font-heading font-bold text-xl text-[#061d33] mb-1.5">
             {engagementPath.checklistHeader}
           </h3>
-          <p class="text-sm text-slate-600 font-body">
+          <p class="text-base text-slate-700 font-body leading-relaxed">
             Providing these details during your initial inquiry allows us to understand your goals before our first conversation.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2 border-t border-[#061d33]/8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-4 border-t border-[#061d33]/10">
           {engagementPath.checklistItems.map((item) => (
-            <div class="flex items-center gap-2 text-xs sm:text-sm font-body font-semibold text-[#061d33]">
+            <div class="flex items-center gap-2.5 text-base font-body font-semibold text-[#061d33]">
               <CheckCircle class="size-4 text-[#ff762b] shrink-0" />
               <span>{item}</span>
             </div>
@@ -66,11 +66,11 @@ const { engagementPath } = homepageContent;
         </div>
 
         <!-- Action CTAs -->
-        <div class="pt-6 border-t border-[#061d33]/8 flex flex-wrap items-center justify-between gap-4">
+        <div class="pt-6 border-t border-[#061d33]/10 flex flex-wrap items-center justify-between gap-4">
           <a
             href={`${site.basePath}${engagementPath.primaryCta.href}`}
             data-track="primary-cta"
-            class="group inline-flex items-center gap-2.5 rounded-full bg-[#061d33] px-7 py-3.5 font-body font-semibold text-base text-white hover:bg-[#ff762b] transition-all shadow-md"
+            class="group inline-flex items-center gap-2.5 rounded-full bg-[#061d33] px-7 py-3.5 font-body font-semibold text-base text-white hover:bg-[#ff762b] transition-all shadow-xs"
           >
             <span>{engagementPath.primaryCta.label}</span>
             <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
@@ -81,9 +81,9 @@ const { engagementPath } = homepageContent;
             target="_blank"
             rel="noopener noreferrer"
             data-track="contact-whatsapp"
-            class="inline-flex items-center gap-2 text-sm font-body font-semibold text-[#061d33] hover:text-[#39c98a] transition-colors"
+            class="inline-flex items-center gap-2 text-base font-body font-semibold text-[#061d33] hover:text-[#39c98a] transition-colors"
           >
-            <MessageSquare class="size-4 text-[#39c98a]" />
+            <MessageSquare class="size-4.5 text-[#39c98a]" />
             <span>{engagementPath.secondaryTextLink}</span>
           </a>
         </div>

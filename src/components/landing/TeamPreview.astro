@@ -10,7 +10,7 @@ const visibleMembers: TeamMember[] = teamMembers
 
 {
   visibleMembers.length > 0 && (
-    <section id="team" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10">
+    <section id="team" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
       <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
         
         <!-- Section Header -->
@@ -19,8 +19,8 @@ const visibleMembers: TeamMember[] = teamMembers
           <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
             The People Behind the Work
           </h2>
-          <p data-motion="fade-up" data-motion-delay="200" class="text-sm sm:text-base text-slate-700 font-body leading-relaxed">
-            Direct collaboration with practitioners across strategy, media buying, web engineering and creative production.
+          <p data-motion="fade-up" data-motion-delay="200" class="text-base text-slate-700 font-body leading-relaxed font-normal">
+            Meet the approved people responsible for the services and project work presented by Starts Digital.
           </p>
         </div>
 
@@ -46,7 +46,7 @@ const visibleMembers: TeamMember[] = teamMembers
                   <h3 class="font-heading font-bold text-xl text-[#061d33]">{m.name}</h3>
                   <p class="font-mono text-xs text-[#ff762b] font-semibold mt-0.5">{m.role}</p>
                 </div>
-                <p class="text-sm text-slate-600 font-body leading-relaxed">{m.shortBio}</p>
+                <p class="text-base text-slate-700 font-body leading-relaxed">{m.shortBio}</p>
               </div>
 
               {m.responsibilities && m.responsibilities.length > 0 && (

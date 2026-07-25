@@ -7,7 +7,7 @@ import { ArrowRight, CheckCircle2, Cpu } from '@lucide/astro';
 const { projectProof } = homepageContent;
 ---
 
-<section id="project-proof" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10">
+<section id="project-proof" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Section Header -->
@@ -28,7 +28,7 @@ const { projectProof } = homepageContent;
     <!-- Editorial Project Rows (Alternating Layout) -->
     <div class="space-y-8 sm:space-y-10">
       
-      <!-- ROW 1: RK RENO SOLUTIONS (Screenshot-Led Row) -->
+      <!-- ROW 1: RK RENO SOLUTIONS (Direct Screenshot Media Container) -->
       {projectProof.items.slice(0, 1).map((item) => (
         <div
           data-motion="fade-up"
@@ -39,14 +39,7 @@ const { projectProof } = homepageContent;
             
             <!-- Project Visual Column (5 cols desktop) -->
             <div class="lg:col-span-5 order-2 lg:order-1">
-              <a href={`${site.basePath}${item.link}`} class="block overflow-hidden rounded-2xl border border-[#061d33]/15 bg-slate-900 p-2.5 shadow-md relative group-hover:border-[#ff762b]/50 transition-all">
-                <!-- Browser Header Mock -->
-                <div class="flex items-center gap-1.5 pb-2 px-2 border-b border-slate-800 mb-1.5">
-                  <div class="size-2 rounded-full bg-red-500/80"></div>
-                  <div class="size-2 rounded-full bg-yellow-500/80"></div>
-                  <div class="size-2 rounded-full bg-green-500/80"></div>
-                  <span class="text-[11px] font-mono text-slate-400 ml-2">rkrenosolution.com</span>
-                </div>
+              <a href={`${site.basePath}${item.link}`} class="block overflow-hidden rounded-2xl border border-[#061d33]/15 bg-white shadow-md relative group-hover:border-[#ff762b]/50 transition-all">
                 <img
                   src={`${site.basePath}${item.imagePath}`}
                   alt={`${item.brand} website screenshot`}
@@ -54,8 +47,11 @@ const { projectProof } = homepageContent;
                   height="400"
                   loading="lazy"
                   decoding="async"
-                  class="w-full h-[260px] sm:h-[300px] rounded-xl object-cover object-top group-hover:scale-102 transition-transform duration-500"
+                  class="w-full h-[260px] sm:h-[300px] object-cover object-top group-hover:scale-102 transition-transform duration-500"
                 />
+                <div class="px-4 py-2 bg-[#f7f4ed] border-t border-[#061d33]/10 text-center">
+                  <span class="text-xs font-mono text-slate-600 font-medium">RK Reno Solutions website</span>
+                </div>
               </a>
             </div>
 
@@ -113,11 +109,8 @@ const { projectProof } = homepageContent;
         <div
           data-motion="fade-up"
           data-motion-delay="400"
-          class="rounded-3xl border-2 border-[#ddff35]/30 bg-[#061d33] text-white p-6 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden group"
+          class="rounded-3xl border border-white/20 bg-[#061d33] text-white p-6 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden group"
         >
-          <!-- Subtle Glow Accent -->
-          <div class="absolute -right-20 -top-20 size-80 rounded-full bg-[#ff762b]/15 blur-3xl pointer-events-none"></div>
-
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             
             <!-- Details & Contribution Column (7 cols desktop) -->
@@ -143,16 +136,16 @@ const { projectProof } = homepageContent;
                 {item.contribution}
               </p>
 
-              <!-- 6 Contribution Areas Grid -->
+              <!-- 6 Contribution Areas Grid (No truncate class!) -->
               <div class="space-y-2 pt-1">
                 <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
                   Partnership Scope
                 </span>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <div class="flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
-                    <div class="flex items-center gap-1.5 rounded-lg bg-white/10 px-2.5 py-1.5 text-xs font-mono text-white border border-white/10">
-                      <CheckCircle2 class="size-3 text-[#39c98a] shrink-0" />
-                      <span class="truncate">{tag}</span>
+                    <div class="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-mono text-white border border-white/15">
+                      <CheckCircle2 class="size-3.5 text-[#39c98a] shrink-0" />
+                      <span class="whitespace-normal">{tag}</span>
                     </div>
                   ))}
                 </div>
