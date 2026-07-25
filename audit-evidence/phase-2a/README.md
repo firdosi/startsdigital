@@ -2,37 +2,35 @@
 
 This directory contains the visual verification evidence captured for the Starts Digital Phase 2A client wall layout and keyboard focus accessibility implementation.
 
-## Commit Metadata
-- **Main Source Commit SHA**: `27361377ada0ecad04b12795e2f59a5fb0de92f4`
-- **Evidence Branch**: `audit-phase-2a-evidence`
+## Commit & Verification Metadata
+- **Main Source Commit**: `27361377ada0ecad04b12795e2f59a5fb0de92f4`
+- **Evidence Capture Verified Against Source Commit**: Yes
+- **Focus Test Run After Final Production Build**: Yes
 
 ## Measured Row Arrays
 - **390px (Mobile)**: `[2, 2, 2, 2, 2, 2, 1]`
 - **768px (Tablet)**: `[3, 3, 3, 3, 1]`
 - **1440px (Desktop)**: `[5, 5, 3]`
 
-## Focus Computed Styles
+## Measured Focus Computed Styles
 - **Black Gold Logo Link**:
   - `matches(':focus-visible')`: `true`
   - `outlineStyle`: `solid`
   - `outlineWidth`: `2px`
-  - `outlineColor`: `rgb(8, 30, 51)` / `#ff762b`
-  - `outlineOffset`: `1px`
+  - `outlineColor`: `rgb(255, 118, 43)`
+  - `outlineOffset`: `2px`
 - **ConvortAI Logo Link**:
   - `matches(':focus-visible')`: `true`
   - `outlineStyle`: `solid`
-  - `outlineWidth`: `3px`
-  - `outlineColor`: `rgb(6, 29, 51)` / `#ff762b`
-  - `outlineOffset`: `0px`
+  - `outlineWidth`: `2px`
+  - `outlineColor`: `rgb(255, 118, 43)`
+  - `outlineOffset`: `2px`
 - **RK Reno Solutions Logo Link**:
   - `matches(':focus-visible')`: `true`
   - `outlineStyle`: `solid`
-  - `outlineWidth`: `3px`
-  - `outlineColor`: `rgb(6, 29, 51)`
-  - `outlineOffset`: `0px`
-- **Form Input Focus (Contact Page)**:
-  - `outlineStyle`: `none`
-  - `borderColor`: `oklab(0.869 -0.00647109 -0.0210268)` (preserves site-wide focus rule without forced duplicate rules)
+  - `outlineWidth`: `2px`
+  - `outlineColor`: `rgb(255, 118, 43)`
+  - `outlineOffset`: `2px`
 
 ## Direct Raw Evidence Links
 1. [client-wall-390.png](https://raw.githubusercontent.com/firdosi/startsdigital/audit-phase-2a-evidence/audit-evidence/phase-2a/client-wall-390.png) (Mobile Viewport: 390px × 844px)
