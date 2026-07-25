@@ -185,7 +185,7 @@ export const brands: Brand[] = [
     ],
     logo: '/brands/rapidzone/logo.webp',
     logoApproved: true,
-    logoFit: 'standard',
+    logoFit: 'compact',
     website: 'https://rapidzone.ae',
     facebook: 'https://www.facebook.com/Rapidzone.ae',
     featured: false,
@@ -254,7 +254,7 @@ export const brands: Brand[] = [
       'Creative Direction',
       'Digital Strategy'
     ],
-    logo: '/brands/riyadh-finish-pro/logo.webp',
+    logo: '/brands/riyadh-finish-pro/logo-tight.webp',
     logoApproved: true,
     logoFit: 'large',
     website: 'https://riyadhfinishpro.com',
@@ -301,7 +301,7 @@ export const brands: Brand[] = [
       'Customer Acquisition',
       'Sales Support'
     ],
-    logo: '/brands/super-safety-covers/logo.webp',
+    logo: '/brands/super-safety-covers/logo-tight.webp',
     logoApproved: true,
     logoFit: 'large',
     facebook: 'https://www.facebook.com/SuperSafetyCovers/',
@@ -324,7 +324,7 @@ export const brands: Brand[] = [
       'Campaign Messaging',
       'Brand Communication'
     ],
-    logo: '/brands/unique-lahore-lab-sahiwal/logo.webp',
+    logo: '/brands/unique-lahore-lab-sahiwal/logo-tight.webp',
     logoApproved: true,
     logoFit: 'large',
     facebook: 'https://www.facebook.com/profile.php?id=100054656280926',
