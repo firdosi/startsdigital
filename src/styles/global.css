@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 /*
- * Starts Digital — Premium Growth Agency Motion & Visual System
- * Motion: IntersectionObserver + GPU Transforms + Hardware-Accelerated Variants
+ * Starts Digital — Progressive Motion & Visual System
+ * Progressive Enhancement: 100% visible by default in HTML/CSS
+ * JS enhances below-the-fold non-essential elements when reduced-motion is OFF
  */
 @theme {
   --color-cream: #f7f4ed;
@@ -123,69 +124,50 @@
 }
 
 /* ==========================================================================
-   REUSABLE MOTION VARIANT SYSTEM
-   Pre-animation hidden states active ONLY when JS initializes (.motion-initialized)
+   PROGRESSIVE ENHANCEMENT MOTION SYSTEM
+   Base state is 100% visible (opacity: 1, transform: none).
+   Pre-animation hidden states active ONLY when JS sets [data-motion-active="true"]
    ========================================================================== */
 
-html.motion-initialized [data-motion]:not(.is-motion-revealed) {
-  will-change: opacity, transform, clip-path, filter;
+[data-motion-active="true"] {
+  will-change: opacity, transform;
+  transition-property: opacity, transform;
+  transition-duration: var(--motion-dur, 320ms);
+  transition-timing-function: var(--motion-ease, cubic-bezier(0.16, 1, 0.3, 1));
+  transition-delay: var(--motion-del, 0ms);
 }
 
-html.motion-initialized [data-motion="fade-up"]:not(.is-motion-revealed) {
+[data-motion-active="true"][data-motion="fade-up"],
+[data-motion-active="true"][data-motion="clip-up"] {
   opacity: 0;
-  transform: translateY(32px);
-}
-
-html.motion-initialized [data-motion="fade-down"]:not(.is-motion-revealed) {
-  opacity: 0;
-  transform: translateY(-32px);
-}
-
-html.motion-initialized [data-motion="fade-left"]:not(.is-motion-revealed) {
-  opacity: 0;
-  transform: translateX(-36px);
-}
-
-html.motion-initialized [data-motion="fade-right"]:not(.is-motion-revealed) {
-  opacity: 0;
-  transform: translateX(36px);
-}
-
-html.motion-initialized [data-motion="scale-in"]:not(.is-motion-revealed) {
-  opacity: 0;
-  transform: scale(0.92);
-}
-
-html.motion-initialized [data-motion="pop-in"]:not(.is-motion-revealed) {
-  opacity: 0;
-  transform: scale(0.84);
-}
-
-html.motion-initialized [data-motion="clip-up"]:not(.is-motion-revealed) {
-  opacity: 0;
-  clip-path: inset(100% 0% 0% 0%);
-  transform: translateY(20px);
-}
-
-html.motion-initialized [data-motion="clip-left"]:not(.is-motion-revealed) {
-  opacity: 0;
-  clip-path: inset(0% 100% 0% 0%);
-}
-
-html.motion-initialized [data-motion="blur-in"]:not(.is-motion-revealed) {
-  opacity: 0;
-  filter: blur(10px);
   transform: translateY(16px);
 }
 
-html.motion-initialized [data-motion="scale-panel"]:not(.is-motion-revealed) {
+[data-motion-active="true"][data-motion="fade-down"] {
+  opacity: 0;
+  transform: translateY(-16px);
+}
+
+[data-motion-active="true"][data-motion="fade-left"] {
+  opacity: 0;
+  transform: translateX(-16px);
+}
+
+[data-motion-active="true"][data-motion="fade-right"] {
+  opacity: 0;
+  transform: translateX(16px);
+}
+
+[data-motion-active="true"][data-motion="scale-in"] {
   opacity: 0;
   transform: scale(0.96);
 }
 
-html.motion-initialized [data-motion="rotate-in"]:not(.is-motion-revealed) {
-  opacity: 0;
-  transform: scale(0.9) rotate(-4deg);
+[data-motion-revealed="true"],
+[data-motion-active="true"].is-motion-revealed {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
+  filter: none !important;
 }
 
 /* Continuous decorative animation pausing when section is offscreen */
@@ -205,41 +187,6 @@ section.is-section-visible .animate-pulse-glow,
 section.is-section-visible .animate-marquee-left,
 section.is-section-visible .animate-marquee-right {
   animation-play-state: running;
-}
-
-/* Motion reveal transition rules */
-html.motion-initialized [data-motion] {
-  transition-property: opacity, transform, clip-path, filter;
-  transition-duration: var(--motion-dur, 0.7s);
-  transition-timing-function: var(--motion-ease, cubic-bezier(0.16, 1, 0.3, 1));
-  transition-delay: var(--motion-del, 0ms);
-}
-
-html.motion-initialized [data-motion="pop-in"] {
-  transition-timing-function: var(--motion-ease, cubic-bezier(0.34, 1.56, 0.64, 1));
-}
-
-html.motion-initialized [data-motion].is-motion-revealed {
-  opacity: 1;
-  transform: translate(0, 0) scale(1) rotate(0deg);
-  clip-path: inset(0% 0% 0% 0%);
-  filter: none;
-}
-
-/* Legacy reveal-on-scroll backward compatibility */
-html.motion-initialized .reveal-on-scroll:not(.is-revealed) {
-  opacity: 0;
-  transform: translateY(24px);
-  will-change: opacity, transform;
-}
-
-html.motion-initialized .reveal-on-scroll {
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-html.motion-initialized .reveal-on-scroll.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 @layer base {
@@ -292,6 +239,7 @@ html.motion-initialized .reveal-on-scroll.is-revealed {
   }
   
   [data-motion],
+  [data-motion-active],
   .reveal-on-scroll {
     opacity: 1 !important;
     transform: none !important;
@@ -299,19 +247,11 @@ html.motion-initialized .reveal-on-scroll.is-revealed {
     filter: none !important;
     transition: none !important;
   }
-
-  html.motion-initialized [data-motion]:not(.is-motion-revealed),
-  html.motion-initialized .reveal-on-scroll:not(.is-revealed) {
-    opacity: 1 !important;
-    transform: none !important;
-    clip-path: none !important;
-    filter: none !important;
-  }
 }
 
 @media (max-width: 640px) {
   .animate-marquee-left,
   .animate-marquee-right {
-    animation-duration: 65s !important; /* Slower on mobile */
+    animation-duration: 65s !important;
   }
 }

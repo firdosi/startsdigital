@@ -431,6 +431,13 @@ export function validateProjectRecordsArray(records: ProjectRecord[]): { valid: 
   const seenIds = new Set<string>();
   const seenBrandIds = new Set<string>();
   const seenDetailPaths = new Set<string>();
+  const seenContactSources = new Set<string>();
+  const expectedBuiltRoutes = new Set([
+    '/work/black-gold-fertilizer/',
+    '/work/qurbani-campaign/',
+    '/work/rk-reno-solutions/',
+    '/work/convortai/'
+  ]);
 
   for (const record of records) {
     if (seenIds.has(record.id)) {
@@ -470,7 +477,25 @@ export function validateProjectRecordsArray(records: ProjectRecord[]): { valid: 
           errors.push(`Duplicate detailPath found: ${record.detailPath}`);
         }
         seenDetailPaths.add(record.detailPath);
+
+        if (!expectedBuiltRoutes.has(record.detailPath)) {
+          errors.push(`Detailed project ${record.id} detailPath ${record.detailPath} is absent from expected built-route list.`);
+        }
       }
+
+      if (!record.contactSourceValue) {
+        errors.push(`Detailed project ${record.id} is missing contactSourceValue.`);
+      } else {
+        if (seenContactSources.has(record.contactSourceValue)) {
+          errors.push(`Duplicate contactSourceValue found: ${record.contactSourceValue}`);
+        }
+        seenContactSources.add(record.contactSourceValue);
+
+        if (!/^[a-z0-9-]+$/.test(record.contactSourceValue)) {
+          errors.push(`Detailed project ${record.id} has invalid/unsupported contactSourceValue: ${record.contactSourceValue}`);
+        }
+      }
+
       if (!record.contactSourceLabel) {
         errors.push(`Detailed project ${record.id} is missing contactSourceLabel.`);
       }

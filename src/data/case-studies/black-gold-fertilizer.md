@@ -18,10 +18,7 @@ metrics:
   - value: "24 Months"
     label: "Engagement Timeline"
 responsibilities:
-  - "Digital strategy and campaign planning."
-  - "Meta advertising execution and audience testing."
-  - "Creative testing, ad copy and visual content direction."
-  - "E-commerce growth support and website support."
+  - "Strategy, Meta advertising, creative testing, e-commerce growth and website support."
 heroImage:
   src: "/images/black-gold-official.png"
   alt: "Official Black Gold Fertilizer packaging visual"
@@ -43,11 +40,7 @@ Starts Digital has provided strategy, Meta advertising, creative testing, e-comm
 
 ## Approved Scope & Services Delivered
 
-- **Digital Strategy:** Overall strategy and campaign planning.
-- **Meta Advertising:** Meta advertising execution and audience testing.
-- **Creative Testing:** Creative testing, ad copy, and visual content direction.
-- **E-Commerce Growth Support:** Ongoing campaign optimization and sales channel support.
-- **Website Support:** Website support and digital storefront coordination.
+Strategy, Meta advertising, creative testing, e-commerce growth and website support.
 
 ## Verified Outcome
 

@@ -134,9 +134,16 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
                     {proj.publicName}
                   </h3>
                   {proj.primaryRelationship ? (
-                    <span class="inline-block mt-1 font-mono text-xs text-[#ff762b] font-semibold">
-                      {proj.primaryRelationship} {proj.secondaryRelationship ? `• ${proj.secondaryRelationship}` : ''}
-                    </span>
+                    <div class="mt-1.5 flex flex-wrap gap-2">
+                      <span class="inline-flex items-center rounded-md bg-[#ddff35]/20 border border-[#ddff35]/50 px-2.5 py-0.5 text-xs font-mono font-semibold text-[#061d33]">
+                        {proj.primaryRelationship}
+                      </span>
+                      {proj.secondaryRelationship ? (
+                        <span class="inline-flex items-center rounded-md bg-[#ff762b]/10 border border-[#ff762b]/30 px-2.5 py-0.5 text-xs font-mono font-semibold text-[#ff762b]">
+                          {proj.secondaryRelationship}
+                        </span>
+                      ) : null}
+                    </div>
                   ) : proj.relationshipType ? (
                     <span class="inline-block mt-1 font-mono text-xs text-[#ff762b] font-semibold">
                       {proj.relationshipType}

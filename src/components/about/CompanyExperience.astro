@@ -44,6 +44,7 @@ const projects = [
     brand: convort.publicName,
     category: convort.sector,
     relationship: convort.primaryRelationship || convort.relationshipType,
+    secondaryRelationship: convort.secondaryRelationship,
     contribution: convort.shortSummary,
     result: null,
     link: `${site.basePath}${convort.detailPath}`,
@@ -90,7 +91,16 @@ const projects = [
                   </div>
                   <h3 class="font-heading font-bold text-2xl text-white pt-1">{p.brand}</h3>
                   {p.relationship && (
-                    <p class="font-mono text-xs text-slate-300">{p.relationship}</p>
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                      <span class="inline-flex items-center rounded-md bg-[#ddff35]/15 border border-[#ddff35]/30 px-2 py-0.5 text-xs font-mono font-semibold text-[#ddff35]">
+                        {p.relationship}
+                      </span>
+                      {p.secondaryRelationship ? (
+                        <span class="inline-flex items-center rounded-md bg-[#ff762b]/15 border border-[#ff762b]/30 px-2 py-0.5 text-xs font-mono font-semibold text-[#ff762b]">
+                          {p.secondaryRelationship}
+                        </span>
+                      ) : null}
+                    </div>
                   )}
                 </div>
 
