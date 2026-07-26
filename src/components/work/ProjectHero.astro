@@ -1,20 +1,44 @@
 ---
 import { site } from '../../site.config';
-import type { ResolvedProject } from '../../data/projects';
+import type { ResolvedProject, ProjectVariant } from '../../data/projects';
 import ProjectBreadcrumbs from './ProjectBreadcrumbs.astro';
 import { ArrowLeft, ExternalLink, CheckCircle2 } from '@lucide/astro';
 
 interface Props {
   project: ResolvedProject;
   metrics?: Array<{ value: string; label: string }>;
+  variant?: ProjectVariant;
 }
 
-const { project, metrics } = Astro.props;
+const { project, metrics, variant } = Astro.props;
+const activeVariant: ProjectVariant = variant || project.variant || 'default';
+
+const glowBg =
+  activeVariant === 'seasonal'
+    ? 'bg-[#39c98a]/15'
+    : activeVariant === 'local-search'
+    ? 'bg-sky-500/15'
+    : activeVariant === 'technology'
+    ? 'bg-[#ddff35]/15'
+    : 'bg-[#ff762b]/15';
+
+const sectorBadgeStyle =
+  activeVariant === 'seasonal'
+    ? 'border-[#39c98a]/40 bg-[#39c98a]/15 text-[#39c98a]'
+    : activeVariant === 'local-search'
+    ? 'border-sky-400/40 bg-sky-500/15 text-sky-300'
+    : activeVariant === 'technology'
+    ? 'border-[#ddff35]/40 bg-[#ddff35]/15 text-[#ddff35]'
+    : 'border-white/20 bg-white/10 text-[#ddff35]';
 ---
 
-<section id="project-hero" class="bg-[#061d33] text-white pt-12 pb-16 sm:pt-16 sm:pb-20 border-b border-white/10 relative overflow-hidden rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
-  <!-- Subtle background accent -->
-  <div class="absolute -right-20 -top-20 size-80 rounded-full bg-[#ff762b]/15 blur-3xl pointer-events-none"></div>
+<section
+  id="project-hero"
+  data-project-variant={activeVariant}
+  class="bg-[#061d33] text-white pt-12 pb-16 sm:pt-16 sm:pb-20 border-b border-white/10 relative overflow-hidden rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24"
+>
+  <!-- Background Accent Glow tailored to active project variant -->
+  <div class={`absolute -right-20 -top-20 size-80 rounded-full ${glowBg} blur-3xl pointer-events-none`}></div>
 
   <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 z-10 space-y-6">
     <!-- Breadcrumbs -->
@@ -23,14 +47,24 @@ const { project, metrics } = Astro.props;
     <!-- Top Metadata Bar -->
     <div class="flex flex-wrap items-center justify-between gap-4 pb-2 border-b border-white/10">
       <div class="flex flex-wrap items-center gap-3">
-        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#ddff35]">
+        <span class={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-wider ${sectorBadgeStyle}`}>
           {project.sector}
         </span>
-        {project.relationshipType && (
+        {project.primaryRelationship ? (
+          <span class="inline-flex items-center gap-2 rounded-full border border-[#ddff35]/40 bg-[#ddff35]/15 px-4 py-1.5 text-xs font-mono font-semibold text-[#ddff35]">
+            {project.primaryRelationship}
+          </span>
+        ) : null}
+        {project.secondaryRelationship ? (
+          <span class="inline-flex items-center gap-2 rounded-full border border-[#ff762b]/30 bg-[#ff762b]/15 px-4 py-1.5 text-xs font-mono font-semibold text-[#ff762b]">
+            {project.secondaryRelationship}
+          </span>
+        ) : null}
+        {!project.primaryRelationship && project.relationshipType ? (
           <span class="inline-flex items-center gap-2 rounded-full border border-[#ff762b]/30 bg-[#ff762b]/15 px-4 py-1.5 text-xs font-mono font-semibold text-[#ff762b]">
             {project.relationshipType}
           </span>
-        )}
+        ) : null}
       </div>
 
       <a
@@ -42,7 +76,7 @@ const { project, metrics } = Astro.props;
       </a>
     </div>
 
-    <!-- Main Title & Summary (Renders immediately without motion) -->
+    <!-- Main Title & Summary -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-2">
       <div class="lg:col-span-8 space-y-5">
         <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[52px] leading-[1.12] tracking-[-0.03em] text-white">
@@ -53,14 +87,14 @@ const { project, metrics } = Astro.props;
           {project.shortSummary}
         </p>
 
-        <!-- Service Tags -->
+        <!-- Service Tags (at least 14px font size for action links) -->
         <div class="pt-2 flex flex-wrap gap-2">
           {project.resolvedServices.map((svc) => (
             <a
               href={`${site.basePath}/services/${svc.slug}/`}
-              class="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-mono font-medium text-white border border-white/15 hover:border-[#ddff35] hover:text-[#ddff35] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+              class="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-sm font-mono font-medium text-white border border-white/15 hover:border-[#ddff35] hover:text-[#ddff35] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
             >
-              <CheckCircle2 class="size-3 text-[#39c98a]" />
+              <CheckCircle2 class="size-3.5 text-[#39c98a]" />
               <span>{svc.name}</span>
             </a>
           ))}
@@ -97,21 +131,5 @@ const { project, metrics } = Astro.props;
         )}
       </div>
     </div>
-
-    <!-- Verified Outcome Metrics Row (when metrics supplied) -->
-    {metrics && metrics.length > 0 && (
-      <div class="pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {metrics.map((m) => (
-          <div class="rounded-2xl border border-white/15 bg-white/5 p-4 space-y-1">
-            <span class="font-heading font-bold text-2xl sm:text-3xl text-[#ddff35] block">
-              {m.value}
-            </span>
-            <span class="text-xs font-mono font-medium text-slate-300 block">
-              {m.label}
-            </span>
-          </div>
-        ))}
-      </div>
-    )}
   </div>
 </section>

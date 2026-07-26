@@ -5,6 +5,7 @@ import Faq from '../components/landing/Faq.astro';
 import MotionController from '../components/common/MotionController.astro';
 import { site } from '../site.config';
 import { getContactAllowlistMap } from '../data/services';
+import { getProjectContactSourceMap } from '../data/projects';
 import { 
   Mail, 
   MessageSquare, 
@@ -15,14 +16,9 @@ import {
   Sparkles
 } from '@lucide/astro';
 
-// Centralised allowlist mappings from services data source of truth
+// Centralised allowlist mappings from services and projects data sources of truth
 const SERVICE_ALLOWLIST: Record<string, string> = getContactAllowlistMap();
-
-const SOURCE_ALLOWLIST: Record<string, string> = {
-  'black-gold-fertilizer': 'Black Gold Fertilizer',
-  'qurbani-campaign': 'Wajib Livestock Qurbani Campaign',
-  'rk-reno-solutions': 'RK Reno Solutions',
-};
+const SOURCE_ALLOWLIST: Record<string, string> = getProjectContactSourceMap();
 
 const initialService = Astro.url.searchParams.get('service');
 const initialSource = Astro.url.searchParams.get('source');
@@ -174,6 +170,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
             <form 
               id="contact-form"
               data-service-allowlist={JSON.stringify(SERVICE_ALLOWLIST)}
+              data-source-allowlist={JSON.stringify(SOURCE_ALLOWLIST)}
               class="space-y-5"
               novalidate
             >
@@ -468,26 +465,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
 
   <MotionController />
 
-  <!-- Interactive Dispatch & Live Validation Script with Duplicate Binding Guard -->
   <script>
-    const SERVICE_ALLOWLIST: Record<string, string> = {
-      'paid-advertising': 'Paid Advertising',
-      'website-development': 'Website Design and Development',
-      'seo': 'SEO',
-      'creative-content': 'Creative Content',
-      'social-media-marketing': 'Social Media Marketing',
-      'ai-marketing-systems': 'AI Marketing Systems',
-      'multiple-services': 'Multiple Services',
-      'not-sure-yet': 'Not Sure Yet',
-    };
-
-    const SOURCE_ALLOWLIST: Record<string, string> = {
-      'black-gold-fertilizer': 'Black Gold Fertilizer',
-      'qurbani-campaign': 'Wajib Livestock Qurbani Campaign',
-      'rk-reno-solutions': 'RK Reno Solutions',
-      'convortai': 'ConvortAI Technology and Growth Partnership',
-    };
-
     function initContactForm() {
       const form = document.getElementById('contact-form') as HTMLFormElement;
       if (!form) return;
@@ -507,7 +485,8 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
       const serviceParam = urlParams.get('service');
       const sourceParam = urlParams.get('source');
 
-      const allowlistMap = JSON.parse(form.dataset.serviceAllowlist || '{}');
+      const allowlistMap: Record<string, string> = JSON.parse(form.dataset.serviceAllowlist || '{}');
+      const sourceAllowlist: Record<string, string> = JSON.parse(form.dataset.sourceAllowlist || '{}');
 
       if (serviceParam && serviceSelect) {
         const decodedParam = decodeURIComponent(serviceParam);
@@ -517,8 +496,8 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
         }
       }
 
-      if (sourceParam && SOURCE_ALLOWLIST[sourceParam] && contextBanner && contextName) {
-        contextName.textContent = SOURCE_ALLOWLIST[sourceParam];
+      if (sourceParam && sourceAllowlist[sourceParam] && contextBanner && contextName) {
+        contextName.textContent = sourceAllowlist[sourceParam];
         contextBanner.classList.remove('hidden');
         contextBanner.classList.add('flex');
       }

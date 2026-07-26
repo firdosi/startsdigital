@@ -1,6 +1,6 @@
 ---
 title: "Black Gold Fertilizer Case Study"
-description: "Strategy, Meta advertising, creative testing, e-commerce growth and website support for a Pakistan-wide lawn-care e-commerce brand."
+description: "Strategy, Meta advertising, creative testing, e-commerce growth and website support for Black Gold Fertilizer over 24 months."
 industry: "Agriculture & E-commerce"
 services:
   - "Paid Advertising"
@@ -18,10 +18,10 @@ metrics:
   - value: "24 Months"
     label: "Engagement Timeline"
 responsibilities:
-  - "Digital strategy and Meta advertising campaign execution."
-  - "Creative testing, ad scripting and visual content direction."
-  - "WooCommerce store optimisation, analytics tracking, and retention support."
-  - "Customer communications and digital sales support."
+  - "Digital strategy and campaign planning."
+  - "Meta advertising execution and audience testing."
+  - "Creative testing, ad copy and visual content direction."
+  - "E-commerce growth support and website support."
 heroImage:
   src: "/images/black-gold-official.png"
   alt: "Official Black Gold Fertilizer packaging visual"
@@ -39,14 +39,15 @@ draft: false
 
 ## Project Overview
 
-Starts Digital has provided strategy, Meta advertising, creative testing, e-commerce growth and website support for Black Gold Fertilizer, a Pakistan-wide lawn-care and organic fertilizer brand, over 24 months.
+Starts Digital has provided strategy, Meta advertising, creative testing, e-commerce growth and website support for Black Gold Fertilizer over 24 months.
 
 ## Approved Scope & Services Delivered
 
-- **Strategy & Meta Campaigns:** Structured ad account management targeting home gardening and lawn-care buyers across Pakistan.
-- **Creative Testing & Scripting:** Developed visual assets, campaign copy, scripts, and promotional graphics tailored to seasonal planting cycles.
-- **Website & WooCommerce Support:** Maintained storefront performance, analytics tracking, and order conversion support.
-- **Customer Communications & Sales Support:** Assisted with digital customer communications and sales process optimization.
+- **Digital Strategy:** Overall strategy and campaign planning.
+- **Meta Advertising:** Meta advertising execution and audience testing.
+- **Creative Testing:** Creative testing, ad copy, and visual content direction.
+- **E-Commerce Growth Support:** Ongoing campaign optimization and sales channel support.
+- **Website Support:** Website support and digital storefront coordination.
 
 ## Verified Outcome
 

@@ -36,24 +36,6 @@ const {
 
 const project: ResolvedProject = getProjectBySlug(projectSlug)!;
 const activeVariant: ProjectVariant = variant || project.variant || 'default';
-
-const accentColor =
-  activeVariant === 'seasonal'
-    ? 'text-[#39c98a]'
-    : activeVariant === 'local-search'
-    ? 'text-sky-600'
-    : activeVariant === 'technology'
-    ? 'text-[#ddff35]'
-    : 'text-[#ff762b]';
-
-const badgeBorder =
-  activeVariant === 'seasonal'
-    ? 'border-[#39c98a]/30 bg-[#39c98a]/10 text-[#39c98a]'
-    : activeVariant === 'local-search'
-    ? 'border-sky-500/30 bg-sky-500/10 text-sky-600'
-    : activeVariant === 'technology'
-    ? 'border-[#ddff35]/40 bg-[#ddff35]/15 text-[#ddff35]'
-    : 'border-[#ff762b]/30 bg-[#ff762b]/10 text-[#ff762b]';
 const pageTitle = title.includes('Starts Digital') ? title : `${title} — Starts Digital`;
 ---
 
@@ -62,41 +44,68 @@ const pageTitle = title.includes('Starts Digital') ? title : `${title} — Start
   description={description}
   type="article"
 >
-  <div class="bg-[#faf9f6] min-h-screen text-[#061d33] overflow-hidden">
-    <!-- 1. HERO SECTION -->
-    <ProjectHero project={project} metrics={metrics} />
+  <div class="bg-[#faf9f6] min-h-screen text-[#061d33] overflow-hidden" data-story-variant={activeVariant}>
+    <!-- 1. PROJECT HERO -->
+    <ProjectHero project={project} metrics={metrics} variant={activeVariant} />
 
-    <!-- 2. MAIN STORY CONTENT SLOT (Article semantic wrapper - zero nested main) -->
-    <section class="py-12 sm:py-16">
-      <div class="mx-auto max-w-[1000px] px-6 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
-        <!-- Sidebar -->
-        <aside class="lg:col-span-4 space-y-6">
-          <div class="rounded-2xl border border-[#061d33]/12 bg-white p-6 shadow-sm space-y-6 sticky top-8">
+    <!-- 2. NARRATIVE & SIDEBAR SECTION -->
+    <section id="project-story-content" class="py-12 sm:py-16">
+      <div class="mx-auto max-w-[1280px] px-6 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- Sidebar Metadata -->
+        <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
+          <div class="rounded-2xl border border-[#061d33]/12 bg-white p-6 shadow-xs space-y-6">
             <div>
-              <span class="block font-mono text-xs font-bold tracking-wider text-[#ff762b] uppercase mb-1">
-                Sector
-              </span>
-              <p class="font-heading font-bold text-lg text-[#061d33]">
-                {project.sector}
-              </p>
+              <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-2">
+                PROJECT OVERVIEW
+              </h2>
+              <h3 class="font-heading font-bold text-xl text-[#061d33]">
+                {project.publicName}
+              </h3>
             </div>
 
-            {project.relationshipType && (
-              <div class="border-t border-[#061d33]/8 pt-4">
-                <span class="block font-mono text-xs font-bold tracking-wider text-[#ff762b] uppercase mb-1">
-                  Relationship
+            <!-- Relationship Badges -->
+            <div class="space-y-1.5">
+              <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+                Relationship
+              </span>
+              <div class="flex flex-col gap-1.5">
+                {project.primaryRelationship ? (
+                  <span class="inline-flex items-center gap-1.5 rounded-lg bg-[#ddff35]/15 border border-[#ddff35]/40 px-3 py-1 text-sm font-mono font-semibold text-[#061d33]">
+                    {project.primaryRelationship}
+                  </span>
+                ) : null}
+                {project.secondaryRelationship ? (
+                  <span class="inline-flex items-center gap-1.5 rounded-lg bg-[#ff762b]/10 border border-[#ff762b]/30 px-3 py-1 text-sm font-mono font-semibold text-[#ff762b]">
+                    {project.secondaryRelationship}
+                  </span>
+                ) : null}
+                {!project.primaryRelationship && project.relationshipType ? (
+                  <span class="inline-flex items-center gap-1.5 rounded-lg bg-[#ff762b]/10 border border-[#ff762b]/30 px-3 py-1 text-sm font-mono font-semibold text-[#ff762b]">
+                    {project.relationshipType}
+                  </span>
+                ) : null}
+              </div>
+            </div>
+
+            <!-- Verified Outcome / Contribution -->
+            {(project.verifiedOutcome || project.verifiedContribution) && (
+              <div class="space-y-1">
+                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+                  {project.verifiedOutcome ? 'Verified Outcome' : 'Verified Contribution'}
                 </span>
-                <p class="font-body font-semibold text-base text-[#061d33]">
-                  {project.relationshipType}
+                <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+                  {project.verifiedOutcome || project.verifiedContribution}
                 </p>
               </div>
             )}
 
-            <div class="border-t border-[#061d33]/8 pt-4">
-              <span class="block font-mono text-xs font-bold tracking-wider text-[#ff762b] uppercase mb-3">
-                Service Areas
+            <!-- Applied Services Links (At least 16px body, text-base) -->
+            <div class="space-y-2">
+              <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+                Applied Services
               </span>
-              <ul class="space-y-3 text-base font-body font-medium text-slate-800">
+              <ul class="space-y-2 font-body text-base">
                 {project.resolvedServices.map((svc) => (
                   <li>
                     <a
@@ -167,9 +176,9 @@ const pageTitle = title.includes('Starts Digital') ? title : `${title} — Start
                 </p>
               </div>
 
-              <div class="pt-3 mt-4 border-t border-[#061d33]/8 flex items-center justify-between text-xs font-mono font-bold text-[#061d33] group-hover:text-[#ff762b]">
+              <div class="pt-3 mt-4 border-t border-[#061d33]/8 flex items-center justify-between text-sm font-mono font-bold text-[#061d33] group-hover:text-[#ff762b]">
                 <span>Explore {svc.shortName} Page</span>
-                <ArrowRight class="size-3.5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </a>
           ))}

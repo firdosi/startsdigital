@@ -43,7 +43,7 @@ const projects = [
   {
     brand: convort.publicName,
     category: convort.sector,
-    relationship: convort.relationshipType,
+    relationship: convort.primaryRelationship || convort.relationshipType,
     contribution: convort.shortSummary,
     result: null,
     link: `${site.basePath}${convort.detailPath}`,

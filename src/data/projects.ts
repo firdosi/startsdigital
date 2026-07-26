@@ -12,6 +12,8 @@ export interface ProjectRecord {
   projectSlug: string;
   sectorOverride?: string;
   relationshipType?: string;
+  primaryRelationship?: string;
+  secondaryRelationship?: string;
   shortSummary: string;
   serviceIds: string[];
   verifiedOutcome?: string;
@@ -54,13 +56,6 @@ export interface ResolvedProject extends ProjectRecord {
   whatsappMessage: string;
 }
 
-export const PROJECT_CONTACT_SOURCE_MAP: Record<string, string> = {
-  'black-gold-fertilizer': 'Black Gold Fertilizer',
-  'qurbani-campaign': 'Wajib Livestock Qurbani Campaign',
-  'rk-reno-solutions': 'RK Reno Solutions',
-  'convortai': 'ConvortAI Technology and Growth Partnership'
-};
-
 export const projectRecords: ProjectRecord[] = [
   {
     id: 'black-gold-fertilizer',
@@ -68,7 +63,7 @@ export const projectRecords: ProjectRecord[] = [
     projectSlug: 'black-gold-fertilizer',
     sectorOverride: 'Agriculture & E-commerce',
     relationshipType: 'Client Experience',
-    shortSummary: 'Digital strategy, Meta advertising, creative testing, WooCommerce development, analytics and delivered-order sales support for lawn-care e-commerce.',
+    shortSummary: 'Digital strategy, Meta advertising, creative testing, e-commerce growth support and website support for lawn-care e-commerce.',
     serviceIds: ['paid-advertising', 'website-design-development', 'creative-content', 'seo-local-search'],
     verifiedOutcome: 'Supported PKR 30M+ in delivered-order revenue, 29,000+ product sales and 22,000+ delivered sales over 24 months.',
     detailPath: '/work/black-gold-fertilizer/',
@@ -91,7 +86,7 @@ export const projectRecords: ProjectRecord[] = [
     projectSlug: 'qurbani-campaign',
     sectorOverride: 'Livestock & Seasonal Campaigns',
     relationshipType: 'Client Experience',
-    shortSummary: 'Seasonal campaign strategy, paid social advertising, lead generation, WhatsApp sales routing and creative content for Eid Qurbani sales.',
+    shortSummary: 'Campaign strategy, paid social, lead generation, creative production and sales support for Eid Qurbani sales.',
     serviceIds: ['paid-advertising', 'creative-content', 'social-media-marketing'],
     verifiedOutcome: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.',
     detailPath: '/work/qurbani-campaign/',
@@ -136,7 +131,9 @@ export const projectRecords: ProjectRecord[] = [
     brandId: 'convort-ai',
     projectSlug: 'convortai',
     sectorOverride: 'Technology Product',
-    relationshipType: 'Technology Partner • Product Development & Growth Partner',
+    relationshipType: 'Technology Partner',
+    primaryRelationship: 'Technology Partner',
+    secondaryRelationship: 'Product Development & Growth Partner',
     shortSummary: 'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
     serviceIds: ['website-design-development', 'ai-marketing-workflows', 'social-media-marketing', 'creative-content'],
     verifiedContribution: 'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
@@ -269,7 +266,7 @@ export const projectRecords: ProjectRecord[] = [
   }
 ];
 
-function resolveProject(record: ProjectRecord): ResolvedProject | null {
+function resolveProjectRecord(record: ProjectRecord): ResolvedProject | null {
   const brand = brands.find((b) => b.id === record.brandId);
   if (!brand || !brand.active) {
     if (process.env.NODE_ENV !== 'production') {
@@ -285,7 +282,7 @@ function resolveProject(record: ProjectRecord): ResolvedProject | null {
   const approvedServices = resolvedServices.map((s) => s.name);
 
   const contactSourceValue = record.contactSourceValue || record.projectSlug || record.id;
-  const contactSourceLabel = record.contactSourceLabel || PROJECT_CONTACT_SOURCE_MAP[contactSourceValue] || brand.name;
+  const contactSourceLabel = record.contactSourceLabel || brand.name;
 
   let whatsappMessage = `Hello Starts Digital, I would like to discuss a project similar to ${brand.name}.`;
   if (record.id === 'black-gold-fertilizer') {
@@ -320,7 +317,7 @@ function resolveProject(record: ProjectRecord): ResolvedProject | null {
 }
 
 export function getAllProjects(): ResolvedProject[] {
-  return projectRecords.map(resolveProject).filter((p): p is ResolvedProject => p !== null);
+  return projectRecords.map(resolveProjectRecord).filter((p): p is ResolvedProject => p !== null);
 }
 
 export function getPublishedProjects(): ResolvedProject[] {
@@ -420,40 +417,82 @@ export function getDetailTypeActionLabel(detailType: DetailType): string {
 }
 
 export function getProjectContactSourceMap(): Record<string, string> {
-  return { ...PROJECT_CONTACT_SOURCE_MAP };
+  const map: Record<string, string> = {};
+  for (const p of getPublishedProjects()) {
+    if (p.contactSourceValue && p.contactSourceLabel) {
+      map[p.contactSourceValue] = p.contactSourceLabel;
+    }
+  }
+  return map;
 }
 
-export function validatePortfolioData(): { valid: boolean; errors: string[] } {
+export function validateProjectRecordsArray(records: ProjectRecord[]): { valid: boolean; errors: string[] } {
   const errors: string[] = [];
-  const projects = getAllProjects();
+  const seenIds = new Set<string>();
+  const seenBrandIds = new Set<string>();
+  const seenDetailPaths = new Set<string>();
 
-  if (projects.length !== projectRecords.length) {
-    errors.push(`Project resolution failed: ${projectRecords.length - projects.length} records returned null.`);
-  }
+  for (const record of records) {
+    if (seenIds.has(record.id)) {
+      errors.push(`Duplicate project ID found: ${record.id}`);
+    }
+    seenIds.add(record.id);
 
-  for (const project of projects) {
-    if (!project.brand || !project.brand.active) {
-      errors.push(`Project ${project.id} has invalid or inactive brand ${project.brandId}.`);
+    if (seenBrandIds.has(record.brandId)) {
+      errors.push(`Duplicate public brand ID found: ${record.brandId}`);
     }
-    if (!project.logo) {
-      errors.push(`Project ${project.id} is missing a brand logo.`);
+    seenBrandIds.add(record.brandId);
+
+    const brand = brands.find((b) => b.id === record.brandId);
+    if (!brand || !brand.active) {
+      errors.push(`Project ${record.id} references missing or inactive brand ${record.brandId}.`);
     }
-    if (project.resolvedServices.length === 0) {
-      errors.push(`Project ${project.id} has zero resolved services.`);
+
+    if (!brand?.logo) {
+      errors.push(`Project ${record.id} brand ${record.brandId} is missing a logo.`);
     }
-    if ((project.detailType === 'case-study' || project.detailType === 'partner-story') && !project.detailPath) {
-      errors.push(`Detailed project ${project.id} is missing detailPath.`);
+
+    if (!record.serviceIds || record.serviceIds.length === 0) {
+      errors.push(`Project ${record.id} has no service IDs.`);
+    } else {
+      for (const sid of record.serviceIds) {
+        if (!getServiceById(sid)) {
+          errors.push(`Project ${record.id} references unresolved service ID ${sid}.`);
+        }
+      }
     }
-    if (project.detailType === 'client-experience' && !project.officialWebsite && !project.officialSocialUrl) {
-      errors.push(`Client experience project ${project.id} is missing official external destination.`);
+
+    if (record.detailType === 'case-study' || record.detailType === 'partner-story') {
+      if (!record.detailPath) {
+        errors.push(`Detailed project ${record.id} is missing detailPath.`);
+      } else {
+        if (seenDetailPaths.has(record.detailPath)) {
+          errors.push(`Duplicate detailPath found: ${record.detailPath}`);
+        }
+        seenDetailPaths.add(record.detailPath);
+      }
+      if (!record.contactSourceLabel) {
+        errors.push(`Detailed project ${record.id} is missing contactSourceLabel.`);
+      }
+    }
+
+    if (record.detailType === 'client-experience') {
+      if (!brand?.website && !brand?.facebook && !brand?.instagram) {
+        errors.push(`Client experience project ${record.id} is missing official external destination.`);
+      }
     }
   }
 
   return { valid: errors.length === 0, errors };
 }
 
-// Auto-run validation in dev / build
-const validation = validatePortfolioData();
-if (!validation.valid) {
-  console.error('[Portfolio Data Error]', validation.errors.join(' | '));
+export function validatePublishedProjectRecords(): void {
+  const result = validateProjectRecordsArray(projectRecords);
+  if (!result.valid) {
+    const msg = `[Build Error] Strict Portfolio Project Record Validation Failed:\n- ${result.errors.join('\n- ')}`;
+    throw new Error(msg);
+  }
 }
+
+// Strictly enforce build-time validation
+validatePublishedProjectRecords();

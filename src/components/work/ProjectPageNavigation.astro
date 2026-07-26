@@ -1,6 +1,6 @@
 ---
 import { site } from '../../site.config';
-import { getProjectStoryNavigation, getDetailTypeActionLabel } from '../../data/projects';
+import { getProjectStoryNavigation } from '../../data/projects';
 import { ArrowLeft, ArrowRight, LayoutGrid } from '@lucide/astro';
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
 const { currentProjectSlug } = Astro.props;
 
 const { prevProject, nextProject } = getProjectStoryNavigation(currentProjectSlug);
+const availableCount = (prevProject ? 1 : 0) + 1 + (nextProject ? 1 : 0);
 ---
 
 <section id="project-navigation" class="py-12 bg-[#faf9f6] border-t border-[#061d33]/10">
@@ -18,59 +19,52 @@ const { prevProject, nextProject } = getProjectStoryNavigation(currentProjectSlu
       EXPLORE DETAILED PROJECT STORIES
     </h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
-      <!-- Previous Project Link -->
-      <div>
-        {prevProject ? (
-          <a
-            href={`${site.basePath}${prevProject.detailPath}`}
-            class="h-full rounded-2xl border border-[#061d33]/12 bg-white p-5 shadow-xs hover:border-[#ff762b] hover:shadow-md transition-all flex flex-col justify-between group min-h-[88px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-          >
-            <span class="inline-flex items-center gap-1 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
-              <ArrowLeft class="size-3.5 group-hover:-translate-x-1 transition-transform" />
-              <span>Previous Story</span>
-            </span>
-            <span class="font-heading font-bold text-base text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-snug mt-1 block">
-              {prevProject.publicName}
-            </span>
-          </a>
-        ) : (
-          <div class="h-full rounded-2xl border border-slate-200/60 bg-white/40 p-5 flex flex-col justify-center items-start text-xs font-mono text-slate-400 min-h-[88px]">
-            <span>First Detailed Story</span>
-          </div>
-        )}
-      </div>
+    <div
+      class:list={[
+        'grid gap-4 items-stretch mx-auto',
+        availableCount === 2 ? 'grid-cols-1 sm:grid-cols-2 max-w-[700px]' : 'grid-cols-1 sm:grid-cols-3 max-w-[1000px]'
+      ]}
+    >
+      <!-- Previous Project Link (Only rendered if real previous project exists) -->
+      {prevProject && (
+        <a
+          href={`${site.basePath}${prevProject.detailPath}`}
+          class="h-full rounded-2xl border border-[#061d33]/12 bg-white p-5 shadow-xs hover:border-[#ff762b] hover:shadow-md transition-all flex flex-col justify-between group min-h-[88px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+        >
+          <span class="inline-flex items-center gap-1 text-sm font-mono font-bold text-[#ff762b] uppercase tracking-wider">
+            <ArrowLeft class="size-4 group-hover:-translate-x-1 transition-transform" />
+            <span>Previous Story</span>
+          </span>
+          <span class="font-heading font-bold text-base text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-snug mt-1 block">
+            {prevProject.publicName}
+          </span>
+        </a>
+      )}
 
-      <!-- All Work Center Button -->
+      <!-- All Client Work Center Button -->
       <a
         href={`${site.basePath}/work/`}
         class="h-full rounded-2xl border-2 border-[#061d33] bg-[#061d33] text-white p-5 shadow-xs hover:bg-[#ff762b] hover:border-[#ff762b] transition-all flex flex-col items-center justify-center gap-1.5 text-center min-h-[88px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
       >
         <LayoutGrid class="size-5 text-[#ddff35]" />
-        <span class="font-heading font-bold text-sm">All Client Directory</span>
+        <span class="font-heading font-bold text-sm sm:text-base">All Client Directory</span>
       </a>
 
-      <!-- Next Project Link -->
-      <div>
-        {nextProject ? (
-          <a
-            href={`${site.basePath}${nextProject.detailPath}`}
-            class="h-full rounded-2xl border border-[#061d33]/12 bg-white p-5 shadow-xs hover:border-[#ff762b] hover:shadow-md transition-all flex flex-col justify-between text-right group min-h-[88px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-          >
-            <span class="inline-flex items-center gap-1 justify-end text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
-              <span>Next Story</span>
-              <ArrowRight class="size-3.5 group-hover:translate-x-1 transition-transform" />
-            </span>
-            <span class="font-heading font-bold text-base text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-snug mt-1 block">
-              {nextProject.publicName}
-            </span>
-          </a>
-        ) : (
-          <div class="h-full rounded-2xl border border-slate-200/60 bg-white/40 p-5 flex flex-col justify-center items-end text-xs font-mono text-slate-400 min-h-[88px]">
-            <span>Last Detailed Story</span>
-          </div>
-        )}
-      </div>
+      <!-- Next Project Link (Only rendered if real next project exists) -->
+      {nextProject && (
+        <a
+          href={`${site.basePath}${nextProject.detailPath}`}
+          class="h-full rounded-2xl border border-[#061d33]/12 bg-white p-5 shadow-xs hover:border-[#ff762b] hover:shadow-md transition-all flex flex-col justify-between text-right group min-h-[88px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+        >
+          <span class="inline-flex items-center gap-1 justify-end text-sm font-mono font-bold text-[#ff762b] uppercase tracking-wider">
+            <span>Next Story</span>
+            <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+          </span>
+          <span class="font-heading font-bold text-base text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-snug mt-1 block">
+            {nextProject.publicName}
+          </span>
+        </a>
+      )}
     </div>
   </div>
 </section>

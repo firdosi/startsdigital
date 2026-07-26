@@ -133,11 +133,15 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
                   <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
                     {proj.publicName}
                   </h3>
-                  {proj.relationshipType && isConvort && (
+                  {proj.primaryRelationship ? (
+                    <span class="inline-block mt-1 font-mono text-xs text-[#ff762b] font-semibold">
+                      {proj.primaryRelationship} {proj.secondaryRelationship ? `• ${proj.secondaryRelationship}` : ''}
+                    </span>
+                  ) : proj.relationshipType ? (
                     <span class="inline-block mt-1 font-mono text-xs text-[#ff762b] font-semibold">
                       {proj.relationshipType}
                     </span>
-                  )}
+                  ) : null}
                 </div>
 
                 <!-- Contribution -->
