@@ -196,7 +196,7 @@ if (resolvedSchemaType === 'homepage') {
     breadcrumbSchema
   );
 } else if (resolvedSchemaType === 'work-index') {
-  const stories = projectRecords.filter((p) => p.isDetailedStory);
+  const stories = projectRecords.filter((p) => p.hasDetailedStory && p.detailPath);
   schemas.push(
     {
       '@context': 'https://schema.org',
@@ -211,8 +211,8 @@ if (resolvedSchemaType === 'homepage') {
         itemListElement: stories.map((p, idx) => ({
           '@type': 'ListItem',
           position: idx + 1,
-          name: p.publicName,
-          url: getCanonicalUrl(p.detailPath),
+          name: p.brandName,
+          url: getCanonicalUrl(p.detailPath!),
         })),
       },
     },
