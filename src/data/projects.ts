@@ -1,5 +1,5 @@
 import { brands, type Brand } from './brands';
-import { servicesData, getServiceById, type Service } from './services';
+import { servicesData, getServiceById, type ServiceDefinition } from './services';
 
 export type DetailType = 'case-study' | 'partner-story' | 'client-experience';
 export type EvidenceLevel = 'detailed-case-study' | 'verified-project-summary' | 'client-experience';
@@ -41,7 +41,7 @@ export interface ResolvedProject extends ProjectRecord {
   darkLogoContainer: boolean;
   officialWebsite?: string;
   officialSocialUrl?: string;
-  resolvedServices: Service[];
+  resolvedServices: ServiceDefinition[];
   approvedServices: string[];
 }
 
@@ -243,7 +243,7 @@ function resolveProject(record: ProjectRecord): ResolvedProject | null {
 
   const resolvedServices = record.serviceIds
     .map((id) => getServiceById(id))
-    .filter((s): s is Service => Boolean(s));
+    .filter((s): s is ServiceDefinition => Boolean(s));
 
   const approvedServices = resolvedServices.map((s) => s.name);
 
