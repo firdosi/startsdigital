@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { servicesData } from '../../data/services';
+import ServiceHero from '../../components/services/ServiceHero.astro';
+import ServiceNeed from '../../components/services/ServiceNeed.astro';
+import ServiceDeliverables from '../../components/services/ServiceDeliverables.astro';
+import ServiceProcess from '../../components/services/ServiceProcess.astro';
+import ServiceProof from '../../components/services/ServiceProof.astro';
+import ServiceClientInputs from '../../components/services/ServiceClientInputs.astro';
+import ServiceFaq from '../../components/services/ServiceFaq.astro';
+import RelatedServices from '../../components/services/RelatedServices.astro';
+import ServiceContactCta from '../../components/services/ServiceContactCta.astro';
+import MotionController from '../../components/common/MotionController.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import { Film, FileText, Palette, Scissors, CheckSquare, Download } from '@lucide/astro';
+
+const service = servicesData.find((s) => s.id === 'creative-content')!;
+
+const productionSequence = [
+  { step: '01', title: 'Creative Brief', desc: 'Audience, offer, message, platform formats and target goals.', icon: FileText },
+  { step: '02', title: 'Concept & Hook', desc: 'Developing visual angles, video scripts, and messaging hooks.', icon: Palette },
+  { step: '03', title: 'Asset Preparation', desc: 'Gathering raw footage, photos, logos, and brand guidelines.', icon: Film },
+  { step: '04', title: 'Video & Design Edit', desc: 'Editing video clips, formatting captions, and designing graphics.', icon: Scissors },
+  { step: '05', title: 'Client Review', desc: 'Applying feedback and refining details within defined revision scope.', icon: CheckSquare },
+  { step: '06', title: 'Asset Delivery', desc: 'Exporting formatted vertical, square, and horizontal media files.', icon: Download }
+];
+---
+
+<BaseLayout
+  title="Creative Content Services | Starts Digital"
+  description="Creative content support from Starts Digital covering campaign concepts, scripts, video editing, graphic design, platform adaptations, review workflows and organised asset delivery."
+>
+  {/* 1. Service Hero */}
+  <ServiceHero service={service} />
+
+  {/* Custom Visual Feature: Storyboard Production Sequence */}
+  <section id="production-sequence" class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="PRODUCTION WORKFLOW" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] text-[#061d33] leading-tight">
+          Structured creative production sequence.
+        </h2>
+        <p class="text-base text-slate-700 font-body leading-relaxed">
+          From initial brief to final formatted video edits and graphic assets.
+        </p>
+      </div>
+
+      <!-- Storyboard CSS Panel Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {productionSequence.map((stage) => {
+          const IconComp = stage.icon;
+          return (
+            <div class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 flex flex-col justify-between shadow-xs">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-xs font-bold text-[#ff762b] bg-[#ff762b]/10 px-2.5 py-0.5 rounded">
+                    STAGE {stage.step}
+                  </span>
+                  <IconComp class="size-5 text-slate-500" />
+                </div>
+                <h3 class="font-heading font-bold text-lg text-[#061d33]">{stage.title}</h3>
+                <p class="text-sm font-body text-slate-600 leading-relaxed">{stage.desc}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  {/* 2. When This Service Is Useful */}
+  <ServiceNeed service={service} />
+
+  {/* 3. Practical Deliverables */}
+  <ServiceDeliverables service={service} />
+
+  {/* 4. How the Work Is Organised */}
+  <ServiceProcess service={service} />
+
+  {/* 5. Relevant Project Experience (Black Gold & Wajib) */}
+  <ServiceProof service={service} />
+
+  {/* 6. Information Needed From the Client */}
+  <ServiceClientInputs service={service} />
+
+  {/* 7. Service-Specific FAQ */}
+  <ServiceFaq service={service} />
+
+  {/* 8. Related Services */}
+  <RelatedServices service={service} />
+
+  {/* 9. Service Contact CTA */}
+  <ServiceContactCta service={service} />
+
+  <MotionController />
+</BaseLayout>

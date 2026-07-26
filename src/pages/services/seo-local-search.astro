@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { servicesData } from '../../data/services';
+import ServiceHero from '../../components/services/ServiceHero.astro';
+import ServiceNeed from '../../components/services/ServiceNeed.astro';
+import ServiceDeliverables from '../../components/services/ServiceDeliverables.astro';
+import ServiceProcess from '../../components/services/ServiceProcess.astro';
+import ServiceProof from '../../components/services/ServiceProof.astro';
+import ServiceClientInputs from '../../components/services/ServiceClientInputs.astro';
+import ServiceFaq from '../../components/services/ServiceFaq.astro';
+import RelatedServices from '../../components/services/RelatedServices.astro';
+import ServiceContactCta from '../../components/services/ServiceContactCta.astro';
+import MotionController from '../../components/common/MotionController.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import { Search, MapPin, FileText, Compass, CornerDownRight } from '@lucide/astro';
+
+const service = servicesData.find((s) => s.id === 'seo-local-search')!;
+
+const searchIntentFlow = [
+  {
+    step: '01',
+    title: 'Customer Search Query',
+    desc: 'Local customer searches for specific services in their area (e.g. "renovation services Kuala Lumpur").',
+    icon: Search
+  },
+  {
+    step: '02',
+    title: 'Structured Service Page',
+    desc: 'Website presents dedicated service and location pages with clear heading hierarchy and relevant copy.',
+    icon: FileText
+  },
+  {
+    step: '03',
+    title: 'Local Google Profile',
+    desc: 'Google Business Profile aligns category, service details, and contact location metadata.',
+    icon: MapPin
+  },
+  {
+    step: '04',
+    title: 'Indexation & Discovery',
+    desc: 'Search engine crawls clear site structure and presents accurate service listings to users.',
+    icon: Compass
+  }
+];
+---
+
+<BaseLayout
+  title="SEO and Local Search Services | Starts Digital"
+  description="SEO and local search support from Starts Digital covering website structure, service-page planning, location-focused content, on-page foundations, technical review and Google Business Profile support."
+>
+  {/* 1. Service Hero */}
+  <ServiceHero service={service} />
+
+  {/* Custom Visual Feature: Search Intent & Local Structure Diagram */}
+  <section id="search-flow" class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="SEARCH INTENT ARCHITECTURE" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] text-[#061d33] leading-tight">
+          How page structure connects search intent with local discovery.
+        </h2>
+        <p class="text-base text-slate-700 font-body leading-relaxed">
+          Search engines index clear website hierarchies and verified local business metadata.
+        </p>
+      </div>
+
+      <!-- 4-Stage Search Flow Diagram -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto relative">
+        {searchIntentFlow.map((item, idx) => {
+          const IconComp = item.icon;
+          return (
+            <div class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 flex flex-col justify-between shadow-xs relative">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-xs font-bold text-[#ff762b] bg-[#ff762b]/10 px-2.5 py-0.5 rounded">
+                    STAGE {item.step}
+                  </span>
+                  <IconComp class="size-5 text-slate-500" />
+                </div>
+                <h3 class="font-heading font-bold text-lg text-[#061d33]">{item.title}</h3>
+                <p class="text-sm font-body text-slate-600 leading-relaxed">{item.desc}</p>
+              </div>
+
+              {idx < 3 && (
+                <div class="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 z-10">
+                  <CornerDownRight class="size-5 text-[#ff762b] rotate-[-45deg]" />
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  {/* 2. When This Service Is Useful */}
+  <ServiceNeed service={service} />
+
+  {/* 3. Practical Deliverables */}
+  <ServiceDeliverables service={service} />
+
+  {/* 4. How the Work Is Organised */}
+  <ServiceProcess service={service} />
+
+  {/* 5. Relevant Project Experience (RK Reno - Single centered card) */}
+  <ServiceProof service={service} />
+
+  {/* 6. Information Needed From the Client */}
+  <ServiceClientInputs service={service} />
+
+  {/* 7. Service-Specific FAQ */}
+  <ServiceFaq service={service} />
+
+  {/* 8. Related Services */}
+  <RelatedServices service={service} />
+
+  {/* 9. Service Contact CTA */}
+  <ServiceContactCta service={service} />
+
+  <MotionController />
+</BaseLayout>

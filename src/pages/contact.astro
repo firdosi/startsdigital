@@ -17,11 +17,21 @@ import {
 // Allowlist mappings for service and source parameters
 const SERVICE_ALLOWLIST: Record<string, string> = {
   'paid-advertising': 'Paid Advertising',
+  'Paid Advertising': 'Paid Advertising',
+  'website-design-development': 'Website Design and Development',
   'website-development': 'Website Design and Development',
-  'seo': 'SEO',
+  'Website Design and Development': 'Website Design and Development',
+  'seo-local-search': 'SEO & Local Search',
+  'seo': 'SEO & Local Search',
+  'SEO & Local Search': 'SEO & Local Search',
+  'SEO and Local Search': 'SEO & Local Search',
   'creative-content': 'Creative Content',
+  'Creative Content': 'Creative Content',
   'social-media-marketing': 'Social Media Marketing',
+  'Social Media Marketing': 'Social Media Marketing',
+  'ai-marketing-workflows': 'AI Marketing Systems',
   'ai-marketing-systems': 'AI Marketing Systems',
+  'AI Marketing Systems': 'AI Marketing Systems',
   'multiple-services': 'Multiple Services',
   'not-sure-yet': 'Not Sure Yet',
 };
@@ -286,7 +296,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                     <option value="" disabled selected={!preselectedService}>Select a service...</option>
                     <option value="Paid Advertising" selected={preselectedService === 'Paid Advertising'}>Paid Advertising</option>
                     <option value="Website Design and Development" selected={preselectedService === 'Website Design and Development'}>Website Design and Development</option>
-                    <option value="SEO" selected={preselectedService === 'SEO'}>SEO</option>
+                    <option value="SEO & Local Search" selected={preselectedService === 'SEO & Local Search'}>SEO & Local Search</option>
                     <option value="Creative Content" selected={preselectedService === 'Creative Content'}>Creative Content</option>
                     <option value="Social Media Marketing" selected={preselectedService === 'Social Media Marketing'}>Social Media Marketing</option>
                     <option value="AI Marketing Systems" selected={preselectedService === 'AI Marketing Systems'}>AI Marketing Systems</option>

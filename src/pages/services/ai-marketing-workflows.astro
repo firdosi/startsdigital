@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { servicesData } from '../../data/services';
+import ServiceHero from '../../components/services/ServiceHero.astro';
+import ServiceNeed from '../../components/services/ServiceNeed.astro';
+import ServiceDeliverables from '../../components/services/ServiceDeliverables.astro';
+import ServiceProcess from '../../components/services/ServiceProcess.astro';
+import ServiceProof from '../../components/services/ServiceProof.astro';
+import ServiceClientInputs from '../../components/services/ServiceClientInputs.astro';
+import ServiceFaq from '../../components/services/ServiceFaq.astro';
+import RelatedServices from '../../components/services/RelatedServices.astro';
+import ServiceContactCta from '../../components/services/ServiceContactCta.astro';
+import MotionController from '../../components/common/MotionController.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import { FileInput, Cpu, UserCheck, FileOutput, ShieldAlert } from '@lucide/astro';
+
+const service = servicesData.find((s) => s.id === 'ai-marketing-workflows')!;
+
+const workflowDiagram = [
+  { step: '01', title: 'Task Input', desc: 'Raw inquiry data, content brief, or manual task requirements.', icon: FileInput },
+  { step: '02', title: 'AI Instruction Processing', desc: 'Custom prompts process structured text, draft outlines, or handoffs.', icon: Cpu },
+  { step: '03', title: 'Human Approval & Review', desc: 'Team member verifies accuracy, tone, compliance, and edge cases.', icon: UserCheck },
+  { step: '04', title: 'Final Output', desc: 'Approved draft published, sent to client, or saved in workspace.', icon: FileOutput }
+];
+---
+
+<BaseLayout
+  title="AI Marketing Workflows | Starts Digital"
+  description="Practical AI marketing workflow support from Starts Digital covering task mapping, prompt and instruction design, tool review, structured handoffs, human approval, testing and documentation."
+>
+  {/* 1. Service Hero */}
+  <ServiceHero service={service} />
+
+  {/* Custom Visual Feature: Input -> Workflow -> Human Review -> Output Diagram */}
+  <section id="workflow-diagram" class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="HUMAN-IN-THE-LOOP ARCHITECTURE" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] text-[#061d33] leading-tight">
+          Input, AI processing, human review and final output.
+        </h2>
+        <p class="text-base text-slate-700 font-body leading-relaxed">
+          AI tools support defined manual tasks while human oversight guarantees accuracy and decision-making.
+        </p>
+      </div>
+
+      <!-- 4-Stage Diagram Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-10">
+        {workflowDiagram.map((stage) => {
+          const IconComp = stage.icon;
+          return (
+            <div class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 flex flex-col justify-between shadow-xs border-l-4 border-l-[#ff762b]">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-xs font-bold text-[#ff762b] bg-[#ff762b]/10 px-2.5 py-0.5 rounded">
+                    STAGE {stage.step}
+                  </span>
+                  <IconComp class="size-5 text-[#061d33]" />
+                </div>
+                <h3 class="font-heading font-bold text-lg text-[#061d33]">{stage.title}</h3>
+                <p class="text-sm font-body text-slate-600 leading-relaxed">{stage.desc}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Sensitive Data Warning Notice -->
+      <div class="rounded-2xl border border-amber-500/30 bg-amber-50/50 p-5 max-w-3xl mx-auto flex items-start gap-3.5">
+        <ShieldAlert class="size-5 text-amber-600 shrink-0 mt-0.5" />
+        <p class="text-sm font-mono text-slate-700 leading-relaxed">
+          <strong>Data Safety Notice:</strong> Do not send private passwords, confidential customer records or sensitive business data through the public inquiry form. Sensitive data handling must be evaluated against privacy regulations before implementation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* 2. When This Service Is Useful */}
+  <ServiceNeed service={service} />
+
+  {/* 3. Practical Deliverables */}
+  <ServiceDeliverables service={service} />
+
+  {/* 4. How the Work Is Organised */}
+  <ServiceProcess service={service} />
+
+  {/* 5. Relevant Project Experience (ConvortAI with transparent note) */}
+  <ServiceProof service={service} />
+
+  {/* 6. Information Needed From the Client */}
+  <ServiceClientInputs service={service} />
+
+  {/* 7. Service-Specific FAQ */}
+  <ServiceFaq service={service} />
+
+  {/* 8. Related Services */}
+  <RelatedServices service={service} />
+
+  {/* 9. Service Contact CTA */}
+  <ServiceContactCta service={service} />
+
+  <MotionController />
+</BaseLayout>

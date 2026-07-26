@@ -10,7 +10,7 @@ export interface Props {
 
 const { service } = Astro.props;
 const contactUrl = `${site.basePath}/contact/?service=${encodeURIComponent(service.contactServiceValue)}`;
-const whatsappUrl = 'https://wa.me/923394135544';
+const whatsappUrl = site.contact.whatsapp || site.whatsappUrl;
 ---
 
 <section id="contact" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white relative overflow-hidden scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
@@ -20,14 +20,14 @@ const whatsappUrl = 'https://wa.me/923394135544';
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8 relative z-10 text-center">
     <div class="max-w-3xl mx-auto space-y-6">
       
-      <SectionEyebrow label="NEXT STEPS" align="center" delay={0} />
+      <SectionEyebrow label="NEXT STEPS" align="center" motion={false} />
 
       <h2 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[50px] text-white leading-tight tracking-[-0.025em]">
         Discuss your {service.name.toLowerCase()} project.
       </h2>
 
       <p class="text-base sm:text-lg text-slate-200 font-body leading-relaxed max-w-2xl mx-auto font-normal">
-        Share your business requirements, target timeline and available materials. We will review your context and outline a clear project proposal.
+        Share your business requirements, target timeline and available materials. We will review the information and discuss the appropriate next step.
       </p>
 
       <div class="pt-4 flex flex-wrap items-center justify-center gap-4">

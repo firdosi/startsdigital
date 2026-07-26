@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { servicesData } from '../../data/services';
+import ServiceHero from '../../components/services/ServiceHero.astro';
+import ServiceNeed from '../../components/services/ServiceNeed.astro';
+import ServiceDeliverables from '../../components/services/ServiceDeliverables.astro';
+import ServiceProcess from '../../components/services/ServiceProcess.astro';
+import ServiceProof from '../../components/services/ServiceProof.astro';
+import ServiceClientInputs from '../../components/services/ServiceClientInputs.astro';
+import ServiceFaq from '../../components/services/ServiceFaq.astro';
+import RelatedServices from '../../components/services/RelatedServices.astro';
+import ServiceContactCta from '../../components/services/ServiceContactCta.astro';
+import MotionController from '../../components/common/MotionController.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import { Calendar, Share2, MessageSquare, CheckSquare } from '@lucide/astro';
+
+const service = servicesData.find((s) => s.id === 'social-media-marketing')!;
+
+const channelCoordination = [
+  { title: 'Content Themes', desc: 'Defining post categories (product features, testimonials, campaign offers, behind-the-scenes).', icon: Calendar },
+  { title: 'Publishing Calendar', desc: 'Organizing posting schedules, media formats, and caption copy ahead of time.', icon: Share2 },
+  { title: 'Client Approval', desc: 'Reviewing planned post drafts and caption details prior to platform scheduling.', icon: CheckSquare },
+  { title: 'Channel Performance', desc: 'Observing content reach and engagement signals to guide future content plans.', icon: MessageSquare }
+];
+---
+
+<BaseLayout
+  title="Social Media Marketing Services | Starts Digital"
+  description="Social media marketing support from Starts Digital covering channel planning, content calendars, creative coordination, captions, publishing support, response responsibilities and performance review."
+>
+  {/* 1. Service Hero */}
+  <ServiceHero service={service} />
+
+  {/* Custom Visual Feature: Content Calendar & Channel Coordination */}
+  <section id="channel-coordination" class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="CHANNEL COORDINATION" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] text-[#061d33] leading-tight">
+          Structured social publishing and content planning.
+        </h2>
+        <p class="text-base text-slate-700 font-body leading-relaxed">
+          Maintaining consistent messaging across Meta channels with clear approval routines.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        {channelCoordination.map((item, idx) => {
+          const IconComp = item.icon;
+          return (
+            <div class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 flex flex-col justify-between shadow-xs">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-xs font-bold text-[#ff762b] bg-[#ff762b]/10 px-2.5 py-0.5 rounded">
+                    PILLAR 0{idx + 1}
+                  </span>
+                  <IconComp class="size-5 text-slate-500" />
+                </div>
+                <h3 class="font-heading font-bold text-lg text-[#061d33]">{item.title}</h3>
+                <p class="text-sm font-body text-slate-600 leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  {/* 2. When This Service Is Useful */}
+  <ServiceNeed service={service} />
+
+  {/* 3. Practical Deliverables */}
+  <ServiceDeliverables service={service} />
+
+  {/* 4. How the Work Is Organised */}
+  <ServiceProcess service={service} />
+
+  {/* 5. Relevant Project Experience (ConvortAI & Wajib) */}
+  <ServiceProof service={service} />
+
+  {/* 6. Information Needed From the Client */}
+  <ServiceClientInputs service={service} />
+
+  {/* 7. Service-Specific FAQ */}
+  <ServiceFaq service={service} />
+
+  {/* 8. Related Services */}
+  <RelatedServices service={service} />
+
+  {/* 9. Service Contact CTA */}
+  <ServiceContactCta service={service} />
+
+  <MotionController />
+</BaseLayout>

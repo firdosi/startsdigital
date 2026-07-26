@@ -46,13 +46,16 @@ const allProofProjects: Record<string, any> = {
     result: null,
     link: `${site.basePath}/work/#convortai`,
     image: `${site.basePath}/brands/convort-ai/logo.webp`,
-    icon: ShieldCheck
+    icon: ShieldCheck,
+    transparentNote: 'This demonstrates Starts Digital’s technology-product and workflow experience. The final tools and implementation for each AI workflow depend on the specific project requirements.'
   }
 };
 
 const proofList = (service.relatedProjectIds || [])
   .map((id) => allProofProjects[id])
   .filter(Boolean);
+
+const isSingle = proofList.length === 1;
 ---
 
 {
@@ -62,7 +65,7 @@ const proofList = (service.relatedProjectIds || [])
         
         <!-- Section Header -->
         <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
-          <SectionEyebrow label="RELEVANT PROJECT EXPERIENCE" align="center" delay={0} />
+          <SectionEyebrow label="RELEVANT PROJECT EXPERIENCE" align="center" motion={false} />
           <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-white leading-tight tracking-[-0.025em]">
             Verified project proof related to {service.name.toLowerCase()}.
           </h2>
@@ -71,8 +74,8 @@ const proofList = (service.relatedProjectIds || [])
           </p>
         </div>
 
-        <!-- Proof Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Proof Cards Layout (Centered if 1 project, 2 columns if multiple) -->
+        <div class={isSingle ? "max-w-2xl mx-auto" : "grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"}>
           {proofList.map((p) => {
             const IconComp = p.icon;
             return (
@@ -134,6 +137,14 @@ const proofList = (service.relatedProjectIds || [])
                       </span>
                       <p class="text-base font-body font-semibold text-white leading-relaxed">
                         {p.result}
+                      </p>
+                    </div>
+                  )}
+
+                  {p.transparentNote && (
+                    <div class="pt-3 border-t border-white/10">
+                      <p class="text-xs font-mono text-slate-300 leading-relaxed">
+                        Note: {p.transparentNote}
                       </p>
                     </div>
                   )}

@@ -93,8 +93,8 @@ const generalFaqs = [
     a: 'Scope and pricing depend on your specific project requirements, required deliverables, platforms and timeline. We review your goals and provide a clear proposal before starting work.'
   },
   {
-    q: 'Which service detail pages are currently published?',
-    a: 'Paid Advertising and Website Design & Development have full published detail pages. Additional service pages for SEO, Creative Content, Social Media and AI Workflows are available for project discussion via our Contact form.'
+    q: 'Which service detail pages are published?',
+    a: 'All six core service pages are fully published with detailed deliverables, process steps, proof items and FAQs.'
   },
   {
     q: 'Does Starts Digital guarantee commercial results?',
@@ -157,77 +157,77 @@ const generalFaqs = [
     </div>
   </section>
 
-  {/* 2. Six-Service Directory */}
+  {/* 2. Redesigned Editorial Services Directory */}
   <section id="directory" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
       
       <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
-        <SectionEyebrow label="SERVICE DIRECTORY" align="center" delay={0} />
+        <SectionEyebrow label="SERVICE DIRECTORY" align="center" motion={false} />
         <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
           Six core capabilities for digital marketing and development.
         </h2>
         <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
-          Explore our published detail pages or contact us directly to discuss your specific requirements.
+          Click any service area to explore full deliverables, process steps, FAQs, and project proof.
         </p>
       </div>
 
-      <!-- Editorial Grid for 6 Services -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Divided 12-Column Editorial Rows Index -->
+      <div class="rounded-3xl border border-[#061d33]/15 overflow-hidden shadow-xs divide-y divide-[#061d33]/12">
         {servicesData.map((svc, idx) => {
           const IconComp = iconMap[svc.iconKey] || Megaphone;
-          const targetUrl = svc.published
-            ? `${site.basePath}/services/${svc.slug}/`
-            : `${site.basePath}/contact/?service=${encodeURIComponent(svc.contactServiceValue)}`;
+          const targetUrl = `${site.basePath}/services/${svc.slug}/`;
+          const isEven = idx % 2 === 0;
 
           return (
-            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all duration-300 group">
-              <div class="space-y-4">
+            <div class={`p-6 sm:p-8 lg:p-10 transition-colors ${isEven ? 'bg-white hover:bg-[#f7f4ed]/50' : 'bg-[#f7f4ed] hover:bg-white/80'} group`}>
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
                 
-                <div class="flex items-center justify-between">
-                  <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-3 py-1 rounded-full">
-                    0{idx + 1} • {svc.shortName}
-                  </span>
-                  <div class="size-10 rounded-2xl bg-[#061d33] text-[#ddff35] flex items-center justify-center">
-                    <IconComp class="size-5" />
+                <!-- Service Identity (approx 35% / 4 cols) -->
+                <div class="lg:col-span-4 space-y-2">
+                  <div class="flex items-center gap-3">
+                    <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-0.5 rounded">
+                      0{idx + 1}
+                    </span>
+                    <div class="size-9 rounded-xl bg-[#061d33] text-[#ddff35] flex items-center justify-center shrink-0">
+                      <IconComp class="size-4" />
+                    </div>
+                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-500">{svc.shortName}</span>
+                  </div>
+
+                  <h3 class="font-heading font-bold text-2xl sm:text-3xl text-[#061d33]">
+                    <a href={targetUrl} class="hover:text-[#ff762b] transition-colors">
+                      {svc.name}
+                    </a>
+                  </h3>
+                </div>
+
+                <!-- Summary & Core Support Areas (approx 45% / 5 cols) -->
+                <div class="lg:col-span-5 space-y-3">
+                  <p class="text-base font-body text-slate-800 leading-relaxed font-normal">
+                    {svc.summary}
+                  </p>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                    {svc.idealFor.slice(0, 4).map((area) => (
+                      <div class="flex items-start gap-2 text-xs font-mono text-slate-600">
+                        <CheckCircle2 class="size-3.5 text-[#ff762b] shrink-0 mt-0.5" />
+                        <span>{area}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                <h3 class="font-heading font-bold text-2xl text-[#061d33] pt-1">
-                  {svc.name}
-                </h3>
-
-                <p class="text-base text-slate-700 font-body leading-relaxed">
-                  {svc.summary}
-                </p>
-
-                <!-- 4 Practical Support Areas -->
-                <div class="pt-3 border-t border-[#061d33]/8 space-y-2">
-                  <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
-                    Core Support
-                  </span>
-                  <ul class="space-y-1.5">
-                    {svc.idealFor.slice(0, 4).map((area) => (
-                      <li class="flex items-start gap-2 text-xs font-mono text-slate-700">
-                        <CheckCircle2 class="size-3.5 text-[#ff762b] shrink-0 mt-0.5" />
-                        <span>{area}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <!-- Action Area (approx 20% / 3 cols) -->
+                <div class="lg:col-span-3 lg:text-right pt-2 lg:pt-0">
+                  <a
+                    href={targetUrl}
+                    class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/20 bg-white px-5 py-2.5 text-xs font-mono font-semibold text-[#061d33] group-hover:bg-[#061d33] group-hover:text-white transition-all shadow-xs"
+                  >
+                    <span>VIEW SERVICE PAGE</span>
+                    <ArrowRight class="size-3.5 group-hover:translate-x-1 transition-transform" />
+                  </a>
                 </div>
 
               </div>
-
-              <!-- Action Link -->
-              <div class="pt-4 mt-6 border-t border-[#061d33]/8">
-                <a
-                  href={targetUrl}
-                  class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-[#061d33] group-hover:text-[#ff762b] transition-colors"
-                >
-                  <span>{svc.published ? 'VIEW FULL SERVICE PAGE' : 'DISCUSS THIS SERVICE'}</span>
-                  <ArrowRight class="size-3.5 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </div>
-
             </div>
           );
         })}
@@ -241,7 +241,7 @@ const generalFaqs = [
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
       
       <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
-        <SectionEyebrow label="ENGAGEMENT PATTERNS" align="center" delay={0} />
+        <SectionEyebrow label="ENGAGEMENT PATTERNS" align="center" motion={false} />
         <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
           How services can work together.
         </h2>
@@ -271,7 +271,6 @@ const generalFaqs = [
         ))}
       </div>
 
-      <!-- Scope Disclaimer Note -->
       <div class="rounded-2xl border border-[#061d33]/12 bg-white p-5 text-center max-w-3xl mx-auto">
         <p class="text-sm font-body font-semibold text-[#061d33]">
           Note: The final combination of services, deliverables and responsibilities is agreed after project requirements are reviewed.
@@ -286,7 +285,7 @@ const generalFaqs = [
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
       
       <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
-        <SectionEyebrow label="SELECTED EXPERIENCE" align="center" delay={0} />
+        <SectionEyebrow label="SELECTED EXPERIENCE" align="center" motion={false} />
         <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-white leading-tight tracking-[-0.025em]">
           Service capabilities backed by verified project proof.
         </h2>
@@ -305,7 +304,7 @@ const generalFaqs = [
               <h3 class="font-heading font-bold text-2xl text-white">{item.brand}</h3>
               <p class="text-base text-slate-200 font-body leading-relaxed">{item.summary}</p>
               {item.result && (
-                <p class="text-sm font-body font-semibold text-[#ddff35] pt-1">{item.result}</p>
+                <p class="text-base font-body font-semibold text-[#ddff35] pt-1">{item.result}</p>
               )}
             </div>
 
@@ -330,7 +329,7 @@ const generalFaqs = [
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
       
       <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
-        <SectionEyebrow label="GENERAL SERVICES FAQ" align="center" delay={0} />
+        <SectionEyebrow label="GENERAL SERVICES FAQ" align="center" motion={false} />
         <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
           Frequently asked questions about working with Starts Digital.
         </h2>
@@ -362,7 +361,7 @@ const generalFaqs = [
   <section id="services-cta" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white text-center relative overflow-hidden scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8 relative z-10">
       <div class="max-w-3xl mx-auto space-y-6">
-        <SectionEyebrow label="GET STARTED" align="center" delay={0} />
+        <SectionEyebrow label="GET STARTED" align="center" motion={false} />
         <h2 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[50px] text-white leading-tight">
           Ready to discuss your project requirements?
         </h2>
