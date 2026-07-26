@@ -1,6 +1,6 @@
 ---
 title: "Black Gold Fertilizer Case Study"
-description: "Managed digital marketing, Meta advertising, creative testing, website optimisation, analytics, customer retention and digital sales support for a Pakistan-wide lawn-care e-commerce brand."
+description: "Strategy, Meta advertising, creative testing, e-commerce growth and website support for a Pakistan-wide lawn-care e-commerce brand."
 industry: "Agriculture & E-commerce"
 services:
   - "Paid Advertising"
@@ -24,12 +24,12 @@ responsibilities:
   - "Customer communications and digital sales support."
 heroImage:
   src: "/images/black-gold-official.png"
-  alt: "Black Gold Fertilizer Official Packaging Visual"
-  caption: "Official Black Gold Fertilizer Packaging Visual"
+  alt: "Official Black Gold Fertilizer packaging visual"
+  caption: "Official Black Gold Fertilizer packaging visual"
 gallery:
   - src: "/images/black-gold-web-banner.png"
-    alt: "Black Gold Fertilizer E-Commerce Web Visual"
-    caption: "Black Gold Fertilizer E-Commerce Store Visual"
+    alt: "Black Gold Fertilizer website visual"
+    caption: "Black Gold Fertilizer website visual"
 featured: true
 order: 1
 seoTitle: "Black Gold Fertilizer Case Study | Starts Digital"
@@ -39,14 +39,14 @@ draft: false
 
 ## Project Overview
 
-Starts Digital has supported digital strategy, advertising creative, and e-commerce growth for Black Gold Fertilizer, a Pakistan-wide lawn-care and organic fertilizer brand, from 2024 to the present.
+Starts Digital has provided strategy, Meta advertising, creative testing, e-commerce growth and website support for Black Gold Fertilizer, a Pakistan-wide lawn-care and organic fertilizer brand, over 24 months.
 
 ## Approved Scope & Services Delivered
 
-- **Paid Advertising & Meta Campaigns:** Structured ad account management targeting home gardening and lawn-care buyers across Pakistan.
+- **Strategy & Meta Campaigns:** Structured ad account management targeting home gardening and lawn-care buyers across Pakistan.
 - **Creative Testing & Scripting:** Developed visual assets, campaign copy, scripts, and promotional graphics tailored to seasonal planting cycles.
-- **Website & WooCommerce Optimisation:** Maintained storefront performance, analytics tracking, and order conversion support.
-- **Customer Retention & Digital Sales Support:** Assisted with digital customer communications and sales process optimization.
+- **Website & WooCommerce Support:** Maintained storefront performance, analytics tracking, and order conversion support.
+- **Customer Communications & Sales Support:** Assisted with digital customer communications and sales process optimization.
 
 ## Verified Outcome
 

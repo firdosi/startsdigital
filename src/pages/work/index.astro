@@ -8,6 +8,7 @@ import SectionSpark from '../../components/motion/SectionSpark.astro';
 import { site } from '../../site.config';
 import {
   getClientDirectoryProjects,
+  getDetailedProjectStories,
   getEvidenceLevelLabel,
   getDetailTypeActionLabel,
   type ResolvedProject
@@ -22,13 +23,7 @@ import {
 
 const directoryProjects = getClientDirectoryProjects();
 const publishedServices = getPublishedServices();
-
-const detailedProjects: ResolvedProject[] = [
-  directoryProjects.find((p) => p.id === 'black-gold-fertilizer')!,
-  directoryProjects.find((p) => p.id === 'wajib-livestock')!,
-  directoryProjects.find((p) => p.id === 'rk-reno-solutions')!,
-  directoryProjects.find((p) => p.id === 'convort-ai')!
-];
+const detailedProjects: ResolvedProject[] = getDetailedProjectStories();
 
 const encodedWhatsappMsg = encodeURIComponent('Hello Starts Digital, I would like to discuss a project after reviewing your work.');
 const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
@@ -107,6 +102,7 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
       <!-- 4 Equal-Weight Preview Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {detailedProjects.map((proj) => {
+          const actionLabel = getDetailTypeActionLabel(proj.detailType);
           const isConvort = proj.id === 'convort-ai';
 
           return (
@@ -194,7 +190,7 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
                   data-track="case-study-open"
                   class="inline-flex items-center gap-2 rounded-full bg-[#061d33] min-h-[44px] px-5 py-2.5 text-sm font-body font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
                 >
-                  <span>{isConvort ? 'Explore partner story' : 'Explore detailed story'}</span>
+                  <span>{actionLabel}</span>
                   <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
                 </a>
 
@@ -234,17 +230,23 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
         </p>
       </div>
 
-      <!-- 13 Equal-Weight Directory Cards Grid (Alphabetical Order) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {directoryProjects.map((p) => {
+      <!-- 13 Equal-Weight Directory Cards Grid (Alphabetical Order with Balanced Final Row) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {directoryProjects.map((p, index) => {
           const evidenceLabel = getEvidenceLevelLabel(p.evidenceLevel);
           const actionLabel = getDetailTypeActionLabel(p.detailType);
           const isDetailed = p.detailType === 'case-study' || p.detailType === 'partner-story';
           const primaryUrl = isDetailed ? `${site.basePath}${p.detailPath}` : (p.officialWebsite || p.officialSocialUrl);
           const isExternal = !isDetailed;
 
+          // Responsive balancing for the 13th single card on 2-col tablet and 3-col desktop
+          const isLastSingle = index === directoryProjects.length - 1;
+          const cardLayoutClasses = isLastSingle
+            ? 'sm:col-span-2 lg:col-span-1 lg:col-start-2 sm:max-w-md sm:mx-auto lg:max-w-none lg:mx-0 w-full'
+            : '';
+
           return (
-            <article class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group min-h-[360px] focus-within:ring-2 focus-within:ring-[#ff762b]">
+            <article class={`rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group min-h-[360px] focus-within:ring-2 focus-within:ring-[#ff762b] ${cardLayoutClasses}`}>
               <div class="space-y-4">
                 
                 <!-- Logo & Badge Header Row -->
@@ -350,7 +352,7 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
         {publishedServices.map((svc) => (
           <a
             href={`${site.basePath}/services/${svc.slug}/`}
-            class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+            class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 hover:border-[#ff762b]/40 hover:shadow-md transition-all group flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
           >
             <div class="space-y-3">
               <span class="text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider block">
@@ -364,8 +366,8 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
               </p>
             </div>
 
-            <div class="pt-4 mt-6 border-t border-[#061d33]/8 flex items-center justify-between text-sm font-body font-semibold text-[#061d33] group-hover:text-[#ff762b] transition-colors">
-              <span>Explore {svc.shortName} Service</span>
+            <div class="pt-4 mt-6 border-t border-[#061d33]/8 flex items-center justify-between text-xs font-mono font-bold text-[#061d33] group-hover:text-[#ff762b]">
+              <span>Explore {svc.shortName} Page</span>
               <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
             </div>
           </a>
@@ -375,45 +377,34 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
     </div>
   </section>
 
-  {/* 5. CONVERSION CTA */}
-  <section id="work-cta" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white relative overflow-hidden scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
-    <div class="absolute -right-20 -top-20 size-80 rounded-full bg-[#ff762b]/15 blur-3xl pointer-events-none"></div>
+  {/* 5. WORK CONVERSION CTA */}
+  <section id="work-cta" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white relative overflow-hidden">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 text-center relative z-10 space-y-6 max-w-3xl">
+      <h2 class="font-heading font-bold text-[32px] sm:text-[42px] lg:text-[48px] text-white leading-tight">
+        Ready to build your brand’s next digital story?
+      </h2>
+      <p class="text-base sm:text-lg text-slate-200 font-body max-w-2xl mx-auto">
+        Whether you require paid acquisition, a new web platform, content production or technical partnership, Starts Digital is ready to help.
+      </p>
 
-    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 relative z-10 text-center">
-      <div class="max-w-3xl mx-auto space-y-6">
-        
-        <SectionEyebrow label="START A PROJECT" align="center" motion={false} />
+      <div class="pt-3 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href={`${site.basePath}/contact/`}
+          class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+        >
+          <span>Start a Project Discussion</span>
+          <ArrowRight class="size-4" />
+        </a>
 
-        <h2 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[50px] text-white leading-tight tracking-[-0.025em]">
-          Have a project that needs coordinated strategy and execution?
-        </h2>
-
-        <p class="text-base sm:text-lg text-slate-200 font-body leading-relaxed max-w-2xl mx-auto font-normal">
-          Share your commercial goals, current digital setup and target timeline. We will review your context and outline practical next steps.
-        </p>
-
-        <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
-          <a
-            href={`${site.basePath}/contact/?source=work`}
-            data-track="primary-cta"
-            class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl group/cta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-          >
-            <span>Discuss Your Project</span>
-            <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
-          </a>
-
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-track="contact-whatsapp"
-            class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 font-body font-semibold text-base text-white hover:bg-white/20 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-          >
-            <MessageSquare class="size-4 text-[#ddff35]" />
-            <span>Chat on WhatsApp</span>
-          </a>
-        </div>
-
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 font-body font-semibold text-base text-white hover:bg-white/20 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+        >
+          <MessageSquare class="size-4 text-[#ddff35]" />
+          <span>Quick WhatsApp Inquiry</span>
+        </a>
       </div>
     </div>
   </section>

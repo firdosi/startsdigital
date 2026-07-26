@@ -17,8 +17,8 @@ const { data } = entry;
 
 <ProjectStoryLayout
   projectSlug={entry.id}
-  title={data.title}
-  description={data.description}
+  title={data.seoTitle || data.title}
+  description={data.seoDescription || data.description}
   metrics={data.metrics}
   heroImage={data.heroImage?.src}
   heroAlt={data.heroImage?.alt}

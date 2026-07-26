@@ -5,7 +5,7 @@ import ProjectHero from '../components/work/ProjectHero.astro';
 import ProjectMedia from '../components/work/ProjectMedia.astro';
 import ProjectPageNavigation from '../components/work/ProjectPageNavigation.astro';
 import { site } from '../site.config';
-import { getProjectBySlug, type ResolvedProject } from '../data/projects';
+import { getProjectBySlug, type ResolvedProject, type ProjectVariant } from '../data/projects';
 import { ArrowRight, CheckCircle2, MessageSquare } from '@lucide/astro';
 
 interface Props {
@@ -18,6 +18,7 @@ interface Props {
   heroAlt?: string;
   heroCaption?: string;
   gallery?: Array<{ src: string; alt: string; caption?: string }>;
+  variant?: ProjectVariant;
 }
 
 const {
@@ -29,17 +30,35 @@ const {
   heroPicture,
   heroAlt,
   heroCaption,
-  gallery
+  gallery,
+  variant
 } = Astro.props;
 
 const project: ResolvedProject = getProjectBySlug(projectSlug)!;
+const activeVariant: ProjectVariant = variant || project.variant || 'default';
 
-const encodedWhatsappMsg = encodeURIComponent('Hello Starts Digital, I would like to discuss a project after reviewing your work.');
-const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
+const accentColor =
+  activeVariant === 'seasonal'
+    ? 'text-[#39c98a]'
+    : activeVariant === 'local-search'
+    ? 'text-sky-600'
+    : activeVariant === 'technology'
+    ? 'text-[#ddff35]'
+    : 'text-[#ff762b]';
+
+const badgeBorder =
+  activeVariant === 'seasonal'
+    ? 'border-[#39c98a]/30 bg-[#39c98a]/10 text-[#39c98a]'
+    : activeVariant === 'local-search'
+    ? 'border-sky-500/30 bg-sky-500/10 text-sky-600'
+    : activeVariant === 'technology'
+    ? 'border-[#ddff35]/40 bg-[#ddff35]/15 text-[#ddff35]'
+    : 'border-[#ff762b]/30 bg-[#ff762b]/10 text-[#ff762b]';
+const pageTitle = title.includes('Starts Digital') ? title : `${title} — Starts Digital`;
 ---
 
 <BaseLayout
-  title={`${title} — Starts Digital`}
+  title={pageTitle}
   description={description}
   type="article"
 >
@@ -47,7 +66,7 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
     <!-- 1. HERO SECTION -->
     <ProjectHero project={project} metrics={metrics} />
 
-    <!-- 2. MAIN STORY CONTENT SLOT -->
+    <!-- 2. MAIN STORY CONTENT SLOT (Article semantic wrapper - zero nested main) -->
     <section class="py-12 sm:py-16">
       <div class="mx-auto max-w-[1000px] px-6 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
         <!-- Sidebar -->
@@ -67,7 +86,7 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
                 <span class="block font-mono text-xs font-bold tracking-wider text-[#ff762b] uppercase mb-1">
                   Relationship
                 </span>
-                <p class="font-body font-semibold text-sm text-[#061d33]">
+                <p class="font-body font-semibold text-base text-[#061d33]">
                   {project.relationshipType}
                 </p>
               </div>
@@ -77,7 +96,7 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
               <span class="block font-mono text-xs font-bold tracking-wider text-[#ff762b] uppercase mb-3">
                 Service Areas
               </span>
-              <ul class="space-y-2.5 text-sm font-body font-medium text-slate-700">
+              <ul class="space-y-3 text-base font-body font-medium text-slate-800">
                 {project.resolvedServices.map((svc) => (
                   <li>
                     <a
@@ -95,7 +114,7 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
             <!-- Contact CTA -->
             <div class="pt-4 border-t border-[#061d33]/8">
               <a
-                href={`${site.basePath}/contact/?source=${project.id}`}
+                href={`${site.basePath}/contact/?source=${project.contactSourceValue}`}
                 class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#ff762b] px-5 py-3 text-sm font-body font-semibold text-white hover:bg-[#061d33] transition-colors shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
               >
                 <span>Discuss Similar Project</span>
@@ -105,12 +124,12 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
           </div>
         </aside>
 
-        <!-- Main Narrative Body -->
-        <main class="lg:col-span-8 space-y-8">
+        <!-- Main Narrative Body (Article element to prevent nested main landmark) -->
+        <article class="lg:col-span-8 space-y-8">
           <div class="rounded-2xl border border-[#061d33]/12 bg-white p-6 sm:p-8 shadow-sm space-y-6">
             <slot />
           </div>
-        </main>
+        </article>
       </div>
     </section>
 
@@ -126,9 +145,9 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
     <!-- 4. RELATED SERVICES DISCOVERY -->
     <section id="related-services-discovery" class="py-12 bg-white border-t border-[#061d33]/10">
       <div class="mx-auto max-w-[1000px] px-6 sm:px-8 space-y-6">
-        <h3 class="font-heading font-bold text-2xl text-[#061d33]">
+        <h2 class="font-heading font-bold text-2xl text-[#061d33]">
           Service Disciplines Applied to {project.publicName}
-        </h3>
+        </h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {project.resolvedServices.map((svc) => (
@@ -140,10 +159,10 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
                 <span class="text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider block mb-1">
                   {svc.eyebrow}
                 </span>
-                <h4 class="font-heading font-bold text-lg text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+                <h3 class="font-heading font-bold text-lg text-[#061d33] group-hover:text-[#ff762b] transition-colors">
                   {svc.name}
-                </h4>
-                <p class="text-sm text-slate-700 font-body mt-1">
+                </h3>
+                <p class="text-base text-slate-700 font-body leading-relaxed mt-1">
                   {svc.summary}
                 </p>
               </div>
@@ -174,7 +193,7 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
 
         <div class="pt-2 flex flex-wrap items-center justify-center gap-4">
           <a
-            href={`${site.basePath}/contact/?source=${project.id}`}
+            href={`${site.basePath}/contact/?source=${project.contactSourceValue}`}
             class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
           >
             <span>Discuss Your Project</span>
@@ -182,9 +201,11 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
           </a>
 
           <a
-            href={whatsappUrl}
+            href={project.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="project-whatsapp"
+            data-project={project.id}
             class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 font-body font-semibold text-base text-white hover:bg-white/20 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
           >
             <MessageSquare class="size-4 text-[#ddff35]" />

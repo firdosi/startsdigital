@@ -157,7 +157,7 @@ export const homepageContent: HomepageContent = {
         extendedRelationship: 'Product Development & Growth Partner',
         contribution:
           'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
-        link: '/work/#convortai',
+        link: '/work/convortai/',
         logoPath: '/brands/convort-ai/logo.webp',
         tags: [
           'Web Application Development',

@@ -1,8 +1,10 @@
 import { brands, type Brand } from './brands';
 import { servicesData, getServiceById, type ServiceDefinition } from './services';
+import { site } from '../site.config';
 
 export type DetailType = 'case-study' | 'partner-story' | 'client-experience';
 export type EvidenceLevel = 'detailed-case-study' | 'verified-project-summary' | 'client-experience';
+export type ProjectVariant = 'ecommerce' | 'seasonal' | 'local-search' | 'technology' | 'default';
 
 export interface ProjectRecord {
   id: string;
@@ -16,6 +18,9 @@ export interface ProjectRecord {
   verifiedContribution?: string;
   detailPath?: string;
   detailType: DetailType;
+  variant?: ProjectVariant;
+  contactSourceValue?: string;
+  contactSourceLabel?: string;
   featured: boolean;
   published: boolean;
   evidenceLevel: EvidenceLevel;
@@ -43,7 +48,18 @@ export interface ResolvedProject extends ProjectRecord {
   officialSocialUrl?: string;
   resolvedServices: ServiceDefinition[];
   approvedServices: string[];
+  contactSourceValue: string;
+  contactSourceLabel: string;
+  whatsappUrl: string;
+  whatsappMessage: string;
 }
+
+export const PROJECT_CONTACT_SOURCE_MAP: Record<string, string> = {
+  'black-gold-fertilizer': 'Black Gold Fertilizer',
+  'qurbani-campaign': 'Wajib Livestock Qurbani Campaign',
+  'rk-reno-solutions': 'RK Reno Solutions',
+  'convortai': 'ConvortAI Technology and Growth Partnership'
+};
 
 export const projectRecords: ProjectRecord[] = [
   {
@@ -57,6 +73,9 @@ export const projectRecords: ProjectRecord[] = [
     verifiedOutcome: 'Supported PKR 30M+ in delivered-order revenue, 29,000+ product sales and 22,000+ delivered sales over 24 months.',
     detailPath: '/work/black-gold-fertilizer/',
     detailType: 'case-study',
+    variant: 'ecommerce',
+    contactSourceValue: 'black-gold-fertilizer',
+    contactSourceLabel: 'Black Gold Fertilizer',
     featured: true,
     published: true,
     evidenceLevel: 'detailed-case-study',
@@ -77,6 +96,9 @@ export const projectRecords: ProjectRecord[] = [
     verifiedOutcome: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.',
     detailPath: '/work/qurbani-campaign/',
     detailType: 'case-study',
+    variant: 'seasonal',
+    contactSourceValue: 'qurbani-campaign',
+    contactSourceLabel: 'Wajib Livestock Qurbani Campaign',
     featured: true,
     published: true,
     evidenceLevel: 'detailed-case-study',
@@ -93,6 +115,9 @@ export const projectRecords: ProjectRecord[] = [
     verifiedContribution: 'Website, content and local SEO foundation for renovation and air-conditioning services in Kuala Lumpur and Selangor.',
     detailPath: '/work/rk-reno-solutions/',
     detailType: 'case-study',
+    variant: 'local-search',
+    contactSourceValue: 'rk-reno-solutions',
+    contactSourceLabel: 'RK Reno Solutions',
     featured: true,
     published: true,
     evidenceLevel: 'detailed-case-study',
@@ -117,6 +142,9 @@ export const projectRecords: ProjectRecord[] = [
     verifiedContribution: 'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
     detailPath: '/work/convortai/',
     detailType: 'partner-story',
+    variant: 'technology',
+    contactSourceValue: 'convortai',
+    contactSourceLabel: 'ConvortAI Technology and Growth Partnership',
     featured: true,
     published: true,
     evidenceLevel: 'detailed-case-study',
@@ -129,6 +157,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'Digital campaign strategy, paid social creative, ad copy and lead-generation content for an immigration advisory service.',
     serviceIds: ['paid-advertising', 'creative-content', 'social-media-marketing'],
     detailType: 'client-experience',
+    variant: 'default',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -141,6 +170,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'Campaign planning, advertising creative, video scriptwriting and lead-generation campaign support for immigration services.',
     serviceIds: ['paid-advertising', 'creative-content'],
     detailType: 'client-experience',
+    variant: 'default',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -153,6 +183,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'Digital marketing, brand content, website support and paid social lead-generation strategy for a UAE business services firm.',
     serviceIds: ['paid-advertising', 'website-design-development', 'creative-content'],
     detailType: 'client-experience',
+    variant: 'default',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -165,6 +196,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'Brand positioning, product presentation, e-commerce planning and conversion-focused creative content.',
     serviceIds: ['website-design-development', 'creative-content', 'social-media-marketing'],
     detailType: 'client-experience',
+    variant: 'default',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -177,6 +209,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'Creative strategy, ad video scripting and paid social campaign support for immigration and company setup services.',
     serviceIds: ['paid-advertising', 'creative-content'],
     detailType: 'client-experience',
+    variant: 'default',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -189,6 +222,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'Website development, local service content and lead-generation page structure for construction and finishing in Riyadh.',
     serviceIds: ['website-design-development', 'seo-local-search'],
     detailType: 'client-experience',
+    variant: 'default',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -201,6 +235,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'E-commerce product promotion, paid social support, creative content and digital sales communication.',
     serviceIds: ['paid-advertising', 'creative-content', 'social-media-marketing'],
     detailType: 'client-experience',
+    variant: 'default',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -213,6 +248,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'Product positioning, advertising creative, social media content and digital customer acquisition support.',
     serviceIds: ['creative-content', 'paid-advertising', 'social-media-marketing'],
     detailType: 'client-experience',
+    variant: 'default',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -225,6 +261,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'Digital strategy, local awareness content, campaign messaging and healthcare diagnostic service marketing.',
     serviceIds: ['social-media-marketing', 'creative-content', 'seo-local-search'],
     detailType: 'client-experience',
+    variant: 'default',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -247,6 +284,22 @@ function resolveProject(record: ProjectRecord): ResolvedProject | null {
 
   const approvedServices = resolvedServices.map((s) => s.name);
 
+  const contactSourceValue = record.contactSourceValue || record.projectSlug || record.id;
+  const contactSourceLabel = record.contactSourceLabel || PROJECT_CONTACT_SOURCE_MAP[contactSourceValue] || brand.name;
+
+  let whatsappMessage = `Hello Starts Digital, I would like to discuss a project similar to ${brand.name}.`;
+  if (record.id === 'black-gold-fertilizer') {
+    whatsappMessage = 'Hello Starts Digital, I would like to discuss a project similar to Black Gold Fertilizer.';
+  } else if (record.id === 'wajib-livestock') {
+    whatsappMessage = 'Hello Starts Digital, I would like to discuss a project similar to Wajib Livestock.';
+  } else if (record.id === 'rk-reno-solutions') {
+    whatsappMessage = 'Hello Starts Digital, I would like to discuss a project similar to RK Reno Solutions.';
+  } else if (record.id === 'convort-ai') {
+    whatsappMessage = 'Hello Starts Digital, I would like to discuss a project after reviewing the ConvortAI partner story.';
+  }
+
+  const whatsappUrl = `${site.contact.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
+
   return {
     ...record,
     brand,
@@ -258,7 +311,11 @@ function resolveProject(record: ProjectRecord): ResolvedProject | null {
     officialWebsite: brand.website,
     officialSocialUrl: brand.facebook || brand.instagram,
     resolvedServices,
-    approvedServices
+    approvedServices,
+    contactSourceValue,
+    contactSourceLabel,
+    whatsappUrl,
+    whatsappMessage
   };
 }
 
@@ -272,6 +329,31 @@ export function getPublishedProjects(): ResolvedProject[] {
 
 export function getFeaturedProjects(): ResolvedProject[] {
   return getPublishedProjects().filter((p) => p.featured || p.evidenceLevel === 'detailed-case-study');
+}
+
+export function getDetailedProjectStories(): ResolvedProject[] {
+  return getPublishedProjects()
+    .filter((p) => (p.detailType === 'case-study' || p.detailType === 'partner-story') && Boolean(p.detailPath))
+    .sort((a, b) => a.displayOrder - b.displayOrder);
+}
+
+export function getProjectStoryNavigation(currentSlug: string): {
+  prevProject: ResolvedProject | undefined;
+  nextProject: ResolvedProject | undefined;
+} {
+  const stories = getDetailedProjectStories();
+  const currentIndex = stories.findIndex(
+    (p) => p.projectSlug === currentSlug || p.id === currentSlug || p.brandId === currentSlug
+  );
+
+  if (currentIndex === -1) {
+    return { prevProject: undefined, nextProject: undefined };
+  }
+
+  const prevProject = currentIndex > 0 ? stories[currentIndex - 1] : undefined;
+  const nextProject = currentIndex < stories.length - 1 ? stories[currentIndex + 1] : undefined;
+
+  return { prevProject, nextProject };
 }
 
 export function getProjectById(id: string): ResolvedProject | undefined {
@@ -293,7 +375,6 @@ export function getClientDirectoryProjects(): ResolvedProject[] {
 export function getProjectsByService(serviceQuery: string): ResolvedProject[] {
   const query = serviceQuery.toLowerCase().trim();
 
-  // Try matching by service ID, service slug, or service public name
   const matchedService = servicesData.find(
     (s) =>
       s.id.toLowerCase() === query ||
@@ -336,4 +417,43 @@ export function getDetailTypeActionLabel(detailType: DetailType): string {
     default:
       return 'Visit Official Page';
   }
+}
+
+export function getProjectContactSourceMap(): Record<string, string> {
+  return { ...PROJECT_CONTACT_SOURCE_MAP };
+}
+
+export function validatePortfolioData(): { valid: boolean; errors: string[] } {
+  const errors: string[] = [];
+  const projects = getAllProjects();
+
+  if (projects.length !== projectRecords.length) {
+    errors.push(`Project resolution failed: ${projectRecords.length - projects.length} records returned null.`);
+  }
+
+  for (const project of projects) {
+    if (!project.brand || !project.brand.active) {
+      errors.push(`Project ${project.id} has invalid or inactive brand ${project.brandId}.`);
+    }
+    if (!project.logo) {
+      errors.push(`Project ${project.id} is missing a brand logo.`);
+    }
+    if (project.resolvedServices.length === 0) {
+      errors.push(`Project ${project.id} has zero resolved services.`);
+    }
+    if ((project.detailType === 'case-study' || project.detailType === 'partner-story') && !project.detailPath) {
+      errors.push(`Detailed project ${project.id} is missing detailPath.`);
+    }
+    if (project.detailType === 'client-experience' && !project.officialWebsite && !project.officialSocialUrl) {
+      errors.push(`Client experience project ${project.id} is missing official external destination.`);
+    }
+  }
+
+  return { valid: errors.length === 0, errors };
+}
+
+// Auto-run validation in dev / build
+const validation = validatePortfolioData();
+if (!validation.valid) {
+  console.error('[Portfolio Data Error]', validation.errors.join(' | '));
 }

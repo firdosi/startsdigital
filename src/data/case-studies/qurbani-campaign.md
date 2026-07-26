@@ -1,6 +1,6 @@
 ---
 title: "Wajib Livestock Qurbani Campaign"
-description: "Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign."
+description: "Campaign strategy, paid social, lead generation, creative production and sales support for Wajib Livestock."
 industry: "Livestock & Seasonal Campaigns"
 services:
   - "Paid Advertising"
@@ -15,29 +15,28 @@ metrics:
   - value: "Eid Qurbani"
     label: "Seasonal Window"
 responsibilities:
-  - "Seasonal campaign strategy and timeline execution."
-  - "Paid social advertising for seasonal livestock booking."
-  - "Lead generation and sales inquiry routing support."
-  - "Creative content development for seasonal promotion."
+  - "Campaign strategy and seasonal planning."
+  - "Paid social advertising and target lead generation."
+  - "Creative production and promotional content."
+  - "Sales inquiry routing and response support."
 featured: true
 order: 2
-seoTitle: "Wajib Livestock Qurbani Campaign Case Study | Starts Digital"
+seoTitle: "Wajib Livestock Qurbani Campaign | Starts Digital"
 seoDescription: "See how Starts Digital helped sell 150+ animals and supported PKR 4.2M+ in sales during the Wajib Livestock Eid Qurbani campaign."
 draft: false
 ---
 
-## Campaign Context & Scope
+## Campaign Overview
 
-Managing high-demand seasonal lead generation and sales support during the high-volume Eid Qurbani booking period requires fast lead qualification and clear message routing.
+Starts Digital provided campaign strategy, paid social, lead generation, creative production and sales support for Wajib Livestock during the Eid Qurbani campaign.
 
-## Campaign Execution
+## Approved Scope & Services Delivered
 
-- **Seasonal Campaign Strategy:** Implemented a targeted campaign strategy combining paid social advertising with direct lead generation.
-- **Paid Social Advertising:** Managed Meta ad placements targeting buyers seeking verified Qurbani animals.
-- **Lead & Sales Inquiry Routing:** Configured direct lead messaging and sales routing to support rapid customer inquiries.
-- **Creative Content Production:** Produced promotional copy, social graphics, and campaign announcements.
+- **Campaign Strategy & Paid Social:** Implemented targeted paid social advertising targeting livestock buyers during the seasonal booking window.
+- **Lead Generation & Sales Support:** Structured inquiry routing to connect interested buyers directly with the sales team.
+- **Creative Production:** Developed campaign copy, promotional visual assets, and message scripts for customer communication.
 
 ## Verified Outcome
 
-- **150+ animals sold** during the Eid Qurbani booking period.
+- **150+ animals sold** during the Eid Qurbani campaign.
 - **PKR 4.2M+ in sales supported** during the campaign window.
