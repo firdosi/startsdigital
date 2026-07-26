@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { servicesData } from '../../data/services';
+import ServiceHero from '../../components/services/ServiceHero.astro';
+import ServiceNeed from '../../components/services/ServiceNeed.astro';
+import ServiceDeliverables from '../../components/services/ServiceDeliverables.astro';
+import ServiceProcess from '../../components/services/ServiceProcess.astro';
+import ServiceProof from '../../components/services/ServiceProof.astro';
+import ServiceClientInputs from '../../components/services/ServiceClientInputs.astro';
+import ServiceFaq from '../../components/services/ServiceFaq.astro';
+import RelatedServices from '../../components/services/RelatedServices.astro';
+import ServiceContactCta from '../../components/services/ServiceContactCta.astro';
+import MotionController from '../../components/common/MotionController.astro';
+
+const service = servicesData.find((s) => s.id === 'website-design-development')!;
+---
+
+<BaseLayout
+  title="Website Design and Development | Starts Digital"
+  description="Website design and development support from Starts Digital covering structure, responsive UI, content organisation, forms, e-commerce requirements, integrations, testing and launch preparation."
+>
+  {/* 1. Service Hero */}
+  <ServiceHero service={service} />
+
+  {/* 2. When This Service Is Useful */}
+  <ServiceNeed service={service} />
+
+  {/* 3. Practical Deliverables */}
+  <ServiceDeliverables service={service} />
+
+  {/* 4. How the Work Is Organised */}
+  <ServiceProcess service={service} />
+
+  {/* 5. Relevant Project Experience (RK Reno & ConvortAI) */}
+  <ServiceProof service={service} />
+
+  {/* 6. Information Needed From the Client */}
+  <ServiceClientInputs service={service} />
+
+  {/* 7. Service-Specific FAQ */}
+  <ServiceFaq service={service} />
+
+  {/* 8. Related Services */}
+  <RelatedServices service={service} />
+
+  {/* 9. Service Contact CTA */}
+  <ServiceContactCta service={service} />
+
+  {/* Motion Controller */}
+  <MotionController />
+</BaseLayout>

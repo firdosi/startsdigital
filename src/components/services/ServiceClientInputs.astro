@@ -1,0 +1,49 @@
+---
+import type { ServiceDefinition } from '../../data/services';
+import SectionEyebrow from '../common/SectionEyebrow.astro';
+import { FileText } from '@lucide/astro';
+
+export interface Props {
+  service: ServiceDefinition;
+}
+
+const { service } = Astro.props;
+---
+
+<section id="client-inputs" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+  <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+      
+      <div class="lg:col-span-5 space-y-4">
+        <SectionEyebrow label="INFORMATION NEEDED FROM CLIENT" align="left" delay={0} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+          What helps us prepare for a clear project review.
+        </h2>
+        <p class="text-base text-slate-700 font-body leading-relaxed">
+          Sharing these initial materials and context helps us understand your requirements and define an accurate project scope.
+        </p>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 shadow-xs">
+          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block mb-4">
+            Recommended Preparation Checklist
+          </span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            {service.clientInputs.map((input) => (
+              <div class="rounded-2xl border border-[#061d33]/10 bg-[#f7f4ed] p-4 flex items-start gap-3">
+                <FileText class="size-4 text-[#ff762b] shrink-0 mt-0.5" />
+                <span class="text-base text-slate-800 font-body leading-snug">
+                  {input}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

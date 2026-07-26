@@ -1,0 +1,74 @@
+---
+import type { ServiceDefinition } from '../../data/services';
+import { site } from '../../site.config';
+import AnimatedGrid from '../motion/AnimatedGrid.astro';
+import FloatingOrb from '../motion/FloatingOrb.astro';
+import SectionSpark from '../motion/SectionSpark.astro';
+import { Sparkles, ArrowRight, ArrowUpRight } from '@lucide/astro';
+
+export interface Props {
+  service: ServiceDefinition;
+}
+
+const { service } = Astro.props;
+const contactUrl = `${site.basePath}/contact/?service=${encodeURIComponent(service.contactServiceValue)}`;
+---
+
+<section id="service-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
+  <AnimatedGrid opacity={0.10} />
+  <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
+  <SectionSpark color="orange" size="md" class="top-10 right-[8%] pointer-events-none" delay="0s" />
+
+  <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 z-10">
+    <div class="max-w-4xl space-y-6 text-left">
+      
+      <!-- Eyebrow Badge -->
+      <div class="inline-flex items-center">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
+          <Sparkles class="size-3.5 text-[#ddff35]" />
+          <span>{service.eyebrow}</span>
+        </span>
+      </div>
+
+      <!-- H1 Headline (No motion attribute for 100% initial visibility) -->
+      <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
+        {service.summary}
+      </h1>
+
+      <!-- Service Overview Paragraph -->
+      <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal max-w-3xl">
+        {service.overview}
+      </p>
+
+      <!-- Action Buttons Strip -->
+      <div class="pt-4 flex flex-wrap items-center gap-4">
+        <a
+          href={contactUrl}
+          class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-7 py-3.5 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-lg group/cta"
+        >
+          <span>Discuss This Service</span>
+          <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
+        </a>
+
+        <a
+          href={`${site.basePath}/work/`}
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 font-body font-semibold text-base text-white hover:bg-white/15 transition-all"
+        >
+          <span>Explore Relevant Work</span>
+          <ArrowUpRight class="size-4 text-slate-300" />
+        </a>
+      </div>
+
+      <!-- Deliverable Preview Strip -->
+      <div class="pt-8 mt-6 border-t border-white/15 flex flex-wrap gap-3">
+        {service.deliverables.slice(0, 4).map((d) => (
+          <span class="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3.5 py-1.5 text-xs font-mono text-slate-200 border border-white/15">
+            <span class="size-1.5 rounded-full bg-[#ddff35]"></span>
+            <span>{d.title}</span>
+          </span>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>

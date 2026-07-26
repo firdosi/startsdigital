@@ -1,0 +1,55 @@
+---
+import type { ServiceDefinition } from '../../data/services';
+import SectionEyebrow from '../common/SectionEyebrow.astro';
+import { site } from '../../site.config';
+import { ArrowRight, MessageSquare } from '@lucide/astro';
+
+export interface Props {
+  service: ServiceDefinition;
+}
+
+const { service } = Astro.props;
+const contactUrl = `${site.basePath}/contact/?service=${encodeURIComponent(service.contactServiceValue)}`;
+const whatsappUrl = 'https://wa.me/923394135544';
+---
+
+<section id="contact" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white relative overflow-hidden scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+  <!-- Subtle Glow Accents -->
+  <div class="absolute -right-20 -top-20 size-80 rounded-full bg-[#ff762b]/15 blur-3xl pointer-events-none"></div>
+
+  <div class="mx-auto max-w-[1280px] px-6 sm:px-8 relative z-10 text-center">
+    <div class="max-w-3xl mx-auto space-y-6">
+      
+      <SectionEyebrow label="NEXT STEPS" align="center" delay={0} />
+
+      <h2 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[50px] text-white leading-tight tracking-[-0.025em]">
+        Discuss your {service.name.toLowerCase()} project.
+      </h2>
+
+      <p class="text-base sm:text-lg text-slate-200 font-body leading-relaxed max-w-2xl mx-auto font-normal">
+        Share your business requirements, target timeline and available materials. We will review your context and outline a clear project proposal.
+      </p>
+
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href={contactUrl}
+          class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl group/cta"
+        >
+          <span>Discuss {service.name}</span>
+          <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
+        </a>
+
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 font-body font-semibold text-base text-white hover:bg-white/20 transition-all"
+        >
+          <MessageSquare class="size-4 text-[#ddff35]" />
+          <span>Chat on WhatsApp</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>

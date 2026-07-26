@@ -1,0 +1,52 @@
+---
+import type { ServiceDefinition } from '../../data/services';
+import SectionEyebrow from '../common/SectionEyebrow.astro';
+import { PackageCheck } from '@lucide/astro';
+
+export interface Props {
+  service: ServiceDefinition;
+}
+
+const { service } = Astro.props;
+---
+
+<section id="deliverables" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+  <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+    
+    <!-- Section Header -->
+    <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+      <SectionEyebrow label="PRACTICAL DELIVERABLES" align="center" delay={0} />
+      <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+        What Starts Digital can support within the project scope.
+      </h2>
+      <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
+        Deliverables are structured around agreed business requirements and available project resources.
+      </p>
+    </div>
+
+    <!-- Deliverables Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {service.deliverables.map((item, idx) => (
+        <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all duration-300">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-3 py-1 rounded-full">
+                DELIVERABLE 0{idx + 1}
+              </span>
+              <PackageCheck class="size-5 text-slate-400" />
+            </div>
+
+            <h3 class="font-heading font-bold text-xl text-[#061d33] leading-snug">
+              {item.title}
+            </h3>
+
+            <p class="text-base text-slate-700 font-body leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

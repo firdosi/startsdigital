@@ -1,0 +1,413 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { servicesData } from '../../data/services';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import MotionController from '../../components/common/MotionController.astro';
+import AnimatedGrid from '../../components/motion/AnimatedGrid.astro';
+import FloatingOrb from '../../components/motion/FloatingOrb.astro';
+import SectionSpark from '../../components/motion/SectionSpark.astro';
+import { site } from '../../site.config';
+import {
+  Sparkles,
+  ArrowRight,
+  ArrowUpRight,
+  CheckCircle2,
+  ChevronDown,
+  TrendingUp,
+  Award,
+  Layers,
+  ShieldCheck,
+  Megaphone,
+  Layout,
+  Search,
+  Video,
+  Share2,
+  Cpu
+} from '@lucide/astro';
+
+const iconMap: Record<string, any> = {
+  Megaphone,
+  Layout,
+  Search,
+  Video,
+  Share2,
+  Cpu
+};
+
+const engagementPatterns = [
+  {
+    title: 'Focused Service',
+    subtitle: 'One defined service addressing a clear requirement.',
+    description: 'Engage Starts Digital for one specific priority—such as a website rebuild or a targeted paid ad campaign.'
+  },
+  {
+    title: 'Coordinated Project',
+    subtitle: 'Multiple relevant services organised around one project scope.',
+    description: 'Combine website development, creative content and campaign strategy into one unified project plan.'
+  },
+  {
+    title: 'Ongoing Support',
+    subtitle: 'Continued work based on agreed responsibilities and priorities.',
+    description: 'Structure ongoing campaign management, content updates and optimization on an agreed schedule.'
+  }
+];
+
+const selectedProof = [
+  {
+    brand: 'Black Gold Fertilizer',
+    category: 'Paid Ads & E-commerce',
+    summary: 'Paid advertising, creative testing, e-commerce growth and website support.',
+    result: 'Supported PKR 30M+ in delivered revenue and 29k+ sales.',
+    link: `${site.basePath}/work/black-gold-fertilizer/`
+  },
+  {
+    brand: 'Wajib Livestock',
+    category: 'Campaign Strategy',
+    summary: 'Campaign strategy, paid social, lead generation and sales support.',
+    result: 'Helped sell 150+ animals and supported PKR 4.2M+ in sales.',
+    link: `${site.basePath}/work/qurbani-campaign/`
+  },
+  {
+    brand: 'RK Reno Solutions',
+    category: 'Web & Local SEO',
+    summary: 'Website structure, content and local SEO foundation for KL & Selangor.',
+    result: null,
+    link: `${site.basePath}/work/rk-reno-solutions/`
+  },
+  {
+    brand: 'ConvortAI',
+    category: 'Web App & Product Growth',
+    summary: 'Web application development, product strategy, social media and growth.',
+    result: null,
+    link: `${site.basePath}/work/#convortai`
+  }
+];
+
+const generalFaqs = [
+  {
+    q: 'Can services be hired individually or combined?',
+    a: 'Clients can hire Starts Digital for one focused service or combine multiple capabilities into one coordinated project scope.'
+  },
+  {
+    q: 'How are project scopes and prices decided?',
+    a: 'Scope and pricing depend on your specific project requirements, required deliverables, platforms and timeline. We review your goals and provide a clear proposal before starting work.'
+  },
+  {
+    q: 'Which service detail pages are currently published?',
+    a: 'Paid Advertising and Website Design & Development have full published detail pages. Additional service pages for SEO, Creative Content, Social Media and AI Workflows are available for project discussion via our Contact form.'
+  },
+  {
+    q: 'Does Starts Digital guarantee commercial results?',
+    a: 'No digital agency can guarantee specific sales or rankings. We focus on disciplined execution, clear messaging alignment, responsive interface design and transparent review.'
+  },
+  {
+    q: 'How do we begin a service engagement?',
+    a: 'Submit your project context via our Contact form or WhatsApp. We will review your requirements, confirm feasibility, and arrange an initial scope review.'
+  }
+];
+---
+
+<BaseLayout
+  title="Digital Marketing Services | Starts Digital"
+  description="Explore Starts Digital services for paid advertising, website design and development, SEO, creative content, social media marketing and practical AI marketing workflows."
+>
+  {/* 1. Services Hero */}
+  <section id="services-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
+    <AnimatedGrid opacity={0.10} />
+    <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
+    <SectionSpark color="orange" size="md" class="top-10 right-[8%] pointer-events-none" delay="0s" />
+
+    <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 z-10">
+      <div class="max-w-4xl space-y-6 text-left">
+        
+        <div class="inline-flex items-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
+            <Sparkles class="size-3.5 text-[#ddff35]" />
+            <span>SERVICES</span>
+          </span>
+        </div>
+
+        <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
+          Digital capabilities organised around real project requirements.
+        </h1>
+
+        <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal max-w-3xl">
+          Starts Digital supports paid advertising, websites, search visibility, creative production, social media and practical AI workflows. Services can be used individually or coordinated around one agreed project scope.
+        </p>
+
+        <div class="pt-4 flex flex-wrap items-center gap-4">
+          <a
+            href={`${site.basePath}/contact/`}
+            class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-7 py-3.5 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-lg group/cta"
+          >
+            <span>Discuss Your Project</span>
+            <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
+          </a>
+
+          <a
+            href="#directory"
+            class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 font-body font-semibold text-base text-white hover:bg-white/15 transition-all"
+          >
+            <span>Explore Service Areas</span>
+            <ChevronDown class="size-4 text-slate-300" />
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* 2. Six-Service Directory */}
+  <section id="directory" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="SERVICE DIRECTORY" align="center" delay={0} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+          Six core capabilities for digital marketing and development.
+        </h2>
+        <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
+          Explore our published detail pages or contact us directly to discuss your specific requirements.
+        </p>
+      </div>
+
+      <!-- Editorial Grid for 6 Services -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {servicesData.map((svc, idx) => {
+          const IconComp = iconMap[svc.iconKey] || Megaphone;
+          const targetUrl = svc.published
+            ? `${site.basePath}/services/${svc.slug}/`
+            : `${site.basePath}/contact/?service=${encodeURIComponent(svc.contactServiceValue)}`;
+
+          return (
+            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all duration-300 group">
+              <div class="space-y-4">
+                
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-3 py-1 rounded-full">
+                    0{idx + 1} • {svc.shortName}
+                  </span>
+                  <div class="size-10 rounded-2xl bg-[#061d33] text-[#ddff35] flex items-center justify-center">
+                    <IconComp class="size-5" />
+                  </div>
+                </div>
+
+                <h3 class="font-heading font-bold text-2xl text-[#061d33] pt-1">
+                  {svc.name}
+                </h3>
+
+                <p class="text-base text-slate-700 font-body leading-relaxed">
+                  {svc.summary}
+                </p>
+
+                <!-- 4 Practical Support Areas -->
+                <div class="pt-3 border-t border-[#061d33]/8 space-y-2">
+                  <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+                    Core Support
+                  </span>
+                  <ul class="space-y-1.5">
+                    {svc.idealFor.slice(0, 4).map((area) => (
+                      <li class="flex items-start gap-2 text-xs font-mono text-slate-700">
+                        <CheckCircle2 class="size-3.5 text-[#ff762b] shrink-0 mt-0.5" />
+                        <span>{area}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+              </div>
+
+              <!-- Action Link -->
+              <div class="pt-4 mt-6 border-t border-[#061d33]/8">
+                <a
+                  href={targetUrl}
+                  class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-[#061d33] group-hover:text-[#ff762b] transition-colors"
+                >
+                  <span>{svc.published ? 'VIEW FULL SERVICE PAGE' : 'DISCUSS THIS SERVICE'}</span>
+                  <ArrowRight class="size-3.5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+
+            </div>
+          );
+        })}
+      </div>
+
+    </div>
+  </section>
+
+  {/* 3. How Services Can Work Together */}
+  <section id="patterns" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="ENGAGEMENT PATTERNS" align="center" delay={0} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+          How services can work together.
+        </h2>
+        <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
+          We organize our work around practical engagement patterns tailored to your business stage.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-8">
+        {engagementPatterns.map((pat, idx) => (
+          <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs">
+            <div class="space-y-3">
+              <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider block">
+                PATTERN 0{idx + 1}
+              </span>
+              <h3 class="font-heading font-bold text-2xl text-[#061d33]">
+                {pat.title}
+              </h3>
+              <p class="font-mono text-xs text-slate-500 font-semibold">
+                {pat.subtitle}
+              </p>
+              <p class="text-base text-slate-700 font-body leading-relaxed pt-2">
+                {pat.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Scope Disclaimer Note -->
+      <div class="rounded-2xl border border-[#061d33]/12 bg-white p-5 text-center max-w-3xl mx-auto">
+        <p class="text-sm font-body font-semibold text-[#061d33]">
+          Note: The final combination of services, deliverables and responsibilities is agreed after project requirements are reviewed.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  {/* 4. Selected Relevant Experience */}
+  <section id="experience-selection" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white border-b border-white/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="SELECTED EXPERIENCE" align="center" delay={0} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-white leading-tight tracking-[-0.025em]">
+          Service capabilities backed by verified project proof.
+        </h2>
+        <p class="text-base sm:text-lg text-slate-200 font-body leading-relaxed">
+          See how our core service areas contribute to real client projects.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {selectedProof.map((item) => (
+          <div class="rounded-3xl border border-white/15 bg-white/5 p-6 sm:p-7 flex flex-col justify-between shadow-xl">
+            <div class="space-y-3">
+              <span class="inline-block px-2.5 py-0.5 rounded-full border border-white/20 bg-white/10 text-[11px] font-mono font-semibold uppercase tracking-wider text-[#ddff35]">
+                {item.category}
+              </span>
+              <h3 class="font-heading font-bold text-2xl text-white">{item.brand}</h3>
+              <p class="text-base text-slate-200 font-body leading-relaxed">{item.summary}</p>
+              {item.result && (
+                <p class="text-sm font-body font-semibold text-[#ddff35] pt-1">{item.result}</p>
+              )}
+            </div>
+
+            <div class="pt-4 mt-4 border-t border-white/10">
+              <a
+                href={item.link}
+                class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-[#ff762b] hover:text-white transition-colors"
+              >
+                <span>EXPLORE CASE STUDY</span>
+                <ArrowUpRight class="size-3.5" />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  {/* 5. Services FAQ */}
+  <section id="services-faq" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="GENERAL SERVICES FAQ" align="center" delay={0} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+          Frequently asked questions about working with Starts Digital.
+        </h2>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-4">
+        {generalFaqs.map((item, idx) => (
+          <div class="rounded-3xl border border-[#061d33]/12 bg-white overflow-hidden shadow-xs">
+            <button
+              type="button"
+              class="service-faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-lg sm:text-xl text-[#061d33] hover:text-[#ff762b] transition-colors focus:outline-none"
+              aria-expanded={idx === 0 ? "true" : "false"}
+              aria-controls={`gfaq-content-${idx}`}
+            >
+              <span>{item.q}</span>
+              <ChevronDown class="size-5 text-slate-500 shrink-0 transition-transform duration-300 aria-expanded:rotate-180" />
+            </button>
+            <div id={`gfaq-content-${idx}`} class={`px-6 pb-6 text-base text-slate-700 font-body leading-relaxed border-t border-[#061d33]/8 pt-4 ${idx === 0 ? 'block' : 'hidden'}`}>
+              {item.a}
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  {/* 6. Final Project CTA */}
+  <section id="services-cta" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white text-center relative overflow-hidden scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 relative z-10">
+      <div class="max-w-3xl mx-auto space-y-6">
+        <SectionEyebrow label="GET STARTED" align="center" delay={0} />
+        <h2 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[50px] text-white leading-tight">
+          Ready to discuss your project requirements?
+        </h2>
+        <p class="text-base sm:text-lg text-slate-200 font-body leading-relaxed max-w-2xl mx-auto">
+          Contact us today to review your business context, preferred services and target timeline.
+        </p>
+        <div class="pt-4 flex items-center justify-center gap-4">
+          <a
+            href={`${site.basePath}/contact/`}
+            class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl group/cta"
+          >
+            <span>Discuss Your Project</span>
+            <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <MotionController />
+</BaseLayout>
+
+<script>
+  function setupGfaqs() {
+    const buttons = document.querySelectorAll('.service-faq-toggle');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        const targetId = btn.getAttribute('aria-controls');
+        if (!targetId) return;
+
+        const target = document.getElementById(targetId);
+        if (!target) return;
+
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if (expanded) {
+          target.classList.add('hidden');
+          target.classList.remove('block');
+        } else {
+          target.classList.remove('hidden');
+          target.classList.add('block');
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupGfaqs);
+</script>
