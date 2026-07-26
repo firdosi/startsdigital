@@ -18,18 +18,18 @@ const visibleMembers: TeamMember[] = teamMembers
         <!-- Section Header -->
         <div class="mb-12 text-center space-y-3 max-w-2xl mx-auto">
           <SectionEyebrow label="THE PEOPLE BEHIND THE WORK" align="center" delay={0} />
-          <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+          <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
             Meet the people supporting strategy, creative and development work.
           </h2>
-          <p data-motion="fade-up" data-motion-delay="200" class="text-base text-slate-700 font-body leading-relaxed font-normal">
-            Ahad leads project planning and digital marketing, Meesam supports video and graphic production, and Zaid supports UI/UX design and full-stack development.
+          <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+            Ahad leads project planning and digital marketing, while Meesam supports video editing and graphic asset production.
           </p>
         </div>
 
-        <!-- 3-Member Responsive Team Grid (NO data-motion on grid or cards for 100% immediate visibility) -->
-        <div class="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto mb-10">
-          {visibleMembers.map((m, idx) => (
-            <div class={idx === 2 ? "sm:col-span-2 lg:col-span-1 sm:max-w-md sm:mx-auto w-full lg:max-w-none" : "w-full"}>
+        <!-- 2-Member Responsive Team Grid -->
+        <div class="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto mb-10">
+          {visibleMembers.map((m) => (
+            <div class="w-full">
               <TeamMemberCard
                 member={m}
                 variant="homepage"

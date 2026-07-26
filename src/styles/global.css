@@ -150,15 +150,13 @@
   transition-delay: var(--motion-del, 0ms);
 }
 
-[data-motion-active="true"][data-motion="fade-up"],
-[data-motion-active="true"][data-motion="clip-up"] {
+[data-motion-active="true"][data-motion="fade-up"] {
   opacity: 0;
   transform: translateY(var(--motion-dist-mobile));
 }
 
 @media (min-width: 768px) {
-  [data-motion-active="true"][data-motion="fade-up"],
-  [data-motion-active="true"][data-motion="clip-up"] {
+  [data-motion-active="true"][data-motion="fade-up"] {
     transform: translateY(var(--motion-dist-desktop));
   }
 }

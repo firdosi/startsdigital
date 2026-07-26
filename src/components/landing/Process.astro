@@ -6,23 +6,23 @@ const stages = [
   {
     id: '01',
     title: 'Understand Your Business',
-    subtitle: 'Comprehensive discovery, market analysis, and commercial alignment before launching any ad spend.',
+    subtitle: 'Comprehensive discovery, market analysis, and commercial alignment before launching any campaign spend.',
     isDefaultOpen: true,
     subPanels: [
       {
         tag: 'DISCOVERY',
         title: 'Commercial Goal Alignment',
-        desc: 'We audit your historical revenue, gross margins, customer LTV, and current acquisition channels to determine realistic scaling targets.',
+        desc: 'We evaluate your business goals, target customer profiles, pricing strategy, and current channels to establish clear project priorities.',
       },
       {
         tag: 'STRATEGY',
         title: 'Market & Offer Analysis',
-        desc: 'Evaluation of your product offer, pricing strategy, checkout experience, and competitive positioning across target demographics.',
+        desc: 'Evaluation of your product offer, pricing strategy, checkout experience, and competitive positioning across target markets.',
       },
       {
         tag: 'SOLUTION',
         title: 'Growth Roadmap Design',
-        desc: 'Structuring media budget allocation, creative angles, website optimizations, and attribution setup before launch.',
+        desc: 'Structuring media budget allocation, creative angles, website optimizations, and conversion tracking before launch.',
       },
     ],
     chips: ['AUDIT', 'MARKET FIT', 'COMMERCIAL TARGETS', 'TARGET PROFILES', 'ATTRIBUTION SETUP'],
@@ -30,74 +30,74 @@ const stages = [
   {
     id: '02',
     title: 'Strategic Planning and Creative Execution',
-    subtitle: 'Deploying structured ad creatives, optimized landing pages, and technical lead funnels.',
+    subtitle: 'Deploying structured ad creatives, optimized web pages, and technical lead funnels.',
     isDefaultOpen: false,
     subPanels: [
       {
         tag: 'CREATIVE',
         title: 'Ad Creative Development',
-        desc: 'Designing direct-response image and video ad variations tailored for Meta, Google Search, and TikTok feeds.',
+        desc: 'Designing direct-response image and video ad variations tailored for digital advertising feeds.',
       },
       {
         tag: 'ARCHITECTURE',
         title: 'High-Converting Web Pages',
-        desc: 'Building fast-loading landing pages and e-commerce stores optimized for mobile checkout velocity.',
+        desc: 'Building fast-loading landing pages and e-commerce stores optimized for mobile conversion velocity.',
       },
       {
         tag: 'TECH STACK',
         title: 'Tracking & Pixel Setup',
-        desc: 'Implementing Meta Conversions API, Google Analytics 4, and server-side tracking for clean data capture.',
+        desc: 'Implementing analytics and event tracking for verified performance measurement.',
       },
     ],
-    chips: ['PAID ADS', 'CREATIVE TESTING', 'LANDING PAGES', 'SERVER TRACKING'],
+    chips: ['PAID ADS', 'CREATIVE TESTING', 'LANDING PAGES', 'CONVERSION TRACKING'],
   },
   {
     id: '03',
     title: 'Collaboration and Optimisation',
-    subtitle: 'Continuous campaign management, budget re-allocation, and iterative creative testing.',
+    subtitle: 'Continuous campaign management, budget allocation, and iterative creative testing.',
     isDefaultOpen: false,
     subPanels: [
       {
         tag: 'MEDIA BUYING',
         title: 'Campaign Management',
-        desc: 'Daily monitoring of ad spend, bid strategies, audience placement, and cost per acquisition metrics.',
+        desc: 'Regular monitoring of ad spend, bid strategies, placements, and acquisition metrics.',
       },
       {
         tag: 'CRO',
         title: 'Conversion Rate Optimization',
-        desc: 'A/B testing headlines, offer copy, CTA placement, and checkout steps to maximize conversion volume.',
+        desc: 'Testing headlines, offer copy, CTA placement, and checkout steps to maximize conversion volume.',
       },
       {
         tag: 'REPORTING',
-        title: 'Transparent Performance Reviews',
-        desc: 'Regular review calls discussing verified sales volume, customer lead counts, and next-phase scaling plans.',
+        title: 'Performance Reviews',
+        desc: 'Regular review calls discussing verified results, lead counts, and next-phase scaling plans.',
       },
     ],
-    chips: ['A/B TESTING', 'DAILY OPTIMIZATION', 'SCALE MANAGEMENT', 'DIRECT REPORTING'],
+    chips: ['A/B TESTING', 'CAMPAIGN OPTIMIZATION', 'SCALE MANAGEMENT', 'DIRECT REPORTING'],
   },
   {
     id: '04',
     title: 'Delivery, Measurement and Improvement',
-    subtitle: 'Long-term brand building, organic search indexation, and scalable marketing systems.',
+    subtitle: 'Long-term brand building, organic search indexation, and practical workflows.',
     isDefaultOpen: false,
     subPanels: [
       {
         tag: 'SCALING',
-        title: 'Horizontal & Vertical Scaling',
-        desc: 'Expanding winning ad angles into new geographic regions and scaling budget across proven channels.',
+        title: 'Growth & Expansion',
+        desc: 'Expanding winning ad angles and scaling budget across proven marketing channels.',
       },
       {
         tag: 'SEO ENGINE',
         title: 'Organic Search Authority',
-        desc: 'Building sustainable keyword rankings and localized service schema to capture organic demand.',
+        desc: 'Building search rankings and localized schema to capture organic demand.',
       },
       {
         tag: 'AUTOMATION',
-        title: 'AI Marketing Workflows',
-        desc: 'Automating lead routing, WhatsApp follow-ups, and customer re-engagement to maximize lifetime value.',
+        title: 'Practical AI Workflows',
+        desc: 'Automating lead routing, customer follow-ups, and re-engagement to improve operational speed.',
       },
     ],
-    chips: ['LONG-TERM GROWTH', 'SEO RANKINGS', 'AI AUTOMATION', 'RETENTION'],
+    chips: ['LONG-TERM GROWTH', 'SEO RANKINGS', 'AI WORKFLOWS', 'RETENTION'],
   },
 ];
 ---
@@ -105,121 +105,111 @@ const stages = [
 <section id="process" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
-    <!-- Section Header -->
+    <!-- Section Header (NO data-motion) -->
     <div class="max-w-3xl mb-12 text-center mx-auto space-y-3">
       <SectionEyebrow
         label="WORKING METHOD"
         align="center"
         delay={0}
       />
-      <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+      <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
         A clear path from business requirement to active execution.
       </h2>
-      <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
+      <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
         The exact scope varies by project, but the work is organised around discovery, planning, production, launch and ongoing review.
       </p>
     </div>
 
-    <!-- Animated Stage Progress Connector Bar -->
-    <div data-motion="scale-in" data-motion-delay="250" class="relative max-w-5xl mx-auto mb-10 hidden md:block">
+    <!-- Stage Progress Connector Bar (NO data-motion) -->
+    <div class="relative max-w-5xl mx-auto mb-10 hidden md:block">
       <div class="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
-        <div id="process-progress-line" class="h-full bg-gradient-to-r from-[#ff762b] via-[#9a83f5] to-[#39c98a] w-1/4 transition-all duration-500 ease-out rounded-full"></div>
+        <div id="process-progress-line" class="h-full bg-gradient-to-r from-[#ff762b] via-[#9a83f5] to-[#39c98a] w-1/4 transition-all duration-300 ease-out rounded-full"></div>
       </div>
     </div>
 
-    <!-- Accordion Stack -->
-    <div data-motion="fade-up" data-motion-delay="250" class="space-y-6 max-w-5xl mx-auto">
+    <!-- Accordion Stack (NO data-motion) -->
+    <div class="space-y-6 max-w-5xl mx-auto">
       {
         stages.map((stage) => (
-          <div
+          <details
+            open={stage.isDefaultOpen}
             class:list={[
-              'accordion-item rounded-3xl border-2 transition-colors duration-300 overflow-hidden shadow-lg',
+              'accordion-item rounded-3xl border-2 transition-colors duration-300 overflow-hidden shadow-lg group',
               stage.isDefaultOpen ? 'border-[#ff762b] bg-[#ff762b] text-white' : 'border-slate-300 bg-white text-[#061d33] hover:border-[#ff762b]'
             ]}
             data-accordion-id={stage.id}
           >
-            <!-- Accordion Header Row -->
-            <button
-              type="button"
-              class="accordion-toggle w-full px-8 py-7 flex items-center justify-between text-left focus:outline-none cursor-pointer select-none"
-              aria-expanded={stage.isDefaultOpen ? 'true' : 'false'}
+            <!-- Accordion Header Summary (Responsive layout) -->
+            <summary
+              class="accordion-toggle w-full px-6 sm:px-8 py-6 sm:py-7 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-6 text-left focus:outline-none cursor-pointer select-none min-h-[44px] list-none [&::-webkit-details-marker]:hidden focus-visible:ring-2 focus-visible:ring-white"
             >
-              <div class="flex items-center gap-6 pointer-events-none">
-                <span class:list={[
-                  'accordion-step-num font-mono font-medium text-xl sm:text-2xl size-12 rounded-2xl flex items-center justify-center shrink-0 transition-colors duration-300',
-                  stage.isDefaultOpen ? 'bg-white text-[#ff762b]' : 'bg-[#061d33] text-white'
-                ]}>
-                  {stage.id}
-                </span>
-                <div>
-                  <!-- Stage Title: Sora 600, 19 to 21px -->
-                  <h3 class="font-heading font-semibold text-[19px] sm:text-[21px] leading-[1.25]">
+              <!-- Top Row: Step badge, Stage Title, Chevron (Full width on mobile) -->
+              <div class="flex items-center justify-between gap-4 w-full">
+                <div class="flex items-center gap-4 sm:gap-6 min-w-0">
+                  <span class:list={[
+                    'accordion-step-num font-mono font-medium text-lg sm:text-2xl size-11 sm:size-12 rounded-2xl flex items-center justify-center shrink-0 transition-colors duration-300',
+                    stage.isDefaultOpen ? 'bg-white text-[#ff762b]' : 'bg-[#061d33] text-white'
+                  ]}>
+                    {stage.id}
+                  </span>
+                  <h3 class="font-heading font-semibold text-[18px] sm:text-[21px] leading-[1.25] break-words">
                     {stage.title}
                   </h3>
-                  <p class:list={[
-                    'accordion-subtitle text-base font-body font-normal mt-1 leading-[1.6] transition-colors duration-300',
-                    stage.isDefaultOpen ? 'text-white/90' : 'text-slate-600'
-                  ]}>
-                    {stage.subtitle}
-                  </p>
+                </div>
+
+                <div class:list={[
+                  'accordion-icon size-10 rounded-full flex items-center justify-center shrink-0 ml-2 sm:ml-4 transition-transform duration-300',
+                  stage.isDefaultOpen ? 'bg-white/20 text-white rotate-180' : 'bg-slate-100 text-[#061d33]'
+                ]}>
+                  <ChevronDown class="size-6" />
                 </div>
               </div>
 
-              <div class:list={[
-                'accordion-icon size-10 rounded-full flex items-center justify-center shrink-0 ml-4 transition-transform duration-300 pointer-events-none',
-                stage.isDefaultOpen ? 'bg-white/20 text-white rotate-180' : 'bg-slate-100 text-[#061d33]'
+              <!-- Subtitle: Full width below top row on mobile -->
+              <p class:list={[
+                'accordion-subtitle text-sm sm:text-base font-body font-normal leading-[1.6] transition-colors duration-300 sm:pl-[72px] sm:-mt-1 w-full',
+                stage.isDefaultOpen ? 'text-white/90' : 'text-slate-600'
               ]}>
-                <ChevronDown class="size-6" />
-              </div>
-            </button>
+                {stage.subtitle}
+              </p>
+            </summary>
 
-            <!-- Smooth CSS Grid Height Transition Container -->
-            <div
-              class:list={[
-                'accordion-wrapper grid transition-[grid-template-rows,opacity] duration-300 ease-out px-8 overflow-hidden',
-                stage.isDefaultOpen ? 'grid-rows-[1fr] opacity-100 pb-8 pt-2' : 'grid-rows-[0fr] opacity-0 pb-0 pt-0'
-              ]}
-            >
-              <div class="overflow-hidden space-y-6">
-                
-                <!-- 3 Structured Sub-Panels -->
-                <div class="grid gap-6 sm:grid-cols-3 mt-4">
-                  {stage.subPanels.map((sub) => (
-                    <div class:list={[
-                      'rounded-2xl p-6 shadow-sm border transition-all duration-300',
-                      stage.isDefaultOpen ? 'bg-white text-[#061d33] border-white/20' : 'bg-[#f7f4ed] text-[#061d33] border-slate-200'
-                    ]}>
-                      <span class="text-[11px] font-mono font-medium uppercase tracking-[0.05em] text-[#ff762b] bg-[#ff762b]/10 px-2.5 py-0.5 rounded block w-fit mb-3">
-                        {sub.tag}
-                      </span>
-                      <!-- Sub-panel title: Sora 600, 17px -->
-                      <h4 class="font-heading font-semibold text-[17px] mb-2 text-[#061d33] leading-[1.25]">
-                        {sub.title}
-                      </h4>
-                      <!-- Sub-panel desc: Inter 400, 16px, leading 1.6 -->
-                      <p class="text-base font-body leading-[1.6] text-slate-700 font-normal">
-                        {sub.desc}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <!-- Colourful Topic Chips (JetBrains Mono 500) -->
-                <div class="pt-4 border-t border-current/20 flex flex-wrap items-center gap-2.5 font-mono">
-                  <span class="text-xs font-medium uppercase mr-2 opacity-80">FOCUS AREAS:</span>
-                  {stage.chips.map((chip) => (
-                    <span class:list={[
-                      'text-[12px] sm:text-[13px] font-mono font-medium px-3 py-1 rounded-full uppercase tracking-[0.05em] transition-all',
-                      stage.isDefaultOpen ? 'bg-white text-[#061d33]' : 'bg-[#061d33] text-white'
-                    ]}>
-                      {chip}
+            <!-- Stage Body Wrapper (Readable without JS) -->
+            <div class="accordion-wrapper px-6 sm:px-8 pb-8 pt-2 space-y-6">
+              <!-- 3 Sub-Panels -->
+              <div class="grid gap-6 sm:grid-cols-3 mt-2 sm:mt-4">
+                {stage.subPanels.map((sub) => (
+                  <div class:list={[
+                    'rounded-2xl p-5 sm:p-6 shadow-sm border transition-all duration-300',
+                    stage.isDefaultOpen ? 'bg-white text-[#061d33] border-white/20' : 'bg-[#f7f4ed] text-[#061d33] border-slate-200'
+                  ]}>
+                    <span class="text-[11px] font-mono font-medium uppercase tracking-[0.05em] text-[#ff762b] bg-[#ff762b]/10 px-2.5 py-0.5 rounded block w-fit mb-3">
+                      {sub.tag}
                     </span>
-                  ))}
-                </div>
+                    <h4 class="font-heading font-semibold text-[16px] sm:text-[17px] mb-2 text-[#061d33] leading-[1.25]">
+                      {sub.title}
+                    </h4>
+                    <p class="text-sm sm:text-base font-body leading-[1.6] text-slate-700 font-normal">
+                      {sub.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
 
+              <!-- Topic Chips -->
+              <div class="pt-4 border-t border-current/20 flex flex-wrap items-center gap-2 font-mono">
+                <span class="text-xs font-medium uppercase mr-2 opacity-80 shrink-0">FOCUS AREAS:</span>
+                {stage.chips.map((chip) => (
+                  <span class:list={[
+                    'text-[11px] sm:text-[13px] font-mono font-medium px-3 py-1 rounded-full uppercase tracking-[0.05em] transition-all',
+                    stage.isDefaultOpen ? 'bg-white text-[#061d33]' : 'bg-[#061d33] text-white'
+                  ]}>
+                    {chip}
+                  </span>
+                ))}
               </div>
             </div>
-          </div>
+          </details>
         ))
       }
     </div>

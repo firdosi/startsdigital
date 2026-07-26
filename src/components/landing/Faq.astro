@@ -5,7 +5,7 @@ import SectionEyebrow from '../common/SectionEyebrow.astro';
 const items = [
   {
     q: 'What specific industries and business types do you work with?',
-    a: 'We specialize in growth-stage e-commerce brands, agricultural suppliers, seasonal retail (such as Qurbani campaigns), local service contractors (renovation & HVAC), and professional services across Pakistan, Malaysia, and the Gulf region.',
+    a: 'We work with growth-stage e-commerce brands, agricultural suppliers, seasonal campaigns (such as Qurbani livestock), local service contractors (renovation & HVAC), and professional service businesses.',
   },
   {
     q: 'How do you track commercial results instead of vanity metrics?',
@@ -13,7 +13,7 @@ const items = [
   },
   {
     q: 'What is your typical project timeframe?',
-    a: 'Media campaigns and lead generation funnels can launch within 7–10 days after strategy approval. Custom website builds and SEO architectures typically take 2 to 4 weeks depending on scope.',
+    a: 'Media campaigns and lead generation funnels are typically planned and launched within 7 to 10 days after scope approval. Custom website builds and SEO architectures typically take 2 to 4 weeks depending on requirements.',
   },
   {
     q: 'Can Starts Digital manage our complete digital marketing end-to-end?',
@@ -27,40 +27,37 @@ const items = [
     
     <div class="grid gap-12 lg:grid-cols-12 items-start">
       
-      <!-- Left Column: Title & Subtitle -->
-      <div data-motion="fade-left" data-motion-delay="0" class="lg:col-span-5 space-y-4 lg:sticky lg:top-28">
+      <!-- Left Column: Title & Subtitle (NO data-motion) -->
+      <div class="lg:col-span-5 space-y-4 lg:sticky lg:top-28">
         <SectionEyebrow
           label="FREQUENTLY ASKED QUESTIONS"
           align="left"
           delay={0}
         />
-        <!-- Sora 700 section heading -->
         <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Your questions answered
         </h2>
         <p class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal">
-          Everything you need to know about working with Starts Digital. Clear timelines, transparent tracking systems, and direct senior execution.
+          Everything you need to know about working with Starts Digital. Clear timelines, transparent tracking systems, and direct project execution.
         </p>
       </div>
 
-      <!-- Right Column: Smooth Grid Height Accordion Rows -->
-      <div data-motion="fade-right" data-motion-delay="100" class="lg:col-span-7 space-y-4" id="faq-list">
+      <!-- Right Column: Semantic Progressive Details Accordion Rows (NO data-motion) -->
+      <div class="lg:col-span-7 space-y-4" id="faq-list">
         {
           items.map((item, i) => (
-            <div 
-              data-motion="fade-up"
-              data-motion-delay={i * 80}
+            <details
+              open={i === 0}
               class:list={[
-                'faq-item overflow-hidden rounded-2xl border-2 transition-all duration-300 shadow-sm',
+                'faq-item overflow-hidden rounded-2xl border-2 transition-all duration-300 shadow-sm group',
                 i === 0 ? 'border-[#ff762b] bg-white shadow-md' : 'border-slate-200 bg-white hover:border-[#ff762b]'
               ]}
             >
-              <!-- FAQ Question -->
-              <button
-                type="button"
+              <!-- FAQ Question Summary -->
+              <summary
                 data-faq-toggle
                 aria-expanded={i === 0 ? 'true' : 'false'}
-                class="flex w-full cursor-pointer items-center justify-between gap-4 px-7 py-6 text-left font-body text-[16px] sm:text-[17px] leading-[1.45] font-semibold text-[#061d33] hover:text-[#ff762b] transition-colors focus:outline-none"
+                class="flex w-full min-h-[44px] cursor-pointer items-center justify-between gap-4 px-7 py-6 text-left font-body text-[16px] sm:text-[17px] leading-[1.45] font-semibold text-[#061d33] hover:text-[#ff762b] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ff762b] select-none list-none [&::-webkit-details-marker]:hidden"
               >
                 <span>{item.q}</span>
                 <span
@@ -70,24 +67,21 @@ const items = [
                     i === 0 ? 'bg-[#ff762b] text-white rotate-180' : 'bg-[#f7f4ed] text-[#061d33]'
                   ]}
                 >
-                  <Plus class:list={['size-5', i === 0 && 'hidden']} data-icon-plus />
-                  <Minus class:list={['size-5', i !== 0 && 'hidden']} data-icon-minus />
+                  <Plus class:list={['size-5 icon-plus', i === 0 && 'hidden']} data-icon-plus />
+                  <Minus class:list={['size-5 icon-minus', i !== 0 && 'hidden']} data-icon-minus />
                 </span>
-              </button>
+              </summary>
               
-              <!-- FAQ Answer: CSS Grid Interpolation -->
+              <!-- FAQ Answer Body (Readable without JS) -->
               <div
                 data-faq-answer-wrapper
-                class:list={[
-                  'grid transition-[grid-template-rows,opacity] duration-300 ease-out px-7',
-                  i === 0 ? 'grid-rows-[1fr] opacity-100 pb-6 pt-0' : 'grid-rows-[0fr] opacity-0 pb-0 pt-0'
-                ]}
+                class="px-7 pb-6 pt-0"
               >
                 <div class="overflow-hidden text-base leading-[1.65] text-slate-700 font-body border-t border-slate-100 pt-4 font-normal">
                   {item.a}
                 </div>
               </div>
-            </div>
+            </details>
           ))
         }
       </div>

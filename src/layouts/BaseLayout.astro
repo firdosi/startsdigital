@@ -18,6 +18,8 @@ import { site } from '../site.config';
 import MotionController from '../components/common/MotionController.astro';
 import InteractionController from '../components/common/InteractionController.astro';
 
+import { getMotionCssVariables } from '../data/motion';
+
 interface Props {
   title?: string;
   description?: string;
@@ -32,7 +34,7 @@ const currentPath = Astro.url.pathname;
 const calculatedSchemaType = schemaType || (currentPath === `${site.basePath}/` || currentPath === `${site.basePath}` || currentPath === '/' ? 'homepage' : (currentPath.includes('/work/') && currentPath !== `${site.basePath}/work/` ? 'case-study' : 'page'));
 ---
 
-<html lang="en">
+<html lang="en" style={getMotionCssVariables()}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

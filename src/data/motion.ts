@@ -32,9 +32,15 @@ export function isAllowedEntrance(type: string): type is MotionEntranceType {
   return (motionTokens.allowedEntrances as string[]).includes(type);
 }
 
-export function getMotionStyles(entrance: MotionEntranceType, duration: MotionDuration = 'standard'): string {
-  const durMs = motionTokens.durations[duration];
-  const easing = motionTokens.easings.entrance;
-
-  return `transition: opacity ${durMs}ms ${easing}, transform ${durMs}ms ${easing};`;
+export function getMotionCssVariables(): string {
+  return [
+    `--motion-dur-fast: ${motionTokens.durations.fast}ms;`,
+    `--motion-dur-standard: ${motionTokens.durations.standard}ms;`,
+    `--motion-dur-slow: ${motionTokens.durations.slow}ms;`,
+    `--motion-dist-mobile: ${motionTokens.distances.subtle}px;`,
+    `--motion-dist-desktop: ${motionTokens.distances.standard}px;`,
+    `--motion-ease-entrance: ${motionTokens.easings.entrance};`,
+    `--motion-ease-exit: ${motionTokens.easings.exit};`,
+    `--motion-ease-interactive: ${motionTokens.easings.interactive};`
+  ].join(' ');
 }

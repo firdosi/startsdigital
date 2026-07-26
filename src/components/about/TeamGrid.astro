@@ -13,26 +13,28 @@ const nonFounderMembers: TeamMember[] = teamMembers
     
     <!-- Section Header -->
     <div class="mb-12 text-center max-w-2xl mx-auto space-y-3">
-      <SectionEyebrow label="CREATIVE & DEVELOPMENT TEAM" align="center" motion={false} />
+      <SectionEyebrow label="CREATIVE & PRODUCTION TEAM" align="center" motion={false} />
       <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
         Creative and technical support for client projects.
       </h2>
       <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-        Meesam supports video and graphic production, while Zaid supports UI/UX design and full-stack development for websites and digital products.
+        Meesam supports video editing and graphic asset production for advertising, social media and brand communication.
       </p>
     </div>
 
-    <!-- 2-Column Editorial Team Grid for Non-Founders -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <!-- Centered Team Card Layout for Non-Founders -->
+    <div class="flex justify-center max-w-xl mx-auto">
       {nonFounderMembers.map((m) => (
-        <TeamMemberCard
-          member={m}
-          variant="about"
-          showResponsibilities={true}
-          showLinkedIn={true}
-          showMemberLabel={true}
-          class="h-full"
-        />
+        <div class="w-full">
+          <TeamMemberCard
+            member={m}
+            variant="about"
+            showResponsibilities={true}
+            showLinkedIn={true}
+            showMemberLabel={true}
+            class="h-full"
+          />
+        </div>
       ))}
     </div>
 

@@ -1,5 +1,5 @@
 ---
-// InteractionController.astro — Dedicated Controller for Shared Interactive Accordions & Controls
+// InteractionController.astro — Progressive Accordions & Interactive Controls
 ---
 
 <script>
@@ -13,37 +13,33 @@
     const { signal } = interactionAbortController;
 
     // ------------------------------------------------------------------
-    // 1. FAQ ACCORDION CONTROLLER
+    // 1. FAQ ACCORDION CONTROLLER (<details> & <summary> enhanced)
     // ------------------------------------------------------------------
     const faqList = document.getElementById('faq-list');
-    const faqItems = faqList ? Array.from(faqList.querySelectorAll<HTMLElement>('.faq-item')) : [];
+    const faqItems = faqList ? Array.from(faqList.querySelectorAll<HTMLDetailsElement>('details.faq-item')) : [];
 
-    faqItems.forEach((item) => {
-      const toggleBtn = item.querySelector<HTMLButtonElement>('[data-faq-toggle]');
-      if (!toggleBtn) return;
+    faqItems.forEach((details) => {
+      const summary = details.querySelector<HTMLElement>('summary[data-faq-toggle]');
+      if (!summary) return;
 
-      const wrapper = item.querySelector<HTMLElement>('[data-faq-answer-wrapper]');
-      const icon = item.querySelector<HTMLElement>('[data-faq-icon]');
-      const plusIcon = item.querySelector<HTMLElement>('[data-icon-plus]');
-      const minusIcon = item.querySelector<HTMLElement>('[data-icon-minus]');
+      const icon = details.querySelector<HTMLElement>('[data-faq-icon]');
+      const plusIcon = details.querySelector<HTMLElement>('.icon-plus');
+      const minusIcon = details.querySelector<HTMLElement>('.icon-minus');
 
-      toggleBtn.addEventListener('click', (e) => {
+      summary.addEventListener('click', (e) => {
         e.preventDefault();
-        const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+        const isOpen = details.hasAttribute('open');
 
         // Close all other FAQ items
         faqItems.forEach((other) => {
-          if (other === item) return;
-          const otherBtn = other.querySelector<HTMLButtonElement>('[data-faq-toggle]');
-          const otherWrapper = other.querySelector<HTMLElement>('[data-faq-answer-wrapper]');
+          if (other === details) return;
+          other.removeAttribute('open');
+          const otherSummary = other.querySelector<HTMLElement>('summary[data-faq-toggle]');
           const otherIcon = other.querySelector<HTMLElement>('[data-faq-icon]');
-          const otherPlus = other.querySelector<HTMLElement>('[data-icon-plus]');
-          const otherMinus = other.querySelector<HTMLElement>('[data-icon-minus]');
+          const otherPlus = other.querySelector<HTMLElement>('.icon-plus');
+          const otherMinus = other.querySelector<HTMLElement>('.icon-minus');
 
-          otherBtn?.setAttribute('aria-expanded', 'false');
-          otherWrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-6');
-          otherWrapper?.classList.add('grid-rows-[0fr]', 'opacity-0', 'pb-0');
-
+          otherSummary?.setAttribute('aria-expanded', 'false');
           other.classList.remove('border-[#ff762b]', 'shadow-md');
           other.classList.add('border-slate-200');
 
@@ -56,12 +52,10 @@
 
         // Toggle current FAQ item
         if (isOpen) {
-          toggleBtn.setAttribute('aria-expanded', 'false');
-          wrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-6');
-          wrapper?.classList.add('grid-rows-[0fr]', 'opacity-0', 'pb-0');
-
-          item.classList.remove('border-[#ff762b]', 'shadow-md');
-          item.classList.add('border-slate-200');
+          details.removeAttribute('open');
+          summary.setAttribute('aria-expanded', 'false');
+          details.classList.remove('border-[#ff762b]', 'shadow-md');
+          details.classList.add('border-slate-200');
 
           icon?.classList.remove('bg-[#ff762b]', 'text-white', 'rotate-180');
           icon?.classList.add('bg-[#f7f4ed]', 'text-[#061d33]');
@@ -69,12 +63,10 @@
           plusIcon?.classList.remove('hidden');
           minusIcon?.classList.add('hidden');
         } else {
-          toggleBtn.setAttribute('aria-expanded', 'true');
-          wrapper?.classList.remove('grid-rows-[0fr]', 'opacity-0', 'pb-0');
-          wrapper?.classList.add('grid-rows-[1fr]', 'opacity-100', 'pb-6');
-
-          item.classList.remove('border-slate-200');
-          item.classList.add('border-[#ff762b]', 'shadow-md');
+          details.setAttribute('open', '');
+          summary.setAttribute('aria-expanded', 'true');
+          details.classList.remove('border-slate-200');
+          details.classList.add('border-[#ff762b]', 'shadow-md');
 
           icon?.classList.remove('bg-[#f7f4ed]', 'text-[#061d33]');
           icon?.classList.add('bg-[#ff762b]', 'text-white', 'rotate-180');
@@ -86,50 +78,51 @@
     });
 
     // ------------------------------------------------------------------
-    // 2. WORKING METHOD ACCORDION CONTROLLER
+    // 2. WORKING METHOD ACCORDION CONTROLLER (<details> & <summary> enhanced)
     // ------------------------------------------------------------------
-    const processItems = Array.from(document.querySelectorAll<HTMLElement>('.accordion-item'));
+    const processItems = Array.from(document.querySelectorAll<HTMLDetailsElement>('details.accordion-item'));
     const progressLine = document.getElementById('process-progress-line');
 
     const updateProgressLine = (stageIndex: number) => {
       if (!progressLine) return;
-      // Stage 1 = 25%, Stage 2 = 50%, Stage 3 = 75%, Stage 4 = 100%
       const percentage = Math.min(100, Math.max(25, (stageIndex + 1) * 25));
       progressLine.style.width = `${percentage}%`;
     };
 
-    processItems.forEach((item, index) => {
-      const toggle = item.querySelector<HTMLButtonElement>('.accordion-toggle');
-      if (!toggle) return;
+    processItems.forEach((details, index) => {
+      const summary = details.querySelector<HTMLElement>('summary.accordion-toggle');
+      if (!summary) return;
 
-      const wrapper = item.querySelector<HTMLElement>('.accordion-wrapper');
-      const stepNum = item.querySelector<HTMLElement>('.accordion-step-num');
-      const subTitle = item.querySelector<HTMLElement>('.accordion-subtitle');
-      const icon = item.querySelector<HTMLElement>('.accordion-icon');
-      const subPanels = Array.from(item.querySelectorAll<HTMLElement>('.accordion-wrapper .rounded-2xl'));
-      const chips = Array.from(item.querySelectorAll<HTMLElement>('.accordion-wrapper span.font-mono'));
+      const stepNum = details.querySelector<HTMLElement>('.accordion-step-num');
+      const subTitle = details.querySelector<HTMLElement>('.accordion-subtitle');
+      const icon = details.querySelector<HTMLElement>('.accordion-icon');
+      const subPanels = Array.from(details.querySelectorAll<HTMLElement>('.accordion-wrapper .rounded-2xl'));
+      const chips = Array.from(details.querySelectorAll<HTMLElement>('.accordion-wrapper span.font-mono'));
 
-      toggle.addEventListener('click', (e) => {
+      summary.addEventListener('click', (e) => {
         e.preventDefault();
-        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        const isOpen = details.hasAttribute('open');
+
+        // Section 4 rule: Clicking the active stage must not leave all stages closed!
+        if (isOpen) {
+          // If already open, keep open so at least one stage remains active
+          return;
+        }
 
         // Close other stages
-        processItems.forEach((otherItem) => {
-          if (otherItem === item) return;
-          const otherToggle = otherItem.querySelector<HTMLButtonElement>('.accordion-toggle');
-          const otherWrapper = otherItem.querySelector<HTMLElement>('.accordion-wrapper');
-          const otherStepNum = otherItem.querySelector<HTMLElement>('.accordion-step-num');
-          const otherSubTitle = otherItem.querySelector<HTMLElement>('.accordion-subtitle');
-          const otherIcon = otherItem.querySelector<HTMLElement>('.accordion-icon');
-          const otherPanels = Array.from(otherItem.querySelectorAll<HTMLElement>('.accordion-wrapper .rounded-2xl'));
-          const otherChips = Array.from(otherItem.querySelectorAll<HTMLElement>('.accordion-wrapper span.font-mono'));
+        processItems.forEach((other) => {
+          if (other === details) return;
+          other.removeAttribute('open');
+          const otherSummary = other.querySelector<HTMLElement>('summary.accordion-toggle');
+          const otherStepNum = other.querySelector<HTMLElement>('.accordion-step-num');
+          const otherSubTitle = other.querySelector<HTMLElement>('.accordion-subtitle');
+          const otherIcon = other.querySelector<HTMLElement>('.accordion-icon');
+          const otherPanels = Array.from(other.querySelectorAll<HTMLElement>('.accordion-wrapper .rounded-2xl'));
+          const otherChips = Array.from(other.querySelectorAll<HTMLElement>('.accordion-wrapper span.font-mono'));
 
-          otherToggle?.setAttribute('aria-expanded', 'false');
-          otherWrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-8', 'pt-2');
-          otherWrapper?.classList.add('grid-rows-[0fr]', 'opacity-0', 'pb-0', 'pt-0');
-
-          otherItem.classList.remove('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
-          otherItem.classList.add('border-slate-300', 'bg-white', 'text-[#061d33]');
+          otherSummary?.setAttribute('aria-expanded', 'false');
+          other.classList.remove('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
+          other.classList.add('border-slate-300', 'bg-white', 'text-[#061d33]');
 
           if (otherStepNum) {
             otherStepNum.classList.remove('bg-white', 'text-[#ff762b]');
@@ -158,76 +151,39 @@
           });
         });
 
-        // Toggle current stage
-        if (isOpen) {
-          toggle.setAttribute('aria-expanded', 'false');
-          wrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-8', 'pt-2');
-          wrapper?.classList.add('grid-rows-[0fr]', 'opacity-0', 'pb-0', 'pt-0');
+        // Open clicked stage
+        details.setAttribute('open', '');
+        summary.setAttribute('aria-expanded', 'true');
+        details.classList.remove('border-slate-300', 'bg-white', 'text-[#061d33]');
+        details.classList.add('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
 
-          item.classList.remove('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
-          item.classList.add('border-slate-300', 'bg-white', 'text-[#061d33]');
-
-          if (stepNum) {
-            stepNum.classList.remove('bg-white', 'text-[#ff762b]');
-            stepNum.classList.add('bg-[#061d33]', 'text-white');
-          }
-
-          if (subTitle) {
-            subTitle.classList.remove('text-white/90');
-            subTitle.classList.add('text-slate-600');
-          }
-
-          if (icon) {
-            icon.classList.remove('bg-white/20', 'text-white', 'rotate-180');
-            icon.classList.add('bg-slate-100', 'text-[#061d33]');
-          }
-
-          subPanels.forEach(p => {
-            p.classList.remove('bg-white', 'text-[#061d33]', 'border-white/20');
-            p.classList.add('bg-[#f7f4ed]', 'text-[#061d33]', 'border-slate-200');
-          });
-
-          chips.forEach(c => {
-            if (c.innerText.startsWith('FOCUS AREAS:')) return;
-            c.classList.remove('bg-white', 'text-[#061d33]');
-            c.classList.add('bg-[#061d33]', 'text-white');
-          });
-        } else {
-          toggle.setAttribute('aria-expanded', 'true');
-          wrapper?.classList.remove('grid-rows-[0fr]', 'opacity-0', 'pb-0', 'pt-0');
-          wrapper?.classList.add('grid-rows-[1fr]', 'opacity-100', 'pb-8', 'pt-2');
-
-          item.classList.remove('border-slate-300', 'bg-white', 'text-[#061d33]');
-          item.classList.add('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
-
-          if (stepNum) {
-            stepNum.classList.remove('bg-[#061d33]', 'text-white');
-            stepNum.classList.add('bg-white', 'text-[#ff762b]');
-          }
-
-          if (subTitle) {
-            subTitle.classList.remove('text-slate-600');
-            subTitle.classList.add('text-white/90');
-          }
-
-          if (icon) {
-            icon.classList.remove('bg-slate-100', 'text-[#061d33]');
-            icon.classList.add('bg-white/20', 'text-white', 'rotate-180');
-          }
-
-          subPanels.forEach(p => {
-            p.classList.remove('bg-[#f7f4ed]', 'text-[#061d33]', 'border-slate-200');
-            p.classList.add('bg-white', 'text-[#061d33]', 'border-white/20');
-          });
-
-          chips.forEach(c => {
-            if (c.innerText.startsWith('FOCUS AREAS:')) return;
-            c.classList.remove('bg-[#061d33]', 'text-white');
-            c.classList.add('bg-white', 'text-[#061d33]');
-          });
-
-          updateProgressLine(index);
+        if (stepNum) {
+          stepNum.classList.remove('bg-[#061d33]', 'text-white');
+          stepNum.classList.add('bg-white', 'text-[#ff762b]');
         }
+
+        if (subTitle) {
+          subTitle.classList.remove('text-slate-600');
+          subTitle.classList.add('text-white/90');
+        }
+
+        if (icon) {
+          icon.classList.remove('bg-slate-100', 'text-[#061d33]');
+          icon.classList.add('bg-white/20', 'text-white', 'rotate-180');
+        }
+
+        subPanels.forEach(p => {
+          p.classList.remove('bg-[#f7f4ed]', 'text-[#061d33]', 'border-slate-200');
+          p.classList.add('bg-white', 'text-[#061d33]', 'border-white/20');
+        });
+
+        chips.forEach(c => {
+          if (c.innerText.startsWith('FOCUS AREAS:')) return;
+          c.classList.remove('bg-[#061d33]', 'text-white');
+          c.classList.add('bg-white', 'text-[#061d33]');
+        });
+
+        updateProgressLine(index);
       }, { signal });
     });
   }
