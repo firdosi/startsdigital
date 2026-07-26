@@ -1,0 +1,64 @@
+---
+import { site } from '../../site.config';
+import { ChevronRight } from '@lucide/astro';
+
+export interface Props {
+  currentName: string;
+  currentSlug: string;
+}
+
+const { currentName, currentSlug } = Astro.props;
+
+const homeUrl = `${site.siteUrl}${site.basePath}/`;
+const servicesUrl = `${site.siteUrl}${site.basePath}/services/`;
+const currentUrl = `${site.siteUrl}${site.basePath}/services/${currentSlug}/`;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {
+      '@type': 'ListItem',
+      'position': 1,
+      'name': 'Home',
+      'item': homeUrl
+    },
+    {
+      '@type': 'ListItem',
+      'position': 2,
+      'name': 'Services',
+      'item': servicesUrl
+    },
+    {
+      '@type': 'ListItem',
+      'position': 3,
+      'name': currentName,
+      'item': currentUrl
+    }
+  ]
+};
+---
+
+<nav aria-label="Breadcrumb" class="py-2">
+  <ol class="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm font-mono text-slate-300">
+    <li class="inline-flex items-center gap-1.5">
+      <a href={`${site.basePath}/`} class="hover:text-[#ddff35] transition-colors">
+        Home
+      </a>
+      <ChevronRight class="size-3 text-slate-400 shrink-0" aria-hidden="true" />
+    </li>
+
+    <li class="inline-flex items-center gap-1.5">
+      <a href={`${site.basePath}/services/`} class="hover:text-[#ddff35] transition-colors">
+        Services
+      </a>
+      <ChevronRight class="size-3 text-slate-400 shrink-0" aria-hidden="true" />
+    </li>
+
+    <li class="font-semibold text-white truncate max-w-[200px] sm:max-w-none" aria-current="page">
+      {currentName}
+    </li>
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

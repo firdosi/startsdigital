@@ -10,11 +10,13 @@ export interface Props {
 
 const { service } = Astro.props;
 const contactUrl = `${site.basePath}/contact/?service=${encodeURIComponent(service.contactServiceValue)}`;
-const whatsappUrl = site.contact.whatsapp || site.whatsappUrl;
+
+const baseUrl = site.contact.whatsapp || site.whatsappUrl;
+const encodedMsg = encodeURIComponent(`Hello Starts Digital, I would like to discuss ${service.name}.`);
+const whatsappUrl = `${baseUrl}?text=${encodedMsg}`;
 ---
 
 <section id="contact" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white relative overflow-hidden scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
-  <!-- Subtle Glow Accents -->
   <div class="absolute -right-20 -top-20 size-80 rounded-full bg-[#ff762b]/15 blur-3xl pointer-events-none"></div>
 
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8 relative z-10 text-center">
@@ -33,6 +35,8 @@ const whatsappUrl = site.contact.whatsapp || site.whatsappUrl;
       <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
         <a
           href={contactUrl}
+          data-track="primary-cta"
+          data-service={service.slug}
           class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl group/cta"
         >
           <span>Discuss {service.name}</span>
@@ -43,6 +47,8 @@ const whatsappUrl = site.contact.whatsapp || site.whatsappUrl;
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
+          data-track="contact-whatsapp"
+          data-service={service.slug}
           class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 font-body font-semibold text-base text-white hover:bg-white/20 transition-all"
         >
           <MessageSquare class="size-4 text-[#ddff35]" />

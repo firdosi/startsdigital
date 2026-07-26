@@ -872,3 +872,50 @@ export const servicesData: ServiceDefinition[] = [
     published: true
   }
 ];
+
+export function getAllServices(): ServiceDefinition[] {
+  return servicesData;
+}
+
+export function getPublishedServices(): ServiceDefinition[] {
+  return servicesData.filter((s) => s.published);
+}
+
+export function getServiceById(id: string): ServiceDefinition | undefined {
+  return servicesData.find((s) => s.id === id || s.slug === id);
+}
+
+export function getServiceBySlug(slug: string): ServiceDefinition | undefined {
+  return servicesData.find((s) => s.slug === slug || s.id === slug);
+}
+
+export function getPrevNextServices(id: string): { prev: ServiceDefinition | null; next: ServiceDefinition | null } {
+  const index = servicesData.findIndex((s) => s.id === id || s.slug === id);
+  if (index === -1) return { prev: null, next: null };
+  const prev = index > 0 ? servicesData[index - 1] : null;
+  const next = index < servicesData.length - 1 ? servicesData[index + 1] : null;
+  return { prev, next };
+}
+
+export function getContactAllowlistMap(): Record<string, string> {
+  const map: Record<string, string> = {
+    'multiple-services': 'Multiple Services',
+    'Multiple Services': 'Multiple Services',
+    'not-sure-yet': 'Not Sure Yet',
+    'Not Sure Yet': 'Not Sure Yet',
+  };
+
+  for (const s of servicesData) {
+    map[s.id] = s.contactServiceValue;
+    map[s.slug] = s.contactServiceValue;
+    map[s.name] = s.contactServiceValue;
+    map[s.contactServiceValue] = s.contactServiceValue;
+  }
+
+  // Alias maps for common parameters
+  map['website-development'] = 'Website Design and Development';
+  map['seo'] = 'SEO & Local Search';
+
+  return map;
+}
+

@@ -1,53 +1,51 @@
 ---
 import Logo from './Logo.astro';
 import { site } from '../../site.config';
+import { servicesData } from '../../data/services';
+
+const serviceLinks = [
+  { href: `${site.basePath}/services/`, label: 'All Services' },
+  ...servicesData.map((svc) => ({
+    href: `${site.basePath}/services/${svc.slug}/`,
+    label: svc.name
+  }))
+];
+
+const featuredWorkLinks = [
+  { href: `${site.basePath}/work/black-gold-fertilizer/`, label: 'Black Gold Fertilizer' },
+  { href: `${site.basePath}/work/qurbani-campaign/`, label: 'Wajib Livestock Qurbani' },
+  { href: `${site.basePath}/work/rk-reno-solutions/`, label: 'RK Reno Solutions' },
+  { href: `${site.basePath}/work/#convortai`, label: 'ConvortAI' },
+  { href: `${site.basePath}/work/`, label: 'All Case Studies' },
+];
+
+const companyLinks = [
+  { href: `${site.basePath}/about/`, label: 'About Starts Digital' },
+  { href: `${site.basePath}/about/#team`, label: 'Team' },
+  { href: `${site.basePath}/#process`, label: 'Working Method' },
+  { href: `${site.basePath}/#faq`, label: 'FAQ' },
+  { href: `${site.basePath}/contact/`, label: 'Discuss Your Project' },
+];
 
 const columns = [
-  {
-    heading: 'Services',
-    links: [
-      { href: `${site.basePath}/services/`, label: 'All services and capabilities' },
-      { href: `${site.basePath}/services/`, label: 'Paid advertising and leads' },
-      { href: `${site.basePath}/services/`, label: 'Website design and e-commerce' },
-      { href: `${site.basePath}/services/`, label: 'SEO and local search' },
-      { href: `${site.basePath}/services/`, label: 'Creative content' },
-      { href: `${site.basePath}/services/`, label: 'AI marketing systems' },
-    ],
-  },
-  {
-    heading: 'Featured work',
-    links: [
-      { href: `${site.basePath}/work/black-gold-fertilizer/`, label: 'Black Gold Fertilizer' },
-      { href: `${site.basePath}/work/qurbani-campaign/`, label: 'Wajib Livestock Qurbani' },
-      { href: `${site.basePath}/work/rk-reno-solutions/`, label: 'RK Reno Solutions' },
-      { href: `${site.basePath}/work/`, label: 'All case studies' },
-    ],
-  },
-  {
-    heading: 'Company',
-    links: [
-      { href: `${site.basePath}/about/`, label: 'About Starts Digital' },
-      { href: `${site.basePath}/#results`, label: 'Verified results' },
-      { href: `${site.basePath}/services/`, label: 'Working method' },
-      { href: `${site.basePath}/#faq`, label: 'FAQ' },
-      { href: `${site.basePath}/contact/`, label: 'Discuss your project' },
-    ],
-  },
+  { heading: 'Services', links: serviceLinks },
+  { heading: 'Featured Work', links: featuredWorkLinks },
+  { heading: 'Company', links: companyLinks },
 ];
 ---
 
 <footer class="bg-[#061d33] border-t border-white/10 text-slate-300 font-body relative overflow-hidden">
   <!-- Top Divider Highlight Sweep -->
-  <div data-motion="clip-left" class="h-0.5 w-full bg-gradient-to-r from-[#ff762b] via-[#9a83f5] to-[#ddff35]"></div>
+  <div class="h-0.5 w-full bg-gradient-to-r from-[#ff762b] via-[#9a83f5] to-[#ddff35]"></div>
 
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8 pt-16 pb-12">
     <div class="grid gap-10 md:grid-cols-12">
       
       <!-- Left Column: Agency Overview & Direct Contact -->
-      <div data-motion="fade-up" data-motion-delay="0" class="md:col-span-5 space-y-6">
+      <div class="md:col-span-5 space-y-6">
         <Logo />
         <p class="max-w-[380px] text-[15px] sm:text-[16px] leading-[1.65] text-slate-300 font-body font-normal">
-          Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content and practical AI-powered marketing systems.
+          Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content, social media marketing and practical AI marketing workflows.
         </p>
         
         <div class="pt-2 text-[15px] sm:text-[16px] space-y-2.5 font-body text-slate-300 font-normal">
@@ -66,17 +64,15 @@ const columns = [
         </div>
       </div>
 
-      <!-- Right Columns: Navigation Links with Staggered Entrances -->
+      <!-- Right Columns: Navigation Links -->
       <div class="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
         {
-          columns.map((col, idx) => (
-            <div data-motion="fade-up" data-motion-delay={100 + idx * 80}>
-              <!-- Column title: Sora 600 -->
+          columns.map((col) => (
+            <div>
               <h3 class="mb-4 font-heading font-semibold text-[17px] text-white">
                 {col.heading}
               </h3>
-              <!-- Links: Inter 400, min 15px -->
-              <ul class="space-y-3 text-[15px] sm:text-[16px] font-body font-normal">
+              <ul class="space-y-2.5 text-[15px] sm:text-[16px] font-body font-normal">
                 {col.links.map((link) => (
                   <li>
                     <a href={link.href} class="text-slate-300 hover:text-[#ff762b] hover:underline transition-colors">
@@ -93,7 +89,7 @@ const columns = [
     </div>
 
     <!-- Bottom Copyright & Legal Links Divider -->
-    <div data-motion="fade-up" data-motion-delay="350" class="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-[14px] sm:text-[15px] text-slate-400 font-body font-normal">
+    <div class="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-[14px] sm:text-[15px] text-slate-400 font-body font-normal">
       <div>
         © {new Date().getFullYear()} Starts Digital. All rights reserved.
       </div>

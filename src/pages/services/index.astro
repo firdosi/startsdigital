@@ -337,20 +337,21 @@ const generalFaqs = [
 
       <div class="max-w-4xl mx-auto space-y-4">
         {generalFaqs.map((item, idx) => (
-          <div class="rounded-3xl border border-[#061d33]/12 bg-white overflow-hidden shadow-xs">
-            <button
-              type="button"
-              class="service-faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-lg sm:text-xl text-[#061d33] hover:text-[#ff762b] transition-colors focus:outline-none"
-              aria-expanded={idx === 0 ? "true" : "false"}
-              aria-controls={`gfaq-content-${idx}`}
-            >
+          <details
+            open={idx === 0}
+            class="group rounded-3xl border border-[#061d33]/12 bg-white overflow-hidden shadow-xs transition-all duration-200"
+          >
+            <summary class="w-full px-6 py-5 cursor-pointer list-none flex items-center justify-between gap-4 font-heading font-bold text-lg sm:text-xl text-[#061d33] hover:text-[#ff762b] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] select-none">
               <span>{item.q}</span>
-              <ChevronDown class="size-5 text-slate-500 shrink-0 transition-transform duration-300 aria-expanded:rotate-180" />
-            </button>
-            <div id={`gfaq-content-${idx}`} class={`px-6 pb-6 text-base text-slate-700 font-body leading-relaxed border-t border-[#061d33]/8 pt-4 ${idx === 0 ? 'block' : 'hidden'}`}>
+              <div class="size-8 rounded-full bg-[#061d33]/5 group-open:bg-[#ff762b]/10 group-open:text-[#ff762b] flex items-center justify-center shrink-0 transition-colors">
+                <ChevronDown class="size-5 text-slate-500 group-open:text-[#ff762b] group-open:rotate-180 transition-transform duration-300" />
+              </div>
+            </summary>
+
+            <div class="px-6 pb-6 text-base text-slate-700 font-body leading-relaxed border-t border-[#061d33]/8 pt-4">
               {item.a}
             </div>
-          </div>
+          </details>
         ))}
       </div>
 
@@ -383,30 +384,3 @@ const generalFaqs = [
 
   <MotionController />
 </BaseLayout>
-
-<script>
-  function setupGfaqs() {
-    const buttons = document.querySelectorAll('.service-faq-toggle');
-    buttons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        const targetId = btn.getAttribute('aria-controls');
-        if (!targetId) return;
-
-        const target = document.getElementById(targetId);
-        if (!target) return;
-
-        btn.setAttribute('aria-expanded', String(!expanded));
-        if (expanded) {
-          target.classList.add('hidden');
-          target.classList.remove('block');
-        } else {
-          target.classList.remove('hidden');
-          target.classList.add('block');
-        }
-      });
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', setupGfaqs);
-</script>

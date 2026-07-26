@@ -1,16 +1,10 @@
 ---
 import Logo from './Logo.astro';
 import { site } from '../../site.config';
-import { ArrowRight } from '@lucide/astro';
+import { servicesData } from '../../data/services';
+import { ArrowRight, ChevronDown } from '@lucide/astro';
 
-const links = [
-  { href: `${site.basePath}/`, label: 'Home' },
-  { href: `${site.basePath}/services/`, label: 'Services' },
-  { href: `${site.basePath}/work/`, label: 'Work' },
-  { href: `${site.basePath}/about/`, label: 'About' },
-  { href: `${site.basePath}/#faq`, label: 'FAQ' },
-  { href: `${site.basePath}/contact/`, label: 'Contact' },
-];
+const currentPath = Astro.url.pathname;
 ---
 
 <header
@@ -20,17 +14,105 @@ const links = [
   <div class="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-6 sm:px-8 py-5.5 sm:py-6">
     <Logo />
     
-    <!-- Desktop Navigation Links with Animated Underline -->
-    <nav class="hidden gap-8 text-[15px] sm:text-[16px] font-semibold lg:flex text-slate-200 font-body">
-      {links.map((link) => (
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden gap-7 text-[15px] sm:text-[16px] font-semibold lg:flex items-center text-slate-200 font-body relative">
+      <a
+        href={`${site.basePath}/`}
+        aria-current={currentPath === `${site.basePath}/` || currentPath === `${site.basePath}` ? 'page' : undefined}
+        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b]"
+      >
+        Home
+      </a>
+
+      <!-- Desktop Services Dropdown Container -->
+      <div id="desktop-services-container" class="relative group/svc flex items-center gap-1">
         <a
-          href={link.href}
-          class="relative py-1 text-slate-200 hover:text-white transition-colors duration-200 group/nav"
+          href={`${site.basePath}/services/`}
+          aria-current={currentPath.startsWith(`${site.basePath}/services`) ? 'page' : undefined}
+          class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b]"
         >
-          <span>{link.label}</span>
-          <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-[#ff762b] group-hover/nav:w-full transition-all duration-300 rounded-full"></span>
+          Services
         </a>
-      ))}
+
+        <button
+          id="desktop-services-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="desktop-services-dropdown"
+          aria-label="Toggle Services menu"
+          class="p-1 rounded text-slate-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#ff762b] transition-transform"
+        >
+          <ChevronDown class="size-4 transition-transform duration-200" />
+        </button>
+
+        <!-- Desktop Dropdown Panel -->
+        <div
+          id="desktop-services-dropdown"
+          class="hidden absolute top-full left-0 mt-3 w-[460px] rounded-3xl border border-white/15 bg-[#061d33] p-5 shadow-2xl backdrop-blur-xl z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+        >
+          <div class="pb-3 border-b border-white/10 mb-3">
+            <a
+              href={`${site.basePath}/services/`}
+              class="flex items-center justify-between text-sm font-heading font-bold text-white hover:text-[#ff762b] transition-colors"
+            >
+              <span>All Services Overview</span>
+              <ArrowRight class="size-4 text-[#ff762b]" />
+            </a>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            {servicesData.map((svc, idx) => {
+              const href = `${site.basePath}/services/${svc.slug}/`;
+              const isActive = currentPath === href;
+
+              return (
+                <a
+                  href={href}
+                  aria-current={isActive ? 'page' : undefined}
+                  class="rounded-xl p-2.5 hover:bg-white/10 transition-colors flex items-start gap-2 text-sm font-body text-slate-200 hover:text-white aria-current:bg-[#ff762b]/20 aria-current:text-[#ff762b]"
+                >
+                  <span class="font-mono text-xs text-[#ff762b] font-bold mt-0.5">0{idx + 1}</span>
+                  <div>
+                    <span class="font-semibold block leading-tight">{svc.name}</span>
+                    <span class="text-[11px] font-mono text-slate-400 block">{svc.shortName}</span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      <a
+        href={`${site.basePath}/work/`}
+        aria-current={currentPath.startsWith(`${site.basePath}/work`) ? 'page' : undefined}
+        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b]"
+      >
+        Work
+      </a>
+
+      <a
+        href={`${site.basePath}/about/`}
+        aria-current={currentPath.startsWith(`${site.basePath}/about`) ? 'page' : undefined}
+        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b]"
+      >
+        About
+      </a>
+
+      <a
+        href={`${site.basePath}/#faq`}
+        class="py-1 text-slate-200 hover:text-white transition-colors duration-200"
+      >
+        FAQ
+      </a>
+
+      <a
+        href={`${site.basePath}/contact/`}
+        aria-current={currentPath.startsWith(`${site.basePath}/contact`) ? 'page' : undefined}
+        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b]"
+      >
+        Contact
+      </a>
     </nav>
 
     <!-- Right Actions: CTA button with arrow movement -->
@@ -51,6 +133,7 @@ const links = [
         class="flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 lg:hidden focus:outline-none transition-transform duration-200 active:scale-95"
         aria-label="Toggle navigation"
         aria-expanded="false"
+        aria-controls="mobile-menu-drawer"
       >
         <svg class="size-6 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -59,29 +142,171 @@ const links = [
     </div>
   </div>
 
-  <!-- Mobile Dropdown Navigation with Smooth Height & Staggered Links -->
+  <!-- Mobile Drawer Navigation -->
   <div
     id="mobile-menu-drawer"
-    class="grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-in-out border-t border-white/10 bg-[#061d33] px-8 lg:hidden font-body overflow-hidden"
+    class="grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-in-out border-t border-white/10 bg-[#061d33] px-6 sm:px-8 lg:hidden font-body overflow-hidden"
   >
-    <div class="overflow-hidden py-6 flex flex-col gap-4 text-base font-semibold text-white">
-      {links.map((link, idx) => (
-        <a
-          href={link.href}
-          class="mobile-link hover:text-[#ff762b] py-1.5 transition-all text-base font-semibold translate-y-2 opacity-0 duration-300"
-          style={`transition-delay: ${idx * 40}ms;`}
+    <div class="overflow-hidden py-6 flex flex-col gap-3 text-base font-semibold text-white">
+      
+      <a href={`${site.basePath}/`} class="mobile-link py-2 hover:text-[#ff762b]">Home</a>
+
+      <!-- Mobile Services Accordion Submenu -->
+      <div class="border-y border-white/10 py-2">
+        <button
+          id="mobile-services-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-services-submenu"
+          class="w-full flex items-center justify-between min-h-[44px] text-base font-semibold text-white hover:text-[#ff762b] focus:outline-none"
         >
-          {link.label}
-        </a>
-      ))}
+          <span>Services</span>
+          <ChevronDown id="mobile-services-chevron" class="size-5 transition-transform duration-300" />
+        </button>
+
+        <div id="mobile-services-submenu" class="hidden pl-4 pt-2 pb-1 space-y-2">
+          <a href={`${site.basePath}/services/`} class="mobile-link block min-h-[44px] flex items-center text-base text-[#ddff35] font-semibold hover:underline">
+            All Services Directory
+          </a>
+          {servicesData.map((svc) => (
+            <a
+              href={`${site.basePath}/services/${svc.slug}/`}
+              class="mobile-link block min-h-[44px] flex items-center text-base text-slate-200 hover:text-white"
+            >
+              {svc.name}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <a href={`${site.basePath}/work/`} class="mobile-link py-2 hover:text-[#ff762b]">Work</a>
+      <a href={`${site.basePath}/about/`} class="mobile-link py-2 hover:text-[#ff762b]">About</a>
+      <a href={`${site.basePath}/#faq`} class="mobile-link py-2 hover:text-[#ff762b]">FAQ</a>
+      <a href={`${site.basePath}/contact/`} class="mobile-link py-2 hover:text-[#ff762b]">Contact</a>
+
       <a
         href={`${site.basePath}/contact/`}
         data-track="primary-cta"
-        class="mobile-link mt-2 rounded-full bg-[#ff762b] px-6 py-3.5 text-center text-base font-semibold text-white shadow-md hover:bg-[#e56017] transition-all translate-y-2 opacity-0 duration-300"
-        style="transition-delay: 240ms;"
+        class="mobile-link mt-4 rounded-full bg-[#ff762b] min-h-[44px] flex items-center justify-center px-6 py-3.5 text-center text-base font-semibold text-white shadow-md hover:bg-[#e56017] transition-all"
       >
         Start a Project
       </a>
     </div>
   </div>
 </header>
+
+<script>
+  function setupHeaderNav() {
+    const desktopToggle = document.getElementById('desktop-services-toggle');
+    const desktopDropdown = document.getElementById('desktop-services-dropdown');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileDrawer = document.getElementById('mobile-menu-drawer');
+    const mobileServicesToggle = document.getElementById('mobile-services-toggle');
+    const mobileServicesSubmenu = document.getElementById('mobile-services-submenu');
+    const mobileServicesChevron = document.getElementById('mobile-services-chevron');
+
+    // Toggle Desktop Dropdown
+    if (desktopToggle && desktopDropdown) {
+      desktopToggle.onclick = (e) => {
+        e.stopPropagation();
+        const open = desktopDropdown.classList.contains('hidden');
+        if (open) {
+          desktopDropdown.classList.remove('hidden');
+          desktopToggle.setAttribute('aria-expanded', 'true');
+        } else {
+          desktopDropdown.classList.add('hidden');
+          desktopToggle.setAttribute('aria-expanded', 'false');
+        }
+      };
+
+      // Hover support
+      const container = document.getElementById('desktop-services-container');
+      if (container) {
+        container.onmouseenter = () => {
+          desktopDropdown.classList.remove('hidden');
+          desktopToggle.setAttribute('aria-expanded', 'true');
+        };
+        container.onmouseleave = () => {
+          desktopDropdown.classList.add('hidden');
+          desktopToggle.setAttribute('aria-expanded', 'false');
+        };
+      }
+    }
+
+    // Toggle Mobile Drawer Menu
+    if (mobileMenuToggle && mobileDrawer) {
+      mobileMenuToggle.onclick = () => {
+        const expanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+        mobileMenuToggle.setAttribute('aria-expanded', String(!expanded));
+        if (expanded) {
+          mobileDrawer.classList.remove('grid-rows-[1fr]', 'opacity-100');
+          mobileDrawer.classList.add('grid-rows-[0fr]', 'opacity-0');
+        } else {
+          mobileDrawer.classList.remove('grid-rows-[0fr]', 'opacity-0');
+          mobileDrawer.classList.add('grid-rows-[1fr]', 'opacity-100');
+        }
+      };
+    }
+
+    // Toggle Mobile Services Submenu
+    if (mobileServicesToggle && mobileServicesSubmenu && mobileServicesChevron) {
+      mobileServicesToggle.onclick = (e) => {
+        e.stopPropagation();
+        const open = mobileServicesSubmenu.classList.contains('hidden');
+        if (open) {
+          mobileServicesSubmenu.classList.remove('hidden');
+          mobileServicesChevron.classList.add('rotate-180');
+          mobileServicesToggle.setAttribute('aria-expanded', 'true');
+        } else {
+          mobileServicesSubmenu.classList.add('hidden');
+          mobileServicesChevron.classList.remove('rotate-180');
+          mobileServicesToggle.setAttribute('aria-expanded', 'false');
+        }
+      };
+    }
+
+    // Document click & Escape listener
+    const onDocClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (desktopDropdown && !desktopDropdown.contains(target) && target !== desktopToggle) {
+        desktopDropdown.classList.add('hidden');
+        if (desktopToggle) desktopToggle.setAttribute('aria-expanded', 'false');
+      }
+    };
+
+    const onKeydown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (mobileServicesSubmenu && !mobileServicesSubmenu.classList.contains('hidden')) {
+          mobileServicesSubmenu.classList.add('hidden');
+          if (mobileServicesChevron) mobileServicesChevron.classList.remove('rotate-180');
+          if (mobileServicesToggle) mobileServicesToggle.setAttribute('aria-expanded', 'false');
+        } else if (mobileDrawer && mobileMenuToggle && mobileMenuToggle.getAttribute('aria-expanded') === 'true') {
+          mobileDrawer.classList.remove('grid-rows-[1fr]', 'opacity-100');
+          mobileDrawer.classList.add('grid-rows-[0fr]', 'opacity-0');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        } else if (desktopDropdown && !desktopDropdown.classList.contains('hidden')) {
+          desktopDropdown.classList.add('hidden');
+          if (desktopToggle) desktopToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    };
+
+    document.addEventListener('click', onDocClick);
+    document.addEventListener('keydown', onKeydown);
+
+    // Close mobile menu on link click
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    mobileLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (mobileDrawer && mobileMenuToggle) {
+          mobileDrawer.classList.remove('grid-rows-[1fr]', 'opacity-100');
+          mobileDrawer.classList.add('grid-rows-[0fr]', 'opacity-0');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupHeaderNav);
+  document.addEventListener('astro:page-load', setupHeaderNav);
+</script>

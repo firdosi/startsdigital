@@ -11,7 +11,7 @@ export interface Props {
 const { service } = Astro.props;
 
 const relatedList = (service.relatedServiceIds || [])
-  .map((id) => servicesData.find((s) => s.id === id))
+  .map((id) => servicesData.find((s) => s.id === id || s.slug === id))
   .filter(Boolean) as ServiceDefinition[];
 ---
 
@@ -51,6 +51,9 @@ const relatedList = (service.relatedServiceIds || [])
                 <div class="pt-4 mt-6 border-t border-[#061d33]/8">
                   <a
                     href={targetUrl}
+                    data-track="related-service-link"
+                    data-service={rel.slug}
+                    aria-label={`View ${rel.name} details`}
                     class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-[#061d33] group-hover:text-[#ff762b] transition-colors"
                   >
                     <span>VIEW SERVICE DETAILS</span>

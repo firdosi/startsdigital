@@ -9,6 +9,7 @@ import ServiceProof from '../../components/services/ServiceProof.astro';
 import ServiceClientInputs from '../../components/services/ServiceClientInputs.astro';
 import ServiceFaq from '../../components/services/ServiceFaq.astro';
 import RelatedServices from '../../components/services/RelatedServices.astro';
+import ServicePageNavigation from '../../components/services/ServicePageNavigation.astro';
 import ServiceContactCta from '../../components/services/ServiceContactCta.astro';
 import MotionController from '../../components/common/MotionController.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
@@ -64,7 +65,6 @@ const searchIntentFlow = [
         </p>
       </div>
 
-      <!-- 4-Stage Search Flow Diagram -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto relative">
         {searchIntentFlow.map((item, idx) => {
           const IconComp = item.icon;
@@ -78,7 +78,7 @@ const searchIntentFlow = [
                   <IconComp class="size-5 text-slate-500" />
                 </div>
                 <h3 class="font-heading font-bold text-lg text-[#061d33]">{item.title}</h3>
-                <p class="text-sm font-body text-slate-600 leading-relaxed">{item.desc}</p>
+                <p class="text-base font-body text-slate-600 leading-relaxed">{item.desc}</p>
               </div>
 
               {idx < 3 && (
@@ -102,7 +102,7 @@ const searchIntentFlow = [
   {/* 4. How the Work Is Organised */}
   <ServiceProcess service={service} />
 
-  {/* 5. Relevant Project Experience (RK Reno - Single centered card) */}
+  {/* 5. Relevant Project Experience (RK Reno) */}
   <ServiceProof service={service} />
 
   {/* 6. Information Needed From the Client */}
@@ -114,7 +114,10 @@ const searchIntentFlow = [
   {/* 8. Related Services */}
   <RelatedServices service={service} />
 
-  {/* 9. Service Contact CTA */}
+  {/* 9. Service Page Navigation (Prev/Next) */}
+  <ServicePageNavigation service={service} />
+
+  {/* 10. Service Contact CTA */}
   <ServiceContactCta service={service} />
 
   <MotionController />

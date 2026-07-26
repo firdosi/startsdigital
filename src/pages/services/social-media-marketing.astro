@@ -9,17 +9,18 @@ import ServiceProof from '../../components/services/ServiceProof.astro';
 import ServiceClientInputs from '../../components/services/ServiceClientInputs.astro';
 import ServiceFaq from '../../components/services/ServiceFaq.astro';
 import RelatedServices from '../../components/services/RelatedServices.astro';
+import ServicePageNavigation from '../../components/services/ServicePageNavigation.astro';
 import ServiceContactCta from '../../components/services/ServiceContactCta.astro';
 import MotionController from '../../components/common/MotionController.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
-import { Calendar, Share2, MessageSquare, CheckSquare } from '@lucide/astro';
+import { Calendar, Share2, MessageSquare, CheckCircle } from '@lucide/astro';
 
 const service = servicesData.find((s) => s.id === 'social-media-marketing')!;
 
 const channelCoordination = [
   { title: 'Content Themes', desc: 'Defining post categories (product features, testimonials, campaign offers, behind-the-scenes).', icon: Calendar },
   { title: 'Publishing Calendar', desc: 'Organizing posting schedules, media formats, and caption copy ahead of time.', icon: Share2 },
-  { title: 'Client Approval', desc: 'Reviewing planned post drafts and caption details prior to platform scheduling.', icon: CheckSquare },
+  { title: 'Client Approval', desc: 'Reviewing planned post drafts and caption details prior to platform scheduling.', icon: CheckCircle },
   { title: 'Channel Performance', desc: 'Observing content reach and engagement signals to guide future content plans.', icon: MessageSquare }
 ];
 ---
@@ -57,7 +58,7 @@ const channelCoordination = [
                   <IconComp class="size-5 text-slate-500" />
                 </div>
                 <h3 class="font-heading font-bold text-lg text-[#061d33]">{item.title}</h3>
-                <p class="text-sm font-body text-slate-600 leading-relaxed">{item.desc}</p>
+                <p class="text-base font-body text-slate-600 leading-relaxed">{item.desc}</p>
               </div>
             </div>
           );
@@ -87,7 +88,10 @@ const channelCoordination = [
   {/* 8. Related Services */}
   <RelatedServices service={service} />
 
-  {/* 9. Service Contact CTA */}
+  {/* 9. Service Page Navigation (Prev/Next) */}
+  <ServicePageNavigation service={service} />
+
+  {/* 10. Service Contact CTA */}
   <ServiceContactCta service={service} />
 
   <MotionController />

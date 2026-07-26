@@ -9,10 +9,11 @@ import ServiceProof from '../../components/services/ServiceProof.astro';
 import ServiceClientInputs from '../../components/services/ServiceClientInputs.astro';
 import ServiceFaq from '../../components/services/ServiceFaq.astro';
 import RelatedServices from '../../components/services/RelatedServices.astro';
+import ServicePageNavigation from '../../components/services/ServicePageNavigation.astro';
 import ServiceContactCta from '../../components/services/ServiceContactCta.astro';
 import MotionController from '../../components/common/MotionController.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
-import { Film, FileText, Palette, Scissors, CheckSquare, Download } from '@lucide/astro';
+import { Film, FileText, Palette, Scissors, CheckCircle, Download } from '@lucide/astro';
 
 const service = servicesData.find((s) => s.id === 'creative-content')!;
 
@@ -21,7 +22,7 @@ const productionSequence = [
   { step: '02', title: 'Concept & Hook', desc: 'Developing visual angles, video scripts, and messaging hooks.', icon: Palette },
   { step: '03', title: 'Asset Preparation', desc: 'Gathering raw footage, photos, logos, and brand guidelines.', icon: Film },
   { step: '04', title: 'Video & Design Edit', desc: 'Editing video clips, formatting captions, and designing graphics.', icon: Scissors },
-  { step: '05', title: 'Client Review', desc: 'Applying feedback and refining details within defined revision scope.', icon: CheckSquare },
+  { step: '05', title: 'Client Review', desc: 'Applying feedback and refining details within defined revision scope.', icon: CheckCircle },
   { step: '06', title: 'Asset Delivery', desc: 'Exporting formatted vertical, square, and horizontal media files.', icon: Download }
 ];
 ---
@@ -46,7 +47,6 @@ const productionSequence = [
         </p>
       </div>
 
-      <!-- Storyboard CSS Panel Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {productionSequence.map((stage) => {
           const IconComp = stage.icon;
@@ -60,7 +60,7 @@ const productionSequence = [
                   <IconComp class="size-5 text-slate-500" />
                 </div>
                 <h3 class="font-heading font-bold text-lg text-[#061d33]">{stage.title}</h3>
-                <p class="text-sm font-body text-slate-600 leading-relaxed">{stage.desc}</p>
+                <p class="text-base font-body text-slate-600 leading-relaxed">{stage.desc}</p>
               </div>
             </div>
           );
@@ -90,7 +90,10 @@ const productionSequence = [
   {/* 8. Related Services */}
   <RelatedServices service={service} />
 
-  {/* 9. Service Contact CTA */}
+  {/* 9. Service Page Navigation (Prev/Next) */}
+  <ServicePageNavigation service={service} />
+
+  {/* 10. Service Contact CTA */}
   <ServiceContactCta service={service} />
 
   <MotionController />

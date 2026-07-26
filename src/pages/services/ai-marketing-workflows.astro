@@ -9,6 +9,7 @@ import ServiceProof from '../../components/services/ServiceProof.astro';
 import ServiceClientInputs from '../../components/services/ServiceClientInputs.astro';
 import ServiceFaq from '../../components/services/ServiceFaq.astro';
 import RelatedServices from '../../components/services/RelatedServices.astro';
+import ServicePageNavigation from '../../components/services/ServicePageNavigation.astro';
 import ServiceContactCta from '../../components/services/ServiceContactCta.astro';
 import MotionController from '../../components/common/MotionController.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
@@ -44,7 +45,6 @@ const workflowDiagram = [
         </p>
       </div>
 
-      <!-- 4-Stage Diagram Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-10">
         {workflowDiagram.map((stage) => {
           const IconComp = stage.icon;
@@ -58,14 +58,13 @@ const workflowDiagram = [
                   <IconComp class="size-5 text-[#061d33]" />
                 </div>
                 <h3 class="font-heading font-bold text-lg text-[#061d33]">{stage.title}</h3>
-                <p class="text-sm font-body text-slate-600 leading-relaxed">{stage.desc}</p>
+                <p class="text-base font-body text-slate-600 leading-relaxed">{stage.desc}</p>
               </div>
             </div>
           );
         })}
       </div>
 
-      <!-- Sensitive Data Warning Notice -->
       <div class="rounded-2xl border border-amber-500/30 bg-amber-50/50 p-5 max-w-3xl mx-auto flex items-start gap-3.5">
         <ShieldAlert class="size-5 text-amber-600 shrink-0 mt-0.5" />
         <p class="text-sm font-mono text-slate-700 leading-relaxed">
@@ -84,7 +83,7 @@ const workflowDiagram = [
   {/* 4. How the Work Is Organised */}
   <ServiceProcess service={service} />
 
-  {/* 5. Relevant Project Experience (ConvortAI with transparent note) */}
+  {/* 5. Relevant Project Experience (ConvortAI) */}
   <ServiceProof service={service} />
 
   {/* 6. Information Needed From the Client */}
@@ -96,7 +95,10 @@ const workflowDiagram = [
   {/* 8. Related Services */}
   <RelatedServices service={service} />
 
-  {/* 9. Service Contact CTA */}
+  {/* 9. Service Page Navigation (Prev/Next) */}
+  <ServicePageNavigation service={service} />
+
+  {/* 10. Service Contact CTA */}
   <ServiceContactCta service={service} />
 
   <MotionController />
