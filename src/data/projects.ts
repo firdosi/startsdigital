@@ -1,5 +1,3 @@
-import { brands, type Brand } from './brands';
-
 export type EvidenceLevel = 'detailed-case-study' | 'verified-project-summary' | 'client-experience';
 
 export interface Project {

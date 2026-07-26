@@ -14,17 +14,9 @@ import {
 import { getPublishedServices } from '../../data/services';
 import {
   ArrowRight,
-  ArrowUpRight,
   ExternalLink,
   CheckCircle2,
-  Cpu,
-  Layers,
-  Award,
-  TrendingUp,
-  MessageSquare,
-  ShieldCheck,
-  Building2,
-  Sparkles
+  MessageSquare
 } from '@lucide/astro';
 
 const directoryProjects = getClientDirectoryProjects();
@@ -237,8 +229,6 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
         {directoryProjects.map((p) => {
           const evidenceLabel = getEvidenceLevelLabel(p.evidenceLevel);
           const isDetailed = p.evidenceLevel === 'detailed-case-study';
-          const primaryActionUrl = isDetailed ? `${site.basePath}${p.caseStudyPath}` : (p.officialWebsite || p.officialSocialUrl);
-          const isExternalPrimary = !isDetailed;
 
           return (
             <article class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group min-h-[360px] focus-within:ring-2 focus-within:ring-[#ff762b]">
