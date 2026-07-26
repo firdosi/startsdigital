@@ -1,11 +1,12 @@
 ---
 import { site } from '../../site.config';
 import { homepageContent } from '../../data/homepage';
-import { servicesData } from '../../data/services';
+import { getPublishedServices } from '../../data/services';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
 import { ArrowRight, CheckCircle2 } from '@lucide/astro';
 
 const { services } = homepageContent;
+const publishedServices = getPublishedServices();
 ---
 
 <section id="services" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 relative scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
@@ -31,7 +32,7 @@ const { services } = homepageContent;
     <!-- 6-Service Editorial Grid -->
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-10">
       {
-        servicesData.map((svc, idx) => {
+        publishedServices.map((svc, idx) => {
           const targetUrl = `${site.basePath}/services/${svc.slug}/`;
 
           return (
@@ -43,7 +44,7 @@ const { services } = homepageContent;
               class="group rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-7 shadow-xs hover:border-[#ff762b]/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
             >
               <div class="space-y-4">
-                <!-- Top Row: Number & Icon/Accent -->
+                <!-- Top Row: Number & Category -->
                 <div class="flex items-center justify-between">
                   <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-1 rounded">
                     0{idx + 1} • {svc.shortName}
@@ -58,20 +59,20 @@ const { services } = homepageContent;
                   {svc.name}
                 </h3>
 
-                <!-- Description >= 16px -->
+                <!-- Summary Paragraph -->
                 <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
                   {svc.summary}
                 </p>
 
-                <!-- Practical Deliverables >= 16px -->
+                <!-- Practical Deliverables List -->
                 <div class="pt-3 border-t border-[#061d33]/8 space-y-2">
                   <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
                     Practical Deliverables
                   </span>
-                  <ul class="space-y-1.5">
+                  <ul class="space-y-2">
                     {svc.idealFor.slice(0, 3).map((item) => (
-                      <li class="flex items-start gap-2 text-xs font-mono text-slate-700">
-                        <CheckCircle2 class="size-3.5 text-[#ff762b] shrink-0 mt-0.5" />
+                      <li class="flex items-start gap-2.5 text-base font-body text-slate-700 leading-normal">
+                        <CheckCircle2 class="size-4 text-[#ff762b] shrink-0 mt-1" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -79,10 +80,10 @@ const { services } = homepageContent;
                 </div>
               </div>
 
-              <!-- Action Footer -->
-              <div class="pt-4 mt-6 border-t border-[#061d33]/8 flex items-center justify-between text-xs font-mono font-semibold text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+              <!-- Action Link Footer -->
+              <div class="pt-4 mt-6 border-t border-[#061d33]/8 flex items-center justify-between text-sm font-heading font-bold text-[#061d33] group-hover:text-[#ff762b] transition-colors">
                 <span>Explore Service</span>
-                <ArrowRight class="size-3.5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </a>
           );
@@ -94,7 +95,7 @@ const { services } = homepageContent;
     <div class="text-center">
       <a
         href={`${site.basePath}/services/`}
-        class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/20 bg-white px-7 py-3.5 font-body font-semibold text-base text-[#061d33] hover:bg-[#061d33] hover:text-white transition-all shadow-xs"
+        class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/20 bg-white px-7 py-3.5 font-body font-semibold text-base text-[#061d33] hover:bg-[#061d33] hover:text-white transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
       >
         <span>View All Services Directory</span>
         <ArrowRight class="size-4" />

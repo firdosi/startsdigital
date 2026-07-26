@@ -890,10 +890,11 @@ export function getServiceBySlug(slug: string): ServiceDefinition | undefined {
 }
 
 export function getPrevNextServices(id: string): { prev: ServiceDefinition | null; next: ServiceDefinition | null } {
-  const index = servicesData.findIndex((s) => s.id === id || s.slug === id);
+  const published = getPublishedServices();
+  const index = published.findIndex((s) => s.id === id || s.slug === id);
   if (index === -1) return { prev: null, next: null };
-  const prev = index > 0 ? servicesData[index - 1] : null;
-  const next = index < servicesData.length - 1 ? servicesData[index + 1] : null;
+  const prev = index > 0 ? published[index - 1] : null;
+  const next = index < published.length - 1 ? published[index + 1] : null;
   return { prev, next };
 }
 

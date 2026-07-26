@@ -1,10 +1,11 @@
 ---
 import Logo from './Logo.astro';
 import { site } from '../../site.config';
-import { servicesData } from '../../data/services';
+import { getPublishedServices } from '../../data/services';
 import { ArrowRight, ChevronDown } from '@lucide/astro';
 
 const currentPath = Astro.url.pathname;
+const publishedServices = getPublishedServices();
 ---
 
 <header
@@ -19,7 +20,7 @@ const currentPath = Astro.url.pathname;
       <a
         href={`${site.basePath}/`}
         aria-current={currentPath === `${site.basePath}/` || currentPath === `${site.basePath}` ? 'page' : undefined}
-        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b]"
+        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
       >
         Home
       </a>
@@ -29,7 +30,7 @@ const currentPath = Astro.url.pathname;
         <a
           href={`${site.basePath}/services/`}
           aria-current={currentPath.startsWith(`${site.basePath}/services`) ? 'page' : undefined}
-          class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b]"
+          class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
         >
           Services
         </a>
@@ -48,12 +49,12 @@ const currentPath = Astro.url.pathname;
         <!-- Desktop Dropdown Panel -->
         <div
           id="desktop-services-dropdown"
-          class="hidden absolute top-full left-0 mt-3 w-[460px] rounded-3xl border border-white/15 bg-[#061d33] p-5 shadow-2xl backdrop-blur-xl z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+          class="hidden absolute top-full left-0 mt-3 w-[480px] max-w-[90vw] rounded-3xl border border-white/15 bg-[#061d33] p-5 shadow-2xl backdrop-blur-xl z-50 animate-in fade-in slide-in-from-top-2 duration-200"
         >
           <div class="pb-3 border-b border-white/10 mb-3">
             <a
               href={`${site.basePath}/services/`}
-              class="flex items-center justify-between text-sm font-heading font-bold text-white hover:text-[#ff762b] transition-colors"
+              class="flex items-center justify-between text-sm font-heading font-bold text-white hover:text-[#ff762b] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
             >
               <span>All Services Overview</span>
               <ArrowRight class="size-4 text-[#ff762b]" />
@@ -61,7 +62,7 @@ const currentPath = Astro.url.pathname;
           </div>
 
           <div class="grid grid-cols-2 gap-2">
-            {servicesData.map((svc, idx) => {
+            {publishedServices.map((svc, idx) => {
               const href = `${site.basePath}/services/${svc.slug}/`;
               const isActive = currentPath === href;
 
@@ -69,12 +70,12 @@ const currentPath = Astro.url.pathname;
                 <a
                   href={href}
                   aria-current={isActive ? 'page' : undefined}
-                  class="rounded-xl p-2.5 hover:bg-white/10 transition-colors flex items-start gap-2 text-sm font-body text-slate-200 hover:text-white aria-current:bg-[#ff762b]/20 aria-current:text-[#ff762b]"
+                  class="rounded-xl p-2.5 hover:bg-white/10 transition-colors flex items-start gap-2.5 text-sm font-body text-slate-200 hover:text-white aria-current:bg-[#ff762b]/20 aria-current:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
                 >
-                  <span class="font-mono text-xs text-[#ff762b] font-bold mt-0.5">0{idx + 1}</span>
+                  <span class="font-mono text-sm text-[#ff762b] font-bold mt-0.5 shrink-0">0{idx + 1}</span>
                   <div>
-                    <span class="font-semibold block leading-tight">{svc.name}</span>
-                    <span class="text-[11px] font-mono text-slate-400 block">{svc.shortName}</span>
+                    <span class="font-semibold block text-sm text-white leading-tight">{svc.name}</span>
+                    <span class="text-sm font-mono text-slate-400 block mt-0.5">{svc.shortName}</span>
                   </div>
                 </a>
               );
@@ -86,7 +87,7 @@ const currentPath = Astro.url.pathname;
       <a
         href={`${site.basePath}/work/`}
         aria-current={currentPath.startsWith(`${site.basePath}/work`) ? 'page' : undefined}
-        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b]"
+        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
       >
         Work
       </a>
@@ -94,14 +95,14 @@ const currentPath = Astro.url.pathname;
       <a
         href={`${site.basePath}/about/`}
         aria-current={currentPath.startsWith(`${site.basePath}/about`) ? 'page' : undefined}
-        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b]"
+        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
       >
         About
       </a>
 
       <a
         href={`${site.basePath}/#faq`}
-        class="py-1 text-slate-200 hover:text-white transition-colors duration-200"
+        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
       >
         FAQ
       </a>
@@ -109,7 +110,7 @@ const currentPath = Astro.url.pathname;
       <a
         href={`${site.basePath}/contact/`}
         aria-current={currentPath.startsWith(`${site.basePath}/contact`) ? 'page' : undefined}
-        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b]"
+        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
       >
         Contact
       </a>
@@ -120,7 +121,7 @@ const currentPath = Astro.url.pathname;
       <a
         href={`${site.basePath}/contact/`}
         data-track="primary-cta"
-        class="hidden lg:inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[15px] sm:text-[16px] font-semibold text-[#061d33] shadow-md hover:bg-[#ddff35] hover:text-[#061d33] transition-all transform hover:-translate-y-0.5 group/cta"
+        class="hidden lg:inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[15px] sm:text-[16px] font-semibold text-[#061d33] shadow-md hover:bg-[#ddff35] hover:text-[#061d33] transition-all transform hover:-translate-y-0.5 group/cta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
       >
         <span>Start a Project</span>
         <ArrowRight class="size-4 text-[#061d33] group-hover/cta:translate-x-1 transition-transform" />
@@ -130,7 +131,7 @@ const currentPath = Astro.url.pathname;
       <button
         id="mobile-menu-toggle"
         type="button"
-        class="flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 lg:hidden focus:outline-none transition-transform duration-200 active:scale-95"
+        class="flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 lg:hidden focus:outline-none focus:ring-2 focus:ring-[#ff762b] transition-transform duration-200 active:scale-95"
         aria-label="Toggle navigation"
         aria-expanded="false"
         aria-controls="mobile-menu-drawer"
@@ -158,7 +159,7 @@ const currentPath = Astro.url.pathname;
           type="button"
           aria-expanded="false"
           aria-controls="mobile-services-submenu"
-          class="w-full flex items-center justify-between min-h-[44px] text-base font-semibold text-white hover:text-[#ff762b] focus:outline-none"
+          class="w-full flex items-center justify-between min-h-[44px] text-base font-semibold text-white hover:text-[#ff762b] focus:outline-none focus:ring-2 focus:ring-[#ff762b] rounded-sm"
         >
           <span>Services</span>
           <ChevronDown id="mobile-services-chevron" class="size-5 transition-transform duration-300" />
@@ -168,7 +169,7 @@ const currentPath = Astro.url.pathname;
           <a href={`${site.basePath}/services/`} class="mobile-link block min-h-[44px] flex items-center text-base text-[#ddff35] font-semibold hover:underline">
             All Services Directory
           </a>
-          {servicesData.map((svc) => (
+          {publishedServices.map((svc) => (
             <a
               href={`${site.basePath}/services/${svc.slug}/`}
               class="mobile-link block min-h-[44px] flex items-center text-base text-slate-200 hover:text-white"
@@ -196,18 +197,47 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
+  let headerAbortController: AbortController | null = null;
+
   function setupHeaderNav() {
+    // 1. Abort previous listeners to ensure zero duplicate handlers
+    if (headerAbortController) {
+      headerAbortController.abort();
+    }
+    headerAbortController = new AbortController();
+    const { signal } = headerAbortController;
+
     const desktopToggle = document.getElementById('desktop-services-toggle');
     const desktopDropdown = document.getElementById('desktop-services-dropdown');
+    const container = document.getElementById('desktop-services-container');
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mobileDrawer = document.getElementById('mobile-menu-drawer');
     const mobileServicesToggle = document.getElementById('mobile-services-toggle');
     const mobileServicesSubmenu = document.getElementById('mobile-services-submenu');
     const mobileServicesChevron = document.getElementById('mobile-services-chevron');
 
-    // Toggle Desktop Dropdown
+    // Helper: Reset all menus to closed state
+    const resetAllMenus = () => {
+      if (desktopDropdown) desktopDropdown.classList.add('hidden');
+      if (desktopToggle) desktopToggle.setAttribute('aria-expanded', 'false');
+
+      if (mobileDrawer) {
+        mobileDrawer.classList.remove('grid-rows-[1fr]', 'opacity-100');
+        mobileDrawer.classList.add('grid-rows-[0fr]', 'opacity-0');
+      }
+      if (mobileMenuToggle) mobileMenuToggle.setAttribute('aria-expanded', 'false');
+
+      if (mobileServicesSubmenu) mobileServicesSubmenu.classList.add('hidden');
+      if (mobileServicesChevron) mobileServicesChevron.classList.remove('rotate-180');
+      if (mobileServicesToggle) mobileServicesToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    // Always reset menu states on initial load and route changes
+    resetAllMenus();
+
+    // Toggle Desktop Dropdown via Click
     if (desktopToggle && desktopDropdown) {
-      desktopToggle.onclick = (e) => {
+      desktopToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         const open = desktopDropdown.classList.contains('hidden');
         if (open) {
@@ -216,26 +246,27 @@ const currentPath = Astro.url.pathname;
         } else {
           desktopDropdown.classList.add('hidden');
           desktopToggle.setAttribute('aria-expanded', 'false');
+          desktopToggle.focus();
         }
-      };
-
-      // Hover support
-      const container = document.getElementById('desktop-services-container');
-      if (container) {
-        container.onmouseenter = () => {
-          desktopDropdown.classList.remove('hidden');
-          desktopToggle.setAttribute('aria-expanded', 'true');
-        };
-        container.onmouseleave = () => {
-          desktopDropdown.classList.add('hidden');
-          desktopToggle.setAttribute('aria-expanded', 'false');
-        };
-      }
+      }, { signal });
     }
 
-    // Toggle Mobile Drawer Menu
+    // Hover support for Desktop Dropdown
+    if (container && desktopDropdown && desktopToggle) {
+      container.addEventListener('mouseenter', () => {
+        desktopDropdown.classList.remove('hidden');
+        desktopToggle.setAttribute('aria-expanded', 'true');
+      }, { signal });
+
+      container.addEventListener('mouseleave', () => {
+        desktopDropdown.classList.add('hidden');
+        desktopToggle.setAttribute('aria-expanded', 'false');
+      }, { signal });
+    }
+
+    // Toggle Mobile Main Drawer
     if (mobileMenuToggle && mobileDrawer) {
-      mobileMenuToggle.onclick = () => {
+      mobileMenuToggle.addEventListener('click', () => {
         const expanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
         mobileMenuToggle.setAttribute('aria-expanded', String(!expanded));
         if (expanded) {
@@ -245,12 +276,12 @@ const currentPath = Astro.url.pathname;
           mobileDrawer.classList.remove('grid-rows-[0fr]', 'opacity-0');
           mobileDrawer.classList.add('grid-rows-[1fr]', 'opacity-100');
         }
-      };
+      }, { signal });
     }
 
     // Toggle Mobile Services Submenu
     if (mobileServicesToggle && mobileServicesSubmenu && mobileServicesChevron) {
-      mobileServicesToggle.onclick = (e) => {
+      mobileServicesToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         const open = mobileServicesSubmenu.classList.contains('hidden');
         if (open) {
@@ -261,49 +292,56 @@ const currentPath = Astro.url.pathname;
           mobileServicesSubmenu.classList.add('hidden');
           mobileServicesChevron.classList.remove('rotate-180');
           mobileServicesToggle.setAttribute('aria-expanded', 'false');
+          mobileServicesToggle.focus();
         }
-      };
+      }, { signal });
     }
 
-    // Document click & Escape listener
-    const onDocClick = (e: MouseEvent) => {
+    // Outside Click Listener (Does NOT steal focus unexpectedly)
+    document.addEventListener('click', (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (desktopDropdown && !desktopDropdown.contains(target) && target !== desktopToggle) {
+      if (desktopDropdown && !desktopDropdown.contains(target) && desktopToggle && !desktopToggle.contains(target)) {
         desktopDropdown.classList.add('hidden');
-        if (desktopToggle) desktopToggle.setAttribute('aria-expanded', 'false');
+        desktopToggle.setAttribute('aria-expanded', 'false');
       }
-    };
+    }, { signal });
 
-    const onKeydown = (e: KeyboardEvent) => {
+    // Keydown (Escape) Listener with Focus Restoration
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        // Priority 1: Mobile service submenu
         if (mobileServicesSubmenu && !mobileServicesSubmenu.classList.contains('hidden')) {
           mobileServicesSubmenu.classList.add('hidden');
           if (mobileServicesChevron) mobileServicesChevron.classList.remove('rotate-180');
-          if (mobileServicesToggle) mobileServicesToggle.setAttribute('aria-expanded', 'false');
-        } else if (mobileDrawer && mobileMenuToggle && mobileMenuToggle.getAttribute('aria-expanded') === 'true') {
+          if (mobileServicesToggle) {
+            mobileServicesToggle.setAttribute('aria-expanded', 'false');
+            mobileServicesToggle.focus();
+          }
+        }
+        // Priority 2: Mobile main drawer
+        else if (mobileDrawer && mobileMenuToggle && mobileMenuToggle.getAttribute('aria-expanded') === 'true') {
           mobileDrawer.classList.remove('grid-rows-[1fr]', 'opacity-100');
           mobileDrawer.classList.add('grid-rows-[0fr]', 'opacity-0');
           mobileMenuToggle.setAttribute('aria-expanded', 'false');
-        } else if (desktopDropdown && !desktopDropdown.classList.contains('hidden')) {
+          mobileMenuToggle.focus();
+        }
+        // Priority 3: Desktop dropdown
+        else if (desktopDropdown && !desktopDropdown.classList.contains('hidden')) {
           desktopDropdown.classList.add('hidden');
-          if (desktopToggle) desktopToggle.setAttribute('aria-expanded', 'false');
+          if (desktopToggle) {
+            desktopToggle.setAttribute('aria-expanded', 'false');
+            desktopToggle.focus();
+          }
         }
       }
-    };
-
-    document.addEventListener('click', onDocClick);
-    document.addEventListener('keydown', onKeydown);
+    }, { signal });
 
     // Close mobile menu on link click
     const mobileLinks = document.querySelectorAll('.mobile-link');
     mobileLinks.forEach((link) => {
       link.addEventListener('click', () => {
-        if (mobileDrawer && mobileMenuToggle) {
-          mobileDrawer.classList.remove('grid-rows-[1fr]', 'opacity-100');
-          mobileDrawer.classList.add('grid-rows-[0fr]', 'opacity-0');
-          mobileMenuToggle.setAttribute('aria-expanded', 'false');
-        }
-      });
+        resetAllMenus();
+      }, { signal });
     });
   }
 

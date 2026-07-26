@@ -1,11 +1,11 @@
 ---
 import Logo from './Logo.astro';
 import { site } from '../../site.config';
-import { servicesData } from '../../data/services';
+import { getPublishedServices } from '../../data/services';
 
 const serviceLinks = [
   { href: `${site.basePath}/services/`, label: 'All Services' },
-  ...servicesData.map((svc) => ({
+  ...getPublishedServices().map((svc) => ({
     href: `${site.basePath}/services/${svc.slug}/`,
     label: svc.name
   }))

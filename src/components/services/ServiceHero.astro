@@ -29,7 +29,7 @@ const contactUrl = `${site.basePath}/contact/?service=${encodeURIComponent(servi
       <!-- Eyebrow -->
       <div class="inline-flex items-center gap-2">
         <span class="w-7 h-[2px] bg-[#ff762b] shrink-0" aria-hidden="true"></span>
-        <span class="font-mono font-semibold text-xs sm:text-sm uppercase tracking-[0.08em] text-[#ff762b]">
+        <span class="font-mono font-semibold text-sm uppercase tracking-[0.08em] text-[#ff762b]">
           {service.eyebrow}
         </span>
       </div>
@@ -60,7 +60,7 @@ const contactUrl = `${site.basePath}/contact/?service=${encodeURIComponent(servi
           href={contactUrl}
           data-track="primary-cta"
           data-service={service.slug}
-          class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-7 py-3.5 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-lg group/cta"
+          class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-7 py-3.5 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-lg group/cta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
         >
           <span>Discuss {service.name}</span>
           <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
@@ -68,7 +68,7 @@ const contactUrl = `${site.basePath}/contact/?service=${encodeURIComponent(servi
 
         <a
           href="#proof"
-          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 font-body font-semibold text-base text-white hover:bg-white/15 transition-all"
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 font-body font-semibold text-base text-white hover:bg-white/15 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
         >
           <span>View Project Proof</span>
           <ChevronDown class="size-4 text-slate-300" />
@@ -76,9 +76,9 @@ const contactUrl = `${site.basePath}/contact/?service=${encodeURIComponent(servi
 
         <a
           href={`${site.basePath}/services/`}
-          class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-slate-300 hover:text-[#ddff35] transition-colors ml-auto sm:ml-0"
+          class="inline-flex items-center gap-2 text-sm font-mono font-semibold text-slate-300 hover:text-[#ddff35] transition-colors ml-auto sm:ml-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
         >
-          <Grid class="size-3.5 text-[#ddff35]" />
+          <Grid class="size-4 text-[#ddff35]" />
           <span>All Services</span>
         </a>
       </div>

@@ -21,11 +21,11 @@ const { prev, next } = getPrevNextServices(service.id);
           <a
             href={`${site.basePath}/services/${prev.slug}/`}
             aria-label={`Previous service: ${prev.name}`}
-            class="group inline-flex items-center gap-3 p-4 rounded-2xl border border-white/10 bg-white/5 hover:border-[#ff762b] hover:bg-white/10 transition-all w-full"
+            class="group inline-flex items-center gap-3 p-4 rounded-2xl border border-white/10 bg-white/5 hover:border-[#ff762b] hover:bg-white/10 transition-all w-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
           >
             <ArrowLeft class="size-5 text-[#ff762b] group-hover:-translate-x-1 transition-transform shrink-0" />
             <div>
-              <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 block">Previous Service</span>
+              <span class="text-sm font-mono uppercase tracking-wider text-slate-400 block">Previous Service</span>
               <span class="font-heading font-bold text-base text-white group-hover:text-[#ff762b] transition-colors">{prev.name}</span>
             </div>
           </a>
@@ -39,7 +39,7 @@ const { prev, next } = getPrevNextServices(service.id);
         <a
           href={`${site.basePath}/services/`}
           aria-label="View all services directory"
-          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-mono font-semibold text-white hover:bg-white hover:text-[#061d33] transition-all"
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-mono font-semibold text-white hover:bg-white hover:text-[#061d33] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
         >
           <Grid class="size-4 text-[#ddff35]" />
           <span>All Services</span>
@@ -52,10 +52,10 @@ const { prev, next } = getPrevNextServices(service.id);
           <a
             href={`${site.basePath}/services/${next.slug}/`}
             aria-label={`Next service: ${next.name}`}
-            class="group inline-flex items-center justify-end gap-3 p-4 rounded-2xl border border-white/10 bg-white/5 hover:border-[#ff762b] hover:bg-white/10 transition-all w-full text-right"
+            class="group inline-flex items-center justify-end gap-3 p-4 rounded-2xl border border-white/10 bg-white/5 hover:border-[#ff762b] hover:bg-white/10 transition-all w-full text-right focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
           >
             <div>
-              <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 block">Next Service</span>
+              <span class="text-sm font-mono uppercase tracking-wider text-slate-400 block">Next Service</span>
               <span class="font-heading font-bold text-base text-white group-hover:text-[#ff762b] transition-colors">{next.name}</span>
             </div>
             <ArrowRight class="size-5 text-[#ff762b] group-hover:translate-x-1 transition-transform shrink-0" />

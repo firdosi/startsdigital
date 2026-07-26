@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { servicesData } from '../../data/services';
+import { getPublishedServices } from '../../data/services';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import MotionController from '../../components/common/MotionController.astro';
 import AnimatedGrid from '../../components/motion/AnimatedGrid.astro';
@@ -173,7 +173,7 @@ const generalFaqs = [
 
       <!-- Divided 12-Column Editorial Rows Index -->
       <div class="rounded-3xl border border-[#061d33]/15 overflow-hidden shadow-xs divide-y divide-[#061d33]/12">
-        {servicesData.map((svc, idx) => {
+        {getPublishedServices().map((svc, idx) => {
           const IconComp = iconMap[svc.iconKey] || Megaphone;
           const targetUrl = `${site.basePath}/services/${svc.slug}/`;
           const isEven = idx % 2 === 0;

@@ -1,5 +1,5 @@
 ---
-import { servicesData, type ServiceDefinition } from '../../data/services';
+import { getPublishedServices, type ServiceDefinition } from '../../data/services';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
 import { site } from '../../site.config';
 import { ArrowRight } from '@lucide/astro';
@@ -9,9 +9,10 @@ export interface Props {
 }
 
 const { service } = Astro.props;
+const published = getPublishedServices();
 
 const relatedList = (service.relatedServiceIds || [])
-  .map((id) => servicesData.find((s) => s.id === id || s.slug === id))
+  .map((id) => published.find((s) => (s.id === id || s.slug === id) && s.published !== false))
   .filter(Boolean) as ServiceDefinition[];
 ---
 
@@ -54,10 +55,10 @@ const relatedList = (service.relatedServiceIds || [])
                     data-track="related-service-link"
                     data-service={rel.slug}
                     aria-label={`View ${rel.name} details`}
-                    class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-[#061d33] group-hover:text-[#ff762b] transition-colors"
+                    class="inline-flex items-center gap-2 text-sm font-mono font-semibold text-[#061d33] group-hover:text-[#ff762b] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
                   >
                     <span>VIEW SERVICE DETAILS</span>
-                    <ArrowRight class="size-3.5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
                   </a>
                 </div>
               </div>
