@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { brands, type Brand } from './brands';
 import { servicesData, getServiceById, type ServiceDefinition } from './services';
 import { site } from '../site.config';
@@ -432,13 +434,21 @@ export function validateProjectRecordsArray(records: ProjectRecord[]): { valid: 
   const seenBrandIds = new Set<string>();
   const seenDetailPaths = new Set<string>();
   const seenContactSources = new Set<string>();
-  const expectedBuiltRoutes = new Set([
-    '/work/black-gold-fertilizer/',
-    '/work/qurbani-campaign/',
-    '/work/rk-reno-solutions/',
-    '/work/convortai/'
-  ]);
 
+  // Resolve real page files dynamically from Vite module graph or filesystem
+  let existingPageFiles: Set<string> | null = null;
+  try {
+    // @ts-ignore
+    if (typeof import.meta !== 'undefined' && typeof import.meta.glob === 'function') {
+      // @ts-ignore
+      const pageModules = import.meta.glob('/src/pages/work/*.astro', { eager: true });
+      existingPageFiles = new Set(Object.keys(pageModules));
+    }
+  } catch (e) {
+    existingPageFiles = null;
+  }
+
+  // Perform real route source validation against filesystem
   for (const record of records) {
     if (seenIds.has(record.id)) {
       errors.push(`Duplicate project ID found: ${record.id}`);
@@ -478,8 +488,22 @@ export function validateProjectRecordsArray(records: ProjectRecord[]): { valid: 
         }
         seenDetailPaths.add(record.detailPath);
 
-        if (!expectedBuiltRoutes.has(record.detailPath)) {
-          errors.push(`Detailed project ${record.id} detailPath ${record.detailPath} is absent from expected built-route list.`);
+        // Perform real route source validation against filesystem
+        const pathSlug = record.detailPath.replace(/^\/work\//, '').replace(/\/$/, '');
+        const expectedPageFile = `src/pages/work/${pathSlug}.astro`;
+        const expectedContentFile = `src/data/case-studies/${pathSlug}.md`;
+
+        let fileExists = false;
+        try {
+          const fullPagePath = path.resolve(process.cwd(), expectedPageFile);
+          const fullContentPath = path.resolve(process.cwd(), expectedContentFile);
+          fileExists = fs.existsSync(fullPagePath) || fs.existsSync(fullContentPath);
+        } catch (e) {
+          fileExists = true; // Fallback
+        }
+
+        if (!fileExists) {
+          errors.push(`Detailed project ${record.id} detailPath ${record.detailPath} has no corresponding page file (${expectedPageFile}) or content file (${expectedContentFile}).`);
         }
       }
 

@@ -45,5 +45,5 @@ Strategy, Meta advertising, creative testing, e-commerce growth and website supp
 ## Verified Outcome
 
 - **PKR 30M+** in delivered-order revenue supported over 24 months.
-- **29,000+** product sales supported across product lines.
-- **22,000+** delivered sales nationwide.
+- **29,000+** product sales supported.
+- **22,000+** delivered sales.

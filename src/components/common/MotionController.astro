@@ -22,13 +22,16 @@
       if (target) {
         // Force immediate visibility for target and its children
         target.setAttribute('data-motion-revealed', 'true');
+        target.removeAttribute('data-motion-active');
         target.querySelectorAll<HTMLElement>('[data-motion]').forEach((el) => {
           el.setAttribute('data-motion-revealed', 'true');
           el.removeAttribute('data-motion-active');
         });
 
-        // Sticky header clearance scroll
-        const headerOffset = 80;
+        // Dynamic sticky header clearance scroll
+        const headerEl = document.getElementById('main-header');
+        const headerOffset = headerEl ? Math.round(headerEl.getBoundingClientRect().height) + 16 : 80;
+
         const elementPosition = target.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = Math.max(0, elementPosition - headerOffset);
 
@@ -43,13 +46,17 @@
   }
 
   function isEssentialElement(el: HTMLElement): boolean {
-    // Section 5 Essential Content Policy: NEVER hide-first
-    if (el.matches('h1, form, #contact-form, #case-study-context-note, input, textarea, label, header, footer, [data-essential="true"]')) {
-      return true;
-    }
-    if (el.closest('h1, form, #contact-form, #case-study-context-note, header, footer, [data-essential="true"]')) {
-      return true;
-    }
+    const essentialSelectors = [
+      'h1', 'h2', 'form', '#contact-form', '#case-study-context-note',
+      'input', 'textarea', 'label', 'button', 'header', 'footer',
+      '[data-essential="true"]', '.team-card', '.faq-item',
+      '.accordion-item', '.service-card', '.project-card',
+      '#project-hero', '#directory', '#experience'
+    ].join(', ');
+
+    if (el.matches(essentialSelectors)) return true;
+    if (el.closest(essentialSelectors)) return true;
+
     return false;
   }
 
@@ -82,8 +89,19 @@
             if (entry.isIntersecting) {
               const el = entry.target as HTMLElement;
               el.setAttribute('data-motion-revealed', 'true');
-              el.removeAttribute('data-motion-active');
               motionObserver.unobserve(el);
+
+              // Remove temporary active state and will-change ONLY after transition completes
+              const handleTransitionEnd = () => {
+                el.removeAttribute('data-motion-active');
+                el.style.willChange = 'auto';
+                el.removeEventListener('transitionend', handleTransitionEnd);
+              };
+
+              el.addEventListener('transitionend', handleTransitionEnd, { once: true });
+              const durMs = parseInt(el.style.getPropertyValue('--motion-dur') || '320', 10);
+              const delMs = parseInt(el.style.getPropertyValue('--motion-del') || '0', 10);
+              setTimeout(handleTransitionEnd, durMs + delMs + 100);
             }
           });
         },
@@ -166,35 +184,6 @@
         },
         { passive: true }
       );
-    }
-
-    // Mobile Menu Toggle (Idempotent)
-    const toggleBtn = document.getElementById('mobile-menu-toggle');
-    const drawer = document.getElementById('mobile-menu-drawer');
-    const mobileLinks = document.querySelectorAll<HTMLElement>('.mobile-link');
-
-    if (toggleBtn && !toggleBtn.dataset.bound) {
-      toggleBtn.dataset.bound = 'true';
-      toggleBtn.addEventListener('click', () => {
-        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-        toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
-
-        if (!isExpanded) {
-          drawer?.classList.remove('grid-rows-[0fr]', 'opacity-0');
-          drawer?.classList.add('grid-rows-[1fr]', 'opacity-100');
-        } else {
-          drawer?.classList.remove('grid-rows-[1fr]', 'opacity-100');
-          drawer?.classList.add('grid-rows-[0fr]', 'opacity-0');
-        }
-      });
-
-      mobileLinks.forEach((link) => {
-        link.addEventListener('click', () => {
-          toggleBtn?.setAttribute('aria-expanded', 'false');
-          drawer?.classList.remove('grid-rows-[1fr]', 'opacity-100');
-          drawer?.classList.add('grid-rows-[0fr]', 'opacity-0');
-        });
-      });
     }
   }
 

@@ -1,0 +1,250 @@
+---
+// InteractionController.astro — Dedicated Controller for Shared Interactive Accordions & Controls
+---
+
+<script>
+  let interactionAbortController: AbortController | null = null;
+
+  function initInteractions() {
+    if (interactionAbortController) {
+      interactionAbortController.abort();
+    }
+    interactionAbortController = new AbortController();
+    const { signal } = interactionAbortController;
+
+    // ------------------------------------------------------------------
+    // 1. FAQ ACCORDION CONTROLLER
+    // ------------------------------------------------------------------
+    const faqList = document.getElementById('faq-list');
+    const faqItems = faqList ? Array.from(faqList.querySelectorAll<HTMLElement>('.faq-item')) : [];
+
+    faqItems.forEach((item) => {
+      const toggleBtn = item.querySelector<HTMLButtonElement>('[data-faq-toggle]');
+      if (!toggleBtn) return;
+
+      const wrapper = item.querySelector<HTMLElement>('[data-faq-answer-wrapper]');
+      const icon = item.querySelector<HTMLElement>('[data-faq-icon]');
+      const plusIcon = item.querySelector<HTMLElement>('[data-icon-plus]');
+      const minusIcon = item.querySelector<HTMLElement>('[data-icon-minus]');
+
+      toggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+
+        // Close all other FAQ items
+        faqItems.forEach((other) => {
+          if (other === item) return;
+          const otherBtn = other.querySelector<HTMLButtonElement>('[data-faq-toggle]');
+          const otherWrapper = other.querySelector<HTMLElement>('[data-faq-answer-wrapper]');
+          const otherIcon = other.querySelector<HTMLElement>('[data-faq-icon]');
+          const otherPlus = other.querySelector<HTMLElement>('[data-icon-plus]');
+          const otherMinus = other.querySelector<HTMLElement>('[data-icon-minus]');
+
+          otherBtn?.setAttribute('aria-expanded', 'false');
+          otherWrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-6');
+          otherWrapper?.classList.add('grid-rows-[0fr]', 'opacity-0', 'pb-0');
+
+          other.classList.remove('border-[#ff762b]', 'shadow-md');
+          other.classList.add('border-slate-200');
+
+          otherIcon?.classList.remove('bg-[#ff762b]', 'text-white', 'rotate-180');
+          otherIcon?.classList.add('bg-[#f7f4ed]', 'text-[#061d33]');
+
+          otherPlus?.classList.remove('hidden');
+          otherMinus?.classList.add('hidden');
+        });
+
+        // Toggle current FAQ item
+        if (isOpen) {
+          toggleBtn.setAttribute('aria-expanded', 'false');
+          wrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-6');
+          wrapper?.classList.add('grid-rows-[0fr]', 'opacity-0', 'pb-0');
+
+          item.classList.remove('border-[#ff762b]', 'shadow-md');
+          item.classList.add('border-slate-200');
+
+          icon?.classList.remove('bg-[#ff762b]', 'text-white', 'rotate-180');
+          icon?.classList.add('bg-[#f7f4ed]', 'text-[#061d33]');
+
+          plusIcon?.classList.remove('hidden');
+          minusIcon?.classList.add('hidden');
+        } else {
+          toggleBtn.setAttribute('aria-expanded', 'true');
+          wrapper?.classList.remove('grid-rows-[0fr]', 'opacity-0', 'pb-0');
+          wrapper?.classList.add('grid-rows-[1fr]', 'opacity-100', 'pb-6');
+
+          item.classList.remove('border-slate-200');
+          item.classList.add('border-[#ff762b]', 'shadow-md');
+
+          icon?.classList.remove('bg-[#f7f4ed]', 'text-[#061d33]');
+          icon?.classList.add('bg-[#ff762b]', 'text-white', 'rotate-180');
+
+          plusIcon?.classList.add('hidden');
+          minusIcon?.classList.remove('hidden');
+        }
+      }, { signal });
+    });
+
+    // ------------------------------------------------------------------
+    // 2. WORKING METHOD ACCORDION CONTROLLER
+    // ------------------------------------------------------------------
+    const processItems = Array.from(document.querySelectorAll<HTMLElement>('.accordion-item'));
+    const progressLine = document.getElementById('process-progress-line');
+
+    const updateProgressLine = (stageIndex: number) => {
+      if (!progressLine) return;
+      // Stage 1 = 25%, Stage 2 = 50%, Stage 3 = 75%, Stage 4 = 100%
+      const percentage = Math.min(100, Math.max(25, (stageIndex + 1) * 25));
+      progressLine.style.width = `${percentage}%`;
+    };
+
+    processItems.forEach((item, index) => {
+      const toggle = item.querySelector<HTMLButtonElement>('.accordion-toggle');
+      if (!toggle) return;
+
+      const wrapper = item.querySelector<HTMLElement>('.accordion-wrapper');
+      const stepNum = item.querySelector<HTMLElement>('.accordion-step-num');
+      const subTitle = item.querySelector<HTMLElement>('.accordion-subtitle');
+      const icon = item.querySelector<HTMLElement>('.accordion-icon');
+      const subPanels = Array.from(item.querySelectorAll<HTMLElement>('.accordion-wrapper .rounded-2xl'));
+      const chips = Array.from(item.querySelectorAll<HTMLElement>('.accordion-wrapper span.font-mono'));
+
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+
+        // Close other stages
+        processItems.forEach((otherItem) => {
+          if (otherItem === item) return;
+          const otherToggle = otherItem.querySelector<HTMLButtonElement>('.accordion-toggle');
+          const otherWrapper = otherItem.querySelector<HTMLElement>('.accordion-wrapper');
+          const otherStepNum = otherItem.querySelector<HTMLElement>('.accordion-step-num');
+          const otherSubTitle = otherItem.querySelector<HTMLElement>('.accordion-subtitle');
+          const otherIcon = otherItem.querySelector<HTMLElement>('.accordion-icon');
+          const otherPanels = Array.from(otherItem.querySelectorAll<HTMLElement>('.accordion-wrapper .rounded-2xl'));
+          const otherChips = Array.from(otherItem.querySelectorAll<HTMLElement>('.accordion-wrapper span.font-mono'));
+
+          otherToggle?.setAttribute('aria-expanded', 'false');
+          otherWrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-8', 'pt-2');
+          otherWrapper?.classList.add('grid-rows-[0fr]', 'opacity-0', 'pb-0', 'pt-0');
+
+          otherItem.classList.remove('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
+          otherItem.classList.add('border-slate-300', 'bg-white', 'text-[#061d33]');
+
+          if (otherStepNum) {
+            otherStepNum.classList.remove('bg-white', 'text-[#ff762b]');
+            otherStepNum.classList.add('bg-[#061d33]', 'text-white');
+          }
+
+          if (otherSubTitle) {
+            otherSubTitle.classList.remove('text-white/90');
+            otherSubTitle.classList.add('text-slate-600');
+          }
+
+          if (otherIcon) {
+            otherIcon.classList.remove('bg-white/20', 'text-white', 'rotate-180');
+            otherIcon.classList.add('bg-slate-100', 'text-[#061d33]');
+          }
+
+          otherPanels.forEach(p => {
+            p.classList.remove('bg-white', 'text-[#061d33]', 'border-white/20');
+            p.classList.add('bg-[#f7f4ed]', 'text-[#061d33]', 'border-slate-200');
+          });
+
+          otherChips.forEach(c => {
+            if (c.innerText.startsWith('FOCUS AREAS:')) return;
+            c.classList.remove('bg-white', 'text-[#061d33]');
+            c.classList.add('bg-[#061d33]', 'text-white');
+          });
+        });
+
+        // Toggle current stage
+        if (isOpen) {
+          toggle.setAttribute('aria-expanded', 'false');
+          wrapper?.classList.remove('grid-rows-[1fr]', 'opacity-100', 'pb-8', 'pt-2');
+          wrapper?.classList.add('grid-rows-[0fr]', 'opacity-0', 'pb-0', 'pt-0');
+
+          item.classList.remove('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
+          item.classList.add('border-slate-300', 'bg-white', 'text-[#061d33]');
+
+          if (stepNum) {
+            stepNum.classList.remove('bg-white', 'text-[#ff762b]');
+            stepNum.classList.add('bg-[#061d33]', 'text-white');
+          }
+
+          if (subTitle) {
+            subTitle.classList.remove('text-white/90');
+            subTitle.classList.add('text-slate-600');
+          }
+
+          if (icon) {
+            icon.classList.remove('bg-white/20', 'text-white', 'rotate-180');
+            icon.classList.add('bg-slate-100', 'text-[#061d33]');
+          }
+
+          subPanels.forEach(p => {
+            p.classList.remove('bg-white', 'text-[#061d33]', 'border-white/20');
+            p.classList.add('bg-[#f7f4ed]', 'text-[#061d33]', 'border-slate-200');
+          });
+
+          chips.forEach(c => {
+            if (c.innerText.startsWith('FOCUS AREAS:')) return;
+            c.classList.remove('bg-white', 'text-[#061d33]');
+            c.classList.add('bg-[#061d33]', 'text-white');
+          });
+        } else {
+          toggle.setAttribute('aria-expanded', 'true');
+          wrapper?.classList.remove('grid-rows-[0fr]', 'opacity-0', 'pb-0', 'pt-0');
+          wrapper?.classList.add('grid-rows-[1fr]', 'opacity-100', 'pb-8', 'pt-2');
+
+          item.classList.remove('border-slate-300', 'bg-white', 'text-[#061d33]');
+          item.classList.add('border-[#ff762b]', 'bg-[#ff762b]', 'text-white');
+
+          if (stepNum) {
+            stepNum.classList.remove('bg-[#061d33]', 'text-white');
+            stepNum.classList.add('bg-white', 'text-[#ff762b]');
+          }
+
+          if (subTitle) {
+            subTitle.classList.remove('text-slate-600');
+            subTitle.classList.add('text-white/90');
+          }
+
+          if (icon) {
+            icon.classList.remove('bg-slate-100', 'text-[#061d33]');
+            icon.classList.add('bg-white/20', 'text-white', 'rotate-180');
+          }
+
+          subPanels.forEach(p => {
+            p.classList.remove('bg-[#f7f4ed]', 'text-[#061d33]', 'border-slate-200');
+            p.classList.add('bg-white', 'text-[#061d33]', 'border-white/20');
+          });
+
+          chips.forEach(c => {
+            if (c.innerText.startsWith('FOCUS AREAS:')) return;
+            c.classList.remove('bg-[#061d33]', 'text-white');
+            c.classList.add('bg-white', 'text-[#061d33]');
+          });
+
+          updateProgressLine(index);
+        }
+      }, { signal });
+    });
+  }
+
+  function cleanupInteractions() {
+    if (interactionAbortController) {
+      interactionAbortController.abort();
+      interactionAbortController = null;
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initInteractions);
+  } else {
+    initInteractions();
+  }
+
+  document.addEventListener('astro:before-swap', cleanupInteractions);
+  document.addEventListener('astro:page-load', initInteractions);
+</script>

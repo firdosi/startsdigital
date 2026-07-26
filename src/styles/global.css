@@ -2,9 +2,23 @@
 
 /*
  * Starts Digital — Progressive Motion & Visual System
- * Progressive Enhancement: 100% visible by default in HTML/CSS
- * JS enhances below-the-fold non-essential elements when reduced-motion is OFF
+ * Motion tokens in src/data/motion.ts are mapped directly via CSS custom properties.
+ * Desktop hover interactions are scoped strictly to @media (hover: hover) and (pointer: fine).
  */
+
+:root {
+  --motion-dur-fast: 180ms;
+  --motion-dur-standard: 320ms;
+  --motion-dur-slow: 480ms;
+
+  --motion-dist-mobile: 12px;
+  --motion-dist-desktop: 20px;
+
+  --motion-ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+  --motion-ease-interactive: cubic-bezier(0.2, 0, 0, 1);
+}
+
 @theme {
   --color-cream: #f7f4ed;
   --color-cream-card: #ffffff;
@@ -124,38 +138,48 @@
 }
 
 /* ==========================================================================
-   PROGRESSIVE ENHANCEMENT MOTION SYSTEM
-   Base state is 100% visible (opacity: 1, transform: none).
-   Pre-animation hidden states active ONLY when JS sets [data-motion-active="true"]
+   PROGRESSIVE ENHANCEMENT ENTRANCE MOTION SYSTEM
+   Connected directly to motion.ts tokens via CSS custom properties
    ========================================================================== */
 
 [data-motion-active="true"] {
   will-change: opacity, transform;
   transition-property: opacity, transform;
-  transition-duration: var(--motion-dur, 320ms);
-  transition-timing-function: var(--motion-ease, cubic-bezier(0.16, 1, 0.3, 1));
+  transition-duration: var(--motion-dur, var(--motion-dur-standard));
+  transition-timing-function: var(--motion-ease, var(--motion-ease-entrance));
   transition-delay: var(--motion-del, 0ms);
 }
 
 [data-motion-active="true"][data-motion="fade-up"],
 [data-motion-active="true"][data-motion="clip-up"] {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(var(--motion-dist-mobile));
 }
 
-[data-motion-active="true"][data-motion="fade-down"] {
-  opacity: 0;
-  transform: translateY(-16px);
+@media (min-width: 768px) {
+  [data-motion-active="true"][data-motion="fade-up"],
+  [data-motion-active="true"][data-motion="clip-up"] {
+    transform: translateY(var(--motion-dist-desktop));
+  }
 }
 
 [data-motion-active="true"][data-motion="fade-left"] {
   opacity: 0;
-  transform: translateX(-16px);
+  transform: translateX(calc(-1 * var(--motion-dist-mobile)));
 }
 
 [data-motion-active="true"][data-motion="fade-right"] {
   opacity: 0;
-  transform: translateX(16px);
+  transform: translateX(var(--motion-dist-mobile));
+}
+
+@media (min-width: 768px) {
+  [data-motion-active="true"][data-motion="fade-left"] {
+    transform: translateX(calc(-1 * var(--motion-dist-desktop)));
+  }
+  [data-motion-active="true"][data-motion="fade-right"] {
+    transform: translateX(var(--motion-dist-desktop));
+  }
 }
 
 [data-motion-active="true"][data-motion="scale-in"] {
@@ -170,7 +194,7 @@
   filter: none !important;
 }
 
-/* Continuous decorative animation pausing when section is offscreen */
+/* Section visibility observer for pausing offscreen decorative loops */
 section:not(.is-section-visible) .animate-float,
 section:not(.is-section-visible) .animate-float-gentle,
 section:not(.is-section-visible) .animate-spin-slow,
@@ -187,6 +211,25 @@ section.is-section-visible .animate-pulse-glow,
 section.is-section-visible .animate-marquee-left,
 section.is-section-visible .animate-marquee-right {
   animation-play-state: running;
+}
+
+/* ==========================================================================
+   DESKTOP-ONLY RESTRAINED HOVER INTERACTIONS
+   Prevents sticky hover state on mobile/touch devices.
+   ========================================================================== */
+
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift {
+    transition: transform var(--motion-dur-fast) var(--motion-ease-interactive),
+                box-shadow var(--motion-dur-fast) var(--motion-ease-interactive),
+                border-color var(--motion-dur-fast) var(--motion-ease-interactive);
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+  .hover-scale-subtle:hover img {
+    transform: scale(1.03);
+  }
 }
 
 @layer base {
@@ -246,6 +289,10 @@ section.is-section-visible .animate-marquee-right {
     clip-path: none !important;
     filter: none !important;
     transition: none !important;
+  }
+
+  .hover-lift:hover {
+    transform: none !important;
   }
 }
 
