@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../site.config';
 import Button from '../components/ui/Button.astro';
 import Container from '../components/ui/Container.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
@@ -79,9 +80,9 @@ import { ArrowRight, Sparkles, Check, ShieldCheck } from '@lucide/astro';
         <div class="space-y-6 max-w-4xl">
           <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 border-b border-brand-grey/5 pb-4">
             <span class="font-body text-xs text-brand-text w-24 shrink-0">H1 / Hero Title</span>
-            <h1 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-brand-white">
+            <div class="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-brand-white">
               Digital strategy that scales.
-            </h1>
+            </div>
           </div>
           <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 border-b border-brand-grey/5 pb-4">
             <span class="font-body text-xs text-brand-text w-24 shrink-0">H2 / Section Title</span>
@@ -124,11 +125,11 @@ import { ArrowRight, Sparkles, Check, ShieldCheck } from '@lucide/astro';
           </div>
           <div class="flex flex-col gap-2">
             <span class="font-body text-2xs text-brand-text">Tertiary Link</span>
-            <Button variant="tertiary" href="#">View Our Work</Button>
+            <Button variant="tertiary" href={`${site.basePath}/work/`}>View Our Work</Button>
           </div>
           <div class="flex flex-col gap-2">
             <span class="font-body text-2xs text-brand-text">Standard Inline Link</span>
-            <a href="#" class="text-sm font-semibold text-brand-blue hover:text-brand-white underline underline-offset-4 transition-colors">
+            <a href={`${site.basePath}/services/`} class="text-sm font-semibold text-brand-blue hover:text-brand-white underline underline-offset-4 transition-colors">
               Read Our Process
             </a>
           </div>

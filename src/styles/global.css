@@ -6,18 +6,9 @@
  * Desktop hover interactions are scoped strictly to @media (hover: hover) and (pointer: fine).
  */
 
-:root {
-  --motion-dur-fast: 180ms;
-  --motion-dur-standard: 320ms;
-  --motion-dur-slow: 480ms;
-
-  --motion-dist-mobile: 12px;
-  --motion-dist-desktop: 20px;
-
-  --motion-ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
-  --motion-ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
-  --motion-ease-interactive: cubic-bezier(0.2, 0, 0, 1);
-}
+/*
+ * Motion tokens from src/data/motion.ts are injected as CSS variables on <html> by BaseLayout
+ */
 
 @theme {
   --color-cream: #f7f4ed;

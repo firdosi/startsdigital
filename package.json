@@ -10,7 +10,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check"
+    "check": "astro check",
+    "qa:motion": "node scripts/qa/motion-regression.mjs",
+    "qa:evidence": "node scripts/qa/evidence-validation.mjs",
+    "qa:links": "node scripts/qa/internal-links.mjs",
+    "qa:seo": "node scripts/qa/seo-audit.mjs",
+    "qa:schema": "node scripts/qa/schema-audit.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

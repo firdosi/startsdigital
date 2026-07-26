@@ -1,153 +1,255 @@
 ---
 import { site } from '../../site.config';
+import { getSeoForPath, getCanonicalUrl } from '../../data/seo';
+import { services } from '../../data/services';
+import { projectRecords } from '../../data/projects';
+import { teamMembers } from '../../data/team';
+import { companyProfile } from '../../data/company';
 
 interface Props {
-  type?: 'homepage' | 'case-study' | 'page';
-  title?: string;
-  description?: string;
-  image?: string;
+  schemaType?: string;
 }
 
-const {
-  type = 'page',
-  title = site.defaultTitle,
-  description = site.defaultDescription,
-  image,
-} = Astro.props;
+const pathname = Astro.url.pathname;
+const seoConfig = getSeoForPath(pathname);
 
-const currentPath = Astro.url.pathname;
-const fullUrl = currentPath.startsWith(site.basePath)
-  ? `${site.domain}${currentPath}`
-  : `${site.siteUrl}${currentPath}`;
-const absoluteUrl = fullUrl.replace(/\/$/, '') + '/';
-
-const absoluteOgImage = image
-  ? (image.startsWith('http') ? image : `${site.siteUrl}${image}`)
-  : `${site.siteUrl}${site.defaultOgImage}`;
+const resolvedSchemaType = Astro.props.schemaType || seoConfig.schemaType || 'page';
+const canonicalUrl = getCanonicalUrl(pathname);
 
 // 1. Organization Schema
 const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${site.siteUrl}/#organization`,
-  name: site.businessName,
+  name: companyProfile.name,
+  foundingDate: '2025',
+  description: companyProfile.locationStatement,
   url: `${site.siteUrl}/`,
   logo: `${site.siteUrl}/favicon.svg`,
   email: site.email,
   telephone: site.phone,
   areaServed: ['Pakistan', 'International'],
-  knowsAbout: [
-    'Digital marketing',
-    'Paid advertising',
-    'Website development',
-    'SEO',
-    'Creative content',
-    'AI marketing systems'
-  ]
+  knowsAbout: companyProfile.services,
 };
 
-// 2. WebSite Schema (Homepage)
+// 2. WebSite Schema
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${site.siteUrl}/#website`,
   url: `${site.siteUrl}/`,
-  name: site.businessName,
+  name: companyProfile.name,
   description: site.defaultDescription,
   publisher: {
-    '@id': `${site.siteUrl}/#organization`
-  }
+    '@id': `${site.siteUrl}/#organization`,
+  },
 };
 
-// 3. ProfessionalService Schema (Homepage)
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  '@id': `${site.siteUrl}/#service`,
-  name: site.businessName,
-  url: `${site.siteUrl}/`,
-  email: site.email,
-  telephone: site.phone,
-  areaServed: ['Pakistan', 'International'],
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Digital Marketing & Growth Services',
-    itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Paid Advertising and Lead Generation' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Website Design and E-Commerce' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SEO and Local Search' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Creative Content Production' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Marketing Systems' } }
-    ]
+// 3. Breadcrumb Schema (with exact central labels)
+function buildBreadcrumbs() {
+  const items = [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: `${site.siteUrl}/`,
+    },
+  ];
+
+  if (pathname === '/' || pathname === site.basePath || pathname === `${site.basePath}/`) {
+    return items;
   }
-};
 
-// 4. BreadcrumbList Schema
-const pathSegments = currentPath
-  .replace(site.basePath, '')
-  .split('/')
-  .filter(Boolean);
+  const cleanPath = pathname.replace(site.basePath, '').replace(/^\/+|\/+$/g, '');
+  const segments = cleanPath.split('/').filter(Boolean);
 
-const breadcrumbItems = [
-  {
-    '@type': 'ListItem',
-    position: 1,
-    name: 'Home',
-    item: `${site.siteUrl}/`
+  if (segments.length === 1) {
+    items.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: seoConfig.breadcrumbLabel || 'Page',
+      item: canonicalUrl,
+    });
+  } else if (segments.length === 2) {
+    const parentPath = `/${segments[0]}/`;
+    const parentSeo = getSeoForPath(parentPath);
+    items.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: parentSeo.breadcrumbLabel || segments[0],
+      item: getCanonicalUrl(parentPath),
+    });
+    items.push({
+      '@type': 'ListItem',
+      position: 3,
+      name: seoConfig.breadcrumbLabel || segments[1],
+      item: canonicalUrl,
+    });
   }
-];
 
-let cumPath = `${site.siteUrl}`;
-pathSegments.forEach((segment, idx) => {
-  cumPath += `/${segment}`;
-  const label = segment
-    .split('-')
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
-  breadcrumbItems.push({
-    '@type': 'ListItem',
-    position: idx + 2,
-    name: label,
-    item: cumPath.replace(/\/$/, '') + '/'
-  });
-});
+  return items;
+}
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  itemListElement: breadcrumbItems
+  itemListElement: buildBreadcrumbs(),
 };
 
-// 5. Page Schema (WebPage or CreativeWork)
-const pageSchema = type === 'case-study'
-  ? {
+// Assemble schemas based on route schemaType
+const schemas: any[] = [];
+
+if (resolvedSchemaType === 'homepage') {
+  schemas.push(orgSchema, websiteSchema, {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${canonicalUrl}#webpage`,
+    url: canonicalUrl,
+    name: seoConfig.title,
+    description: seoConfig.description,
+    publisher: { '@id': `${site.siteUrl}/#organization` },
+  });
+} else if (resolvedSchemaType === 'about') {
+  const persons = teamMembers.map((m) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: m.name,
+    jobTitle: m.role,
+    worksFor: { '@id': `${site.siteUrl}/#organization` },
+    ...(m.linkedin ? { sameAs: [m.linkedin] } : {}),
+  }));
+
+  schemas.push(
+    orgSchema,
+    {
       '@context': 'https://schema.org',
-      '@type': 'CreativeWork',
-      headline: title,
-      description: description,
-      url: absoluteUrl,
-      image: absoluteOgImage,
-      author: {
-        '@id': `${site.siteUrl}/#organization`
+      '@type': 'AboutPage',
+      '@id': `${canonicalUrl}#aboutpage`,
+      url: canonicalUrl,
+      name: seoConfig.title,
+      description: seoConfig.description,
+      publisher: { '@id': `${site.siteUrl}/#organization` },
+    },
+    breadcrumbSchema,
+    ...persons
+  );
+} else if (resolvedSchemaType === 'contact') {
+  schemas.push(
+    orgSchema,
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      '@id': `${canonicalUrl}#contactpage`,
+      url: canonicalUrl,
+      name: seoConfig.title,
+      description: seoConfig.description,
+      publisher: { '@id': `${site.siteUrl}/#organization` },
+    },
+    breadcrumbSchema
+  );
+} else if (resolvedSchemaType === 'services-index') {
+  schemas.push(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': `${canonicalUrl}#collection`,
+      url: canonicalUrl,
+      name: seoConfig.title,
+      description: seoConfig.description,
+      publisher: { '@id': `${site.siteUrl}/#organization` },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: services.map((s, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          name: s.name,
+          url: getCanonicalUrl(`/services/${s.slug}/`),
+        })),
       },
-      publisher: {
-        '@id': `${site.siteUrl}/#organization`
-      }
-    }
-  : {
+    },
+    breadcrumbSchema
+  );
+} else if (resolvedSchemaType === 'service') {
+  const currentService = services.find((s) => s.id === seoConfig.serviceId);
+  schemas.push(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': `${canonicalUrl}#service`,
+      name: currentService ? currentService.name : seoConfig.title,
+      description: seoConfig.description,
+      provider: { '@id': `${site.siteUrl}/#organization` },
+      url: canonicalUrl,
+    },
+    {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      name: title,
-      description: description,
-      url: absoluteUrl,
-      publisher: {
-        '@id': `${site.siteUrl}/#organization`
-      }
-    };
-
-const schemas = type === 'homepage'
-  ? [orgSchema, websiteSchema, serviceSchema]
-  : [pageSchema, breadcrumbSchema];
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: seoConfig.title,
+      description: seoConfig.description,
+    },
+    breadcrumbSchema
+  );
+} else if (resolvedSchemaType === 'work-index') {
+  const stories = projectRecords.filter((p) => p.isDetailedStory);
+  schemas.push(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': `${canonicalUrl}#collection`,
+      url: canonicalUrl,
+      name: seoConfig.title,
+      description: seoConfig.description,
+      publisher: { '@id': `${site.siteUrl}/#organization` },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: stories.map((p, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          name: p.publicName,
+          url: getCanonicalUrl(p.detailPath),
+        })),
+      },
+    },
+    breadcrumbSchema
+  );
+} else if (resolvedSchemaType === 'case-study') {
+  schemas.push(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      '@id': `${canonicalUrl}#creativework`,
+      headline: seoConfig.title,
+      description: seoConfig.description,
+      url: canonicalUrl,
+      creator: { '@id': `${site.siteUrl}/#organization` },
+      publisher: { '@id': `${site.siteUrl}/#organization` },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: seoConfig.title,
+      description: seoConfig.description,
+    },
+    breadcrumbSchema
+  );
+} else {
+  schemas.push(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: seoConfig.title,
+      description: seoConfig.description,
+      publisher: { '@id': `${site.siteUrl}/#organization` },
+    },
+    breadcrumbSchema
+  );
+}
 ---
 
 {schemas.map((s) => (

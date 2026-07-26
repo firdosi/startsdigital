@@ -17,6 +17,7 @@ import { ClientRouter } from 'astro:transitions';
 import { site } from '../site.config';
 import MotionController from '../components/common/MotionController.astro';
 import InteractionController from '../components/common/InteractionController.astro';
+import Analytics from '../components/analytics/Analytics.astro';
 
 import { getMotionCssVariables } from '../data/motion';
 
@@ -85,6 +86,7 @@ const calculatedSchemaType = schemaType || (currentPath === `${site.basePath}/` 
       <Footer />
       <MotionController />
       <InteractionController />
+      <Analytics />
     </div>
   </body>
 </html>

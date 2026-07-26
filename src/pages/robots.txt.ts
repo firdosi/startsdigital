@@ -1,15 +1,13 @@
 import type { APIRoute } from 'astro';
-import { site } from '../site.config';
 
 export const GET: APIRoute = () => {
-  const sitemapUrl = `${site.siteUrl}/sitemap-index.xml`;
-  const body = `User-agent: *
+  const content = `User-agent: *
 Allow: /
 
-Sitemap: ${sitemapUrl}
+Sitemap: https://firdosi.github.io/startsdigital/sitemap-index.xml
 `;
 
-  return new Response(body, {
+  return new Response(content, {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
     },

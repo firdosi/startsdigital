@@ -920,3 +920,5 @@ export function getContactAllowlistMap(): Record<string, string> {
   return map;
 }
 
+export const services = servicesData;
+

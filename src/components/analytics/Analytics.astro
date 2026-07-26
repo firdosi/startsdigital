@@ -1,0 +1,31 @@
+---
+// Disabled-by-default Analytics Integration
+const isEnabled = import.meta.env.PUBLIC_ANALYTICS_ENABLED === 'true';
+const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || '';
+---
+
+{
+  isEnabled && measurementId && (
+    <>
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+      <script is:inline define:vars={{ measurementId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', measurementId, { send_page_view: true, anonymize_ip: true });
+      </script>
+    </>
+  )
+}
+
+<script>
+  import { initAnalyticsTrackers } from '../../scripts/analytics';
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAnalyticsTrackers);
+  } else {
+    initAnalyticsTrackers();
+  }
+
+  document.addEventListener('astro:page-load', initAnalyticsTrackers);
+</script>

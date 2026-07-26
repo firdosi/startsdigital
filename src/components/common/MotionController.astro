@@ -3,14 +3,15 @@
 ---
 
 <script>
-  import { motionTokens } from '../../data/motion';
-
   let activeObservers: IntersectionObserver[] = [];
+  let pendingTimers: Set<number> = new Set();
   let headerScrollBound = false;
 
   function cleanupMotionSystem() {
     activeObservers.forEach((obs) => obs.disconnect());
     activeObservers = [];
+    pendingTimers.forEach((timerId) => clearTimeout(timerId));
+    pendingTimers.clear();
   }
 
   function handleHashTarget() {
@@ -48,14 +49,36 @@
   function isEssentialElement(el: HTMLElement): boolean {
     const essentialSelectors = [
       'h1', 'h2', 'form', '#contact-form', '#case-study-context-note',
-      'input', 'textarea', 'label', 'button', 'header', 'footer',
+      'input', 'textarea', 'label', 'button', 'header', 'footer', 'nav', 'article',
       '[data-essential="true"]', '.team-card', '.faq-item',
       '.accordion-item', '.service-card', '.project-card',
-      '#project-hero', '#directory', '#experience'
+      '#project-hero', '#directory', '#experience', '#faq', '#process', '#team', '#team-workflow'
     ].join(', ');
 
+    // 1. Element itself matches essential selector
     if (el.matches(essentialSelectors)) return true;
-    if (el.closest(essentialSelectors)) return true;
+
+    // 2. Ancestor matches essential selector
+    if (el.closest(essentialSelectors) !== null) return true;
+
+    // 3. Element contains an essential descendant
+    if (el.querySelector(essentialSelectors) !== null) return true;
+
+    // 4. Element contains the active focused element
+    if (document.activeElement && el.contains(document.activeElement)) return true;
+
+    // 5. Element contains the current hash target
+    if (window.location.hash && window.location.hash.length > 1) {
+      try {
+        const hashEl = document.querySelector(window.location.hash);
+        if (hashEl && el.contains(hashEl)) return true;
+      } catch (e) {
+        // ignore invalid hash
+      }
+    }
+
+    // 6. Element has already been revealed
+    if (el.getAttribute('data-motion-revealed') === 'true') return true;
 
     return false;
   }
@@ -91,17 +114,30 @@
               el.setAttribute('data-motion-revealed', 'true');
               motionObserver.unobserve(el);
 
-              // Remove temporary active state and will-change ONLY after transition completes
-              const handleTransitionEnd = () => {
+              // Single deterministic cleanup with fallback timer tracking & cancellation
+              let cleanedUp = false;
+              let timerId: number | null = null;
+
+              const doCleanup = () => {
+                if (cleanedUp) return;
+                cleanedUp = true;
+                if (timerId !== null) {
+                  clearTimeout(timerId);
+                  pendingTimers.delete(timerId);
+                }
+                el.removeEventListener('transitionend', onTransitionEnd);
                 el.removeAttribute('data-motion-active');
                 el.style.willChange = 'auto';
-                el.removeEventListener('transitionend', handleTransitionEnd);
               };
 
-              el.addEventListener('transitionend', handleTransitionEnd, { once: true });
+              const onTransitionEnd = () => doCleanup();
+              el.addEventListener('transitionend', onTransitionEnd, { once: true });
+
               const durMs = parseInt(el.style.getPropertyValue('--motion-dur') || '320', 10);
               const delMs = parseInt(el.style.getPropertyValue('--motion-del') || '0', 10);
-              setTimeout(handleTransitionEnd, durMs + delMs + 100);
+              
+              timerId = window.setTimeout(doCleanup, durMs + delMs + 100);
+              pendingTimers.add(timerId);
             }
           });
         },
@@ -120,39 +156,13 @@
           // Already in viewport: reveal immediately
           el.setAttribute('data-motion-revealed', 'true');
         } else {
-          // Below the fold: activate progressive motion enhancement
-          const duration = el.dataset.motionDuration || 'standard';
-          const durMs = motionTokens.durations[duration as keyof typeof motionTokens.durations] || 320;
-          el.style.setProperty('--motion-dur', `${durMs}ms`);
-
-          const delay = el.dataset.motionDelay || '0';
-          el.style.setProperty('--motion-del', `${delay}ms`);
-
+          // Below fold: observe reveal
           el.setAttribute('data-motion-active', 'true');
           motionObserver.observe(el);
         }
       });
 
       activeObservers.push(motionObserver);
-
-      // Section visibility observer for continuous decorative pause
-      const sections = document.querySelectorAll<HTMLElement>('section, footer');
-      const sectionObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const sec = entry.target as HTMLElement;
-            if (entry.isIntersecting) {
-              sec.classList.add('is-section-visible');
-            } else {
-              sec.classList.remove('is-section-visible');
-            }
-          });
-        },
-        { threshold: 0.05, rootMargin: '0px' }
-      );
-
-      sections.forEach((sec) => sectionObserver.observe(sec));
-      activeObservers.push(sectionObserver);
     } else {
       // Fallback if IntersectionObserver not supported
       allMotionElements.forEach((el) => {
@@ -187,7 +197,6 @@
     }
   }
 
-  // Bind to lifecycle events
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMotionSystem);
   } else {
