@@ -1,5 +1,6 @@
 ---
 import { site } from '../../site.config';
+import { getProjectById } from '../../data/projects';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
 import { ArrowRight, ExternalLink, Cpu, CheckCircle2 } from '@lucide/astro';
 
@@ -8,6 +9,11 @@ interface Props {
 }
 
 const { showAllWorkButton = true } = Astro.props;
+
+const bgProject = getProjectById('black-gold-fertilizer')!;
+const convortProject = getProjectById('convort-ai')!;
+const wajibProject = getProjectById('wajib-livestock')!;
+const rkProject = getProjectById('rk-reno-solutions')!;
 ---
 
 <section id="work" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
@@ -19,20 +25,20 @@ const { showAllWorkButton = true } = Astro.props;
         <SectionEyebrow
           label="SELECTED WORK"
           align="left"
-          delay={0}
+          motion={false}
         />
-        <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] md:text-[36px] lg:text-[40px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
+        <h2 class="font-heading font-bold text-[28px] md:text-[36px] lg:text-[40px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Different businesses require different combinations of strategy and execution.
         </h2>
-        <p data-motion="fade-up" data-motion-delay="200" class="text-base text-slate-700 font-body leading-relaxed font-normal">
+        <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
           Explore selected projects across e-commerce, seasonal campaigns, local services and technology.
         </p>
       </div>
       {showAllWorkButton && (
-        <div data-motion="pop-in" data-motion-delay="200" class="shrink-0">
+        <div class="shrink-0">
           <a
             href={`${site.basePath}/work/`}
-            class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-6 py-3 font-body font-semibold text-sm text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-xs group/cta"
+            class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-6 py-3 font-body font-semibold text-sm text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-xs group/cta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
           >
             <span>View all client work</span>
             <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
@@ -48,21 +54,17 @@ const { showAllWorkButton = true } = Astro.props;
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         <!-- 1. BLACK GOLD FERTILIZER (Image-Led E-Commerce Feature) -->
-        <article
-          data-motion="fade-up"
-          data-motion-delay="100"
-          class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group"
-        >
+        <article class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group">
           <div class="space-y-5">
             <!-- Header Row -->
             <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
               <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
-                AGRICULTURE & E-COMMERCE
+                {bgProject.sector}
               </span>
               <div class="h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center bg-[#061d33] border border-[#061d33]">
                 <img
-                  src={`${site.basePath}/brands/black-gold-fertilizer/logo.webp`}
-                  alt="Black Gold Fertilizer logo"
+                  src={`${site.basePath}${bgProject.logo}`}
+                  alt={`${bgProject.publicName} logo`}
                   width="110"
                   height="32"
                   loading="lazy"
@@ -85,10 +87,10 @@ const { showAllWorkButton = true } = Astro.props;
 
             <div>
               <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight mb-2">
-                Black Gold Fertilizer
+                {bgProject.publicName}
               </h3>
               <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-                Supported PKR 30M+ in delivered-order revenue, 29,000+ product sales and 22,000+ delivered sales over 24 months.
+                {bgProject.verifiedOutcome}
               </p>
             </div>
 
@@ -108,31 +110,29 @@ const { showAllWorkButton = true } = Astro.props;
           <!-- Bottom Actions -->
           <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-[#061d33]/8">
             <a
-              href={`${site.basePath}/work/black-gold-fertilizer/`}
+              href={`${site.basePath}${bgProject.caseStudyPath}`}
               data-track="case-study-open"
-              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs"
+              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
             >
               <span>Explore case study</span>
               <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a
-              href="https://blackgoldfertilizer.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
-            >
-              <span>Website</span>
-              <ExternalLink class="size-3.5" />
-            </a>
+            {bgProject.officialWebsite && (
+              <a
+                href={bgProject.officialWebsite}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+              >
+                <span>Website</span>
+                <ExternalLink class="size-3.5" />
+              </a>
+            )}
           </div>
         </article>
 
         <!-- 2. CONVORTAI (Deep Navy Technology Partnership Feature) -->
-        <article
-          data-motion="fade-up"
-          data-motion-delay="200"
-          class="rounded-3xl border border-white/20 bg-[#061d33] text-white p-6 sm:p-8 flex flex-col justify-between shadow-xl group relative overflow-hidden"
-        >
+        <article class="rounded-3xl border border-white/20 bg-[#061d33] text-white p-6 sm:p-8 flex flex-col justify-between shadow-xl group relative overflow-hidden">
           <div class="space-y-5">
             <!-- Header Row -->
             <div class="flex items-center justify-between gap-3 pb-4 border-b border-white/15">
@@ -142,8 +142,8 @@ const { showAllWorkButton = true } = Astro.props;
               </span>
               <div class="h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center bg-[#0b2947] border border-white/15">
                 <img
-                  src={`${site.basePath}/brands/convort-ai/logo.webp`}
-                  alt="ConvortAI logo"
+                  src={`${site.basePath}${convortProject.logo}`}
+                  alt={`${convortProject.publicName} logo`}
                   width="110"
                   height="32"
                   loading="lazy"
@@ -154,13 +154,13 @@ const { showAllWorkButton = true } = Astro.props;
 
             <div>
               <h3 class="font-heading font-bold text-2xl text-white group-hover:text-[#ddff35] transition-colors leading-tight mb-1">
-                ConvortAI
+                {convortProject.publicName}
               </h3>
               <span class="text-xs font-mono text-[#ff762b] font-semibold block mb-3">
-                Product Development & Growth Partner
+                {convortProject.relationshipType}
               </span>
               <p class="text-base text-slate-200 font-body leading-relaxed font-normal">
-                Technology Partner and Product Development & Growth Partner. Starts Digital developed the web application and continues supporting product development, project management, social media, creative production and growth.
+                {convortProject.shortSummary}
               </p>
             </div>
 
@@ -170,7 +170,7 @@ const { showAllWorkButton = true } = Astro.props;
                 Partnership Capabilities
               </span>
               <div class="flex flex-wrap gap-2">
-                {['Web App Development', 'Product Development', 'Project Management', 'Social Media', 'Creative Production', 'Growth Support'].map((s) => (
+                {convortProject.approvedServices.map((s) => (
                   <span class="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-2.5 py-1.5 text-xs font-mono text-white border border-white/15">
                     <CheckCircle2 class="size-3 text-[#39c98a]" />
                     <span>{s}</span>
@@ -183,21 +183,23 @@ const { showAllWorkButton = true } = Astro.props;
           <!-- Bottom Actions -->
           <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-white/15">
             <a
-              href={`${site.basePath}/work/#convortai`}
-              class="inline-flex items-center gap-2 rounded-full bg-[#ddff35] px-5 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:bg-[#c9eb1e] transition-all shadow-xs"
+              href={`${site.basePath}${convortProject.caseStudyPath}`}
+              class="inline-flex items-center gap-2 rounded-full bg-[#ddff35] px-5 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:bg-[#c9eb1e] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
             >
               <span>Explore partner details</span>
               <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a
-              href="https://convortai.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 transition-all shadow-xs"
-            >
-              <span>Website</span>
-              <ExternalLink class="size-3.5" />
-            </a>
+            {convortProject.officialWebsite && (
+              <a
+                href={convortProject.officialWebsite}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+              >
+                <span>Website</span>
+                <ExternalLink class="size-3.5" />
+              </a>
+            )}
           </div>
         </article>
 
@@ -207,20 +209,16 @@ const { showAllWorkButton = true } = Astro.props;
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         <!-- 3. WAJIB LIVESTOCK (Seasonal Outcome Feature) -->
-        <article
-          data-motion="fade-up"
-          data-motion-delay="300"
-          class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group"
-        >
+        <article class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group">
           <div class="space-y-5">
             <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
               <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
-                LIVESTOCK & SEASONAL CAMPAIGNS
+                {wajibProject.sector}
               </span>
               <div class="h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center bg-[#061d33] border border-[#061d33]">
                 <img
-                  src={`${site.basePath}/brands/wajib-livestock/logo.webp`}
-                  alt="Wajib Livestock logo"
+                  src={`${site.basePath}${wajibProject.logo}`}
+                  alt={`${wajibProject.publicName} logo`}
                   width="110"
                   height="32"
                   loading="lazy"
@@ -231,10 +229,10 @@ const { showAllWorkButton = true } = Astro.props;
 
             <div>
               <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight mb-2">
-                Wajib Livestock
+                {wajibProject.publicName}
               </h3>
               <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-                Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.
+                {wajibProject.verifiedOutcome}
               </p>
             </div>
 
@@ -252,40 +250,38 @@ const { showAllWorkButton = true } = Astro.props;
 
           <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-[#061d33]/8">
             <a
-              href={`${site.basePath}/work/qurbani-campaign/`}
+              href={`${site.basePath}${wajibProject.caseStudyPath}`}
               data-track="case-study-open"
-              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs"
+              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
             >
               <span>Explore campaign study</span>
               <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a
-              href="https://wajib.pk"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
-            >
-              <span>Website</span>
-              <ExternalLink class="size-3.5" />
-            </a>
+            {wajibProject.officialWebsite && (
+              <a
+                href={wajibProject.officialWebsite}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+              >
+                <span>Website</span>
+                <ExternalLink class="size-3.5" />
+              </a>
+            )}
           </div>
         </article>
 
         <!-- 4. RK RENO SOLUTIONS (Website & Local SEO Feature) -->
-        <article
-          data-motion="fade-up"
-          data-motion-delay="400"
-          class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group"
-        >
+        <article class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group">
           <div class="space-y-5">
             <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
               <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
-                RENOVATION & LOCAL SERVICES
+                {rkProject.sector}
               </span>
               <div class="h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center bg-white border border-slate-200">
                 <img
-                  src={`${site.basePath}/brands/rk-reno-solutions/logo.webp`}
-                  alt="RK Reno Solutions logo"
+                  src={`${site.basePath}${rkProject.logo}`}
+                  alt={`${rkProject.publicName} logo`}
                   width="110"
                   height="32"
                   loading="lazy"
@@ -296,10 +292,10 @@ const { showAllWorkButton = true } = Astro.props;
 
             <div>
               <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight mb-2">
-                RK Reno Solutions
+                {rkProject.publicName}
               </h3>
               <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-                Website, content and local SEO foundation for renovation and air-conditioning services in Kuala Lumpur and Selangor.
+                {rkProject.shortSummary}
               </p>
             </div>
 
@@ -315,22 +311,24 @@ const { showAllWorkButton = true } = Astro.props;
 
           <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-[#061d33]/8">
             <a
-              href={`${site.basePath}/work/rk-reno-solutions/`}
+              href={`${site.basePath}${rkProject.caseStudyPath}`}
               data-track="case-study-open"
-              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs"
+              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
             >
               <span>Explore SEO study</span>
               <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a
-              href="https://rkrenosolution.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
-            >
-              <span>Website</span>
-              <ExternalLink class="size-3.5" />
-            </a>
+            {rkProject.officialWebsite && (
+              <a
+                href={rkProject.officialWebsite}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+              >
+                <span>Website</span>
+                <ExternalLink class="size-3.5" />
+              </a>
+            )}
           </div>
         </article>
 

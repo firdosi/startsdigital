@@ -1,224 +1,211 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Container from '../../components/ui/Container.astro';
-import Showcase from '../../components/landing/Showcase.astro';
-import FinalCta from '../../components/landing/FinalCta.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import MotionController from '../../components/common/MotionController.astro';
-import { brands, type Brand } from '../../data/brands';
+import AnimatedGrid from '../../components/motion/AnimatedGrid.astro';
+import FloatingOrb from '../../components/motion/FloatingOrb.astro';
+import SectionSpark from '../../components/motion/SectionSpark.astro';
 import { site } from '../../site.config';
-import { ExternalLink, Cpu, CheckCircle } from '@lucide/astro';
+import {
+  getClientDirectoryProjects,
+  getEvidenceLevelLabel,
+  type Project
+} from '../../data/projects';
+import { getPublishedServices } from '../../data/services';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ExternalLink,
+  CheckCircle2,
+  Cpu,
+  Layers,
+  Award,
+  TrendingUp,
+  MessageSquare,
+  ShieldCheck,
+  Building2,
+  Sparkles
+} from '@lucide/astro';
 
-const convort = brands.find((b) => b.id === 'convort-ai');
+const directoryProjects = getClientDirectoryProjects();
+const publishedServices = getPublishedServices();
 
-// Exactly the 9 regular client brands (excluding the 4 brands with dedicated sections: Black Gold, Wajib, RK Reno, ConvortAI)
-const regularBrandIds = [
-  'right-link-advisors',
-  'rapidline-immigration-services',
-  'rapidzone',
-  'viral-naturals',
-  'clearzone-immigration',
-  'riyadh-finish-pro',
-  'shopinq-online',
-  'super-safety-covers',
-  'unique-lahore-lab-sahiwal'
+const detailedProjects: Project[] = [
+  directoryProjects.find((p) => p.id === 'black-gold-fertilizer')!,
+  directoryProjects.find((p) => p.id === 'wajib-livestock')!,
+  directoryProjects.find((p) => p.id === 'rk-reno-solutions')!,
+  directoryProjects.find((p) => p.id === 'convort-ai')!
 ];
 
-const regularBrands = regularBrandIds
-  .map((id) => brands.find((b) => b.id === id))
-  .filter((b): b is Brand => Boolean(b));
+const encodedWhatsappMsg = encodeURIComponent('Hello Starts Digital, I would like to discuss a project after reviewing your work.');
+const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
 ---
 
-<BaseLayout 
-  title="Client Portfolio & Selected Experience — Starts Digital"
-  description="Selected client work, featured case studies and public brand pages supported by Starts Digital."
-  type="website"
+<BaseLayout
+  title="Client Work & Case Studies | Starts Digital"
+  description="Explore Starts Digital client work across paid advertising, websites, SEO, creative production, social media and technology projects."
 >
-  <!-- Deep Navy Rounded Hero Header -->
-  <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 rounded-b-[40px] shadow-2xl overflow-hidden">
-    <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
-      <div data-motion="scale-in">
-        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35]">
-          <span>OUR WORK & CLIENT EXPERIENCE</span>
-        </span>
+  {/* 1. WORK HERO */}
+  <section id="work-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
+    <AnimatedGrid opacity={0.10} />
+    <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
+    <SectionSpark color="orange" size="md" class="top-10 right-[8%] pointer-events-none" delay="0s" />
+
+    <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 z-10">
+      <div class="max-w-4xl space-y-6 text-left">
+        
+        <div class="inline-flex items-center gap-2">
+          <span class="w-7 h-[2px] bg-[#ff762b] shrink-0" aria-hidden="true"></span>
+          <span class="font-mono font-semibold text-xs sm:text-sm uppercase tracking-[0.08em] text-[#ff762b]">
+            SELECTED CLIENT WORK
+          </span>
+        </div>
+
+        <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
+          Work across campaigns, websites, content and digital products.
+        </h1>
+
+        <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal max-w-3xl">
+          Explore selected Starts Digital project experience across e-commerce, seasonal campaigns, local services, consultation, technology and online businesses.
+        </p>
+
+        <!-- Compact Factual Context Row -->
+        <div class="pt-3 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl">
+          <div class="rounded-2xl border border-white/15 bg-white/5 p-3.5 text-left">
+            <span class="font-heading font-bold text-xl sm:text-2xl text-[#ddff35] block">13</span>
+            <span class="text-xs font-mono text-slate-300 block mt-0.5">Approved Client Brands</span>
+          </div>
+
+          <div class="rounded-2xl border border-white/15 bg-white/5 p-3.5 text-left">
+            <span class="font-heading font-bold text-xl sm:text-2xl text-[#ff762b] block">4</span>
+            <span class="text-xs font-mono text-slate-300 block mt-0.5">Detailed Project Stories</span>
+          </div>
+
+          <div class="rounded-2xl border border-white/15 bg-white/5 p-3.5 text-left">
+            <span class="font-heading font-bold text-xl sm:text-2xl text-white block">6</span>
+            <span class="text-xs font-mono text-slate-300 block mt-0.5">Service Disciplines</span>
+          </div>
+
+          <div class="rounded-2xl border border-white/15 bg-white/5 p-3.5 text-left">
+            <span class="font-heading font-bold text-xl sm:text-2xl text-[#39c98a] block">Local & Int’l</span>
+            <span class="text-xs font-mono text-slate-300 block mt-0.5">Project Reach</span>
+          </div>
+        </div>
+
       </div>
-      
-      <!-- Hero Headline: Sora 700 -->
-      <h1 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] text-white leading-[1.08] tracking-[-0.035em] max-w-[800px] mx-auto">
-        Work built around <span class="text-[#ff762b]">real business outcomes.</span>
-      </h1>
-      
-      <p data-motion="fade-up" data-motion-delay="200" class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.65] font-normal">
-        Selected client work, featured case studies and public brand pages supported by Starts Digital.
-      </p>
-    </Container>
+    </div>
   </section>
 
-  <!-- 3 Large Image-Led Featured Projects (Self-link hidden on Work page) -->
-  <Showcase showAllWorkButton={false} />
-
-  <!-- Featured Technology Partner Section: ConvortAI -->
-  {convort && (
-    <section id="convortai" class="scroll-mt-24 py-16 lg:py-24 bg-[#061d33] text-white relative overflow-hidden border-b border-white/10">
-      <Container class="max-w-[1280px] px-6 sm:px-8">
-        <div data-motion="fade-up" class="rounded-3xl border-2 border-[#ddff35]/30 bg-gradient-to-br from-[#061d33] via-[#0b2947] to-[#061d33] p-8 sm:p-12 lg:p-14 shadow-2xl space-y-8 relative overflow-hidden">
-          
-          <!-- Decorative Glow Accent -->
-          <div class="absolute -right-20 -top-20 size-80 rounded-full bg-[#ff762b]/15 blur-3xl pointer-events-none"></div>
-
-          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 pb-8 border-b border-white/15">
-            <div class="space-y-4">
-              <div class="flex flex-wrap items-center gap-3">
-                <span class="inline-flex items-center gap-2 rounded-full border border-[#ddff35]/50 bg-[#ddff35]/15 px-4 py-1.5 text-xs font-mono font-bold uppercase tracking-[0.08em] text-[#ddff35]">
-                  <Cpu class="size-4 text-[#ddff35]" />
-                  <span>TECHNOLOGY PARTNER</span>
-                </span>
-              </div>
-
-              <h2 class="font-heading font-bold text-[32px] sm:text-[42px] text-white leading-tight">
-                ConvortAI
-              </h2>
-              <p class="font-heading font-semibold text-lg text-[#ff762b]">
-                {convort.role}
-              </p>
-            </div>
-
-            <!-- ConvortAI Official Logo Badge -->
-            <div class="shrink-0 bg-[#061d33] rounded-2xl p-6 shadow-xl border border-white/20 flex items-center justify-center max-w-[280px] w-full h-[120px]">
-              <img 
-                src={`${site.basePath}${convort.logo}`} 
-                alt="ConvortAI official logo"
-                class="max-h-16 max-w-[220px] object-contain"
-              />
-            </div>
-          </div>
-
-          <!-- Public Summary -->
-          <p class="font-body text-base sm:text-lg text-slate-200 leading-[1.7] max-w-4xl">
-            {convort.summary}
-          </p>
-
-          <!-- Service Tags -->
-          <div class="space-y-3 pt-2">
-            <div class="text-xs font-mono font-medium uppercase tracking-[0.06em] text-slate-400">
-              Partnership Capabilities
-            </div>
-            <div class="flex flex-wrap gap-2.5">
-              {convort.services.map((service) => (
-                <span class="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-xs sm:text-sm font-body font-medium text-white">
-                  <CheckCircle class="size-3.5 text-[#39c98a]" />
-                  <span>{service}</span>
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <!-- Action Button -->
-          <div class="pt-4 flex flex-wrap items-center gap-4">
-            <a
-              href="https://convortai.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit ConvortAI official website"
-              class="inline-flex items-center gap-2.5 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-lg group"
-            >
-              <span>Visit ConvortAI Website</span>
-              <ExternalLink class="size-4 group-hover:scale-110 transition-transform" />
-            </a>
-          </div>
-
-        </div>
-      </Container>
-    </section>
-  )}
-
-  <!-- Selected Client Experience Section (Clean 3x3 Grid of 9 Regular Brands) -->
-  <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
-    <Container class="max-w-[1280px] px-6 sm:px-8 space-y-16">
-      <div class="text-center max-w-3xl mx-auto space-y-3">
-        <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
-          SELECTED CLIENT EXPERIENCE
-        </span>
-        <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
-          Brands We Have Worked With
+  {/* 2. DETAILED PROJECT STORIES */}
+  <section id="detailed-stories" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="DETAILED PROJECT STORIES" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+          Projects supported by verified information and real project evidence.
         </h2>
-        <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
-          Explore client websites and public social pages for work completed across e-commerce, services, consultation and technology.
+        <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
+          Detailed stories are presented where verified outcomes, contribution details or genuine project media are available.
         </p>
       </div>
 
-      <div class="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {regularBrands.map((b, idx) => {
-          const containerClass = b.darkLogoContainer
-            ? 'bg-[#061d33] border-[#061d33]'
-            : 'bg-[#f7f4ed] border-slate-200/90';
+      <!-- 4 Equal-Weight Preview Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {detailedProjects.map((proj) => {
+          const isConvort = proj.id === 'convort-ai';
 
           return (
-            <article 
-              data-motion="fade-up"
-              data-motion-delay={idx * 40}
-              class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-6 sm:p-7 shadow-md hover:shadow-xl hover:border-[#ff762b] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
-            >
-              <div class="space-y-4">
-                <!-- Top Row: Logo Container & Category Badge -->
-                <div class="flex items-center justify-between gap-3 pb-4 border-b border-slate-100">
-                  <div class={`h-16 w-36 rounded-xl p-2.5 flex items-center justify-center border ${containerClass} group-hover:scale-105 transition-transform shrink-0`}>
-                    {b.logo ? (
-                      <img 
-                        src={`${site.basePath}${b.logo}`} 
-                        alt={`${b.name} logo`} 
-                        width="125"
-                        height="48"
-                        loading="lazy"
-                        decoding="async"
-                        class="max-h-12 max-w-[125px] object-contain"
-                      />
-                    ) : (
-                      <span class="font-heading font-bold text-xs text-[#061d33] uppercase text-center px-1">
-                        {b.name}
-                      </span>
-                    )}
-                  </div>
-
-                  <span class="inline-block rounded-full px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-wider bg-[#f7f4ed] border border-slate-200 text-slate-700">
-                    {b.industry}
+            <article class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group">
+              <div class="space-y-5">
+                
+                <!-- Card Top Header -->
+                <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
+                  <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
+                    {proj.sector}
                   </span>
+
+                  <!-- Brand Logo Zone -->
+                  <div class={`h-11 w-32 rounded-xl px-2.5 py-1 flex items-center justify-center border ${proj.darkLogoContainer ? 'bg-[#061d33] border-[#061d33]' : 'bg-slate-50 border-slate-200'}`}>
+                    <img
+                      src={`${site.basePath}${proj.logo}`}
+                      alt={`${proj.publicName} logo`}
+                      width="120"
+                      height="36"
+                      loading="lazy"
+                      class="max-h-7 w-auto object-contain"
+                    />
+                  </div>
                 </div>
 
-                <!-- Brand Name -->
+                <!-- Title & Relationship -->
                 <div>
-                  <h3 class="font-heading font-bold text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
-                    {b.name}
+                  <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
+                    {proj.publicName}
                   </h3>
+                  {proj.relationshipType && isConvort && (
+                    <span class="inline-block mt-1 font-mono text-xs text-[#ff762b] font-semibold">
+                      {proj.relationshipType}
+                    </span>
+                  )}
                 </div>
-              </div>
 
-              <!-- Official Buttons (Website and Facebook) -->
-              <div class="pt-5 mt-5 border-t border-slate-100 flex flex-wrap items-center gap-2">
-                {b.website && (
-                  <a
-                    href={b.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-track="client-website"
-                    aria-label={`Visit ${b.name} official website`}
-                    class="inline-flex items-center gap-1.5 rounded-full bg-[#061d33] px-4 py-2 text-xs font-body font-semibold text-white hover:bg-[#ff762b] transition-colors shadow-xs"
-                  >
-                    <span>Website</span>
-                    <ExternalLink class="size-3" />
-                  </a>
+                <!-- Contribution -->
+                <div class="space-y-1.5">
+                  <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+                    Approved Contribution
+                  </span>
+                  <p class="text-base text-slate-700 font-body leading-relaxed">
+                    {proj.shortSummary}
+                  </p>
+                </div>
+
+                <!-- Verified Outcome -->
+                {proj.verifiedOutcome && (
+                  <div class="p-4 rounded-2xl bg-[#f7f4ed] border border-[#061d33]/8 space-y-1">
+                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#061d33] block">
+                      Verified Outcome
+                    </span>
+                    <p class="text-base font-body font-semibold text-[#061d33] leading-relaxed">
+                      {proj.verifiedOutcome}
+                    </p>
+                  </div>
                 )}
 
-                {b.facebook && (
+                <!-- Approved Services Tags -->
+                <div class="pt-2 flex flex-wrap gap-2">
+                  {proj.approvedServices.map((svc) => (
+                    <span class="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-mono text-slate-700 border border-slate-200">
+                      <CheckCircle2 class="size-3 text-[#ff762b]" />
+                      <span>{svc}</span>
+                    </span>
+                  ))}
+                </div>
+
+              </div>
+
+              <!-- Bottom Actions -->
+              <div class="flex flex-wrap items-center justify-between gap-3 pt-5 mt-6 border-t border-[#061d33]/8">
+                <a
+                  href={`${site.basePath}${proj.caseStudyPath}`}
+                  data-track="case-study-open"
+                  class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-sm font-body font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+                >
+                  <span>Explore detailed story</span>
+                  <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+
+                {proj.officialWebsite && (
                   <a
-                    href={b.facebook}
+                    href={proj.officialWebsite}
                     target="_blank"
                     rel="noopener noreferrer"
-                    data-track="client-facebook"
-                    aria-label={`Visit ${b.name} official Facebook page`}
-                    class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2 text-xs font-body font-semibold text-[#1877f2] hover:border-[#1877f2] hover:bg-white transition-colors shadow-xs"
+                    aria-label={`Visit official website for ${proj.publicName}`}
+                    class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-sm font-body font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
                   >
-                    <img src={`${site.basePath}/platforms/facebook.svg`} alt="" class="size-3" />
-                    <span>Facebook</span>
+                    <span>Website</span>
+                    <ExternalLink class="size-3.5" />
                   </a>
                 )}
               </div>
@@ -226,11 +213,214 @@ const regularBrands = regularBrandIds
           );
         })}
       </div>
-    </Container>
+
+    </div>
   </section>
 
-  <!-- Approved Navy CTA Panel -->
-  <FinalCta />
+  {/* 3. COMPLETE EQUAL-WEIGHT CLIENT WORK DIRECTORY */}
+  <section id="directory" class="py-16 sm:py-20 lg:py-24 bg-white text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="CLIENT WORK DIRECTORY" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+          Brands supported across different markets and project requirements.
+        </h2>
+        <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
+          This directory presents approved Starts Digital client experience. The level of publicly available detail differs according to verified project information and approved assets.
+        </p>
+      </div>
+
+      <!-- 13 Equal-Weight Directory Cards Grid (Alphabetical Order) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {directoryProjects.map((p) => {
+          const evidenceLabel = getEvidenceLevelLabel(p.evidenceLevel);
+          const isDetailed = p.evidenceLevel === 'detailed-case-study';
+          const primaryActionUrl = isDetailed ? `${site.basePath}${p.caseStudyPath}` : (p.officialWebsite || p.officialSocialUrl);
+          const isExternalPrimary = !isDetailed;
+
+          return (
+            <article class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group min-h-[360px] focus-within:ring-2 focus-within:ring-[#ff762b]">
+              <div class="space-y-4">
+                
+                <!-- Logo & Badge Header Row -->
+                <div class="flex items-center justify-between gap-3 pb-3 border-b border-[#061d33]/8">
+                  <span class="rounded-full bg-[#061d33]/5 border border-[#061d33]/10 px-2.5 py-0.5 text-xs font-mono font-semibold text-slate-600 uppercase tracking-wider">
+                    {p.sector}
+                  </span>
+
+                  <!-- Uniform Logo Zone -->
+                  <div class={`h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center border shrink-0 ${p.darkLogoContainer ? 'bg-[#061d33] border-[#061d33]' : 'bg-white border-slate-200'}`}>
+                    <img
+                      src={`${site.basePath}${p.logo}`}
+                      alt={`${p.publicName} logo`}
+                      width="110"
+                      height="32"
+                      loading="lazy"
+                      class="max-h-6 w-auto object-contain"
+                    />
+                  </div>
+                </div>
+
+                <!-- Brand Name & Relationship -->
+                <div>
+                  <h3 class="font-heading font-bold text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
+                    {p.publicName}
+                  </h3>
+                  {p.relationshipType && p.relationshipType !== 'Client Experience' && (
+                    <span class="inline-block mt-0.5 font-mono text-xs text-[#ff762b] font-semibold">
+                      {p.relationshipType}
+                    </span>
+                  )}
+                </div>
+
+                <!-- Short Factual Summary (Mandatory >= 16px text-base) -->
+                <p class="text-base text-slate-700 font-body leading-relaxed">
+                  {p.shortSummary}
+                </p>
+
+                <!-- Evidence Level Badge -->
+                <div class="pt-1">
+                  <span class="inline-flex items-center gap-1.5 rounded-md bg-white border border-[#061d33]/10 px-2.5 py-1 text-xs font-mono font-medium text-[#061d33]">
+                    <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                    <span>{evidenceLabel}</span>
+                  </span>
+                </div>
+
+              </div>
+
+              <!-- Action Links Footer -->
+              <div class="pt-4 mt-6 border-t border-[#061d33]/8 flex flex-wrap items-center justify-between gap-3">
+                {isDetailed ? (
+                  <a
+                    href={`${site.basePath}${p.caseStudyPath}`}
+                    data-track="directory-case-study"
+                    class="inline-flex items-center gap-1.5 text-sm font-body font-semibold text-[#061d33] group-hover:text-[#ff762b] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
+                  >
+                    <span>View Project Story</span>
+                    <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                ) : (
+                  <a
+                    href={p.officialWebsite || p.officialSocialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit official page for ${p.publicName}`}
+                    class="inline-flex items-center gap-1.5 text-sm font-body font-semibold text-[#061d33] group-hover:text-[#ff762b] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
+                  >
+                    <span>Visit Official Page</span>
+                    <ExternalLink class="size-3.5" />
+                  </a>
+                )}
+
+                {/* Secondary link when case study exists */}
+                {isDetailed && (p.officialWebsite || p.officialSocialUrl) && (
+                  <a
+                    href={p.officialWebsite || p.officialSocialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Official website for ${p.publicName}`}
+                    class="text-xs font-mono font-semibold text-slate-500 hover:text-[#061d33] transition-colors flex items-center gap-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
+                  >
+                    <span>Website</span>
+                    <ExternalLink class="size-3" />
+                  </a>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+    </div>
+  </section>
+
+  {/* 4. PORTFOLIO CAPABILITY SUMMARY */}
+  <section id="capabilities" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="PORTFOLIO CAPABILITIES" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+          Client work spans six core digital disciplines.
+        </h2>
+        <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
+          Starts Digital combines strategy, design, technical execution and data analysis across six published service areas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {publishedServices.map((svc) => (
+          <a
+            href={`${site.basePath}/services/${svc.slug}/`}
+            class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+          >
+            <div class="space-y-3">
+              <span class="text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider block">
+                {svc.eyebrow}
+              </span>
+              <h3 class="font-heading font-bold text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+                {svc.name}
+              </h3>
+              <p class="text-base text-slate-700 font-body leading-relaxed">
+                {svc.summary}
+              </p>
+            </div>
+
+            <div class="pt-4 mt-6 border-t border-[#061d33]/8 flex items-center justify-between text-sm font-body font-semibold text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+              <span>Explore {svc.shortName} Service</span>
+              <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  {/* 5. CONVERSION CTA */}
+  <section id="work-cta" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white relative overflow-hidden scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+    <div class="absolute -right-20 -top-20 size-80 rounded-full bg-[#ff762b]/15 blur-3xl pointer-events-none"></div>
+
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 relative z-10 text-center">
+      <div class="max-w-3xl mx-auto space-y-6">
+        
+        <SectionEyebrow label="START A PROJECT" align="center" motion={false} />
+
+        <h2 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[50px] text-white leading-tight tracking-[-0.025em]">
+          Have a project that needs coordinated strategy and execution?
+        </h2>
+
+        <p class="text-base sm:text-lg text-slate-200 font-body leading-relaxed max-w-2xl mx-auto font-normal">
+          Share your commercial goals, current digital setup and target timeline. We will review your context and outline practical next steps.
+        </p>
+
+        <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={`${site.basePath}/contact/?source=work`}
+            data-track="primary-cta"
+            class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl group/cta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+          >
+            <span>Discuss Your Project</span>
+            <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
+          </a>
+
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="contact-whatsapp"
+            class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 font-body font-semibold text-base text-white hover:bg-white/20 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+          >
+            <MessageSquare class="size-4 text-[#ddff35]" />
+            <span>Chat on WhatsApp</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <MotionController />
 </BaseLayout>
