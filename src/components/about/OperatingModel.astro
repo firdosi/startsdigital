@@ -1,0 +1,61 @@
+---
+import SectionEyebrow from '../common/SectionEyebrow.astro';
+import { Layers, Target, FileCheck } from '@lucide/astro';
+
+const points = [
+  {
+    icon: Layers,
+    title: 'Published Roles',
+    description: 'The team members publicly introduced by Starts Digital.'
+  },
+  {
+    icon: Target,
+    title: 'Project Responsibilities',
+    description: 'The tasks assigned according to the agreed project scope.'
+  },
+  {
+    icon: FileCheck,
+    title: 'Service Requirements',
+    description: 'The marketing, creative and technical work required for the specific project.'
+  }
+];
+---
+
+<section id="project-structure" class="py-16 sm:py-20 lg:py-24 bg-white text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
+  <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+    
+    <!-- Section Header -->
+    <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+      <SectionEyebrow label="PROJECT STRUCTURE" align="center" delay={0} />
+      <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+        The public team and the project scope work together.
+      </h2>
+      <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
+        The people introduced on the website represent project direction, creative production and development. The exact responsibilities and service requirements involved in each engagement are defined through the agreed project scope.
+      </p>
+    </div>
+
+    <!-- 3 Points Grid -->
+    <div data-motion="fade-up" data-motion-delay="250" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      {points.map((p, idx) => {
+        const IconComponent = p.icon;
+        return (
+          <div class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all duration-300">
+            <div class="space-y-4">
+              <div class="size-12 rounded-2xl bg-[#061d33] text-[#ddff35] flex items-center justify-center">
+                <IconComponent class="size-6" />
+              </div>
+              <h3 class="font-heading font-bold text-xl sm:text-2xl text-[#061d33] leading-snug">
+                {p.title}
+              </h3>
+              <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+                {p.description}
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

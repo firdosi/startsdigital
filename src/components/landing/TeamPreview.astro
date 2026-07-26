@@ -18,20 +18,17 @@ const visibleMembers: TeamMember[] = teamMembers
         <div class="mb-12 text-center space-y-3 max-w-2xl mx-auto">
           <SectionEyebrow label="THE PEOPLE BEHIND THE WORK" align="center" delay={0} />
           <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
-            Meet the team currently presented by Starts Digital.
+            Meet the people supporting strategy, creative and development work.
           </h2>
           <p data-motion="fade-up" data-motion-delay="200" class="text-base text-slate-700 font-body leading-relaxed font-normal">
-            Project direction and creative production are coordinated by the approved people shown here.
+            Ahad leads project planning and digital marketing, Meesam supports video and graphic production, and Zaid supports UI/UX design and full-stack development.
           </p>
         </div>
 
-        <!-- Responsive Typography-Led Team Cards Grid -->
-        <div class="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto mb-10">
+        <!-- 3-Column Responsive Team Grid (Single fade-up wrapper to ensure 0 mobile gap) -->
+        <div data-motion="fade-up" data-motion-delay="250" class="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto mb-10">
           {visibleMembers.map((m) => (
-            <div
-              data-motion="fade-up"
-              class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 shadow-xs flex flex-col justify-between group hover:border-[#ff762b]/40 transition-all duration-300"
-            >
+            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-7 shadow-xs flex flex-col justify-between group hover:border-[#ff762b]/40 transition-all duration-300">
               <div class="space-y-4">
                 <div class="flex items-start justify-between gap-3">
                   <div>
@@ -44,7 +41,7 @@ const visibleMembers: TeamMember[] = teamMembers
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`View ${m.name} on LinkedIn`}
-                      class="inline-flex items-center gap-1.5 rounded-full bg-[#f7f4ed] px-3.5 py-1.5 text-xs font-mono font-semibold text-[#061d33] hover:bg-[#061d33] hover:text-white transition-colors border border-[#061d33]/10 shrink-0"
+                      class="inline-flex items-center gap-1.5 rounded-full bg-[#f7f4ed] px-3 py-1 text-xs font-mono font-semibold text-[#061d33] hover:bg-[#061d33] hover:text-white transition-colors border border-[#061d33]/10 shrink-0"
                     >
                       <svg class="size-3.5 fill-[#0077b5] group-hover:fill-white" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
@@ -62,9 +59,9 @@ const visibleMembers: TeamMember[] = teamMembers
               {m.responsibilities && m.responsibilities.length > 0 && (
                 <div class="pt-4 mt-6 border-t border-[#061d33]/8">
                   <span class="text-[11px] font-mono font-semibold text-slate-400 uppercase tracking-wider block mb-2">Primary Focus</span>
-                  <div class="flex flex-wrap gap-2">
-                    {m.responsibilities.slice(0, 3).map((r) => (
-                      <span class="text-xs font-mono bg-[#f7f4ed] text-[#061d33] px-3 py-1 rounded-lg border border-[#061d33]/10 font-medium">{r}</span>
+                  <div class="flex flex-wrap gap-1.5">
+                    {m.responsibilities.map((r) => (
+                      <span class="text-xs font-mono bg-[#f7f4ed] text-[#061d33] px-2.5 py-1 rounded-lg border border-[#061d33]/10 font-medium">{r}</span>
                     ))}
                   </div>
                 </div>

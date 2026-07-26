@@ -4,16 +4,16 @@ import CompanyStory from '../components/about/CompanyStory.astro';
 import CompanyFacts from '../components/about/CompanyFacts.astro';
 import FounderProfile from '../components/about/FounderProfile.astro';
 import TeamGrid from '../components/about/TeamGrid.astro';
+import RoleContribution from '../components/about/RoleContribution.astro';
+import OperatingModel from '../components/about/OperatingModel.astro';
 import WorkingPrinciples from '../components/about/WorkingPrinciples.astro';
 import CapabilityConnection from '../components/about/CapabilityConnection.astro';
 import FinalCta from '../components/landing/FinalCta.astro';
 import MotionController from '../components/common/MotionController.astro';
-import SectionEyebrow from '../components/common/SectionEyebrow.astro';
 import AnimatedGrid from '../components/motion/AnimatedGrid.astro';
 import FloatingOrb from '../components/motion/FloatingOrb.astro';
 import SectionSpark from '../components/motion/SectionSpark.astro';
 import { Sparkles, MapPin, Calendar, Globe } from '@lucide/astro';
-import { site } from '../site.config';
 ---
 
 <BaseLayout
@@ -72,19 +72,25 @@ import { site } from '../site.config';
   {/* 3. Company at a Glance */}
   <CompanyFacts />
 
-  {/* 4. Founder and Leadership */}
+  {/* 4. Founder & Leadership (Ahad Firdosi) */}
   <FounderProfile />
 
-  {/* 5. Public Team */}
+  {/* 5. Creative & Development Team (Meesam and Zaid Firdosi) */}
   <TeamGrid />
 
-  {/* 6. Working Principles */}
+  {/* 6. Role Contribution (Ahad, Meesam and Zaid) */}
+  <RoleContribution />
+
+  {/* 7. Project Structure */}
+  <OperatingModel />
+
+  {/* 8. Working Principles */}
   <WorkingPrinciples />
 
-  {/* 7. Capability Connection */}
+  {/* 9. Capability Connection */}
   <CapabilityConnection />
 
-  {/* 8. Final CTA */}
+  {/* 10. Final CTA */}
   <FinalCta />
 
   {/* Motion Controller */}

@@ -49,5 +49,21 @@ export const teamMembers: TeamMember[] = [
     isFounder: false,
     order: 2,
     imageApproved: false
+  },
+  {
+    id: 'zaid-firdosi',
+    name: 'Zaid Firdosi',
+    role: 'Developer',
+    shortBio: 'Zaid supports UI/UX design and full-stack development for Starts Digital websites and digital products.',
+    responsibilities: [
+      'UI/UX Design',
+      'Full Stack Development'
+    ],
+    homepageVisible: true,
+    aboutVisible: true,
+    approvedForPublic: true,
+    isFounder: false,
+    order: 3,
+    imageApproved: false
   }
 ];

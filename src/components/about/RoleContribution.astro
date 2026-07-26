@@ -1,0 +1,97 @@
+---
+import SectionEyebrow from '../common/SectionEyebrow.astro';
+import { CheckCircle2, User } from '@lucide/astro';
+
+const roles = [
+  {
+    category: 'Project Direction & Digital Marketing',
+    person: 'Ahad Firdosi',
+    title: 'Owner & CEO',
+    tasks: [
+      'Project requirements',
+      'Project coordination',
+      'Digital marketing execution',
+      'Team guidance'
+    ]
+  },
+  {
+    category: 'Video & Graphic Production',
+    person: 'Meesam',
+    title: 'Video Editor & Graphic Designer',
+    tasks: [
+      'Video editing',
+      'Graphic design',
+      'Advertising assets',
+      'Social media visuals'
+    ]
+  },
+  {
+    category: 'UI/UX & Development',
+    person: 'Zaid Firdosi',
+    title: 'Developer',
+    tasks: [
+      'UI/UX design',
+      'Full-stack development',
+      'Website interfaces',
+      'Digital product development'
+    ]
+  }
+];
+---
+
+<section id="role-contribution" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
+  <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+    
+    <!-- Section Header -->
+    <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+      <SectionEyebrow label="ROLE CONTRIBUTION" align="center" delay={0} />
+      <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+        Clear responsibilities support more coordinated project delivery.
+      </h2>
+      <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
+        The published roles cover project direction, digital marketing, creative production, interface design and full-stack development. Exact responsibilities still depend on the agreed project scope.
+      </p>
+    </div>
+
+    <!-- 3 Editorial Role Contribution Columns -->
+    <div data-motion="fade-up" data-motion-delay="250" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      {roles.map((item, idx) => (
+        <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all duration-300">
+          <div class="space-y-5">
+            <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-3 py-1 rounded-full w-fit block">
+              AREA 0{idx + 1}
+            </span>
+
+            <div>
+              <h3 class="font-heading font-bold text-xl sm:text-2xl text-[#061d33] leading-snug">
+                {item.category}
+              </h3>
+              <div class="flex items-center gap-2 mt-2 pt-2 border-t border-[#061d33]/8 text-xs font-mono text-slate-600">
+                <User class="size-3.5 text-[#ff762b]" />
+                <span class="font-semibold text-[#061d33]">{item.person}</span>
+                <span>•</span>
+                <span>{item.title}</span>
+              </div>
+            </div>
+
+            <!-- Task List -->
+            <div class="space-y-2.5 pt-2">
+              <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+                Primary Deliverables
+              </span>
+              <ul class="space-y-2">
+                {item.tasks.map((task) => (
+                  <li class="flex items-center gap-2 text-base font-body text-slate-700">
+                    <CheckCircle2 class="size-4 text-[#ff762b] shrink-0" />
+                    <span>{task}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
