@@ -1,0 +1,115 @@
+---
+import ProjectStoryLayout from '../../layouts/ProjectStoryLayout.astro';
+import { getProjectBySlug } from '../../data/projects';
+import { CheckCircle2, Cpu, Code2, Rocket, Share2, Palette, ShieldCheck } from '@lucide/astro';
+
+const project = getProjectBySlug('convortai')!;
+---
+
+<ProjectStoryLayout
+  projectSlug="convortai"
+  title="ConvortAI Technology and Growth Partnership"
+  description="Explore Starts Digital’s technology, product development, project management, social media, creative production and growth support for ConvortAI."
+>
+  <!-- Section 1: Project Overview & Context -->
+  <div class="space-y-4">
+    <h2 class="font-heading font-bold text-2xl text-[#061d33] border-b border-[#061d33]/10 pb-3">
+      Product Context
+    </h2>
+    <p class="text-base text-slate-700 font-body leading-relaxed">
+      ConvortAI is a technology platform designed to streamline messaging automation, business customer response, and sales communication workflows.
+    </p>
+  </div>
+
+  <!-- Section 2: Starts Digital Relationship -->
+  <div class="space-y-4 pt-2">
+    <h3 class="font-heading font-bold text-xl text-[#061d33]">
+      Starts Digital Relationship & Scope
+    </h3>
+    <div class="p-4 rounded-2xl bg-[#061d33] text-white space-y-2">
+      <div class="flex items-center gap-2">
+        <Cpu class="size-5 text-[#ddff35]" />
+        <span class="font-heading font-bold text-lg text-white">Technology Partner</span>
+      </div>
+      <p class="font-mono text-xs text-[#ff762b] font-semibold">
+        Product Development & Growth Partner
+      </p>
+      <p class="text-sm text-slate-200 font-body leading-relaxed pt-1">
+        Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 3: Contribution Areas -->
+  <div class="space-y-4 pt-2">
+    <h3 class="font-heading font-bold text-xl text-[#061d33]">
+      Core Technical & Creative Contribution Areas
+    </h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="rounded-xl border border-[#061d33]/10 bg-[#faf9f6] p-4 space-y-2">
+        <div class="flex items-center gap-2 text-[#061d33] font-bold text-base">
+          <Code2 class="size-4 text-[#ff762b]" />
+          <span>Web Application Development</span>
+        </div>
+        <p class="text-sm text-slate-700 font-body">
+          Developed the web application infrastructure, dashboard interface, and initial user workflow components.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-[#061d33]/10 bg-[#faf9f6] p-4 space-y-2">
+        <div class="flex items-center gap-2 text-[#061d33] font-bold text-base">
+          <Rocket class="size-4 text-[#ff762b]" />
+          <span>Ongoing Product Development</span>
+        </div>
+        <p class="text-sm text-slate-700 font-body">
+          Continuous feature enhancements, system iteration, user experience updates, and technical stability maintenance.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-[#061d33]/10 bg-[#faf9f6] p-4 space-y-2">
+        <div class="flex items-center gap-2 text-[#061d33] font-bold text-base">
+          <Share2 class="size-4 text-[#ff762b]" />
+          <span>Social Media & Positioning</span>
+        </div>
+        <p class="text-sm text-slate-700 font-body">
+          Strategic brand positioning, social media content, product explanation assets, and channel management.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-[#061d33]/10 bg-[#faf9f6] p-4 space-y-2">
+        <div class="flex items-center gap-2 text-[#061d33] font-bold text-base">
+          <Palette class="size-4 text-[#ff762b]" />
+          <span>Creative Production</span>
+        </div>
+        <p class="text-sm text-slate-700 font-body">
+          Visual content, video materials, promotional graphics, and interface presentation collateral.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Coordinated Working Model -->
+  <div class="space-y-4 pt-2">
+    <h3 class="font-heading font-bold text-xl text-[#061d33]">
+      Coordinated Development & Growth Alignment
+    </h3>
+    <p class="text-base text-slate-700 font-body leading-relaxed">
+      By combining software engineering, project management, creative production, and social media marketing under one team, Starts Digital provides ConvortAI with unified product delivery and market communication.
+    </p>
+
+    <div class="space-y-2.5 pt-1">
+      {[
+        'Full lifecycle web application software development and maintenance',
+        'Technical project management and sprint roadmap planning',
+        'Social media channel growth and content strategy',
+        'Creative media production for product features and announcement campaigns',
+        'Ongoing technological and strategic advisory support'
+      ].map((item) => (
+        <div class="flex items-start gap-2.5 text-sm font-body text-slate-800">
+          <CheckCircle2 class="size-4 text-[#39c98a] shrink-0 mt-0.5" />
+          <span>{item}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</ProjectStoryLayout>

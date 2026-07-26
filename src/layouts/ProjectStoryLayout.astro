@@ -1,0 +1,200 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import MotionController from '../components/common/MotionController.astro';
+import ProjectHero from '../components/work/ProjectHero.astro';
+import ProjectMedia from '../components/work/ProjectMedia.astro';
+import ProjectPageNavigation from '../components/work/ProjectPageNavigation.astro';
+import { site } from '../site.config';
+import { getProjectBySlug, type ResolvedProject } from '../data/projects';
+import { ArrowRight, CheckCircle2, MessageSquare } from '@lucide/astro';
+
+interface Props {
+  projectSlug: string;
+  title: string;
+  description: string;
+  metrics?: Array<{ value: string; label: string }>;
+  heroImage?: string;
+  heroPicture?: { webp?: string; avif?: string; smWebp?: string };
+  heroAlt?: string;
+  heroCaption?: string;
+  gallery?: Array<{ src: string; alt: string; caption?: string }>;
+}
+
+const {
+  projectSlug,
+  title,
+  description,
+  metrics,
+  heroImage,
+  heroPicture,
+  heroAlt,
+  heroCaption,
+  gallery
+} = Astro.props;
+
+const project: ResolvedProject = getProjectBySlug(projectSlug)!;
+
+const encodedWhatsappMsg = encodeURIComponent('Hello Starts Digital, I would like to discuss a project after reviewing your work.');
+const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
+---
+
+<BaseLayout
+  title={`${title} — Starts Digital`}
+  description={description}
+  type="article"
+>
+  <div class="bg-[#faf9f6] min-h-screen text-[#061d33] overflow-hidden">
+    <!-- 1. HERO SECTION -->
+    <ProjectHero project={project} metrics={metrics} />
+
+    <!-- 2. MAIN STORY CONTENT SLOT -->
+    <section class="py-12 sm:py-16">
+      <div class="mx-auto max-w-[1000px] px-6 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <!-- Sidebar -->
+        <aside class="lg:col-span-4 space-y-6">
+          <div class="rounded-2xl border border-[#061d33]/12 bg-white p-6 shadow-sm space-y-6 sticky top-8">
+            <div>
+              <span class="block font-mono text-xs font-bold tracking-wider text-[#ff762b] uppercase mb-1">
+                Sector
+              </span>
+              <p class="font-heading font-bold text-lg text-[#061d33]">
+                {project.sector}
+              </p>
+            </div>
+
+            {project.relationshipType && (
+              <div class="border-t border-[#061d33]/8 pt-4">
+                <span class="block font-mono text-xs font-bold tracking-wider text-[#ff762b] uppercase mb-1">
+                  Relationship
+                </span>
+                <p class="font-body font-semibold text-sm text-[#061d33]">
+                  {project.relationshipType}
+                </p>
+              </div>
+            )}
+
+            <div class="border-t border-[#061d33]/8 pt-4">
+              <span class="block font-mono text-xs font-bold tracking-wider text-[#ff762b] uppercase mb-3">
+                Service Areas
+              </span>
+              <ul class="space-y-2.5 text-sm font-body font-medium text-slate-700">
+                {project.resolvedServices.map((svc) => (
+                  <li>
+                    <a
+                      href={`${site.basePath}/services/${svc.slug}/`}
+                      class="inline-flex items-center gap-2 text-slate-800 hover:text-[#ff762b] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+                    >
+                      <CheckCircle2 class="size-4 text-[#ff762b] shrink-0" />
+                      <span>{svc.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="pt-4 border-t border-[#061d33]/8">
+              <a
+                href={`${site.basePath}/contact/?source=${project.id}`}
+                class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#ff762b] px-5 py-3 text-sm font-body font-semibold text-white hover:bg-[#061d33] transition-colors shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+              >
+                <span>Discuss Similar Project</span>
+                <ArrowRight class="size-4" />
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Narrative Body -->
+        <main class="lg:col-span-8 space-y-8">
+          <div class="rounded-2xl border border-[#061d33]/12 bg-white p-6 sm:p-8 shadow-sm space-y-6">
+            <slot />
+          </div>
+        </main>
+      </div>
+    </section>
+
+    <!-- 3. GENUINE PROJECT MEDIA -->
+    <ProjectMedia
+      heroImage={heroImage || project.media?.heroImage}
+      heroPicture={heroPicture || project.media?.heroPicture}
+      heroAlt={heroAlt}
+      heroCaption={heroCaption}
+      gallery={gallery}
+    />
+
+    <!-- 4. RELATED SERVICES DISCOVERY -->
+    <section id="related-services-discovery" class="py-12 bg-white border-t border-[#061d33]/10">
+      <div class="mx-auto max-w-[1000px] px-6 sm:px-8 space-y-6">
+        <h3 class="font-heading font-bold text-2xl text-[#061d33]">
+          Service Disciplines Applied to {project.publicName}
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {project.resolvedServices.map((svc) => (
+            <a
+              href={`${site.basePath}/services/${svc.slug}/`}
+              class="rounded-2xl border border-[#061d33]/12 bg-[#faf9f6] p-5 hover:border-[#ff762b]/40 hover:shadow-md transition-all group flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+            >
+              <div>
+                <span class="text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider block mb-1">
+                  {svc.eyebrow}
+                </span>
+                <h4 class="font-heading font-bold text-lg text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+                  {svc.name}
+                </h4>
+                <p class="text-sm text-slate-700 font-body mt-1">
+                  {svc.summary}
+                </p>
+              </div>
+
+              <div class="pt-3 mt-4 border-t border-[#061d33]/8 flex items-center justify-between text-xs font-mono font-bold text-[#061d33] group-hover:text-[#ff762b]">
+                <span>Explore {svc.shortName} Page</span>
+                <ArrowRight class="size-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PREVIOUS / NEXT NAVIGATION -->
+    <ProjectPageNavigation currentProjectSlug={project.projectSlug} />
+
+    <!-- 6. CONVERSION CTA -->
+    <section id="project-story-cta" class="py-16 sm:py-20 bg-[#061d33] text-white relative overflow-hidden">
+      <div class="mx-auto max-w-[1000px] px-6 sm:px-8 relative z-10 text-center space-y-6">
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[42px] text-white leading-tight">
+          Have a similar requirement for strategy, build or growth?
+        </h2>
+
+        <p class="text-base sm:text-lg text-slate-200 font-body max-w-2xl mx-auto">
+          Talk to Starts Digital about your commercial goals, technical requirements and target timeline.
+        </p>
+
+        <div class="pt-2 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={`${site.basePath}/contact/?source=${project.id}`}
+            class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+          >
+            <span>Discuss Your Project</span>
+            <ArrowRight class="size-4" />
+          </a>
+
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 font-body font-semibold text-base text-white hover:bg-white/20 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+          >
+            <MessageSquare class="size-4 text-[#ddff35]" />
+            <span>Chat on WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <MotionController />
+</BaseLayout>

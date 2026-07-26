@@ -1,70 +1,82 @@
+import { brands, type Brand } from './brands';
+import { servicesData, getServiceById, type Service } from './services';
+
+export type DetailType = 'case-study' | 'partner-story' | 'client-experience';
 export type EvidenceLevel = 'detailed-case-study' | 'verified-project-summary' | 'client-experience';
 
-export interface Project {
+export interface ProjectRecord {
   id: string;
   brandId: string;
   projectSlug: string;
-  publicName: string;
-  sector: string;
+  sectorOverride?: string;
   relationshipType?: string;
   shortSummary: string;
-  approvedServices: string[];
+  serviceIds: string[];
   verifiedOutcome?: string;
-  caseStudyPath?: string;
-  officialWebsite?: string;
-  officialSocialUrl?: string;
-  logo: string;
-  logoFit?: 'compact' | 'standard' | 'wide' | 'large';
-  darkLogoContainer?: boolean;
+  verifiedContribution?: string;
+  detailPath?: string;
+  detailType: DetailType;
   featured: boolean;
   published: boolean;
   evidenceLevel: EvidenceLevel;
   media?: {
     thumbnail?: string;
     heroImage?: string;
+    heroPicture?: {
+      webp?: string;
+      avif?: string;
+      smWebp?: string;
+    };
     gallery?: string[];
   };
   displayOrder: number;
 }
 
-export const projectsData: Project[] = [
+export interface ResolvedProject extends ProjectRecord {
+  brand: Brand;
+  publicName: string;
+  sector: string;
+  logo: string;
+  logoFit: 'compact' | 'standard' | 'wide' | 'large';
+  darkLogoContainer: boolean;
+  officialWebsite?: string;
+  officialSocialUrl?: string;
+  resolvedServices: Service[];
+  approvedServices: string[];
+}
+
+export const projectRecords: ProjectRecord[] = [
   {
     id: 'black-gold-fertilizer',
     brandId: 'black-gold-fertilizer',
     projectSlug: 'black-gold-fertilizer',
-    publicName: 'Black Gold Fertilizer',
-    sector: 'Agriculture & E-commerce',
+    sectorOverride: 'Agriculture & E-commerce',
     relationshipType: 'Client Experience',
     shortSummary: 'Digital strategy, Meta advertising, creative testing, WooCommerce development, analytics and delivered-order sales support for lawn-care e-commerce.',
-    approvedServices: ['Paid Advertising', 'Website Design & Development', 'Creative Content', 'SEO & Local Search'],
+    serviceIds: ['paid-advertising', 'website-design-development', 'creative-content', 'seo-local-search'],
     verifiedOutcome: 'Supported PKR 30M+ in delivered-order revenue, 29,000+ product sales and 22,000+ delivered sales over 24 months.',
-    caseStudyPath: '/work/black-gold-fertilizer/',
-    officialWebsite: 'https://blackgoldfertilizer.com',
-    officialSocialUrl: 'https://www.facebook.com/profile.php?id=61561083447093',
-    logo: '/brands/black-gold-fertilizer/logo.webp',
-    logoFit: 'standard',
-    darkLogoContainer: true,
+    detailPath: '/work/black-gold-fertilizer/',
+    detailType: 'case-study',
     featured: true,
     published: true,
     evidenceLevel: 'detailed-case-study',
+    media: {
+      heroImage: '/images/black-gold-official.png',
+      gallery: ['/images/black-gold-official.png', '/images/black-gold-web-banner.png']
+    },
     displayOrder: 1
   },
   {
     id: 'wajib-livestock',
     brandId: 'wajib-livestock',
     projectSlug: 'qurbani-campaign',
-    publicName: 'Wajib Livestock',
-    sector: 'Livestock & Seasonal Campaigns',
+    sectorOverride: 'Livestock & Seasonal Campaigns',
     relationshipType: 'Client Experience',
     shortSummary: 'Seasonal campaign strategy, paid social advertising, lead generation, WhatsApp sales routing and creative content for Eid Qurbani sales.',
-    approvedServices: ['Paid Advertising', 'Creative Content', 'Social Media Marketing'],
+    serviceIds: ['paid-advertising', 'creative-content', 'social-media-marketing'],
     verifiedOutcome: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.',
-    caseStudyPath: '/work/qurbani-campaign/',
-    officialWebsite: 'https://wajib.pk',
-    officialSocialUrl: 'https://www.facebook.com/profile.php?id=61579219484606',
-    logo: '/brands/wajib-livestock/logo.webp',
-    logoFit: 'standard',
-    darkLogoContainer: true,
+    detailPath: '/work/qurbani-campaign/',
+    detailType: 'case-study',
     featured: true,
     published: true,
     evidenceLevel: 'detailed-case-study',
@@ -74,37 +86,37 @@ export const projectsData: Project[] = [
     id: 'rk-reno-solutions',
     brandId: 'rk-reno-solutions',
     projectSlug: 'rk-reno-solutions',
-    publicName: 'RK Reno Solutions',
-    sector: 'Renovation & Local Services',
+    sectorOverride: 'Renovation & Local Services',
     relationshipType: 'Client Experience',
     shortSummary: 'Website design, location-focused content, service-page development and local SEO foundation for renovation and air-conditioning services in Kuala Lumpur and Selangor.',
-    approvedServices: ['Website Design & Development', 'SEO & Local Search', 'Creative Content'],
-    verifiedOutcome: 'Established a structured search and location foundation targeting Kuala Lumpur and Selangor.',
-    caseStudyPath: '/work/rk-reno-solutions/',
-    officialWebsite: 'https://rkrenosolution.com',
-    logo: '/brands/rk-reno-solutions/logo.webp',
-    logoFit: 'large',
-    darkLogoContainer: false,
+    serviceIds: ['website-design-development', 'seo-local-search', 'creative-content'],
+    verifiedContribution: 'Website, content and local SEO foundation for renovation and air-conditioning services in Kuala Lumpur and Selangor.',
+    detailPath: '/work/rk-reno-solutions/',
+    detailType: 'case-study',
     featured: true,
     published: true,
     evidenceLevel: 'detailed-case-study',
+    media: {
+      heroImage: '/brands/rk-reno-solutions/screenshot.webp',
+      heroPicture: {
+        webp: '/brands/rk-reno-solutions/screenshot.webp',
+        avif: '/brands/rk-reno-solutions/screenshot.avif',
+        smWebp: '/brands/rk-reno-solutions/screenshot-sm.webp'
+      }
+    },
     displayOrder: 3
   },
   {
     id: 'convort-ai',
     brandId: 'convort-ai',
-    projectSlug: 'convort-ai',
-    publicName: 'ConvortAI',
-    sector: 'Technology Product',
-    relationshipType: 'Technology Partner & Product Development & Growth Partner',
+    projectSlug: 'convortai',
+    sectorOverride: 'Technology Product',
+    relationshipType: 'Technology Partner • Product Development & Growth Partner',
     shortSummary: 'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
-    approvedServices: ['AI Marketing Workflows', 'Website Design & Development', 'Social Media Marketing', 'Creative Content'],
-    verifiedOutcome: 'Built web app MVP and ongoing product development, social media marketing and project management support.',
-    caseStudyPath: '/work/#convortai',
-    officialWebsite: 'https://convortai.com/',
-    logo: '/brands/convort-ai/logo.webp',
-    logoFit: 'standard',
-    darkLogoContainer: true,
+    serviceIds: ['website-design-development', 'ai-marketing-workflows', 'social-media-marketing', 'creative-content'],
+    verifiedContribution: 'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
+    detailPath: '/work/convortai/',
+    detailType: 'partner-story',
     featured: true,
     published: true,
     evidenceLevel: 'detailed-case-study',
@@ -114,14 +126,9 @@ export const projectsData: Project[] = [
     id: 'right-link-advisors',
     brandId: 'right-link-advisors',
     projectSlug: 'right-link-advisors',
-    publicName: 'Right Link Advisors',
-    sector: 'Immigration & Advisory',
-    relationshipType: 'Client Experience',
     shortSummary: 'Digital campaign strategy, paid social creative, ad copy and lead-generation content for an immigration advisory service.',
-    approvedServices: ['Paid Advertising', 'Creative Content', 'Social Media Marketing'],
-    officialSocialUrl: 'https://www.facebook.com/Rightlinkadvisors/',
-    logo: '/brands/right-link-advisors/logo.webp',
-    logoFit: 'large',
+    serviceIds: ['paid-advertising', 'creative-content', 'social-media-marketing'],
+    detailType: 'client-experience',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -131,14 +138,9 @@ export const projectsData: Project[] = [
     id: 'rapidline-immigration-services',
     brandId: 'rapidline-immigration-services',
     projectSlug: 'rapidline-immigration-services',
-    publicName: 'Rapidline Immigration Services',
-    sector: 'Immigration & Consultancy',
-    relationshipType: 'Client Experience',
     shortSummary: 'Campaign planning, advertising creative, video scriptwriting and lead-generation campaign support for immigration services.',
-    approvedServices: ['Paid Advertising', 'Creative Content'],
-    officialSocialUrl: 'https://www.facebook.com/RapidlineImmigartionServices/',
-    logo: '/brands/rapidline-immigration-services/logo.webp',
-    logoFit: 'compact',
+    serviceIds: ['paid-advertising', 'creative-content'],
+    detailType: 'client-experience',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -148,15 +150,9 @@ export const projectsData: Project[] = [
     id: 'rapidzone',
     brandId: 'rapidzone',
     projectSlug: 'rapidzone',
-    publicName: 'Rapidzone',
-    sector: 'Business Services & Corporate Setup',
-    relationshipType: 'Client Experience',
     shortSummary: 'Digital marketing, brand content, website support and paid social lead-generation strategy for a UAE business services firm.',
-    approvedServices: ['Paid Advertising', 'Website Design & Development', 'Creative Content'],
-    officialWebsite: 'https://rapidzone.ae',
-    officialSocialUrl: 'https://www.facebook.com/Rapidzone.ae',
-    logo: '/brands/rapidzone/logo.webp',
-    logoFit: 'compact',
+    serviceIds: ['paid-advertising', 'website-design-development', 'creative-content'],
+    detailType: 'client-experience',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -166,15 +162,9 @@ export const projectsData: Project[] = [
     id: 'viral-naturals',
     brandId: 'viral-naturals',
     projectSlug: 'viral-naturals',
-    publicName: 'Viral Naturals',
-    sector: 'Consumer Goods & E-Commerce',
-    relationshipType: 'Client Experience',
     shortSummary: 'Brand positioning, product presentation, e-commerce planning and conversion-focused creative content.',
-    approvedServices: ['Website Design & Development', 'Creative Content', 'Social Media Marketing'],
-    officialWebsite: 'https://viralnaturals.com',
-    officialSocialUrl: 'https://www.facebook.com/ViralNaturals/',
-    logo: '/brands/viral-naturals/logo.webp',
-    logoFit: 'large',
+    serviceIds: ['website-design-development', 'creative-content', 'social-media-marketing'],
+    detailType: 'client-experience',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -184,14 +174,9 @@ export const projectsData: Project[] = [
     id: 'clearzone-immigration',
     brandId: 'clearzone-immigration',
     projectSlug: 'clearzone-immigration',
-    publicName: 'Clearzone Immigration',
-    sector: 'Immigration & Consultancy',
-    relationshipType: 'Client Experience',
     shortSummary: 'Creative strategy, ad video scripting and paid social campaign support for immigration and company setup services.',
-    approvedServices: ['Paid Advertising', 'Creative Content'],
-    officialWebsite: 'https://clearzoneimmigration.com',
-    logo: '/brands/clearzone-immigration/logo.webp',
-    logoFit: 'standard',
+    serviceIds: ['paid-advertising', 'creative-content'],
+    detailType: 'client-experience',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -201,15 +186,9 @@ export const projectsData: Project[] = [
     id: 'riyadh-finish-pro',
     brandId: 'riyadh-finish-pro',
     projectSlug: 'riyadh-finish-pro',
-    publicName: 'Riyadh Finish Pro',
-    sector: 'Construction & Finishing Services',
-    relationshipType: 'Client Experience',
     shortSummary: 'Website development, local service content and lead-generation page structure for construction and finishing in Riyadh.',
-    approvedServices: ['Website Design & Development', 'SEO & Local Search'],
-    officialWebsite: 'https://riyadhfinishpro.com',
-    officialSocialUrl: 'https://www.facebook.com/RiyadhFinishPro/',
-    logo: '/brands/riyadh-finish-pro/logo.webp',
-    logoFit: 'large',
+    serviceIds: ['website-design-development', 'seo-local-search'],
+    detailType: 'client-experience',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -219,14 +198,9 @@ export const projectsData: Project[] = [
     id: 'shopinq-online',
     brandId: 'shopinq-online',
     projectSlug: 'shopinq-online',
-    publicName: 'Shopinq Online',
-    sector: 'E-Commerce & Retail',
-    relationshipType: 'Client Experience',
     shortSummary: 'E-commerce product promotion, paid social support, creative content and digital sales communication.',
-    approvedServices: ['Paid Advertising', 'Creative Content', 'Social Media Marketing'],
-    officialSocialUrl: 'https://www.facebook.com/shopinq.online/',
-    logo: '/brands/shopinq-online/logo.webp',
-    logoFit: 'standard',
+    serviceIds: ['paid-advertising', 'creative-content', 'social-media-marketing'],
+    detailType: 'client-experience',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -236,14 +210,9 @@ export const projectsData: Project[] = [
     id: 'super-safety-covers',
     brandId: 'super-safety-covers',
     projectSlug: 'super-safety-covers',
-    publicName: 'Super Safety Covers',
-    sector: 'E-Commerce & Protective Covers',
-    relationshipType: 'Client Experience',
     shortSummary: 'Product positioning, advertising creative, social media content and digital customer acquisition support.',
-    approvedServices: ['Creative Content', 'Paid Advertising', 'Social Media Marketing'],
-    officialSocialUrl: 'https://www.facebook.com/SuperSafetyCovers/',
-    logo: '/brands/super-safety-covers/logo.webp',
-    logoFit: 'large',
+    serviceIds: ['creative-content', 'paid-advertising', 'social-media-marketing'],
+    detailType: 'client-experience',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -253,14 +222,9 @@ export const projectsData: Project[] = [
     id: 'unique-lahore-lab-sahiwal',
     brandId: 'unique-lahore-lab-sahiwal',
     projectSlug: 'unique-lahore-lab-sahiwal',
-    publicName: 'Unique Lahore Lab Sahiwal',
-    sector: 'Healthcare Diagnostics',
-    relationshipType: 'Client Experience',
     shortSummary: 'Digital strategy, local awareness content, campaign messaging and healthcare diagnostic service marketing.',
-    approvedServices: ['Social Media Marketing', 'Creative Content', 'SEO & Local Search'],
-    officialSocialUrl: 'https://www.facebook.com/profile.php?id=100054656280926',
-    logo: '/brands/unique-lahore-lab-sahiwal/logo.webp',
-    logoFit: 'large',
+    serviceIds: ['social-media-marketing', 'creative-content', 'seo-local-search'],
+    detailType: 'client-experience',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
@@ -268,39 +232,85 @@ export const projectsData: Project[] = [
   }
 ];
 
-// Helper Functions
-export function getAllProjects(): Project[] {
-  return projectsData;
+function resolveProject(record: ProjectRecord): ResolvedProject | null {
+  const brand = brands.find((b) => b.id === record.brandId);
+  if (!brand || !brand.active) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.error(`[Project Error] Missing or inactive brand for project: ${record.id} (brandId: ${record.brandId})`);
+    }
+    return null;
+  }
+
+  const resolvedServices = record.serviceIds
+    .map((id) => getServiceById(id))
+    .filter((s): s is Service => Boolean(s));
+
+  const approvedServices = resolvedServices.map((s) => s.name);
+
+  return {
+    ...record,
+    brand,
+    publicName: brand.name,
+    sector: record.sectorOverride || brand.industry,
+    logo: brand.logo || '',
+    logoFit: brand.logoFit || 'standard',
+    darkLogoContainer: brand.darkLogoContainer || false,
+    officialWebsite: brand.website,
+    officialSocialUrl: brand.facebook || brand.instagram,
+    resolvedServices,
+    approvedServices
+  };
 }
 
-export function getPublishedProjects(): Project[] {
-  return projectsData.filter((p) => p.published);
+export function getAllProjects(): ResolvedProject[] {
+  return projectRecords.map(resolveProject).filter((p): p is ResolvedProject => p !== null);
 }
 
-export function getFeaturedProjects(): Project[] {
+export function getPublishedProjects(): ResolvedProject[] {
+  return getAllProjects().filter((p) => p.published);
+}
+
+export function getFeaturedProjects(): ResolvedProject[] {
   return getPublishedProjects().filter((p) => p.featured || p.evidenceLevel === 'detailed-case-study');
 }
 
-export function getProjectById(id: string): Project | undefined {
-  return projectsData.find((p) => p.id === id || p.brandId === id || p.projectSlug === id);
-}
-
-export function getProjectBySlug(slug: string): Project | undefined {
-  return projectsData.find((p) => p.projectSlug === slug || p.id === slug || p.brandId === slug);
-}
-
-export function getClientDirectoryProjects(): Project[] {
-  return getPublishedProjects().sort((a, b) => a.publicName.localeCompare(b.publicName));
-}
-
-export function getProjectsByService(serviceNameOrSlug: string): Project[] {
-  const query = serviceNameOrSlug.toLowerCase();
-  return getPublishedProjects().filter((p) =>
-    p.approvedServices.some((s) => s.toLowerCase().includes(query))
+export function getProjectById(id: string): ResolvedProject | undefined {
+  return getPublishedProjects().find(
+    (p) => p.id === id || p.brandId === id || p.projectSlug === id
   );
 }
 
-export function getProjectsByEvidenceLevel(level: EvidenceLevel): Project[] {
+export function getProjectBySlug(slug: string): ResolvedProject | undefined {
+  return getPublishedProjects().find(
+    (p) => p.projectSlug === slug || p.id === slug || p.brandId === slug
+  );
+}
+
+export function getClientDirectoryProjects(): ResolvedProject[] {
+  return getPublishedProjects().sort((a, b) => a.publicName.localeCompare(b.publicName));
+}
+
+export function getProjectsByService(serviceQuery: string): ResolvedProject[] {
+  const query = serviceQuery.toLowerCase().trim();
+
+  // Try matching by service ID, service slug, or service public name
+  const matchedService = servicesData.find(
+    (s) =>
+      s.id.toLowerCase() === query ||
+      s.slug.toLowerCase() === query ||
+      s.name.toLowerCase() === query ||
+      s.shortName.toLowerCase() === query
+  );
+
+  const targetServiceId = matchedService ? matchedService.id : query;
+
+  return getPublishedProjects().filter((p) =>
+    p.serviceIds.includes(targetServiceId) ||
+    p.approvedServices.some((name) => name.toLowerCase() === query)
+  );
+}
+
+export function getProjectsByEvidenceLevel(level: EvidenceLevel): ResolvedProject[] {
   return getPublishedProjects().filter((p) => p.evidenceLevel === level);
 }
 
@@ -313,5 +323,17 @@ export function getEvidenceLevelLabel(level: EvidenceLevel): string {
     case 'client-experience':
     default:
       return 'Client Experience';
+  }
+}
+
+export function getDetailTypeActionLabel(detailType: DetailType): string {
+  switch (detailType) {
+    case 'case-study':
+      return 'View Case Study';
+    case 'partner-story':
+      return 'View Partner Story';
+    case 'client-experience':
+    default:
+      return 'Visit Official Page';
   }
 }

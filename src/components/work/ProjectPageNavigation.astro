@@ -1,0 +1,91 @@
+---
+import { site } from '../../site.config';
+import { getProjectBySlug, type ResolvedProject } from '../../data/projects';
+import { ArrowLeft, ArrowRight, Grid } from '@lucide/astro';
+
+interface Props {
+  currentProjectSlug: string;
+}
+
+const { currentProjectSlug } = Astro.props;
+
+const storyOrder = [
+  'black-gold-fertilizer',
+  'qurbani-campaign',
+  'rk-reno-solutions',
+  'convortai'
+];
+
+const currentIndex = storyOrder.indexOf(currentProjectSlug);
+
+const prevSlug = currentIndex > 0 ? storyOrder[currentIndex - 1] : null;
+const nextSlug = currentIndex < storyOrder.length - 1 ? storyOrder[currentIndex + 1] : null;
+
+const prevProject: ResolvedProject | undefined = prevSlug ? getProjectBySlug(prevSlug) : undefined;
+const nextProject: ResolvedProject | undefined = nextSlug ? getProjectBySlug(nextSlug) : undefined;
+
+function getProjectSlugPath(slug: string): string {
+  if (slug === 'qurbani-campaign') return '/work/qurbani-campaign/';
+  if (slug === 'convortai') return '/work/convortai/';
+  return `/work/${slug}/`;
+}
+---
+
+<section id="project-navigation" class="py-12 bg-[#faf9f6] border-t border-[#061d33]/10">
+  <div class="mx-auto max-w-[1000px] px-6 sm:px-8 space-y-6">
+    <div class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 text-center">
+      EXPLORE DETAILED PROJECT STORIES
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
+      <!-- Previous Project Link -->
+      {prevProject ? (
+        <a
+          href={`${site.basePath}${getProjectSlugPath(prevProject.projectSlug)}`}
+          class="rounded-2xl border border-[#061d33]/12 bg-white p-5 shadow-xs hover:border-[#ff762b] hover:shadow-md transition-all flex flex-col justify-between group min-h-[88px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+        >
+          <span class="inline-flex items-center gap-1 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
+            <ArrowLeft class="size-3.5 group-hover:-translate-x-1 transition-transform" />
+            <span>Previous Story</span>
+          </span>
+          <span class="font-heading font-bold text-base text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-snug mt-1">
+            {prevProject.publicName}
+          </span>
+        </a>
+      ) : (
+        <div class="rounded-2xl border border-dashed border-slate-200 p-5 hidden sm:flex items-center justify-center text-xs font-mono text-slate-400">
+          First Project Story
+        </div>
+      )}
+
+      <!-- All Work Center Button -->
+      <a
+        href={`${site.basePath}/work/`}
+        class="rounded-2xl border-2 border-[#061d33] bg-[#061d33] text-white p-5 shadow-xs hover:bg-[#ff762b] hover:border-[#ff762b] transition-all flex flex-col items-center justify-center gap-1 text-center min-h-[88px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+      >
+        <Grid class="size-5 text-[#ddff35]" />
+        <span class="font-heading font-bold text-sm">All Client Directory</span>
+      </a>
+
+      <!-- Next Project Link -->
+      {nextProject ? (
+        <a
+          href={`${site.basePath}${getProjectSlugPath(nextProject.projectSlug)}`}
+          class="rounded-2xl border border-[#061d33]/12 bg-white p-5 shadow-xs hover:border-[#ff762b] hover:shadow-md transition-all flex flex-col justify-between text-right group min-h-[88px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+        >
+          <span class="inline-flex items-center gap-1 justify-end text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
+            <span>Next Story</span>
+            <ArrowRight class="size-3.5 group-hover:translate-x-1 transition-transform" />
+          </span>
+          <span class="font-heading font-bold text-base text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-snug mt-1">
+            {nextProject.publicName}
+          </span>
+        </a>
+      ) : (
+        <div class="rounded-2xl border border-dashed border-slate-200 p-5 hidden sm:flex items-center justify-center text-xs font-mono text-slate-400">
+          Last Project Story
+        </div>
+      )}
+    </div>
+  </div>
+</section>

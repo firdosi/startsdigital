@@ -1,0 +1,72 @@
+---
+import { site } from '../../site.config';
+import { ChevronRight } from '@lucide/astro';
+
+interface Props {
+  projectName: string;
+  projectSlug: string;
+}
+
+const { projectName, projectSlug } = Astro.props;
+
+const homeUrl = `${site.siteUrl}/`;
+const workUrl = `${site.siteUrl}/work/`;
+const currentUrl = `${site.siteUrl}/work/${projectSlug}/`;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: homeUrl
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Work',
+      item: workUrl
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: projectName,
+      item: currentUrl
+    }
+  ]
+};
+---
+
+<nav aria-label="Breadcrumb" class="py-4">
+  <ol class="flex flex-wrap items-center gap-2 font-mono text-sm font-medium text-slate-300">
+    <li class="flex items-center gap-2">
+      <a
+        href={`${site.basePath}/`}
+        class="hover:text-[#ddff35] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
+      >
+        Home
+      </a>
+      <ChevronRight class="size-4 text-slate-500 shrink-0" aria-hidden="true" />
+    </li>
+
+    <li class="flex items-center gap-2">
+      <a
+        href={`${site.basePath}/work/`}
+        class="hover:text-[#ddff35] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
+      >
+        Work
+      </a>
+      <ChevronRight class="size-4 text-slate-500 shrink-0" aria-hidden="true" />
+    </li>
+
+    <li class="flex items-center">
+      <span class="text-white font-semibold" aria-current="page">
+        {projectName}
+      </span>
+    </li>
+  </ol>
+</nav>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />

@@ -1,45 +1,42 @@
 ---
-title: "RK Reno Solutions"
-description: "Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor."
-industry: "Renovation and Local Services"
+title: "RK Reno Solutions Search & Web Foundation"
+description: "Website, content and local SEO foundation for renovation and air-conditioning services in Kuala Lumpur and Selangor."
+industry: "Renovation & Local Services"
 services:
-  - "SEO strategy"
-  - "service-page development"
-  - "website content"
-  - "local search optimisation"
-outcomeSummary: "Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor."
+  - "Website Design & Development"
+  - "SEO & Local Search"
+  - "Creative Content"
+outcomeSummary: "Website, content and local SEO foundation for renovation and air-conditioning services in Kuala Lumpur and Selangor."
 metrics:
   - value: "KL & Selangor"
-    label: "Targeted Regional Coverage"
-  - value: "Structured SEO"
-    label: "Search Foundation Established"
+    label: "Targeted Geographic Scope"
+  - value: "Local SEO"
+    label: "Structured Search Foundation"
 responsibilities:
-  - "SEO strategy for renovation and air-conditioning services in Malaysia."
-  - "Service-page development and website content creation."
-  - "Local search optimisation targeting Kuala Lumpur and Selangor."
+  - "Website design and service-page architecture development."
+  - "Location-focused content creation for renovation and HVAC service lines."
+  - "Local SEO foundation targeting Kuala Lumpur and Selangor search intent."
 heroImage:
-  src: "/brands/rk-reno-solutions/screenshot.png"
-  alt: "Genuine RK Reno Solutions Official Website Screenshot from rkrenosolution.com"
-  caption: "Genuine RK Reno Solutions Official Website Screenshot (rkrenosolution.com)"
+  src: "/brands/rk-reno-solutions/screenshot.webp"
+  alt: "Official RK Reno Solutions Website Screenshot (rkrenosolution.com)"
+  caption: "Official RK Reno Solutions Website Interface (rkrenosolution.com)"
 featured: true
 order: 3
-seoTitle: "RK Reno Solutions Case Study | Starts Digital"
-seoDescription: "Discover how Starts Digital built a structured SEO foundation targeting renovation and air-conditioning services in KL and Selangor."
+seoTitle: "RK Reno Solutions Search & Web Case Study | Starts Digital"
+seoDescription: "Explore how Starts Digital built a structured website, content and local SEO foundation for RK Reno Solutions in Kuala Lumpur and Selangor."
 draft: false
 ---
 
-## Search Opportunity
+## Project Overview & Search Opportunity
 
-Establishing a structured SEO foundation targeting renovation and air-conditioning services across Kuala Lumpur and Selangor.
+Establishing a structured web presence and local search foundation targeting renovation and air-conditioning services across key districts in Kuala Lumpur and Selangor.
 
-## Service-Page Architecture
+## Approved Scope & Implementation
 
-Developed dedicated service pages focusing on renovation and HVAC service offerings.
+- **Website Design & Page Structure:** Developed clear service-page layouts tailored for local service inquiries and clear service exploration.
+- **Service & Location Content:** Produced structured service descriptions and geographic landing page content covering renovation, remodeling, and air-conditioning service offerings.
+- **Local Search Foundation:** Configured on-page SEO elements, local schema data, and keyword hierarchy aligned with regional home renovation search intent.
 
-## Local SEO Foundation
+## Verified Contribution
 
-Produced website content and applied local search optimisation targeting regional search intent.
-
-## Implementation Scope
-
-Built a structured SEO foundation targeting renovation and air-conditioning services in Kuala Lumpur and Selangor.
+- Established a structured website, content and local SEO foundation for renovation and air-conditioning services in Kuala Lumpur and Selangor.
