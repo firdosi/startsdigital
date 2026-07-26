@@ -1,6 +1,4 @@
 import { site } from '../site.config';
-import { services } from './services';
-import { projectRecords } from './projects';
 
 export interface PageSeoConfig {
   title: string;
