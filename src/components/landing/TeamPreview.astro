@@ -1,8 +1,9 @@
 ---
 import { teamMembers, type TeamMember } from '../../data/team';
+import TeamMemberCard from '../team/TeamMemberCard.astro';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
 import { site } from '../../site.config';
-import { ArrowRight, ExternalLink } from '@lucide/astro';
+import { ArrowRight } from '@lucide/astro';
 
 const visibleMembers: TeamMember[] = teamMembers
   .filter((m) => m.approvedForPublic && m.homepageVisible)
@@ -25,47 +26,17 @@ const visibleMembers: TeamMember[] = teamMembers
           </p>
         </div>
 
-        <!-- 3-Column Responsive Team Grid (Single fade-up wrapper to ensure 0 mobile gap) -->
-        <div data-motion="fade-up" data-motion-delay="250" class="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto mb-10">
-          {visibleMembers.map((m) => (
-            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-7 shadow-xs flex flex-col justify-between group hover:border-[#ff762b]/40 transition-all duration-300">
-              <div class="space-y-4">
-                <div class="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 class="font-heading font-bold text-2xl text-[#061d33]">{m.name}</h3>
-                    <p class="font-mono text-xs text-[#ff762b] font-semibold uppercase tracking-wider mt-1">{m.role}</p>
-                  </div>
-                  {m.linkedin && (
-                    <a
-                      href={m.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View ${m.name} on LinkedIn`}
-                      class="inline-flex items-center gap-1.5 rounded-full bg-[#f7f4ed] px-3 py-1 text-xs font-mono font-semibold text-[#061d33] hover:bg-[#061d33] hover:text-white transition-colors border border-[#061d33]/10 shrink-0"
-                    >
-                      <svg class="size-3.5 fill-[#0077b5] group-hover:fill-white" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                      </svg>
-                      <span>LinkedIn</span>
-                      <ExternalLink class="size-3" />
-                    </a>
-                  )}
-                </div>
-
-                <!-- Biography (>= 16px text-base) -->
-                <p class="text-base text-slate-700 font-body leading-relaxed">{m.shortBio}</p>
-              </div>
-
-              {m.responsibilities && m.responsibilities.length > 0 && (
-                <div class="pt-4 mt-6 border-t border-[#061d33]/8">
-                  <span class="text-[11px] font-mono font-semibold text-slate-400 uppercase tracking-wider block mb-2">Primary Focus</span>
-                  <div class="flex flex-wrap gap-1.5">
-                    {m.responsibilities.map((r) => (
-                      <span class="text-xs font-mono bg-[#f7f4ed] text-[#061d33] px-2.5 py-1 rounded-lg border border-[#061d33]/10 font-medium">{r}</span>
-                    ))}
-                  </div>
-                </div>
-              )}
+        <!-- 3-Member Responsive Team Grid (NO data-motion on grid or cards for 100% immediate visibility) -->
+        <div class="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto mb-10">
+          {visibleMembers.map((m, idx) => (
+            <div class={idx === 2 ? "sm:col-span-2 lg:col-span-1 sm:max-w-md sm:mx-auto w-full lg:max-w-none" : "w-full"}>
+              <TeamMemberCard
+                member={m}
+                variant="homepage"
+                showResponsibilities={true}
+                showLinkedIn={true}
+                class="h-full"
+              />
             </div>
           ))}
         </div>

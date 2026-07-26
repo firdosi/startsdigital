@@ -1,9 +1,10 @@
 ---
 import SectionEyebrow from '../common/SectionEyebrow.astro';
-import { CheckCircle2, User } from '@lucide/astro';
+import { CheckCircle2, User, FileText, CheckSquare, Layers } from '@lucide/astro';
 
 const roles = [
   {
+    num: '01',
     category: 'Project Direction & Digital Marketing',
     person: 'Ahad Firdosi',
     title: 'Owner & CEO',
@@ -15,6 +16,7 @@ const roles = [
     ]
   },
   {
+    num: '02',
     category: 'Video & Graphic Production',
     person: 'Meesam',
     title: 'Video Editor & Graphic Designer',
@@ -26,6 +28,7 @@ const roles = [
     ]
   },
   {
+    num: '03',
     category: 'UI/UX & Development',
     person: 'Zaid Firdosi',
     title: 'Developer',
@@ -37,29 +40,47 @@ const roles = [
     ]
   }
 ];
+
+const scopeStages = [
+  {
+    step: 'Requirements',
+    desc: 'The business need, platforms, assets and deliverables are identified.',
+    icon: FileText
+  },
+  {
+    step: 'Responsibilities',
+    desc: 'Relevant project tasks are assigned and coordinated.',
+    icon: CheckSquare
+  },
+  {
+    step: 'Service Needs',
+    desc: 'Marketing, creative and technical requirements are organised around the agreed scope.',
+    icon: Layers
+  }
+];
 ---
 
-<section id="role-contribution" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
+<section id="team-workflow" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Section Header -->
     <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
-      <SectionEyebrow label="ROLE CONTRIBUTION" align="center" delay={0} />
+      <SectionEyebrow label="HOW RESPONSIBILITIES CONNECT" align="center" delay={0} />
       <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
-        Clear responsibilities support more coordinated project delivery.
+        Clear roles, coordinated through the project scope.
       </h2>
       <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
-        The published roles cover project direction, digital marketing, creative production, interface design and full-stack development. Exact responsibilities still depend on the agreed project scope.
+        Ahad supports project direction and digital marketing, Meesam supports video and graphic production, and Zaid supports interface design and development. The exact combination of responsibilities depends on the agreed project requirements.
       </p>
     </div>
 
     <!-- 3 Editorial Role Contribution Columns -->
-    <div data-motion="fade-up" data-motion-delay="250" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-      {roles.map((item, idx) => (
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12">
+      {roles.map((item) => (
         <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all duration-300">
           <div class="space-y-5">
             <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-3 py-1 rounded-full w-fit block">
-              AREA 0{idx + 1}
+              ROLE {item.num}
             </span>
 
             <div>
@@ -91,6 +112,35 @@ const roles = [
           </div>
         </div>
       ))}
+    </div>
+
+    <!-- Compact Project-Scope Strip -->
+    <div class="rounded-3xl border border-[#061d33]/15 bg-white p-6 sm:p-8 shadow-xs">
+      <div class="mb-6 pb-4 border-b border-[#061d33]/10">
+        <h3 class="font-heading font-bold text-xl sm:text-2xl text-[#061d33]">
+          Project scope defines the final working structure.
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {scopeStages.map((stage, idx) => {
+          const IconComp = stage.icon;
+          return (
+            <div class="flex items-start gap-4">
+              <div class="size-10 rounded-xl bg-[#061d33] text-[#ddff35] flex items-center justify-center shrink-0 mt-0.5">
+                <IconComp class="size-5" />
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono text-xs font-bold text-[#ff762b]">0{idx + 1}</span>
+                  <h4 class="font-heading font-bold text-base text-[#061d33]">{stage.step}</h4>
+                </div>
+                <p class="text-sm text-slate-600 font-body leading-relaxed">{stage.desc}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
 
   </div>

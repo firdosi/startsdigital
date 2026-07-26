@@ -4,8 +4,8 @@ import CompanyStory from '../components/about/CompanyStory.astro';
 import CompanyFacts from '../components/about/CompanyFacts.astro';
 import FounderProfile from '../components/about/FounderProfile.astro';
 import TeamGrid from '../components/about/TeamGrid.astro';
-import RoleContribution from '../components/about/RoleContribution.astro';
-import OperatingModel from '../components/about/OperatingModel.astro';
+import TeamWorkflow from '../components/about/TeamWorkflow.astro';
+import CompanyExperience from '../components/about/CompanyExperience.astro';
 import WorkingPrinciples from '../components/about/WorkingPrinciples.astro';
 import CapabilityConnection from '../components/about/CapabilityConnection.astro';
 import FinalCta from '../components/landing/FinalCta.astro';
@@ -17,8 +17,8 @@ import { Sparkles, MapPin, Calendar, Globe } from '@lucide/astro';
 ---
 
 <BaseLayout
-  title="About Starts Digital | Company, Founder and Team"
-  description="Learn about Starts Digital, a Lahore-based digital agency founded in 2025, its company approach, founder Ahad Firdosi and publicly approved team members."
+  title="About Starts Digital | Company, Team and Experience"
+  description="Learn about Starts Digital, a Lahore-based digital agency founded in 2025, its founder Ahad Firdosi, creative and development team, working approach and selected project experience."
 >
   {/* 1. About Hero (Deep Navy Background & Immediately Visible Narrative) */}
   <section id="about-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
@@ -78,11 +78,11 @@ import { Sparkles, MapPin, Calendar, Globe } from '@lucide/astro';
   {/* 5. Creative & Development Team (Meesam and Zaid Firdosi) */}
   <TeamGrid />
 
-  {/* 6. Role Contribution (Ahad, Meesam and Zaid) */}
-  <RoleContribution />
+  {/* 6. Team Workflow */}
+  <TeamWorkflow />
 
-  {/* 7. Project Structure */}
-  <OperatingModel />
+  {/* 7. Company Experience */}
+  <CompanyExperience />
 
   {/* 8. Working Principles */}
   <WorkingPrinciples />
