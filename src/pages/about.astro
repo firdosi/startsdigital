@@ -1,128 +1,92 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Container from '../components/ui/Container.astro';
-import WhyUs from '../components/landing/WhyUs.astro';
-import AboutOperator from '../components/landing/AboutOperator.astro';
-import Process from '../components/landing/Process.astro';
+import CompanyStory from '../components/about/CompanyStory.astro';
+import CompanyFacts from '../components/about/CompanyFacts.astro';
+import FounderProfile from '../components/about/FounderProfile.astro';
+import TeamGrid from '../components/about/TeamGrid.astro';
+import WorkingPrinciples from '../components/about/WorkingPrinciples.astro';
+import CapabilityConnection from '../components/about/CapabilityConnection.astro';
 import FinalCta from '../components/landing/FinalCta.astro';
 import MotionController from '../components/common/MotionController.astro';
-import { 
-  Target, 
-  MessageSquare, 
-  TrendingUp, 
-  RotateCw
-} from '@lucide/astro';
-
-const values = [
-  {
-    title: 'Practical Strategy',
-    desc: 'No vague marketing jargon or unproven frameworks. Every plan is tied directly to real commercial deliverables and unit economics.',
-    colorClass: 'border-[#ff762b] text-[#ff762b]',
-    Icon: Target,
-  },
-  {
-    title: 'Clear Communication',
-    desc: 'Clear communication through agreed project channels, with requirements, responsibilities, updates and next steps documented throughout the work.',
-    colorClass: 'border-[#9a83f5] text-[#9a83f5]',
-    Icon: MessageSquare,
-  },
-  {
-    title: 'Commercial Focus',
-    desc: 'We measure campaign health on actual bank revenue, cost-per-lead, and sales volume—never vanity impressions.',
-    colorClass: 'border-[#39c98a] text-[#39c98a]',
-    Icon: TrendingUp,
-  },
-  {
-    title: 'Continuous Improvement',
-    desc: 'Iterative creative testing, CRO adjustments, and long-term search engine authority building that compounds over time.',
-    colorClass: 'border-[#ff514b] text-[#ff514b]',
-    Icon: RotateCw,
-  },
-];
+import SectionEyebrow from '../components/common/SectionEyebrow.astro';
+import AnimatedGrid from '../components/motion/AnimatedGrid.astro';
+import FloatingOrb from '../components/motion/FloatingOrb.astro';
+import SectionSpark from '../components/motion/SectionSpark.astro';
+import { Sparkles, MapPin, Calendar, Globe } from '@lucide/astro';
+import { site } from '../site.config';
 ---
 
-<BaseLayout 
-  title="About Starts Digital — Growth Marketing & Technical Systems"
-  description="Starts Digital combines campaign strategy, paid advertising, websites, SEO, creative content and practical technology systems to support business growth."
-  type="website"
+<BaseLayout
+  title="About Starts Digital | Company, Founder and Team"
+  description="Learn about Starts Digital, a Lahore-based digital agency founded in 2025, its company approach, founder Ahad Firdosi and publicly approved team members."
 >
-  <!-- Deep Navy Rounded Hero Header -->
-  <section class="relative bg-[#061d33] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 rounded-b-[40px] shadow-2xl overflow-hidden">
-    <Container class="max-w-[1280px] px-6 sm:px-8 text-center space-y-6">
-      <div data-motion="scale-in">
-        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35]">
-          <span>ABOUT STARTS DIGITAL</span>
-        </span>
-      </div>
-      
-      <!-- Hero Headline: Sora 700 -->
-      <h1 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[40px] md:text-[50px] lg:text-[64px] text-white leading-[1.08] tracking-[-0.035em] max-w-[800px] mx-auto">
-        Marketing, technology and execution <span class="text-[#ff762b]">working as one.</span>
-      </h1>
-      
-      <p data-motion="fade-up" data-motion-delay="200" class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[680px] mx-auto leading-[1.65] font-normal">
-        Starts Digital combines campaign strategy, paid advertising, websites, SEO, creative content and practical technology systems to support business growth.
-      </p>
-    </Container>
-  </section>
+  {/* 1. About Hero (Deep Navy Background & Immediately Visible Narrative) */}
+  <section id="about-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
+    <AnimatedGrid opacity={0.10} />
+    <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
+    <SectionSpark color="orange" size="md" class="top-10 right-[8%] pointer-events-none" delay="0s" />
 
-  <!-- Why Brands Trust Starts Digital -->
-  <WhyUs />
+    <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 z-10">
+      <div class="max-w-3xl space-y-6 text-left">
+        
+        <div class="inline-flex items-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
+            <Sparkles class="size-3.5 text-[#ddff35]" />
+            <span>ABOUT STARTS DIGITAL</span>
+          </span>
+        </div>
 
-  <!-- Built With Hands-On Operator Experience -->
-  <AboutOperator />
+        <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
+          A Lahore-based digital agency connecting strategy, creative and technical execution.
+        </h1>
 
-  <!-- Core Operating Values Section -->
-  <section class="py-20 lg:py-28 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden">
-    <Container class="max-w-[1280px] px-6 sm:px-8 space-y-16">
-      <div class="text-center max-w-3xl mx-auto space-y-3">
-        <span data-motion="scale-in" class="text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ff762b] block">
-          OUR GUIDING PRINCIPLES
-        </span>
-        <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
-          Operating values that drive performance
-        </h2>
-        <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-700 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
-          Disciplined principles that govern our client relationships, technical execution, and daily decision-making.
+        <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal">
+          Founded in 2025, Starts Digital supports local and international clients through paid advertising, websites, SEO, creative content, social media marketing and practical AI workflows.
         </p>
-      </div>
 
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {values.map((v, idx) => (
-          <div 
-            data-motion="fade-up"
-            data-motion-delay={idx * 80}
-            class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 shadow-lg hover:shadow-2xl hover:border-[#ff762b] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
-          >
-            <div>
-              <div class="flex items-center justify-between mb-6">
-                <div class:list={['size-12 rounded-2xl border-2 flex items-center justify-center font-bold bg-[#f7f4ed] group-hover:rotate-6 transition-transform', v.colorClass]}>
-                  <v.Icon class="size-6" />
-                </div>
-                <span class="text-xs font-mono font-medium text-slate-400">0{idx + 1}</span>
-              </div>
-
-              <!-- Title: Sora 600 min 18px -->
-              <h3 class="font-heading font-semibold text-[18px] sm:text-xl text-[#061d33] mb-3 leading-snug">
-                {v.title}
-              </h3>
-              
-              <!-- Body: Inter 400 16px, leading 1.6 -->
-              <p class="text-base text-slate-700 font-body leading-[1.6] font-normal">
-                {v.desc}
-              </p>
-            </div>
+        <!-- Context Badges Strip -->
+        <div class="pt-4 border-t border-white/15 flex flex-wrap items-center gap-4 text-xs font-mono text-slate-300">
+          <div class="flex items-center gap-1.5">
+            <MapPin class="size-3.5 text-[#ff762b]" />
+            <span>Lahore, Pakistan</span>
           </div>
-        ))}
+          <span class="text-white/30">•</span>
+          <div class="flex items-center gap-1.5">
+            <Calendar class="size-3.5 text-[#ddff35]" />
+            <span>Established 2025</span>
+          </div>
+          <span class="text-white/30">•</span>
+          <div class="flex items-center gap-1.5">
+            <Globe class="size-3.5 text-[#39c98a]" />
+            <span>Local & International Clients</span>
+          </div>
+        </div>
+
       </div>
-    </Container>
+    </div>
   </section>
 
-  <!-- Working Method Accordion -->
-  <Process />
+  {/* 2. Company Story */}
+  <CompanyStory />
 
-  <!-- Approved Navy CTA Panel -->
+  {/* 3. Company at a Glance */}
+  <CompanyFacts />
+
+  {/* 4. Founder and Leadership */}
+  <FounderProfile />
+
+  {/* 5. Public Team */}
+  <TeamGrid />
+
+  {/* 6. Working Principles */}
+  <WorkingPrinciples />
+
+  {/* 7. Capability Connection */}
+  <CapabilityConnection />
+
+  {/* 8. Final CTA */}
   <FinalCta />
 
+  {/* Motion Controller */}
   <MotionController />
 </BaseLayout>

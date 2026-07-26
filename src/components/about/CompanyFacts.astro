@@ -1,0 +1,25 @@
+---
+const facts = [
+  { label: 'Established', value: '2025' },
+  { label: 'Based In', value: 'Lahore, Pakistan' },
+  { label: 'Client Reach', value: 'Local & International' },
+  { label: 'Core Capabilities', value: '6 Service Areas' }
+];
+---
+
+<section id="company-facts" class="py-12 sm:py-16 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+  <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      {facts.map((fact) => (
+        <div class="rounded-2xl border border-[#061d33]/12 bg-white p-5 sm:p-6 text-center shadow-xs">
+          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-500 block mb-1">
+            {fact.label}
+          </span>
+          <span class="font-heading font-bold text-lg sm:text-xl text-[#061d33]">
+            {fact.value}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
