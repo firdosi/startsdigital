@@ -8,6 +8,7 @@ const commands = [
   'node scripts/qa/schema-audit.mjs',
   'node scripts/qa/analytics-audit.mjs',
   'node scripts/qa/domain-readiness.mjs',
+  'node scripts/qa/live-deployment.mjs',
 ];
 
 console.log('🚀 Running aggregate QA suite (qa:all)...\n');

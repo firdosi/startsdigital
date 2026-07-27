@@ -6,42 +6,20 @@ import Button from '../../components/ui/Button.astro';
 import FinalCta from '../../components/landing/FinalCta.astro';
 import { ArrowRight, ShoppingBag, Calendar, Wrench, Cpu, CheckCircle2, Layers } from '@lucide/astro';
 import { site } from '../../site.config';
-import { services } from '../../data/services';
+import { getServiceById } from '../../data/services';
 import { getDetailedProjectStories } from '../../data/projects';
-import { homepageFaqs } from '../../data/faqs';
+import { industriesFaqs } from '../../data/faqs';
+import { getIndustryPages } from '../../data/marketPages';
 
+const industryPages = getIndustryPages();
 const detailedStories = getDetailedProjectStories();
 
-const industryCards = [
-  {
-    title: 'E-Commerce & Product Brands',
-    description: 'Direct-response advertising, storefront development, creative testing, and tracking systems for growing e-commerce product brands.',
-    href: `${site.basePath}/industries/ecommerce-product-brands/`,
-    icon: ShoppingBag,
-    proof: 'Supported PKR 30M+ in delivered revenue, 29,000+ product sales and 22,000+ delivered sales for Black Gold Fertilizer.',
-  },
-  {
-    title: 'Seasonal Campaigns',
-    description: 'High-impact digital marketing strategies, pre-booking windows, and creative execution for time-sensitive seasonal campaigns.',
-    href: `${site.basePath}/industries/seasonal-campaigns/`,
-    icon: Calendar,
-    proof: 'Helped sell 150+ animals and supported PKR 4.2M+ in sales during Eid Qurbani campaign for Wajib Livestock.',
-  },
-  {
-    title: 'Local Service Businesses',
-    description: 'Custom website development, local SEO foundations, and service-area content for renovation and contractor businesses.',
-    href: `${site.basePath}/industries/local-service-businesses/`,
-    icon: Wrench,
-    proof: 'Website design & local SEO foundation for RK Reno Solutions in Kuala Lumpur & Selangor.',
-  },
-  {
-    title: 'Technology Products',
-    description: 'Web application development, UI design, workflow automation, and product growth support for technology platforms.',
-    href: `${site.basePath}/industries/technology-products/`,
-    icon: Cpu,
-    proof: 'Developed ConvortAI web application & ongoing technology and growth partnership.',
-  },
-];
+const industryIcons: Record<string, any> = {
+  'ecommerce-product-brands': ShoppingBag,
+  'seasonal-campaigns': Calendar,
+  'local-service-businesses': Wrench,
+  'technology-products': Cpu,
+};
 ---
 
 <BaseLayout>
@@ -73,8 +51,9 @@ const industryCards = [
       />
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {industryCards.map((card) => {
-          const IconComp = card.icon;
+        {industryPages.map((ind) => {
+          const IconComp = industryIcons[ind.slug] || Layers;
+          const proj = detailedStories.find((p) => p.id === ind.featuredProjectId || p.slug === ind.featuredProjectId);
           return (
             <div class="bg-white border border-[#061d33]/10 rounded-2xl p-8 space-y-6 shadow-sm hover:border-[#ff762b]/40 transition-colors flex flex-col justify-between">
               <div class="space-y-4">
@@ -82,19 +61,21 @@ const industryCards = [
                   <IconComp class="size-6" />
                 </div>
                 <h2 class="font-heading font-bold text-2xl text-[#061d33]">
-                  {card.title}
+                  {ind.breadcrumbLabel}
                 </h2>
                 <p class="text-slate-700 font-body text-base leading-relaxed">
-                  {card.description}
+                  {ind.description}
                 </p>
-                <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-4 rounded-xl text-sm font-mono text-slate-800 flex items-start gap-2.5">
-                  <CheckCircle2 class="size-4 text-[#ff762b] shrink-0 mt-0.5" />
-                  <span><strong>Project Proof:</strong> {card.proof}</span>
-                </div>
+                {proj && (
+                  <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-4 rounded-xl text-sm font-mono text-slate-800 flex items-start gap-2.5">
+                    <CheckCircle2 class="size-4 text-[#ff762b] shrink-0 mt-0.5" />
+                    <span><strong>Verified Proof:</strong> {proj.publicName} — {proj.verifiedOutcome || proj.shortSummary}</span>
+                  </div>
+                )}
               </div>
               <div class="pt-4">
-                <Button href={card.href} variant="primary" class="w-full sm:w-auto justify-center">
-                  Explore {card.title}
+                <Button href={`${site.basePath}${ind.canonicalPath}`} variant="primary" class="w-full sm:w-auto justify-center">
+                  Explore {ind.breadcrumbLabel}
                   <ArrowRight class="size-4 ml-1.5" />
                 </Button>
               </div>
@@ -105,41 +86,65 @@ const industryCards = [
     </Container>
   </section>
 
-  <!-- 3. Relevant Service Combinations by Industry -->
+  <!-- 3. Four Industry-Specific Service Combinations -->
   <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
         theme="light"
-        eyebrow="SERVICE INTEGRATION"
-        title="Published Services Applied by Industry"
-        description="Our six core service areas are combined to address specific business model constraints."
+        eyebrow="SECTOR SERVICE COMBINATIONS"
+        title="Industry-Specific Service Combinations"
+        description="Our six core service lines combined for specific business model constraints and customer acquisition channels."
       />
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {services.slice(0, 6).map((srv) => (
-          <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-6 space-y-4 flex flex-col justify-between">
-            <div class="space-y-3">
-              <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">{srv.eyebrow}</span>
-              <h3 class="font-heading font-bold text-xl text-[#061d33]">{srv.name}</h3>
-              <p class="text-slate-700 text-base font-body leading-relaxed">{srv.summary}</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {industryPages.map((ind) => {
+          const comboServices = ind.relevantServiceIds
+            .map((id) => getServiceById(id))
+            .filter((s) => Boolean(s));
+
+          return (
+            <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-8 space-y-6 flex flex-col justify-between">
+              <div class="space-y-4">
+                <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">{ind.eyebrow}</span>
+                <h3 class="font-heading font-bold text-2xl text-[#061d33]">{ind.breadcrumbLabel} Service Combination</h3>
+                <p class="text-slate-700 text-base font-body leading-relaxed">{ind.subtitle}</p>
+
+                <div class="space-y-3 pt-2">
+                  <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 block">Applied Published Services:</span>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {comboServices.map((srv) => (
+                      <a
+                        href={`${site.basePath}/services/${srv!.slug}/`}
+                        class="bg-white border border-[#061d33]/10 rounded-xl p-3 text-sm font-heading font-semibold text-[#061d33] hover:text-[#ff762b] hover:border-[#ff762b]/40 transition-colors flex items-center justify-between"
+                      >
+                        <span>{srv!.shortName}</span>
+                        <ArrowRight class="size-3.5 text-[#ff762b]" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4">
+                <Button href={`${site.basePath}${ind.canonicalPath}`} variant="secondary" surface="light" class="w-full justify-center">
+                  View {ind.breadcrumbLabel} Architecture &rarr;
+                </Button>
+              </div>
             </div>
-            <a href={`${site.basePath}/services/${srv.slug}/`} class="text-sm font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
-              Learn more <ArrowRight class="size-3.5" />
-            </a>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </Container>
   </section>
 
-  <!-- 4. Verified Project Experience -->
+  <!-- 4. Verified Project Experience Resolved from Central Registry -->
   <section class="py-16 sm:py-20 bg-[#061d33] text-white border-b border-slate-800/80">
     <Container class="space-y-12">
       <SectionHeading
         theme="dark"
         eyebrow="VERIFIED CLIENT EVIDENCE"
         title="Documented Project Case Studies"
-        description="Explore documented outcomes and technical contributions across our detailed case studies."
+        description="Explore documented outcomes and technical contributions resolved from our central project registry."
       />
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -159,7 +164,7 @@ const industryCards = [
     </Container>
   </section>
 
-  <!-- 5. How Project Scopes Differ -->
+  <!-- 5. Scope Differentiation Section -->
   <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
@@ -197,7 +202,7 @@ const industryCards = [
     </Container>
   </section>
 
-  <!-- 6. Industries FAQ Section -->
+  <!-- 6. Dedicated Industries FAQ Section -->
   <section class="py-16 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-8 max-w-4xl">
       <SectionHeading
@@ -206,7 +211,7 @@ const industryCards = [
         title="Industry Engagement Questions"
       />
       <div class="space-y-4">
-        {homepageFaqs.map((faq) => (
+        {industriesFaqs.map((faq) => (
           <div class="bg-white border border-[#061d33]/10 rounded-xl p-6 space-y-2">
             <h3 class="font-heading font-bold text-lg text-[#061d33]">{faq.question}</h3>
             <p class="text-slate-700 text-base font-body leading-relaxed">{faq.answer}</p>

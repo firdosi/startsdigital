@@ -2,7 +2,8 @@ import fs from 'fs';
 import path from 'path';
 
 const distDir = path.resolve('dist');
-const savePath = path.resolve('scratch/final-6-3/seo-audit.json');
+const pagesDir = path.resolve('src/pages');
+const savePath = path.resolve('scratch/final-closure-correction/seo-audit.json');
 
 const dir = path.dirname(savePath);
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -12,6 +13,41 @@ if (!fs.existsSync(distDir)) {
   process.exit(1);
 }
 
+const errors = [];
+
+// Parse registered routes directly from src/data/seo.ts
+const seoTsContent = fs.readFileSync(path.resolve('src/data/seo.ts'), 'utf-8');
+const canonicalMatches = Array.from(seoTsContent.matchAll(/canonicalPath:\s*['"]([^'"]+)['"]/g));
+const registeredPaths = new Set(canonicalMatches.map((m) => m[1]));
+
+// 1. Source-Level QA: Scan src/pages/ for unapproved BaseLayout props
+function checkSourcePageFiles(dirPath) {
+  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dirPath, entry.name);
+    if (entry.isDirectory()) {
+      checkSourcePageFiles(fullPath);
+    } else if (entry.name.endsWith('.astro')) {
+      const content = fs.readFileSync(fullPath, 'utf-8');
+      const relPath = path.relative(pagesDir, fullPath).replace(/\\/g, '/');
+
+      // Check for unapproved BaseLayout props (title=, description=, type=, schemaType=)
+      const baseLayoutMatches = content.match(/<BaseLayout[\s\S]*?>/g);
+      if (baseLayoutMatches) {
+        for (const blTag of baseLayoutMatches) {
+          if (blTag.includes('title=') || blTag.includes('description=')) {
+            if (!relPath.includes('404.astro') && !relPath.includes('style-guide.astro')) {
+              errors.push(`[Source QA] Unapproved BaseLayout metadata prop in src/pages/${relPath}: ${blTag.trim()}`);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+checkSourcePageFiles(pagesDir);
+
+// 2. Built-Output SEO Validation
 function getAllHtmlFiles(dirPath, files = []) {
   const entries = fs.readdirSync(dirPath, { withFileTypes: true });
   for (const entry of entries) {
@@ -26,7 +62,6 @@ function getAllHtmlFiles(dirPath, files = []) {
 }
 
 const htmlFiles = getAllHtmlFiles(distDir);
-const errors = [];
 const titles = new Map();
 const descriptions = new Map();
 const canonicals = new Map();
@@ -116,6 +151,7 @@ if (fs.existsSync(sitemapPath)) {
 
 const auditResult = {
   totalFiles: htmlFiles.length,
+  registeredSeoRoutesCount: registeredPaths.size,
   sitemapVerified,
   errorCount: errors.length,
   errors,

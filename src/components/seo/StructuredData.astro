@@ -5,7 +5,7 @@ import { services, getServiceById, getServiceBySlug } from '../../data/services'
 import { getDetailedProjectStories } from '../../data/projects';
 import { teamMembers } from '../../data/team';
 import { companyProfile } from '../../data/company';
-import { homepageFaqs } from '../../data/faqs';
+import { homepageFaqs, industriesFaqs } from '../../data/faqs';
 import { getMarketPageBySlug, getIndustryPages } from '../../data/marketPages';
 
 interface Props {
@@ -269,6 +269,7 @@ if (resolvedSchemaType === 'homepage') {
   );
 } else if (resolvedSchemaType === 'industries-index') {
   const industryPages = getIndustryPages();
+  const industriesFaqSchema = buildFaqSchema(industriesFaqs);
   schemas.push(
     {
       '@context': 'https://schema.org',
@@ -288,7 +289,8 @@ if (resolvedSchemaType === 'homepage') {
         })),
       },
     },
-    breadcrumbSchema
+    breadcrumbSchema,
+    industriesFaqSchema
   );
 } else if (resolvedSchemaType === 'industry' || resolvedSchemaType === 'location') {
   const cleanSlug = pathname.replace(site.basePath, '').replace(/^\/+|\/+$/g, '').split('/').pop() || '';

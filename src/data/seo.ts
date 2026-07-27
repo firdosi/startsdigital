@@ -396,6 +396,19 @@ export const pageSeoRegistry: Record<string, PageSeoConfig> = {
     schemaType: 'page',
     breadcrumbLabel: 'Page Not Found',
   },
+  '/404.html': {
+    title: 'Page Not Found | Starts Digital',
+    description: 'The page you requested could not be found. Return to Starts Digital homepage or service directory.',
+    canonicalPath: '/404.html',
+    ogType: 'website',
+    ogImage: '/og/default-og.png',
+    ogImageAlt: 'Page Not Found — Starts Digital',
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
+    robots: 'noindex, nofollow',
+    schemaType: 'page',
+    breadcrumbLabel: 'Page Not Found',
+  },
 };
 
 export function getCanonicalUrl(path: string): string {
@@ -411,6 +424,9 @@ export function getCanonicalUrl(path: string): string {
 
 export function getSeoForPath(path: string): PageSeoConfig {
   const cleanPath = path.replace(site.basePath, '').replace(/\/+$/, '') || '/';
+  if (cleanPath === '/404.html' || cleanPath === '/404') {
+    return pageSeoRegistry['/404.html'];
+  }
   const normalizedKey = cleanPath.endsWith('/') ? cleanPath : `${cleanPath}/`;
 
   if (pageSeoRegistry[normalizedKey]) {

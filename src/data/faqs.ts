@@ -21,3 +21,18 @@ export const homepageFaqs: FaqItem[] = [
     answer: 'Starts Digital can coordinate multiple services within one agreed project scope, including advertising, websites, SEO, creative production, social media and practical AI workflows. The exact responsibilities are confirmed before work begins.',
   },
 ];
+
+export const industriesFaqs: FaqItem[] = [
+  {
+    question: 'How do project scopes differ across different industries?',
+    answer: 'We structure engagements around sector requirements: e-commerce focuses on conversion and order tracking, contractors on local SEO and quote inquiries, seasonal campaigns on high-velocity booking windows, and technology products on web applications and growth workflows.',
+  },
+  {
+    question: 'Can service combinations be customized for specific business models?',
+    answer: 'Yes. Our six core service lines are modular. We select and combine only the relevant services required to achieve your project objectives.',
+  },
+  {
+    question: 'What client evidence is available for these industry sectors?',
+    answer: 'We document verified client contributions and outcomes across detailed case studies including Black Gold Fertilizer, Wajib Livestock Qurbani Campaign, RK Reno Solutions, and ConvortAI.',
+  },
+];

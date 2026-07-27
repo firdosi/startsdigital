@@ -348,7 +348,6 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                 <button
                   type="button"
                   id="btn-send-whatsapp"
-                  data-track="contact-whatsapp"
                   class="w-full sm:w-1/2 inline-flex items-center justify-center min-h-[52px] gap-2.5 rounded-2xl bg-[#39c98a] px-6 py-4 font-body font-semibold text-base text-white shadow-lg hover:bg-[#2fb078] active:scale-98 transition-all cursor-pointer"
                 >
                   <MessageSquare class="size-5 text-white" />
@@ -358,7 +357,6 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
                 <button
                   type="button"
                   id="btn-send-email"
-                  data-track="contact-email"
                   class="w-full sm:w-1/2 inline-flex items-center justify-center min-h-[52px] gap-2.5 rounded-2xl border-2 border-[#061d33] bg-white px-6 py-4 font-body font-semibold text-base text-[#061d33] shadow-md hover:bg-[#061d33] hover:text-white active:scale-98 transition-all cursor-pointer group"
                 >
                   <Send class="size-5 text-[#061d33] group-hover:text-white transition-colors" />
@@ -458,6 +456,8 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
   <MotionController />
 
   <script>
+    import { trackEvent } from '../scripts/analytics';
+
     function initContactForm() {
       const form = document.getElementById('contact-form') as HTMLFormElement;
       if (!form) return;
@@ -616,6 +616,28 @@ ${pageUrl}`
       btnWhatsApp?.addEventListener('click', () => {
         if (!validateForm()) return;
         const { bodyText } = buildMessageText();
+
+        // Emit conversion events ONLY after successful validation
+        trackEvent({
+          eventName: 'contact_brief_generate',
+          params: {
+            page_path: window.location.pathname,
+            source: sourceParam || undefined,
+            service_id: serviceSelect?.value || undefined,
+            link_destination_type: 'whatsapp'
+          }
+        });
+
+        trackEvent({
+          eventName: 'whatsapp_click',
+          params: {
+            page_path: window.location.pathname,
+            source: sourceParam || undefined,
+            service_id: serviceSelect?.value || undefined,
+            link_destination_type: 'whatsapp'
+          }
+        });
+
         const encodedText = encodeURIComponent(bodyText);
         window.open(`https://wa.me/923394135544?text=${encodedText}`, '_blank');
       });
@@ -623,6 +645,28 @@ ${pageUrl}`
       btnEmail?.addEventListener('click', () => {
         if (!validateForm()) return;
         const { companyVal, serviceVal, bodyText } = buildMessageText();
+
+        // Emit conversion events ONLY after successful validation
+        trackEvent({
+          eventName: 'contact_brief_generate',
+          params: {
+            page_path: window.location.pathname,
+            source: sourceParam || undefined,
+            service_id: serviceSelect?.value || undefined,
+            link_destination_type: 'email'
+          }
+        });
+
+        trackEvent({
+          eventName: 'email_click',
+          params: {
+            page_path: window.location.pathname,
+            source: sourceParam || undefined,
+            service_id: serviceSelect?.value || undefined,
+            link_destination_type: 'email'
+          }
+        });
+
         const subject = encodeURIComponent(`Project Inquiry: ${companyVal} - ${serviceVal}`);
         const encodedBody = encodeURIComponent(bodyText);
         window.location.href = `mailto:firdosidigital@gmail.com?subject=${subject}&body=${encodedBody}`;
