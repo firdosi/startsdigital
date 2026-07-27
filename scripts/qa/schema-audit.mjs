@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const distDir = path.resolve('dist');
-const savePath = path.resolve('scratch/seo-6-2/schema-audit.json');
+const savePath = path.resolve('scratch/final-6-3/schema-audit.json');
 
 const dir = path.dirname(savePath);
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -25,68 +25,82 @@ function getAllHtmlFiles(dirPath, files = []) {
   return files;
 }
 
-const approvedWorkNames = new Set([
+const htmlFiles = getAllHtmlFiles(distDir);
+const errors = [];
+let totalSchemasValidated = 0;
+
+const FORBIDDEN_TYPES = new Set([
+  'Review',
+  'AggregateRating',
+  'Offer',
+  'Product',
+  'PostalAddress',
+  'LocalBusiness',
+  'ProfessionalService',
+]);
+
+const APPROVED_WORK_PUBLIC_NAMES = new Set([
   'Black Gold Fertilizer',
   'Wajib Livestock Qurbani Campaign',
   'RK Reno Solutions',
   'ConvortAI',
 ]);
 
-const htmlFiles = getAllHtmlFiles(distDir);
-const errors = [];
-let totalSchemasChecked = 0;
+function inspectSchemaObject(obj, relPath) {
+  if (!obj || typeof obj !== 'object') return;
+
+  if (Array.isArray(obj)) {
+    obj.forEach((item) => inspectSchemaObject(item, relPath));
+    return;
+  }
+
+  if (obj['@type']) {
+    const typeStr = obj['@type'];
+    if (FORBIDDEN_TYPES.has(typeStr)) {
+      errors.push(`[${relPath}] Forbidden schema @type found: "${typeStr}"`);
+    }
+
+    if (typeStr === 'ItemList' && obj.name === 'Selected Client Experience & Case Studies' && Array.isArray(obj.itemListElement)) {
+      for (const item of obj.itemListElement) {
+        const itemName = item.name || (item.item && item.item.name);
+        if (itemName && !APPROVED_WORK_PUBLIC_NAMES.has(itemName)) {
+          errors.push(`[${relPath}] Work ItemList contains unapproved public name: "${itemName}"`);
+        }
+      }
+    }
+  }
+
+  for (const key of Object.keys(obj)) {
+    inspectSchemaObject(obj[key], relPath);
+  }
+}
 
 for (const file of htmlFiles) {
   const content = fs.readFileSync(file, 'utf-8');
   const relPath = path.relative(distDir, file).replace(/\\/g, '/');
 
-  const jsonLdMatches = content.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi);
-
-  for (const match of jsonLdMatches) {
-    totalSchemasChecked++;
+  const scriptMatches = content.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi);
+  for (const match of scriptMatches) {
+    totalSchemasValidated++;
     const jsonText = match[1].trim();
-
     try {
       const parsed = JSON.parse(jsonText);
-      const items = Array.isArray(parsed) ? parsed : [parsed];
-
-      for (const item of items) {
-        if (!item['@context']) {
-          errors.push(`[${relPath}] Schema missing @context`);
-        }
-
-        const typeStr = JSON.stringify(item['@type']);
-
-        // Forbidden schema check
-        if (/Review|AggregateRating|Offer|PostalAddress|LocalBusiness|ProfessionalService/i.test(typeStr)) {
-          errors.push(`[${relPath}] Forbidden schema type found: ${typeStr}`);
-        }
-
-        // Work CollectionPage ItemList name check
-        if (relPath.includes('work/index.html') && item['@type'] === 'CollectionPage' && item.mainEntity?.itemListElement) {
-          const list = item.mainEntity.itemListElement;
-          for (const listItem of list) {
-            const name = listItem.name;
-            if (!approvedWorkNames.has(name)) {
-              errors.push(`[${relPath}] Work ItemList item name "${name}" is not an approved public name`);
-            }
-          }
-        }
-
-        // Future custom domain check (uncommented during dry-run validation only)
-        if (process.env.SITE_ORIGIN !== 'https://startsdigital.com' && JSON.stringify(item).includes('startsdigital.com')) {
-          errors.push(`[${relPath}] Schema contains future domain startsdigital.com before migration`);
-        }
+      if (!parsed['@context'] && !jsonText.includes('@context')) {
+        errors.push(`[${relPath}] JSON-LD schema missing @context`);
       }
-    } catch (e) {
-      errors.push(`[${relPath}] Invalid JSON-LD syntax: ${e.message}`);
+      if (jsonText.includes('startsdigital.com')) {
+        errors.push(`[${relPath}] Forbidden startsdigital.com reference in JSON-LD schema`);
+      }
+      inspectSchemaObject(parsed, relPath);
+    } catch (err) {
+      errors.push(`[${relPath}] Invalid JSON-LD syntax: ${err.message}`);
     }
   }
 }
 
 const auditResult = {
   totalFiles: htmlFiles.length,
-  totalSchemasChecked,
+  totalSchemasValidated,
   errorCount: errors.length,
   errors,
   timestamp: new Date().toISOString(),
@@ -95,9 +109,9 @@ const auditResult = {
 fs.writeFileSync(savePath, JSON.stringify(auditResult, null, 2));
 
 if (errors.length === 0) {
-  console.log(`✅ QA:SCHEMA PASSED — Validated ${totalSchemasChecked} JSON-LD schemas across ${htmlFiles.length} HTML files. Exact public names & zero forbidden schemas verified. 0 errors.`);
+  console.log(`✅ QA:SCHEMA PASSED — ${totalSchemasValidated} JSON-LD schemas validated across ${htmlFiles.length} HTML files. Exact public names & zero forbidden schemas verified. 0 errors.`);
 } else {
-  console.error(`❌ QA:SCHEMA FAILED — Found ${errors.length} Schema errors:`);
+  console.error(`❌ QA:SCHEMA FAILED — Found ${errors.length} schema errors:`);
   errors.forEach((e) => console.error('  ' + e));
   process.exit(1);
 }

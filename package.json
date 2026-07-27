@@ -17,7 +17,8 @@
     "qa:seo": "node scripts/qa/seo-audit.mjs",
     "qa:schema": "node scripts/qa/schema-audit.mjs",
     "qa:analytics": "node scripts/qa/analytics-audit.mjs",
-    "qa:domain": "node scripts/qa/domain-readiness.mjs"
+    "qa:domain": "node scripts/qa/domain-readiness.mjs",
+    "qa:all": "node scripts/qa/all.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

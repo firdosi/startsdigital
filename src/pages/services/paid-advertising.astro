@@ -16,10 +16,7 @@ import MotionController from '../../components/common/MotionController.astro';
 const service = servicesData.find((s) => s.id === 'paid-advertising')!;
 ---
 
-<BaseLayout
-  title="Paid Advertising Services | Starts Digital"
-  description="Paid advertising support from Starts Digital covering campaign planning, account structure, creative coordination, landing-page alignment, tracking review and ongoing optimisation."
->
+<BaseLayout>
   {/* 1. Service Hero */}
   <ServiceHero service={service} />
 

@@ -16,10 +16,7 @@ import MotionController from '../../components/common/MotionController.astro';
 const service = servicesData.find((s) => s.id === 'website-design-development')!;
 ---
 
-<BaseLayout
-  title="Website Design and Development | Starts Digital"
-  description="Website design and development support from Starts Digital covering structure, responsive UI, content organisation, forms, e-commerce requirements, integrations, testing and launch preparation."
->
+<BaseLayout>
   {/* 1. Service Hero */}
   <ServiceHero service={service} />
 

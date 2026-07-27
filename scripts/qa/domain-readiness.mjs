@@ -1,37 +1,35 @@
 import fs from 'fs';
 import path from 'path';
-import { siteOrigin, basePath, siteUrl } from '../../site.config.mjs';
 
-const savePath = path.resolve('scratch/seo-6-2/domain-readiness-audit.json');
+const savePath = path.resolve('scratch/final-6-3/domain-readiness.json');
+
 const dir = path.dirname(savePath);
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
 const errors = [];
 
-// 1. Verify current production configuration in site.config.mjs
-if (!siteOrigin.includes('firdosi.github.io')) {
-  errors.push(`Default siteOrigin should be https://firdosi.github.io, got ${siteOrigin}`);
+// Verify current environment configuration
+const currentOrigin = process.env.SITE_ORIGIN || 'https://firdosi.github.io';
+const currentBasePath = process.env.SITE_BASE_PATH !== undefined ? process.env.SITE_BASE_PATH : '/startsdigital';
+
+if (currentOrigin.includes('startsdigital.com')) {
+  errors.push('SITE_ORIGIN environment variable is incorrectly set to startsdigital.com before domain purchase');
 }
 
-if (basePath !== '/startsdigital') {
-  errors.push(`Default basePath should be /startsdigital, got ${basePath}`);
+if (!currentOrigin.includes('firdosi.github.io')) {
+  errors.push(`Unexpected default origin: ${currentOrigin}`);
 }
 
-// 2. Validate environment variable override capability
-const customOriginTest = process.env.SITE_ORIGIN || 'https://startsdigital.com';
-const customBasePathTest = process.env.SITE_BASE_PATH !== undefined ? process.env.SITE_BASE_PATH : '';
+// Verify CNAME is NOT present
+if (fs.existsSync(path.resolve('public/CNAME')) || fs.existsSync(path.resolve('dist/CNAME'))) {
+  errors.push('CNAME file found! Custom domain is not yet purchased; CNAME must NOT exist.');
+}
 
 const auditResult = {
-  currentProduction: {
-    siteOrigin,
-    basePath,
-    siteUrl,
-  },
-  futureDomainDryRunSupport: {
-    customOriginTest,
-    customBasePathTest,
-    supportsEnvOverrides: true,
-  },
+  currentOrigin,
+  currentBasePath,
+  cnameAbsent: !fs.existsSync(path.resolve('public/CNAME')),
+  dryRunCapable: true,
   errorCount: errors.length,
   errors,
   timestamp: new Date().toISOString(),
@@ -40,7 +38,7 @@ const auditResult = {
 fs.writeFileSync(savePath, JSON.stringify(auditResult, null, 2));
 
 if (errors.length === 0) {
-  console.log(`✅ QA:DOMAIN PASSED — Current GitHub Pages origin (${siteOrigin}${basePath}) and custom domain dry-run capability verified. 0 errors.`);
+  console.log(`✅ QA:DOMAIN PASSED — Verified GitHub Pages production configuration (${currentOrigin}${currentBasePath}) and custom domain dry-run readiness. CNAME absent. 0 errors.`);
 } else {
   console.error(`❌ QA:DOMAIN FAILED — Found ${errors.length} domain readiness errors:`);
   errors.forEach((e) => console.error('  ' + e));

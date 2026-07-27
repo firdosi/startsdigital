@@ -14,7 +14,7 @@ export type AllowedEventName =
   | 'navigation_click';
 
 export interface AnalyticsEvent {
-  eventName: AllowedEventName | string;
+  eventName: AllowedEventName;
   params?: {
     page_path?: string;
     service_id?: string;
@@ -29,6 +29,33 @@ const isAnalyticsEnabled = import.meta.env.PUBLIC_ANALYTICS_ENABLED === 'true';
 const isDebugMode = import.meta.env.PUBLIC_ANALYTICS_DEBUG === 'true';
 const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || '';
 
+const allowedEventsSet = new Set<AllowedEventName>([
+  'page_view',
+  'primary_cta_click',
+  'whatsapp_click',
+  'email_click',
+  'service_view',
+  'case_study_view',
+  'partner_story_view',
+  'external_client_visit',
+  'contact_form_start',
+  'contact_brief_generate',
+  'navigation_click',
+]);
+
+const legacyEventMap: Record<string, AllowedEventName> = {
+  'contact-whatsapp': 'whatsapp_click',
+  'contact-email': 'email_click',
+  'case-study-open': 'case_study_view',
+  'cta-primary': 'primary_cta_click',
+  'nav-link': 'navigation_click',
+  'service-card': 'service_view',
+  'partner-story': 'partner_story_view',
+  'external-client': 'external_client_visit',
+  'form-start': 'contact_form_start',
+  'brief-generate': 'contact_brief_generate',
+};
+
 export function isAnalyticsActive(): boolean {
   if (!isAnalyticsEnabled || !measurementId) return false;
   if (typeof window === 'undefined') return false;
@@ -38,6 +65,14 @@ export function isAnalyticsActive(): boolean {
 }
 
 export function trackEvent(event: AnalyticsEvent): void {
+  // Strict Event Name Validation
+  if (!allowedEventsSet.has(event.eventName)) {
+    if (typeof console !== 'undefined' && console.warn) {
+      console.warn(`[Analytics] Ignored unapproved event: "${event.eventName}"`);
+    }
+    return;
+  }
+
   // Safe parameters only (NO personal data, NO form values)
   const safeParams = {
     page_path: event.params?.page_path || (typeof window !== 'undefined' ? window.location.pathname : ''),
@@ -48,7 +83,7 @@ export function trackEvent(event: AnalyticsEvent): void {
     viewport_group: typeof window !== 'undefined' && window.innerWidth < 768 ? 'mobile' : 'desktop',
   };
 
-  // Local debug logging for Playwright / QA validation when debug mode is enabled
+  // Local debug logging for Playwright / QA validation
   if (typeof window !== 'undefined' && (isDebugMode || (window as any).__ANALYTICS_DEBUG__)) {
     (window as any).__ANALYTICS_EVENTS__ = (window as any).__ANALYTICS_EVENTS__ || [];
     (window as any).__ANALYTICS_EVENTS__.push({
@@ -68,38 +103,21 @@ export function trackEvent(event: AnalyticsEvent): void {
   }
 }
 
-// Event Mapping helper for legacy or custom data-track attributes
-const legacyEventMap: Record<string, AllowedEventName> = {
-  'contact-whatsapp': 'whatsapp_click',
-  'contact-email': 'email_click',
-  'case-study-open': 'case_study_view',
-  'cta-primary': 'primary_cta_click',
-  'nav-link': 'navigation_click',
-  'service-card': 'service_view',
-  'partner-story': 'partner_story_view',
-  'external-client': 'external_client_visit',
-  'form-start': 'contact_form_start',
-  'brief-generate': 'contact_brief_generate',
-};
-
-const allowedEventsSet = new Set<AllowedEventName>([
-  'page_view',
-  'primary_cta_click',
-  'whatsapp_click',
-  'email_click',
-  'service_view',
-  'case_study_view',
-  'partner_story_view',
-  'external_client_visit',
-  'contact_form_start',
-  'contact_brief_generate',
-  'navigation_click',
-]);
+let formStarted = false;
 
 export function initAnalyticsTrackers(): void {
   if (typeof window === 'undefined') return;
-  if ((window as any).__ANALYTICS_INITIALIZED__) return;
 
+  // Track initial page_view once
+  if (!(window as any).__INITIAL_PAGE_VIEW_SENT__) {
+    (window as any).__INITIAL_PAGE_VIEW_SENT__ = true;
+    trackEvent({
+      eventName: 'page_view',
+      params: { page_path: window.location.pathname },
+    });
+  }
+
+  if ((window as any).__ANALYTICS_INITIALIZED__) return;
   (window as any).__ANALYTICS_INITIALIZED__ = true;
   (window as any).__ANALYTICS_EVENTS__ = (window as any).__ANALYTICS_EVENTS__ || [];
 
@@ -118,10 +136,11 @@ export function initAnalyticsTrackers(): void {
 
     if (!rawTrack) return;
 
-    const eventName: AllowedEventName | string =
-      allowedEventsSet.has(rawTrack as AllowedEventName)
-        ? (rawTrack as AllowedEventName)
-        : (legacyEventMap[rawTrack] || rawTrack);
+    const mappedEvent: AllowedEventName | undefined = allowedEventsSet.has(rawTrack as AllowedEventName)
+      ? (rawTrack as AllowedEventName)
+      : legacyEventMap[rawTrack];
+
+    if (!mappedEvent) return;
 
     const source = target.getAttribute('data-track-source') || undefined;
     const projectId = target.getAttribute('data-track-project') || undefined;
@@ -133,7 +152,7 @@ export function initAnalyticsTrackers(): void {
     else if (href.startsWith('http') && !href.includes(window.location.hostname)) destinationType = 'external';
 
     trackEvent({
-      eventName,
+      eventName: mappedEvent,
       params: {
         source,
         project_id: projectId,
@@ -143,30 +162,25 @@ export function initAnalyticsTrackers(): void {
     });
   });
 
-  // Track contact form start (once per session when user first interacts)
-  let formStarted = false;
+  // Track contact form start (once per Contact page visit)
   document.addEventListener('focusin', (e) => {
     if (formStarted) return;
-    const form = (e.target as HTMLElement).closest('#contact-form, form');
-    if (form) {
+    const form = (e.target as HTMLElement).closest('#contact-form, #project-brief-form, form');
+    if (form && window.location.pathname.includes('/contact')) {
       formStarted = true;
       trackEvent({
         eventName: 'contact_form_start',
-        params: {
-          page_path: window.location.pathname,
-        },
+        params: { page_path: window.location.pathname },
       });
     }
   });
 
-  // Reset formStarted on Astro ClientRouter page load & track page_view
-  document.addEventListener('astro:page-load', () => {
+  // ClientRouter navigation page_view tracking
+  document.addEventListener('astro:after-swap', () => {
     formStarted = false;
     trackEvent({
       eventName: 'page_view',
-      params: {
-        page_path: window.location.pathname,
-      },
+      params: { page_path: window.location.pathname },
     });
   });
 }

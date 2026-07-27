@@ -29,43 +29,42 @@ export const marketPages: MarketPageDefinition[] = [
   {
     id: 'ecommerce-product-brands',
     slug: 'ecommerce-product-brands',
-    title: 'Digital Marketing & Growth for E-Commerce & Product Brands',
-    subtitle: 'Combining direct-response advertising, storefront optimization, creative testing, and tracking to scale online sales.',
+    title: 'Digital Marketing & Web Execution for E-Commerce & Product Brands',
+    subtitle: 'Combining direct-response advertising, storefront development, creative testing, and tracking review to support online sales.',
     eyebrow: 'INDUSTRY EXPERIENCE',
-    description: 'We help growing e-commerce and direct-to-consumer product brands build structured acquisition systems, test promotional creative, and optimize digital customer journeys.',
+    description: 'We help growing e-commerce and product businesses structure campaign acquisition assets, test promotional creative, and align digital storefront user experiences.',
     metaTitle: 'E-Commerce & Product Brand Marketing | Starts Digital',
     metaDescription: 'Direct-response advertising, storefront development, creative testing, and tracking systems for growing e-commerce product brands.',
     canonicalPath: '/industries/ecommerce-product-brands/',
     schemaType: 'industry',
     breadcrumbLabel: 'E-commerce & Product Brands',
     featuredProjectId: 'black-gold-fertilizer',
-    featuredProofText: 'Supported PKR 30M+ in delivered-order revenue, 29,000+ product sales and 22,000+ delivered sales over 24 months.',
+    featuredProofText: 'Supported PKR 30M+ in delivered-order revenue, 29,000+ product sales and 22,000+ delivered sales over 24 months for Black Gold Fertilizer.',
     relevantServiceIds: ['paid-advertising', 'website-design-development', 'creative-content', 'seo-local-search', 'social-media-marketing'],
     keyTopics: [
-      { title: 'Product Positioning & Offer Clarity', description: 'Structuring compelling value propositions, offer bundles, and clear messaging for digital consumers.' },
-      { title: 'Ad Creative Testing & Asset Production', description: 'Developing and testing video ads, product visuals, and direct-response ad copy across channels.' },
-      { title: 'Storefront & Mobile Checkout Alignment', description: 'Designing fast, mobile-friendly landing pages and checkout flows optimized for customer conversion.' },
-      { title: 'Delivered-Order Data & Tracking Systems', description: 'Establishing conversion measurement and tracking reviews focused on delivered orders rather than ad metrics alone.' },
-      { title: 'Organic Search & Product Visibility', description: 'Optimizing technical SEO and search content so products build lasting organic search visibility over time.' }
+      { title: 'Product Positioning & Offer Structure', description: 'Structuring clear value propositions, product features, and promotional offer presentation for digital consumers.' },
+      { title: 'Ad Creative Testing & Production', description: 'Developing and testing video ad edits, product graphics, and direct-response campaign assets across active ad channels.' },
+      { title: 'Storefront & Mobile User Alignment', description: 'Designing fast, mobile-friendly landing pages and storefront structures focused on clear customer navigation.' },
+      { title: 'Order Data & Tracking Review', description: 'Establishing conversion measurement and tracking reviews focused on verified business order reporting.' }
     ],
     workingMethod: [
-      { step: '01', title: 'Product Audit & Channel Alignment', description: 'Reviewing existing product margins, conversion assets, ad history, and target customer profiles.' },
-      { step: '02', title: 'Campaign Architecture & Creative Setup', description: 'Designing campaign structures, video scripts, ad graphics, and high-converting landing pages.' },
-      { step: '03', title: 'Tracking & Measurement Verification', description: 'Setting up platform tags and order verification protocols before launching paid campaigns.' },
-      { step: '04', title: 'Iterative Scaling & Optimization', description: 'Continuously refining ad creative, audience targeting, product offers, and checkout user experience.' }
+      { step: '01', title: 'Product & Asset Review', description: 'Reviewing existing product assets, promotional offers, campaign history, and customer feedback.' },
+      { step: '02', title: 'Campaign & Landing Setup', description: 'Preparing campaign ad graphics, video edits, ad copy, and mobile storefront landing pages.' },
+      { step: '03', title: 'Measurement Verification', description: 'Setting up platform tags and order measurement protocols prior to campaign activation.' },
+      { step: '04', title: 'Iterative Review & Optimization', description: 'Monitoring campaign metrics, ad creative performance, and customer response to guide ongoing adjustments.' }
     ],
     faqs: [
       {
-        question: 'What e-commerce platforms do you support?',
-        answer: 'We design, build, and optimize stores on Shopify, WooCommerce, and custom web frameworks depending on catalog size and operational requirements.'
+        question: 'What web platforms do you build or support?',
+        answer: 'We build custom web pages, e-commerce storefronts, and landing pages using modern frontend tools, static frameworks, and standard content systems depending on scope.'
       },
       {
-        question: 'How do you measure campaign performance for e-commerce brands?',
-        answer: 'We align tracking parameters during project setup. For e-commerce clients, we review platform conversions alongside verified customer sales and delivered-order reporting.'
+        question: 'How is performance evaluated for e-commerce campaigns?',
+        answer: 'We evaluate campaign performance by reviewing ad platform metrics alongside documented customer orders and delivered sales data provided during reviews.'
       },
       {
-        question: 'Do you create video and visual ad assets for product campaigns?',
-        answer: 'Yes. Our creative content team produces direct-response ad graphics, product photography formats, and video ad edits tailored for social platforms.'
+        question: 'Do you produce visual and video assets for ad campaigns?',
+        answer: 'Yes. Our creative team produces direct-response graphics, promotional video edits, and formatted visual ad creative for social and ad platforms.'
       }
     ]
   },
@@ -73,74 +72,74 @@ export const marketPages: MarketPageDefinition[] = [
     id: 'seasonal-campaigns',
     slug: 'seasonal-campaigns',
     title: 'Digital Marketing & Execution for Seasonal Campaigns',
-    subtitle: 'Structuring high-urgency digital campaigns, pre-booking windows, and rapid lead follow-up systems for time-sensitive events.',
+    subtitle: 'Structuring time-sensitive ad campaigns, pre-booking windows, and customer inquiry pathways for seasonal events.',
     eyebrow: 'CAMPAIGN EXPERIENCE',
-    description: 'Seasonal campaigns require precise scheduling, focused offer clarity, and rapid sales coordination to capture demand within tight operational timeframes.',
+    description: 'Seasonal campaigns require organized scheduling, clear promotional offer messaging, and structured customer inquiry routes within defined campaign windows.',
     metaTitle: 'Seasonal Digital Campaigns & Event Marketing | Starts Digital',
     metaDescription: 'High-impact digital marketing strategies, pre-booking windows, and creative execution for time-sensitive seasonal campaigns.',
     canonicalPath: '/industries/seasonal-campaigns/',
     schemaType: 'industry',
     breadcrumbLabel: 'Seasonal Campaigns',
-    featuredProjectId: 'wajib-livestock',
-    featuredProofText: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.',
+    featuredProjectId: 'qurbani-campaign',
+    featuredProofText: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign for Wajib Livestock.',
     relevantServiceIds: ['paid-advertising', 'creative-content', 'social-media-marketing'],
     keyTopics: [
-      { title: 'Fixed Window Campaign Strategy', description: 'Mapping strict launch dates, booking deadlines, and inventory release schedules to maximize campaign velocity.' },
-      { title: 'High-Urgency Creative Production', description: 'Producing targeted video ads, countdown creative, and promotional messages that communicate clear event urgency.' },
-      { title: 'Customer Inquiry & Booking Pathways', description: 'Setting up mobile-friendly inquiry funnels connecting interested buyers directly to sales and WhatsApp teams.' },
-      { title: 'Offer Clarity & Booking Transparency', description: 'Ensuring pricing, animal specs, delivery terms, and booking conditions are presented clearly to build trust.' }
+      { title: 'Campaign Schedule & Timing', description: 'Mapping promotional launch dates, booking windows, and campaign duration to align with event timing.' },
+      { title: 'Promotional Creative Production', description: 'Producing targeted video ad edits, countdown graphics, and promotional messaging that communicate clear event urgency.' },
+      { title: 'Customer Inquiry Routes', description: 'Setting up mobile-friendly inquiry buttons and web forms connecting interested buyers to sales channels.' },
+      { title: 'Offer Clarity & Terms Display', description: 'Ensuring pricing, booking conditions, specifications, and delivery terms are presented clearly to inform customers.' }
     ],
     workingMethod: [
-      { step: '01', title: 'Pre-Campaign Strategy & Schedule', description: 'Defining campaign duration, inventory quotas, promotional messaging, and communication channels.' },
-      { step: '02', title: 'Creative Production & Funnel Setup', description: 'Shooting or editing campaign media, writing ad copy, and preparing mobile booking pages.' },
-      { step: '03', title: 'Multi-Channel Campaign Launch', description: 'Activating paid Meta campaigns, organic social content, and direct customer inquiry channels simultaneously.' },
-      { step: '04', title: 'Daily Sales & Lead Optimization', description: 'Monitoring incoming lead volume, ad spend efficiency, and sales team follow-up speed throughout the campaign.' }
+      { step: '01', title: 'Campaign Planning & Schedule', description: 'Defining campaign duration, promotional messaging, target channels, and inquiry handling routes.' },
+      { step: '02', title: 'Creative & Landing Preparation', description: 'Editing promotional media, writing campaign copy, and building mobile inquiry pages.' },
+      { step: '03', title: 'Multi-Channel Activation', description: 'Launching paid social campaigns, organic content posts, and direct customer inquiry pathways.' },
+      { step: '04', title: 'Inquiry & Ad Monitoring', description: 'Reviewing incoming inquiry volume, ad performance, and budget pacing throughout the campaign window.' }
     ],
     faqs: [
       {
-        question: 'How far in advance should a seasonal campaign be planned?',
-        answer: 'We recommend starting creative production and technical setup 3 to 4 weeks before the official booking window opens to allow thorough testing.'
+        question: 'When should planning begin for a seasonal digital campaign?',
+        answer: 'We recommend starting creative preparation and technical setup 3 to 4 weeks before the promotional window opens to ensure thorough testing.'
       },
       {
-        question: 'Can you route seasonal inquiries directly to our WhatsApp sales team?',
-        answer: 'Yes. We build custom click-to-WhatsApp and structured web forms that pre-fill customer requirements for fast sales response.'
+        question: 'Can customer inquiries be directed to WhatsApp or email?',
+        answer: 'Yes. We build click-to-WhatsApp links and pre-structured web forms that organize customer details for direct follow-up.'
       }
     ]
   },
   {
     id: 'local-service-businesses',
     slug: 'local-service-businesses',
-    title: 'Website & Local Search Foundations for Service Contractors',
-    subtitle: 'Building location-focused service pages, clear contact journeys, and local search visibility for renovation and service providers.',
+    title: 'Website Design & Local Search Foundations for Contractors',
+    subtitle: 'Building location-focused service pages, clear contact pathways, and technical local search foundations for service businesses.',
     eyebrow: 'CONTRACTOR & LOCAL SERVICE EXPERIENCE',
-    description: 'Local contractors and service businesses require dedicated service pages, clear service-area boundaries, and mobile-friendly quote pathways to capture regional demand.',
+    description: 'Local contractors and service providers require dedicated service pages, clear service-area information, and mobile quote pathways to capture customer search intent.',
     metaTitle: 'Local Service Contractor Web & SEO Foundations | Starts Digital',
     metaDescription: 'Custom website development, local SEO foundations, and service-area content for renovation and contractor businesses.',
     canonicalPath: '/industries/local-service-businesses/',
     schemaType: 'industry',
     breadcrumbLabel: 'Local Service Businesses',
     featuredProjectId: 'rk-reno-solutions',
-    featuredProofText: 'Website design, location-focused content, service-page development and local SEO foundation for renovation and air-conditioning services in Kuala Lumpur and Selangor.',
+    featuredProofText: 'Website design, location-focused content, service-page development and local SEO foundation for renovation and air-conditioning services for RK Reno Solutions in Kuala Lumpur and Selangor.',
     relevantServiceIds: ['website-design-development', 'seo-local-search', 'paid-advertising'],
     keyTopics: [
-      { title: 'Service-Area Page Architecture', description: 'Structuring dedicated pages for key service areas and core contractor specialties to capture search intent.' },
-      { title: 'Mobile Quote & Inquiry Pathways', description: 'Designing fast, accessible contact forms, tap-to-call buttons, and WhatsApp quote request features.' },
-      { title: 'Local Search Technical Foundations', description: 'Optimizing schema markup, site speed, heading hierarchy, and meta data for targeted local search engine indexation.' },
-      { title: 'Project Portfolios & Service Clarity', description: 'Presenting completed work galleries, scope breakdowns, and service lists clearly to establish contractor credibility.' }
+      { title: 'Service & Location Page Structure', description: 'Structuring dedicated pages for core contractor specialties and key service areas to capture search intent.' },
+      { title: 'Mobile Contact & Quote Pathways', description: 'Designing fast, accessible contact forms, click-to-call buttons, and WhatsApp inquiry features.' },
+      { title: 'Technical Local SEO Setup', description: 'Implementing structured schema markup, clean heading hierarchy, and location meta data for search indexation.' },
+      { title: 'Service Breakdown & Scope Display', description: 'Presenting completed work samples, service lists, and scope details clearly to inform potential clients.' }
     ],
     workingMethod: [
-      { step: '01', title: 'Service & Area Mapping', description: 'Cataloging primary contractor services, target geographic areas, and common customer inquiries.' },
-      { step: '02', title: 'Information Architecture & Design', description: 'Designing structured page layouts that guide visitors from service overview to quote submission.' },
-      { step: '03', title: 'Content Development & Technical SEO', description: 'Writing clear service descriptions and implementing technical local SEO tags for search visibility.' },
-      { step: '04', title: 'Launch & Performance Monitoring', description: 'Deploying the site on fast static infrastructure and verifying form delivery and mobile usability.' }
+      { step: '01', title: 'Services & Area Definition', description: 'Cataloging primary contractor services, target geographic coverage, and customer inquiry types.' },
+      { step: '02', title: 'Site Structure & Layout Design', description: 'Designing structured page layouts that guide visitors from service details to quote requests.' },
+      { step: '03', title: 'Content & Technical SEO Integration', description: 'Writing clear service descriptions and implementing technical SEO tags for search engines.' },
+      { step: '04', title: 'Deployment & Usability Review', description: 'Publishing the website on fast hosting infrastructure and verifying mobile form usability.' }
     ],
     faqs: [
       {
-        question: 'Do you guarantee local search rankings or call volumes for contractors?',
-        answer: 'No. We provide solid technical SEO, structured markup, and location-focused content foundations, but we do not make unverified ranking or lead volume guarantees.'
+        question: 'Do you guarantee specific search engine rankings for contractors?',
+        answer: 'No. We provide technical local SEO, structured schema markup, and location-focused content foundations, but we do not make unverified ranking guarantees.'
       },
       {
-        question: 'Can you build separate pages for different contractor service areas?',
+        question: 'Can separate pages be created for different contractor services?',
         answer: 'Yes. We structure distinct pages for individual service categories and target geographic locations to match customer search queries.'
       }
     ]
@@ -148,38 +147,38 @@ export const marketPages: MarketPageDefinition[] = [
   {
     id: 'technology-products',
     slug: 'technology-products',
-    title: 'Product Development & Growth Partnerships for Tech Solutions',
-    subtitle: 'Developing web applications, product interfaces, workflow integrations, and growth assets for software products.',
-    eyebrow: 'SOFTWARE & TECH PARTNERSHIP EXPERIENCE',
-    description: 'We partner with technology platforms to build functional web applications, design user interfaces, streamline marketing workflows, and execute digital growth campaigns.',
+    title: 'Product Development & Growth Support for Tech Solutions',
+    subtitle: 'Developing web applications, product user interfaces, marketing workflows, and growth assets for software platforms.',
+    eyebrow: 'SOFTWARE & TECH EXPERIENCE',
+    description: 'We collaborate with technology platforms to build web applications, design product interfaces, structure marketing workflows, and produce digital growth assets.',
     metaTitle: 'Tech Product Development & Growth Partnerships | Starts Digital',
     metaDescription: 'Web application development, UI design, workflow automation, and product growth support for technology platforms.',
     canonicalPath: '/industries/technology-products/',
     schemaType: 'industry',
     breadcrumbLabel: 'Technology Products',
     featuredProjectId: 'convort-ai',
-    featuredProofText: 'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
+    featuredProofText: 'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth as a Technology & Growth Partner.',
     relevantServiceIds: ['website-design-development', 'ai-marketing-workflows', 'creative-content', 'social-media-marketing'],
     keyTopics: [
-      { title: 'Full-Stack Web Application Development', description: 'Engineering modern, responsive web applications using clean frontend frameworks and robust backend API integrations.' },
-      { title: 'Product UI/UX & Interactive Prototypes', description: 'Designing intuitive user interfaces, dashboard layouts, and interactive application flows for software users.' },
-      { title: 'Automated Lead & Marketing Workflows', description: 'Building practical AI workflows, lead management features, and automated notification integrations.' },
-      { title: 'Brand Communication & Growth Assets', description: 'Producing product demo videos, social media content, landing pages, and documentation to support user onboarding.' }
+      { title: 'Web Application Development', description: 'Engineering modern, responsive web application interfaces using clean frontend frameworks and robust backend integrations.' },
+      { title: 'Product UI/UX & Layout Design', description: 'Designing intuitive user interface layouts, application screens, and user interaction flows for software products.' },
+      { title: 'Marketing Workflow Integrations', description: 'Setting up practical AI tools, lead handling workflows, and automated notification integrations.' },
+      { title: 'Product Communication & Growth Assets', description: 'Producing product landing pages, demo content, social media visuals, and documentation to support user onboarding.' }
     ],
     workingMethod: [
-      { step: '01', title: 'Product Specification & Roadmap', description: 'Defining technical requirements, user roles, core workflows, and integration boundaries.' },
-      { step: '02', title: 'Application Architecture & UI Design', description: 'Building modular component systems and database schemas for reliable software performance.' },
-      { step: '03', title: 'Development & Integration Sprints', description: 'Writing clean code, implementing security protocols, and integrating third-party APIs or AI services.' },
-      { step: '04', title: 'Product Launch & Ongoing Growth Support', description: 'Deploying application updates and executing ongoing social, creative, and technical growth tasks.' }
+      { step: '01', title: 'Requirements & Product Roadmap', description: 'Reviewing technical requirements, key features, user roles, and core application workflows.' },
+      { step: '02', title: 'Architecture & UI Layouts', description: 'Designing modular UI components and application structures for reliable user experience.' },
+      { step: '03', title: 'Development & Integration', description: 'Writing clean code, implementing core features, and connecting third-party API services.' },
+      { step: '04', title: 'Launch & Growth Support', description: 'Deploying application updates and executing ongoing creative, social, and technical support tasks.' }
     ],
     faqs: [
       {
         question: 'What is your role as a Technology & Growth Partner?',
-        answer: 'We act as an integrated technical and creative production team, building product software applications and supporting product management, design, and growth execution.'
+        answer: 'For ConvortAI, Starts Digital developed the web application and acts as an integrated technical and creative production partner supporting product development and growth.'
       },
       {
-        question: 'Can you build custom AI marketing workflows into web applications?',
-        answer: 'Yes. We specialize in integrating AI APIs, automated lead qualification routing, and custom internal workflow tools into modern web applications.'
+        question: 'Can practical AI workflows be integrated into marketing systems?',
+        answer: 'Yes. We specialize in integrating AI APIs, automated lead routing, and practical workflow tools into modern web applications.'
       }
     ]
   },
@@ -187,9 +186,9 @@ export const marketPages: MarketPageDefinition[] = [
     id: 'lahore',
     slug: 'lahore',
     title: 'Digital Marketing & Web Development Agency in Lahore',
-    subtitle: 'Factual agency context, published services, and project coordination for local and international client partnerships.',
+    subtitle: 'Factual agency context, published service capabilities, and project execution for local Pakistani and international clients.',
     eyebrow: 'LAHORE AGENCY CONTEXT',
-    description: 'Based in Lahore, Pakistan, Starts Digital provides paid advertising, custom web development, technical SEO, creative content production, and practical AI workflows for clients in Pakistan and abroad.',
+    description: 'Based in Lahore, Pakistan, Starts Digital provides paid advertising, custom web development, technical SEO, creative content production, social media management, and practical AI marketing workflows.',
     metaTitle: 'Digital Marketing Agency in Lahore | Starts Digital',
     metaDescription: 'Starts Digital is a Lahore-based digital marketing agency founded in 2025, offering paid ads, website development, SEO, creative content, and AI workflows.',
     canonicalPath: '/locations/lahore/',
@@ -200,24 +199,24 @@ export const marketPages: MarketPageDefinition[] = [
     relevantServiceIds: ['paid-advertising', 'website-design-development', 'seo-local-search', 'creative-content', 'social-media-marketing', 'ai-marketing-workflows'],
     keyTopics: [
       { title: 'Lahore-Based Core Team', description: 'Our strategy, design, development, and campaign operations are executed directly by our team in Lahore.' },
-      { title: 'Local & International Project Coordination', description: 'We support local Pakistani businesses as well as international clients across Asia, the Middle East, and beyond.' },
-      { title: 'Six Published Service Capabilities', description: 'Full access to our six core service lines: Paid Ads, Websites, Technical SEO, Creative Content, Social Media, and AI Workflows.' },
-      { title: 'Transparent Communication Channels', description: 'Clients communicate directly with project leads via dedicated WhatsApp channels, email, and scheduled video reviews.' }
+      { title: 'Local & International Client Project Coordination', description: 'We support local Pakistani businesses as well as international clients across Asia, the Middle East, and beyond.' },
+      { title: 'Six Published Service Capabilities', description: 'Full access to our six published service lines: Paid Ads, Websites, Technical SEO, Creative Content, Social Media, and AI Workflows.' },
+      { title: 'Direct Communication Channels', description: 'Clients communicate with project leads directly through WhatsApp and email.' }
     ],
     workingMethod: [
-      { step: '01', title: 'Initial Project Brief & Consultation', description: 'Reviewing project requirements, business goals, and current digital assets via WhatsApp or video call.' },
-      { step: '02', title: 'Scope Definition & Transparent Proposal', description: 'Providing a clear written scope breakdown, deliverables schedule, and fixed commercial terms.' },
+      { step: '01', title: 'Initial Project Brief & Consultation', description: 'Reviewing project requirements, business goals, and current digital assets via WhatsApp or email.' },
+      { step: '02', title: 'Scope Definition & Written Proposal', description: 'Providing a clear written scope breakdown, deliverables schedule, and commercial terms.' },
       { step: '03', title: 'Collaborative Execution & Review', description: 'Developing web assets, creative media, or campaign structures with regular milestone reviews.' },
-      { step: '04', title: 'Launch & Ongoing Operational Support', description: 'Deploying completed technical projects and managing active marketing campaigns according to the agreed plan.' }
+      { step: '04', title: 'Launch & Operational Support', description: 'Deploying completed technical projects and managing active marketing campaigns according to the agreed plan.' }
     ],
     faqs: [
       {
         question: 'Where is Starts Digital located?',
-        answer: 'Starts Digital is based in Lahore, Pakistan. We operate as a dedicated digital agency coordinating projects locally and internationally.'
+        answer: 'Starts Digital is based in Lahore, Pakistan. We operate as a digital agency coordinating projects for local and international clients.'
       },
       {
-        question: 'Do you offer in-person client meetings in Lahore?',
-        answer: 'Project consultations and reviews are conducted remotely via structured video calls, email, and direct WhatsApp channels for speed and clear record-keeping.'
+        question: 'How do clients communicate with Starts Digital?',
+        answer: 'Client communications and project reviews are conducted primarily through direct WhatsApp channels, email, and scheduled project reviews for clear record-keeping.'
       },
       {
         question: 'How can we contact Starts Digital for a new project inquiry?',

@@ -24,15 +24,15 @@ const lahoreData = getLahoreLocationPage();
           Digital Marketing & Web Agency Based in Lahore
         </h1>
         <p class="text-lg sm:text-xl text-slate-300 font-body font-normal leading-relaxed">
-          Founded in 2025 in Lahore, Starts Digital provides paid advertising, custom web development, technical SEO, creative content production, social media management, and AI marketing workflows for local Pakistani businesses and international partners.
+          Starts Digital is a Lahore-based digital agency founded in 2025, serving local Pakistani businesses and international clients through coordinated marketing, creative and website projects.
         </p>
         <div class="pt-2 flex flex-wrap gap-4">
           <Button href={`${site.basePath}/contact/`} variant="primary">
             Start a Project Inquiry
             <ArrowRight class="size-4 ml-1.5" />
           </Button>
-          <Button href={`${site.basePath}/services/`} variant="secondary">
-            View All Services
+          <Button href={`${site.basePath}/services/`} variant="secondary" surface="dark">
+            View Published Services
           </Button>
         </div>
       </div>
@@ -43,8 +43,9 @@ const lahoreData = getLahoreLocationPage();
   <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
+        theme="light"
         eyebrow="AGENCY CAPABILITIES"
-        title="Services Delivered by Our Lahore Team"
+        title="Published Services Delivered by Our Lahore Team"
         description="Our full spectrum of digital marketing, web production, and technical services available for local and global clients."
       />
 
@@ -54,9 +55,9 @@ const lahoreData = getLahoreLocationPage();
             <div class="space-y-3">
               <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">{srv.eyebrow}</span>
               <h3 class="font-heading font-bold text-xl text-[#061d33]">{srv.name}</h3>
-              <p class="text-slate-600 text-sm font-body leading-relaxed">{srv.summary}</p>
+              <p class="text-slate-700 text-base font-body leading-relaxed">{srv.summary}</p>
             </div>
-            <a href={`${site.basePath}/services/${srv.slug}/`} class="text-xs font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
+            <a href={`${site.basePath}/services/${srv.slug}/`} class="text-sm font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
               Explore Service <ArrowRight class="size-3.5" />
             </a>
           </div>
@@ -65,10 +66,11 @@ const lahoreData = getLahoreLocationPage();
     </Container>
   </section>
 
-  <!-- 3. Business Types Supported -->
+  <!-- 3. Business Models Supported -->
   <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
+        theme="light"
         eyebrow="CLIENT SPECTRUM"
         title="Business Models & Project Contexts We Support"
         description="We collaborate with companies at different growth stages, tailoring technical and creative execution to their operational model."
@@ -78,23 +80,23 @@ const lahoreData = getLahoreLocationPage();
         <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-8 space-y-3">
           <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">E-COMMERCE & PRODUCTS</span>
           <h3 class="font-heading font-bold text-xl text-[#061d33]">Online Product Brands</h3>
-          <p class="text-slate-700 text-sm font-body leading-relaxed">
-            Direct-response advertising, storefront development, and delivered-order tracking for consumer products.
+          <p class="text-slate-700 text-base font-body leading-relaxed">
+            Direct-response advertising, storefront development, and order data tracking for consumer products.
           </p>
         </div>
 
         <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-8 space-y-3">
           <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">SEASONAL & EVENTS</span>
           <h3 class="font-heading font-bold text-xl text-[#061d33]">Seasonal Campaign Operators</h3>
-          <p class="text-slate-700 text-sm font-body leading-relaxed">
-            Fixed-window digital campaigns, pre-booking setups, and video ad production for time-sensitive events.
+          <p class="text-slate-700 text-base font-body leading-relaxed">
+            Time-sensitive digital campaigns, pre-booking setups, and promotional video edits.
           </p>
         </div>
 
         <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-8 space-y-3">
           <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">CONTRACTORS & LOCAL SERVICES</span>
           <h3 class="font-heading font-bold text-xl text-[#061d33]">Local Service Providers</h3>
-          <p class="text-slate-700 text-sm font-body leading-relaxed">
+          <p class="text-slate-700 text-base font-body leading-relaxed">
             Service-area web design, local SEO foundations, and mobile quote inquiry pathways.
           </p>
         </div>
@@ -102,32 +104,32 @@ const lahoreData = getLahoreLocationPage();
         <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-8 space-y-3">
           <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">SOFTWARE & TECH</span>
           <h3 class="font-heading font-bold text-xl text-[#061d33]">Technology Platforms</h3>
-          <p class="text-slate-700 text-sm font-body leading-relaxed">
-            Full-stack web application development, UI design, workflow automation, and growth marketing execution.
+          <p class="text-slate-700 text-base font-body leading-relaxed">
+            Web application development, UI design, marketing workflows, and growth asset production.
           </p>
         </div>
       </div>
     </Container>
   </section>
 
-  <!-- 4. How Local & Remote Projects Are Coordinated -->
+  <!-- 4. Client Communication & Coordination -->
   <section class="py-16 sm:py-20 bg-[#061d33] text-white border-b border-slate-800/80">
     <Container class="space-y-12">
       <SectionHeading
         theme="dark"
-        eyebrow="REMOTE & LOCAL OPERATIONS"
+        eyebrow="COMMUNICATION & COORDINATION"
         title="How We Coordinate Client Projects"
-        description="To maintain fast execution and clear written records, all consultations and project reviews are conducted through structured remote channels."
+        description="Project inquiries and ongoing milestone reviews are managed through direct digital channels."
       />
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl space-y-4">
           <div class="w-10 h-10 rounded-lg bg-[#ff762b]/20 text-[#ff762b] flex items-center justify-center">
             <MessageSquare class="size-5" />
           </div>
-          <h3 class="font-heading font-bold text-xl text-white">Direct WhatsApp Channels</h3>
-          <p class="text-slate-300 text-sm font-body leading-relaxed">
-            Fast daily communication, quick asset reviews, and status updates via dedicated WhatsApp channels for project leads.
+          <h3 class="font-heading font-bold text-xl text-white">Direct WhatsApp Communication</h3>
+          <p class="text-slate-300 text-base font-body leading-relaxed">
+            Direct communication for project inquiries, quick updates, voice notes, and asset sharing via WhatsApp.
           </p>
         </div>
 
@@ -135,19 +137,9 @@ const lahoreData = getLahoreLocationPage();
           <div class="w-10 h-10 rounded-lg bg-[#ff762b]/20 text-[#ff762b] flex items-center justify-center">
             <Mail class="size-5" />
           </div>
-          <h3 class="font-heading font-bold text-xl text-white">Email Briefs & Documentation</h3>
-          <p class="text-slate-300 text-sm font-body leading-relaxed">
-            Detailed commercial proposals, scope breakdowns, asset handoffs, and formal project approvals documented via email.
-          </p>
-        </div>
-
-        <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl space-y-4">
-          <div class="w-10 h-10 rounded-lg bg-[#ff762b]/20 text-[#ff762b] flex items-center justify-center">
-            <Globe class="size-5" />
-          </div>
-          <h3 class="font-heading font-bold text-xl text-white">Scheduled Video Reviews</h3>
-          <p class="text-slate-300 text-sm font-body leading-relaxed">
-            In-depth campaign strategy sessions, technical walkthroughs, and performance reviews via scheduled Google Meet or Zoom calls.
+          <h3 class="font-heading font-bold text-white text-xl">Email Project Briefs</h3>
+          <p class="text-slate-300 text-base font-body leading-relaxed">
+            Formal project inquiries, scope documentation, written briefs, and asset handoffs managed via email.
           </p>
         </div>
       </div>
@@ -158,6 +150,7 @@ const lahoreData = getLahoreLocationPage();
   <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
+        theme="light"
         eyebrow="SELECTED PROJECT EVIDENCE"
         title="Featured Client Work & Case Studies"
         description="Explore selected case studies demonstrating our strategic, creative, and technical work."
@@ -168,12 +161,12 @@ const lahoreData = getLahoreLocationPage();
           <div class="space-y-3">
             <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">E-COMMERCE GROWTH</span>
             <h3 class="font-heading font-bold text-2xl text-[#061d33]">Black Gold Fertilizer</h3>
-            <p class="text-slate-700 text-sm font-body leading-relaxed">
+            <p class="text-slate-700 text-base font-body leading-relaxed">
               Supported PKR 30M+ in delivered-order revenue, 29,000+ product sales and 22,000+ delivered sales over 24 months.
             </p>
           </div>
-          <a href={`${site.basePath}/work/black-gold-fertilizer/`} class="text-xs font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
-            Read Case Study <ArrowRight class="size-3.5" />
+          <a href={`${site.basePath}/work/black-gold-fertilizer/`} class="text-sm font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
+            Read Detailed Case Study <ArrowRight class="size-3.5" />
           </a>
         </div>
 
@@ -181,11 +174,11 @@ const lahoreData = getLahoreLocationPage();
           <div class="space-y-3">
             <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">SOFTWARE PARTNERSHIP</span>
             <h3 class="font-heading font-bold text-2xl text-[#061d33]">ConvortAI</h3>
-            <p class="text-slate-700 text-sm font-body leading-relaxed">
-              Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.
+            <p class="text-slate-700 text-base font-body leading-relaxed">
+              Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth as a Technology & Growth Partner.
             </p>
           </div>
-          <a href={`${site.basePath}/work/convortai/`} class="text-xs font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
+          <a href={`${site.basePath}/work/convortai/`} class="text-sm font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
             Read Partnership Story <ArrowRight class="size-3.5" />
           </a>
         </div>
@@ -197,9 +190,10 @@ const lahoreData = getLahoreLocationPage();
   <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
+        theme="light"
         eyebrow="WORKING METHOD"
         title="Our Four-Step Engagement Process"
-        description="Clear milestones from initial brief to ongoing operational delivery."
+        description="Clear milestones from initial brief to operational project delivery."
       />
 
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -207,7 +201,7 @@ const lahoreData = getLahoreLocationPage();
           <div class="bg-white border border-[#061d33]/10 rounded-xl p-6 space-y-3 shadow-sm">
             <span class="text-2xl font-heading font-bold text-[#ff762b]">{step.step}</span>
             <h4 class="font-heading font-bold text-base text-[#061d33]">{step.title}</h4>
-            <p class="text-xs sm:text-sm text-slate-700 font-body leading-relaxed">{step.description}</p>
+            <p class="text-base text-slate-700 font-body leading-relaxed">{step.description}</p>
           </div>
         ))}
       </div>
@@ -218,6 +212,7 @@ const lahoreData = getLahoreLocationPage();
   <section class="py-16 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-8 max-w-4xl">
       <SectionHeading
+        theme="light"
         eyebrow="FREQUENTLY ASKED QUESTIONS"
         title="Questions About Working With Us in Lahore"
       />
@@ -225,7 +220,7 @@ const lahoreData = getLahoreLocationPage();
         {lahoreData.faqs.map((faq) => (
           <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-xl p-6 space-y-2">
             <h3 class="font-heading font-bold text-lg text-[#061d33]">{faq.question}</h3>
-            <p class="text-slate-700 text-sm font-body leading-relaxed">{faq.answer}</p>
+            <p class="text-slate-700 text-base font-body leading-relaxed">{faq.answer}</p>
           </div>
         ))}
       </div>

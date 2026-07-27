@@ -4,8 +4,13 @@ import Container from '../../components/ui/Container.astro';
 import SectionHeading from '../../components/ui/SectionHeading.astro';
 import Button from '../../components/ui/Button.astro';
 import FinalCta from '../../components/landing/FinalCta.astro';
-import { ArrowRight, ShoppingBag, Calendar, Wrench, Cpu, CheckCircle2 } from '@lucide/astro';
+import { ArrowRight, ShoppingBag, Calendar, Wrench, Cpu, CheckCircle2, Layers } from '@lucide/astro';
 import { site } from '../../site.config';
+import { services } from '../../data/services';
+import { getDetailedProjectStories } from '../../data/projects';
+import { homepageFaqs } from '../../data/faqs';
+
+const detailedStories = getDetailedProjectStories();
 
 const industryCards = [
   {
@@ -13,34 +18,34 @@ const industryCards = [
     description: 'Direct-response advertising, storefront development, creative testing, and tracking systems for growing e-commerce product brands.',
     href: `${site.basePath}/industries/ecommerce-product-brands/`,
     icon: ShoppingBag,
-    proof: 'Supported PKR 30M+ in delivered revenue for Black Gold Fertilizer.',
+    proof: 'Supported PKR 30M+ in delivered revenue, 29,000+ product sales and 22,000+ delivered sales for Black Gold Fertilizer.',
   },
   {
     title: 'Seasonal Campaigns',
     description: 'High-impact digital marketing strategies, pre-booking windows, and creative execution for time-sensitive seasonal campaigns.',
     href: `${site.basePath}/industries/seasonal-campaigns/`,
     icon: Calendar,
-    proof: 'Helped sell 150+ animals and supported PKR 4.2M+ in sales for Wajib Livestock.',
+    proof: 'Helped sell 150+ animals and supported PKR 4.2M+ in sales during Eid Qurbani campaign for Wajib Livestock.',
   },
   {
     title: 'Local Service Businesses',
     description: 'Custom website development, local SEO foundations, and service-area content for renovation and contractor businesses.',
     href: `${site.basePath}/industries/local-service-businesses/`,
     icon: Wrench,
-    proof: 'Web design & local SEO foundation for RK Reno Solutions in KL & Selangor.',
+    proof: 'Website design & local SEO foundation for RK Reno Solutions in Kuala Lumpur & Selangor.',
   },
   {
     title: 'Technology Products',
     description: 'Web application development, UI design, workflow automation, and product growth support for technology platforms.',
     href: `${site.basePath}/industries/technology-products/`,
     icon: Cpu,
-    proof: 'Developed ConvortAI web application & ongoing technology partnership.',
+    proof: 'Developed ConvortAI web application & ongoing technology and growth partnership.',
   },
 ];
 ---
 
 <BaseLayout>
-  <!-- Hero Section -->
+  <!-- 1. Hero Section -->
   <section class="relative pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 bg-[#061d33] text-white border-b border-slate-800/80 overflow-hidden">
     <Container>
       <div class="max-w-3xl space-y-6">
@@ -48,19 +53,20 @@ const industryCards = [
           INDUSTRIES & BUSINESS SECTORS
         </span>
         <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight tracking-tight">
-          Tailored Digital Execution Across Key Industries
+          Tailored Digital Execution Across Key Sectors
         </h1>
         <p class="text-lg sm:text-xl text-slate-300 font-body font-normal leading-relaxed">
-          Starts Digital partners with growth-stage e-commerce brands, seasonal campaign operators, local service contractors, and technology platforms to deliver focused, measurable digital results.
+          Starts Digital has project experience across growth-stage e-commerce brands, seasonal campaign operators, local service contractors, and technology platforms.
         </p>
       </div>
     </Container>
   </section>
 
-  <!-- Industry Cards Grid -->
+  <!-- 2. Four Industry Cards Grid -->
   <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
+        theme="light"
         eyebrow="SECTOR CAPABILITIES"
         title="Explore Our Core Industry Experience"
         description="Every industry faces unique customer acquisition challenges, inventory cycles, and technical requirements. Explore how we structure our project engagements below."
@@ -78,10 +84,10 @@ const industryCards = [
                 <h2 class="font-heading font-bold text-2xl text-[#061d33]">
                   {card.title}
                 </h2>
-                <p class="text-slate-600 font-body text-base leading-relaxed">
+                <p class="text-slate-700 font-body text-base leading-relaxed">
                   {card.description}
                 </p>
-                <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-4 rounded-xl text-xs font-mono text-slate-700 flex items-start gap-2.5">
+                <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-4 rounded-xl text-sm font-mono text-slate-800 flex items-start gap-2.5">
                   <CheckCircle2 class="size-4 text-[#ff762b] shrink-0 mt-0.5" />
                   <span><strong>Project Proof:</strong> {card.proof}</span>
                 </div>
@@ -99,10 +105,65 @@ const industryCards = [
     </Container>
   </section>
 
-  <!-- Scope Differentiation Section -->
+  <!-- 3. Relevant Service Combinations by Industry -->
   <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
+        theme="light"
+        eyebrow="SERVICE INTEGRATION"
+        title="Published Services Applied by Industry"
+        description="Our six core service areas are combined to address specific business model constraints."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {services.slice(0, 6).map((srv) => (
+          <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-6 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">{srv.eyebrow}</span>
+              <h3 class="font-heading font-bold text-xl text-[#061d33]">{srv.name}</h3>
+              <p class="text-slate-700 text-base font-body leading-relaxed">{srv.summary}</p>
+            </div>
+            <a href={`${site.basePath}/services/${srv.slug}/`} class="text-sm font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
+              Learn more <ArrowRight class="size-3.5" />
+            </a>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- 4. Verified Project Experience -->
+  <section class="py-16 sm:py-20 bg-[#061d33] text-white border-b border-slate-800/80">
+    <Container class="space-y-12">
+      <SectionHeading
+        theme="dark"
+        eyebrow="VERIFIED CLIENT EVIDENCE"
+        title="Documented Project Case Studies"
+        description="Explore documented outcomes and technical contributions across our detailed case studies."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {detailedStories.map((story) => (
+          <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">{story.sector}</span>
+              <h3 class="font-heading font-bold text-2xl text-white">{story.publicName}</h3>
+              <p class="text-slate-300 text-base font-body leading-relaxed">{story.verifiedOutcome || story.shortSummary}</p>
+            </div>
+            <a href={`${site.basePath}${story.detailPath}`} class="text-sm font-mono font-bold text-[#ddff35] hover:underline inline-flex items-center gap-1 pt-2">
+              View Detailed Story <ArrowRight class="size-3.5" />
+            </a>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- 5. How Project Scopes Differ -->
+  <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-12">
+      <SectionHeading
+        theme="light"
         eyebrow="ADAPTIVE ENGAGEMENTS"
         title="How We Structure Scopes for Different Business Models"
         description="We adapt our service combination based on business model requirements, inventory velocity, and commercial goals."
@@ -112,7 +173,7 @@ const industryCards = [
         <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-6 sm:p-8 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">E-COMMERCE & PRODUCTS</span>
           <h3 class="font-heading font-bold text-xl text-[#061d33]">Transaction & Conversion Focus</h3>
-          <p class="text-sm text-slate-700 font-body leading-relaxed">
+          <p class="text-base text-slate-700 font-body leading-relaxed">
             Prioritizes direct-response ad creative testing, mobile cart optimization, retention email flows, and delivered-order tracking.
           </p>
         </div>
@@ -120,7 +181,7 @@ const industryCards = [
         <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-6 sm:p-8 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">LOCAL CONTRACTORS</span>
           <h3 class="font-heading font-bold text-xl text-[#061d33]">Location & Service Clarity</h3>
-          <p class="text-sm text-slate-700 font-body leading-relaxed">
+          <p class="text-base text-slate-700 font-body leading-relaxed">
             Focuses on location-specific landing pages, technical local SEO, clear scope displays, and direct WhatsApp quote pathways.
           </p>
         </div>
@@ -128,7 +189,7 @@ const industryCards = [
         <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-6 sm:p-8 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">TECH & SOFTWARE</span>
           <h3 class="font-heading font-bold text-xl text-[#061d33]">Product & Workflow Development</h3>
-          <p class="text-sm text-slate-700 font-body leading-relaxed">
+          <p class="text-base text-slate-700 font-body leading-relaxed">
             Engages as an integrated technical and production team building custom web apps, workflow integrations, and growth content.
           </p>
         </div>
@@ -136,6 +197,25 @@ const industryCards = [
     </Container>
   </section>
 
-  <!-- Global Contact CTA -->
+  <!-- 6. Industries FAQ Section -->
+  <section class="py-16 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-8 max-w-4xl">
+      <SectionHeading
+        theme="light"
+        eyebrow="FREQUENTLY ASKED QUESTIONS"
+        title="Industry Engagement Questions"
+      />
+      <div class="space-y-4">
+        {homepageFaqs.map((faq) => (
+          <div class="bg-white border border-[#061d33]/10 rounded-xl p-6 space-y-2">
+            <h3 class="font-heading font-bold text-lg text-[#061d33]">{faq.question}</h3>
+            <p class="text-slate-700 text-base font-body leading-relaxed">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- 7. Contact CTA -->
   <FinalCta />
 </BaseLayout>

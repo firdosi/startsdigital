@@ -39,11 +39,7 @@ const activeVariant: ProjectVariant = variant || project.variant || 'default';
 const pageTitle = title.includes('Starts Digital') ? title : `${title} — Starts Digital`;
 ---
 
-<BaseLayout
-  title={pageTitle}
-  description={description}
-  type="article"
->
+<BaseLayout>
   <div class="bg-[#faf9f6] min-h-screen text-[#061d33] overflow-hidden" data-story-variant={activeVariant}>
     <!-- 1. PROJECT HERO -->
     <ProjectHero project={project} metrics={metrics} variant={activeVariant} />

@@ -7,17 +7,21 @@ import FinalCta from '../../components/landing/FinalCta.astro';
 import { ArrowRight, CheckCircle2, ArrowLeft } from '@lucide/astro';
 import { site } from '../../site.config';
 import { getMarketPageBySlug } from '../../data/marketPages';
+import { getServiceById } from '../../data/services';
 
 const marketData = getMarketPageBySlug('local-service-businesses')!;
+const relevantServices = marketData.relevantServiceIds
+  .map((id) => getServiceById(id))
+  .filter((s) => Boolean(s));
 ---
 
 <BaseLayout>
-  <!-- Hero Section -->
+  <!-- 1. Hero Section -->
   <section class="relative pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 bg-[#061d33] text-white border-b border-slate-800/80 overflow-hidden">
     <Container>
       <div class="max-w-3xl space-y-6">
         <a href={`${site.basePath}/industries/`} class="inline-flex items-center text-xs font-mono text-[#ff762b] hover:underline gap-1 mb-2">
-          <ArrowLeft class="size-3.5" /> Back to Industries
+          <ArrowLeft class="size-3.5" /> Back to Industries Index
         </a>
         <span class="inline-block rounded-full bg-[#ff762b]/20 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-[#ff762b] border border-[#ff762b]/30">
           {marketData.eyebrow}
@@ -32,14 +36,14 @@ const marketData = getMarketPageBySlug('local-service-businesses')!;
     </Container>
   </section>
 
-  <!-- Featured Project Experience Section -->
+  <!-- 2. Genuine Project Evidence Section -->
   <section class="py-12 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <Container>
       <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div class="space-y-2 max-w-2xl">
-          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">PROJECT EXPERIENCE</span>
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">SELECTED CLIENT EXPERIENCE</span>
           <h2 class="font-heading font-bold text-xl sm:text-2xl text-[#061d33]">RK Reno Solutions</h2>
-          <p class="text-sm sm:text-base text-slate-700 font-body leading-relaxed">
+          <p class="text-base text-slate-700 font-body leading-relaxed">
             {marketData.featuredProofText}
           </p>
         </div>
@@ -51,12 +55,13 @@ const marketData = getMarketPageBySlug('local-service-businesses')!;
     </Container>
   </section>
 
-  <!-- Key Topics Grid -->
+  <!-- 3. Key Business or Project Requirements -->
   <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
+        theme="light"
         eyebrow="CONTRACTOR FOUNDATIONS"
-        title="Key Web & SEO Areas for Local Service Providers"
+        title="Key Web & SEO Focus Areas for Service Providers"
         description="Capturing local search intent and guiding property owners from service selection to quote submission."
       />
 
@@ -67,7 +72,7 @@ const marketData = getMarketPageBySlug('local-service-businesses')!;
               <CheckCircle2 class="size-5 text-[#ff762b] shrink-0 mt-0.5" />
               <h3 class="font-heading font-bold text-lg text-[#061d33]">{item.title}</h3>
             </div>
-            <p class="text-slate-600 text-sm font-body leading-relaxed pl-8">
+            <p class="text-slate-700 text-base font-body leading-relaxed pl-8">
               {item.description}
             </p>
           </div>
@@ -76,31 +81,90 @@ const marketData = getMarketPageBySlug('local-service-businesses')!;
     </Container>
   </section>
 
-  <!-- Working Method -->
+  <!-- 4. Relevant Services Resolved from Central Registry -->
   <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
-        eyebrow="DEVELOPMENT PROCESS"
-        title="Our Local Contractor Website Workflow"
-        description="Structured service mapping, content architecture, and mobile contact setup."
+        theme="light"
+        eyebrow="APPLIED SERVICES"
+        title="Services Applicable to Local Contractors"
+        description="Core service lines combined for service-area contractors and local service providers."
       />
 
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {marketData.workingMethod.map((step) => (
-          <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-xl p-6 space-y-3">
-            <span class="text-2xl font-heading font-bold text-[#ff762b]">{step.step}</span>
-            <h4 class="font-heading font-bold text-base text-[#061d33]">{step.title}</h4>
-            <p class="text-xs sm:text-sm text-slate-700 font-body leading-relaxed">{step.description}</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {relevantServices.map((srv) => (
+          <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-6 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">{srv!.eyebrow}</span>
+              <h3 class="font-heading font-bold text-xl text-[#061d33]">{srv!.name}</h3>
+              <p class="text-slate-700 text-base font-body leading-relaxed">{srv!.summary}</p>
+            </div>
+            <a href={`${site.basePath}/services/${srv!.slug}/`} class="text-sm font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
+              Explore {srv!.shortName} <ArrowRight class="size-3.5" />
+            </a>
           </div>
         ))}
       </div>
     </Container>
   </section>
 
-  <!-- FAQ Section -->
+  <!-- 5. Working Method -->
+  <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-12">
+      <SectionHeading
+        theme="light"
+        eyebrow="DEVELOPMENT PROCESS"
+        title="Our Local Service Website Process"
+        description="Structured service mapping, content architecture, and mobile contact setup."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {marketData.workingMethod.map((step) => (
+          <div class="bg-white border border-[#061d33]/10 rounded-xl p-6 space-y-3 shadow-sm">
+            <span class="text-2xl font-heading font-bold text-[#ff762b]">{step.step}</span>
+            <h4 class="font-heading font-bold text-base text-[#061d33]">{step.title}</h4>
+            <p class="text-base text-slate-700 font-body leading-relaxed">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- 6. Related Industry and Project Links -->
+  <section class="py-16 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-8 max-w-4xl">
+      <SectionHeading
+        theme="light"
+        eyebrow="RELATED NAVIGATION"
+        title="Explore Related Sectors & Case Studies"
+      />
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href={`${site.basePath}/work/rk-reno-solutions/`} class="bg-[#f7f4ed] border border-[#061d33]/10 p-5 rounded-xl block hover:border-[#ff762b] transition-colors">
+          <span class="text-xs font-mono text-[#ff762b] uppercase font-bold block">PROJECT STORY</span>
+          <span class="font-heading font-bold text-lg text-[#061d33]">RK Reno Solutions Web & SEO Case Study &rarr;</span>
+        </a>
+        <a href={`${site.basePath}/industries/`} class="bg-[#f7f4ed] border border-[#061d33]/10 p-5 rounded-xl block hover:border-[#ff762b] transition-colors">
+          <span class="text-xs font-mono text-[#ff762b] uppercase font-bold block">ALL SECTORS</span>
+          <span class="font-heading font-bold text-lg text-[#061d33]">View All Industry Sectors &rarr;</span>
+        </a>
+        <a href={`${site.basePath}/services/seo-local-search/`} class="bg-[#f7f4ed] border border-[#061d33]/10 p-5 rounded-xl block hover:border-[#ff762b] transition-colors">
+          <span class="text-xs font-mono text-[#ff762b] uppercase font-bold block">KEY SERVICE</span>
+          <span class="font-heading font-bold text-lg text-[#061d33]">SEO & Local Search Optimization &rarr;</span>
+        </a>
+        <a href={`${site.basePath}/contact/?source=local-service-businesses`} class="bg-[#f7f4ed] border border-[#061d33]/10 p-5 rounded-xl block hover:border-[#ff762b] transition-colors">
+          <span class="text-xs font-mono text-[#ff762b] uppercase font-bold block">PROJECT INQUIRY</span>
+          <span class="font-heading font-bold text-lg text-[#061d33]">Discuss a Contractor Website Project &rarr;</span>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 7. FAQ Section -->
   <section class="py-16 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-8 max-w-4xl">
       <SectionHeading
+        theme="light"
         eyebrow="FREQUENTLY ASKED QUESTIONS"
         title="Local Service Marketing Questions"
       />
@@ -108,12 +172,13 @@ const marketData = getMarketPageBySlug('local-service-businesses')!;
         {marketData.faqs.map((faq) => (
           <div class="bg-white border border-[#061d33]/10 rounded-xl p-6 space-y-2">
             <h3 class="font-heading font-bold text-lg text-[#061d33]">{faq.question}</h3>
-            <p class="text-slate-700 text-sm font-body leading-relaxed">{faq.answer}</p>
+            <p class="text-slate-700 text-base font-body leading-relaxed">{faq.answer}</p>
           </div>
         ))}
       </div>
     </Container>
   </section>
 
+  <!-- 8. Contact CTA -->
   <FinalCta />
 </BaseLayout>
