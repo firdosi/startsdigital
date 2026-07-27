@@ -4,26 +4,34 @@ import { homepageContent } from '../../data/homepage';
 import AnimatedGrid from '../motion/AnimatedGrid.astro';
 import FloatingOrb from '../motion/FloatingOrb.astro';
 import SectionSpark from '../motion/SectionSpark.astro';
-import { ArrowRight, Sparkles } from '@lucide/astro';
+import { ArrowRight, Sparkles, Megaphone, Layout, Search, Video, Share2, Cpu } from '@lucide/astro';
 
 const { hero } = homepageContent;
+
+const serviceHighlights = [
+  { title: 'Paid Advertising', icon: Megaphone, color: 'text-[#ff762b]', bg: 'bg-[#ff762b]/15 border-[#ff762b]/30' },
+  { title: 'Website Design & Dev', icon: Layout, color: 'text-[#ddff35]', bg: 'bg-[#ddff35]/15 border-[#ddff35]/30' },
+  { title: 'SEO & Local Search', icon: Search, color: 'text-[#39c98a]', bg: 'bg-[#39c98a]/15 border-[#39c98a]/30' },
+  { title: 'Creative Content', icon: Video, color: 'text-purple-400', bg: 'bg-purple-500/15 border-purple-500/30' },
+  { title: 'Social Media Marketing', icon: Share2, color: 'text-sky-400', bg: 'bg-sky-500/15 border-sky-500/30' },
+  { title: 'AI Marketing Workflows', icon: Cpu, color: 'text-[#ff762b]', bg: 'bg-[#ff762b]/15 border-[#ff762b]/30' },
+];
 ---
 
 <section id="hero" class="relative overflow-hidden bg-[#061d33] text-white pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
   <!-- Subtle Animated Tech Background Grid -->
   <AnimatedGrid opacity={0.10} />
 
-  <!-- Restrained Decorative Accent Elements (Orb & Spark) -->
+  <!-- Restrained Decorative Accent Elements -->
   <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
   <SectionSpark color="orange" size="md" class="top-10 right-[8%] pointer-events-none" delay="0s" />
 
   <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
       
-      <!-- Left Column: Positioning, Explanation & CTAs (55% width on desktop -> col-span-7) -->
+      <!-- Left Column: Positioning & CTAs (col-span-7) -->
       <div class="lg:col-span-7 space-y-6 sm:space-y-7 text-left">
         
-        <!-- Eyebrow Pill (No data-motion wrapper to ensure 100% reliable visibility) -->
         <div class="inline-flex items-center">
           <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
             <Sparkles class="size-3.5 text-[#ddff35]" />
@@ -31,12 +39,12 @@ const { hero } = homepageContent;
           </span>
         </div>
 
-        <!-- Hero Headline (No data-motion clip-up to ensure 100% reliable visibility) -->
+        <!-- Hero Headline -->
         <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
           {hero.headline}
         </h1>
 
-        <!-- Supporting Paragraph -->
+        <!-- Supporting Paragraph (Max 2 sentences) -->
         <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body max-w-2xl font-normal">
           {hero.paragraph}
         </p>
@@ -59,7 +67,7 @@ const { hero } = homepageContent;
           </a>
         </div>
 
-        <!-- Supporting Service Line (Restrained Editorial Text) -->
+        <!-- Service Badges Strip -->
         <div class="pt-3 border-t border-white/15">
           <p class="text-xs sm:text-sm font-mono text-slate-300 flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
             {hero.serviceLine.map((item, idx) => (
@@ -75,86 +83,45 @@ const { hero } = homepageContent;
 
       </div>
 
-      <!-- Right Column: Grounded Project-Proof Panels (45% width on desktop -> col-span-5) -->
+      <!-- Right Column: Visual Capabilities Summary Card Stack (col-span-5) -->
       <div class="lg:col-span-5 space-y-4">
         
-        <!-- Header Label -->
-        <div class="flex items-center gap-2">
-          <span class="size-2 rounded-full bg-[#ff762b]"></span>
-          <span class="text-xs font-mono font-semibold uppercase tracking-[0.08em] text-[#ff762b]">
-            {hero.proofHeaderLabel}
-          </span>
+        <div class="rounded-3xl border border-white/15 bg-white/5 p-6 sm:p-7 backdrop-blur-md shadow-2xl space-y-5">
+          <div class="flex items-center justify-between pb-3 border-b border-white/10">
+            <div class="flex items-center gap-2">
+              <span class="size-2 rounded-full bg-[#ddff35] animate-pulse"></span>
+              <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#ddff35]">
+                CORE SERVICE ARCHITECTURE
+              </span>
+            </div>
+            <span class="text-[11px] font-mono text-slate-300">6 Published Lines</span>
+          </div>
+
+          <!-- Service Stack Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+            {serviceHighlights.map((svc) => {
+              const IconComp = svc.icon;
+              return (
+                <div class="flex items-center justify-between p-3 rounded-2xl bg-[#061d33]/80 border border-white/10 hover:border-white/30 transition-all">
+                  <div class="flex items-center gap-3">
+                    <div class={`size-9 rounded-xl ${svc.bg} border flex items-center justify-center shrink-0`}>
+                      <IconComp class={`size-4 ${svc.color}`} />
+                    </div>
+                    <span class="font-heading font-semibold text-sm text-white">
+                      {svc.title}
+                    </span>
+                  </div>
+                  <ArrowRight class="size-3.5 text-slate-400" />
+                </div>
+              );
+            })}
+          </div>
+
+          <div class="pt-2 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-300">
+            <span>Integrated Project Execution</span>
+            <span class="text-[#ff762b] font-semibold">Starts Digital</span>
+          </div>
         </div>
-
-        <!-- Proof Panel 1: Black Gold Fertilizer -->
-        {hero.proofCards.slice(0, 1).map((card) => (
-          <a
-            href={`${site.basePath}${card.href}`}
-            class="group block rounded-2xl border border-white/15 bg-white/5 p-5 sm:p-6 backdrop-blur-md hover:border-[#ff762b]/60 hover:bg-white/10 transition-all duration-300 shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-          >
-            <div class="flex items-start justify-between gap-3 mb-2.5">
-              <div>
-                <h3 class="font-heading font-bold text-lg sm:text-xl text-white group-hover:text-[#ff762b] transition-colors">
-                  {card.brand}
-                </h3>
-                <p class="text-xs font-mono text-slate-300 mt-0.5">{card.context}</p>
-              </div>
-              <ArrowRight class="size-4 text-slate-400 group-hover:text-[#ff762b] group-hover:translate-x-1 transition-all shrink-0 mt-1" />
-            </div>
-
-            <!-- Metric Summary Text (>=16px text-base) -->
-            <p class="text-base text-slate-200 leading-relaxed font-body mb-3">
-              {card.summary}
-            </p>
-
-            <!-- Metrics Badges -->
-            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
-              {card.metrics.map((m) => (
-                <div class="bg-[#061d33]/60 rounded-xl p-2.5 border border-white/10">
-                  <div class="font-heading font-bold text-lg sm:text-xl text-[#ddff35]">
-                    {m.value}
-                  </div>
-                  <div class="text-[11px] font-mono text-slate-300 mt-0.5">{m.label}</div>
-                </div>
-              ))}
-            </div>
-          </a>
-        ))}
-
-        <!-- Proof Panel 2: Wajib Livestock -->
-        {hero.proofCards.slice(1, 2).map((card) => (
-          <a
-            href={`${site.basePath}${card.href}`}
-            class="group block rounded-2xl border border-white/15 bg-white/5 p-5 sm:p-6 backdrop-blur-md hover:border-[#ddff35]/60 hover:bg-white/10 transition-all duration-300 shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-          >
-            <div class="flex items-start justify-between gap-3 mb-2.5">
-              <div>
-                <h3 class="font-heading font-bold text-lg sm:text-xl text-white group-hover:text-[#ddff35] transition-colors">
-                  {card.brand}
-                </h3>
-                <p class="text-xs font-mono text-slate-300 mt-0.5">{card.context}</p>
-              </div>
-              <ArrowRight class="size-4 text-slate-400 group-hover:text-[#ddff35] group-hover:translate-x-1 transition-all shrink-0 mt-1" />
-            </div>
-
-            <!-- Metric Summary Text (>=16px text-base) -->
-            <p class="text-base text-slate-200 leading-relaxed font-body mb-3">
-              {card.summary}
-            </p>
-
-            <!-- Metrics Badges -->
-            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
-              {card.metrics.map((m) => (
-                <div class="bg-[#061d33]/60 rounded-xl p-2.5 border border-white/10">
-                  <div class="font-heading font-bold text-lg sm:text-xl text-[#ff762b]">
-                    {m.value}
-                  </div>
-                  <div class="text-[11px] font-mono text-slate-300 mt-0.5">{m.label}</div>
-                </div>
-              ))}
-            </div>
-          </a>
-        ))}
 
       </div>
 

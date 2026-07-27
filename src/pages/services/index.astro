@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getPublishedServices } from '../../data/services';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import Process from '../../components/landing/Process.astro';
+import PlatformGrid from '../../components/landing/PlatformGrid.astro';
 import MotionController from '../../components/common/MotionController.astro';
 import AnimatedGrid from '../../components/motion/AnimatedGrid.astro';
 import FloatingOrb from '../../components/motion/FloatingOrb.astro';
@@ -10,13 +12,8 @@ import { site } from '../../site.config';
 import {
   Sparkles,
   ArrowRight,
-  ArrowUpRight,
-  CheckCircle2,
   ChevronDown,
-  TrendingUp,
-  Award,
-  Layers,
-  ShieldCheck,
+  CheckCircle2,
   Megaphone,
   Layout,
   Search,
@@ -52,37 +49,6 @@ const engagementPatterns = [
   }
 ];
 
-const selectedProof = [
-  {
-    brand: 'Black Gold Fertilizer',
-    category: 'Paid Ads & E-commerce',
-    summary: 'Paid advertising, creative testing, e-commerce growth and website support.',
-    result: 'Supported PKR 30M+ in delivered revenue and 29k+ sales.',
-    link: `${site.basePath}/work/black-gold-fertilizer/`
-  },
-  {
-    brand: 'Wajib Livestock',
-    category: 'Campaign Strategy',
-    summary: 'Campaign strategy, paid social, lead generation and sales support.',
-    result: 'Helped sell 150+ animals and supported PKR 4.2M+ in sales.',
-    link: `${site.basePath}/work/qurbani-campaign/`
-  },
-  {
-    brand: 'RK Reno Solutions',
-    category: 'Web & Local SEO',
-    summary: 'Website structure, content and local SEO foundation for KL & Selangor.',
-    result: null,
-    link: `${site.basePath}/work/rk-reno-solutions/`
-  },
-  {
-    brand: 'ConvortAI',
-    category: 'Web App & Product Growth',
-    summary: 'Web application development, product strategy, social media and growth.',
-    result: null,
-    link: `${site.basePath}/work/convortai/`
-  }
-];
-
 const generalFaqs = [
   {
     q: 'Can services be hired individually or combined?',
@@ -94,7 +60,7 @@ const generalFaqs = [
   },
   {
     q: 'Which service detail pages are published?',
-    a: 'All six core service pages are fully published with detailed deliverables, process steps, proof items and FAQs.'
+    a: 'All six core service pages are fully published with detailed deliverables, process steps, FAQs, and compact project references.'
   },
   {
     q: 'Does Starts Digital guarantee commercial results?',
@@ -135,7 +101,7 @@ const generalFaqs = [
         <div class="pt-4 flex flex-wrap items-center gap-4">
           <a
             href={`${site.basePath}/contact/`}
-            class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-7 py-3.5 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-lg group/cta"
+            class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-7 py-3.5 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-lg group/cta min-h-[44px]"
           >
             <span>Discuss Your Project</span>
             <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
@@ -143,7 +109,7 @@ const generalFaqs = [
 
           <a
             href="#directory"
-            class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 font-body font-semibold text-base text-white hover:bg-white/15 transition-all"
+            class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 font-body font-semibold text-base text-white hover:bg-white/15 transition-all min-h-[44px]"
           >
             <span>Explore Service Areas</span>
             <ChevronDown class="size-4 text-slate-300" />
@@ -154,7 +120,7 @@ const generalFaqs = [
     </div>
   </section>
 
-  {/* 2. Redesigned Editorial Services Directory */}
+  {/* 2. Six-Service Directory */}
   <section id="directory" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
       
@@ -163,12 +129,12 @@ const generalFaqs = [
         <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
           Six core capabilities for digital marketing and development.
         </h2>
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
-          Click any service area to explore full deliverables, process steps, FAQs, and project proof.
+        <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+          Click any service area to explore full deliverables, process steps and FAQs.
         </p>
       </div>
 
-      <!-- Divided 12-Column Editorial Rows Index -->
+      <!-- Divided Editorial Rows Index -->
       <div class="rounded-3xl border border-[#061d33]/15 overflow-hidden shadow-xs divide-y divide-[#061d33]/12">
         {getPublishedServices().map((svc, idx) => {
           const IconComp = iconMap[svc.iconKey] || Megaphone;
@@ -179,7 +145,7 @@ const generalFaqs = [
             <div class={`p-6 sm:p-8 lg:p-10 transition-colors ${isEven ? 'bg-white hover:bg-[#f7f4ed]/50' : 'bg-[#f7f4ed] hover:bg-white/80'} group`}>
               <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
                 
-                <!-- Service Identity (approx 35% / 4 cols) -->
+                <!-- Service Identity -->
                 <div class="lg:col-span-4 space-y-2">
                   <div class="flex items-center gap-3">
                     <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-0.5 rounded">
@@ -198,7 +164,7 @@ const generalFaqs = [
                   </h3>
                 </div>
 
-                <!-- Summary & Core Support Areas (approx 45% / 5 cols) -->
+                <!-- Summary & Core Support Areas -->
                 <div class="lg:col-span-5 space-y-3">
                   <p class="text-base font-body text-slate-800 leading-relaxed font-normal">
                     {svc.summary}
@@ -213,11 +179,11 @@ const generalFaqs = [
                   </div>
                 </div>
 
-                <!-- Action Area (approx 20% / 3 cols) -->
+                <!-- Action Area -->
                 <div class="lg:col-span-3 lg:text-right pt-2 lg:pt-0">
                   <a
                     href={targetUrl}
-                    class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/20 bg-white px-5 py-2.5 text-xs font-mono font-semibold text-[#061d33] group-hover:bg-[#061d33] group-hover:text-white transition-all shadow-xs"
+                    class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/20 bg-white px-5 py-2.5 text-xs font-mono font-semibold text-[#061d33] group-hover:bg-[#061d33] group-hover:text-white transition-all shadow-xs min-h-[44px]"
                   >
                     <span>VIEW SERVICE PAGE</span>
                     <ArrowRight class="size-3.5 group-hover:translate-x-1 transition-transform" />
@@ -233,17 +199,16 @@ const generalFaqs = [
     </div>
   </section>
 
-  {/* 3. How Services Can Work Together */}
-  <section id="patterns" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+  {/* 3. Common Business Needs */}
+  <section id="common-needs" class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
-      
       <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
-        <SectionEyebrow label="ENGAGEMENT PATTERNS" align="center" motion={false} />
-        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
-          How services can work together.
+        <SectionEyebrow label="COMMON BUSINESS NEEDS" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight">
+          How services address typical business requirements.
         </h2>
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
-          We organize our work around practical engagement patterns tailored to your business stage.
+        <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+          Businesses engage us for focused single-service deliverables or full marketing coordination.
         </p>
       </div>
 
@@ -252,7 +217,7 @@ const generalFaqs = [
           <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs">
             <div class="space-y-3">
               <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider block">
-                PATTERN 0{idx + 1}
+                NEED 0{idx + 1}
               </span>
               <h3 class="font-heading font-bold text-2xl text-[#061d33]">
                 {pat.title}
@@ -260,79 +225,67 @@ const generalFaqs = [
               <p class="font-mono text-xs text-slate-500 font-semibold">
                 {pat.subtitle}
               </p>
-              <p class="text-base text-slate-700 font-body leading-relaxed pt-2">
+              <p class="text-base text-slate-700 font-body leading-relaxed pt-2 font-normal">
                 {pat.description}
               </p>
             </div>
           </div>
         ))}
       </div>
-
-      <div class="rounded-2xl border border-[#061d33]/12 bg-white p-5 text-center max-w-3xl mx-auto">
-        <p class="text-sm font-body font-semibold text-[#061d33]">
-          Note: The final combination of services, deliverables and responsibilities is agreed after project requirements are reviewed.
-        </p>
-      </div>
-
     </div>
   </section>
 
-  {/* 4. Selected Relevant Experience */}
-  <section id="experience-selection" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white border-b border-white/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+  {/* 4. Service Combinations */}
+  <section id="service-combinations" class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
-      
       <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
-        <SectionEyebrow label="SELECTED EXPERIENCE" align="center" motion={false} />
-        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-white leading-tight tracking-[-0.025em]">
-          Service capabilities backed by verified project proof.
+        <SectionEyebrow label="SERVICE COMBINATIONS" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight">
+          Coordinated service frameworks.
         </h2>
-        <p class="text-base sm:text-lg text-slate-200 font-body leading-relaxed">
-          See how our core service areas contribute to real client projects.
+        <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+          Combining search, creative and advertising into one aligned execution roadmap.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-        {selectedProof.map((item) => (
-          <div class="rounded-3xl border border-white/15 bg-white/5 p-6 sm:p-7 flex flex-col justify-between shadow-xl">
-            <div class="space-y-3">
-              <span class="inline-block px-2.5 py-0.5 rounded-full border border-white/20 bg-white/10 text-[11px] font-mono font-semibold uppercase tracking-wider text-[#ddff35]">
-                {item.category}
-              </span>
-              <h3 class="font-heading font-bold text-2xl text-white">{item.brand}</h3>
-              <p class="text-base text-slate-200 font-body leading-relaxed">{item.summary}</p>
-              {item.result && (
-                <p class="text-base font-body font-semibold text-[#ddff35] pt-1">{item.result}</p>
-              )}
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="rounded-3xl border border-[#061d33]/12 bg-[#f7f4ed] p-7 space-y-4">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">ACQUISITION FRAMEWORK</span>
+          <h3 class="font-heading font-bold text-2xl text-[#061d33]">Paid Ads + Creative Content + Landing Pages</h3>
+          <p class="text-base text-slate-700 font-body leading-relaxed">
+            Combines Meta ad campaigns with custom video creative and mobile-optimized conversion pages.
+          </p>
+        </div>
 
-            <div class="pt-4 mt-4 border-t border-white/10">
-              <a
-                href={item.link}
-                class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-[#ff762b] hover:text-white transition-colors"
-              >
-                <span>EXPLORE CASE STUDY</span>
-                <ArrowUpRight class="size-3.5" />
-              </a>
-            </div>
-          </div>
-        ))}
+        <div class="rounded-3xl border border-[#061d33]/12 bg-[#f7f4ed] p-7 space-y-4">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">ORGANIC & LOCAL FRAMEWORK</span>
+          <h3 class="font-heading font-bold text-2xl text-[#061d33]">Website + Local SEO + AI Workflows</h3>
+          <p class="text-base text-slate-700 font-body leading-relaxed">
+            Combines structured website development with location pages and automated WhatsApp inquiry routing.
+          </p>
+        </div>
       </div>
-
     </div>
   </section>
 
-  {/* 5. Services FAQ */}
-  <section id="services-faq" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+  {/* 5. Working Method */}
+  <Process />
+
+  {/* 6. Platforms and Tools */}
+  <PlatformGrid />
+
+  {/* 7. Service FAQ & Explore Work Link */}
+  <section id="services-faq" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
       
       <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
         <SectionEyebrow label="GENERAL SERVICES FAQ" align="center" motion={false} />
-        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight">
           Frequently asked questions about working with Starts Digital.
         </h2>
       </div>
 
-      <div class="max-w-4xl mx-auto space-y-4">
+      <div class="max-w-4xl mx-auto space-y-4 mb-12">
         {generalFaqs.map((item, idx) => (
           <details
             open={idx === 0}
@@ -345,18 +298,29 @@ const generalFaqs = [
               </div>
             </summary>
 
-            <div class="px-6 pb-6 text-base text-slate-700 font-body leading-relaxed border-t border-[#061d33]/8 pt-4">
+            <div class="px-6 pb-6 text-base text-slate-700 font-body leading-relaxed border-t border-[#061d33]/8 pt-4 font-normal">
               {item.a}
             </div>
           </details>
         ))}
       </div>
 
+      <!-- Small Link to Work Directory -->
+      <div class="text-center pt-4 border-t border-[#061d33]/10">
+        <a
+          href={`${site.basePath}/work/`}
+          class="inline-flex items-center gap-2 font-heading font-semibold text-base text-[#061d33] hover:text-[#ff762b] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+        >
+          <span>Explore relevant client work</span>
+          <ArrowRight class="size-4 text-[#ff762b]" />
+        </a>
+      </div>
+
     </div>
   </section>
 
-  {/* 6. Final Project CTA */}
-  <section id="services-cta" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white text-center relative overflow-hidden scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+  {/* 8. Final CTA */}
+  <section id="services-cta" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white text-center relative overflow-hidden">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8 relative z-10">
       <div class="max-w-3xl mx-auto space-y-6">
         <SectionEyebrow label="GET STARTED" align="center" motion={false} />
@@ -369,7 +333,7 @@ const generalFaqs = [
         <div class="pt-4 flex items-center justify-center gap-4">
           <a
             href={`${site.basePath}/contact/`}
-            class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl group/cta"
+            class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl group/cta min-h-[44px]"
           >
             <span>Discuss Your Project</span>
             <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />

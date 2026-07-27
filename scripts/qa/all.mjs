@@ -1,6 +1,7 @@
 import { execSync } from 'child_process';
 
 const commands = [
+  'node scripts/qa/content-architecture.mjs',
   'node scripts/qa/motion-regression.mjs',
   'node scripts/qa/internal-links.mjs',
   'node scripts/qa/seo-audit.mjs',

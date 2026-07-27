@@ -4,15 +4,13 @@ import Container from '../../components/ui/Container.astro';
 import SectionHeading from '../../components/ui/SectionHeading.astro';
 import Button from '../../components/ui/Button.astro';
 import FinalCta from '../../components/landing/FinalCta.astro';
-import { ArrowRight, ShoppingBag, Calendar, Wrench, Cpu, CheckCircle2, Layers } from '@lucide/astro';
+import { ArrowRight, ShoppingBag, Calendar, Wrench, Cpu, Layers } from '@lucide/astro';
 import { site } from '../../site.config';
 import { getServiceById } from '../../data/services';
-import { getDetailedProjectStories } from '../../data/projects';
 import { industriesFaqs } from '../../data/faqs';
 import { getIndustryPages } from '../../data/marketPages';
 
 const industryPages = getIndustryPages();
-const detailedStories = getDetailedProjectStories();
 
 const industryIcons: Record<string, any> = {
   'ecommerce-product-brands': ShoppingBag,
@@ -40,20 +38,19 @@ const industryIcons: Record<string, any> = {
     </Container>
   </section>
 
-  <!-- 2. Four Industry Cards Grid -->
+  <!-- 2. Four Industry Sectors Grid -->
   <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
         theme="light"
         eyebrow="SECTOR CAPABILITIES"
         title="Explore Our Core Industry Experience"
-        description="Every industry faces unique customer acquisition challenges, inventory cycles, and technical requirements. Explore how we structure our project engagements below."
+        description="Every industry faces unique customer acquisition challenges, inventory cycles, and technical requirements."
       />
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {industryPages.map((ind) => {
           const IconComp = industryIcons[ind.slug] || Layers;
-          const proj = detailedStories.find((p) => p.id === ind.featuredProjectId);
           return (
             <div class="bg-white border border-[#061d33]/10 rounded-2xl p-8 space-y-6 shadow-sm hover:border-[#ff762b]/40 transition-colors flex flex-col justify-between">
               <div class="space-y-4">
@@ -63,18 +60,12 @@ const industryIcons: Record<string, any> = {
                 <h2 class="font-heading font-bold text-2xl text-[#061d33]">
                   {ind.breadcrumbLabel}
                 </h2>
-                <p class="text-slate-700 font-body text-base leading-relaxed">
+                <p class="text-slate-700 font-body text-base leading-relaxed font-normal">
                   {ind.description}
                 </p>
-                {proj && (
-                  <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-4 rounded-xl text-sm font-mono text-slate-800 flex items-start gap-2.5">
-                    <CheckCircle2 class="size-4 text-[#ff762b] shrink-0 mt-0.5" />
-                    <span><strong>Verified Proof:</strong> {proj.publicName} — {proj.verifiedOutcome || proj.shortSummary}</span>
-                  </div>
-                )}
               </div>
               <div class="pt-4">
-                <Button href={`${site.basePath}${ind.canonicalPath}`} variant="primary" class="w-full sm:w-auto justify-center">
+                <Button href={`${site.basePath}${ind.canonicalPath}`} variant="primary" class="w-full sm:w-auto justify-center min-h-[44px]">
                   Explore {ind.breadcrumbLabel}
                   <ArrowRight class="size-4 ml-1.5" />
                 </Button>
@@ -86,12 +77,58 @@ const industryIcons: Record<string, any> = {
     </Container>
   </section>
 
-  <!-- 3. Four Industry-Specific Service Combinations -->
+  <!-- 3. Typical Challenges by Sector -->
   <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
         theme="light"
-        eyebrow="SECTOR SERVICE COMBINATIONS"
+        eyebrow="TYPICAL CHALLENGES"
+        title="Sector-Specific Acquisition Challenges"
+        description="Common bottlenecks businesses experience before implementing a structured digital marketing plan."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-7 rounded-2xl space-y-3">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">E-COMMERCE BRANDS</span>
+          <h3 class="font-heading font-bold text-xl text-[#061d33]">High Ad Fatigue & Unclear Storefront Conversion</h3>
+          <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+            E-commerce product brands often struggle with rapid ad fatigue, mobile checkout friction, and unverified customer order tracking.
+          </p>
+        </div>
+
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-7 rounded-2xl space-y-3">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">SEASONAL CAMPAIGNS</span>
+          <h3 class="font-heading font-bold text-xl text-[#061d33]">Time Constraints & Delayed Pre-Bookings</h3>
+          <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+            Seasonal operators face tight promotional windows that require fast creative turnaround and immediate lead routing pathways.
+          </p>
+        </div>
+
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-7 rounded-2xl space-y-3">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">LOCAL CONTRACTORS</span>
+          <h3 class="font-heading font-bold text-xl text-[#061d33]">Poor Search Visibility & Fragmented Quotes</h3>
+          <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+            Contractors need structured location landing pages and local search foundations to capture nearby commercial search intent.
+          </p>
+        </div>
+
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-7 rounded-2xl space-y-3">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">TECH PRODUCTS</span>
+          <h3 class="font-heading font-bold text-xl text-[#061d33]">Complex Feature Explanation & Product UI</h3>
+          <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+            Software products require clear web application interfaces, concise demo messaging, and practical customer onboarding workflows.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 4. Relevant Service Combinations -->
+  <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-12">
+      <SectionHeading
+        theme="light"
+        eyebrow="SERVICE COMBINATIONS"
         title="Industry-Specific Service Combinations"
         description="Our six core service lines combined for specific business model constraints and customer acquisition channels."
       />
@@ -103,11 +140,11 @@ const industryIcons: Record<string, any> = {
             .filter((s) => Boolean(s));
 
           return (
-            <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-8 space-y-6 flex flex-col justify-between">
+            <div class="bg-white border border-[#061d33]/10 rounded-2xl p-8 space-y-6 flex flex-col justify-between">
               <div class="space-y-4">
                 <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">{ind.eyebrow}</span>
-                <h3 class="font-heading font-bold text-2xl text-[#061d33]">{ind.breadcrumbLabel} Service Combination</h3>
-                <p class="text-slate-700 text-base font-body leading-relaxed">{ind.subtitle}</p>
+                <h3 class="font-heading font-bold text-2xl text-[#061d33]">{ind.breadcrumbLabel} Combination</h3>
+                <p class="text-slate-700 text-base font-body leading-relaxed font-normal">{ind.subtitle}</p>
 
                 <div class="space-y-3 pt-2">
                   <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 block">Applied Published Services:</span>
@@ -115,7 +152,7 @@ const industryIcons: Record<string, any> = {
                     {comboServices.map((srv) => (
                       <a
                         href={`${site.basePath}/services/${srv!.slug}/`}
-                        class="bg-white border border-[#061d33]/10 rounded-xl p-3 text-sm font-heading font-semibold text-[#061d33] hover:text-[#ff762b] hover:border-[#ff762b]/40 transition-colors flex items-center justify-between"
+                        class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-xl p-3 text-sm font-heading font-semibold text-[#061d33] hover:text-[#ff762b] hover:border-[#ff762b]/40 transition-colors flex items-center justify-between"
                       >
                         <span>{srv!.shortName}</span>
                         <ArrowRight class="size-3.5 text-[#ff762b]" />
@@ -126,8 +163,8 @@ const industryIcons: Record<string, any> = {
               </div>
 
               <div class="pt-4">
-                <Button href={`${site.basePath}${ind.canonicalPath}`} variant="secondary" surface="light" class="w-full justify-center">
-                  View {ind.breadcrumbLabel} Architecture &rarr;
+                <Button href={`${site.basePath}${ind.canonicalPath}`} variant="secondary" surface="light" class="w-full justify-center min-h-[44px]">
+                  View {ind.breadcrumbLabel} Scope &rarr;
                 </Button>
               </div>
             </div>
@@ -137,39 +174,12 @@ const industryIcons: Record<string, any> = {
     </Container>
   </section>
 
-  <!-- 4. Verified Project Experience Resolved from Central Registry -->
-  <section class="py-16 sm:py-20 bg-[#061d33] text-white border-b border-slate-800/80">
-    <Container class="space-y-12">
-      <SectionHeading
-        theme="dark"
-        eyebrow="VERIFIED CLIENT EVIDENCE"
-        title="Documented Project Case Studies"
-        description="Explore documented outcomes and technical contributions resolved from our central project registry."
-      />
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {detailedStories.map((story) => (
-          <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl space-y-4 flex flex-col justify-between">
-            <div class="space-y-3">
-              <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">{story.sector}</span>
-              <h3 class="font-heading font-bold text-2xl text-white">{story.publicName}</h3>
-              <p class="text-slate-300 text-base font-body leading-relaxed">{story.verifiedOutcome || story.shortSummary}</p>
-            </div>
-            <a href={`${site.basePath}${story.detailPath}`} class="text-sm font-mono font-bold text-[#ddff35] hover:underline inline-flex items-center gap-1 pt-2">
-              View Detailed Story <ArrowRight class="size-3.5" />
-            </a>
-          </div>
-        ))}
-      </div>
-    </Container>
-  </section>
-
-  <!-- 5. Scope Differentiation Section -->
+  <!-- 5. How Project Structures Differ -->
   <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
         theme="light"
-        eyebrow="ADAPTIVE ENGAGEMENTS"
+        eyebrow="PROJECT DIFFERENTIATION"
         title="How We Structure Scopes for Different Business Models"
         description="We adapt our service combination based on business model requirements, inventory velocity, and commercial goals."
       />
@@ -178,7 +188,7 @@ const industryIcons: Record<string, any> = {
         <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-6 sm:p-8 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">E-COMMERCE & PRODUCTS</span>
           <h3 class="font-heading font-bold text-xl text-[#061d33]">Transaction & Conversion Focus</h3>
-          <p class="text-base text-slate-700 font-body leading-relaxed">
+          <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
             Prioritizes direct-response ad creative testing, mobile storefront alignment, campaign copy, and delivered-order tracking.
           </p>
         </div>
@@ -186,7 +196,7 @@ const industryIcons: Record<string, any> = {
         <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-6 sm:p-8 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">LOCAL CONTRACTORS</span>
           <h3 class="font-heading font-bold text-xl text-[#061d33]">Location & Service Clarity</h3>
-          <p class="text-base text-slate-700 font-body leading-relaxed">
+          <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
             Focuses on location-specific landing pages, technical local SEO, clear scope displays, and direct WhatsApp quote pathways.
           </p>
         </div>
@@ -194,7 +204,7 @@ const industryIcons: Record<string, any> = {
         <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-6 sm:p-8 rounded-2xl space-y-4">
           <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">TECH & SOFTWARE</span>
           <h3 class="font-heading font-bold text-xl text-[#061d33]">Product & Workflow Development</h3>
-          <p class="text-base text-slate-700 font-body leading-relaxed">
+          <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
             Engages as an integrated technical and production team developing web applications, UI layouts, practical workflows, and growth content.
           </p>
         </div>
@@ -214,7 +224,7 @@ const industryIcons: Record<string, any> = {
         {industriesFaqs.map((faq) => (
           <div class="bg-white border border-[#061d33]/10 rounded-xl p-6 space-y-2">
             <h3 class="font-heading font-bold text-lg text-[#061d33]">{faq.question}</h3>
-            <p class="text-slate-700 text-base font-body leading-relaxed">{faq.answer}</p>
+            <p class="text-slate-700 text-base font-body leading-relaxed font-normal">{faq.answer}</p>
           </div>
         ))}
       </div>

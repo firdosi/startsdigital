@@ -22,15 +22,15 @@ const fitClasses: Record<NonNullable<Brand['logoFit']>, string> = {
     <!-- Section Header -->
     <div class="mb-10 sm:mb-12 text-center space-y-3 max-w-2xl mx-auto">
       <SectionEyebrow
-        label="CLIENT WORK & PORTFOLIO"
+        label="CLIENT EXPERIENCE"
         align="center"
         delay={0}
       />
       <h2 data-motion="fade-up" data-motion-delay="100" class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
-        Selected Client Experience
+        BRANDS WE HAVE WORKED WITH
       </h2>
-      <p data-motion="fade-up" data-motion-delay="200" class="text-sm sm:text-base text-slate-700 font-body leading-relaxed font-normal">
-        Proven execution delivered across growth-stage e-commerce, agriculture, regional services, and technology.
+      <p data-motion="fade-up" data-motion-delay="200" class="text-base text-slate-700 font-body leading-relaxed font-normal">
+        Client experience across e-commerce, agriculture, local services, immigration and technology.
       </p>
     </div>
 
@@ -57,7 +57,7 @@ const fitClasses: Record<NonNullable<Brand['logoFit']>, string> = {
             const content = (
               <div class="w-full h-full flex flex-col items-center justify-between p-3 sm:p-4 group">
                 
-                <!-- Logo Zone: Fixed height ~48px mobile, ~56px desktop -->
+                <!-- Logo Zone -->
                 <div class="w-full h-12 sm:h-14 flex items-center justify-center shrink-0">
                   {b.darkLogoContainer ? (
                     <div class="w-full max-w-[138px] h-[42px] sm:h-[46px] rounded-lg bg-[#061d33] px-3 py-1.5 flex items-center justify-center border border-white/10 shadow-xs">
@@ -76,7 +76,7 @@ const fitClasses: Record<NonNullable<Brand['logoFit']>, string> = {
                     {b.name}
                   </span>
 
-                  <!-- Relationship Label (ConvortAI Only) -->
+                  <!-- Technology Partner Label (ConvortAI Only) -->
                   <div class="min-h-[16px] mt-1 flex items-center justify-center">
                     {b.isTechnologyPartner ? (
                       <span class="text-[10px] font-mono font-medium tracking-wider text-[#ff762b] uppercase block">

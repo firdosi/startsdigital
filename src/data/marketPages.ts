@@ -39,7 +39,7 @@ export const marketPages: MarketPageDefinition[] = [
     schemaType: 'industry',
     breadcrumbLabel: 'E-commerce & Product Brands',
     featuredProjectId: 'black-gold-fertilizer',
-    featuredProofText: 'Supported PKR 30M+ in delivered-order revenue, 29,000+ product sales and 22,000+ delivered sales over 24 months for Black Gold Fertilizer.',
+    featuredProofText: 'Digital marketing, paid advertising, creative content and e-commerce website management for Black Gold Fertilizer.',
     relevantServiceIds: ['paid-advertising', 'website-design-development', 'creative-content', 'seo-local-search', 'social-media-marketing'],
     keyTopics: [
       { title: 'Product Positioning & Offer Structure', description: 'Structuring clear value propositions, product features, and promotional offer presentation for digital consumers.' },
@@ -81,7 +81,7 @@ export const marketPages: MarketPageDefinition[] = [
     schemaType: 'industry',
     breadcrumbLabel: 'Seasonal Campaigns',
     featuredProjectId: 'qurbani-campaign',
-    featuredProofText: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign for Wajib Livestock.',
+    featuredProofText: 'Seasonal campaign strategy, paid social advertising, lead generation and WhatsApp sales routing for Wajib Livestock.',
     relevantServiceIds: ['paid-advertising', 'creative-content', 'social-media-marketing'],
     keyTopics: [
       { title: 'Campaign Schedule & Timing', description: 'Mapping promotional launch dates, booking windows, and campaign duration to align with event timing.' },
@@ -119,7 +119,7 @@ export const marketPages: MarketPageDefinition[] = [
     schemaType: 'industry',
     breadcrumbLabel: 'Local Service Businesses',
     featuredProjectId: 'rk-reno-solutions',
-    featuredProofText: 'Website design, location-focused content, service-page development and local SEO foundation for renovation and air-conditioning services for RK Reno Solutions in Kuala Lumpur and Selangor.',
+    featuredProofText: 'Website design, location-focused content, service-page development and local SEO foundation for renovation and air-conditioning services for RK Reno Solutions.',
     relevantServiceIds: ['website-design-development', 'seo-local-search', 'paid-advertising'],
     keyTopics: [
       { title: 'Service & Location Page Structure', description: 'Structuring dedicated pages for core contractor specialties and key service areas to capture search intent.' },
@@ -157,7 +157,7 @@ export const marketPages: MarketPageDefinition[] = [
     schemaType: 'industry',
     breadcrumbLabel: 'Technology Products',
     featuredProjectId: 'convort-ai',
-    featuredProofText: 'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth as a Technology & Growth Partner.',
+    featuredProofText: 'Full-stack web application development, UI design, project management, social media marketing and ongoing growth support for ConvortAI.',
     relevantServiceIds: ['website-design-development', 'ai-marketing-workflows', 'creative-content', 'social-media-marketing'],
     keyTopics: [
       { title: 'Web Application Development', description: 'Engineering modern, responsive web application interfaces using clean frontend frameworks and structured data handling.' },
@@ -195,7 +195,7 @@ export const marketPages: MarketPageDefinition[] = [
     schemaType: 'location',
     breadcrumbLabel: 'Lahore',
     featuredProjectId: 'black-gold-fertilizer',
-    featuredProofText: 'Founded in 2025 in Lahore, Starts Digital delivers digital marketing and technical web production for Pakistani businesses and international partners.',
+    featuredProofText: 'Founded in 2025 in Lahore, Starts Digital delivers digital marketing and technical web production for local and international clients.',
     relevantServiceIds: ['paid-advertising', 'website-design-development', 'seo-local-search', 'creative-content', 'social-media-marketing', 'ai-marketing-workflows'],
     keyTopics: [
       { title: 'Lahore-Based Core Team', description: 'Our strategy, design, development, and campaign operations are executed directly by our team in Lahore.' },

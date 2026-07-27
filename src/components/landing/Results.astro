@@ -3,48 +3,48 @@ import { TrendingUp, ShoppingBag, Award, HeartHandshake, CheckCircle } from '@lu
 
 const metrics = [
   {
-    target: '30',
-    prefix: 'PKR ',
-    suffix: 'M+',
-    exact: 'PKR 30M+',
-    label: 'Delivered Revenue Supported',
-    description: 'PKR 30M+ in delivered-order revenue supported for Black Gold Fertilizer over 24 months.',
+    target: '01',
+    prefix: '',
+    suffix: '',
+    exact: 'Paid Ads',
+    label: 'Campaign Execution',
+    description: 'Direct-response advertising and account optimization.',
     blockClass: 'bg-[#ff762b] text-white',
     badgeClass: 'bg-white/20 text-white',
     accentLine: 'bg-white/40',
     Icon: TrendingUp,
   },
   {
-    target: '29000',
+    target: '02',
     prefix: '',
-    suffix: '+',
-    exact: '29,000+',
-    label: 'Product Sales Supported',
-    description: '29,000+ product sales supported over 24 months, including more than 22,000 delivered sales.',
+    suffix: '',
+    exact: 'Web Design',
+    label: 'Storefront & UI',
+    description: 'Responsive business websites and e-commerce platforms.',
     blockClass: 'bg-[#9a83f5] text-white',
     badgeClass: 'bg-white/20 text-white',
     accentLine: 'bg-white/40',
     Icon: ShoppingBag,
   },
   {
-    target: '4.2',
-    prefix: 'PKR ',
-    suffix: 'M+',
-    exact: 'PKR 4.2M+',
-    label: 'Sales Supported',
-    description: 'PKR 4.2M+ sales supported during the seasonal Wajib Livestock Qurbani campaign.',
+    target: '03',
+    prefix: '',
+    suffix: '',
+    exact: 'Local SEO',
+    label: 'Search Visibility',
+    description: 'Technical SEO foundations and location-focused pages.',
     blockClass: 'bg-[#ddff35] text-[#061d33]',
     badgeClass: 'bg-[#061d33]/15 text-[#061d33]',
     accentLine: 'bg-[#061d33]/40',
     Icon: Award,
   },
   {
-    target: '150',
+    target: '04',
     prefix: '',
-    suffix: '+',
-    exact: 'More Than 150',
-    label: 'Animals Sold',
-    description: 'More than 150 animals sold through seasonal campaign execution.',
+    suffix: '',
+    exact: 'AI Workflows',
+    label: 'Process Automation',
+    description: 'Lead routing and automated customer response systems.',
     blockClass: 'bg-[#ff514b] text-white',
     badgeClass: 'bg-white/20 text-white',
     accentLine: 'bg-white/40',
@@ -54,26 +54,22 @@ const metrics = [
 ---
 
 <section id="results" class="py-20 lg:py-28 bg-[#061d33] text-white border-b border-white/10 overflow-hidden relative">
-  <!-- Subtle Background Light Sweep -->
   <div aria-hidden="true" class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-[#2563eb]/20 via-[#9a83f5]/10 to-transparent blur-3xl rounded-full"></div>
 
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8 relative z-10">
-    
-    <!-- Section Header -->
     <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
       <span data-motion="scale-in" class="inline-flex items-center gap-2 text-xs font-medium font-mono uppercase tracking-[0.06em] text-[#ddff35]">
         <CheckCircle class="size-4 text-[#ddff35]" />
-        <span>VERIFIED PERFORMANCE</span>
+        <span>CORE CAPABILITIES</span>
       </span>
       <h2 data-motion="clip-up" data-motion-delay="100" class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-white leading-[1.15] tracking-[-0.025em]">
-        Verified commercial results
+        Service Execution Standards
       </h2>
       <p data-motion="fade-up" data-motion-delay="200" class="text-base sm:text-lg text-slate-300 font-body leading-[1.65] font-normal max-w-2xl mx-auto">
-        Commercial milestones achieved across client accounts using verified first-party business data.
+        Capabilities structured around practical business acquisition goals.
       </p>
     </div>
 
-    <!-- 4 Large Colourful Metric Blocks with Pop-In Entrance -->
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
       {
         metrics.map((m, idx) => (
@@ -91,43 +87,34 @@ const metrics = [
                   <m.Icon class="size-7" />
                 </div>
                 <span class:list={['text-xs font-mono font-medium px-3 py-1 rounded-full uppercase tracking-[0.05em]', m.badgeClass]}>
-                  VERIFIED
+                  PUBLISHED
                 </span>
               </div>
 
-              <!-- Metric Value: Sora 700 -->
               <div
                 class="font-heading font-bold text-[32px] sm:text-[40px] leading-none counter-value mb-3 tracking-[-0.025em]"
-                data-counter-target={m.target}
-                data-counter-prefix={m.prefix}
-                data-counter-suffix={m.suffix}
-                data-counter-exact={m.exact}
               >
                 {m.exact}
               </div>
 
-              <!-- Short Accent Line under Metric Value -->
               <div class:list={['h-1 w-12 rounded-full mb-4 group-hover:w-20 transition-all duration-300', m.accentLine]}></div>
 
-              <!-- Metric Label: Inter 600 15px -->
               <h3 class="font-body font-semibold text-[15px] leading-snug mb-2">
                 {m.label}
               </h3>
               
-              <!-- Supporting text: Inter 400 15-16px -->
               <p class="text-[15px] sm:text-base leading-[1.55] font-body font-normal opacity-90">
                 {m.description}
               </p>
             </div>
 
             <div class="mt-8 pt-4 border-t border-current/20 flex items-center justify-between text-xs font-body font-semibold uppercase tracking-wider">
-              <span>Performance Track</span>
-              <span>Verified</span>
+              <span>Service Area</span>
+              <span>Published</span>
             </div>
           </div>
         ))
       }
     </div>
-
   </div>
 </section>

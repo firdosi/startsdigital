@@ -5,7 +5,6 @@ import CompanyFacts from '../components/about/CompanyFacts.astro';
 import FounderProfile from '../components/about/FounderProfile.astro';
 import TeamGrid from '../components/about/TeamGrid.astro';
 import TeamWorkflow from '../components/about/TeamWorkflow.astro';
-import CompanyExperience from '../components/about/CompanyExperience.astro';
 import WorkingPrinciples from '../components/about/WorkingPrinciples.astro';
 import CapabilityConnection from '../components/about/CapabilityConnection.astro';
 import FinalCta from '../components/landing/FinalCta.astro';
@@ -13,11 +12,12 @@ import MotionController from '../components/common/MotionController.astro';
 import AnimatedGrid from '../components/motion/AnimatedGrid.astro';
 import FloatingOrb from '../components/motion/FloatingOrb.astro';
 import SectionSpark from '../components/motion/SectionSpark.astro';
-import { Sparkles, MapPin, Calendar, Globe } from '@lucide/astro';
+import { site } from '../site.config';
+import { Sparkles, MapPin, Calendar, Globe, ArrowRight } from '@lucide/astro';
 ---
 
 <BaseLayout>
-  {/* 1. About Hero (Deep Navy Background & Immediately Visible Narrative) */}
+  {/* 1. About Hero */}
   <section id="about-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
     <AnimatedGrid opacity={0.10} />
     <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
@@ -66,26 +66,36 @@ import { Sparkles, MapPin, Calendar, Globe } from '@lucide/astro';
   {/* 2. Company Story */}
   <CompanyStory />
 
-  {/* 3. Company at a Glance */}
+  {/* 3. Company Facts */}
   <CompanyFacts />
 
-  {/* 4. Founder & Leadership (Ahad Firdosi) */}
+  {/* 4. Founder Profile (Ahad Firdosi) */}
   <FounderProfile />
 
-  {/* 5. Creative & Development Team (Meesam) */}
+  {/* 5. Creative & Development Team (Meesam & Zaid) */}
   <TeamGrid />
 
-  {/* 6. Team Workflow */}
+  {/* 6. Team Responsibilities */}
   <TeamWorkflow />
 
-  {/* 7. Company Experience */}
-  <CompanyExperience />
-
-  {/* 8. Working Principles */}
+  {/* 7. Working Method */}
   <WorkingPrinciples />
 
-  {/* 9. Capability Connection */}
+  {/* 8. Principles & Service Connection */}
   <CapabilityConnection />
+
+  {/* Client Work Simple Text Link Section */}
+  <section class="py-12 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 text-center">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      <a
+        href={`${site.basePath}/work/`}
+        class="inline-flex items-center gap-2 font-heading font-semibold text-base sm:text-lg text-[#061d33] hover:text-[#ff762b] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] min-h-[44px]"
+      >
+        <span>View our client work</span>
+        <ArrowRight class="size-4 text-[#ff762b]" />
+      </a>
+    </div>
+  </section>
 
   {/* 10. Final CTA */}
   <FinalCta />

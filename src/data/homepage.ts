@@ -33,20 +33,6 @@ export interface HomepageContent {
     primaryCta: { label: string; href: string };
     secondaryCta: { label: string; href: string };
     serviceLine: string[];
-    proofHeaderLabel: string;
-    proofCards: Array<{
-      brand: string;
-      context: string;
-      metrics: Array<{ value: string; label: string }>;
-      summary: string;
-      href: string;
-    }>;
-  };
-  projectProof: {
-    eyebrow: string;
-    heading: string;
-    paragraph: string;
-    items: ProjectProofItem[];
   };
   services: {
     eyebrow: string;
@@ -85,102 +71,37 @@ export interface HomepageContent {
 export const homepageContent: HomepageContent = {
   hero: {
     eyebrow: 'STRATEGY, EXECUTION & DIGITAL GROWTH',
-    headline: 'Build a clearer digital growth system for your business.',
+    headline: 'Digital marketing, custom websites and AI workflows built for growth.',
     paragraph:
-      'Starts Digital brings paid advertising, websites, SEO, creative production and practical AI workflows into one coordinated plan shaped around your goals, market and available assets.',
+      'Starts Digital brings paid advertising, website design, SEO, creative production, social media and practical AI workflows into one coordinated system. We help businesses build clear commercial visibility, generate qualified leads and streamline acquisition.',
     primaryCta: {
       label: 'Discuss Your Project',
       href: '/contact/'
     },
     secondaryCta: {
-      label: 'Explore Our Work',
-      href: '/work/'
+      label: 'Explore Our Services',
+      href: '/services/'
     },
     serviceLine: [
       'Paid Advertising',
-      'Websites & E-Commerce',
+      'Website Design & Development',
       'SEO & Local Search',
       'Creative Content',
-      'Social Media',
+      'Social Media Marketing',
       'AI Marketing Workflows'
-    ],
-    proofHeaderLabel: 'SELECTED CAMPAIGN OUTCOMES',
-    proofCards: [
-      {
-        brand: 'Black Gold Fertilizer',
-        context: 'E-commerce & Agricultural Growth',
-        metrics: [
-          { value: 'PKR 30M+', label: 'Supported Revenue' },
-          { value: '29,000+', label: 'Product Sales' }
-        ],
-        summary: 'Supported PKR 30M+ in delivered-order revenue and 29,000+ product sales over 24 months.',
-        href: '/work/black-gold-fertilizer/'
-      },
-      {
-        brand: 'Wajib Livestock',
-        context: 'Seasonal Qurbani Campaign',
-        metrics: [
-          { value: 'PKR 4.2M+', label: 'Supported Revenue' },
-          { value: '150+', label: 'Animals Sold' }
-        ],
-        summary: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.',
-        href: '/work/qurbani-campaign/'
-      }
-    ]
-  },
-  projectProof: {
-    eyebrow: 'PROOF IN CONTEXT',
-    heading: 'Results make more sense when the work behind them is visible.',
-    paragraph:
-      'Selected projects show how strategy, advertising, websites, creative production and ongoing execution were combined around real business requirements.',
-    items: [
-      {
-        id: 'rk-reno-solutions',
-        brand: 'RK Reno Solutions',
-        sector: 'Renovation & Local Services',
-        contribution:
-          'Website structure, service content and local SEO foundations for renovation and air-conditioning services in Kuala Lumpur and Selangor.',
-        link: '/work/rk-reno-solutions/',
-        imagePath: '/brands/rk-reno-solutions/screenshot.webp',
-        tags: [
-          'Website Structure',
-          'Service Content',
-          'Local SEO Foundation',
-          'Location-Focused Pages'
-        ]
-      },
-      {
-        id: 'convort-ai',
-        brand: 'ConvortAI',
-        sector: 'Technology Product Development',
-        relationship: 'Technology Partner',
-        extendedRelationship: 'Product Development & Growth Partner',
-        contribution:
-          'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
-        link: '/work/convortai/',
-        logoPath: '/brands/convort-ai/logo.webp',
-        tags: [
-          'Web Application Development',
-          'Product Development',
-          'Project Management',
-          'Social Media',
-          'Creative Production',
-          'Growth Support'
-        ]
-      }
     ]
   },
   services: {
-    eyebrow: 'CAPABILITIES',
-    heading: 'The work required to move from attention to measurable action.',
-    paragraph: 'Choose one focused service or combine several into a coordinated growth plan.',
+    eyebrow: 'CORE CAPABILITIES',
+    heading: 'Six core service lines designed to build online presence and customer acquisition.',
+    paragraph: 'Choose individual service capabilities or combine multiple services into one coordinated project plan.',
     items: [
       {
         id: 'paid-advertising',
         number: '01',
         title: 'Paid Advertising',
         description:
-          'Campaign planning, account structure, creative testing, audience development and ongoing optimisation across relevant paid channels.',
+          'Campaign planning, ad account structure, creative testing and performance optimization across active advertising platforms.',
         deliverables: [
           'Campaign strategy',
           'Account setup',
@@ -193,7 +114,7 @@ export const homepageContent: HomepageContent = {
         number: '02',
         title: 'Website Design & Development',
         description:
-          'Responsive business websites, landing pages and e-commerce experiences designed around clear customer journeys.',
+          'Responsive business websites, landing pages and e-commerce experiences engineered for clarity and user conversion.',
         deliverables: [
           'Business websites',
           'Landing pages',
@@ -206,7 +127,7 @@ export const homepageContent: HomepageContent = {
         number: '03',
         title: 'SEO & Local Search',
         description:
-          'Technical foundations, service content and location-focused pages structured around relevant commercial searches.',
+          'Technical SEO foundations, service-page content and location-focused pages structured around relevant commercial searches.',
         deliverables: [
           'Technical SEO',
           'Service pages',
@@ -219,12 +140,12 @@ export const homepageContent: HomepageContent = {
         number: '04',
         title: 'Creative Content',
         description:
-          'Campaign concepts, advertising creatives, social content and AI-assisted production workflows developed for real platforms.',
+          'Campaign concepts, video ad edits, promotional graphics and visual content built for modern digital platforms.',
         deliverables: [
           'Ad creatives',
           'Campaign concepts',
           'Social content',
-          'AI video workflows'
+          'Video ad edits'
         ]
       },
       {
@@ -232,7 +153,7 @@ export const homepageContent: HomepageContent = {
         number: '05',
         title: 'Social Media Marketing',
         description:
-          'Content planning, publishing support and campaign coordination built around consistent brand communication.',
+          'Content planning, publishing support and social media management aligned with consistent brand communication.',
         deliverables: [
           'Content planning',
           'Publishing support',
@@ -245,7 +166,7 @@ export const homepageContent: HomepageContent = {
         number: '06',
         title: 'AI Marketing Workflows',
         description:
-          'Practical systems that support lead routing, content production, customer responses and repetitive marketing tasks.',
+          'Practical AI systems supporting lead routing, content assistance, customer responses and marketing task automation.',
         deliverables: [
           'Lead workflows',
           'Content assistance',
@@ -257,33 +178,33 @@ export const homepageContent: HomepageContent = {
   },
   showcase: {
     eyebrow: 'SELECTED WORK',
-    heading: 'Different businesses require different combinations of strategy and execution.',
+    heading: 'Selected client work across e-commerce, seasonal campaigns, services and technology.',
     paragraph:
-      'Explore selected projects across e-commerce, seasonal campaigns, local services and technology.'
+      'Explore how Starts Digital contributes across different business sectors and project requirements.'
   },
   engagementPath: {
-    eyebrow: 'STARTING A PROJECT',
-    heading: 'A useful first conversation starts with the right context.',
+    eyebrow: 'BUSINESS PROBLEMS WE HELP SOLVE',
+    heading: 'Addressing key digital growth challenges with clear project execution.',
     paragraph:
-      'Share what the business is trying to achieve, what is currently in place and where support is needed. That information helps define a realistic scope before execution begins.',
+      'We help companies solve acquisition bottlenecks, improve website performance, refine ad messaging and automate routine marketing tasks.',
     steps: [
       {
         number: '01',
-        title: 'Share the Business Context',
+        title: 'Low Customer Conversion',
         description:
-          'Provide the business, market, current channels, main challenge and the result you are trying to achieve.'
+          'Transform unclear websites and ad campaigns into structured journeys with clear messaging and friction-free inquiry routes.'
       },
       {
         number: '02',
-        title: 'Define the Required Scope',
+        title: 'Fragmented Marketing Execution',
         description:
-          'Identify which services, assets, platforms and deliverables are relevant to the project.'
+          'Unify paid ads, web development, SEO and creative production under one coordinated roadmap.'
       },
       {
         number: '03',
-        title: 'Agree the Next Working Step',
+        title: 'Manual & Slow Lead Handling',
         description:
-          'Confirm responsibilities, communication channels, priorities and the work that should begin first.'
+          'Deploy practical AI workflows and structured forms to route customer inquiries directly to sales teams.'
       }
     ],
     checklistHeader: 'Useful information to include',
@@ -305,20 +226,20 @@ export const homepageContent: HomepageContent = {
   },
   process: {
     eyebrow: 'WORKING METHOD',
-    heading: 'A clear path from business requirement to active execution.',
+    heading: 'A transparent four-step process from discovery to ongoing review.',
     paragraph:
-      'The exact scope varies by project, but the work is organised around discovery, planning, production, launch and ongoing review.'
+      'Every project follows an organized path covering discovery, planning, production and ongoing performance review.'
   },
   finalCta: {
     heading: 'Ready to discuss what your business needs next?',
     paragraph:
-      'Share your goals, current challenges and required services. Starts Digital will use that information to understand the project scope before the next discussion.',
+      'Share your goals, current challenges and required services. Starts Digital will review your brief and outline a practical execution plan.',
     primaryCta: {
       label: 'Discuss Your Project',
       href: '/contact/'
     },
     secondaryCta: {
-      label: 'WhatsApp',
+      label: 'WhatsApp Direct',
       href: '/contact/'
     }
   }

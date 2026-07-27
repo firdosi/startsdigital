@@ -1,52 +1,47 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/landing/Hero.astro';
-import ProjectProof from '../components/landing/ProjectProof.astro';
-import BrandMarquee from '../components/landing/BrandMarquee.astro';
 import Features from '../components/landing/Features.astro';
-import Showcase from '../components/landing/Showcase.astro';
 import EngagementPath from '../components/landing/EngagementPath.astro';
-import TeamPreview from '../components/landing/TeamPreview.astro';
 import Process from '../components/landing/Process.astro';
 import PlatformGrid from '../components/landing/PlatformGrid.astro';
+import BrandMarquee from '../components/landing/BrandMarquee.astro';
+import Showcase from '../components/landing/Showcase.astro';
+import TeamPreview from '../components/landing/TeamPreview.astro';
 import Faq from '../components/landing/Faq.astro';
 import FinalCta from '../components/landing/FinalCta.astro';
 import MotionController from '../components/common/MotionController.astro';
-import { site } from '../site.config';
 ---
 
 <BaseLayout>
-  {/* 1. Hero V2 (Editorial Split Layout & Grounded Campaign Outcomes) */}
+  {/* 1. Hero (Service-First Positioning & Core Capabilities) */}
   <Hero />
 
-  {/* 2. Project Proof (RK Reno Solutions & ConvortAI Contextual Proof) */}
-  <ProjectProof />
-
-  {/* 3. Selected Client Experience (Approved Editorial Client Index) */}
-  <BrandMarquee />
-
-  {/* 4. Services Overview / Capabilities (6-Service Capabilities Grid) */}
+  {/* 2. Six Core Services (Capabilities Overview) */}
   <Features />
 
-  {/* 5. Featured Work (4 Selected Projects Across E-Commerce, Agriculture, Services & Technology) */}
-  <Showcase />
-
-  {/* 6. Engagement Path (Starting a Project Inquiry Journey) */}
+  {/* 3. Business Problems We Help Solve */}
   <EngagementPath />
 
-  {/* 7. Team Preview (Conditionally renders approved team members, zero-height when empty) */}
-  <TeamPreview />
-
-  {/* 8. Working Method (Execution Accordion Framework) */}
+  {/* 4. How Starts Digital Works (Working Method) */}
   <Process />
 
-  {/* 9. Platforms & Tools */}
+  {/* 5. Platforms & Tools We Work With */}
   <PlatformGrid />
 
-  {/* 10. Frequently Asked Questions */}
+  {/* 6. Brands We Have Worked With (13 Approved Client Brands) */}
+  <BrandMarquee />
+
+  {/* 7. Compact Selected Work Preview (4 Compact Project Cards) */}
+  <Showcase />
+
+  {/* 8. Team Preview (Ahad, Meesam and Zaid) */}
+  <TeamPreview />
+
+  {/* 9. Frequently Asked Questions */}
   <Faq />
 
-  {/* 11. Final CTA */}
+  {/* 10. Final CTA */}
   <FinalCta />
 
   {/* Motion Controller System */}

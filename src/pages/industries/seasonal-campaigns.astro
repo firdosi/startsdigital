@@ -36,33 +36,14 @@ const relevantServices = marketData.relevantServiceIds
     </Container>
   </section>
 
-  <!-- 2. Genuine Project Evidence Section -->
-  <section class="py-12 bg-white text-[#061d33] border-b border-[#061d33]/10">
-    <Container>
-      <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div class="space-y-2 max-w-2xl">
-          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">SELECTED CAMPAIGN EXPERIENCE</span>
-          <h2 class="font-heading font-bold text-xl sm:text-2xl text-[#061d33]">Wajib Livestock Qurbani Campaign</h2>
-          <p class="text-base text-slate-700 font-body leading-relaxed">
-            {marketData.featuredProofText}
-          </p>
-        </div>
-        <Button href={`${site.basePath}/work/qurbani-campaign/`} variant="primary" class="shrink-0">
-          View Campaign Story
-          <ArrowRight class="size-4 ml-1.5" />
-        </Button>
-      </div>
-    </Container>
-  </section>
-
-  <!-- 3. Key Business or Project Requirements -->
+  <!-- 2. Core Focus Areas -->
   <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
         theme="light"
-        eyebrow="CAMPAIGN STRATEGY"
-        title="Execution Pillars for Time-Sensitive Campaigns"
-        description="Capturing customer interest during fixed campaign windows requires rapid creative production, pre-booking windows, and tight inquiry management."
+        eyebrow="EXECUTION PILLARS"
+        title="Core Focus Areas for Seasonal Campaigns"
+        description="Structuring promotional schedules, video creative, and WhatsApp customer inquiry routes."
       />
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -72,7 +53,7 @@ const relevantServices = marketData.relevantServiceIds
               <CheckCircle2 class="size-5 text-[#ff762b] shrink-0 mt-0.5" />
               <h3 class="font-heading font-bold text-lg text-[#061d33]">{item.title}</h3>
             </div>
-            <p class="text-slate-700 text-base font-body leading-relaxed pl-8">
+            <p class="text-slate-700 text-base font-body leading-relaxed pl-8 font-normal">
               {item.description}
             </p>
           </div>
@@ -81,14 +62,14 @@ const relevantServices = marketData.relevantServiceIds
     </Container>
   </section>
 
-  <!-- 4. Relevant Services Resolved from Central Registry -->
+  <!-- 3. Relevant Services -->
   <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
         theme="light"
         eyebrow="APPLIED SERVICES"
         title="Services Applicable to Seasonal Campaigns"
-        description="Core service lines combined for high-velocity seasonal promotion."
+        description="Paid advertising, video creative, and social media coordination for event-driven promotions."
       />
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -97,7 +78,7 @@ const relevantServices = marketData.relevantServiceIds
             <div class="space-y-3">
               <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">{srv!.eyebrow}</span>
               <h3 class="font-heading font-bold text-xl text-[#061d33]">{srv!.name}</h3>
-              <p class="text-slate-700 text-base font-body leading-relaxed">{srv!.summary}</p>
+              <p class="text-slate-700 text-base font-body leading-relaxed font-normal">{srv!.summary}</p>
             </div>
             <a href={`${site.basePath}/services/${srv!.slug}/`} class="text-sm font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
               Explore {srv!.shortName} <ArrowRight class="size-3.5" />
@@ -108,14 +89,14 @@ const relevantServices = marketData.relevantServiceIds
     </Container>
   </section>
 
-  <!-- 5. Working Method -->
+  <!-- 4. Working Method -->
   <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
         theme="light"
-        eyebrow="EXECUTION WORKFLOW"
-        title="Our Seasonal Campaign Process"
-        description="Structured execution from pre-campaign planning to campaign optimization."
+        eyebrow="WORKING METHOD"
+        title="Our Seasonal Campaign Execution Process"
+        description="From campaign timeline planning to creative production, multi-channel activation, and live inquiry monitoring."
       />
 
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -123,44 +104,33 @@ const relevantServices = marketData.relevantServiceIds
           <div class="bg-white border border-[#061d33]/10 rounded-xl p-6 space-y-3 shadow-sm">
             <span class="text-2xl font-heading font-bold text-[#ff762b]">{step.step}</span>
             <h4 class="font-heading font-bold text-base text-[#061d33]">{step.title}</h4>
-            <p class="text-base text-slate-700 font-body leading-relaxed">{step.description}</p>
+            <p class="text-base text-slate-700 font-body leading-relaxed font-normal">{step.description}</p>
           </div>
         ))}
       </div>
     </Container>
   </section>
 
-  <!-- 6. Related Industry and Project Links -->
-  <section class="py-16 bg-white text-[#061d33] border-b border-[#061d33]/10">
-    <Container class="space-y-8 max-w-4xl">
-      <SectionHeading
-        theme="light"
-        eyebrow="RELATED NAVIGATION"
-        title="Explore Related Sectors & Case Studies"
-      />
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href={`${site.basePath}/work/qurbani-campaign/`} class="bg-[#f7f4ed] border border-[#061d33]/10 p-5 rounded-xl block hover:border-[#ff762b] transition-colors">
-          <span class="text-xs font-mono text-[#ff762b] uppercase font-bold block">CAMPAIGN STORY</span>
-          <span class="font-heading font-bold text-lg text-[#061d33]">Wajib Livestock Campaign Story &rarr;</span>
-        </a>
-        <a href={`${site.basePath}/industries/`} class="bg-[#f7f4ed] border border-[#061d33]/10 p-5 rounded-xl block hover:border-[#ff762b] transition-colors">
-          <span class="text-xs font-mono text-[#ff762b] uppercase font-bold block">ALL SECTORS</span>
-          <span class="font-heading font-bold text-lg text-[#061d33]">View All Industry Sectors &rarr;</span>
-        </a>
-        <a href={`${site.basePath}/services/creative-content/`} class="bg-[#f7f4ed] border border-[#061d33]/10 p-5 rounded-xl block hover:border-[#ff762b] transition-colors">
-          <span class="text-xs font-mono text-[#ff762b] uppercase font-bold block">KEY SERVICE</span>
-          <span class="font-heading font-bold text-lg text-[#061d33]">Creative Content & Ad Design &rarr;</span>
-        </a>
-        <a href={`${site.basePath}/contact/?source=seasonal-campaigns`} class="bg-[#f7f4ed] border border-[#061d33]/10 p-5 rounded-xl block hover:border-[#ff762b] transition-colors">
-          <span class="text-xs font-mono text-[#ff762b] uppercase font-bold block">PROJECT INQUIRY</span>
-          <span class="font-heading font-bold text-lg text-[#061d33]">Discuss a Seasonal Campaign &rarr;</span>
-        </a>
+  <!-- 5. One Compact Related Experience Card Near Bottom -->
+  <section class="py-12 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <Container>
+      <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 max-w-4xl mx-auto">
+        <div class="space-y-2 max-w-xl">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">RELATED EXPERIENCE</span>
+          <h2 class="font-heading font-bold text-xl sm:text-2xl text-[#061d33]">Wajib Livestock</h2>
+          <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+            Seasonal Qurbani campaign strategy, paid social advertising, lead generation creative and WhatsApp sales routing.
+          </p>
+        </div>
+        <Button href={`${site.basePath}/work/qurbani-campaign/`} variant="primary" class="shrink-0 min-h-[44px]">
+          View Case Study
+          <ArrowRight class="size-4 ml-1.5" />
+        </Button>
       </div>
     </Container>
   </section>
 
-  <!-- 7. FAQ Section -->
+  <!-- 6. FAQ Section -->
   <section class="py-16 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-8 max-w-4xl">
       <SectionHeading
@@ -172,13 +142,13 @@ const relevantServices = marketData.relevantServiceIds
         {marketData.faqs.map((faq) => (
           <div class="bg-white border border-[#061d33]/10 rounded-xl p-6 space-y-2">
             <h3 class="font-heading font-bold text-lg text-[#061d33]">{faq.question}</h3>
-            <p class="text-slate-700 text-base font-body leading-relaxed">{faq.answer}</p>
+            <p class="text-slate-700 text-base font-body leading-relaxed font-normal">{faq.answer}</p>
           </div>
         ))}
       </div>
     </Container>
   </section>
 
-  <!-- 8. Contact CTA -->
+  <!-- 7. Contact CTA -->
   <FinalCta />
 </BaseLayout>

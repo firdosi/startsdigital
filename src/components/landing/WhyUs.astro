@@ -7,9 +7,9 @@ import {
   Cpu, 
   ShieldCheck, 
   TrendingUp, 
-  ShoppingBag, 
-  Award, 
-  HeartHandshake 
+  Layout, 
+  Search, 
+  Video 
 } from '@lucide/astro';
 
 const trustPillars = [
@@ -55,7 +55,6 @@ const trustPillars = [
           align="left"
           delay={0}
         />
-        <!-- Sora 700 section heading: 31px mobile, 36px tablet, 44px desktop -->
         <h2 class="font-heading font-bold text-[31px] md:text-[36px] lg:text-[44px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
           Why brands trust Starts Digital
         </h2>
@@ -67,7 +66,7 @@ const trustPillars = [
       </div>
     </div>
 
-    <!-- Layered Central Visual Composition with Floating Verified Metric Badges -->
+    <!-- Layered Central Visual Composition with Floating Capability Badges -->
     <div class="relative max-w-4xl mx-auto my-16">
       
       <!-- Depth Layer 1 (Back) -->
@@ -75,70 +74,69 @@ const trustPillars = [
       <!-- Depth Layer 2 (Middle) -->
       <div aria-hidden="true" class="absolute inset-0 rounded-3xl bg-[#9a83f5]/15 -rotate-2 scale-[0.99] pointer-events-none transition-transform duration-500"></div>
 
-      <!-- Main Center Visual Card: Enters from the right -->
+      <!-- Main Center Visual Card -->
       <div data-motion="fade-right" data-motion-delay="150" class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-3.5 shadow-2xl relative z-10 overflow-hidden">
         <img
-          src={`${site.basePath}/brands/rk-reno-solutions/screenshot.png`}
-          alt="RK Reno Solutions Genuine Website Screenshot"
+          src={`${site.basePath}/brands/rk-reno-solutions/screenshot.webp`}
+          alt="RK Reno Solutions Website Showcase Visual"
           width="900"
           height="500"
           loading="lazy"
           class="w-full h-[320px] sm:h-[420px] rounded-2xl object-cover"
         />
-        <!-- External HTML Caption: Inter 600, min 16px -->
         <div class="p-4 bg-[#061d33] text-white rounded-xl mt-3 flex items-center justify-between font-body">
           <span class="text-base font-semibold text-[#ddff35]">RK Reno Solutions website and local SEO project</span>
-          <span class="text-sm font-body font-medium text-slate-200">E-Commerce & Local Services</span>
+          <span class="text-sm font-body font-medium text-slate-200">Local Services</span>
         </div>
       </div>
 
-      <!-- Floating Verified Metric Badge 1 (Top Left) -->
+      <!-- Floating Capability Badge 1 (Top Left) -->
       <div data-motion="fade-right" data-motion-delay="300" class="hidden sm:flex absolute -top-8 -left-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#ff762b] bg-white p-4 shadow-xl text-[#061d33] animate-float-gentle font-body">
         <div class="size-10 rounded-xl bg-[#ff762b] text-white flex items-center justify-center font-bold">
           <TrendingUp class="size-5" />
         </div>
         <div>
-          <div class="font-heading font-bold text-xl text-[#061d33]">PKR 30M+</div>
-          <div class="text-[15px] font-semibold text-slate-800 font-body">Revenue Supported</div>
+          <div class="font-heading font-bold text-lg text-[#061d33]">Paid Media</div>
+          <div class="text-[15px] font-semibold text-slate-800 font-body">Campaign Execution</div>
         </div>
       </div>
 
-      <!-- Floating Verified Metric Badge 2 (Top Right) -->
+      <!-- Floating Capability Badge 2 (Top Right) -->
       <div data-motion="fade-left" data-motion-delay="400" class="hidden sm:flex absolute -top-8 -right-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#9a83f5] bg-white p-4 shadow-xl text-[#061d33] animate-float-gentle font-body" style="animation-delay: 1.2s;">
         <div class="size-10 rounded-xl bg-[#9a83f5] text-white flex items-center justify-center font-bold">
-          <ShoppingBag class="size-5" />
+          <Layout class="size-5" />
         </div>
         <div>
-          <div class="font-heading font-bold text-xl text-[#061d33]">29,000+</div>
-          <div class="text-[15px] font-semibold text-slate-800 font-body">Product Sales</div>
+          <div class="font-heading font-bold text-lg text-[#061d33]">Custom Web</div>
+          <div class="text-[15px] font-semibold text-slate-800 font-body">Storefront & UI</div>
         </div>
       </div>
 
-      <!-- Floating Verified Metric Badge 3 (Bottom Left) -->
+      <!-- Floating Capability Badge 3 (Bottom Left) -->
       <div data-motion="fade-right" data-motion-delay="500" class="hidden sm:flex absolute -bottom-8 -left-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#ddff35] bg-[#061d33] p-4 shadow-xl text-white animate-float-gentle font-body" style="animation-delay: 2s;">
         <div class="size-10 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center font-bold">
-          <Award class="size-5" />
+          <Search class="size-5" />
         </div>
         <div>
-          <div class="font-heading font-bold text-xl text-[#ddff35]">PKR 4.2M+</div>
-          <div class="text-[15px] font-semibold text-slate-200 font-body">Sales Supported</div>
+          <div class="font-heading font-bold text-lg text-[#ddff35]">Local Search</div>
+          <div class="text-[15px] font-semibold text-slate-200 font-body">SEO Foundations</div>
         </div>
       </div>
 
-      <!-- Floating Verified Metric Badge 4 (Bottom Right) -->
+      <!-- Floating Capability Badge 4 (Bottom Right) -->
       <div data-motion="fade-left" data-motion-delay="600" class="hidden sm:flex absolute -bottom-8 -right-6 z-20 items-center gap-3 rounded-2xl border-2 border-[#ff514b] bg-white p-4 shadow-xl text-[#061d33] animate-float-gentle font-body" style="animation-delay: 2.8s;">
         <div class="size-10 rounded-xl bg-[#ff514b] text-white flex items-center justify-center font-bold">
-          <HeartHandshake class="size-5" />
+          <Video class="size-5" />
         </div>
         <div>
-          <div class="font-heading font-bold text-xl text-[#061d33]">More Than 150</div>
-          <div class="text-[15px] font-semibold text-slate-800 font-body">Animals Sold</div>
+          <div class="font-heading font-bold text-lg text-[#061d33]">Creative Production</div>
+          <div class="text-[15px] font-semibold text-slate-800 font-body">Video & Copy</div>
         </div>
       </div>
 
     </div>
 
-    <!-- 4 Key Trust Pillars Cards: Staggered Fade-Up -->
+    <!-- 4 Key Trust Pillars Cards -->
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-20">
       {
         trustPillars.map((point, idx) => (
@@ -157,12 +155,10 @@ const trustPillars = [
                 </div>
               </div>
 
-              <!-- Card Title: Sora 600 min 18px -->
               <h3 class="font-heading font-semibold text-[18px] sm:text-xl text-[#061d33] mb-3 leading-[1.25]">
                 {point.title}
               </h3>
               
-              <!-- Body: Inter 400 16px, leading 1.6 -->
               <p class="text-base text-slate-700 font-body leading-[1.6] font-normal">
                 {point.body}
               </p>

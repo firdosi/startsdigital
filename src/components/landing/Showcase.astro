@@ -1,8 +1,7 @@
 ---
 import { site } from '../../site.config';
-import { getProjectById } from '../../data/projects';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
-import { ArrowRight, ExternalLink, Cpu, CheckCircle2 } from '@lucide/astro';
+import { ArrowRight, ArrowUpRight } from '@lucide/astro';
 
 interface Props {
   showAllWorkButton?: boolean;
@@ -10,331 +9,117 @@ interface Props {
 
 const { showAllWorkButton = true } = Astro.props;
 
-const bgProject = getProjectById('black-gold-fertilizer')!;
-const convortProject = getProjectById('convort-ai')!;
-const wajibProject = getProjectById('wajib-livestock')!;
-const rkProject = getProjectById('rk-reno-solutions')!;
+const compactProjects = [
+  {
+    name: 'Black Gold Fertilizer',
+    sector: 'Agriculture & E-Commerce',
+    contribution: 'Digital marketing, paid social advertising, creative production and e-commerce website management.',
+    image: `${site.basePath}/images/black-gold-official.png`,
+    link: `${site.basePath}/work/black-gold-fertilizer/`
+  },
+  {
+    name: 'ConvortAI',
+    sector: 'AI Technology Product',
+    contribution: 'Web application development, UI design, project management and ongoing growth support as technology partner.',
+    image: `${site.basePath}/brands/convort-ai/logo.webp`,
+    darkContainer: true,
+    link: `${site.basePath}/work/convortai/`
+  },
+  {
+    name: 'Wajib Livestock',
+    sector: 'Livestock & Seasonal Campaigns',
+    contribution: 'Seasonal campaign strategy, paid social advertising, lead generation and WhatsApp sales routing.',
+    image: `${site.basePath}/brands/wajib-livestock/logo.webp`,
+    darkContainer: true,
+    link: `${site.basePath}/work/qurbani-campaign/`
+  },
+  {
+    name: 'RK Reno Solutions',
+    sector: 'Renovation & Local Services',
+    contribution: 'Website structure, service-page development, location content and local search optimization in Malaysia.',
+    image: `${site.basePath}/brands/rk-reno-solutions/screenshot.webp`,
+    link: `${site.basePath}/work/rk-reno-solutions/`
+  }
+];
 ---
 
-<section id="work" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
+<section id="work" class="py-16 sm:py-20 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
     
     <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
       <div class="space-y-3 max-w-2xl">
         <SectionEyebrow
-          label="SELECTED WORK"
+          label="SELECTED WORK PREVIEW"
           align="left"
           motion={false}
         />
         <h2 class="font-heading font-bold text-[28px] md:text-[36px] lg:text-[40px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
-          Different businesses require different combinations of strategy and execution.
+          Compact preview of recent client work.
         </h2>
         <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-          Explore selected projects across e-commerce, seasonal campaigns, local services and technology.
+          Explore full case studies, technical breakdowns and documented outcomes in our Work directory.
         </p>
       </div>
       {showAllWorkButton && (
         <div class="shrink-0">
           <a
             href={`${site.basePath}/work/`}
-            class="inline-flex items-center gap-2 rounded-full border-2 border-[#061d33] bg-white px-6 py-3 font-body font-semibold text-sm text-[#061d33] hover:bg-[#ff762b] hover:border-[#ff762b] hover:text-white transition-all shadow-xs group/cta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+            class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/20 bg-white px-6 py-3 font-body font-semibold text-sm text-[#061d33] hover:bg-[#061d33] hover:text-white transition-all shadow-xs group/cta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] min-h-[44px]"
           >
-            <span>View all client work</span>
+            <span>View All Client Work</span>
             <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
           </a>
         </div>
       )}
     </div>
 
-    <!-- 4 Differentiated Featured Projects System -->
-    <div class="space-y-8">
-      
-      <!-- TOP ROW: Two Primary Feature Cards (Black Gold Image-Led & ConvortAI Navy Tech) -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
-        <!-- 1. BLACK GOLD FERTILIZER (Image-Led E-Commerce Feature) -->
-        <article class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group">
-          <div class="space-y-5">
-            <!-- Header Row -->
-            <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
-              <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
-                {bgProject.sector}
-              </span>
-              <div class="h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center bg-[#061d33] border border-[#061d33]">
-                <img
-                  src={`${site.basePath}${bgProject.logo}`}
-                  alt={`${bgProject.publicName} logo`}
-                  width="110"
-                  height="32"
-                  loading="lazy"
-                  class="max-h-6 w-auto object-contain"
-                />
-              </div>
-            </div>
+    <!-- 4 Compact Project Cards Grid (2x2 on tablet/desktop) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {compactProjects.map((p) => (
+        <article class="rounded-2xl border border-[#061d33]/12 bg-white p-5 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/50 hover:shadow-md transition-all duration-300 group">
+          <div class="space-y-4">
+            <!-- Sector Pill -->
+            <span class="inline-block px-2.5 py-0.5 rounded-full bg-[#f7f4ed] text-[#061d33] font-mono text-[11px] font-semibold uppercase tracking-wider border border-[#061d33]/10">
+              {p.sector}
+            </span>
 
-            <!-- Product Visual Media Container -->
-            <div class="overflow-hidden rounded-2xl border border-[#061d33]/10 bg-slate-900 aspect-[16/9] relative">
+            <!-- Image/Logo Container (Fixed aspect ratio) -->
+            <div class={`overflow-hidden rounded-xl border border-[#061d33]/10 aspect-[16/10] flex items-center justify-center p-3 ${p.darkContainer ? 'bg-[#061d33]' : 'bg-[#f7f4ed]'}`}>
               <img
-                src={`${site.basePath}/images/black-gold-official.png`}
-                alt="Black Gold Fertilizer products"
-                width="600"
-                height="337"
+                src={p.image}
+                alt={`${p.name} preview visual`}
+                width="240"
+                height="150"
                 loading="lazy"
-                class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
+                decoding="async"
+                class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
               />
             </div>
 
+            <!-- Title & Short Contribution Sentence (<=35 words) -->
             <div>
-              <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight mb-2">
-                {bgProject.publicName}
+              <h3 class="font-heading font-bold text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-snug mb-1.5">
+                {p.name}
               </h3>
-              <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-                {bgProject.verifiedOutcome}
+              <p class="text-sm text-slate-700 font-body leading-relaxed font-normal">
+                {p.contribution}
               </p>
             </div>
-
-            <!-- Metrics Badges -->
-            <div class="grid grid-cols-2 gap-3 p-3.5 rounded-2xl bg-[#f7f4ed] border border-[#061d33]/8">
-              <div>
-                <span class="font-heading font-bold text-xl text-[#061d33] block">PKR 30M+</span>
-                <span class="text-xs font-body font-semibold text-slate-600">Supported Revenue</span>
-              </div>
-              <div>
-                <span class="font-heading font-bold text-xl text-[#061d33] block">29,000+</span>
-                <span class="text-xs font-body font-semibold text-slate-600">Product Sales</span>
-              </div>
-            </div>
           </div>
 
-          <!-- Bottom Actions -->
-          <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-[#061d33]/8">
+          <!-- Bottom Story Link -->
+          <div class="pt-4 mt-4 border-t border-[#061d33]/8">
             <a
-              href={`${site.basePath}${bgProject.detailPath}`}
-              data-track="case-study-open"
-              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+              href={p.link}
+              class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-[#ff762b] group-hover:text-[#061d33] transition-colors"
             >
-              <span>View Case Study</span>
-              <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+              <span>READ STORY</span>
+              <ArrowUpRight class="size-3.5" />
             </a>
-            {bgProject.officialWebsite && (
-              <a
-                href={bgProject.officialWebsite}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-              >
-                <span>Website</span>
-                <ExternalLink class="size-3.5" />
-              </a>
-            )}
           </div>
         </article>
-
-        <!-- 2. CONVORTAI (Deep Navy Technology Partnership Feature) -->
-        <article class="rounded-3xl border border-white/20 bg-[#061d33] text-white p-6 sm:p-8 flex flex-col justify-between shadow-xl group relative overflow-hidden">
-          <div class="space-y-5">
-            <!-- Header Row -->
-            <div class="flex items-center justify-between gap-3 pb-4 border-b border-white/15">
-              <span class="inline-flex items-center gap-1.5 rounded-full bg-[#ddff35]/15 border border-[#ddff35]/40 px-3 py-0.5 text-xs font-mono font-bold text-[#ddff35] uppercase tracking-wider">
-                <Cpu class="size-3.5 text-[#ddff35]" />
-                <span>TECHNOLOGY PARTNER</span>
-              </span>
-              <div class="h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center bg-[#0b2947] border border-white/15">
-                <img
-                  src={`${site.basePath}${convortProject.logo}`}
-                  alt={`${convortProject.publicName} logo`}
-                  width="110"
-                  height="32"
-                  loading="lazy"
-                  class="max-h-6 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            <div>
-              <h3 class="font-heading font-bold text-2xl text-white group-hover:text-[#ddff35] transition-colors leading-tight mb-1">
-                {convortProject.publicName}
-              </h3>
-              <span class="text-xs font-mono text-[#ff762b] font-semibold block mb-3">
-                {convortProject.secondaryRelationship || convortProject.relationshipType}
-              </span>
-              <p class="text-base text-slate-200 font-body leading-relaxed font-normal">
-                {convortProject.shortSummary}
-              </p>
-            </div>
-
-            <!-- Contribution Scope Tags & Feature Accent Box -->
-            <div class="space-y-3 pt-1">
-              <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
-                Partnership Capabilities
-              </span>
-              <div class="flex flex-wrap gap-2">
-                {convortProject.approvedServices.map((s) => (
-                  <span class="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-2.5 py-1.5 text-xs font-mono text-white border border-white/15">
-                    <CheckCircle2 class="size-3 text-[#39c98a]" />
-                    <span>{s}</span>
-                  </span>
-                ))}
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Bottom Actions -->
-          <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-white/15">
-            <a
-              href={`${site.basePath}${convortProject.detailPath}`}
-              class="inline-flex items-center gap-2 rounded-full bg-[#ddff35] px-5 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:bg-[#c9eb1e] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-            >
-              <span>View Partner Story</span>
-              <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-            {convortProject.officialWebsite && (
-              <a
-                href={convortProject.officialWebsite}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-              >
-                <span>Website</span>
-                <ExternalLink class="size-3.5" />
-              </a>
-            )}
-          </div>
-        </article>
-
-      </div>
-
-      <!-- BOTTOM ROW: Two Secondary Feature Cards (Wajib Livestock & RK Reno Solutions) -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
-        <!-- 3. WAJIB LIVESTOCK (Seasonal Outcome Feature) -->
-        <article class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group">
-          <div class="space-y-5">
-            <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
-              <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
-                {wajibProject.sector}
-              </span>
-              <div class="h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center bg-[#061d33] border border-[#061d33]">
-                <img
-                  src={`${site.basePath}${wajibProject.logo}`}
-                  alt={`${wajibProject.publicName} logo`}
-                  width="110"
-                  height="32"
-                  loading="lazy"
-                  class="max-h-6 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            <div>
-              <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight mb-2">
-                {wajibProject.publicName}
-              </h3>
-              <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-                {wajibProject.verifiedOutcome}
-              </p>
-            </div>
-
-            <div class="grid grid-cols-2 gap-3 p-3.5 rounded-2xl bg-[#f7f4ed] border border-[#061d33]/8">
-              <div>
-                <span class="font-heading font-bold text-xl text-[#061d33] block">150+</span>
-                <span class="text-xs font-body font-semibold text-slate-600">Animals Sold</span>
-              </div>
-              <div>
-                <span class="font-heading font-bold text-xl text-[#061d33] block">PKR 4.2M+</span>
-                <span class="text-xs font-body font-semibold text-slate-600">Sales Supported</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-[#061d33]/8">
-            <a
-              href={`${site.basePath}${wajibProject.detailPath}`}
-              data-track="case-study-open"
-              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-            >
-              <span>View Case Study</span>
-              <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-            {wajibProject.officialWebsite && (
-              <a
-                href={wajibProject.officialWebsite}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-              >
-                <span>Website</span>
-                <ExternalLink class="size-3.5" />
-              </a>
-            )}
-          </div>
-        </article>
-
-        <!-- 4. RK RENO SOLUTIONS (Website & Local SEO Feature) -->
-        <article class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group">
-          <div class="space-y-5">
-            <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
-              <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
-                {rkProject.sector}
-              </span>
-              <div class="h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center bg-white border border-slate-200">
-                <img
-                  src={`${site.basePath}${rkProject.logo}`}
-                  alt={`${rkProject.publicName} logo`}
-                  width="110"
-                  height="32"
-                  loading="lazy"
-                  class="max-h-6 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            <div>
-              <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight mb-2">
-                {rkProject.publicName}
-              </h3>
-              <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-                {rkProject.shortSummary}
-              </p>
-            </div>
-
-            <div class="flex flex-wrap gap-2 pt-1">
-              {['Kuala Lumpur & Selangor SEO Scope', 'Renovation & HVAC Architecture', 'Location Pages'].map((s) => (
-                <span class="inline-flex items-center gap-1.5 rounded-lg bg-[#f7f4ed] px-3 py-1.5 text-xs font-mono font-medium text-[#061d33] border border-[#061d33]/10">
-                  <CheckCircle2 class="size-3 text-[#ff762b]" />
-                  <span>{s}</span>
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-3 pt-5 mt-6 border-t border-[#061d33]/8">
-            <a
-              href={`${site.basePath}${rkProject.detailPath}`}
-              data-track="case-study-open"
-              class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-            >
-              <span>View Case Study</span>
-              <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-            {rkProject.officialWebsite && (
-              <a
-                href={rkProject.officialWebsite}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] px-4 py-2.5 text-xs sm:text-sm font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-              >
-                <span>Website</span>
-                <ExternalLink class="size-3.5" />
-              </a>
-            )}
-          </div>
-        </article>
-
-      </div>
-
+      ))}
     </div>
 
   </div>

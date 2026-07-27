@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
+    "qa:content": "node scripts/qa/content-architecture.mjs",
     "qa:motion": "node scripts/qa/motion-regression.mjs",
     "qa:evidence": "node scripts/qa/evidence-validation.mjs",
     "qa:links": "node scripts/qa/internal-links.mjs",

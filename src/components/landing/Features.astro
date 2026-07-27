@@ -3,10 +3,19 @@ import { site } from '../../site.config';
 import { homepageContent } from '../../data/homepage';
 import { getPublishedServices } from '../../data/services';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
-import { ArrowRight, CheckCircle2 } from '@lucide/astro';
+import { ArrowRight, CheckCircle2, Megaphone, Layout, Search, Video, Share2, Cpu } from '@lucide/astro';
 
 const { services } = homepageContent;
 const publishedServices = getPublishedServices();
+
+const serviceIcons: Record<string, any> = {
+  'paid-advertising': { icon: Megaphone, color: 'text-[#ff762b]', bg: 'bg-[#ff762b]/15 border-[#ff762b]/30' },
+  'website-design-development': { icon: Layout, color: 'text-[#061d33]', bg: 'bg-[#ddff35]/30 border-[#ddff35]/60' },
+  'seo-local-search': { icon: Search, color: 'text-[#39c98a]', bg: 'bg-[#39c98a]/15 border-[#39c98a]/30' },
+  'creative-content': { icon: Video, color: 'text-purple-600', bg: 'bg-purple-500/15 border-purple-500/30' },
+  'social-media-marketing': { icon: Share2, color: 'text-sky-600', bg: 'bg-sky-500/15 border-sky-500/30' },
+  'ai-marketing-workflows': { icon: Cpu, color: 'text-[#ff762b]', bg: 'bg-[#ff762b]/15 border-[#ff762b]/30' },
+};
 ---
 
 <section id="services" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 relative scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
@@ -24,16 +33,18 @@ const publishedServices = getPublishedServices();
         {services.heading}
       </h2>
 
-      <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
+      <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
         {services.paragraph}
       </p>
     </div>
 
-    <!-- 6-Service Editorial Grid -->
+    <!-- 6-Service Visually Prominent Grid -->
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-10">
       {
         publishedServices.map((svc, idx) => {
           const targetUrl = `${site.basePath}/services/${svc.slug}/`;
+          const iconConfig = serviceIcons[svc.slug] || { icon: Megaphone, color: 'text-[#ff762b]', bg: 'bg-[#ff762b]/15 border-[#ff762b]/30' };
+          const IconComp = iconConfig.icon;
 
           return (
             <a
@@ -41,37 +52,37 @@ const publishedServices = getPublishedServices();
               data-track="service-link"
               data-service={svc.slug}
               aria-label={`Explore ${svc.name} service`}
-              class="group rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-7 shadow-xs hover:border-[#ff762b]/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+              class="group rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-7 shadow-sm hover:border-[#ff762b]/60 hover:shadow-lg transition-all duration-300 flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
             >
-              <div class="space-y-4">
-                <!-- Top Row: Number & Category -->
-                <div class="flex items-center justify-between">
-                  <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-1 rounded">
-                    0{idx + 1} • {svc.shortName}
-                  </span>
-                  <div class="size-8 rounded-full bg-[#061d33]/5 text-[#061d33] group-hover:bg-[#ff762b] group-hover:text-white flex items-center justify-center transition-colors">
-                    <ArrowRight class="size-4 group-hover:translate-x-0.5 transition-transform" />
+              <div class="space-y-5">
+                <!-- Top Row: Custom Icon Box & Index Badge -->
+                <div class="flex items-center justify-between pb-3 border-b border-[#061d33]/8">
+                  <div class={`size-12 rounded-2xl ${iconConfig.bg} border flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform`}>
+                    <IconComp class={`size-6 ${iconConfig.color}`} />
                   </div>
+                  <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-1 rounded-full">
+                    0{idx + 1}
+                  </span>
                 </div>
 
                 <!-- Title -->
-                <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+                <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
                   {svc.name}
                 </h3>
 
-                <!-- Summary Paragraph -->
+                <!-- Summary Paragraph (Max 40 words) -->
                 <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
                   {svc.summary}
                 </p>
 
-                <!-- Practical Deliverables List -->
+                <!-- Practical Deliverables -->
                 <div class="pt-3 border-t border-[#061d33]/8 space-y-2">
                   <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
-                    Practical Deliverables
+                    Core Deliverables
                   </span>
                   <ul class="space-y-2">
                     {svc.idealFor.slice(0, 3).map((item) => (
-                      <li class="flex items-start gap-2.5 text-base font-body text-slate-700 leading-normal">
+                      <li class="flex items-start gap-2 text-base font-body text-slate-700 leading-normal">
                         <CheckCircle2 class="size-4 text-[#ff762b] shrink-0 mt-1" />
                         <span>{item}</span>
                       </li>
@@ -95,7 +106,7 @@ const publishedServices = getPublishedServices();
     <div class="text-center">
       <a
         href={`${site.basePath}/services/`}
-        class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/20 bg-white px-7 py-3.5 font-body font-semibold text-base text-[#061d33] hover:bg-[#061d33] hover:text-white transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+        class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/20 bg-white px-7 py-3.5 font-body font-semibold text-base text-[#061d33] hover:bg-[#061d33] hover:text-white transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] min-h-[44px]"
       >
         <span>View All Services Directory</span>
         <ArrowRight class="size-4" />
