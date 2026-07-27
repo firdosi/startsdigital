@@ -93,6 +93,14 @@ const publishedServices = getPublishedServices();
       </a>
 
       <a
+        href={`${site.basePath}/industries/`}
+        aria-current={currentPath.startsWith(`${site.basePath}/industries`) ? 'page' : undefined}
+        class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
+      >
+        Industries
+      </a>
+
+      <a
         href={`${site.basePath}/about/`}
         aria-current={currentPath.startsWith(`${site.basePath}/about`) ? 'page' : undefined}
         class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
@@ -181,6 +189,7 @@ const publishedServices = getPublishedServices();
       </div>
 
       <a href={`${site.basePath}/work/`} class="mobile-link py-2 hover:text-[#ff762b]">Work</a>
+      <a href={`${site.basePath}/industries/`} class="mobile-link py-2 hover:text-[#ff762b]">Industries</a>
       <a href={`${site.basePath}/about/`} class="mobile-link py-2 hover:text-[#ff762b]">About</a>
       <a href={`${site.basePath}/#faq`} class="mobile-link py-2 hover:text-[#ff762b]">FAQ</a>
       <a href={`${site.basePath}/contact/`} class="mobile-link py-2 hover:text-[#ff762b]">Contact</a>

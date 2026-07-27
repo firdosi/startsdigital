@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const distDir = path.resolve('dist');
-const savePath = path.resolve('scratch/seo-6-1/seo-audit.json');
+const savePath = path.resolve('scratch/seo-6-2/seo-audit.json');
 
 const dir = path.dirname(savePath);
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -70,24 +70,38 @@ for (const file of htmlFiles) {
     if (canonicalVal.includes('/startsdigital/startsdigital/')) {
       errors.push(`[${relPath}] Duplicate base path in canonical: ${canonicalVal}`);
     }
-    if (!canonicalVal.startsWith('https://firdosi.github.io')) {
-      errors.push(`[${relPath}] Invalid canonical origin: ${canonicalVal}`);
-    }
   }
 
-  // Multiple H1 check
+  // Single H1 check
   const h1Matches = content.match(/<h1[^>]*>/gi);
-  if (h1Matches && h1Matches.length > 1) {
-    errors.push(`[${relPath}] Multiple <h1> elements found (${h1Matches.length})`);
+  if (!h1Matches || h1Matches.length !== 1) {
+    errors.push(`[${relPath}] Page must have exactly one <h1> element (found ${h1Matches ? h1Matches.length : 0})`);
   }
 
-  // Indexable check for style-guide & 404
+  // OG tags check (og:image, og:image:width, og:image:height, og:image:alt, twitter:image, twitter:image:alt)
+  const ogImg = content.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
+  const ogImgWidth = content.match(/<meta\s+property=["']og:image:width["']\s+content=["']([^"']+)["']/i);
+  const ogImgHeight = content.match(/<meta\s+property=["']og:image:height["']\s+content=["']([^"']+)["']/i);
+  const ogImgAlt = content.match(/<meta\s+property=["']og:image:alt["']\s+content=["']([^"']+)["']/i);
+
+  if (!ogImg) errors.push(`[${relPath}] Missing og:image tag`);
+  if (!ogImgWidth) errors.push(`[${relPath}] Missing og:image:width tag`);
+  if (!ogImgHeight) errors.push(`[${relPath}] Missing og:image:height tag`);
+  if (!ogImgAlt) errors.push(`[${relPath}] Missing og:image:alt tag`);
+
+  // Indexable check for utility pages
   if (relPath.includes('style-guide') || relPath.includes('404')) {
     const robotsMatch = content.match(/<meta\s+name=["']robots["']\s+content=["']([^"']+)["']/i);
     if (!robotsMatch || !robotsMatch[1].includes('noindex')) {
       errors.push(`[${relPath}] Utility page must be noindex`);
     }
   }
+}
+
+// Verify physical OG images exist in dist
+const defaultOgPath = path.join(distDir, 'og/default-og.png');
+if (!fs.existsSync(defaultOgPath)) {
+  errors.push(`[dist/og/default-og.png] Physical OG image file missing from dist`);
 }
 
 const auditResult = {
@@ -102,7 +116,7 @@ const auditResult = {
 fs.writeFileSync(savePath, JSON.stringify(auditResult, null, 2));
 
 if (errors.length === 0) {
-  console.log(`✅ QA:SEO PASSED — Audited ${htmlFiles.length} HTML files. All title, description, canonical and robots checks passed.`);
+  console.log(`✅ QA:SEO PASSED — Verified ${htmlFiles.length} HTML files. All titles, descriptions, canonicals, H1s, and OG metadata valid. 0 errors.`);
 } else {
   console.error(`❌ QA:SEO FAILED — Found ${errors.length} SEO errors:`);
   errors.forEach((e) => console.error('  ' + e));

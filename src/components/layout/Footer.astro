@@ -21,15 +21,24 @@ const featuredWorkLinks = [
 
 const companyLinks = [
   { href: `${site.basePath}/about/`, label: 'About Starts Digital' },
+  { href: `${site.basePath}/locations/lahore/`, label: 'Lahore Agency' },
   { href: `${site.basePath}/about/#team`, label: 'Team' },
   { href: `${site.basePath}/#process`, label: 'Working Method' },
-  { href: `${site.basePath}/#faq`, label: 'FAQ' },
   { href: `${site.basePath}/contact/`, label: 'Discuss Your Project' },
+];
+
+const industryLinks = [
+  { href: `${site.basePath}/industries/`, label: 'All Industries' },
+  { href: `${site.basePath}/industries/ecommerce-product-brands/`, label: 'E-Commerce' },
+  { href: `${site.basePath}/industries/seasonal-campaigns/`, label: 'Seasonal Campaigns' },
+  { href: `${site.basePath}/industries/local-service-businesses/`, label: 'Local Contractors' },
+  { href: `${site.basePath}/industries/technology-products/`, label: 'Tech Products' },
 ];
 
 const columns = [
   { heading: 'Services', links: serviceLinks },
   { heading: 'Featured Work', links: featuredWorkLinks },
+  { heading: 'Industries', links: industryLinks },
   { heading: 'Company', links: companyLinks },
 ];
 ---
@@ -42,7 +51,7 @@ const columns = [
     <div class="grid gap-10 md:grid-cols-12">
       
       <!-- Left Column: Agency Overview & Direct Contact -->
-      <div class="md:col-span-5 space-y-6">
+      <div class="md:col-span-4 space-y-6">
         <Logo />
         <p class="max-w-[380px] text-[15px] sm:text-[16px] leading-[1.65] text-slate-300 font-body font-normal">
           Starts Digital helps businesses grow through paid advertising, websites, SEO, creative content, social media marketing and practical AI marketing workflows.
@@ -65,7 +74,7 @@ const columns = [
       </div>
 
       <!-- Right Columns: Navigation Links -->
-      <div class="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
         {
           columns.map((col) => (
             <div>

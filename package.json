@@ -15,7 +15,9 @@
     "qa:evidence": "node scripts/qa/evidence-validation.mjs",
     "qa:links": "node scripts/qa/internal-links.mjs",
     "qa:seo": "node scripts/qa/seo-audit.mjs",
-    "qa:schema": "node scripts/qa/schema-audit.mjs"
+    "qa:schema": "node scripts/qa/schema-audit.mjs",
+    "qa:analytics": "node scripts/qa/analytics-audit.mjs",
+    "qa:domain": "node scripts/qa/domain-readiness.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

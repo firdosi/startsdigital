@@ -297,12 +297,17 @@ function resolveProjectRecord(record: ProjectRecord): ResolvedProject | null {
     whatsappMessage = 'Hello Starts Digital, I would like to discuss a project after reviewing the ConvortAI partner story.';
   }
 
+  let publicName = brand.name;
+  if (record.id === 'wajib-livestock' || record.id === 'qurbani-campaign') {
+    publicName = 'Wajib Livestock Qurbani Campaign';
+  }
+
   const whatsappUrl = `${site.contact.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return {
     ...record,
     brand,
-    publicName: brand.name,
+    publicName,
     sector: record.sectorOverride || brand.industry,
     logo: brand.logo || '',
     logoFit: brand.logoFit || 'standard',

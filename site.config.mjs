@@ -1,5 +1,5 @@
-export const siteOrigin = 'https://firdosi.github.io';
-export const basePath = '/startsdigital';
+export const siteOrigin = process.env.SITE_ORIGIN || 'https://firdosi.github.io';
+export const basePath = process.env.SITE_BASE_PATH !== undefined ? process.env.SITE_BASE_PATH : '/startsdigital';
 
 // Derived configurations
 export const siteUrl = `${siteOrigin}${basePath}`;

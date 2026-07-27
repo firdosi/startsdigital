@@ -1,25 +1,9 @@
 ---
 import { Plus, Minus } from '@lucide/astro';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
+import { homepageFaqs } from '../../data/faqs';
 
-const items = [
-  {
-    q: 'What specific industries and business types do you work with?',
-    a: 'We work with growth-stage e-commerce brands, agricultural suppliers, seasonal campaigns (such as Qurbani livestock), local service contractors (renovation & HVAC), and professional service businesses.',
-  },
-  {
-    q: 'How do you track commercial results instead of vanity metrics?',
-    a: 'Tracking requirements are agreed during project planning. Depending on the project, this may include platform conversion tracking, lead reporting, delivered-order data and other business-relevant measures.',
-  },
-  {
-    q: 'What is your typical project timeframe?',
-    a: 'Timelines depend on the project scope, available assets, review requirements and technical complexity. Starts Digital confirms the working schedule after reviewing the requirements.',
-  },
-  {
-    q: 'Can Starts Digital manage our complete digital marketing end-to-end?',
-    a: 'Starts Digital can coordinate multiple services within one agreed project scope, including advertising, websites, SEO, creative production, social media and practical AI workflows. The exact responsibilities are confirmed before work begins.',
-  },
-];
+const items = homepageFaqs.map((f) => ({ q: f.question, a: f.answer }));
 ---
 
 <section id="faq" class="py-14 sm:py-16 lg:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 overflow-hidden scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">

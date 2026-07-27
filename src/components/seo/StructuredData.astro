@@ -1,10 +1,12 @@
 ---
 import { site } from '../../site.config';
 import { getSeoForPath, getCanonicalUrl } from '../../data/seo';
-import { services } from '../../data/services';
-import { projectRecords } from '../../data/projects';
+import { services, getServiceById, getServiceBySlug } from '../../data/services';
+import { getDetailedProjectStories } from '../../data/projects';
 import { teamMembers } from '../../data/team';
 import { companyProfile } from '../../data/company';
+import { homepageFaqs } from '../../data/faqs';
+import { getMarketPageBySlug, getIndustryPages } from '../../data/marketPages';
 
 interface Props {
   schemaType?: string;
@@ -100,19 +102,42 @@ const breadcrumbSchema = {
   itemListElement: buildBreadcrumbs(),
 };
 
+// 4. FAQ Schema Builder for visible FAQ equality
+function buildFaqSchema(faqs: { question: string; answer: string }[]) {
+  if (!faqs || faqs.length === 0) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer,
+      },
+    })),
+  };
+}
+
 // Assemble schemas based on route schemaType
 const schemas: any[] = [];
 
 if (resolvedSchemaType === 'homepage') {
-  schemas.push(orgSchema, websiteSchema, {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${canonicalUrl}#webpage`,
-    url: canonicalUrl,
-    name: seoConfig.title,
-    description: seoConfig.description,
-    publisher: { '@id': `${site.siteUrl}/#organization` },
-  });
+  const homepageFaqSchema = buildFaqSchema(homepageFaqs);
+  schemas.push(
+    orgSchema,
+    websiteSchema,
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: seoConfig.title,
+      description: seoConfig.description,
+      publisher: { '@id': `${site.siteUrl}/#organization` },
+    },
+    ...(homepageFaqSchema ? [homepageFaqSchema] : [])
+  );
 } else if (resolvedSchemaType === 'about') {
   const persons = teamMembers.map((m) => ({
     '@context': 'https://schema.org',
@@ -174,7 +199,8 @@ if (resolvedSchemaType === 'homepage') {
     breadcrumbSchema
   );
 } else if (resolvedSchemaType === 'service') {
-  const currentService = services.find((s) => s.id === seoConfig.serviceId);
+  const currentService = services.find((s) => s.id === seoConfig.serviceId || s.slug === seoConfig.serviceId);
+  const serviceFaqSchema = currentService?.faq ? buildFaqSchema(currentService.faq) : null;
   schemas.push(
     {
       '@context': 'https://schema.org',
@@ -193,10 +219,11 @@ if (resolvedSchemaType === 'homepage') {
       name: seoConfig.title,
       description: seoConfig.description,
     },
-    breadcrumbSchema
+    breadcrumbSchema,
+    ...(serviceFaqSchema ? [serviceFaqSchema] : [])
   );
 } else if (resolvedSchemaType === 'work-index') {
-  const stories = projectRecords.filter((p) => p.detailPath);
+  const stories = getDetailedProjectStories();
   schemas.push(
     {
       '@context': 'https://schema.org',
@@ -211,7 +238,7 @@ if (resolvedSchemaType === 'homepage') {
         itemListElement: stories.map((p, idx) => ({
           '@type': 'ListItem',
           position: idx + 1,
-          name: p.id,
+          name: p.publicName,
           url: getCanonicalUrl(p.detailPath!),
         })),
       },
@@ -239,6 +266,46 @@ if (resolvedSchemaType === 'homepage') {
       description: seoConfig.description,
     },
     breadcrumbSchema
+  );
+} else if (resolvedSchemaType === 'industries-index') {
+  const industryPages = getIndustryPages();
+  schemas.push(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': `${canonicalUrl}#collection`,
+      url: canonicalUrl,
+      name: seoConfig.title,
+      description: seoConfig.description,
+      publisher: { '@id': `${site.siteUrl}/#organization` },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: industryPages.map((ind, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          name: ind.breadcrumbLabel,
+          url: getCanonicalUrl(ind.canonicalPath),
+        })),
+      },
+    },
+    breadcrumbSchema
+  );
+} else if (resolvedSchemaType === 'industry' || resolvedSchemaType === 'location') {
+  const cleanSlug = pathname.replace(site.basePath, '').replace(/^\/+|\/+$/g, '').split('/').pop() || '';
+  const marketItem = getMarketPageBySlug(cleanSlug);
+  const marketFaqSchema = marketItem?.faqs ? buildFaqSchema(marketItem.faqs) : null;
+  schemas.push(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: seoConfig.title,
+      description: seoConfig.description,
+      publisher: { '@id': `${site.siteUrl}/#organization` },
+    },
+    breadcrumbSchema,
+    ...(marketFaqSchema ? [marketFaqSchema] : [])
   );
 } else {
   schemas.push(

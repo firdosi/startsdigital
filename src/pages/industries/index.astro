@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import Button from '../../components/ui/Button.astro';
+import FinalCta from '../../components/landing/FinalCta.astro';
+import { ArrowRight, ShoppingBag, Calendar, Wrench, Cpu, CheckCircle2 } from '@lucide/astro';
+import { site } from '../../site.config';
+
+const industryCards = [
+  {
+    title: 'E-Commerce & Product Brands',
+    description: 'Direct-response advertising, storefront development, creative testing, and tracking systems for growing e-commerce product brands.',
+    href: `${site.basePath}/industries/ecommerce-product-brands/`,
+    icon: ShoppingBag,
+    proof: 'Supported PKR 30M+ in delivered revenue for Black Gold Fertilizer.',
+  },
+  {
+    title: 'Seasonal Campaigns',
+    description: 'High-impact digital marketing strategies, pre-booking windows, and creative execution for time-sensitive seasonal campaigns.',
+    href: `${site.basePath}/industries/seasonal-campaigns/`,
+    icon: Calendar,
+    proof: 'Helped sell 150+ animals and supported PKR 4.2M+ in sales for Wajib Livestock.',
+  },
+  {
+    title: 'Local Service Businesses',
+    description: 'Custom website development, local SEO foundations, and service-area content for renovation and contractor businesses.',
+    href: `${site.basePath}/industries/local-service-businesses/`,
+    icon: Wrench,
+    proof: 'Web design & local SEO foundation for RK Reno Solutions in KL & Selangor.',
+  },
+  {
+    title: 'Technology Products',
+    description: 'Web application development, UI design, workflow automation, and product growth support for technology platforms.',
+    href: `${site.basePath}/industries/technology-products/`,
+    icon: Cpu,
+    proof: 'Developed ConvortAI web application & ongoing technology partnership.',
+  },
+];
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 bg-[#061d33] text-white border-b border-slate-800/80 overflow-hidden">
+    <Container>
+      <div class="max-w-3xl space-y-6">
+        <span class="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#ff762b] bg-[#ff762b]/10 border border-[#ff762b]/30 px-3.5 py-1.5 rounded-full">
+          INDUSTRIES & BUSINESS SECTORS
+        </span>
+        <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight tracking-tight">
+          Tailored Digital Execution Across Key Industries
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-300 font-body font-normal leading-relaxed">
+          Starts Digital partners with growth-stage e-commerce brands, seasonal campaign operators, local service contractors, and technology platforms to deliver focused, measurable digital results.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Industry Cards Grid -->
+  <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-12">
+      <SectionHeading
+        eyebrow="SECTOR CAPABILITIES"
+        title="Explore Our Core Industry Experience"
+        description="Every industry faces unique customer acquisition challenges, inventory cycles, and technical requirements. Explore how we structure our project engagements below."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {industryCards.map((card) => {
+          const IconComp = card.icon;
+          return (
+            <div class="bg-white border border-[#061d33]/10 rounded-2xl p-8 space-y-6 shadow-sm hover:border-[#ff762b]/40 transition-colors flex flex-col justify-between">
+              <div class="space-y-4">
+                <div class="w-12 h-12 rounded-xl bg-[#061d33] text-[#ff762b] flex items-center justify-center">
+                  <IconComp class="size-6" />
+                </div>
+                <h2 class="font-heading font-bold text-2xl text-[#061d33]">
+                  {card.title}
+                </h2>
+                <p class="text-slate-600 font-body text-base leading-relaxed">
+                  {card.description}
+                </p>
+                <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-4 rounded-xl text-xs font-mono text-slate-700 flex items-start gap-2.5">
+                  <CheckCircle2 class="size-4 text-[#ff762b] shrink-0 mt-0.5" />
+                  <span><strong>Project Proof:</strong> {card.proof}</span>
+                </div>
+              </div>
+              <div class="pt-4">
+                <Button href={card.href} variant="primary" class="w-full sm:w-auto justify-center">
+                  Explore {card.title}
+                  <ArrowRight class="size-4 ml-1.5" />
+                </Button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Scope Differentiation Section -->
+  <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-12">
+      <SectionHeading
+        eyebrow="ADAPTIVE ENGAGEMENTS"
+        title="How We Structure Scopes for Different Business Models"
+        description="We adapt our service combination based on business model requirements, inventory velocity, and commercial goals."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-6 sm:p-8 rounded-2xl space-y-4">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">E-COMMERCE & PRODUCTS</span>
+          <h3 class="font-heading font-bold text-xl text-[#061d33]">Transaction & Conversion Focus</h3>
+          <p class="text-sm text-slate-700 font-body leading-relaxed">
+            Prioritizes direct-response ad creative testing, mobile cart optimization, retention email flows, and delivered-order tracking.
+          </p>
+        </div>
+
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-6 sm:p-8 rounded-2xl space-y-4">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">LOCAL CONTRACTORS</span>
+          <h3 class="font-heading font-bold text-xl text-[#061d33]">Location & Service Clarity</h3>
+          <p class="text-sm text-slate-700 font-body leading-relaxed">
+            Focuses on location-specific landing pages, technical local SEO, clear scope displays, and direct WhatsApp quote pathways.
+          </p>
+        </div>
+
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 p-6 sm:p-8 rounded-2xl space-y-4">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">TECH & SOFTWARE</span>
+          <h3 class="font-heading font-bold text-xl text-[#061d33]">Product & Workflow Development</h3>
+          <p class="text-sm text-slate-700 font-body leading-relaxed">
+            Engages as an integrated technical and production team building custom web apps, workflow integrations, and growth content.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Global Contact CTA -->
+  <FinalCta />
+</BaseLayout>

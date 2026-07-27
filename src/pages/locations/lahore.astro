@@ -1,0 +1,237 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import Button from '../../components/ui/Button.astro';
+import FinalCta from '../../components/landing/FinalCta.astro';
+import { ArrowRight, MapPin, Globe, MessageSquare, Mail } from '@lucide/astro';
+import { site } from '../../site.config';
+import { getLahoreLocationPage } from '../../data/marketPages';
+import { services } from '../../data/services';
+
+const lahoreData = getLahoreLocationPage();
+---
+
+<BaseLayout>
+  <!-- 1. Lahore Hero Section -->
+  <section class="relative pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 bg-[#061d33] text-white border-b border-slate-800/80 overflow-hidden">
+    <Container>
+      <div class="max-w-3xl space-y-6">
+        <span class="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#ff762b] bg-[#ff762b]/10 border border-[#ff762b]/30 px-3.5 py-1.5 rounded-full">
+          <MapPin class="size-3.5" /> LAHORE, PAKISTAN
+        </span>
+        <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight tracking-tight">
+          Digital Marketing & Web Agency Based in Lahore
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-300 font-body font-normal leading-relaxed">
+          Founded in 2025 in Lahore, Starts Digital provides paid advertising, custom web development, technical SEO, creative content production, social media management, and AI marketing workflows for local Pakistani businesses and international partners.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-4">
+          <Button href={`${site.basePath}/contact/`} variant="primary">
+            Start a Project Inquiry
+            <ArrowRight class="size-4 ml-1.5" />
+          </Button>
+          <Button href={`${site.basePath}/services/`} variant="secondary">
+            View All Services
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 2. Services Available from Lahore Team -->
+  <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-12">
+      <SectionHeading
+        eyebrow="AGENCY CAPABILITIES"
+        title="Services Delivered by Our Lahore Team"
+        description="Our full spectrum of digital marketing, web production, and technical services available for local and global clients."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {services.map((srv) => (
+          <div class="bg-white border border-[#061d33]/10 rounded-2xl p-6 space-y-4 shadow-sm hover:border-[#ff762b]/40 transition-colors flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">{srv.eyebrow}</span>
+              <h3 class="font-heading font-bold text-xl text-[#061d33]">{srv.name}</h3>
+              <p class="text-slate-600 text-sm font-body leading-relaxed">{srv.summary}</p>
+            </div>
+            <a href={`${site.basePath}/services/${srv.slug}/`} class="text-xs font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
+              Explore Service <ArrowRight class="size-3.5" />
+            </a>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- 3. Business Types Supported -->
+  <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-12">
+      <SectionHeading
+        eyebrow="CLIENT SPECTRUM"
+        title="Business Models & Project Contexts We Support"
+        description="We collaborate with companies at different growth stages, tailoring technical and creative execution to their operational model."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-8 space-y-3">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">E-COMMERCE & PRODUCTS</span>
+          <h3 class="font-heading font-bold text-xl text-[#061d33]">Online Product Brands</h3>
+          <p class="text-slate-700 text-sm font-body leading-relaxed">
+            Direct-response advertising, storefront development, and delivered-order tracking for consumer products.
+          </p>
+        </div>
+
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-8 space-y-3">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">SEASONAL & EVENTS</span>
+          <h3 class="font-heading font-bold text-xl text-[#061d33]">Seasonal Campaign Operators</h3>
+          <p class="text-slate-700 text-sm font-body leading-relaxed">
+            Fixed-window digital campaigns, pre-booking setups, and video ad production for time-sensitive events.
+          </p>
+        </div>
+
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-8 space-y-3">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">CONTRACTORS & LOCAL SERVICES</span>
+          <h3 class="font-heading font-bold text-xl text-[#061d33]">Local Service Providers</h3>
+          <p class="text-slate-700 text-sm font-body leading-relaxed">
+            Service-area web design, local SEO foundations, and mobile quote inquiry pathways.
+          </p>
+        </div>
+
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-8 space-y-3">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">SOFTWARE & TECH</span>
+          <h3 class="font-heading font-bold text-xl text-[#061d33]">Technology Platforms</h3>
+          <p class="text-slate-700 text-sm font-body leading-relaxed">
+            Full-stack web application development, UI design, workflow automation, and growth marketing execution.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 4. How Local & Remote Projects Are Coordinated -->
+  <section class="py-16 sm:py-20 bg-[#061d33] text-white border-b border-slate-800/80">
+    <Container class="space-y-12">
+      <SectionHeading
+        theme="dark"
+        eyebrow="REMOTE & LOCAL OPERATIONS"
+        title="How We Coordinate Client Projects"
+        description="To maintain fast execution and clear written records, all consultations and project reviews are conducted through structured remote channels."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl space-y-4">
+          <div class="w-10 h-10 rounded-lg bg-[#ff762b]/20 text-[#ff762b] flex items-center justify-center">
+            <MessageSquare class="size-5" />
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white">Direct WhatsApp Channels</h3>
+          <p class="text-slate-300 text-sm font-body leading-relaxed">
+            Fast daily communication, quick asset reviews, and status updates via dedicated WhatsApp channels for project leads.
+          </p>
+        </div>
+
+        <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl space-y-4">
+          <div class="w-10 h-10 rounded-lg bg-[#ff762b]/20 text-[#ff762b] flex items-center justify-center">
+            <Mail class="size-5" />
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white">Email Briefs & Documentation</h3>
+          <p class="text-slate-300 text-sm font-body leading-relaxed">
+            Detailed commercial proposals, scope breakdowns, asset handoffs, and formal project approvals documented via email.
+          </p>
+        </div>
+
+        <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl space-y-4">
+          <div class="w-10 h-10 rounded-lg bg-[#ff762b]/20 text-[#ff762b] flex items-center justify-center">
+            <Globe class="size-5" />
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white">Scheduled Video Reviews</h3>
+          <p class="text-slate-300 text-sm font-body leading-relaxed">
+            In-depth campaign strategy sessions, technical walkthroughs, and performance reviews via scheduled Google Meet or Zoom calls.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 5. Relevant Selected Work -->
+  <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-12">
+      <SectionHeading
+        eyebrow="SELECTED PROJECT EVIDENCE"
+        title="Featured Client Work & Case Studies"
+        description="Explore selected case studies demonstrating our strategic, creative, and technical work."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-8 space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">E-COMMERCE GROWTH</span>
+            <h3 class="font-heading font-bold text-2xl text-[#061d33]">Black Gold Fertilizer</h3>
+            <p class="text-slate-700 text-sm font-body leading-relaxed">
+              Supported PKR 30M+ in delivered-order revenue, 29,000+ product sales and 22,000+ delivered sales over 24 months.
+            </p>
+          </div>
+          <a href={`${site.basePath}/work/black-gold-fertilizer/`} class="text-xs font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
+            Read Case Study <ArrowRight class="size-3.5" />
+          </a>
+        </div>
+
+        <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-8 space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">SOFTWARE PARTNERSHIP</span>
+            <h3 class="font-heading font-bold text-2xl text-[#061d33]">ConvortAI</h3>
+            <p class="text-slate-700 text-sm font-body leading-relaxed">
+              Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.
+            </p>
+          </div>
+          <a href={`${site.basePath}/work/convortai/`} class="text-xs font-mono font-bold text-[#ff762b] hover:underline inline-flex items-center gap-1 pt-2">
+            Read Partnership Story <ArrowRight class="size-3.5" />
+          </a>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 6. Working Method -->
+  <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-12">
+      <SectionHeading
+        eyebrow="WORKING METHOD"
+        title="Our Four-Step Engagement Process"
+        description="Clear milestones from initial brief to ongoing operational delivery."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {lahoreData.workingMethod.map((step) => (
+          <div class="bg-white border border-[#061d33]/10 rounded-xl p-6 space-y-3 shadow-sm">
+            <span class="text-2xl font-heading font-bold text-[#ff762b]">{step.step}</span>
+            <h4 class="font-heading font-bold text-base text-[#061d33]">{step.title}</h4>
+            <p class="text-xs sm:text-sm text-slate-700 font-body leading-relaxed">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- 7. FAQ Section -->
+  <section class="py-16 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-8 max-w-4xl">
+      <SectionHeading
+        eyebrow="FREQUENTLY ASKED QUESTIONS"
+        title="Questions About Working With Us in Lahore"
+      />
+      <div class="space-y-4">
+        {lahoreData.faqs.map((faq) => (
+          <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-xl p-6 space-y-2">
+            <h3 class="font-heading font-bold text-lg text-[#061d33]">{faq.question}</h3>
+            <p class="text-slate-700 text-sm font-body leading-relaxed">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- 8. Contact CTA -->
+  <FinalCta />
+</BaseLayout>

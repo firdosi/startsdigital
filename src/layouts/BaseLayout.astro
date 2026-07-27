@@ -20,19 +20,35 @@ import InteractionController from '../components/common/InteractionController.as
 import Analytics from '../components/analytics/Analytics.astro';
 
 import { getMotionCssVariables } from '../data/motion';
+import { getSeoForPath } from '../data/seo';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
   type?: 'website' | 'article';
-  schemaType?: 'homepage' | 'case-study' | 'page';
+  schemaType?:
+    | 'homepage'
+    | 'about'
+    | 'contact'
+    | 'services-index'
+    | 'service'
+    | 'work-index'
+    | 'case-study'
+    | 'industries-index'
+    | 'industry'
+    | 'location'
+    | 'page';
   noindex?: boolean;
 }
 
 const { title, description, image, type, schemaType, noindex } = Astro.props;
 const currentPath = Astro.url.pathname;
-const calculatedSchemaType = schemaType || (currentPath === `${site.basePath}/` || currentPath === `${site.basePath}` || currentPath === '/' ? 'homepage' : (currentPath.includes('/work/') && currentPath !== `${site.basePath}/work/` ? 'case-study' : 'page'));
+const registeredSeo = getSeoForPath(currentPath);
+
+const resolvedTitle = title || registeredSeo.title;
+const resolvedDescription = description || registeredSeo.description;
+const resolvedSchemaType = schemaType || registeredSeo.schemaType || 'page';
 ---
 
 <html lang="en" style={getMotionCssVariables()}>
@@ -48,8 +64,8 @@ const calculatedSchemaType = schemaType || (currentPath === `${site.basePath}/` 
     <link rel="manifest" href={`${site.basePath}/site.webmanifest`} />
     <link rel="sitemap" href={`${site.basePath}/sitemap-index.xml`} />
     
-    <SEO title={title} description={description} ogImage={image} ogType={type} noindex={noindex} />
-    <StructuredData type={calculatedSchemaType} title={title} description={description} image={image} />
+    <SEO title={resolvedTitle} description={resolvedDescription} ogImage={image} ogType={type} noindex={noindex} />
+    <StructuredData schemaType={resolvedSchemaType} title={resolvedTitle} description={resolvedDescription} image={image} />
     <ClientRouter fallback="swap" />
     
     <script is:inline>

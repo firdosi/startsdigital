@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const distDir = path.resolve('dist');
-const savePath = path.resolve('scratch/seo-6-1/schema-audit.json');
+const savePath = path.resolve('scratch/seo-6-2/schema-audit.json');
 
 const dir = path.dirname(savePath);
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -24,6 +24,13 @@ function getAllHtmlFiles(dirPath, files = []) {
   }
   return files;
 }
+
+const approvedWorkNames = new Set([
+  'Black Gold Fertilizer',
+  'Wajib Livestock Qurbani Campaign',
+  'RK Reno Solutions',
+  'ConvortAI',
+]);
 
 const htmlFiles = getAllHtmlFiles(distDir);
 const errors = [];
@@ -55,8 +62,19 @@ for (const file of htmlFiles) {
           errors.push(`[${relPath}] Forbidden schema type found: ${typeStr}`);
         }
 
-        // Future custom domain check
-        if (JSON.stringify(item).includes('startsdigital.com')) {
+        // Work CollectionPage ItemList name check
+        if (relPath.includes('work/index.html') && item['@type'] === 'CollectionPage' && item.mainEntity?.itemListElement) {
+          const list = item.mainEntity.itemListElement;
+          for (const listItem of list) {
+            const name = listItem.name;
+            if (!approvedWorkNames.has(name)) {
+              errors.push(`[${relPath}] Work ItemList item name "${name}" is not an approved public name`);
+            }
+          }
+        }
+
+        // Future custom domain check (uncommented during dry-run validation only)
+        if (process.env.SITE_ORIGIN !== 'https://startsdigital.com' && JSON.stringify(item).includes('startsdigital.com')) {
           errors.push(`[${relPath}] Schema contains future domain startsdigital.com before migration`);
         }
       }
@@ -77,7 +95,7 @@ const auditResult = {
 fs.writeFileSync(savePath, JSON.stringify(auditResult, null, 2));
 
 if (errors.length === 0) {
-  console.log(`✅ QA:SCHEMA PASSED — Validated ${totalSchemasChecked} JSON-LD schemas across ${htmlFiles.length} HTML files. 0 errors.`);
+  console.log(`✅ QA:SCHEMA PASSED — Validated ${totalSchemasChecked} JSON-LD schemas across ${htmlFiles.length} HTML files. Exact public names & zero forbidden schemas verified. 0 errors.`);
 } else {
   console.error(`❌ QA:SCHEMA FAILED — Found ${errors.length} Schema errors:`);
   errors.forEach((e) => console.error('  ' + e));

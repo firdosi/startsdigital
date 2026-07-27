@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import Button from '../../components/ui/Button.astro';
+import FinalCta from '../../components/landing/FinalCta.astro';
+import { ArrowRight, CheckCircle2, ArrowLeft } from '@lucide/astro';
+import { site } from '../../site.config';
+import { getMarketPageBySlug } from '../../data/marketPages';
+
+const marketData = getMarketPageBySlug('technology-products')!;
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 bg-[#061d33] text-white border-b border-slate-800/80 overflow-hidden">
+    <Container>
+      <div class="max-w-3xl space-y-6">
+        <a href={`${site.basePath}/industries/`} class="inline-flex items-center text-xs font-mono text-[#ff762b] hover:underline gap-1 mb-2">
+          <ArrowLeft class="size-3.5" /> Back to Industries
+        </a>
+        <span class="inline-block rounded-full bg-[#ff762b]/20 px-3.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-[#ff762b] border border-[#ff762b]/30">
+          {marketData.eyebrow}
+        </span>
+        <h1 class="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight tracking-tight">
+          {marketData.title}
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-300 font-body font-normal leading-relaxed">
+          {marketData.subtitle}
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Featured Partnership Proof Section -->
+  <section class="py-12 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <Container>
+      <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="space-y-2 max-w-2xl">
+          <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">SOFTWARE PARTNERSHIP STORY</span>
+          <h2 class="font-heading font-bold text-xl sm:text-2xl text-[#061d33]">ConvortAI</h2>
+          <p class="text-sm sm:text-base text-slate-700 font-body leading-relaxed">
+            {marketData.featuredProofText}
+          </p>
+        </div>
+        <Button href={`${site.basePath}/work/convortai/`} variant="primary" class="shrink-0">
+          View Software Partnership
+          <ArrowRight class="size-4 ml-1.5" />
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Key Topics Grid -->
+  <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-12">
+      <SectionHeading
+        eyebrow="PRODUCT CAPABILITIES"
+        title="Technical & Production Pillars for Tech Products"
+        description="Combining full-stack web application development, UI design, workflow automation, and digital growth support."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {marketData.keyTopics.map((item) => (
+          <div class="bg-white border border-[#061d33]/10 rounded-xl p-6 space-y-3 shadow-sm">
+            <div class="flex items-start gap-3">
+              <CheckCircle2 class="size-5 text-[#ff762b] shrink-0 mt-0.5" />
+              <h3 class="font-heading font-bold text-lg text-[#061d33]">{item.title}</h3>
+            </div>
+            <p class="text-slate-600 text-sm font-body leading-relaxed pl-8">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Working Method -->
+  <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-12">
+      <SectionHeading
+        eyebrow="PARTNERSHIP WORKFLOW"
+        title="Our Tech Product Development Process"
+        description="Structured sprint execution from specification to application deployment and ongoing growth tasks."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {marketData.workingMethod.map((step) => (
+          <div class="bg-[#f7f4ed] border border-[#061d33]/10 rounded-xl p-6 space-y-3">
+            <span class="text-2xl font-heading font-bold text-[#ff762b]">{step.step}</span>
+            <h4 class="font-heading font-bold text-base text-[#061d33]">{step.title}</h4>
+            <p class="text-xs sm:text-sm text-slate-700 font-body leading-relaxed">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-8 max-w-4xl">
+      <SectionHeading
+        eyebrow="FREQUENTLY ASKED QUESTIONS"
+        title="Technology Product Partnership Questions"
+      />
+      <div class="space-y-4">
+        {marketData.faqs.map((faq) => (
+          <div class="bg-white border border-[#061d33]/10 rounded-xl p-6 space-y-2">
+            <h3 class="font-heading font-bold text-lg text-[#061d33]">{faq.question}</h3>
+            <p class="text-slate-700 text-sm font-body leading-relaxed">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <FinalCta />
+</BaseLayout>
