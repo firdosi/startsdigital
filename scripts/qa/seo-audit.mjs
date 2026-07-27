@@ -3,7 +3,7 @@ import path from 'path';
 
 const distDir = path.resolve('dist');
 const pagesDir = path.resolve('src/pages');
-const savePath = path.resolve('scratch/final-closure-correction/seo-audit.json');
+const savePath = path.resolve('scratch/final-acceptance-gate/seo-audit.json');
 
 const dir = path.dirname(savePath);
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -31,11 +31,17 @@ function checkSourcePageFiles(dirPath) {
       const content = fs.readFileSync(fullPath, 'utf-8');
       const relPath = path.relative(pagesDir, fullPath).replace(/\\/g, '/');
 
-      // Check for unapproved BaseLayout props (title=, description=, type=, schemaType=)
+      // Check for unapproved BaseLayout props (title=, description=, image=, type=, schemaType=)
       const baseLayoutMatches = content.match(/<BaseLayout[\s\S]*?>/g);
       if (baseLayoutMatches) {
         for (const blTag of baseLayoutMatches) {
-          if (blTag.includes('title=') || blTag.includes('description=')) {
+          if (
+            blTag.includes('title=') ||
+            blTag.includes('description=') ||
+            blTag.includes('image=') ||
+            blTag.includes('type=') ||
+            blTag.includes('schemaType=')
+          ) {
             if (!relPath.includes('404.astro') && !relPath.includes('style-guide.astro')) {
               errors.push(`[Source QA] Unapproved BaseLayout metadata prop in src/pages/${relPath}: ${blTag.trim()}`);
             }

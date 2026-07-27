@@ -370,6 +370,19 @@ export const pageSeoRegistry: Record<string, PageSeoConfig> = {
     schemaType: 'page',
     breadcrumbLabel: 'Legal Information',
   },
+  '/locations/': {
+    title: 'Locations Served | Starts Digital Agency',
+    description: 'Explore locations served by Starts Digital including our core agency operations in Lahore, Pakistan.',
+    canonicalPath: '/locations/lahore/',
+    ogType: 'website',
+    ogImage: '/og/default-og.png',
+    ogImageAlt: 'Locations Served — Starts Digital Agency',
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
+    robots: 'noindex, follow',
+    schemaType: 'page',
+    breadcrumbLabel: 'Locations',
+  },
   '/style-guide/': {
     title: 'Style Guide & Component Library | Starts Digital',
     description: 'Internal design system tokens and component demonstration page for Starts Digital.',
@@ -433,9 +446,5 @@ export function getSeoForPath(path: string): PageSeoConfig {
     return pageSeoRegistry[normalizedKey];
   }
 
-  // Fallback for dynamic routes
-  return {
-    ...defaultSeo,
-    canonicalPath: normalizedKey,
-  };
+  throw new Error(`[SEO Registry Error] Missing SEO registry entry for route: "${path}" (normalized: "${normalizedKey}")`);
 }

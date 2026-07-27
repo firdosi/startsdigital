@@ -85,7 +85,6 @@
 
   function initMotionSystem() {
     cleanupMotionSystem();
-    document.documentElement.classList.add('motion-initialized');
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -100,6 +99,8 @@
       });
       return;
     }
+
+    document.documentElement.classList.add('motion-initialized');
 
     const allMotionElements = Array.from(document.querySelectorAll<HTMLElement>('[data-motion]'));
 

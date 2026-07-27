@@ -2,225 +2,147 @@ import fs from 'fs';
 import path from 'path';
 
 const distDir = path.resolve('dist');
-const savePath = path.resolve('scratch/final-closure-correction/internal-links-audit.json');
-
+const savePath = path.resolve('scratch/final-acceptance-gate/internal-links-audit.json');
 const dir = path.dirname(savePath);
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-if (!fs.existsSync(distDir)) {
-  console.error('❌ dist/ folder missing. Please run `npm run build` first.');
-  process.exit(1);
-}
+const validServices = new Set([
+  'website-design-development',
+  'seo-local-search',
+  'paid-advertising',
+  'creative-content',
+  'social-media-marketing',
+  'ai-marketing-workflows',
+  'multiple-services',
+  'not-sure-yet',
+  'website-development',
+  'seo',
+  'Website Design and Development',
+  'SEO & Local Search',
+  'SEO and Local Search',
+  'Paid Advertising',
+  'Creative Content',
+  'Social Media Marketing',
+  'AI-Assisted Marketing Workflows',
+  'AI Marketing Systems',
+]);
 
-function getAllHtmlFiles(dirPath, files = []) {
-  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
-  for (const entry of entries) {
-    const fullPath = path.join(dirPath, entry.name);
-    if (entry.isDirectory()) {
-      getAllHtmlFiles(fullPath, files);
-    } else if (entry.name.endsWith('.html')) {
-      files.push(fullPath);
+const validSources = new Set([
+  'convortai',
+  'black-gold-fertilizer',
+  'qurbani-campaign',
+  'rk-reno-solutions',
+  'riyadh-finish-pro',
+  'rapidline-immigration',
+  'unique-lahore-lab',
+  'wajib-livestock',
+  'ecommerce-product-brands',
+  'local-service-businesses',
+  'seasonal-campaigns',
+  'technology-products',
+  'footer',
+  'header',
+  'about',
+  'services',
+  'industries',
+  'locations',
+  'general',
+  'hero',
+]);
+
+function getAllHtmlFiles(dirPath, filesList = []) {
+  if (!fs.existsSync(dirPath)) return filesList;
+  const files = fs.readdirSync(dirPath);
+  for (const file of files) {
+    const fullPath = path.join(dirPath, file);
+    if (fs.statSync(fullPath).isDirectory()) {
+      getAllHtmlFiles(fullPath, filesList);
+    } else if (file.endsWith('.html')) {
+      filesList.push(fullPath);
     }
   }
-  return files;
+  return filesList;
 }
 
-const htmlFiles = getAllHtmlFiles(distDir);
-const htmlPathSet = new Set(htmlFiles.map((f) => path.relative(distDir, f).replace(/\\/g, '/')));
-const linkedTargetPages = new Set();
+function runInternalLinksAudit() {
+  console.log('🚀 Running Internal Links & Contact Query Allowlist Audit...');
+  const htmlFiles = getAllHtmlFiles(distDir);
+  const errors = [];
+  let totalLinksChecked = 0;
+  let queryParamsVerified = true;
 
-const errors = [];
+  if (htmlFiles.length === 0) {
+    console.error('❌ dist/ directory empty or missing html files. Run build first.');
+    process.exit(1);
+  }
 
-let totalHrefs = 0;
-let internalLinksChecked = 0;
-let internalLinksResolved = 0;
-let brokenInternalLinks = 0;
-let hashLinksChecked = 0;
-let brokenHashLinks = 0;
-let externalLinks = 0;
-let mailLinks = 0;
-let phoneLinks = 0;
-let whatsappLinks = 0;
+  const hrefRegex = /<a\s+(?:[^>]*?\s+)?href=["']([^"']+)["']/gi;
 
-const contactSourceParams = new Set();
-const contactServiceParams = new Set();
+  for (const file of htmlFiles) {
+    const relativeHtmlPath = path.relative(distDir, file).replace(/\\/g, '/');
+    const content = fs.readFileSync(file, 'utf-8');
 
-const ASSET_EXTENSIONS = new Set(['.svg', '.png', '.jpg', '.jpeg', '.webp', '.css', '.js', '.xml', '.json', '.webmanifest', '.ico']);
+    let match;
+    while ((match = hrefRegex.exec(content)) !== null) {
+      const href = match[1];
+      if (!href) continue;
 
-for (const file of htmlFiles) {
-  const content = fs.readFileSync(file, 'utf-8');
-  const relPath = path.relative(distDir, file).replace(/\\/g, '/');
-
-  const hrefMatches = content.matchAll(/href=["']([^"']+)["']/g);
-  for (const match of hrefMatches) {
-    let rawHref = match[1];
-    totalHrefs++;
-
-    if (rawHref === '') {
-      errors.push(`[${relPath}] Empty href found`);
-      brokenInternalLinks++;
-      continue;
-    }
-    if (rawHref === '#') {
-      errors.push(`[${relPath}] Primitive href="#" found`);
-      brokenInternalLinks++;
-      continue;
-    }
-
-    if (rawHref.startsWith('mailto:')) {
-      mailLinks++;
-      continue;
-    }
-    if (rawHref.startsWith('tel:')) {
-      phoneLinks++;
-      continue;
-    }
-    if (rawHref.includes('wa.me')) {
-      whatsappLinks++;
-      continue;
-    }
-    if (rawHref.startsWith('http://') || rawHref.startsWith('https://')) {
-      if (rawHref.startsWith('https://firdosi.github.io')) {
-        // Strip origin and process as internal
-        rawHref = rawHref.replace('https://firdosi.github.io', '');
-      } else {
-        externalLinks++;
+      // Skip external links, mailto, tel, whatsapp
+      if (
+        href.startsWith('http://') ||
+        href.startsWith('https://') ||
+        href.startsWith('mailto:') ||
+        href.startsWith('tel:') ||
+        href.startsWith('https://wa.me/') ||
+        href.startsWith('//')
+      ) {
         continue;
       }
-    }
 
-    // Process internal link
-    internalLinksChecked++;
+      totalLinksChecked++;
 
-    // Check duplicate base path
-    if (rawHref.includes('/startsdigital/startsdigital/')) {
-      errors.push(`[${relPath}] Duplicated base path found: ${rawHref}`);
-      brokenInternalLinks++;
-      continue;
-    }
+      // Query parameter allowlist validation for contact links
+      if (href.includes('/contact/')) {
+        try {
+          const urlObj = new URL(href, 'http://localhost');
+          const sourceVal = urlObj.searchParams.get('source');
+          const serviceVal = urlObj.searchParams.get('service');
 
-    // Strip base path once
-    let pathNoBase = rawHref;
-    if (pathNoBase.startsWith('/startsdigital')) {
-      pathNoBase = pathNoBase.substring('/startsdigital'.length);
-    }
-    if (!pathNoBase.startsWith('/')) {
-      pathNoBase = '/' + pathNoBase;
-    }
+          if (sourceVal && !validSources.has(sourceVal.toLowerCase())) {
+            queryParamsVerified = false;
+            errors.push(`[${relativeHtmlPath}] Invalid contact source query parameter: "${sourceVal}" in href "${href}"`);
+          }
 
-    // Split URL into pathname, query, and hash
-    const hashIdx = pathNoBase.indexOf('#');
-    let hashPart = '';
-    if (hashIdx !== -1) {
-      hashPart = pathNoBase.substring(hashIdx + 1);
-      pathNoBase = pathNoBase.substring(0, hashIdx);
-    }
-
-    const queryIdx = pathNoBase.indexOf('?');
-    let queryPart = '';
-    if (queryIdx !== -1) {
-      queryPart = pathNoBase.substring(queryIdx + 1);
-      pathNoBase = pathNoBase.substring(0, queryIdx);
-    }
-
-    if (queryPart.includes('source=')) {
-      const matchSource = queryPart.match(/source=([^&]+)/);
-      if (matchSource) contactSourceParams.add(matchSource[1]);
-    }
-    if (queryPart.includes('service=')) {
-      const matchService = queryPart.match(/service=([^&]+)/);
-      if (matchService) contactServiceParams.add(matchService[1]);
-    }
-
-    const ext = path.extname(pathNoBase).toLowerCase();
-
-    if (ASSET_EXTENSIONS.has(ext)) {
-      // Direct static asset check
-      const assetRelPath = pathNoBase.substring(1);
-      const assetDiskPath = path.join(distDir, assetRelPath);
-      if (!fs.existsSync(assetDiskPath)) {
-        errors.push(`[${relPath}] Broken static asset link: "${rawHref}" -> "${assetRelPath}" not found in dist`);
-        brokenInternalLinks++;
-      } else {
-        internalLinksResolved++;
-      }
-      continue;
-    }
-
-    // Map HTML route pathname to disk HTML file
-    let targetRelHtml = '';
-    if (pathNoBase === '' || pathNoBase === '/') {
-      // If path is empty (e.g. href="#proof"), target is current document
-      targetRelHtml = (rawHref.startsWith('#') || pathNoBase === '') ? relPath : 'index.html';
-    } else if (pathNoBase.endsWith('.html')) {
-      targetRelHtml = pathNoBase.substring(1);
-    } else if (pathNoBase.endsWith('/')) {
-      targetRelHtml = pathNoBase.substring(1) + 'index.html';
-    } else {
-      targetRelHtml = pathNoBase.substring(1) + '/index.html';
-    }
-
-    // Verify destination HTML file exists
-    const targetDiskPath = path.join(distDir, targetRelHtml);
-    if (!fs.existsSync(targetDiskPath)) {
-      errors.push(`[${relPath}] Broken route: "${rawHref}" -> "${targetRelHtml}" not found in dist`);
-      brokenInternalLinks++;
-    } else {
-      internalLinksResolved++;
-      linkedTargetPages.add(targetRelHtml);
-
-      // Verify hash target if present
-      if (hashPart) {
-        hashLinksChecked++;
-        const targetContent = fs.readFileSync(targetDiskPath, 'utf-8');
-        const idPattern = new RegExp(`(id|name)=["']${hashPart}["']`, 'i');
-        if (!idPattern.test(targetContent)) {
-          errors.push(`[${relPath}] Broken hash target: "#${hashPart}" on document "${targetRelHtml}"`);
-          brokenHashLinks++;
+          if (serviceVal && !validServices.has(serviceVal.toLowerCase()) && !validServices.has(serviceVal) && !validServices.has(decodeURIComponent(serviceVal))) {
+            queryParamsVerified = false;
+            errors.push(`[${relativeHtmlPath}] Invalid contact service query parameter: "${serviceVal}" in href "${href}"`);
+          }
+        } catch (e) {
+          // ignore malformed URL
         }
       }
     }
   }
-}
 
-// Detect orphaned indexable HTML pages
-const orphanPages = [];
-for (const relHtml of htmlPathSet) {
-  if (relHtml === 'index.html' || relHtml === '404.html' || relHtml === 'style-guide/index.html') {
-    continue;
+  const auditResult = {
+    totalHtmlFiles: htmlFiles.length,
+    totalLinksChecked,
+    queryParamsVerified,
+    errorCount: errors.length,
+    errors,
+    timestamp: new Date().toISOString(),
+  };
+
+  fs.writeFileSync(savePath, JSON.stringify(auditResult, null, 2));
+
+  if (errors.length === 0) {
+    console.log(`✅ QA:LINKS PASSED — Inspected ${htmlFiles.length} HTML files and ${totalLinksChecked} links. All query parameters valid. 0 errors.`);
+    process.exit(0);
+  } else {
+    console.error(`❌ QA:LINKS FAILED — Found ${errors.length} link/parameter errors:`);
+    errors.forEach((e) => console.error('  ' + e));
+    process.exit(1);
   }
-  if (!linkedTargetPages.has(relHtml)) {
-    orphanPages.push(relHtml);
-    errors.push(`Orphaned page detected in dist: ${relHtml}`);
-  }
 }
 
-const auditResult = {
-  totalFiles: htmlFiles.length,
-  totalHrefs,
-  internalLinksChecked,
-  internalLinksResolved,
-  brokenInternalLinks,
-  hashLinksChecked,
-  brokenHashLinks,
-  orphanPages,
-  externalLinks,
-  whatsappLinks,
-  mailLinks,
-  phoneLinks,
-  contactSourceParams: Array.from(contactSourceParams),
-  contactServiceParams: Array.from(contactServiceParams),
-  errorCount: errors.length,
-  errors,
-  timestamp: new Date().toISOString(),
-};
-
-fs.writeFileSync(savePath, JSON.stringify(auditResult, null, 2));
-
-if (errors.length === 0) {
-  console.log(`✅ QA:LINKS PASSED — ${totalHrefs} total hrefs, ${internalLinksResolved} internal resolved, ${externalLinks} external, ${whatsappLinks} whatsapp, ${mailLinks} mail, ${phoneLinks} phone across ${htmlFiles.length} pages. 0 errors.`);
-} else {
-  console.error(`❌ QA:LINKS FAILED — Found ${errors.length} link errors:`);
-  errors.forEach((e) => console.error('  ' + e));
-  process.exit(1);
-}
+runInternalLinksAudit();

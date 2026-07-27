@@ -1,65 +1,71 @@
+import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
 
-const savePath = path.resolve('scratch/final-closure-correction/domain-build-audit.json');
+const savePath = path.resolve('scratch/final-acceptance-gate/domain-build-audit.json');
 const dir = path.dirname(savePath);
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
 const errors = [];
+let buildAVerified = false;
+let buildBVerified = false;
 
-console.log('🚀 Running Real Dual Domain Build QA Audit...');
-
-const tempDirA = path.resolve('dist-build-a');
-const tempDirB = path.resolve('dist-build-b');
+const buildADir = path.resolve('dist-build-a');
+const buildBDir = path.resolve('dist-build-b');
 
 try {
-  // Build A: GitHub Pages Mode
-  console.log('  Executing Build A (GitHub Pages: https://firdosi.github.io/startsdigital)...');
+  console.log('🚀 Running Domain Build Readiness Audit (Build A: GitHub Pages, Build B: Custom Domain)...');
+
+  // Build A: GitHub Pages mode
   execSync('npx astro build --outDir dist-build-a', {
     env: { ...process.env, SITE_ORIGIN: 'https://firdosi.github.io', SITE_BASE_PATH: '/startsdigital' },
     stdio: 'ignore',
   });
 
-  // Verify Build A output
-  const sitemapA = fs.readFileSync(path.join(tempDirA, 'sitemap-index.xml'), 'utf-8');
-  if (!sitemapA.includes('https://firdosi.github.io/startsdigital/')) {
-    errors.push('[Build A] sitemap-index.xml does not contain expected GitHub Pages origin');
+  if (fs.existsSync(buildADir)) {
+    const htmlA = fs.readFileSync(path.join(buildADir, 'index.html'), 'utf-8');
+    if (htmlA.includes('href="/startsdigital/favicon.svg"') && htmlA.includes('https://firdosi.github.io/startsdigital/')) {
+      buildAVerified = true;
+    } else {
+      errors.push('Build A canonical or asset base path incorrect');
+    }
+  } else {
+    errors.push('Build A dist folder not created');
   }
 
-  // Build B: Custom Domain Dry-Run
-  console.log('  Executing Build B (Custom Domain Dry Run: https://startsdigital.com)...');
+  // Build B: Custom Domain dry run
   execSync('npx astro build --outDir dist-build-b', {
     env: { ...process.env, SITE_ORIGIN: 'https://startsdigital.com', SITE_BASE_PATH: '' },
     stdio: 'ignore',
   });
 
-  // Verify Build B output
-  const sitemapB = fs.readFileSync(path.join(tempDirB, 'sitemap-index.xml'), 'utf-8');
-  if (!sitemapB.includes('https://startsdigital.com/')) {
-    errors.push('[Build B] sitemap-index.xml does not contain expected custom domain origin');
+  if (fs.existsSync(buildBDir)) {
+    const htmlB = fs.readFileSync(path.join(buildBDir, 'index.html'), 'utf-8');
+    if (htmlB.includes('href="/favicon.svg"') && htmlB.includes('https://startsdigital.com/') && !htmlB.includes('/startsdigital/')) {
+      buildBVerified = true;
+    } else {
+      errors.push('Build B contains unexpected /startsdigital base path or invalid canonicals');
+    }
+  } else {
+    errors.push('Build B dist folder not created');
   }
-  if (sitemapB.includes('/startsdigital/')) {
-    errors.push('[Build B] sitemap-index.xml incorrectly contains /startsdigital base path');
-  }
-} catch (err) {
-  errors.push(`Domain build failure: ${err.message}`);
+} catch (e) {
+  errors.push(`Domain build execution error: ${e.message}`);
 } finally {
-  // Clean up temporary build folders
-  if (fs.existsSync(tempDirA)) fs.rmSync(tempDirA, { recursive: true, force: true });
-  if (fs.existsSync(tempDirB)) fs.rmSync(tempDirB, { recursive: true, force: true });
+  // Always clean up temporary build artifacts
+  if (fs.existsSync(buildADir)) fs.rmSync(buildADir, { recursive: true, force: true });
+  if (fs.existsSync(buildBDir)) fs.rmSync(buildBDir, { recursive: true, force: true });
 }
 
-// Verify CNAME is NOT present in repo
-if (fs.existsSync(path.resolve('public/CNAME')) || fs.existsSync(path.resolve('dist/CNAME'))) {
-  errors.push('CNAME file found! Custom domain is not yet purchased; CNAME must NOT exist.');
+const cnameExists = fs.existsSync(path.resolve('public/CNAME'));
+if (cnameExists) {
+  errors.push('Unapproved CNAME file detected in public/ directory');
 }
 
 const auditResult = {
-  buildAVerified: true,
-  buildBVerified: true,
-  cnameAbsent: !fs.existsSync(path.resolve('public/CNAME')),
-  buildBNotPublished: true,
+  buildAVerified,
+  buildBVerified,
+  cnameExists,
   errorCount: errors.length,
   errors,
   timestamp: new Date().toISOString(),
@@ -67,8 +73,8 @@ const auditResult = {
 
 fs.writeFileSync(savePath, JSON.stringify(auditResult, null, 2));
 
-if (errors.length === 0) {
-  console.log('✅ QA:DOMAIN PASSED — Dual build validation verified GitHub Pages mode and custom domain dry-run mode. CNAME absent. 0 errors.');
+if (errors.length === 0 && buildAVerified && buildBVerified) {
+  console.log('✅ QA:DOMAIN PASSED — Verified dual build capability for GitHub Pages and Custom Domain dry run. CNAME absent. 0 errors.');
 } else {
   console.error(`❌ QA:DOMAIN FAILED — Found ${errors.length} domain readiness errors:`);
   errors.forEach((e) => console.error('  ' + e));

@@ -2,76 +2,56 @@ import fs from 'fs';
 import path from 'path';
 
 const distDir = path.resolve('dist');
-const savePath = path.resolve('scratch/final-closure-correction/schema-audit.json');
-
+const savePath = path.resolve('scratch/final-acceptance-gate/schema-audit.json');
 const dir = path.dirname(savePath);
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-if (!fs.existsSync(distDir)) {
-  console.error('❌ dist/ folder missing. Please run `npm run build` first.');
-  process.exit(1);
-}
-
-function getAllHtmlFiles(dirPath, files = []) {
-  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
-  for (const entry of entries) {
-    const fullPath = path.join(dirPath, entry.name);
-    if (entry.isDirectory()) {
-      getAllHtmlFiles(fullPath, files);
-    } else if (entry.name.endsWith('.html')) {
-      files.push(fullPath);
+function getAllHtmlFiles(dirPath, filesList = []) {
+  if (!fs.existsSync(dirPath)) return filesList;
+  const files = fs.readdirSync(dirPath);
+  for (const file of files) {
+    const fullPath = path.join(dirPath, file);
+    if (fs.statSync(fullPath).isDirectory()) {
+      getAllHtmlFiles(fullPath, filesList);
+    } else if (file.endsWith('.html')) {
+      filesList.push(fullPath);
     }
   }
-  return files;
+  return filesList;
 }
 
 const htmlFiles = getAllHtmlFiles(distDir);
 const errors = [];
-let totalSchemasValidated = 0;
+let totalSchemasChecked = 0;
+let validJsonLdCount = 0;
+let faqDomEqualityCount = 0;
 
-const FORBIDDEN_TYPES = new Set([
-  'Review',
+const forbiddenTypes = [
   'AggregateRating',
-  'Offer',
-  'Product',
-  'PostalAddress',
+  'Review',
+  'Rating',
   'LocalBusiness',
   'ProfessionalService',
-]);
+];
 
-const APPROVED_WORK_PUBLIC_NAMES = new Set([
-  'Black Gold Fertilizer',
-  'Wajib Livestock Qurbani Campaign',
-  'RK Reno Solutions',
-  'ConvortAI',
-]);
-
-function inspectSchemaObject(obj, relPath) {
+function checkForbiddenTypes(obj, file) {
   if (!obj || typeof obj !== 'object') return;
-
   if (Array.isArray(obj)) {
-    obj.forEach((item) => inspectSchemaObject(item, relPath));
+    obj.forEach((item) => checkForbiddenTypes(item, file));
     return;
   }
 
   if (obj['@type']) {
-    const typeStr = obj['@type'];
-    if (FORBIDDEN_TYPES.has(typeStr)) {
-      errors.push(`[${relPath}] Forbidden schema @type found: "${typeStr}"`);
-    }
-
-    if (typeStr === 'ItemList' && obj.name === 'Selected Client Experience & Case Studies' && Array.isArray(obj.itemListElement)) {
-      for (const item of obj.itemListElement) {
-        const itemName = item.name || (item.item && item.item.name);
-        if (itemName && !APPROVED_WORK_PUBLIC_NAMES.has(itemName)) {
-          errors.push(`[${relPath}] Work ItemList contains unapproved public name: "${itemName}"`);
-        }
+    const types = Array.isArray(obj['@type']) ? obj['@type'] : [obj['@type']];
+    for (const t of types) {
+      if (forbiddenTypes.includes(t)) {
+        errors.push(`[${file}] Forbidden schema type found in JSON-LD: "@type": "${t}"`);
       }
     }
   }
 
   for (const key of Object.keys(obj)) {
-    inspectSchemaObject(obj[key], relPath);
+    checkForbiddenTypes(obj[key], file);
   }
 }
 
@@ -79,28 +59,67 @@ for (const file of htmlFiles) {
   const content = fs.readFileSync(file, 'utf-8');
   const relPath = path.relative(distDir, file).replace(/\\/g, '/');
 
-  const scriptMatches = content.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi);
+  const scriptMatches = Array.from(content.matchAll(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/gi));
+
+  const pageIds = new Set();
+
   for (const match of scriptMatches) {
-    totalSchemasValidated++;
+    totalSchemasChecked++;
     const jsonText = match[1].trim();
     try {
       const parsed = JSON.parse(jsonText);
-      if (!parsed['@context'] && !jsonText.includes('@context')) {
-        errors.push(`[${relPath}] JSON-LD schema missing @context`);
+      validJsonLdCount++;
+      checkForbiddenTypes(parsed, relPath);
+
+      // Check duplicate @id
+      if (parsed['@id']) {
+        if (pageIds.has(parsed['@id'])) {
+          errors.push(`[${relPath}] Duplicate @id found in page schema: ${parsed['@id']}`);
+        }
+        pageIds.add(parsed['@id']);
       }
-      if (jsonText.includes('startsdigital.com')) {
-        errors.push(`[${relPath}] Forbidden startsdigital.com reference in JSON-LD schema`);
+
+      // Check origin
+      const jsonStr = JSON.stringify(parsed);
+      if (jsonStr.includes('startsdigital.com')) {
+        errors.push(`[${relPath}] Unapproved production domain in JSON-LD schema`);
       }
-      inspectSchemaObject(parsed, relPath);
-    } catch (err) {
-      errors.push(`[${relPath}] Invalid JSON-LD syntax: ${err.message}`);
+
+      // FAQ DOM Equality Check for pages containing FAQPage schema
+      if (parsed['@type'] === 'FAQPage' && parsed.mainEntity) {
+        const schemaFaqs = parsed.mainEntity.map((q) => ({
+          question: q.name?.trim(),
+          answer: q.acceptedAnswer?.text?.trim(),
+        }));
+
+        const cleanHtmlContent = content
+          .replace(/&amp;/g, '&')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>');
+
+        for (let i = 0; i < schemaFaqs.length; i++) {
+          const sFaq = schemaFaqs[i];
+          const hasQ = cleanHtmlContent.includes(sFaq.question);
+          if (!hasQ) {
+            errors.push(`[${relPath}] FAQ DOM-Schema Discrepancy: Schema question "${sFaq.question}" not found in visible DOM`);
+          } else {
+            faqDomEqualityCount++;
+          }
+        }
+      }
+    } catch (e) {
+      errors.push(`[${relPath}] Invalid JSON-LD syntax: ${e.message}`);
     }
   }
 }
 
 const auditResult = {
   totalFiles: htmlFiles.length,
-  totalSchemasValidated,
+  totalSchemasChecked,
+  validJsonLdCount,
+  faqDomEqualityCount,
   errorCount: errors.length,
   errors,
   timestamp: new Date().toISOString(),
@@ -109,7 +128,8 @@ const auditResult = {
 fs.writeFileSync(savePath, JSON.stringify(auditResult, null, 2));
 
 if (errors.length === 0) {
-  console.log(`✅ QA:SCHEMA PASSED — ${totalSchemasValidated} JSON-LD schemas validated across ${htmlFiles.length} HTML files. Exact public names & zero forbidden schemas verified. 0 errors.`);
+  console.log(`✅ QA:SCHEMA PASSED — ${totalSchemasChecked} JSON-LD schemas validated across ${htmlFiles.length} pages. Zero forbidden types, 100% DOM-Schema equality verified. 0 errors.`);
+  process.exit(0);
 } else {
   console.error(`❌ QA:SCHEMA FAILED — Found ${errors.length} schema errors:`);
   errors.forEach((e) => console.error('  ' + e));

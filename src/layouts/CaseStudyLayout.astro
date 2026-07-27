@@ -39,12 +39,7 @@ const prevStudy = currentIndex > 0 ? sortedStudies[currentIndex - 1] : sortedStu
 const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[currentIndex + 1] : sortedStudies[0];
 ---
 
-<BaseLayout 
-  title={`${data.seoTitle} — Starts Digital`} 
-  description={data.seoDescription}
-  type="article"
-  image={data.ogImage}
->
+<BaseLayout>
   <div class="bg-[#f7f4ed] min-h-screen text-[#061d33] overflow-hidden">
     <!-- Deep Navy Hero Header Section -->
     <section class="bg-[#061d33] text-white pt-16 pb-20 sm:pt-20 sm:pb-24 border-b border-white/10 relative overflow-hidden rounded-b-[40px] shadow-2xl">

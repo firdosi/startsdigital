@@ -53,7 +53,7 @@ const industryIcons: Record<string, any> = {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {industryPages.map((ind) => {
           const IconComp = industryIcons[ind.slug] || Layers;
-          const proj = detailedStories.find((p) => p.id === ind.featuredProjectId || p.slug === ind.featuredProjectId);
+          const proj = detailedStories.find((p) => p.id === ind.featuredProjectId);
           return (
             <div class="bg-white border border-[#061d33]/10 rounded-2xl p-8 space-y-6 shadow-sm hover:border-[#ff762b]/40 transition-colors flex flex-col justify-between">
               <div class="space-y-4">
@@ -179,7 +179,7 @@ const industryIcons: Record<string, any> = {
           <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">E-COMMERCE & PRODUCTS</span>
           <h3 class="font-heading font-bold text-xl text-[#061d33]">Transaction & Conversion Focus</h3>
           <p class="text-base text-slate-700 font-body leading-relaxed">
-            Prioritizes direct-response ad creative testing, mobile cart optimization, retention email flows, and delivered-order tracking.
+            Prioritizes direct-response ad creative testing, mobile storefront alignment, campaign copy, and delivered-order tracking.
           </p>
         </div>
 
@@ -195,7 +195,7 @@ const industryIcons: Record<string, any> = {
           <span class="text-xs font-mono font-bold uppercase text-[#ff762b] tracking-wider">TECH & SOFTWARE</span>
           <h3 class="font-heading font-bold text-xl text-[#061d33]">Product & Workflow Development</h3>
           <p class="text-base text-slate-700 font-body leading-relaxed">
-            Engages as an integrated technical and production team building custom web apps, workflow integrations, and growth content.
+            Engages as an integrated technical and production team developing web applications, UI layouts, practical workflows, and growth content.
           </p>
         </div>
       </div>
