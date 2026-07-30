@@ -5,7 +5,10 @@ import { execSync } from 'node:child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '../../');
-const screenshotDir = path.join(rootDir, 'scratch/roadmap-7-3-final-site-acceptance');
+
+const dir81 = path.join(rootDir, 'scratch/roadmap-8-1-offline-prelaunch');
+const dir73 = path.join(rootDir, 'scratch/roadmap-7-3-final-site-acceptance');
+const screenshotDir = fs.existsSync(dir81) ? dir81 : dir73;
 
 let errors = [];
 let passCount = 0;
@@ -20,7 +23,7 @@ function assert(condition, message) {
   }
 }
 
-console.log('🚀 Running Visual Capture & Audit Readiness QA Audit (Roadmap 7.3)...\n');
+console.log(`🚀 Running Visual Capture & Audit Readiness QA Audit (${screenshotDir.includes('8-1') ? 'Roadmap 8.1' : 'Roadmap 7.3'})...\n`);
 
 let currentSha = '';
 try {
@@ -29,8 +32,12 @@ try {
   currentSha = 'unknown';
 }
 
-// 1. Verify Screenshot Folder & 4 Screenshot Files Exist (> 10KB)
-const requiredScreenshots = [
+const requiredScreenshots = screenshotDir.includes('8-1') ? [
+  { name: 'homepage-offline-prelaunch-1440.png', minSize: 10000 },
+  { name: 'work-media-readiness-1440.png', minSize: 10000 },
+  { name: 'client-experience-offline-review-390.png', minSize: 10000 },
+  { name: 'contact-offline-prelaunch-390.png', minSize: 10000 }
+] : [
   { name: 'homepage-launch-ready-1440.png', minSize: 10000 },
   { name: 'services-launch-ready-390.png', minSize: 10000 },
   { name: 'contact-project-context-1440.png', minSize: 10000 },
@@ -49,8 +56,17 @@ for (const shot of requiredScreenshots) {
   }
 }
 
-// 2. Verify all 11 Audit JSON Files Exist, Status is 'pass', Errors array is empty, and SHA matches
-const auditFiles = [
+const auditFiles = screenshotDir.includes('8-1') ? [
+  'media-readiness-audit.json',
+  'evidence-intake-audit.json',
+  'project-claims-audit.json',
+  'logo-quality-audit.json',
+  'social-assets-audit.json',
+  'content-final-review-audit.json',
+  'offline-release-package-audit.json',
+  'future-domain-checklist-audit.json',
+  'screenshot-capture-audit.json'
+] : [
   'route-inventory-audit.json',
   'content-consistency-audit.json',
   'navigation-footer-audit.json',
@@ -87,7 +103,6 @@ for (const auditName of auditFiles) {
   }
 }
 
-// 3. Inspect dist/ compiled CSS asset
 const distDir = path.join(rootDir, 'dist');
 if (fs.existsSync(distDir)) {
   const astroDir = path.join(distDir, 'startsdigital/_astro');

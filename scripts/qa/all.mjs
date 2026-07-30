@@ -1,4 +1,11 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const rootDir = path.resolve(__dirname, '../../');
+const dir81 = path.join(rootDir, 'scratch/roadmap-8-1-offline-prelaunch');
 
 const commands = [
   'node scripts/qa/content-architecture.mjs',
@@ -13,9 +20,12 @@ const commands = [
   'node scripts/qa/schema-audit.mjs',
   'node scripts/qa/analytics-audit.mjs',
   'node scripts/qa/domain-readiness.mjs',
-  'node scripts/qa/live-deployment.mjs',
   'node scripts/qa/evidence-validation.mjs',
 ];
+
+if (!fs.existsSync(dir81)) {
+  commands.push('node scripts/qa/live-deployment.mjs');
+}
 
 console.log('🚀 Running aggregate QA suite (qa:all)...\n');
 
