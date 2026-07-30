@@ -83,7 +83,8 @@ function scanDirectoryForMetrics(dirPath) {
       const isWorkRoute = relPath.startsWith('src/pages/work/') || 
                           relPath.startsWith('src/data/case-studies/') || 
                           relPath === 'src/data/projects.ts' ||
-                          relPath === 'src/data/caseStudies.ts';
+                          relPath === 'src/data/caseStudies.ts' ||
+                          relPath === 'src/data/projectClaims.ts';
 
       if (!isWorkRoute) {
         const fileText = fs.readFileSync(fullPath, 'utf-8');
