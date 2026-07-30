@@ -197,9 +197,17 @@ if (clearzoneAvailable) claimsErrors.push('Clearzone Immigration incorrectly mar
 const noResultsMarkedPending = claimsText.includes("clientId: 'riyadh-finish-pro'") && claimsText.includes("evidenceStatus: 'user-provided-pending-evidence'");
 if (noResultsMarkedPending) claimsErrors.push('Riyadh Finish Pro (no-results-yet) incorrectly marked as user-provided-pending-evidence');
 
-const availableCount = (claimsText.match(/evidenceStatus:\s*['"]available['"]/g) || []).length;
-const pendingCount = (claimsText.match(/evidenceStatus:\s*['"]user-provided-pending-evidence['"]/g) || []).length;
-const noResultsCount = (claimsText.match(/evidenceStatus:\s*['"]no-results-yet['"]/g) || []).length;
+// Count records only inside array entries (ignoring interface definition)
+const recordBlocks = claimsText.split('clientId:').slice(1);
+let availableCount = 0;
+let pendingCount = 0;
+let noResultsCount = 0;
+
+for (const block of recordBlocks) {
+  if (block.includes("evidenceStatus: 'available'")) availableCount++;
+  else if (block.includes("evidenceStatus: 'user-provided-pending-evidence'")) pendingCount++;
+  else if (block.includes("evidenceStatus: 'no-results-yet'")) noResultsCount++;
+}
 
 if (availableCount !== 4) claimsErrors.push(`Expected exactly 4 available evidence claims, found ${availableCount}`);
 if (pendingCount !== 6) claimsErrors.push(`Expected exactly 6 user-provided-pending-evidence claims, found ${pendingCount}`);
