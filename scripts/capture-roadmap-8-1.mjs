@@ -204,7 +204,7 @@ let pendingCount = 0;
 let noResultsCount = 0;
 
 for (const block of recordBlocks) {
-  if (block.includes("evidenceStatus: 'available'")) availableCount++;
+  if (block.includes("evidenceStatus: 'available'") && block.includes("evidenceReference:")) availableCount++;
   else if (block.includes("evidenceStatus: 'user-provided-pending-evidence'")) pendingCount++;
   else if (block.includes("evidenceStatus: 'no-results-yet'")) noResultsCount++;
 }
