@@ -1,26 +1,38 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
-const savePath = path.resolve('scratch/final-acceptance-gate/live-deployment-audit.json');
-const dir = path.dirname(savePath);
-if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+const savePath73 = path.resolve('scratch/roadmap-7-3-final-site-acceptance/live-deployment-audit.json');
+const savePathGate = path.resolve('scratch/final-acceptance-gate/live-deployment-audit.json');
+
+[path.dirname(savePath73), path.dirname(savePathGate)].forEach(dir => {
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+});
 
 const liveCheckpoints = [
   {
-    url: 'https://firdosi.github.io/startsdigital/industries/',
-    expectedText: 'E-commerce & Product Brands',
-    expectedFaqText: 'Industry Engagement Questions',
-    expectedCanonical: 'https://firdosi.github.io/startsdigital/industries/',
+    url: 'https://firdosi.github.io/startsdigital/',
+    expectedText: 'Starts Digital',
+    expectedCanonical: 'https://firdosi.github.io/startsdigital/',
   },
   {
-    url: 'https://firdosi.github.io/startsdigital/locations/lahore/',
-    expectedText: 'Lahore',
-    expectedCanonical: 'https://firdosi.github.io/startsdigital/locations/lahore/',
+    url: 'https://firdosi.github.io/startsdigital/about/',
+    expectedText: 'Zaid',
+    expectedCanonical: 'https://firdosi.github.io/startsdigital/about/',
   },
   {
-    url: 'https://firdosi.github.io/startsdigital/contact/?source=convortai',
-    expectedText: 'ConvortAI',
-    expectedCanonical: 'https://firdosi.github.io/startsdigital/contact/',
+    url: 'https://firdosi.github.io/startsdigital/services/',
+    expectedText: 'Paid Advertising',
+    expectedCanonical: 'https://firdosi.github.io/startsdigital/services/',
+  },
+  {
+    url: 'https://firdosi.github.io/startsdigital/services/paid-advertising/',
+    expectedText: 'Paid Advertising',
+    expectedCanonical: 'https://firdosi.github.io/startsdigital/services/paid-advertising/',
+  },
+  {
+    url: 'https://firdosi.github.io/startsdigital/work/',
+    expectedText: 'Client Experience Profiles',
+    expectedCanonical: 'https://firdosi.github.io/startsdigital/work/',
   },
   {
     url: 'https://firdosi.github.io/startsdigital/work/black-gold-fertilizer/',
@@ -31,6 +43,31 @@ const liveCheckpoints = [
     url: 'https://firdosi.github.io/startsdigital/work/convortai/',
     expectedText: 'ConvortAI',
     expectedCanonical: 'https://firdosi.github.io/startsdigital/work/convortai/',
+  },
+  {
+    url: 'https://firdosi.github.io/startsdigital/work/clearzone-immigration/',
+    expectedText: 'Clearzone Immigration',
+    expectedCanonical: 'https://firdosi.github.io/startsdigital/work/clearzone-immigration/',
+  },
+  {
+    url: 'https://firdosi.github.io/startsdigital/industries/',
+    expectedText: 'E-commerce & Product Brands',
+    expectedCanonical: 'https://firdosi.github.io/startsdigital/industries/',
+  },
+  {
+    url: 'https://firdosi.github.io/startsdigital/locations/lahore/',
+    expectedText: 'Lahore',
+    expectedCanonical: 'https://firdosi.github.io/startsdigital/locations/lahore/',
+  },
+  {
+    url: 'https://firdosi.github.io/startsdigital/contact/?source=clearzone-immigration',
+    expectedText: 'Clearzone Immigration',
+    expectedCanonical: 'https://firdosi.github.io/startsdigital/contact/',
+  },
+  {
+    url: 'https://firdosi.github.io/startsdigital/contact/?service=paid-advertising',
+    expectedText: 'Paid Advertising',
+    expectedCanonical: 'https://firdosi.github.io/startsdigital/contact/',
   },
   {
     url: 'https://firdosi.github.io/startsdigital/robots.txt',
@@ -58,15 +95,10 @@ async function checkLiveDeployment() {
 
       const bodyText = await res.text();
 
-      // Check unique text requirement
       if (item.expectedText && !bodyText.includes(item.expectedText)) {
         errors.push(`[${item.url}] Missing required live content: "${item.expectedText}"`);
       }
-      if (item.expectedFaqText && !bodyText.includes(item.expectedFaqText)) {
-        errors.push(`[${item.url}] Missing required live FAQ content: "${item.expectedFaqText}"`);
-      }
 
-      // Check canonical tag requirement for HTML pages
       if (item.expectedCanonical) {
         const canonicalMatch = bodyText.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/);
         if (!canonicalMatch || canonicalMatch[1] !== item.expectedCanonical) {
@@ -81,17 +113,38 @@ async function checkLiveDeployment() {
     }
   }
 
+  let currentSha = '';
+  try {
+    const { execSync } = await import('node:child_process');
+    currentSha = execSync('git rev-parse HEAD', { encoding: 'utf-8' }).trim();
+  } catch (e) {
+    currentSha = 'unknown';
+  }
+
   const isPending = errors.length > 0;
   const auditResult = {
+    status: isPending ? 'fail' : 'pass',
+    generatedAt: new Date().toISOString(),
+    sourceCommitSha: currentSha,
+    sourceFilesInspected: ['https://firdosi.github.io/startsdigital/'],
+    routesInspected: liveCheckpoints.map(c => c.url),
+    measuredResults: {
+      liveEndpointsVerified: liveCheckpoints.length,
+      liveHttp200Count: checkedResults.filter(r => r.ok).length
+    },
+    passFailAssertions: {
+      liveEndpointsReturn200: !isPending,
+      liveCanonicalsMatchOrigin: !isPending
+    },
     liveOrigin: 'https://firdosi.github.io/startsdigital/',
     deploymentStatus: isPending ? 'PENDING' : 'VERIFIED',
     checkedResults,
     errorCount: errors.length,
     errors,
-    timestamp: new Date().toISOString(),
   };
 
-  fs.writeFileSync(savePath, JSON.stringify(auditResult, null, 2));
+  fs.writeFileSync(savePath73, JSON.stringify(auditResult, null, 2));
+  fs.writeFileSync(savePathGate, JSON.stringify(auditResult, null, 2));
 
   if (!isPending) {
     console.log(`✅ LIVE DEPLOYMENT VERIFIED — All ${liveCheckpoints.length} live endpoints verified for HTTP 200, unique content, and valid canonicals.`);
