@@ -39,37 +39,49 @@ const routesToTest = [
   '/404/'
 ];
 
-// Mount static HTTP server for dist/
-const PORT = 4488;
-const server = http.createServer((req, res) => {
-  let reqPath = req.url.split('?')[0];
-  if (reqPath.startsWith('/startsdigital')) {
-    reqPath = reqPath.slice('/startsdigital'.length);
-  }
-  if (!reqPath || reqPath === '/') reqPath = '/index.html';
-  if (reqPath.endsWith('/')) reqPath += 'index.html';
+function startServer(portToTry) {
+  return new Promise((resolve) => {
+    const srv = http.createServer((req, res) => {
+      let reqPath = req.url.split('?')[0];
+      if (reqPath.startsWith('/startsdigital')) {
+        reqPath = reqPath.slice('/startsdigital'.length);
+      }
+      if (!reqPath || reqPath === '/') reqPath = '/index.html';
+      if (reqPath.endsWith('/')) reqPath += 'index.html';
 
-  let filePath = path.join(distDir, reqPath);
-  if (!fs.existsSync(filePath) && reqPath.includes('404')) {
-    filePath = path.join(distDir, '404.html');
-  }
+      let filePath = path.join(distDir, reqPath);
+      if (!fs.existsSync(filePath) && reqPath.includes('404')) {
+        filePath = path.join(distDir, '404.html');
+      }
 
-  if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-    const ext = path.extname(filePath);
-    const contentType = ext === '.html' ? 'text/html; charset=utf-8' :
-                        ext === '.css' ? 'text/css' :
-                        ext === '.js' ? 'application/javascript' :
-                        ext === '.webp' ? 'image/webp' :
-                        ext === '.svg' ? 'image/svg+xml' : 'application/octet-stream';
-    res.writeHead(200, { 'Content-Type': contentType });
-    res.end(fs.readFileSync(filePath));
-  } else {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not Found');
-  }
-});
+      if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+        const ext = path.extname(filePath);
+        const contentType = ext === '.html' ? 'text/html; charset=utf-8' :
+                            ext === '.css' ? 'text/css' :
+                            ext === '.js' ? 'application/javascript' :
+                            ext === '.webp' ? 'image/webp' :
+                            ext === '.svg' ? 'image/svg+xml' : 'application/octet-stream';
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(fs.readFileSync(filePath));
+      } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Not Found');
+      }
+    });
 
-server.listen(PORT, '127.0.0.1', async () => {
+    srv.on('error', () => {
+      resolve(startServer(portToTry + 1));
+    });
+
+    srv.listen(portToTry, '127.0.0.1', () => {
+      const activePort = srv.address().port;
+      resolve({ server: srv, port: activePort });
+    });
+  });
+}
+
+(async () => {
+  const { server: activeServer, port: PORT } = await startServer(4488);
   try {
     const browser = await chromium.launch();
     
@@ -128,7 +140,7 @@ server.listen(PORT, '127.0.0.1', async () => {
     }
 
     await browser.close();
-    server.close();
+    activeServer.close();
 
     console.log(`\n----------------------------------------`);
     if (errors.length === 0) {
@@ -140,8 +152,8 @@ server.listen(PORT, '127.0.0.1', async () => {
       process.exit(1);
     }
   } catch (err) {
-    server.close();
+    activeServer.close();
     console.error('💥 ACCESSIBILITY SCRIPT ERROR:', err.message);
     process.exit(1);
   }
-});
+})();
