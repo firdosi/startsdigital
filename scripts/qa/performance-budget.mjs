@@ -45,8 +45,8 @@ if (fs.existsSync(distDir)) {
 
 // 3. Scan images in dist/ for 500KB budget limit
 function checkImageBudgets(dir) {
-  const files = fs.readdirSync(dir);
   let oversized = [];
+  const files = fs.readdirSync(dir);
   for (const file of files) {
     const fullP = path.join(dir, file);
     const stat = fs.statSync(fullP);
@@ -55,13 +55,16 @@ function checkImageBudgets(dir) {
         oversized.push({ file: path.relative(distDir, fullP), size: stat.size });
       }
     } else if (stat.isDirectory()) {
-      checkImageBudgets(fullP);
+      oversized = oversized.concat(checkImageBudgets(fullP));
     }
   }
   return oversized;
 }
-const oversizedImages = checkImageBudgets(distDir);
-assert(oversizedImages.length === 0, `No production image asset exceeds 500 KB budget limit (found ${oversizedImages.length})`);
+
+if (fs.existsSync(distDir)) {
+  const oversized = checkImageBudgets(distDir);
+  assert(oversized.length === 0, `No production image asset exceeds 500 KB budget limit (found ${oversized.length})`);
+}
 
 // 4. Verify self-hosted fonts use font-display
 const cssDir = path.join(distDir, 'startsdigital/_astro');
