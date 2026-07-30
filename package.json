@@ -13,6 +13,9 @@
     "check": "astro check",
     "qa:content": "node scripts/qa/content-architecture.mjs",
     "qa:work": "node scripts/qa/work-directory.mjs",
+    "qa:a11y": "node scripts/qa/accessibility.mjs",
+    "qa:performance": "node scripts/qa/performance-budget.mjs",
+    "qa:security": "node scripts/qa/security-privacy.mjs",
     "qa:visual-capture": "node scripts/qa/visual-capture-readiness.mjs",
     "qa:motion": "node scripts/qa/motion-regression.mjs",
     "qa:evidence": "node scripts/qa/evidence-validation.mjs",
@@ -21,6 +24,7 @@
     "qa:schema": "node scripts/qa/schema-audit.mjs",
     "qa:analytics": "node scripts/qa/analytics-audit.mjs",
     "qa:domain": "node scripts/qa/domain-readiness.mjs",
+    "qa:live": "node scripts/qa/live-deployment.mjs",
     "qa:all": "node scripts/qa/all.mjs"
   },
   "dependencies": {

@@ -5,7 +5,7 @@ import { execSync } from 'node:child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '../../');
-const screenshotDir = path.join(rootDir, 'scratch/roadmap-7-2-final-acceptance');
+const screenshotDir = path.join(rootDir, 'scratch/roadmap-7-3-final-site-acceptance');
 
 let errors = [];
 let passCount = 0;
@@ -20,7 +20,7 @@ function assert(condition, message) {
   }
 }
 
-console.log('🚀 Running Visual Capture Readiness QA Audit...\n');
+console.log('🚀 Running Visual Capture & Audit Readiness QA Audit (Roadmap 7.3)...\n');
 
 let currentSha = '';
 try {
@@ -29,12 +29,12 @@ try {
   currentSha = 'unknown';
 }
 
-// 1. Verify Screenshot Folder & Files Exist with > 10KB size
+// 1. Verify Screenshot Folder & 4 Screenshot Files Exist (> 10KB)
 const requiredScreenshots = [
-  { name: 'work-twelve-clients-1440.png', minSize: 10000 },
-  { name: 'work-filters-client-experience-390.png', minSize: 10000 },
-  { name: 'clearzone-client-experience-1440.png', minSize: 10000 },
-  { name: 'riyadh-client-experience-390.png', minSize: 10000 }
+  { name: 'homepage-launch-ready-1440.png', minSize: 10000 },
+  { name: 'services-launch-ready-390.png', minSize: 10000 },
+  { name: 'contact-project-context-1440.png', minSize: 10000 },
+  { name: 'contact-project-brief-390.png', minSize: 10000 }
 ];
 
 assert(fs.existsSync(screenshotDir), `Screenshot output folder exists at ${screenshotDir}`);
@@ -49,13 +49,19 @@ for (const shot of requiredScreenshots) {
   }
 }
 
-// 2. Verify all 5 Audit JSON Files Exist, Status is 'pass', Errors array is empty, and SHA matches
+// 2. Verify all 11 Audit JSON Files Exist, Status is 'pass', Errors array is empty, and SHA matches
 const auditFiles = [
-  'work-directory-audit.json',
-  'client-access-audit.json',
-  'client-media-source-audit.json',
-  'client-profile-routes-audit.json',
-  'screenshot-capture-audit.json'
+  'route-inventory-audit.json',
+  'content-consistency-audit.json',
+  'navigation-footer-audit.json',
+  'conversion-flow-audit.json',
+  'accessibility-audit.json',
+  'performance-budget-audit.json',
+  'security-privacy-audit.json',
+  'seo-final-audit.json',
+  'live-deployment-audit.json',
+  'screenshot-capture-audit.json',
+  'release-freeze-audit.json'
 ];
 
 for (const auditName of auditFiles) {
@@ -81,7 +87,7 @@ for (const auditName of auditFiles) {
   }
 }
 
-// 3. Inspect dist/ compiled assets exist
+// 3. Inspect dist/ compiled CSS asset
 const distDir = path.join(rootDir, 'dist');
 if (fs.existsSync(distDir)) {
   const astroDir = path.join(distDir, 'startsdigital/_astro');
@@ -95,7 +101,7 @@ if (fs.existsSync(distDir)) {
 
 console.log(`\n----------------------------------------`);
 if (errors.length === 0) {
-  console.log(`✨ ALL ${passCount} VISUAL CAPTURE QA AUDITS PASSED CLEANLY! (0 errors)\n`);
+  console.log(`✨ ALL ${passCount} VISUAL CAPTURE & AUDIT QA CHECKS PASSED CLEANLY! (0 errors)\n`);
   process.exit(0);
 } else {
   console.error(`💥 VISUAL CAPTURE QA AUDIT FAILED with ${errors.length} errors:`);

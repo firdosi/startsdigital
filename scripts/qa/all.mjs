@@ -1,8 +1,11 @@
-import { execSync } from 'child_process';
+import { execSync } from 'node:child_process';
 
 const commands = [
   'node scripts/qa/content-architecture.mjs',
   'node scripts/qa/work-directory.mjs',
+  'node scripts/qa/accessibility.mjs',
+  'node scripts/qa/performance-budget.mjs',
+  'node scripts/qa/security-privacy.mjs',
   'node scripts/qa/visual-capture-readiness.mjs',
   'node scripts/qa/motion-regression.mjs',
   'node scripts/qa/internal-links.mjs',
