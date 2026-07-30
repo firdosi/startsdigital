@@ -81,11 +81,21 @@ for (const bId of brandIds) {
   const brandMentioned = brandsText.includes(bId) || projectsText.includes(bId);
   if (!brandMentioned) mediaErrors.push(`Brand ID ${bId} missing from data registries`);
 
-  // Check logo presence in public/images
+  // Check logo presence in public/brands/<brandId>/ or public/images/
+  const brandLogoDir = path.join(rootDir, `public/brands/${bId}`);
   const imgDir = path.join(rootDir, 'public/images');
-  const imgFiles = fs.readdirSync(imgDir);
-  const logoMatch = imgFiles.some(f => f.toLowerCase().includes(bId.split('-')[0]));
-  if (logoMatch) existingLogosCount++;
+  let hasLogo = false;
+
+  if (fs.existsSync(brandLogoDir)) {
+    const bFiles = fs.readdirSync(brandLogoDir);
+    if (bFiles.some(f => /\.(webp|png|svg|jpg|jpeg)$/i.test(f))) hasLogo = true;
+  }
+  if (!hasLogo && fs.existsSync(imgDir)) {
+    const imgFiles = fs.readdirSync(imgDir);
+    if (imgFiles.some(f => f.toLowerCase().includes(bId.split('-')[0]))) hasLogo = true;
+  }
+
+  if (hasLogo) existingLogosCount++;
 }
 
 writeAuditFile('media-readiness-audit.json', {
