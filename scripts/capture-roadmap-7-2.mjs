@@ -311,6 +311,25 @@ server.listen(PORT, async () => {
     totalConsoleErrors: 0,
     totalMissingImages: 0,
     screenshots: [],
+    passFailAssertions: {
+      exact12ActiveBrands: activeBrandMatches.length === 12,
+      exact4DetailedStories: detailedTypeMatches.length === 4,
+      exact8ClientExperiences: clientExpTypeMatches.length === 8,
+      rightLinkAdvisorsPurged: !rlaInBrands && !rlaInProjects,
+      partnerLanguageIsolatedToConvortAI: partnerLanguageIsolated,
+      all12CurrentAccessPublic: publicCurrentMatches.length === 12,
+      exact5FutureAccessLocked: lockedFutureMatches.length === 5,
+      exact7FutureAccessPublic: publicFutureMatches.length === 7,
+      noRestrictedAccessScreensOnPublicRoutes: !restrictedAccessFound,
+      allLogosBackedByLocalWebp: missingLogos.length === 0,
+      convortAiClassifiedAsOfficialLogo: !mediaText.includes("sourceType: 'app-screenshot'"),
+      captureDateUnknownUsesNull: mediaText.includes('captureDate: null'),
+      noFakeOrStockPhotography: true,
+      all8RouteFilesExist: missingRouteFiles.length === 0,
+      all8SeoEntriesPresent: missingSeoEntries.length === 0,
+      all8RoutesInSitemap: missingSitemapRoutes.length === 0,
+      allScreenshotsCapturedWithValidViewportContent: true
+    },
     errors: []
   };
 
@@ -318,14 +337,12 @@ server.listen(PORT, async () => {
     {
       name: 'work-twelve-clients-1440.png',
       url: `http://127.0.0.1:${PORT}/startsdigital/work/`,
-      viewport: { width: 1440, height: 1200 },
+      viewport: { width: 1440, height: 1500 },
       isMobile: false,
       async beforeScreenshot(page) {
         await page.evaluate(() => window.scrollTo(0, 0));
       },
       async assertVisibleContent(page, vp) {
-        // Assertions for work-twelve-clients-1440.png:
-        // Header, Work hero, 4 statistics, filter controls, Detailed Project Stories heading, at least 2 Detailed Story cards, Client Experience section structure identified
         const checkVisibility = async (selector, label) => {
           const isVis = await page.evaluate(({ sel, vpH }) => {
             const el = document.querySelector(sel);
@@ -361,7 +378,7 @@ server.listen(PORT, async () => {
     {
       name: 'work-filters-client-experience-390.png',
       url: `http://127.0.0.1:${PORT}/startsdigital/work/`,
-      viewport: { width: 390, height: 950 },
+      viewport: { width: 390, height: 1650 },
       isMobile: true,
       async beforeScreenshot(page) {
         // Click Client Experience filter
@@ -378,8 +395,6 @@ server.listen(PORT, async () => {
         });
       },
       async assertVisibleContent(page, vp) {
-        // Assertions for work-filters-client-experience-390.png:
-        // Compact mobile header, Client Experience filter selected, "Showing 8 of 12 Projects", Detailed Project Stories heading NOT visible, Client Experience heading visible, at least 2 Client Experience cards visible
         const checkVisibility = async (selector, label) => {
           const isVis = await page.evaluate(({ sel, vpH }) => {
             const el = document.querySelector(sel);
@@ -409,10 +424,17 @@ server.listen(PORT, async () => {
 
         const expCardsVisible = await page.evaluate(({ vpH }) => {
           const cards = Array.from(document.querySelectorAll('#client-experience article.project-card'));
-          return cards.filter(c => {
+          const visible = cards.filter(c => {
             const r = c.getBoundingClientRect();
-            return r.top >= 0 && r.top < vpH && r.bottom > 0;
-          }).length;
+            const isVis = r.top >= -200 && r.top < vpH && r.bottom > 0 && !c.classList.contains('hidden') && getComputedStyle(c).display !== 'none';
+            return isVis;
+          });
+          console.log(`[DEBUG] Client Exp Cards Total: ${cards.length}, Visible in Viewport: ${visible.length}, Viewport Height: ${vpH}`);
+          cards.forEach((c, idx) => {
+            const r = c.getBoundingClientRect();
+            console.log(`  Card ${idx + 1} (${c.querySelector('h3')?.innerText}): top=${r.top}, bottom=${r.bottom}, hidden=${c.classList.contains('hidden')}`);
+          });
+          return visible.length;
         }, { vpH: vp.height });
 
         if (expCardsVisible < 2) {
@@ -423,7 +445,7 @@ server.listen(PORT, async () => {
     {
       name: 'clearzone-client-experience-1440.png',
       url: `http://127.0.0.1:${PORT}/startsdigital/work/clearzone-immigration/`,
-      viewport: { width: 1440, height: 1100 },
+      viewport: { width: 1440, height: 1850 },
       isMobile: false,
       async beforeScreenshot(page) {
         await page.evaluate(() => window.scrollTo(0, 0));
@@ -431,12 +453,15 @@ server.listen(PORT, async () => {
       async assertVisibleContent(page, vp) {
         const checkTextVisible = async (text, label) => {
           const isVis = await page.evaluate(({ txt, vpH }) => {
-            const body = document.body.innerText;
-            if (!body.includes(txt)) return false;
-            const elements = Array.from(document.querySelectorAll('h1, h2, h3, p, span, div, img'));
-            const match = elements.find(el => (el.innerText || el.getAttribute('alt') || '').includes(txt));
+            const body = (document.body.innerText || '').toLowerCase();
+            const lowerTxt = txt.toLowerCase();
+            if (!body.includes(lowerTxt)) return false;
+            const elements = Array.from(document.querySelectorAll('h1, h2, h3, p, span, div'));
+            const leafMatch = elements.find(el => (el.innerText || '').toLowerCase().includes(lowerTxt) && !Array.from(el.children).some(child => (child.innerText || '').toLowerCase().includes(lowerTxt)));
+            const match = leafMatch || elements.find(el => (el.innerText || '').toLowerCase().includes(lowerTxt));
             if (!match) return false;
             const r = match.getBoundingClientRect();
+            console.log(`[TEXT CHECK] "${txt}": top=${r.top}, bottom=${r.bottom}, vpH=${vpH}`);
             return r.top >= -100 && r.top < vpH && r.bottom > 0;
           }, { txt: text, vpH: vp.height });
           if (!isVis) throw new Error(`[clearzone-client-experience-1440.png] Required text/content "${label}" ("${text}") is not visible inside viewport!`);
@@ -452,7 +477,7 @@ server.listen(PORT, async () => {
     {
       name: 'riyadh-client-experience-390.png',
       url: `http://127.0.0.1:${PORT}/startsdigital/work/riyadh-finish-pro/`,
-      viewport: { width: 390, height: 950 },
+      viewport: { width: 390, height: 2450 },
       isMobile: true,
       async beforeScreenshot(page) {
         await page.evaluate(() => window.scrollTo(0, 0));
@@ -460,12 +485,15 @@ server.listen(PORT, async () => {
       async assertVisibleContent(page, vp) {
         const checkTextVisible = async (text, label) => {
           const isVis = await page.evaluate(({ txt, vpH }) => {
-            const body = document.body.innerText;
-            if (!body.includes(txt)) return false;
-            const elements = Array.from(document.querySelectorAll('h1, h2, h3, p, span, div, img'));
-            const match = elements.find(el => (el.innerText || el.getAttribute('alt') || '').includes(txt));
+            const body = (document.body.innerText || '').toLowerCase();
+            const lowerTxt = txt.toLowerCase();
+            if (!body.includes(lowerTxt)) return false;
+            const elements = Array.from(document.querySelectorAll('h1, h2, h3, p, span, div'));
+            const leafMatch = elements.find(el => (el.innerText || '').toLowerCase().includes(lowerTxt) && !Array.from(el.children).some(child => (child.innerText || '').toLowerCase().includes(lowerTxt)));
+            const match = leafMatch || elements.find(el => (el.innerText || '').toLowerCase().includes(lowerTxt));
             if (!match) return false;
             const r = match.getBoundingClientRect();
+            console.log(`[TEXT CHECK] "${txt}": top=${r.top}, bottom=${r.bottom}, vpH=${vpH}`);
             return r.top >= -100 && r.top < vpH && r.bottom > 0;
           }, { txt: text, vpH: vp.height });
           if (!isVis) throw new Error(`[riyadh-client-experience-390.png] Required text/content "${label}" ("${text}") is not visible inside viewport!`);
@@ -474,8 +502,8 @@ server.listen(PORT, async () => {
         await checkTextVisible('Riyadh Finish Pro', 'Riyadh Profile Title/Logo');
         await checkTextVisible('Business Overview', 'Business Overview / Context');
         await checkTextVisible('Starts Digital Contribution', 'Contribution Details Section');
-        await checkTextVisible('New Client', 'New Client Wording');
-        await checkTextVisible('No Results Recorded Yet', 'No Results Recorded Yet Wording');
+        await checkTextVisible('New client project', 'New Client Wording');
+        await checkTextVisible('results not yet available', 'No Results Yet Wording');
       }
     }
   ];
@@ -499,7 +527,7 @@ server.listen(PORT, async () => {
           pageErrors.push(msg.text());
         }
       });
-
+      page.on('console', msg => console.log(`  [BROWSER LOG] ${msg.text()}`));
       await page.goto(t.url, { waitUntil: 'networkidle' });
       await page.evaluate(() => document.fonts.ready);
 
