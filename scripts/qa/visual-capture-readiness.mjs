@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execSync } from 'node:child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '../../');
-const screenshotDir = path.join(rootDir, 'scratch/roadmap-7-2-work-directory-corrected');
+const screenshotDir = path.join(rootDir, 'scratch/roadmap-7-2-final-acceptance');
 
 let errors = [];
 let passCount = 0;
@@ -21,7 +22,14 @@ function assert(condition, message) {
 
 console.log('🚀 Running Visual Capture Readiness QA Audit...\n');
 
-// 1. Verify Screenshot Folder & Files Exist with > 0 bytes
+let currentSha = '';
+try {
+  currentSha = execSync('git rev-parse HEAD', { cwd: rootDir, encoding: 'utf-8' }).trim();
+} catch (e) {
+  currentSha = 'unknown';
+}
+
+// 1. Verify Screenshot Folder & Files Exist with > 10KB size
 const requiredScreenshots = [
   { name: 'work-twelve-clients-1440.png', minSize: 10000 },
   { name: 'work-filters-client-experience-390.png', minSize: 10000 },
@@ -41,32 +49,39 @@ for (const shot of requiredScreenshots) {
   }
 }
 
-// 2. Verify Screenshot Audit JSON Exists and status is pass
-const auditJsonPath = path.join(screenshotDir, 'screenshot-capture-audit.json');
-assert(fs.existsSync(auditJsonPath), `screenshot-capture-audit.json exists in scratch folder`);
+// 2. Verify all 5 Audit JSON Files Exist, Status is 'pass', Errors array is empty, and SHA matches
+const auditFiles = [
+  'work-directory-audit.json',
+  'client-access-audit.json',
+  'client-media-source-audit.json',
+  'client-profile-routes-audit.json',
+  'screenshot-capture-audit.json'
+];
 
-if (fs.existsSync(auditJsonPath)) {
-  try {
-    const auditData = JSON.parse(fs.readFileSync(auditJsonPath, 'utf-8'));
-    assert(auditData.status === 'pass', `Overall screenshot capture audit status is "pass"`);
-    assert(auditData.totalFailedRequests === 0, `Zero failed asset requests across all screenshots`);
-    assert(auditData.totalConsoleErrors === 0, `Zero console errors across all screenshots`);
-    assert(auditData.totalMissingImages === 0, `Zero missing/broken logo images across all screenshots`);
-    assert(auditData.screenshots && auditData.screenshots.length === 4, `Audit contains detailed records for all 4 screenshots`);
-    
-    for (const sc of auditData.screenshots || []) {
-      assert(sc.loadedStylesheetCount > 0, `[${sc.screenshotFilename}] Stylesheets loaded (${sc.loadedStylesheetCount} > 0)`);
-      const font = (sc.detectedBodyFontFamily || '').toLowerCase();
-      const isDefaultSerif = !font.includes('sans-serif') && (font.includes('times') || font.includes('serif'));
-      assert(!isDefaultSerif, `[${sc.screenshotFilename}] Custom sans-serif font loaded (${sc.detectedBodyFontFamily})`);
-      assert(sc.status === 'pass', `[${sc.screenshotFilename}] Individual status is "pass"`);
+for (const auditName of auditFiles) {
+  const auditPath = path.join(screenshotDir, auditName);
+  const exists = fs.existsSync(auditPath);
+  assert(exists, `Audit file ${auditName} exists in scratch folder`);
+
+  if (exists) {
+    try {
+      const data = JSON.parse(fs.readFileSync(auditPath, 'utf-8'));
+      assert(data.status === 'pass', `[${auditName}] Status is "pass"`);
+      assert(Array.isArray(data.errors) && data.errors.length === 0, `[${auditName}] Errors array is empty`);
+      assert(data.sourceCommitSha === currentSha, `[${auditName}] sourceCommitSha (${data.sourceCommitSha}) matches HEAD commit SHA (${currentSha})`);
+
+      if (data.passFailAssertions) {
+        for (const [key, val] of Object.entries(data.passFailAssertions)) {
+          assert(val === true, `[${auditName}] Assertion "${key}" is true`);
+        }
+      }
+    } catch (e) {
+      assert(false, `[${auditName}] Failed to parse JSON: ${e.message}`);
     }
-  } catch (e) {
-    assert(false, `Failed to parse screenshot-capture-audit.json: ${e.message}`);
   }
 }
 
-// 3. Inspect dist/ CSS & font assets exist
+// 3. Inspect dist/ compiled assets exist
 const distDir = path.join(rootDir, 'dist');
 if (fs.existsSync(distDir)) {
   const astroDir = path.join(distDir, 'startsdigital/_astro');

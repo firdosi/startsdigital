@@ -47,8 +47,10 @@ assert(detailedTypeMatches.length === 4, `Expected exactly 4 detailed stories, f
 const clientExpTypeMatches = projectsText.match(/detailType:\s*'client-experience'/g) || [];
 assert(clientExpTypeMatches.length === 8, `Expected exactly 8 Client Experience profiles, found ${clientExpTypeMatches.length}`);
 
-// 4. Partner terminology isolation (Only ConvortAI can be partner-story or use Technology Partner)
+// 4. Robust Individual Project Partner Terminology Isolation
 const projectBlocks = projectsText.split(/{\s*id:\s*'/);
+let invalidPartnerProjects = [];
+
 for (const block of projectBlocks) {
   if (!block.trim() || block.startsWith('export')) continue;
   const idMatch = block.match(/^([a-z0-9-]+)'/);
@@ -56,11 +58,22 @@ for (const block of projectBlocks) {
     const projId = idMatch[1];
     if (projId !== 'convort-ai') {
       const hasPartnerStory = block.includes("detailType: 'partner-story'");
-      const hasTechPartner = block.includes('Technology Partner') || block.includes('Growth Partner');
-      assert(!hasPartnerStory && !hasTechPartner, `Project ${projId} should not use partner language or partner-story detailType`);
+      const hasTechPartner = block.includes('Technology Partner') || block.includes('isTechnologyPartner: true');
+      const hasGrowthPartner = block.includes('Growth Partner');
+      const hasPartnerRel = /partnerRole|partnerType|partner/i.test(block.slice(0, block.indexOf('approvedServices')));
+
+      if (hasPartnerStory || hasTechPartner || hasGrowthPartner || hasPartnerRel) {
+        invalidPartnerProjects.push({ projId, hasPartnerStory, hasTechPartner, hasGrowthPartner, hasPartnerRel });
+      }
+    } else {
+      // ConvortAI must use partner-story detailType
+      const convortIsPartnerStory = block.includes("detailType: 'partner-story'");
+      assert(convortIsPartnerStory, 'ConvortAI uses detailType: partner-story');
     }
   }
 }
+
+assert(invalidPartnerProjects.length === 0, `Partner terminology is strictly isolated to ConvortAI (violating projects: ${invalidPartnerProjects.map(p => p.projId).join(', ') || 'none'})`);
 
 // 5. Check futureAccess: 'locked' vs currentAccess: 'public'
 const lockedFutureMatches = projectsText.match(/futureAccess:\s*'locked'/g) || [];
@@ -107,6 +120,8 @@ assert(workIndexText.includes('12'), 'Work index page mentions 12 client brands'
 assert(workIndexText.includes('4'), 'Work index page mentions 4 detailed project stories');
 assert(workIndexText.includes('8'), 'Work index page mentions 8 client experience profiles');
 assert(workIndexText.includes('initWorkFilters'), 'Work index page includes client-side interactive filtering script');
+assert(workIndexText.includes('detailedSection.classList.add'), 'Work index page toggles detailed-stories section visibility');
+assert(workIndexText.includes('experienceSection.classList.add'), 'Work index page toggles client-experience section visibility');
 assert(!workIndexText.includes('Right Link Advisors'), 'Work index page has no mention of Right Link Advisors');
 
 // 10. Forbidden marketing claims scan across codebase

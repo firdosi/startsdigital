@@ -574,6 +574,29 @@ function getProjectLocation(project: ResolvedProject): string {
           }
         });
 
+        // Section Heading Visibility (Hide section headings if section has 0 visible cards)
+        const detailedSection = document.getElementById('detailed-stories');
+        const experienceSection = document.getElementById('client-experience');
+
+        const visibleDetailedCards = cards.filter(c => c.dataset.type === 'detailed' && !c.classList.contains('hidden')).length;
+        const visibleExperienceCards = cards.filter(c => c.dataset.type === 'experience' && !c.classList.contains('hidden')).length;
+
+        if (detailedSection) {
+          if (visibleDetailedCards === 0) {
+            detailedSection.classList.add('hidden');
+          } else {
+            detailedSection.classList.remove('hidden');
+          }
+        }
+
+        if (experienceSection) {
+          if (visibleExperienceCards === 0) {
+            experienceSection.classList.add('hidden');
+          } else {
+            experienceSection.classList.remove('hidden');
+          }
+        }
+
         if (countEl) {
           countEl.textContent = `Showing ${visibleCount} of ${cards.length} Projects`;
         }
