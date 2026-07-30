@@ -1,7 +1,7 @@
-# Evidence Intake Manifest: RapidZone IT
+# Evidence Intake Manifest: Rapidzone
 
 - **Client ID**: `rapidzone`
-- **Brand Name**: RapidZone IT
+- **Public Client Name**: Rapidzone
 - **Detail Type**: Client Experience Profile (`client-experience`)
 - **Primary Service**: Website Design & Development / Creative Content
 - **Evidence Status**: `user-provided-pending-evidence`

@@ -1,20 +1,20 @@
 # Evidence Intake Manifest: Clearzone Immigration
 
 - **Client ID**: `clearzone-immigration`
-- **Brand Name**: Clearzone Immigration
-- **Detail Type**: Detailed Project Story (`case-study`)
-- **Primary Service**: Paid Advertising & Local Lead Generation
-- **Evidence Status**: `available` (Verified Case Study & Campaign Summary)
-- **Public-Use Permission**: Approved for public portfolio presentation
+- **Public Client Name**: Clearzone Immigration
+- **Detail Type**: Client Experience Profile (`client-experience`)
+- **Primary Service**: Paid Advertising & AI Marketing Workflows
+- **Evidence Status**: `user-provided-pending-evidence`
+- **Public-Use Permission**: Pending formal client signoff
 - **Redaction Requirement**: Redact internal CRM contact details and client PII
-- **Date Received**: 2026-06-15
-- **Source**: Directly verified client campaign performance data
+- **Date Received**: Pending
+- **Source**: Client onboarding declaration
 
 ## Evidence Required & Claims Supported
 1. **Claim**: Multi-channel lead generation campaign across search and social platforms.
-   - **Supported Public Wording**: "Delivered qualified leads for immigration consulting across targeted geographic regions."
+   - **Supported Public Wording**: "More than 140 converted clients, AED 1.4M+ in generated revenue, and average campaign lead cost around AED 0.10 per lead in Gulf campaigns (Reported)."
    - **Accepted File Types**: PDF, PNG, CSV (Aggregated reporting exports only)
    - **Accepted Storage**: Kept offline in secure internal project archive. Zero raw customer data in public repository.
 
 ## Internal Notes
-All public metrics and descriptions have been verified against active campaign structure. No unverified guarantee claims.
+Clearzone Immigration is classified as a Client Experience profile with evidence status user-provided-pending-evidence.
