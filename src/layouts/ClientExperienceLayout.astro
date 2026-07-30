@@ -1,0 +1,346 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import MotionController from '../components/common/MotionController.astro';
+import { site } from '../site.config';
+import { getProjectBySlug, type ResolvedProject } from '../data/projects';
+import { 
+  ArrowRight, 
+  CheckCircle2, 
+  Globe, 
+  Share2, 
+  MapPin, 
+  Building2, 
+  ShieldCheck, 
+  Info,
+  Sparkles,
+  ExternalLink
+} from '@lucide/astro';
+
+interface Props {
+  projectSlug: string;
+  businessOverview: string;
+  contributionDetails: string[];
+  mainWorkCompleted: string[];
+  limitationNote?: string;
+}
+
+const {
+  projectSlug,
+  businessOverview,
+  contributionDetails,
+  mainWorkCompleted,
+  limitationNote
+} = Astro.props;
+
+const project: ResolvedProject = getProjectBySlug(projectSlug)!;
+const isPending = project.evidenceStatus === 'user-provided-pending-evidence';
+const isNoResults = project.evidenceStatus === 'no-results-yet';
+
+const resultHeaderLabel = project.resultLabel || (isPending ? 'Reported Campaign Performance' : 'Project Result');
+---
+
+<BaseLayout>
+  <!-- 1. CLIENT EXPERIENCE HERO -->
+  <section id="experience-hero" class="relative bg-[#061d33] text-white pt-16 pb-16 lg:pt-20 lg:pb-24 rounded-b-[40px] shadow-2xl overflow-hidden">
+    <Container class="max-w-[1280px] px-6 sm:px-8 space-y-6">
+      
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
+          <Sparkles class="size-3.5 text-[#ddff35]" />
+          <span>CLIENT EXPERIENCE PROFILE</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-[#ff762b]/20 border border-[#ff762b]/40 px-3 py-1 text-xs font-mono font-semibold text-[#ff762b]">
+          {project.relationshipType || 'Client Experience'}
+        </span>
+      </div>
+
+      <!-- Headline & Title -->
+      <div class="space-y-3 max-w-4xl">
+        <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] text-white leading-[1.1] tracking-[-0.03em]">
+          {project.publicName}
+        </h1>
+        <p class="font-body text-base sm:text-lg text-slate-200 leading-[1.65] font-normal">
+          {project.shortSummary}
+        </p>
+      </div>
+
+      <!-- Context Metadata Badges -->
+      <div class="pt-4 border-t border-white/15 flex flex-wrap items-center gap-4 text-xs font-mono text-slate-300">
+        <div class="flex items-center gap-1.5">
+          <Building2 class="size-3.5 text-[#ddff35]" />
+          <span>{project.sector}</span>
+        </div>
+        <span class="text-white/30">•</span>
+        {project.brand.website ? (
+          <a
+            href={project.brand.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-1.5 text-slate-200 hover:text-[#ddff35] transition-colors"
+          >
+            <Globe class="size-3.5 text-[#39c98a]" />
+            <span>Official Website</span>
+            <ExternalLink class="size-3" />
+          </a>
+        ) : null}
+        {project.brand.facebook ? (
+          <a
+            href={project.brand.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-1.5 text-slate-200 hover:text-[#ddff35] transition-colors"
+          >
+            <Share2 class="size-3.5 text-sky-400" />
+            <span>Official Facebook</span>
+            <ExternalLink class="size-3" />
+          </a>
+        ) : null}
+      </div>
+
+    </Container>
+  </section>
+
+  <!-- 2. MAIN CONTENT BODY -->
+  <section id="experience-body" class="py-12 sm:py-16 lg:py-20 bg-[#faf9f6] text-[#061d33]">
+    <Container class="max-w-[1280px] px-6 sm:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      
+      <!-- Sidebar Info -->
+      <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
+        <div class="rounded-2xl border border-[#061d33]/12 bg-white p-6 shadow-xs space-y-6">
+          
+          <!-- Logo & Brand Header -->
+          <div class="flex items-center gap-4 pb-4 border-b border-[#061d33]/8">
+            <div class={`size-16 rounded-xl border border-[#061d33]/10 flex items-center justify-center p-2.5 shrink-0 ${project.darkLogoContainer ? 'bg-[#061d33]' : 'bg-slate-50'}`}>
+              <img
+                src={project.logo}
+                alt={`${project.publicName} logo`}
+                width="64"
+                height="64"
+                loading="lazy"
+                decoding="async"
+                class="size-full object-contain"
+              />
+            </div>
+            <div>
+              <h2 class="font-heading font-bold text-lg text-[#061d33]">
+                {project.publicName}
+              </h2>
+              <span class="text-xs font-mono font-semibold text-[#ff762b] uppercase tracking-wider block">
+                {project.sector}
+              </span>
+            </div>
+          </div>
+
+          <!-- Services List -->
+          <div class="space-y-2">
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+              Services Delivered
+            </span>
+            <ul class="space-y-2 font-body text-base">
+              {project.resolvedServices.map((svc) => (
+                <li>
+                  <a
+                    href={`${site.basePath}/services/${svc.slug}/`}
+                    class="inline-flex items-center gap-2 text-slate-800 hover:text-[#ff762b] transition-colors"
+                  >
+                    <CheckCircle2 class="size-4 text-[#ff762b] shrink-0" />
+                    <span>{svc.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Destination Links -->
+          <div class="space-y-2 pt-2 border-t border-[#061d33]/8">
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+              Official Links
+            </span>
+            <div class="space-y-2 font-body text-sm">
+              {project.officialWebsite && (
+                <a
+                  href={project.officialWebsite}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center justify-between p-2.5 rounded-xl bg-[#f7f4ed] border border-[#061d33]/10 text-[#061d33] hover:border-[#ff762b] transition-colors"
+                >
+                  <span class="font-medium truncate">Visit Official Website</span>
+                  <ExternalLink class="size-3.5 text-[#ff762b] shrink-0" />
+                </a>
+              )}
+              {project.officialSocialUrl && (
+                <a
+                  href={project.officialSocialUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center justify-between p-2.5 rounded-xl bg-[#f7f4ed] border border-[#061d33]/10 text-[#061d33] hover:border-[#ff762b] transition-colors"
+                >
+                  <span class="font-medium truncate">Official Facebook Page</span>
+                  <ExternalLink class="size-3.5 text-sky-600 shrink-0" />
+                </a>
+              )}
+            </div>
+          </div>
+
+          <!-- Discuss Similar Project CTA -->
+          <div class="pt-4 border-t border-[#061d33]/8">
+            <a
+              href={`${site.basePath}/contact/?source=${project.contactSourceValue}`}
+              class="w-full inline-flex items-center justify-center min-h-[44px] gap-2 rounded-full bg-[#ff762b] px-5 py-3 text-sm font-body font-semibold text-white hover:bg-[#061d33] transition-colors shadow-xs"
+            >
+              <span>Discuss Similar Project</span>
+              <ArrowRight class="size-4" />
+            </a>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- Main Narrative -->
+      <article class="lg:col-span-8 space-y-8">
+        
+        <!-- Business Overview -->
+        <div class="rounded-2xl border border-[#061d33]/12 bg-white p-6 sm:p-8 shadow-xs space-y-4">
+          <h2 class="font-heading font-bold text-2xl text-[#061d33] pb-2 border-b border-[#061d33]/10">
+            Business Overview
+          </h2>
+          <p class="text-base text-slate-700 font-body leading-relaxed">
+            {businessOverview}
+          </p>
+        </div>
+
+        <!-- Starts Digital Contribution -->
+        <div class="rounded-2xl border border-[#061d33]/12 bg-white p-6 sm:p-8 shadow-xs space-y-4">
+          <h2 class="font-heading font-bold text-2xl text-[#061d33] pb-2 border-b border-[#061d33]/10">
+            Starts Digital Contribution
+          </h2>
+          <div class="space-y-3 font-body">
+            {contributionDetails.map((detail) => (
+              <div class="flex items-start gap-3 text-base text-slate-800 leading-relaxed">
+                <CheckCircle2 class="size-5 text-[#ff762b] shrink-0 mt-0.5" />
+                <span>{detail}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Main Work Completed -->
+        <div class="rounded-2xl border border-[#061d33]/12 bg-white p-6 sm:p-8 shadow-xs space-y-4">
+          <h2 class="font-heading font-bold text-2xl text-[#061d33] pb-2 border-b border-[#061d33]/10">
+            Main Work Completed
+          </h2>
+          <div class="space-y-3 font-body">
+            {mainWorkCompleted.map((work) => (
+              <div class="flex items-start gap-3 text-base text-slate-800 leading-relaxed">
+                <ShieldCheck class="size-5 text-[#39c98a] shrink-0 mt-0.5" />
+                <span>{work}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Important Limitation Note (if present) -->
+        {limitationNote && (
+          <div class="rounded-2xl border border-amber-300 bg-amber-50/70 p-5 flex items-start gap-3 text-sm text-slate-800 font-body">
+            <Info class="size-5 text-amber-600 shrink-0 mt-0.5" />
+            <div>
+              <span class="font-bold block text-slate-900 mb-1">Engagement Context & Scope Limitation</span>
+              <p class="leading-relaxed">{limitationNote}</p>
+            </div>
+          </div>
+        )}
+
+        <!-- Reported Results Section -->
+        {project.reportedResult && (
+          <div class="rounded-2xl border border-[#061d33]/15 bg-[#061d33] text-white p-6 sm:p-8 shadow-md space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-white/15">
+              <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#ddff35]">
+                {resultHeaderLabel}
+              </span>
+              {isPending && (
+                <span class="inline-flex items-center gap-1 text-[11px] font-mono text-amber-300 bg-amber-400/15 border border-amber-400/30 px-2.5 py-0.5 rounded-full">
+                  User-Provided (Evidence Pending)
+                </span>
+              )}
+              {isNoResults && (
+                <span class="inline-flex items-center gap-1 text-[11px] font-mono text-slate-300 bg-white/10 px-2.5 py-0.5 rounded-full">
+                  Initial Setup Phase
+                </span>
+              )}
+            </div>
+
+            <p class="text-base sm:text-lg font-body leading-relaxed text-slate-100 font-medium">
+              {project.reportedResult}
+            </p>
+          </div>
+        )}
+
+        <!-- Slot for any additional custom content -->
+        <slot />
+
+      </article>
+
+    </Container>
+  </section>
+
+  <!-- 3. RELATED SERVICES DISCOVERY -->
+  <section id="related-services" class="py-12 sm:py-16 bg-white border-t border-[#061d33]/10">
+    <Container class="max-w-[1000px] px-6 sm:px-8 space-y-6">
+      <h2 class="font-heading font-bold text-2xl text-[#061d33]">
+        Service Disciplines Applied to {project.publicName}
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {project.resolvedServices.map((svc) => (
+          <a
+            href={`${site.basePath}/services/${svc.slug}/`}
+            class="rounded-2xl border border-[#061d33]/12 bg-[#faf9f6] p-5 hover:border-[#ff762b]/40 hover:shadow-md transition-all group flex flex-col justify-between"
+          >
+            <div>
+              <span class="text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider block mb-1">
+                {svc.eyebrow}
+              </span>
+              <h3 class="font-heading font-bold text-lg text-[#061d33] group-hover:text-[#ff762b] transition-colors">
+                {svc.name}
+              </h3>
+              <p class="text-sm text-slate-700 font-body leading-relaxed mt-1 font-normal">
+                {svc.summary}
+              </p>
+            </div>
+
+            <div class="pt-3 mt-4 border-t border-[#061d33]/8 flex items-center justify-between text-sm font-mono font-bold text-[#061d33] group-hover:text-[#ff762b]">
+              <span>Explore {svc.shortName} Page</span>
+              <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </a>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- 4. FINAL CTA -->
+  <section id="experience-cta" class="py-16 sm:py-20 bg-[#061d33] text-white relative overflow-hidden">
+    <Container class="max-w-[1000px] px-6 sm:px-8 text-center space-y-6">
+      <h2 class="font-heading font-bold text-[28px] sm:text-[36px] text-white leading-tight">
+        Need marketing, creative or technical support for your business?
+      </h2>
+
+      <p class="text-base text-slate-200 font-body max-w-2xl mx-auto font-normal">
+        Discuss your goals with Starts Digital through WhatsApp or email.
+      </p>
+
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href={`${site.basePath}/contact/?source=${project.contactSourceValue}`}
+          class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-7 py-3.5 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl min-h-[44px]"
+        >
+          <span>Start a Project Discussion</span>
+          <ArrowRight class="size-4" />
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <MotionController />
+</BaseLayout>

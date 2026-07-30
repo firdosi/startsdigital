@@ -48,7 +48,6 @@ const requiredBrands = [
   'Wajib Livestock',
   'RK Reno Solutions',
   'ConvortAI',
-  'Right Link Advisors',
   'Rapidline Immigration Services',
   'Rapidzone',
   'Viral Naturals',
@@ -58,6 +57,8 @@ const requiredBrands = [
   'Super Safety Covers',
   'Unique Lahore Lab Sahiwal'
 ];
+
+assert(!brandsContent.includes('Right Link Advisors'), 'Right Link Advisors does not exist in src/data/brands.ts');
 
 for (const brandName of requiredBrands) {
   assert(brandsContent.includes(brandName), `Brand "${brandName}" exists in src/data/brands.ts`);

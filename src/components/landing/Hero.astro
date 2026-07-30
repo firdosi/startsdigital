@@ -116,11 +116,11 @@ const serviceHighlights = [
             {serviceHighlights.map((svc) => {
               const IconComp = svc.icon;
               return (
-                <div class="flex items-center gap-2 p-2 rounded-xl bg-white/5 border border-white/10">
+                <div class="flex items-center gap-2 p-2 rounded-xl bg-white/5 border border-white/10 h-full min-h-[44px]">
                   <div class={`size-6 rounded-lg ${svc.bg} border flex items-center justify-center shrink-0`}>
                     <IconComp class={`size-3 ${svc.color}`} />
                   </div>
-                  <span class="font-heading font-medium text-xs text-slate-200 truncate">
+                  <span class="font-heading font-medium text-xs text-slate-200 leading-tight">
                     {svc.title}
                   </span>
                 </div>

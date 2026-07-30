@@ -8,6 +8,10 @@ export type DetailType = 'case-study' | 'partner-story' | 'client-experience';
 export type EvidenceLevel = 'detailed-case-study' | 'verified-project-summary' | 'client-experience';
 export type ProjectVariant = 'ecommerce' | 'seasonal' | 'local-search' | 'technology' | 'default';
 
+export type AccessStatus = 'public';
+export type FutureAccessStatus = 'public' | 'locked';
+export type EvidenceStatus = 'available' | 'user-provided-pending-evidence' | 'no-results-yet';
+
 export interface ProjectRecord {
   id: string;
   brandId: string;
@@ -20,14 +24,19 @@ export interface ProjectRecord {
   serviceIds: string[];
   verifiedOutcome?: string;
   verifiedContribution?: string;
-  detailPath?: string;
+  reportedResult?: string;
+  resultLabel?: string;
+  detailPath: string;
   detailType: DetailType;
   variant?: ProjectVariant;
-  contactSourceValue?: string;
-  contactSourceLabel?: string;
+  contactSourceValue: string;
+  contactSourceLabel: string;
   featured: boolean;
   published: boolean;
   evidenceLevel: EvidenceLevel;
+  currentAccess: AccessStatus;
+  futureAccess: FutureAccessStatus;
+  evidenceStatus: EvidenceStatus;
   media?: {
     thumbnail?: string;
     heroImage?: string;
@@ -52,8 +61,6 @@ export interface ResolvedProject extends ProjectRecord {
   officialSocialUrl?: string;
   resolvedServices: ServiceDefinition[];
   approvedServices: string[];
-  contactSourceValue: string;
-  contactSourceLabel: string;
   whatsappUrl: string;
   whatsappMessage: string;
 }
@@ -76,6 +83,9 @@ export const projectRecords: ProjectRecord[] = [
     featured: true,
     published: true,
     evidenceLevel: 'detailed-case-study',
+    currentAccess: 'public',
+    futureAccess: 'locked',
+    evidenceStatus: 'available',
     media: {
       heroImage: '/images/black-gold-official.png',
       gallery: ['/images/black-gold-official.png', '/images/black-gold-web-banner.png']
@@ -99,6 +109,9 @@ export const projectRecords: ProjectRecord[] = [
     featured: true,
     published: true,
     evidenceLevel: 'detailed-case-study',
+    currentAccess: 'public',
+    futureAccess: 'locked',
+    evidenceStatus: 'available',
     displayOrder: 2
   },
   {
@@ -118,6 +131,9 @@ export const projectRecords: ProjectRecord[] = [
     featured: true,
     published: true,
     evidenceLevel: 'detailed-case-study',
+    currentAccess: 'public',
+    futureAccess: 'public',
+    evidenceStatus: 'available',
     media: {
       heroImage: '/brands/rk-reno-solutions/screenshot.webp',
       heroPicture: {
@@ -147,124 +163,194 @@ export const projectRecords: ProjectRecord[] = [
     featured: true,
     published: true,
     evidenceLevel: 'detailed-case-study',
+    currentAccess: 'public',
+    futureAccess: 'public',
+    evidenceStatus: 'available',
     displayOrder: 4
-  },
-  {
-    id: 'right-link-advisors',
-    brandId: 'right-link-advisors',
-    projectSlug: 'right-link-advisors',
-    shortSummary: 'Digital campaign strategy, paid social creative, ad copy and lead-generation content for an immigration advisory service.',
-    serviceIds: ['paid-advertising', 'creative-content', 'social-media-marketing'],
-    detailType: 'client-experience',
-    variant: 'default',
-    featured: false,
-    published: true,
-    evidenceLevel: 'client-experience',
-    displayOrder: 5
   },
   {
     id: 'rapidline-immigration-services',
     brandId: 'rapidline-immigration-services',
     projectSlug: 'rapidline-immigration-services',
-    shortSummary: 'Campaign planning, advertising creative, video scriptwriting and lead-generation campaign support for immigration services.',
+    sectorOverride: 'Immigration & Business Setup',
+    relationshipType: 'Client Experience',
+    shortSummary: 'Creative design, video editing, ad scriptwriting, and campaign creative production for Dubai immigration services.',
     serviceIds: ['paid-advertising', 'creative-content'],
+    reportedResult: 'Average lead cost around AED 0.10 per lead through TikTok and Meta campaigns targeting Gulf countries, India, Bangladesh and Nepal.',
+    resultLabel: 'Reported Campaign Performance',
+    detailPath: '/work/rapidline-immigration-services/',
     detailType: 'client-experience',
     variant: 'default',
+    contactSourceValue: 'rapidline-immigration-services',
+    contactSourceLabel: 'Rapidline Immigration Services',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
-    displayOrder: 6
+    currentAccess: 'public',
+    futureAccess: 'locked',
+    evidenceStatus: 'user-provided-pending-evidence',
+    displayOrder: 5
   },
   {
     id: 'rapidzone',
     brandId: 'rapidzone',
     projectSlug: 'rapidzone',
-    shortSummary: 'Digital marketing, brand content, website support and paid social lead-generation strategy for a UAE business services firm.',
-    serviceIds: ['paid-advertising', 'website-design-development', 'creative-content'],
+    sectorOverride: 'Immigration & Business Setup',
+    relationshipType: 'Client Experience',
+    shortSummary: 'Advertising video production and creative design for business setup and immigration campaigns targeting regional audiences.',
+    serviceIds: ['paid-advertising', 'creative-content'],
+    reportedResult: 'Average lead cost around AED 0.10 per lead through TikTok and Meta campaigns targeting Gulf countries, India, Bangladesh and Nepal.',
+    resultLabel: 'Reported Campaign Performance',
+    detailPath: '/work/rapidzone/',
     detailType: 'client-experience',
     variant: 'default',
+    contactSourceValue: 'rapidzone',
+    contactSourceLabel: 'Rapidzone',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
-    displayOrder: 7
-  },
-  {
-    id: 'viral-naturals',
-    brandId: 'viral-naturals',
-    projectSlug: 'viral-naturals',
-    shortSummary: 'Brand positioning, product presentation, e-commerce planning and conversion-focused creative content.',
-    serviceIds: ['website-design-development', 'creative-content', 'social-media-marketing'],
-    detailType: 'client-experience',
-    variant: 'default',
-    featured: false,
-    published: true,
-    evidenceLevel: 'client-experience',
-    displayOrder: 8
+    currentAccess: 'public',
+    futureAccess: 'locked',
+    evidenceStatus: 'user-provided-pending-evidence',
+    displayOrder: 6
   },
   {
     id: 'clearzone-immigration',
     brandId: 'clearzone-immigration',
     projectSlug: 'clearzone-immigration',
-    shortSummary: 'Creative strategy, ad video scripting and paid social campaign support for immigration and company setup services.',
-    serviceIds: ['paid-advertising', 'creative-content'],
+    sectorOverride: 'Immigration & Business Setup',
+    relationshipType: 'Client Experience',
+    shortSummary: 'Built a private AI character-generation workflow (27+ characters), produced video ad creatives, and ran TikTok/Meta campaigns through rebrand.',
+    serviceIds: ['paid-advertising', 'creative-content', 'ai-marketing-workflows'],
+    reportedResult: 'More than 140 converted clients, AED 1.4M+ in generated revenue, and average campaign lead cost around AED 0.10 per lead in Gulf campaigns.',
+    resultLabel: 'Reported Campaign Performance',
+    detailPath: '/work/clearzone-immigration/',
     detailType: 'client-experience',
     variant: 'default',
+    contactSourceValue: 'clearzone-immigration',
+    contactSourceLabel: 'Clearzone Immigration',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
-    displayOrder: 9
+    currentAccess: 'public',
+    futureAccess: 'locked',
+    evidenceStatus: 'user-provided-pending-evidence',
+    displayOrder: 7
   },
   {
     id: 'riyadh-finish-pro',
     brandId: 'riyadh-finish-pro',
     projectSlug: 'riyadh-finish-pro',
-    shortSummary: 'Website development, local service content and lead-generation page structure for construction and finishing in Riyadh.',
-    serviceIds: ['website-design-development', 'seo-local-search'],
+    sectorOverride: 'Construction & Local Services',
+    relationshipType: 'Client Experience',
+    shortSummary: 'Website development, Facebook page setup, before-and-after graphic presentation, and Google Business Profile / Maps setup.',
+    serviceIds: ['website-design-development', 'seo-local-search', 'creative-content'],
+    reportedResult: 'New client project, results not yet available.',
+    resultLabel: 'Project Status',
+    detailPath: '/work/riyadh-finish-pro/',
     detailType: 'client-experience',
     variant: 'default',
+    contactSourceValue: 'riyadh-finish-pro',
+    contactSourceLabel: 'Riyadh Finish Pro',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
-    displayOrder: 10
+    currentAccess: 'public',
+    futureAccess: 'public',
+    evidenceStatus: 'no-results-yet',
+    displayOrder: 8
+  },
+  {
+    id: 'viral-naturals',
+    brandId: 'viral-naturals',
+    projectSlug: 'viral-naturals',
+    sectorOverride: 'E-Commerce',
+    relationshipType: 'Client Experience',
+    shortSummary: 'Complete business setup from scratch, brand and product presentation, storefront development, creative production, and digital marketing.',
+    serviceIds: ['website-design-development', 'creative-content', 'social-media-marketing', 'paid-advertising'],
+    reportedResult: 'Sales began on day one, with 10+ daily sales in month one on a PKR 1,000 daily budget, scaling without increasing daily spend.',
+    resultLabel: 'Reported Result',
+    detailPath: '/work/viral-naturals/',
+    detailType: 'client-experience',
+    variant: 'default',
+    contactSourceValue: 'viral-naturals',
+    contactSourceLabel: 'Viral Naturals',
+    featured: false,
+    published: true,
+    evidenceLevel: 'client-experience',
+    currentAccess: 'public',
+    futureAccess: 'public',
+    evidenceStatus: 'user-provided-pending-evidence',
+    displayOrder: 9
   },
   {
     id: 'shopinq-online',
     brandId: 'shopinq-online',
     projectSlug: 'shopinq-online',
-    shortSummary: 'E-commerce product promotion, paid social support, creative content and digital sales communication.',
+    sectorOverride: 'E-Commerce',
+    relationshipType: 'Client Experience',
+    shortSummary: 'Promoted startup products on a 20% sales commission model, running paid social campaigns, creative production, and customer order support.',
     serviceIds: ['paid-advertising', 'creative-content', 'social-media-marketing'],
+    reportedResult: 'More than 3,000 bike covers sold and PKR 3.7M in generated revenue over approximately six months.',
+    resultLabel: 'Reported Result',
+    detailPath: '/work/shopinq-online/',
     detailType: 'client-experience',
     variant: 'default',
+    contactSourceValue: 'shopinq-online',
+    contactSourceLabel: 'Shopinq Online',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
-    displayOrder: 11
+    currentAccess: 'public',
+    futureAccess: 'public',
+    evidenceStatus: 'user-provided-pending-evidence',
+    displayOrder: 10
   },
   {
     id: 'super-safety-covers',
     brandId: 'super-safety-covers',
     projectSlug: 'super-safety-covers',
-    shortSummary: 'Product positioning, advertising creative, social media content and digital customer acquisition support.',
+    sectorOverride: 'E-Commerce',
+    relationshipType: 'Client Experience',
+    shortSummary: 'Business setup from scratch, Facebook page setup, advertising creative, product positioning, and initial digital-marketing structure.',
     serviceIds: ['creative-content', 'paid-advertising', 'social-media-marketing'],
+    reportedResult: 'More than 2,000 pieces sold and PKR 2.2M+ in generated revenue over the first three months of initial setup.',
+    resultLabel: 'Reported Result',
+    detailPath: '/work/super-safety-covers/',
     detailType: 'client-experience',
     variant: 'default',
+    contactSourceValue: 'super-safety-covers',
+    contactSourceLabel: 'Super Safety Covers',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
-    displayOrder: 12
+    currentAccess: 'public',
+    futureAccess: 'public',
+    evidenceStatus: 'user-provided-pending-evidence',
+    displayOrder: 11
   },
   {
     id: 'unique-lahore-lab-sahiwal',
     brandId: 'unique-lahore-lab-sahiwal',
     projectSlug: 'unique-lahore-lab-sahiwal',
-    shortSummary: 'Digital strategy, local awareness content, campaign messaging and healthcare diagnostic service marketing.',
-    serviceIds: ['social-media-marketing', 'creative-content', 'seo-local-search'],
+    sectorOverride: 'Healthcare',
+    relationshipType: 'Client Experience',
+    shortSummary: 'Creative and visual support producing AI-assisted ad creatives and graphics from original diagnostic laboratory photography.',
+    serviceIds: ['creative-content', 'social-media-marketing'],
+    reportedResult: 'Creative-support project, with wider digital marketing under discussion.',
+    resultLabel: 'Project Status',
+    detailPath: '/work/unique-lahore-lab-sahiwal/',
     detailType: 'client-experience',
     variant: 'default',
+    contactSourceValue: 'unique-lahore-lab-sahiwal',
+    contactSourceLabel: 'Unique Lahore Lab Sahiwal',
     featured: false,
     published: true,
     evidenceLevel: 'client-experience',
-    displayOrder: 13
+    currentAccess: 'public',
+    futureAccess: 'public',
+    evidenceStatus: 'no-results-yet',
+    displayOrder: 12
   }
 ];
 
@@ -341,6 +427,12 @@ export function getDetailedProjectStories(): ResolvedProject[] {
     .sort((a, b) => a.displayOrder - b.displayOrder);
 }
 
+export function getClientExperienceProfiles(): ResolvedProject[] {
+  return getPublishedProjects()
+    .filter((p) => p.detailType === 'client-experience')
+    .sort((a, b) => a.displayOrder - b.displayOrder);
+}
+
 export function getProjectStoryNavigation(currentSlug: string): {
   prevProject: ResolvedProject | undefined;
   nextProject: ResolvedProject | undefined;
@@ -373,7 +465,7 @@ export function getProjectBySlug(slug: string): ResolvedProject | undefined {
 }
 
 export function getClientDirectoryProjects(): ResolvedProject[] {
-  return getPublishedProjects().sort((a, b) => a.publicName.localeCompare(b.publicName));
+  return getPublishedProjects().sort((a, b) => a.displayOrder - b.displayOrder);
 }
 
 export function getProjectsByService(serviceQuery: string): ResolvedProject[] {
@@ -419,7 +511,7 @@ export function getDetailTypeActionLabel(detailType: DetailType): string {
       return 'View Partner Story';
     case 'client-experience':
     default:
-      return 'Visit Official Page';
+      return 'View Experience Profile';
   }
 }
 
@@ -440,20 +532,6 @@ export function validateProjectRecordsArray(records: ProjectRecord[]): { valid: 
   const seenDetailPaths = new Set<string>();
   const seenContactSources = new Set<string>();
 
-  // Resolve real page files dynamically from Vite module graph or filesystem
-  let existingPageFiles: Set<string> | null = null;
-  try {
-    // @ts-ignore
-    if (typeof import.meta !== 'undefined' && typeof import.meta.glob === 'function') {
-      // @ts-ignore
-      const pageModules = import.meta.glob('/src/pages/work/*.astro', { eager: true });
-      existingPageFiles = new Set(Object.keys(pageModules));
-    }
-  } catch (e) {
-    existingPageFiles = null;
-  }
-
-  // Perform real route source validation against filesystem
   for (const record of records) {
     if (seenIds.has(record.id)) {
       errors.push(`Duplicate project ID found: ${record.id}`);
@@ -484,56 +562,22 @@ export function validateProjectRecordsArray(records: ProjectRecord[]): { valid: 
       }
     }
 
-    if (record.detailType === 'case-study' || record.detailType === 'partner-story') {
-      if (!record.detailPath) {
-        errors.push(`Detailed project ${record.id} is missing detailPath.`);
-      } else {
-        if (seenDetailPaths.has(record.detailPath)) {
-          errors.push(`Duplicate detailPath found: ${record.detailPath}`);
-        }
-        seenDetailPaths.add(record.detailPath);
-
-        // Perform real route source validation against filesystem
-        const pathSlug = record.detailPath.replace(/^\/work\//, '').replace(/\/$/, '');
-        const expectedPageFile = `src/pages/work/${pathSlug}.astro`;
-        const expectedContentFile = `src/data/case-studies/${pathSlug}.md`;
-
-        let fileExists = false;
-        try {
-          const fullPagePath = path.resolve(process.cwd(), expectedPageFile);
-          const fullContentPath = path.resolve(process.cwd(), expectedContentFile);
-          fileExists = fs.existsSync(fullPagePath) || fs.existsSync(fullContentPath);
-        } catch (e) {
-          fileExists = true; // Fallback
-        }
-
-        if (!fileExists) {
-          errors.push(`Detailed project ${record.id} detailPath ${record.detailPath} has no corresponding page file (${expectedPageFile}) or content file (${expectedContentFile}).`);
-        }
+    if (!record.detailPath) {
+      errors.push(`Project ${record.id} is missing detailPath.`);
+    } else {
+      if (seenDetailPaths.has(record.detailPath)) {
+        errors.push(`Duplicate detailPath found: ${record.detailPath}`);
       }
-
-      if (!record.contactSourceValue) {
-        errors.push(`Detailed project ${record.id} is missing contactSourceValue.`);
-      } else {
-        if (seenContactSources.has(record.contactSourceValue)) {
-          errors.push(`Duplicate contactSourceValue found: ${record.contactSourceValue}`);
-        }
-        seenContactSources.add(record.contactSourceValue);
-
-        if (!/^[a-z0-9-]+$/.test(record.contactSourceValue)) {
-          errors.push(`Detailed project ${record.id} has invalid/unsupported contactSourceValue: ${record.contactSourceValue}`);
-        }
-      }
-
-      if (!record.contactSourceLabel) {
-        errors.push(`Detailed project ${record.id} is missing contactSourceLabel.`);
-      }
+      seenDetailPaths.add(record.detailPath);
     }
 
-    if (record.detailType === 'client-experience') {
-      if (!brand?.website && !brand?.facebook && !brand?.instagram) {
-        errors.push(`Client experience project ${record.id} is missing official external destination.`);
+    if (!record.contactSourceValue) {
+      errors.push(`Project ${record.id} is missing contactSourceValue.`);
+    } else {
+      if (seenContactSources.has(record.contactSourceValue)) {
+        errors.push(`Duplicate contactSourceValue found: ${record.contactSourceValue}`);
       }
+      seenContactSources.add(record.contactSourceValue);
     }
   }
 

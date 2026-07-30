@@ -120,163 +120,137 @@ export const brands: Brand[] = [
     featured: true,
     active: true,
     order: 4,
-    isTechnologyPartner: true
-  },
-  {
-    id: 'right-link-advisors',
-    name: 'Right Link Advisors',
-    category: 'immigration',
-    industry: 'Immigration',
-    role: 'Digital Marketing & Campaign Creative',
-    summary: 'Digital campaign and creative support for an immigration advisory brand.',
-    services: [
-      'Campaign Strategy',
-      'Paid Social Support',
-      'Ad Copy',
-      'Video Concepts',
-      'Lead-Generation Creative',
-      'Social Content'
-    ],
-    logo: '/brands/right-link-advisors/logo.webp',
-    logoApproved: true,
-    logoFit: 'large',
-    facebook: 'https://www.facebook.com/Rightlinkadvisors/',
-    featured: false,
-    active: true,
-    order: 5
+    isTechnologyPartner: true,
+    caseStudyLink: '/work/convortai/'
   },
   {
     id: 'rapidline-immigration-services',
     name: 'Rapidline Immigration Services',
     category: 'immigration',
     industry: 'Immigration',
-    role: 'Paid Social & Immigration Campaign Support',
-    summary: 'Campaign planning, advertising creative and lead-generation support for immigration services.',
+    role: 'Creative Design & Video Campaign Support',
+    summary: 'Campaign planning, advertising video edits, creative production, and lead-generation support for immigration services in Dubai.',
     services: [
+      'Creative Design',
+      'Video Editing',
+      'Campaign Creative Production',
       'Paid Social Strategy',
-      'Lead Generation',
-      'Ad Scripting',
-      'Creative Production',
-      'Audience Planning',
-      'Campaign Support'
+      'Lead Generation'
     ],
     logo: '/brands/rapidline-immigration-services/logo.webp',
     logoApproved: true,
     logoFit: 'compact',
+    website: 'https://rapidlineimmigration.com/',
     facebook: 'https://www.facebook.com/RapidlineImmigartionServices/',
     featured: false,
     active: true,
-    order: 6
+    order: 5,
+    caseStudyLink: '/work/rapidline-immigration-services/'
   },
   {
     id: 'rapidzone',
     name: 'Rapidzone',
-    category: 'business-services',
-    industry: 'Business Services',
-    role: 'Digital Brand & Business-Services Marketing',
-    summary: 'Digital marketing and brand support for a UAE business-services company.',
+    category: 'immigration',
+    industry: 'Business Setup',
+    role: 'Creative Design & Campaign Production',
+    summary: 'Advertising videos, creative production, and lead-generation campaign support for business setup and immigration services in Dubai.',
     services: [
-      'Brand Marketing',
-      'Campaign Creative',
-      'Social Content',
-      'Lead-Generation Support',
-      'Website Support',
-      'Digital Strategy'
+      'Creative Design',
+      'Video Editing',
+      'Campaign Creative Production',
+      'Social Content'
     ],
     logo: '/brands/rapidzone/logo.webp',
     logoApproved: true,
     logoFit: 'compact',
-    website: 'https://rapidzone.ae',
-    facebook: 'https://www.facebook.com/Rapidzone.ae',
+    website: 'https://rapidzone.ae/',
+    facebook: 'https://www.facebook.com/Rapidzone.ae/',
     featured: false,
     active: true,
-    order: 7
+    order: 6,
+    caseStudyLink: '/work/rapidzone/'
+  },
+  {
+    id: 'clearzone-immigration',
+    name: 'Clearzone Immigration',
+    category: 'immigration',
+    industry: 'Immigration & Business Setup',
+    role: 'AI Character Workflow & Campaign Production',
+    summary: 'Developed 27+ custom AI characters on a private VPS, created video campaign assets, and executed paid social campaigns through company rebrand.',
+    services: [
+      'AI Character Workflows',
+      'Creative Production',
+      'Paid Advertising',
+      'Social Media Marketing'
+    ],
+    logo: '/brands/clearzone-immigration/logo.webp',
+    logoApproved: true,
+    logoFit: 'standard',
+    website: 'https://clearzoneimmigration.com/',
+    facebook: 'https://www.facebook.com/ClearzonebyEuropa/',
+    featured: false,
+    active: true,
+    order: 7,
+    caseStudyLink: '/work/clearzone-immigration/'
+  },
+  {
+    id: 'riyadh-finish-pro',
+    name: 'Riyadh Finish Pro',
+    category: 'construction',
+    industry: 'Construction & Local Services',
+    role: 'Website Development & Local Search Setup',
+    summary: 'Website development, Facebook page setup, before-and-after graphic design, and Google Business Profile / Maps setup for Riyadh contractor services.',
+    services: [
+      'Website Development',
+      'Google Maps & Local Search',
+      'Facebook Business Setup',
+      'Graphic Design'
+    ],
+    logo: '/brands/riyadh-finish-pro/logo.webp',
+    logoApproved: true,
+    logoFit: 'large',
+    website: 'https://riyadhfinishpro.com/',
+    facebook: 'https://www.facebook.com/RiyadhFinishPro/',
+    featured: false,
+    active: true,
+    order: 8,
+    caseStudyLink: '/work/riyadh-finish-pro/'
   },
   {
     id: 'viral-naturals',
     name: 'Viral Naturals',
     category: 'ecommerce',
     industry: 'E-Commerce',
-    role: 'Consumer Brand & E-Commerce Development',
-    summary: 'Brand, product-positioning, e-commerce and advertising creative development for a consumer wellness business.',
+    role: 'E-Commerce Business Setup & Marketing',
+    summary: 'Complete e-commerce setup from scratch, storefront development, social account creation, video production, and ongoing sales marketing.',
     services: [
-      'Brand Development',
-      'Product Positioning',
-      'E-Commerce Planning',
-      'Advertising Scripts',
-      'Creative Direction',
-      'Conversion Content'
+      'E-Commerce Development',
+      'Digital Marketing',
+      'Creative Production',
+      'Social Media Setup'
     ],
     logo: '/brands/viral-naturals/logo.webp',
     logoApproved: true,
     logoFit: 'large',
-    website: 'https://viralnaturals.com',
+    website: 'https://viralnaturals.com/',
     facebook: 'https://www.facebook.com/ViralNaturals/',
     featured: false,
     active: true,
-    order: 8
-  },
-  {
-    id: 'clearzone-immigration',
-    name: 'Clearzone Immigration',
-    category: 'immigration',
-    industry: 'Immigration',
-    role: 'Immigration Campaign Strategy & Creative',
-    summary: 'Creative strategy and paid-social campaign support for immigration and company-setup services.',
-    services: [
-      'Campaign Strategy',
-      'Video Scripts',
-      'Ad Creative',
-      'Lead-Generation Messaging',
-      'Paid Social Support',
-      'Content Direction'
-    ],
-    logo: '/brands/clearzone-immigration/logo.webp',
-    logoApproved: true,
-    logoFit: 'standard',
-    website: 'https://clearzoneimmigration.com',
-    featured: false,
-    active: true,
-    order: 9
-  },
-  {
-    id: 'riyadh-finish-pro',
-    name: 'Riyadh Finish Pro',
-    category: 'construction',
-    industry: 'Construction',
-    role: 'Website & Local-Service Marketing',
-    summary: 'Website, content and digital marketing support for construction and finishing services in Riyadh.',
-    services: [
-      'Website Support',
-      'Service Content',
-      'Local Marketing',
-      'Lead-Generation Structure',
-      'Creative Direction',
-      'Digital Strategy'
-    ],
-    logo: '/brands/riyadh-finish-pro/logo.webp',
-    logoApproved: true,
-    logoFit: 'large',
-    website: 'https://riyadhfinishpro.com',
-    facebook: 'https://www.facebook.com/RiyadhFinishPro/',
-    featured: false,
-    active: true,
-    order: 10
+    order: 9,
+    caseStudyLink: '/work/viral-naturals/'
   },
   {
     id: 'shopinq-online',
     name: 'Shopinq Online',
     category: 'ecommerce',
-    industry: 'E-Commerce',
-    role: 'E-Commerce Marketing & Operations',
-    summary: 'E-commerce product marketing, promotion, customer communication and digital sales support.',
+    industry: 'E-Commerce Distribution',
+    role: 'E-Commerce Marketing & Distribution',
+    summary: 'Promoted startup product lines on a sales-commission structure through paid social campaigns, creative content, customer communication, and order support.',
     services: [
       'Product Marketing',
       'Paid Social Support',
       'Creative Content',
-      'Customer Communication',
-      'Order Support',
-      'E-Commerce Growth'
+      'Customer Support & Sales'
     ],
     logo: '/brands/shopinq-online/logo.webp',
     logoApproved: true,
@@ -284,22 +258,21 @@ export const brands: Brand[] = [
     facebook: 'https://www.facebook.com/shopinq.online/',
     featured: false,
     active: true,
-    order: 11
+    order: 10,
+    caseStudyLink: '/work/shopinq-online/'
   },
   {
     id: 'super-safety-covers',
     name: 'Super Safety Covers',
     category: 'ecommerce',
     industry: 'E-Commerce',
-    role: 'Product Marketing & E-Commerce Creative',
-    summary: 'Digital marketing and creative support for a protective-cover e-commerce product line.',
+    role: 'Initial Business Setup & Campaign Structure',
+    summary: 'Business setup from scratch, Facebook page setup, advertising creative, product positioning, and initial digital-marketing structure for bike covers.',
     services: [
+      'Initial Business Setup',
+      'Ad Creative Production',
       'Product Positioning',
-      'Ad Creative',
-      'Social Content',
-      'E-Commerce Promotion',
-      'Customer Acquisition',
-      'Sales Support'
+      'Campaign Structure'
     ],
     logo: '/brands/super-safety-covers/logo.webp',
     logoApproved: true,
@@ -307,29 +280,29 @@ export const brands: Brand[] = [
     facebook: 'https://www.facebook.com/SuperSafetyCovers/',
     featured: false,
     active: true,
-    order: 12
+    order: 11,
+    caseStudyLink: '/work/super-safety-covers/'
   },
   {
     id: 'unique-lahore-lab-sahiwal',
     name: 'Unique Lahore Lab Sahiwal',
     category: 'healthcare',
-    industry: 'Healthcare',
-    role: 'Healthcare Digital Marketing Support',
-    summary: 'Digital marketing and content support for a healthcare diagnostics brand.',
+    industry: 'Healthcare Diagnostics',
+    role: 'Creative & Visual Asset Support',
+    summary: 'Produced AI-assisted ad creatives and visual assets using the laboratory’s original photography and diagnostic facility videos.',
     services: [
-      'Digital Strategy',
-      'Social Content',
-      'Creative Support',
-      'Local Awareness',
-      'Campaign Messaging',
-      'Brand Communication'
+      'Creative Content Support',
+      'Visual Asset Production',
+      'Social Media Support'
     ],
     logo: '/brands/unique-lahore-lab-sahiwal/logo.webp',
     logoApproved: true,
     logoFit: 'large',
+    website: 'https://www.ullabswl.com/',
     facebook: 'https://www.facebook.com/profile.php?id=100054656280926',
     featured: false,
     active: true,
-    order: 13
+    order: 12,
+    caseStudyLink: '/work/unique-lahore-lab-sahiwal/'
   }
 ];

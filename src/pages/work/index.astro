@@ -7,9 +7,8 @@ import FloatingOrb from '../../components/motion/FloatingOrb.astro';
 import SectionSpark from '../../components/motion/SectionSpark.astro';
 import { site } from '../../site.config';
 import {
-  getClientDirectoryProjects,
   getDetailedProjectStories,
-  getEvidenceLevelLabel,
+  getClientExperienceProfiles,
   getDetailTypeActionLabel,
   type ResolvedProject
 } from '../../data/projects';
@@ -18,19 +17,47 @@ import {
   ArrowRight,
   ExternalLink,
   CheckCircle2,
-  MessageSquare
+  MessageSquare,
+  Filter,
+  RotateCcw,
+  Building2,
+  MapPin
 } from '@lucide/astro';
 
-const directoryProjects = getClientDirectoryProjects();
-const publishedServices = getPublishedServices();
 const detailedProjects: ResolvedProject[] = getDetailedProjectStories();
+const experienceProjects: ResolvedProject[] = getClientExperienceProfiles();
+const publishedServices = getPublishedServices();
 
 const encodedWhatsappMsg = encodeURIComponent('Hello Starts Digital, I would like to discuss a project after reviewing your work.');
 const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
+
+// Project Industry Filter Mapping
+function getProjectIndustryCategory(project: ResolvedProject): string {
+  const brandCat = project.brand.category;
+  if (brandCat === 'ecommerce') return 'ecommerce';
+  if (brandCat === 'immigration' || brandCat === 'business-services') return 'immigration';
+  if (brandCat === 'construction') return 'construction';
+  if (brandCat === 'technology') return 'technology';
+  if (brandCat === 'healthcare') return 'healthcare';
+  if (project.sector.toLowerCase().includes('agriculture') || project.sector.toLowerCase().includes('livestock')) return 'agriculture';
+  return 'ecommerce';
+}
+
+function getProjectLocation(project: ResolvedProject): string {
+  if (project.id === 'black-gold-fertilizer' || project.id === 'viral-naturals' || project.id === 'shopinq-online') return 'Lahore, Pakistan';
+  if (project.id === 'wajib-livestock') return 'Pakistan (Nationwide)';
+  if (project.id === 'rk-reno-solutions') return 'Kuala Lumpur, Malaysia';
+  if (project.id === 'convort-ai') return 'Global Technology';
+  if (project.id === 'rapidline-immigration-services' || project.id === 'rapidzone' || project.id === 'clearzone-immigration') return 'Dubai, UAE';
+  if (project.id === 'riyadh-finish-pro') return 'Riyadh, Saudi Arabia';
+  if (project.id === 'super-safety-covers') return 'Mian Channu, Pakistan';
+  if (project.id === 'unique-lahore-lab-sahiwal') return 'Sahiwal, Pakistan';
+  return 'Local & International';
+}
 ---
 
 <BaseLayout>
-  {/* 1. WORK HERO */}
+  <!-- 1. WORK HERO -->
   <section id="work-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
     <AnimatedGrid opacity={0.10} />
     <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
@@ -51,14 +78,14 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
         </h1>
 
         <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal max-w-3xl">
-          Explore selected Starts Digital project experience across e-commerce, seasonal campaigns, local services, consultation, technology and online businesses.
+          Explore Starts Digital project experience across e-commerce, immigration, local services, agriculture, technology and diagnostic healthcare.
         </p>
 
-        <!-- Compact Factual Context Row -->
+        <!-- Factual Hero Statistics -->
         <div class="pt-3 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl">
           <div class="rounded-2xl border border-white/15 bg-white/5 p-3.5 text-left">
-            <span class="font-heading font-bold text-xl sm:text-2xl text-[#ddff35] block">13</span>
-            <span class="text-xs font-mono text-slate-300 block mt-0.5">Approved Client Brands</span>
+            <span class="font-heading font-bold text-xl sm:text-2xl text-[#ddff35] block">12</span>
+            <span class="text-xs font-mono text-slate-300 block mt-0.5">Client Brands</span>
           </div>
 
           <div class="rounded-2xl border border-white/15 bg-white/5 p-3.5 text-left">
@@ -67,13 +94,13 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
           </div>
 
           <div class="rounded-2xl border border-white/15 bg-white/5 p-3.5 text-left">
-            <span class="font-heading font-bold text-xl sm:text-2xl text-white block">6</span>
-            <span class="text-xs font-mono text-slate-300 block mt-0.5">Service Disciplines</span>
+            <span class="font-heading font-bold text-xl sm:text-2xl text-[#39c98a] block">8</span>
+            <span class="text-xs font-mono text-slate-300 block mt-0.5">Client Experience Profiles</span>
           </div>
 
           <div class="rounded-2xl border border-white/15 bg-white/5 p-3.5 text-left">
-            <span class="font-heading font-bold text-xl sm:text-2xl text-[#39c98a] block">Local & Int’l</span>
-            <span class="text-xs font-mono text-slate-300 block mt-0.5">Project Reach</span>
+            <span class="font-heading font-bold text-xl sm:text-2xl text-white block">Local & Int’l</span>
+            <span class="text-xs font-mono text-slate-300 block mt-0.5">Work Reach</span>
           </div>
         </div>
 
@@ -81,32 +108,109 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
     </div>
   </section>
 
-  {/* 2. DETAILED PROJECT STORIES */}
-  <section id="detailed-stories" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+  <!-- 2. CLIENT FILTERING CONTROLS SECTION -->
+  <section id="work-filters" class="py-8 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 sticky top-16 z-30 shadow-xs backdrop-blur-md bg-[#f7f4ed]/95">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 space-y-4">
+      
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-2 border-b border-[#061d33]/10">
+        <div class="flex items-center gap-2">
+          <Filter class="size-4 text-[#ff762b]" />
+          <span class="font-heading font-bold text-sm text-[#061d33] uppercase tracking-wider">
+            Filter Client Projects
+          </span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <span id="visible-count-text" class="text-xs font-mono font-bold bg-white text-[#061d33] px-3 py-1.5 rounded-full border border-[#061d33]/10">
+            Showing 12 of 12 Projects
+          </span>
+          <button
+            id="reset-filters-btn"
+            type="button"
+            class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 py-1.5 rounded-full bg-white text-xs font-body font-semibold text-[#061d33] hover:bg-[#061d33] hover:text-white border border-[#061d33]/15 transition-all cursor-pointer"
+          >
+            <RotateCcw class="size-3.5 text-[#ff762b]" />
+            <span>Reset Filters</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Controls Groups Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-body">
+        
+        <!-- Filter Group 1: Project Type -->
+        <div class="space-y-1.5">
+          <span class="font-mono font-semibold uppercase text-slate-500 text-[11px] block">Project Type</span>
+          <div class="flex flex-wrap gap-1.5" id="type-filter-group">
+            <button type="button" data-filter-type="type" data-value="all" aria-pressed="true" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/20 bg-[#061d33] text-white font-medium cursor-pointer transition-all">All Work</button>
+            <button type="button" data-filter-type="type" data-value="detailed" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Detailed Stories</button>
+            <button type="button" data-filter-type="type" data-value="experience" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Client Experience</button>
+          </div>
+        </div>
+
+        <!-- Filter Group 2: Industry Sector -->
+        <div class="space-y-1.5">
+          <span class="font-mono font-semibold uppercase text-slate-500 text-[11px] block">Industry Sector</span>
+          <div class="flex flex-wrap gap-1.5" id="industry-filter-group">
+            <button type="button" data-filter-type="industry" data-value="all" aria-pressed="true" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/20 bg-[#061d33] text-white font-medium cursor-pointer transition-all">All</button>
+            <button type="button" data-filter-type="industry" data-value="ecommerce" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">E-Commerce</button>
+            <button type="button" data-filter-type="industry" data-value="immigration" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Immigration & Setup</button>
+            <button type="button" data-filter-type="industry" data-value="construction" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Construction</button>
+            <button type="button" data-filter-type="industry" data-value="agriculture" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Agriculture</button>
+            <button type="button" data-filter-type="industry" data-value="technology" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Technology</button>
+            <button type="button" data-filter-type="industry" data-value="healthcare" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Healthcare</button>
+          </div>
+        </div>
+
+        <!-- Filter Group 3: Core Service -->
+        <div class="space-y-1.5">
+          <span class="font-mono font-semibold uppercase text-slate-500 text-[11px] block">Service Discipline</span>
+          <div class="flex flex-wrap gap-1.5" id="service-filter-group">
+            <button type="button" data-filter-type="service" data-value="all" aria-pressed="true" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/20 bg-[#061d33] text-white font-medium cursor-pointer transition-all">All</button>
+            <button type="button" data-filter-type="service" data-value="paid-advertising" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Paid Ads</button>
+            <button type="button" data-filter-type="service" data-value="website-design-development" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Web Dev</button>
+            <button type="button" data-filter-type="service" data-value="seo-local-search" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">SEO</button>
+            <button type="button" data-filter-type="service" data-value="creative-content" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Creative</button>
+            <button type="button" data-filter-type="service" data-value="social-media-marketing" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Social</button>
+            <button type="button" data-filter-type="service" data-value="ai-marketing-workflows" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">AI Workflows</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. FOUR DETAILED PROJECT STORIES SECTION -->
+  <section id="detailed-stories" class="py-16 sm:py-20 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
       
-      <!-- Section Header -->
-      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
-        <SectionEyebrow label="DETAILED PROJECT STORIES" align="center" motion={false} />
-        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
-          Projects supported by verified information and real project evidence.
+      <div class="mb-10 text-left max-w-3xl space-y-2">
+        <SectionEyebrow label="DETAILED PROJECT STORIES" align="left" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] text-[#061d33] leading-tight">
+          Four Detailed Project Stories
         </h2>
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
-          Detailed stories are presented where verified outcomes, contribution details or genuine project media are available.
+        <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+          In-depth project documentations featuring verified outcomes, system breakdowns, and comprehensive execution details.
         </p>
       </div>
 
-      <!-- 4 Equal-Weight Preview Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {detailedProjects.map((proj) => {
           const actionLabel = getDetailTypeActionLabel(proj.detailType);
-          const isConvort = proj.id === 'convort-ai';
+          const indCat = getProjectIndustryCategory(proj);
+          const svcList = proj.serviceIds.join(',');
 
           return (
-            <article class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group">
+            <article 
+              class="project-card rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group"
+              data-project-card
+              data-type="detailed"
+              data-industry={indCat}
+              data-services={svcList}
+            >
               <div class="space-y-5">
                 
-                <!-- Card Top Header -->
+                <!-- Card Header -->
                 <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
                   <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
                     {proj.sector}
@@ -148,17 +252,17 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
                   ) : null}
                 </div>
 
-                <!-- Contribution -->
+                <!-- Contribution Summary -->
                 <div class="space-y-1.5">
                   <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
                     Approved Contribution
                   </span>
-                  <p class="text-base text-slate-700 font-body leading-relaxed">
+                  <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
                     {proj.shortSummary}
                   </p>
                 </div>
 
-                <!-- Verified Outcome or Verified Contribution -->
+                <!-- Verified Result -->
                 {proj.verifiedOutcome ? (
                   <div class="p-4 rounded-2xl bg-[#f7f4ed] border border-[#061d33]/8 space-y-1">
                     <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#061d33] block">
@@ -179,7 +283,7 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
                   </div>
                 ) : null}
 
-                <!-- Approved Services Tags -->
+                <!-- Services Tags -->
                 <div class="pt-2 flex flex-wrap gap-2">
                   {proj.approvedServices.map((svc) => (
                     <span class="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-mono text-slate-700 border border-slate-200">
@@ -191,12 +295,11 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
 
               </div>
 
-              <!-- Bottom Actions -->
+              <!-- Card Actions -->
               <div class="flex flex-wrap items-center justify-between gap-3 pt-5 mt-6 border-t border-[#061d33]/8">
                 <a
                   href={`${site.basePath}${proj.detailPath}`}
-                  data-track="case-study-open"
-                  class="inline-flex items-center gap-2 rounded-full bg-[#061d33] min-h-[44px] px-5 py-2.5 text-sm font-body font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+                  class="inline-flex items-center gap-2 rounded-full bg-[#061d33] min-h-[44px] px-5 py-2.5 text-sm font-body font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs"
                 >
                   <span>{actionLabel}</span>
                   <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
@@ -207,8 +310,7 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
                     href={proj.officialWebsite}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Visit official website for ${proj.publicName}`}
-                    class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] min-h-[44px] px-4 py-2.5 text-sm font-body font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+                    class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] min-h-[44px] px-4 py-2.5 text-sm font-body font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
                   >
                     <span>Website</span>
                     <ExternalLink class="size-3.5" />
@@ -223,47 +325,45 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
     </div>
   </section>
 
-  {/* 3. COMPLETE EQUAL-WEIGHT CLIENT WORK DIRECTORY */}
-  <section id="directory" class="py-16 sm:py-20 lg:py-24 bg-white text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+  <!-- 4. EIGHT CLIENT EXPERIENCE PROFILES SECTION -->
+  <section id="client-experience" class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
       
-      <!-- Section Header -->
-      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
-        <SectionEyebrow label="CLIENT WORK DIRECTORY" align="center" motion={false} />
-        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
-          Brands supported across different markets and project requirements.
+      <div class="mb-10 text-left max-w-3xl space-y-2">
+        <SectionEyebrow label="CLIENT EXPERIENCE PROFILES" align="left" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] text-[#061d33] leading-tight">
+          Eight Client Experience Profiles
         </h2>
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
-          This directory presents approved Starts Digital client experience. The level of publicly available detail differs according to verified project information and approved assets.
+        <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+          Client work across e-commerce, immigration, construction, and healthcare. Profiles feature project contributions, services, and reported performance.
         </p>
       </div>
 
-      <!-- 13 Equal-Weight Directory Cards Grid (Alphabetical Order with Balanced Final Row) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {directoryProjects.map((p, index) => {
-          const evidenceLabel = getEvidenceLevelLabel(p.evidenceLevel);
+      <!-- 8 Client Experience Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {experienceProjects.map((p) => {
           const actionLabel = getDetailTypeActionLabel(p.detailType);
-          const isDetailed = p.detailType === 'case-study' || p.detailType === 'partner-story';
-          const primaryUrl = isDetailed ? `${site.basePath}${p.detailPath}` : (p.officialWebsite || p.officialSocialUrl);
-          const isExternal = !isDetailed;
-
-          // Responsive balancing for the 13th single card on 2-col tablet and 3-col desktop
-          const isLastSingle = index === directoryProjects.length - 1;
-          const cardLayoutClasses = isLastSingle
-            ? 'sm:col-span-2 lg:col-span-1 lg:col-start-2 sm:max-w-md sm:mx-auto lg:max-w-none lg:mx-0 w-full'
-            : '';
+          const indCat = getProjectIndustryCategory(p);
+          const svcList = p.serviceIds.join(',');
+          const locStr = getProjectLocation(p);
+          const isPending = p.evidenceStatus === 'user-provided-pending-evidence';
 
           return (
-            <article class={`rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group min-h-[360px] focus-within:ring-2 focus-within:ring-[#ff762b] ${cardLayoutClasses}`}>
+            <article 
+              class="project-card rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group"
+              data-project-card
+              data-type="experience"
+              data-industry={indCat}
+              data-services={svcList}
+            >
               <div class="space-y-4">
                 
-                <!-- Logo & Badge Header Row -->
+                <!-- Logo & Sector Header -->
                 <div class="flex items-center justify-between gap-3 pb-3 border-b border-[#061d33]/8">
-                  <span class="rounded-full bg-[#061d33]/5 border border-[#061d33]/10 px-2.5 py-0.5 text-xs font-mono font-semibold text-slate-600 uppercase tracking-wider">
+                  <span class="rounded-full bg-[#061d33]/5 border border-[#061d33]/10 px-2.5 py-0.5 text-[11px] font-mono font-semibold text-slate-600 uppercase tracking-wider">
                     {p.sector}
                   </span>
 
-                  <!-- Uniform Logo Zone -->
                   <div class={`h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center border shrink-0 ${p.darkLogoContainer ? 'bg-[#061d33] border-[#061d33]' : 'bg-white border-slate-200'}`}>
                     <img
                       src={`${site.basePath}${p.logo}`}
@@ -276,63 +376,85 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
                   </div>
                 </div>
 
-                <!-- Brand Name & Relationship -->
+                <!-- Brand Name & Location -->
                 <div>
                   <h3 class="font-heading font-bold text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
                     {p.publicName}
                   </h3>
-                  {p.relationshipType && p.relationshipType !== 'Client Experience' && (
-                    <span class="inline-block mt-0.5 font-mono text-xs text-[#ff762b] font-semibold">
-                      {p.relationshipType}
-                    </span>
-                  )}
+                  <div class="flex items-center gap-1.5 mt-1 text-xs font-mono text-slate-500">
+                    <MapPin class="size-3.5 text-[#ff762b]" />
+                    <span>{locStr}</span>
+                  </div>
                 </div>
 
-                <!-- Short Factual Summary (Mandatory >= 16px text-base) -->
-                <p class="text-base text-slate-700 font-body leading-relaxed">
+                <!-- Contribution Summary -->
+                <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
                   {p.shortSummary}
                 </p>
 
-                <!-- Evidence Level Badge -->
-                <div class="pt-1">
-                  <span class="inline-flex items-center gap-1.5 rounded-md bg-white border border-[#061d33]/10 px-2.5 py-1 text-xs font-mono font-medium text-[#061d33]">
-                    <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
-                    <span>{evidenceLabel}</span>
-                  </span>
+                <!-- Reported Result Block -->
+                {p.reportedResult && (
+                  <div class="p-3.5 rounded-2xl bg-white border border-[#061d33]/10 space-y-1">
+                    <div class="flex items-center justify-between gap-2">
+                      <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#ff762b]">
+                        {p.resultLabel || 'Reported Result'}
+                      </span>
+                      {isPending && (
+                        <span class="text-[10px] font-mono text-amber-700 bg-amber-100 px-2 py-0.5 rounded-md font-semibold">
+                          Evidence Pending
+                        </span>
+                      )}
+                    </div>
+                    <p class="text-xs font-body font-medium text-slate-800 leading-normal">
+                      {p.reportedResult}
+                    </p>
+                  </div>
+                )}
+
+                <!-- Services Tags -->
+                <div class="pt-1 flex flex-wrap gap-1.5">
+                  {p.approvedServices.slice(0, 3).map((svc) => (
+                    <span class="inline-flex items-center gap-1 rounded-md bg-white px-2 py-0.5 text-[11px] font-mono text-slate-700 border border-slate-200 font-medium">
+                      <span>{svc}</span>
+                    </span>
+                  ))}
                 </div>
 
               </div>
 
-              <!-- Action Links Footer (Minimum 44px Touch Targets, minimum 14px text) -->
+              <!-- Action Footer -->
               <div class="pt-4 mt-6 border-t border-[#061d33]/8 flex flex-wrap items-center justify-between gap-2.5">
                 <a
-                  href={primaryUrl}
-                  target={isExternal ? '_blank' : undefined}
-                  rel={isExternal ? 'noopener noreferrer' : undefined}
-                  data-track="directory-action"
-                  class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-4 py-2.5 min-h-[44px] text-sm font-body font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+                  href={`${site.basePath}${p.detailPath}`}
+                  class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-4 py-2.5 min-h-[44px] text-sm font-body font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs"
                 >
                   <span>{actionLabel}</span>
-                  {isExternal ? (
-                    <ExternalLink class="size-4" />
-                  ) : (
-                    <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
-                  )}
+                  <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
                 </a>
 
-                {/* Secondary official link when internal case study exists */}
-                {isDetailed && (p.officialWebsite || p.officialSocialUrl) && (
+                {p.officialWebsite ? (
                   <a
-                    href={p.officialWebsite || p.officialSocialUrl}
+                    href={p.officialWebsite}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Official website for ${p.publicName}`}
-                    class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3.5 py-2.5 min-h-[44px] text-sm font-body font-semibold text-[#061d33] hover:border-[#061d33] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+                    class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3.5 py-2.5 min-h-[44px] text-sm font-body font-semibold text-[#061d33] hover:border-[#061d33] transition-all"
                   >
                     <span>Website</span>
                     <ExternalLink class="size-3.5" />
                   </a>
-                )}
+                ) : p.officialSocialUrl ? (
+                  <a
+                    href={p.officialSocialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Official social page for ${p.publicName}`}
+                    class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3.5 py-2.5 min-h-[44px] text-sm font-body font-semibold text-[#061d33] hover:border-[#061d33] transition-all"
+                  >
+                    <span>Facebook</span>
+                    <ExternalLink class="size-3.5" />
+                  </a>
+                ) : null}
               </div>
             </article>
           );
@@ -342,17 +464,17 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
     </div>
   </section>
 
-  {/* 4. PORTFOLIO CAPABILITY SUMMARY */}
-  <section id="capabilities" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
+  <!-- 5. SERVICES REPRESENTED ACROSS THE WORK -->
+  <section id="capabilities" class="py-16 sm:py-20 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
       
       <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
-        <SectionEyebrow label="PORTFOLIO CAPABILITIES" align="center" motion={false} />
+        <SectionEyebrow label="SERVICES REPRESENTED ACROSS WORK" align="center" motion={false} />
         <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
-          Client work spans six core digital disciplines.
+          Core digital service capabilities.
         </h2>
         <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
-          Starts Digital combines strategy, design, technical execution and data analysis across six published service areas.
+          Starts Digital combines strategy, design, technical execution and data analysis across six core service areas.
         </p>
       </div>
 
@@ -360,7 +482,7 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
         {publishedServices.map((svc) => (
           <a
             href={`${site.basePath}/services/${svc.slug}/`}
-            class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 hover:border-[#ff762b]/40 hover:shadow-md transition-all group flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+            class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 hover:border-[#ff762b]/40 hover:shadow-md transition-all group flex flex-col justify-between"
           >
             <div class="space-y-3">
               <span class="text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider block">
@@ -385,20 +507,20 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
     </div>
   </section>
 
-  {/* 5. WORK CONVERSION CTA */}
+  <!-- 6. WORK CONVERSION CTA -->
   <section id="work-cta" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white relative overflow-hidden">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8 text-center relative z-10 space-y-6 max-w-3xl">
       <h2 class="font-heading font-bold text-[32px] sm:text-[42px] lg:text-[48px] text-white leading-tight">
-        Ready to build your brand’s next digital story?
+        Ready to discuss your project requirements?
       </h2>
       <p class="text-base sm:text-lg text-slate-200 font-body max-w-2xl mx-auto">
-        Whether you require paid acquisition, a new web platform, content production or technical partnership, Starts Digital is ready to help.
+        Whether you require paid acquisition, web development, creative content, or technical partnership, Starts Digital is ready to help.
       </p>
 
       <div class="pt-3 flex flex-wrap items-center justify-center gap-4">
         <a
           href={`${site.basePath}/contact/`}
-          class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+          class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl min-h-[44px]"
         >
           <span>Start a Project Discussion</span>
           <ArrowRight class="size-4" />
@@ -408,7 +530,7 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 font-body font-semibold text-base text-white hover:bg-white/20 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 font-body font-semibold text-base text-white hover:bg-white/20 transition-all min-h-[44px]"
         >
           <MessageSquare class="size-4 text-[#ddff35]" />
           <span>Quick WhatsApp Inquiry</span>
@@ -418,4 +540,103 @@ const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
   </section>
 
   <MotionController />
+
+  <!-- Vanilla Client-Side Filtering Script -->
+  <script>
+    function initWorkFilters() {
+      const cards = Array.from(document.querySelectorAll('[data-project-card]')) as HTMLElement[];
+      const countEl = document.getElementById('visible-count-text');
+      const resetBtn = document.getElementById('reset-filters-btn');
+
+      if (cards.length === 0) return;
+
+      let activeType = 'all';
+      let activeIndustry = 'all';
+      let activeService = 'all';
+
+      function updateFiltering() {
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const cardType = card.dataset.type || '';
+          const cardIndustry = card.dataset.industry || '';
+          const cardServices = (card.dataset.services || '').split(',');
+
+          const matchType = activeType === 'all' || cardType === activeType;
+          const matchIndustry = activeIndustry === 'all' || cardIndustry === activeIndustry;
+          const matchService = activeService === 'all' || cardServices.includes(activeService);
+
+          if (matchType && matchIndustry && matchService) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (countEl) {
+          countEl.textContent = `Showing ${visibleCount} of ${cards.length} Projects`;
+        }
+      }
+
+      function setupFilterGroup(groupSelector: string, filterCategory: 'type' | 'industry' | 'service') {
+        const buttons = Array.from(document.querySelectorAll(`[data-filter-type="${filterCategory}"]`)) as HTMLButtonElement[];
+        
+        buttons.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            buttons.forEach((b) => {
+              b.setAttribute('aria-pressed', 'false');
+              b.classList.remove('bg-[#061d33]', 'text-white', 'border-[#061d33]/20');
+              b.classList.add('bg-white', 'text-[#061d33]', 'border-[#061d33]/15');
+            });
+
+            btn.setAttribute('aria-pressed', 'true');
+            btn.classList.remove('bg-white', 'text-[#061d33]', 'border-[#061d33]/15');
+            btn.classList.add('bg-[#061d33]', 'text-white', 'border-[#061d33]/20');
+
+            const val = btn.dataset.value || 'all';
+            if (filterCategory === 'type') activeType = val;
+            if (filterCategory === 'industry') activeIndustry = val;
+            if (filterCategory === 'service') activeService = val;
+
+            updateFiltering();
+          });
+        });
+      }
+
+      setupFilterGroup('#type-filter-group', 'type');
+      setupFilterGroup('#industry-filter-group', 'industry');
+      setupFilterGroup('#service-filter-group', 'service');
+
+      resetBtn?.addEventListener('click', () => {
+        activeType = 'all';
+        activeIndustry = 'all';
+        activeService = 'all';
+
+        (['type', 'industry', 'service'] as const).forEach((cat) => {
+          const buttons = Array.from(document.querySelectorAll(`[data-filter-type="${cat}"]`)) as HTMLButtonElement[];
+          buttons.forEach((b) => {
+            const isAll = b.dataset.value === 'all';
+            b.setAttribute('aria-pressed', isAll ? 'true' : 'false');
+            if (isAll) {
+              b.classList.remove('bg-white', 'text-[#061d33]', 'border-[#061d33]/15');
+              b.classList.add('bg-[#061d33]', 'text-white', 'border-[#061d33]/20');
+            } else {
+              b.classList.remove('bg-[#061d33]', 'text-white', 'border-[#061d33]/20');
+              b.classList.add('bg-white', 'text-[#061d33]', 'border-[#061d33]/15');
+            }
+          });
+        });
+
+        updateFiltering();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initWorkFilters);
+    } else {
+      initWorkFilters();
+    }
+    document.addEventListener('astro:page-load', initWorkFilters);
+  </script>
 </BaseLayout>
