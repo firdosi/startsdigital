@@ -66,14 +66,15 @@ export interface HomepageContent {
     primaryCta: { label: string; href: string };
     secondaryCta: { label: string; href: string };
   };
+  projectProof?: any;
 }
 
 export const homepageContent: HomepageContent = {
   hero: {
-    eyebrow: 'STRATEGY, EXECUTION & DIGITAL GROWTH',
+    eyebrow: 'DIGITAL GROWTH AGENCY',
     headline: 'Digital marketing, custom websites and AI workflows built for growth.',
     paragraph:
-      'Starts Digital brings paid advertising, website design, SEO, creative production, social media and practical AI workflows into one coordinated system. We help businesses build clear commercial visibility, generate qualified leads and streamline acquisition.',
+      'Starts Digital combines paid advertising, websites, SEO, creative content, social media and practical AI workflows through one coordinated team.',
     primaryCta: {
       label: 'Discuss Your Project',
       href: '/contact/'

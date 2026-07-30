@@ -24,7 +24,8 @@ function assert(condition, message) {
 const teamFilePath = path.join(rootDir, 'src/data/team.ts');
 const teamContent = fs.readFileSync(teamFilePath, 'utf-8');
 
-assert(teamContent.includes("name: 'Zaid Firdosi'"), 'Zaid Firdosi exists in src/data/team.ts');
+assert(teamContent.includes("name: 'Zaid'"), 'Zaid exists in src/data/team.ts');
+assert(teamContent.includes("Zaid supports UI/UX design and full-stack development"), 'Approved Zaid support bio exists in src/data/team.ts');
 assert(teamContent.includes("name: 'Ahad Firdosi'"), 'Ahad Firdosi exists in src/data/team.ts');
 assert(teamContent.includes("name: 'Meesam'"), 'Meesam exists in src/data/team.ts');
 

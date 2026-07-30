@@ -18,7 +18,7 @@ const serviceHighlights = [
 ];
 ---
 
-<section id="hero" class="relative overflow-hidden bg-[#061d33] text-white pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
+<section id="hero" class="relative overflow-hidden bg-[#061d33] text-white pt-8 sm:pt-20 lg:pt-28 pb-12 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
   <!-- Subtle Animated Tech Background Grid -->
   <AnimatedGrid opacity={0.10} />
 
@@ -40,7 +40,7 @@ const serviceHighlights = [
         </div>
 
         <!-- Hero Headline -->
-        <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
+        <h1 class="font-heading font-bold text-[28px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
           {hero.headline}
         </h1>
 
@@ -67,20 +67,6 @@ const serviceHighlights = [
           </a>
         </div>
 
-        <!-- Service Badges Strip -->
-        <div class="pt-3 border-t border-white/15">
-          <p class="text-xs sm:text-sm font-mono text-slate-300 flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
-            {hero.serviceLine.map((item, idx) => (
-              <>
-                <span class="whitespace-nowrap">{item}</span>
-                {idx < hero.serviceLine.length - 1 && (
-                  <span class="text-[#ff762b] opacity-60">•</span>
-                )}
-              </>
-            ))}
-          </p>
-        </div>
-
       </div>
 
       <!-- Right Column: Visual Capabilities Summary Card Stack (col-span-5) -->
@@ -91,10 +77,10 @@ const serviceHighlights = [
             <div class="flex items-center gap-2">
               <span class="size-2 rounded-full bg-[#ddff35] animate-pulse"></span>
               <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#ddff35]">
-                CORE SERVICE ARCHITECTURE
+                OUR SERVICES
               </span>
             </div>
-            <span class="text-[11px] font-mono text-slate-300">6 Published Lines</span>
+            <span class="text-[11px] font-mono text-slate-300">Six Core Services</span>
           </div>
 
           <!-- Service Stack Grid -->
@@ -118,7 +104,7 @@ const serviceHighlights = [
           </div>
 
           <div class="pt-2 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-300">
-            <span>Integrated Project Execution</span>
+            <span>Strategy, Creative and Technical Delivery</span>
             <span class="text-[#ff762b] font-semibold">Starts Digital</span>
           </div>
         </div>

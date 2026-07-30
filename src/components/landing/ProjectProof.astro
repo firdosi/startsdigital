@@ -29,7 +29,7 @@ const { projectProof } = homepageContent;
     <div class="space-y-8 sm:space-y-10">
       
       <!-- ROW 1: RK RENO SOLUTIONS (Direct Screenshot Media Container) -->
-      {projectProof.items.slice(0, 1).map((item) => (
+      {(projectProof?.items || []).slice(0, 1).map((item: any) => (
         <div
           data-motion="fade-up"
           data-motion-delay="300"
@@ -80,7 +80,7 @@ const { projectProof } = homepageContent;
                   Demonstrated Capabilities
                 </span>
                 <div class="flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
+                  {item.tags.map((tag: string) => (
                     <span class="inline-flex items-center gap-1.5 rounded-lg bg-[#f7f4ed] px-3 py-1.5 text-xs font-mono font-medium text-[#061d33] border border-[#061d33]/10">
                       <CheckCircle2 class="size-3.5 text-[#ff762b]" />
                       <span>{tag}</span>
@@ -105,7 +105,7 @@ const { projectProof } = homepageContent;
       ))}
 
       <!-- ROW 2: CONVORTAI (Typography & Technology-Led Deep Navy Row) -->
-      {projectProof.items.slice(1, 2).map((item) => (
+      {(projectProof?.items || []).slice(1, 2).map((item: any) => (
         <div
           data-motion="fade-up"
           data-motion-delay="400"
@@ -142,7 +142,7 @@ const { projectProof } = homepageContent;
                   Partnership Scope
                 </span>
                 <div class="flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
+                  {item.tags.map((tag: string) => (
                     <div class="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-mono text-white border border-white/15">
                       <CheckCircle2 class="size-3.5 text-[#39c98a] shrink-0" />
                       <span class="whitespace-normal">{tag}</span>

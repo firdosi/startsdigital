@@ -52,7 +52,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 'zaid-firdosi',
-    name: 'Zaid Firdosi',
+    name: 'Zaid',
     role: 'Developer',
     shortBio: 'Zaid supports UI/UX design and full-stack development for Starts Digital websites and digital products.',
     responsibilities: [
