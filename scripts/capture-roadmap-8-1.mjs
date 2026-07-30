@@ -196,12 +196,16 @@ const recordBlocks = claimsText.split('clientId:').slice(1);
 let availableCount = 0;
 let pendingCount = 0;
 let noResultsCount = 0;
+let clearzoneAvailable = false;
+let noResultsMarkedPending = false;
 
 for (const block of recordBlocks) {
   if (block.includes("'clearzone-immigration'") && block.includes("evidenceStatus: 'available'")) {
+    clearzoneAvailable = true;
     claimsErrors.push('Clearzone Immigration incorrectly marked as evidence available');
   }
   if (block.includes("'riyadh-finish-pro'") && block.includes("evidenceStatus: 'user-provided-pending-evidence'")) {
+    noResultsMarkedPending = true;
     claimsErrors.push('Riyadh Finish Pro (no-results-yet) incorrectly marked as user-provided-pending-evidence');
   }
 
