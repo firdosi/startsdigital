@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { execSync } from 'node:child_process';
 
 const savePath73 = path.resolve('scratch/roadmap-7-3-final-site-acceptance/live-deployment-audit.json');
 const savePathGate = path.resolve('scratch/final-acceptance-gate/live-deployment-audit.json');
@@ -7,6 +8,13 @@ const savePathGate = path.resolve('scratch/final-acceptance-gate/live-deployment
 [path.dirname(savePath73), path.dirname(savePathGate)].forEach(dir => {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 });
+
+let currentSha = '';
+try {
+  currentSha = execSync('git rev-parse HEAD', { encoding: 'utf-8' }).trim();
+} catch (e) {
+  currentSha = 'unknown';
+}
 
 const liveCheckpoints = [
   {
@@ -111,14 +119,6 @@ async function checkLiveDeployment() {
       errors.push(`Failed to fetch live URL ${item.url}: ${err.message}`);
       checkedResults.push({ url: item.url, status: 0, ok: false, error: err.message });
     }
-  }
-
-  let currentSha = '';
-  try {
-    const { execSync } = await import('node:child_process');
-    currentSha = execSync('git rev-parse HEAD', { encoding: 'utf-8' }).trim();
-  } catch (e) {
-    currentSha = 'unknown';
   }
 
   const isPending = errors.length > 0;
