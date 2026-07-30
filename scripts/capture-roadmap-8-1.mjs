@@ -487,7 +487,7 @@ const screenshotTasks = [
       };
 
       await checkTextVisible('RapidLine Immigration Services', 'Client Title');
-      await checkTextVisible('Pending Client Verification', 'Pending Verification Badge');
+      await checkTextVisible('User-Provided (Evidence Pending)', 'Pending Verification Badge');
     }
   },
   {
