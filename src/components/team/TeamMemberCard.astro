@@ -24,13 +24,13 @@ const isAbout = variant === 'about';
 ---
 
 <article
-  class={`rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-7 shadow-xs flex flex-col justify-between group hover:border-[#ff762b]/40 transition-all duration-300 ${className}`}
+  class={`rounded-3xl border border-[#061d33]/12 bg-white p-4 sm:p-7 shadow-xs flex flex-col justify-between group hover:border-[#ff762b]/40 transition-all duration-300 ${className}`}
 >
-  <div class="space-y-4">
+  <div class="space-y-3 sm:space-y-4">
     
     <!-- Render Photograph ONLY if member.image exists and member.imageApproved is true -->
     {member.image && member.imageApproved && (
-      <div class="mb-4 overflow-hidden rounded-2xl border border-[#061d33]/10 bg-slate-100 aspect-4/3">
+      <div class="mb-3 sm:mb-4 overflow-hidden rounded-2xl border border-[#061d33]/10 bg-slate-100 aspect-4/3">
         <img
           src={member.image}
           alt={`${member.name} - ${member.role} at Starts Digital`}
@@ -44,26 +44,26 @@ const isAbout = variant === 'about';
     )}
 
     <!-- Identity & Social Link Header -->
-    <div class="space-y-2">
+    <div class="space-y-1.5 sm:space-y-2">
       {showMemberLabel && (
-        <span class="text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider block">
+        <span class="text-[10px] sm:text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider block">
           TEAM MEMBER
         </span>
       )}
 
       <!-- Name and Role / Social Control Layout -->
-      <div class={isAbout ? "space-y-3" : "space-y-2 lg:space-y-0 lg:flex lg:items-start lg:justify-between lg:gap-3"}>
+      <div class={isAbout ? "space-y-2 sm:space-y-3" : "space-y-2 lg:space-y-0 lg:flex lg:items-start lg:justify-between lg:gap-3"}>
         <div>
-          <h3 class={`font-heading font-bold text-[#061d33] ${isAbout ? 'text-2xl sm:text-3xl' : 'text-2xl'}`}>
+          <h3 class={`font-heading font-bold text-[#061d33] ${isAbout ? 'text-xl sm:text-3xl' : 'text-xl sm:text-2xl'}`}>
             {member.name}
           </h3>
-          <p class="font-mono text-xs text-[#ff762b] font-semibold uppercase tracking-wider mt-1">
+          <p class="font-mono text-[11px] sm:text-xs text-[#ff762b] font-semibold uppercase tracking-wider mt-0.5 sm:mt-1">
             {member.role}
           </p>
         </div>
 
         {showLinkedIn && member.linkedin && (
-          <div class={isAbout ? "pt-1" : "pt-1 lg:pt-0 shrink-0"}>
+          <div class={isAbout ? "pt-0.5 sm:pt-1" : "pt-1 lg:pt-0 shrink-0"}>
             <a
               href={member.linkedin}
               target="_blank"
@@ -71,8 +71,8 @@ const isAbout = variant === 'about';
               aria-label={`View ${member.name} on LinkedIn`}
               class={
                 isAbout
-                  ? "inline-flex items-center gap-1.5 rounded-full bg-[#0077b5] px-3.5 py-1.5 text-xs font-body font-semibold text-white hover:bg-[#006097] transition-all shadow-xs"
-                  : "inline-flex items-center gap-1.5 rounded-full bg-[#f7f4ed] px-3 py-1 text-xs font-mono font-semibold text-[#061d33] hover:bg-[#061d33] hover:text-white transition-colors border border-[#061d33]/10"
+                  ? "inline-flex items-center gap-1.5 min-h-[44px] rounded-full bg-[#0077b5] px-3 py-1 text-xs font-body font-semibold text-white hover:bg-[#006097] transition-all shadow-xs"
+                  : "inline-flex items-center gap-1.5 min-h-[44px] rounded-full bg-[#f7f4ed] px-3 py-1 text-xs font-mono font-semibold text-[#061d33] hover:bg-[#061d33] hover:text-white transition-colors border border-[#061d33]/10"
               }
             >
               <svg class={`size-3.5 ${isAbout ? 'fill-white' : 'fill-[#0077b5] group-hover:fill-white'}`} viewBox="0 0 24 24" aria-hidden="true">
@@ -86,8 +86,8 @@ const isAbout = variant === 'about';
       </div>
     </div>
 
-    <!-- Biography (>= 16px text-base) -->
-    <p class="text-base text-slate-700 font-body leading-relaxed">
+    <!-- Biography (Approved Bio) -->
+    <p class="text-sm sm:text-base text-slate-700 font-body leading-relaxed">
       {member.shortBio}
     </p>
 
@@ -95,8 +95,8 @@ const isAbout = variant === 'about';
 
   <!-- Responsibilities Tags -->
   {showResponsibilities && member.responsibilities && member.responsibilities.length > 0 && (
-    <div class="pt-4 mt-6 border-t border-[#061d33]/8">
-      <span class="text-[11px] font-mono font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+    <div class="pt-2.5 mt-3 sm:pt-4 sm:mt-6 border-t border-[#061d33]/8">
+      <span class="text-[10px] sm:text-[11px] font-mono font-semibold text-slate-400 uppercase tracking-wider block mb-1.5 sm:mb-2">
         Primary Focus
       </span>
       <div class="flex flex-wrap gap-1.5">
