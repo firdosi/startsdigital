@@ -3,8 +3,10 @@ export interface ClientMediaEntry {
   client: string;
   localFile: string;
   sourceUrl: string;
-  sourceType: 'official-website' | 'official-facebook' | 'client-provided-photo' | 'verified-campaign-screenshot' | 'app-screenshot';
-  captureDate: string;
+  sourceType: 'official-website' | 'official-facebook' | 'client-provided-photo' | 'verified-campaign-screenshot' | 'official-logo';
+  captureDate: string | null;
+  dateStatus: 'verified-date' | 'unknown';
+  mediaStatus: 'logo-only' | 'project-media-available' | 'project-media-pending-evidence';
   publicUseStatus: 'approved-public';
 }
 
@@ -15,7 +17,9 @@ export const clientMediaRegistry: ClientMediaEntry[] = [
     localFile: '/brands/black-gold-fertilizer/logo.webp',
     sourceUrl: 'https://blackgoldfertilizer.com',
     sourceType: 'official-website',
-    captureDate: '2025-06-15',
+    captureDate: null,
+    dateStatus: 'unknown',
+    mediaStatus: 'project-media-available',
     publicUseStatus: 'approved-public'
   },
   {
@@ -24,7 +28,9 @@ export const clientMediaRegistry: ClientMediaEntry[] = [
     localFile: '/brands/wajib-livestock/logo.webp',
     sourceUrl: 'https://wajib.pk',
     sourceType: 'official-website',
-    captureDate: '2025-05-20',
+    captureDate: null,
+    dateStatus: 'unknown',
+    mediaStatus: 'project-media-available',
     publicUseStatus: 'approved-public'
   },
   {
@@ -33,7 +39,9 @@ export const clientMediaRegistry: ClientMediaEntry[] = [
     localFile: '/brands/rk-reno-solutions/logo.webp',
     sourceUrl: 'https://rkrenosolution.com',
     sourceType: 'official-website',
-    captureDate: '2025-07-10',
+    captureDate: null,
+    dateStatus: 'unknown',
+    mediaStatus: 'project-media-available',
     publicUseStatus: 'approved-public'
   },
   {
@@ -41,8 +49,10 @@ export const clientMediaRegistry: ClientMediaEntry[] = [
     client: 'ConvortAI',
     localFile: '/brands/convort-ai/logo.webp',
     sourceUrl: 'https://convortai.com/',
-    sourceType: 'app-screenshot',
-    captureDate: '2025-08-01',
+    sourceType: 'official-logo',
+    captureDate: null,
+    dateStatus: 'unknown',
+    mediaStatus: 'project-media-available',
     publicUseStatus: 'approved-public'
   },
   {
@@ -51,7 +61,9 @@ export const clientMediaRegistry: ClientMediaEntry[] = [
     localFile: '/brands/rapidline-immigration-services/logo.webp',
     sourceUrl: 'https://rapidlineimmigration.com/',
     sourceType: 'official-website',
-    captureDate: '2025-09-12',
+    captureDate: null,
+    dateStatus: 'unknown',
+    mediaStatus: 'logo-only',
     publicUseStatus: 'approved-public'
   },
   {
@@ -60,7 +72,9 @@ export const clientMediaRegistry: ClientMediaEntry[] = [
     localFile: '/brands/rapidzone/logo.webp',
     sourceUrl: 'https://rapidzone.ae/',
     sourceType: 'official-website',
-    captureDate: '2025-09-15',
+    captureDate: null,
+    dateStatus: 'unknown',
+    mediaStatus: 'logo-only',
     publicUseStatus: 'approved-public'
   },
   {
@@ -69,7 +83,9 @@ export const clientMediaRegistry: ClientMediaEntry[] = [
     localFile: '/brands/clearzone-immigration/logo.webp',
     sourceUrl: 'https://clearzoneimmigration.com/',
     sourceType: 'official-website',
-    captureDate: '2025-10-04',
+    captureDate: null,
+    dateStatus: 'unknown',
+    mediaStatus: 'project-media-pending-evidence',
     publicUseStatus: 'approved-public'
   },
   {
@@ -78,7 +94,9 @@ export const clientMediaRegistry: ClientMediaEntry[] = [
     localFile: '/brands/riyadh-finish-pro/logo.webp',
     sourceUrl: 'https://riyadhfinishpro.com/',
     sourceType: 'official-website',
-    captureDate: '2025-11-20',
+    captureDate: null,
+    dateStatus: 'unknown',
+    mediaStatus: 'logo-only',
     publicUseStatus: 'approved-public'
   },
   {
@@ -87,7 +105,9 @@ export const clientMediaRegistry: ClientMediaEntry[] = [
     localFile: '/brands/viral-naturals/logo.webp',
     sourceUrl: 'https://viralnaturals.com/',
     sourceType: 'official-website',
-    captureDate: '2025-04-18',
+    captureDate: null,
+    dateStatus: 'unknown',
+    mediaStatus: 'project-media-pending-evidence',
     publicUseStatus: 'approved-public'
   },
   {
@@ -96,7 +116,9 @@ export const clientMediaRegistry: ClientMediaEntry[] = [
     localFile: '/brands/shopinq-online/logo.webp',
     sourceUrl: 'https://www.facebook.com/shopinq.online/',
     sourceType: 'official-facebook',
-    captureDate: '2025-03-10',
+    captureDate: null,
+    dateStatus: 'unknown',
+    mediaStatus: 'project-media-pending-evidence',
     publicUseStatus: 'approved-public'
   },
   {
@@ -105,7 +127,9 @@ export const clientMediaRegistry: ClientMediaEntry[] = [
     localFile: '/brands/super-safety-covers/logo.webp',
     sourceUrl: 'https://www.facebook.com/SuperSafetyCovers/',
     sourceType: 'official-facebook',
-    captureDate: '2025-02-14',
+    captureDate: null,
+    dateStatus: 'unknown',
+    mediaStatus: 'project-media-pending-evidence',
     publicUseStatus: 'approved-public'
   },
   {
@@ -114,7 +138,9 @@ export const clientMediaRegistry: ClientMediaEntry[] = [
     localFile: '/brands/unique-lahore-lab-sahiwal/logo.webp',
     sourceUrl: 'https://www.ullabswl.com/',
     sourceType: 'official-website',
-    captureDate: '2025-12-01',
+    captureDate: null,
+    dateStatus: 'unknown',
+    mediaStatus: 'logo-only',
     publicUseStatus: 'approved-public'
   }
 ];
