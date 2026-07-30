@@ -191,12 +191,6 @@ if (!claimsExist) claimsErrors.push('src/data/projectClaims.ts registry file mis
 const hasWajibName = claimsText.includes('Wajib Livestock');
 if (!hasWajibName) claimsErrors.push('Wajib Livestock project claim record missing exact public client name');
 
-const clearzoneAvailable = claimsText.includes("clientId: 'clearzone-immigration'") && claimsText.includes("evidenceStatus: 'available'");
-if (clearzoneAvailable) claimsErrors.push('Clearzone Immigration incorrectly marked as evidence available');
-
-const noResultsMarkedPending = claimsText.includes("clientId: 'riyadh-finish-pro'") && claimsText.includes("evidenceStatus: 'user-provided-pending-evidence'");
-if (noResultsMarkedPending) claimsErrors.push('Riyadh Finish Pro (no-results-yet) incorrectly marked as user-provided-pending-evidence');
-
 // Count records only inside array entries (ignoring interface definition)
 const recordBlocks = claimsText.split('clientId:').slice(1);
 let availableCount = 0;
@@ -204,6 +198,13 @@ let pendingCount = 0;
 let noResultsCount = 0;
 
 for (const block of recordBlocks) {
+  if (block.includes("'clearzone-immigration'") && block.includes("evidenceStatus: 'available'")) {
+    claimsErrors.push('Clearzone Immigration incorrectly marked as evidence available');
+  }
+  if (block.includes("'riyadh-finish-pro'") && block.includes("evidenceStatus: 'user-provided-pending-evidence'")) {
+    claimsErrors.push('Riyadh Finish Pro (no-results-yet) incorrectly marked as user-provided-pending-evidence');
+  }
+
   if (block.includes("evidenceStatus: 'available'") && block.includes("evidenceReference:")) availableCount++;
   else if (block.includes("evidenceStatus: 'user-provided-pending-evidence'")) pendingCount++;
   else if (block.includes("evidenceStatus: 'no-results-yet'")) noResultsCount++;
