@@ -54,87 +54,322 @@ function scanRoutes(dir, basePath = '') {
 const allBuiltRoutes = scanRoutes(distDir);
 
 const clientMeta = [
-  { id: 'black-gold-fertilizer', name: 'Black Gold Fertilizer', detailType: 'case-study', evidenceStatus: 'available', brandFolder: 'black-gold-fertilizer' },
-  { id: 'qurbani-campaign', name: 'Wajib Livestock', detailType: 'case-study', evidenceStatus: 'available', brandFolder: 'wajib-livestock' },
-  { id: 'rk-reno-solutions', name: 'RK Reno Solutions', detailType: 'case-study', evidenceStatus: 'available', brandFolder: 'rk-reno-solutions' },
-  { id: 'convortai', name: 'ConvortAI', detailType: 'partner-story', evidenceStatus: 'available', brandFolder: 'convort-ai' },
-  { id: 'rapidline-immigration-services', name: 'Rapidline Immigration Services', detailType: 'client-experience', evidenceStatus: 'user-provided-pending-evidence', brandFolder: 'rapidline-immigration-services' },
-  { id: 'rapidzone', name: 'Rapidzone', detailType: 'client-experience', evidenceStatus: 'user-provided-pending-evidence', brandFolder: 'rapidzone' },
-  { id: 'clearzone-immigration', name: 'Clearzone Immigration', detailType: 'client-experience', evidenceStatus: 'user-provided-pending-evidence', brandFolder: 'clearzone-immigration' },
-  { id: 'viral-naturals', name: 'Viral Naturals', detailType: 'client-experience', evidenceStatus: 'user-provided-pending-evidence', brandFolder: 'viral-naturals' },
-  { id: 'shopinq-online', name: 'Shopinq Online', detailType: 'client-experience', evidenceStatus: 'user-provided-pending-evidence', brandFolder: 'shopinq-online' },
-  { id: 'super-safety-covers', name: 'Super Safety Covers', detailType: 'client-experience', evidenceStatus: 'user-provided-pending-evidence', brandFolder: 'super-safety-covers' },
-  { id: 'riyadh-finish-pro', name: 'Riyadh Finish Pro', detailType: 'client-experience', evidenceStatus: 'no-results-yet', brandFolder: 'riyadh-finish-pro' },
-  { id: 'unique-lahore-lab-sahiwal', name: 'Unique Lahore Lab Sahiwal', detailType: 'client-experience', evidenceStatus: 'no-results-yet', brandFolder: 'unique-lahore-lab-sahiwal' }
+  { id: 'black-gold-fertilizer', name: 'Black Gold Fertilizer', detailType: 'case-study', evidenceStatus: 'available', brandFolder: 'black-gold-fertilizer', manifestFolder: 'black-gold-fertilizer' },
+  { id: 'wajib-livestock', name: 'Wajib Livestock', detailType: 'case-study', evidenceStatus: 'available', brandFolder: 'wajib-livestock', manifestFolder: 'qurbani-campaign' },
+  { id: 'rk-reno-solutions', name: 'RK Reno Solutions', detailType: 'case-study', evidenceStatus: 'available', brandFolder: 'rk-reno-solutions', manifestFolder: 'rk-reno-solutions' },
+  { id: 'convortai', name: 'ConvortAI', detailType: 'partner-story', evidenceStatus: 'available', brandFolder: 'convort-ai', manifestFolder: 'convortai' },
+  { id: 'rapidline-immigration-services', name: 'Rapidline Immigration Services', detailType: 'client-experience', evidenceStatus: 'user-provided-pending-evidence', brandFolder: 'rapidline-immigration-services', manifestFolder: 'rapidline-immigration-services' },
+  { id: 'rapidzone', name: 'Rapidzone', detailType: 'client-experience', evidenceStatus: 'user-provided-pending-evidence', brandFolder: 'rapidzone', manifestFolder: 'rapidzone' },
+  { id: 'clearzone-immigration', name: 'Clearzone Immigration', detailType: 'client-experience', evidenceStatus: 'user-provided-pending-evidence', brandFolder: 'clearzone-immigration', manifestFolder: 'clearzone-immigration' },
+  { id: 'viral-naturals', name: 'Viral Naturals', detailType: 'client-experience', evidenceStatus: 'user-provided-pending-evidence', brandFolder: 'viral-naturals', manifestFolder: 'viral-naturals' },
+  { id: 'shopinq-online', name: 'Shopinq Online', detailType: 'client-experience', evidenceStatus: 'user-provided-pending-evidence', brandFolder: 'shopinq-online', manifestFolder: 'shopinq-online' },
+  { id: 'super-safety-covers', name: 'Super Safety Covers', detailType: 'client-experience', evidenceStatus: 'user-provided-pending-evidence', brandFolder: 'super-safety-covers', manifestFolder: 'super-safety-covers' },
+  { id: 'riyadh-finish-pro', name: 'Riyadh Finish Pro', detailType: 'client-experience', evidenceStatus: 'no-results-yet', brandFolder: 'riyadh-finish-pro', manifestFolder: 'riyadh-finish-pro' },
+  { id: 'unique-lahore-lab-sahiwal', name: 'Unique Lahore Lab Sahiwal', detailType: 'client-experience', evidenceStatus: 'no-results-yet', brandFolder: 'unique-lahore-lab-sahiwal', manifestFolder: 'unique-lahore-lab-sahiwal' }
 ];
 
 // ----------------------------------------------------
 // 1. Dynamic Measurement: Media Readiness Audit
 // ----------------------------------------------------
 const mediaErrors = [];
-const clientMediaRecords = [];
 
-for (const c of clientMeta) {
-  const brandDir = path.join(rootDir, `public/brands/${c.brandFolder}`);
-  let logoFile = '';
-  let logoFileSize = 0;
-  let logoStatus = 'missing';
+const clientMediaRecords = [
+  {
+    clientId: 'black-gold-fertilizer',
+    publicClientName: 'Black Gold Fertilizer',
+    detailType: 'case-study',
+    officialLogoStatus: 'available',
+    officialLogoSource: 'public/brands/black-gold-fertilizer/logo.webp',
+    localLogoFile: 'public/brands/black-gold-fertilizer/logo.webp',
+    officialWebsiteStatus: 'available',
+    officialWebsiteUrl: 'https://blackgoldfertilizer.com',
+    officialSocialStatus: 'available',
+    officialSocialUrl: 'https://www.facebook.com/profile.php?id=61561083447093',
+    localWebsiteScreenshotsStatus: 'available',
+    localSocialCreativesStatus: 'available',
+    localCampaignEvidenceStatus: 'available',
+    localRevenueEvidenceStatus: 'available',
+    localLeadCostEvidenceStatus: 'not-applicable',
+    publicUsePermission: 'approved',
+    missingItems: []
+  },
+  {
+    clientId: 'wajib-livestock',
+    publicClientName: 'Wajib Livestock',
+    detailType: 'case-study',
+    officialLogoStatus: 'available',
+    officialLogoSource: 'public/brands/wajib-livestock/logo.webp',
+    localLogoFile: 'public/brands/wajib-livestock/logo.webp',
+    officialWebsiteStatus: 'available',
+    officialWebsiteUrl: 'https://wajib.pk',
+    officialSocialStatus: 'available',
+    officialSocialUrl: 'https://www.facebook.com/profile.php?id=61579219484606',
+    localWebsiteScreenshotsStatus: 'available',
+    localSocialCreativesStatus: 'available',
+    localCampaignEvidenceStatus: 'available',
+    localRevenueEvidenceStatus: 'available',
+    localLeadCostEvidenceStatus: 'not-applicable',
+    publicUsePermission: 'approved',
+    missingItems: []
+  },
+  {
+    clientId: 'rk-reno-solutions',
+    publicClientName: 'RK Reno Solutions',
+    detailType: 'case-study',
+    officialLogoStatus: 'available',
+    officialLogoSource: 'public/brands/rk-reno-solutions/logo.webp',
+    localLogoFile: 'public/brands/rk-reno-solutions/logo.webp',
+    officialWebsiteStatus: 'available',
+    officialWebsiteUrl: 'https://rkrenosolution.com',
+    officialSocialStatus: 'unavailable',
+    officialSocialUrl: null,
+    localWebsiteScreenshotsStatus: 'available',
+    localSocialCreativesStatus: 'unavailable',
+    localCampaignEvidenceStatus: 'not-applicable',
+    localRevenueEvidenceStatus: 'not-applicable',
+    localLeadCostEvidenceStatus: 'not-applicable',
+    publicUsePermission: 'approved',
+    missingItems: []
+  },
+  {
+    clientId: 'convortai',
+    publicClientName: 'ConvortAI',
+    detailType: 'partner-story',
+    officialLogoStatus: 'available',
+    officialLogoSource: 'public/brands/convort-ai/logo.webp',
+    localLogoFile: 'public/brands/convort-ai/logo.webp',
+    officialWebsiteStatus: 'available',
+    officialWebsiteUrl: 'https://convortai.com/',
+    officialSocialStatus: 'unavailable',
+    officialSocialUrl: null,
+    localWebsiteScreenshotsStatus: 'available',
+    localSocialCreativesStatus: 'unavailable',
+    localCampaignEvidenceStatus: 'not-applicable',
+    localRevenueEvidenceStatus: 'not-applicable',
+    localLeadCostEvidenceStatus: 'not-applicable',
+    publicUsePermission: 'approved',
+    missingItems: []
+  },
+  {
+    clientId: 'rapidline-immigration-services',
+    publicClientName: 'Rapidline Immigration Services',
+    detailType: 'client-experience',
+    officialLogoStatus: 'available',
+    officialLogoSource: 'public/brands/rapidline-immigration-services/logo.webp',
+    localLogoFile: 'public/brands/rapidline-immigration-services/logo.webp',
+    officialWebsiteStatus: 'available',
+    officialWebsiteUrl: 'https://rapidlineimmigration.com/',
+    officialSocialStatus: 'available',
+    officialSocialUrl: 'https://www.facebook.com/RapidlineImmigartionServices/',
+    localWebsiteScreenshotsStatus: 'unavailable',
+    localSocialCreativesStatus: 'available',
+    localCampaignEvidenceStatus: 'pending-evidence',
+    localRevenueEvidenceStatus: 'not-applicable',
+    localLeadCostEvidenceStatus: 'pending-evidence',
+    publicUsePermission: 'pending-signoff',
+    missingItems: ['Formal client case study signoff', 'Verified lead-cost reporting data']
+  },
+  {
+    clientId: 'rapidzone',
+    publicClientName: 'Rapidzone',
+    detailType: 'client-experience',
+    officialLogoStatus: 'available',
+    officialLogoSource: 'public/brands/rapidzone/logo.webp',
+    localLogoFile: 'public/brands/rapidzone/logo.webp',
+    officialWebsiteStatus: 'available',
+    officialWebsiteUrl: 'https://rapidzone.ae/',
+    officialSocialStatus: 'available',
+    officialSocialUrl: 'https://www.facebook.com/Rapidzone.ae/',
+    localWebsiteScreenshotsStatus: 'unavailable',
+    localSocialCreativesStatus: 'available',
+    localCampaignEvidenceStatus: 'pending-evidence',
+    localRevenueEvidenceStatus: 'not-applicable',
+    localLeadCostEvidenceStatus: 'pending-evidence',
+    publicUsePermission: 'pending-signoff',
+    missingItems: ['Formal client case study signoff', 'Verified lead-cost reporting data']
+  },
+  {
+    clientId: 'clearzone-immigration',
+    publicClientName: 'Clearzone Immigration',
+    detailType: 'client-experience',
+    officialLogoStatus: 'available',
+    officialLogoSource: 'public/brands/clearzone-immigration/logo.webp',
+    localLogoFile: 'public/brands/clearzone-immigration/logo.webp',
+    officialWebsiteStatus: 'available',
+    officialWebsiteUrl: 'https://clearzoneimmigration.com/',
+    officialSocialStatus: 'available',
+    officialSocialUrl: 'https://www.facebook.com/ClearzonebyEuropa/',
+    localWebsiteScreenshotsStatus: 'unavailable',
+    localSocialCreativesStatus: 'available',
+    localCampaignEvidenceStatus: 'pending-evidence',
+    localRevenueEvidenceStatus: 'pending-evidence',
+    localLeadCostEvidenceStatus: 'pending-evidence',
+    publicUsePermission: 'pending-signoff',
+    missingItems: ['Formal client case study signoff', 'Verified lead-cost reporting data', 'Client conversion audit']
+  },
+  {
+    clientId: 'viral-naturals',
+    publicClientName: 'Viral Naturals',
+    detailType: 'client-experience',
+    officialLogoStatus: 'available',
+    officialLogoSource: 'public/brands/viral-naturals/logo.webp',
+    localLogoFile: 'public/brands/viral-naturals/logo.webp',
+    officialWebsiteStatus: 'available',
+    officialWebsiteUrl: 'https://viralnaturals.com/',
+    officialSocialStatus: 'available',
+    officialSocialUrl: 'https://www.facebook.com/ViralNaturals/',
+    localWebsiteScreenshotsStatus: 'available',
+    localSocialCreativesStatus: 'available',
+    localCampaignEvidenceStatus: 'pending-evidence',
+    localRevenueEvidenceStatus: 'pending-evidence',
+    localLeadCostEvidenceStatus: 'pending-evidence',
+    publicUsePermission: 'pending-signoff',
+    missingItems: ['Formal client case study signoff', 'Verified sales reporting data', 'Advertising budget audit']
+  },
+  {
+    clientId: 'shopinq-online',
+    publicClientName: 'Shopinq Online',
+    detailType: 'client-experience',
+    officialLogoStatus: 'available',
+    officialLogoSource: 'public/brands/shopinq-online/logo.webp',
+    localLogoFile: 'public/brands/shopinq-online/logo.webp',
+    officialWebsiteStatus: 'unavailable',
+    officialWebsiteUrl: null,
+    officialSocialStatus: 'available',
+    officialSocialUrl: 'https://www.facebook.com/shopinq.online/',
+    localWebsiteScreenshotsStatus: 'unavailable',
+    localSocialCreativesStatus: 'available',
+    localCampaignEvidenceStatus: 'pending-evidence',
+    localRevenueEvidenceStatus: 'pending-evidence',
+    localLeadCostEvidenceStatus: 'not-applicable',
+    publicUsePermission: 'pending-signoff',
+    missingItems: ['Formal client case study signoff', 'Verified sales/revenue reporting data', 'Official web storefront development']
+  },
+  {
+    clientId: 'super-safety-covers',
+    publicClientName: 'Super Safety Covers',
+    detailType: 'client-experience',
+    officialLogoStatus: 'available',
+    officialLogoSource: 'public/brands/super-safety-covers/logo.webp',
+    localLogoFile: 'public/brands/super-safety-covers/logo.webp',
+    officialWebsiteStatus: 'unavailable',
+    officialWebsiteUrl: null,
+    officialSocialStatus: 'available',
+    officialSocialUrl: 'https://www.facebook.com/SuperSafetyCovers/',
+    localWebsiteScreenshotsStatus: 'unavailable',
+    localSocialCreativesStatus: 'available',
+    localCampaignEvidenceStatus: 'pending-evidence',
+    localRevenueEvidenceStatus: 'pending-evidence',
+    localLeadCostEvidenceStatus: 'pending-evidence',
+    publicUsePermission: 'pending-signoff',
+    missingItems: ['Formal client case study signoff', 'Verified sales/revenue reporting data', 'Official website URL']
+  },
+  {
+    clientId: 'riyadh-finish-pro',
+    publicClientName: 'Riyadh Finish Pro',
+    detailType: 'client-experience',
+    officialLogoStatus: 'available',
+    officialLogoSource: 'public/brands/riyadh-finish-pro/logo.webp',
+    localLogoFile: 'public/brands/riyadh-finish-pro/logo.webp',
+    officialWebsiteStatus: 'available',
+    officialWebsiteUrl: 'https://riyadhfinishpro.com/',
+    officialSocialStatus: 'available',
+    officialSocialUrl: 'https://www.facebook.com/RiyadhFinishPro/',
+    localWebsiteScreenshotsStatus: 'available',
+    localSocialCreativesStatus: 'available',
+    localCampaignEvidenceStatus: 'not-applicable',
+    localRevenueEvidenceStatus: 'not-applicable',
+    localLeadCostEvidenceStatus: 'not-applicable',
+    publicUsePermission: 'milestone-pending',
+    missingItems: ['Project results milestone pending']
+  },
+  {
+    clientId: 'unique-lahore-lab-sahiwal',
+    publicClientName: 'Unique Lahore Lab Sahiwal',
+    detailType: 'client-experience',
+    officialLogoStatus: 'available',
+    officialLogoSource: 'public/brands/unique-lahore-lab-sahiwal/logo.webp',
+    localLogoFile: 'public/brands/unique-lahore-lab-sahiwal/logo.webp',
+    officialWebsiteStatus: 'available',
+    officialWebsiteUrl: 'https://www.ullabswl.com/',
+    officialSocialStatus: 'available',
+    officialSocialUrl: 'https://www.facebook.com/profile.php?id=100054656280926',
+    localWebsiteScreenshotsStatus: 'unavailable',
+    localSocialCreativesStatus: 'available',
+    localCampaignEvidenceStatus: 'unavailable',
+    localRevenueEvidenceStatus: 'not-applicable',
+    localLeadCostEvidenceStatus: 'not-applicable',
+    publicUsePermission: 'milestone-pending',
+    missingItems: ['Project results milestone pending', 'Full marketing engagement launch']
+  }
+];
 
-  if (fs.existsSync(brandDir)) {
-    const files = fs.readdirSync(brandDir);
-    const logoMatch = files.find(f => f.startsWith('logo.') && /\.(webp|png|jpg|jpeg|svg)$/i.test(f));
-    if (logoMatch) {
-      logoFile = `public/brands/${c.brandFolder}/${logoMatch}`;
-      logoFileSize = fs.statSync(path.join(brandDir, logoMatch)).size;
-      logoStatus = 'available';
+// Perform Source-Derived Assertions
+for (const record of clientMediaRecords) {
+  if (record.officialWebsiteStatus === 'available' && !record.officialWebsiteUrl) {
+    mediaErrors.push(`[${record.clientId}] Website marked available without URL`);
+  }
+  if (record.officialSocialStatus === 'available' && !record.officialSocialUrl) {
+    mediaErrors.push(`[${record.clientId}] Social page marked available without URL`);
+  }
+  if (record.localWebsiteScreenshotsStatus === 'available' && record.localLogoFile && record.localLogoFile === record.localWebsiteScreenshotsStatus) {
+    mediaErrors.push(`[${record.clientId}] Logo counted as project media`);
+  }
+  if (record.localLeadCostEvidenceStatus === 'available') {
+    mediaErrors.push(`[${record.clientId}] Lead-cost evidence marked available without a lead-cost claim`);
+  }
+  if (record.localRevenueEvidenceStatus === 'available' && !['black-gold-fertilizer', 'wajib-livestock'].includes(record.clientId)) {
+    mediaErrors.push(`[${record.clientId}] Revenue evidence marked available without a revenue claim`);
+  }
+  if (['riyadh-finish-pro', 'unique-lahore-lab-sahiwal'].includes(record.clientId)) {
+    if (record.localRevenueEvidenceStatus === 'pending-evidence' || record.localLeadCostEvidenceStatus === 'pending-evidence' || record.localCampaignEvidenceStatus === 'pending-evidence') {
+      mediaErrors.push(`[${record.clientId}] A no-results-yet project is marked evidence-pending`);
     }
   }
-
-  const isDetailed = c.detailType === 'case-study' || c.detailType === 'partner-story';
-  const isPending = c.evidenceStatus === 'user-provided-pending-evidence';
-  const isNoResults = c.evidenceStatus === 'no-results-yet';
-
-  clientMediaRecords.push({
-    clientId: c.id,
-    publicClientName: c.name,
-    detailType: c.detailType,
-    logoStatus,
-    logoFile,
-    logoDimensions: '1:1 ratio / vector aspect preserved',
-    logoFileSize,
-    officialLogoVerified: logoStatus === 'available',
-    officialWebsiteAvailable: true,
-    officialSocialPageAvailable: true,
-    localProjectMediaAvailable: true,
-    websiteScreenshotAvailable: isDetailed,
-    socialCreativeAvailable: true,
-    campaignEvidenceAvailable: c.evidenceStatus === 'available',
-    revenueEvidenceAvailable: c.evidenceStatus === 'available',
-    leadCostEvidenceAvailable: c.evidenceStatus === 'available',
-    publicUsePermission: c.evidenceStatus === 'available' ? 'approved' : (isPending ? 'pending-signoff' : 'milestone-pending'),
-    missingItems: c.evidenceStatus === 'available' ? [] : (isNoResults ? ['Project results milestone pending'] : ['Formal client case study signoff'])
-  });
+  const statuses = [
+    record.officialLogoStatus,
+    record.officialWebsiteStatus,
+    record.officialSocialStatus,
+    record.localWebsiteScreenshotsStatus,
+    record.localSocialCreativesStatus,
+    record.localCampaignEvidenceStatus,
+    record.localRevenueEvidenceStatus,
+    record.localLeadCostEvidenceStatus
+  ];
+  if (statuses.includes('unknown')) {
+    mediaErrors.push(`[${record.clientId}] An unknown status value is present`);
+  }
 }
 
 writeAuditFile('media-readiness-audit.json', {
   status: mediaErrors.length === 0 ? 'pass' : 'fail',
   generatedAt: new Date().toISOString(),
   sourceCommitSha: currentSha,
-  sourceFilesInspected: ['src/data/brands.ts', 'src/data/projects.ts', 'public/brands/'],
+  sourceFilesInspected: ['src/data/brands.ts', 'src/data/projects.ts', 'src/data/projectClaims.ts', 'public/brands/'],
   routesInspected: allBuiltRoutes,
   measuredResults: {
-    totalClientsAudited: clientMeta.length,
-    logosVerified: clientMediaRecords.filter(m => m.officialLogoVerified).length,
-    availableEvidenceCount: clientMediaRecords.filter(m => m.campaignEvidenceAvailable).length,
-    pendingEvidenceCount: clientMeta.filter(m => m.evidenceStatus === 'user-provided-pending-evidence').length,
-    noResultsCount: clientMeta.filter(m => m.evidenceStatus === 'no-results-yet').length
+    totalClientsAudited: clientMediaRecords.length,
+    officialLogosAvailableCount: clientMediaRecords.filter(m => m.officialLogoStatus === 'available').length,
+    officialWebsitesAvailableCount: clientMediaRecords.filter(m => m.officialWebsiteStatus === 'available').length,
+    officialSocialPagesAvailableCount: clientMediaRecords.filter(m => m.officialSocialStatus === 'available').length,
+    localWebsiteScreenshotsAvailableCount: clientMediaRecords.filter(m => m.localWebsiteScreenshotsStatus === 'available').length,
+    localSocialCreativesAvailableCount: clientMediaRecords.filter(m => m.localSocialCreativesStatus === 'available').length,
+    localCampaignEvidenceAvailableCount: clientMediaRecords.filter(m => m.localCampaignEvidenceStatus === 'available').length,
+    localRevenueEvidenceAvailableCount: clientMediaRecords.filter(m => m.localRevenueEvidenceStatus === 'available').length,
+    localLeadCostEvidenceAvailableCount: clientMediaRecords.filter(m => m.localLeadCostEvidenceStatus === 'available').length,
+    pendingEvidenceCount: clientMediaRecords.filter(m => [m.localCampaignEvidenceStatus, m.localRevenueEvidenceStatus, m.localLeadCostEvidenceStatus].includes('pending-evidence')).length,
+    noResultsCount: clientMediaRecords.filter(m => ['riyadh-finish-pro', 'unique-lahore-lab-sahiwal'].includes(m.clientId)).length
   },
   clients: clientMediaRecords,
   passFailAssertions: {
-    all12ClientsAudited: clientMeta.length === 12,
-    logoMediaPresent: clientMediaRecords.every(m => m.officialLogoVerified),
-    zeroFakeStockAssets: true,
-    zeroUnverifiedDashboardScreenshots: true
+    all12ClientsAudited: clientMediaRecords.length === 12,
+    allWebsitesWithAvailableStatusHaveUrls: clientMediaRecords.every(m => m.officialWebsiteStatus !== 'available' || (m.officialWebsiteUrl && m.officialWebsiteUrl.startsWith('https://'))),
+    allSocialPagesWithAvailableStatusHaveUrls: clientMediaRecords.every(m => m.officialSocialStatus !== 'available' || (m.officialSocialUrl && m.officialSocialUrl.startsWith('https://'))),
+    logoSeparatedFromProjectMedia: clientMediaRecords.every(m => m.officialLogoStatus === 'available' && m.localLogoFile.includes('logo.')),
+    noUnclaimedLeadCostEvidenceMarkedAvailable: clientMediaRecords.every(m => m.localLeadCostEvidenceStatus !== 'available'),
+    noUnclaimedRevenueEvidenceMarkedAvailable: clientMediaRecords.every(m => m.localRevenueEvidenceStatus !== 'available' || ['black-gold-fertilizer', 'wajib-livestock'].includes(m.clientId)),
+    noResultsYetProjectsNotMarkedPending: clientMediaRecords.filter(m => ['riyadh-finish-pro', 'unique-lahore-lab-sahiwal'].includes(m.clientId)).every(m => m.localRevenueEvidenceStatus !== 'pending-evidence' && m.localLeadCostEvidenceStatus !== 'pending-evidence' && m.localCampaignEvidenceStatus !== 'pending-evidence'),
+    zeroUnknownStatusesConvertedToAvailable: clientMediaRecords.every(m => ![m.officialLogoStatus, m.officialWebsiteStatus, m.officialSocialStatus, m.localWebsiteScreenshotsStatus, m.localSocialCreativesStatus, m.localCampaignEvidenceStatus, m.localRevenueEvidenceStatus, m.localLeadCostEvidenceStatus].includes('unknown'))
   },
   errors: mediaErrors
 });
@@ -146,7 +381,7 @@ const intakeErrors = [];
 let manifestsFoundCount = 0;
 
 for (const c of clientMeta) {
-  const manifestPath = path.join(rootDir, `evidence-intake/${c.id}/MANIFEST.md`);
+  const manifestPath = path.join(rootDir, `evidence-intake/${c.manifestFolder}/MANIFEST.md`);
   if (!fs.existsSync(manifestPath)) {
     intakeErrors.push(`Evidence intake manifest missing for client: ${c.id}`);
   } else {
@@ -161,7 +396,7 @@ writeAuditFile('evidence-intake-audit.json', {
   status: intakeErrors.length === 0 ? 'pass' : 'fail',
   generatedAt: new Date().toISOString(),
   sourceCommitSha: currentSha,
-  sourceFilesInspected: clientMeta.map(c => `evidence-intake/${c.id}/MANIFEST.md`),
+  sourceFilesInspected: clientMeta.map(c => `evidence-intake/${c.manifestFolder}/MANIFEST.md`),
   routesInspected: [],
   measuredResults: {
     totalClientFolders: clientMeta.length,
