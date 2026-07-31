@@ -61,7 +61,7 @@ const HTML_TEMPLATES = {
           <div class="dot" style="background:#ef4444;"></div>
           <div class="dot" style="background:#f59e0b;"></div>
           <div class="dot" style="background:#10b981;"></div>
-          <div class="url-box">startsdigital.com / marketing-system</div>
+          <div class="url-box">Starts Digital / Marketing System</div>
         </div>
         <div class="grid">
           <div class="card">
@@ -180,9 +180,9 @@ const HTML_TEMPLATES = {
       </div>
 
       <div class="badge-bar">
-        <div class="b-item">⚡ ZERO CLIENT HOTLINKS</div>
-        <div class="b-item">🔒 PRIVATE INTERNAL EVIDENCE</div>
-        <div class="b-item">🎯 COMBINED AGGREGATE STORYTELLING</div>
+        <div class="b-item">⚡ DIRECT-RESPONSE CREATIVE</div>
+        <div class="b-item">🎯 COMBINED COMMERCIAL OUTCOMES</div>
+        <div class="b-item">🚀 HIGH-SPEED WEB PLATFORMS</div>
       </div>
     </body>
     </html>

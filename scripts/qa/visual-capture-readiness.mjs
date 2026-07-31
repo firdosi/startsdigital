@@ -106,6 +106,9 @@ for (const auditName of auditFiles) {
       assert(data.status && data.status.toLowerCase() === 'pass', `[${auditName}] Status is "pass"`);
       assert(Array.isArray(data.errors) && data.errors.length === 0, `[${auditName}] Errors array is empty`);
       assert(data.sourceCommitSha && data.sourceCommitSha.length > 0, `[${auditName}] sourceCommitSha (${data.sourceCommitSha}) is present`);
+      if (currentSha && currentSha !== 'unknown') {
+        assert(data.sourceCommitSha === currentSha, `[${auditName}] sourceCommitSha matches current HEAD SHA (${currentSha})`);
+      }
 
       if (data.passFailAssertions) {
         if (Array.isArray(data.passFailAssertions)) {
