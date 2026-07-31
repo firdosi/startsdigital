@@ -1,15 +1,16 @@
 ---
 import { brands } from '../../data/brands';
+import { site } from '../../site.config';
 
 // Filter all 12 active brand logos from source of truth
 const logoBrands = brands.filter(b => b.active && b.logo).map(b => ({
   name: b.name,
-  logo: b.logo!,
+  logo: b.logo!.startsWith('/') ? `${site.basePath}${b.logo}` : b.logo!,
   darkContainer: !!b.darkLogoContainer
 }));
 ---
 
-<section class="py-16 sm:py-20 bg-[#061d33] text-white overflow-hidden relative border-t border-b border-white/10">
+<section id="logo-wall" class="py-16 sm:py-20 bg-[#061d33] text-white overflow-hidden relative border-t border-b border-white/10">
   <!-- Subtle ambient background glow -->
   <div class="absolute inset-0 bg-radial-gradient from-[#ff762b]/10 via-transparent to-transparent pointer-events-none"></div>
 

@@ -134,8 +134,8 @@ async function captureRoadmap82(singleRoute = null) {
         route: '/work/',
         viewport: { width: 390, height: 1000 },
         isMobile: true,
-        scrollTo: 1400,
-        requiredSections: ['#combined-achievements', '#logo-wall']
+        scrollToElement: '#logo-wall',
+        requiredSections: ['#logo-wall']
       }
     ];
 
@@ -192,13 +192,18 @@ async function captureRoadmap82(singleRoute = null) {
           )
         );
 
-        if (config.scrollTo) {
+        if (config.scrollToElement) {
+          await page.evaluate((sel) => {
+            const el = document.querySelector(sel);
+            if (el) el.scrollIntoView({ block: 'start' });
+          }, config.scrollToElement);
+        } else if (config.scrollTo) {
           await page.evaluate((y) => window.scrollTo(0, y), config.scrollTo);
         }
         await page.waitForTimeout(600);
 
         // Verification of DOM
-        const domMetrics = await page.evaluate((isMobile) => {
+        const domMetrics = await page.evaluate(({ isMobile, requiredSections, id }) => {
           const styleSheetsCount = document.styleSheets.length;
           let fontFamily = 'serif';
           let fontLoaded = false;
@@ -222,6 +227,64 @@ async function captureRoadmap82(singleRoute = null) {
             mobileNavState = desktopHidden && menuClosed ? 'HIDDEN_AND_CLOSED' : 'FAILED';
           }
 
+          // Section Bounding Rect Visibility Verification
+          const sectionVisibility = {};
+          if (requiredSections) {
+            for (const selector of requiredSections) {
+              const sec = document.querySelector(selector);
+              if (sec) {
+                const rect = sec.getBoundingClientRect();
+                const style = window.getComputedStyle(sec);
+                const isVisible = (
+                  rect.bottom > 0 &&
+                  rect.top < window.innerHeight &&
+                  style.display !== 'none' &&
+                  style.visibility !== 'hidden' &&
+                  parseFloat(style.opacity) > 0
+                );
+                sectionVisibility[selector] = isVisible;
+              } else {
+                sectionVisibility[selector] = false;
+              }
+            }
+          }
+
+          // Visible Logo Count
+          let visibleLogoCount = 0;
+          if (id === 'work-logo-wall-390') {
+            const logoImgs = Array.from(document.querySelectorAll('#logo-wall img'));
+            const rects = logoImgs.map(img => {
+              const r = img.getBoundingClientRect();
+              return { top: r.top, bottom: r.bottom, w: r.width, h: r.height, natW: img.naturalWidth };
+            });
+            visibleLogoCount = logoImgs.filter((img) => {
+              const rect = img.getBoundingClientRect();
+              const style = window.getComputedStyle(img);
+              return (
+                rect.top >= -50 &&
+                rect.bottom <= window.innerHeight + 100 &&
+                rect.width > 0 &&
+                rect.height > 0 &&
+                style.display !== 'none' &&
+                style.visibility !== 'hidden'
+              );
+            }).length;
+            return {
+              styleSheetsCount,
+              fontLoaded,
+              fontFamily,
+              brokenImagesCount: brokenImages.length,
+              horizontalOverflow,
+              scrollWidth,
+              clientWidth,
+              mobileNavState,
+              sectionVisibility,
+              visibleLogoCount,
+              totalLogoImgs: logoImgs.length,
+              sampleRects: rects.slice(0, 4)
+            };
+          }
+
           return {
             styleSheetsCount,
             fontLoaded,
@@ -230,13 +293,19 @@ async function captureRoadmap82(singleRoute = null) {
             horizontalOverflow,
             scrollWidth,
             clientWidth,
-            mobileNavState
+            mobileNavState,
+            sectionVisibility,
+            visibleLogoCount
           };
-        }, config.isMobile);
+        }, { isMobile: config.isMobile, requiredSections: config.requiredSections, id: config.id });
 
         console.log(`  [STYLES VERIFIED] StyleSheets count: ${domMetrics.styleSheetsCount}`);
         console.log(`  [FONTS VERIFIED] Font status: ${domMetrics.fontLoaded ? 'ACTIVE' : 'FAILED'} (${domMetrics.fontFamily})`);
         console.log(`  [IMAGES VERIFIED] Broken images count: ${domMetrics.brokenImagesCount}`);
+        if (config.id === 'work-logo-wall-390') {
+          console.log(`  [LOGOS VERIFIED] Total logo imgs found: ${domMetrics.totalLogoImgs}, Visible count: ${domMetrics.visibleLogoCount}`);
+          console.log(`  [LOGOS DEBUG] Sample rects: ${JSON.stringify(domMetrics.sampleRects)}`);
+        }
 
         // Strict Assertions
         if (domMetrics.styleSheetsCount === 0) {
@@ -256,6 +325,9 @@ async function captureRoadmap82(singleRoute = null) {
         }
         if (domMetrics.horizontalOverflow) {
           throw new Error(`❌ HORIZONTAL OVERFLOW: ${domMetrics.scrollWidth}px > ${domMetrics.clientWidth}px.`);
+        }
+        if (config.id === 'work-logo-wall-390' && domMetrics.visibleLogoCount < 8) {
+          throw new Error(`❌ LOGO WALL VISIBILITY ERROR: work-logo-wall-390.png showed only ${domMetrics.visibleLogoCount} visible logos (minimum 8 required).`);
         }
 
         const filePath = path.join(outputDir, config.fileName);
