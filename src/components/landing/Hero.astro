@@ -5,6 +5,7 @@ import AnimatedGrid from '../motion/AnimatedGrid.astro';
 import FloatingOrb from '../motion/FloatingOrb.astro';
 import SectionSpark from '../motion/SectionSpark.astro';
 import { ArrowRight, Sparkles, Megaphone, Layout, Search, Video, Share2, Cpu } from '@lucide/astro';
+import LightweightVisual3D from '../visuals/LightweightVisual3D.astro';
 
 const { hero } = homepageContent;
 
@@ -69,66 +70,9 @@ const serviceHighlights = [
 
       </div>
 
-      <!-- Right Column: Visual Capabilities Summary Card Stack (col-span-5) -->
+      <!-- Right Column: Visual 3D Composition Anchor (col-span-5) -->
       <div class="lg:col-span-5">
-        
-        <!-- Desktop Panel (hidden on mobile) -->
-        <div class="hidden lg:block rounded-3xl border border-white/15 bg-white/5 p-6 sm:p-7 backdrop-blur-md shadow-2xl space-y-5">
-          <div class="flex items-center justify-between pb-3 border-b border-white/10">
-            <div class="flex items-center gap-2">
-              <span class="size-2 rounded-full bg-[#ddff35] animate-pulse"></span>
-              <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#ddff35]">
-                OUR SERVICES
-              </span>
-            </div>
-            <span class="text-[11px] font-mono text-slate-300">Six Core Services</span>
-          </div>
-
-          <!-- Service Stack Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
-            {serviceHighlights.map((svc) => {
-              const IconComp = svc.icon;
-              return (
-                <div class="flex items-center justify-between p-3 rounded-2xl bg-[#061d33]/80 border border-white/10 hover:border-white/30 transition-all">
-                  <div class="flex items-center gap-3">
-                    <div class={`size-9 rounded-xl ${svc.bg} border flex items-center justify-center shrink-0`}>
-                      <IconComp class={`size-4 ${svc.color}`} />
-                    </div>
-                    <span class="font-heading font-semibold text-sm text-white">
-                      {svc.title}
-                    </span>
-                  </div>
-                  <ArrowRight class="size-3.5 text-slate-400" />
-                </div>
-              );
-            })}
-          </div>
-
-          <div class="pt-2 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-300">
-            <span>Strategy, Creative and Technical Delivery</span>
-            <span class="text-[#ff762b] font-semibold">Starts Digital</span>
-          </div>
-        </div>
-
-        <!-- Mobile Compact Visual Grid (visible below 1024px) -->
-        <div class="lg:hidden pt-2">
-          <div class="grid grid-cols-2 gap-2">
-            {serviceHighlights.map((svc) => {
-              const IconComp = svc.icon;
-              return (
-                <div class="flex items-center gap-2 p-2 rounded-xl bg-white/5 border border-white/10 h-full min-h-[44px]">
-                  <div class={`size-6 rounded-lg ${svc.bg} border flex items-center justify-center shrink-0`}>
-                    <IconComp class={`size-3 ${svc.color}`} />
-                  </div>
-                  <span class="font-heading font-medium text-xs text-slate-200 leading-tight">
-                    {svc.title}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
+        <LightweightVisual3D type="hero-3d" />
       </div>
 
     </div>

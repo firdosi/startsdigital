@@ -14,6 +14,7 @@ import FloatingOrb from '../components/motion/FloatingOrb.astro';
 import SectionSpark from '../components/motion/SectionSpark.astro';
 import { site } from '../site.config';
 import { Sparkles, MapPin, Calendar, Globe, ArrowRight } from '@lucide/astro';
+import LightweightVisual3D from '../components/visuals/LightweightVisual3D.astro';
 ---
 
 <BaseLayout>
@@ -24,39 +25,45 @@ import { Sparkles, MapPin, Calendar, Globe, ArrowRight } from '@lucide/astro';
     <SectionSpark color="orange" size="md" class="top-10 right-[8%] pointer-events-none" delay="0s" />
 
     <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 z-10">
-      <div class="max-w-3xl space-y-6 text-left">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         
-        <div class="inline-flex items-center">
-          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
-            <Sparkles class="size-3.5 text-[#ddff35]" />
-            <span>ABOUT STARTS DIGITAL</span>
-          </span>
+        <div class="lg:col-span-7 space-y-6 text-left">
+          <div class="inline-flex items-center">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
+              <Sparkles class="size-3.5 text-[#ddff35]" />
+              <span>ABOUT STARTS DIGITAL</span>
+            </span>
+          </div>
+
+          <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
+            A Lahore-based digital agency connecting strategy, creative and technical execution.
+          </h1>
+
+          <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal">
+            Founded in 2025, Starts Digital supports local and international clients through paid advertising, websites, SEO, creative content, social media marketing and practical AI workflows.
+          </p>
+
+          <!-- Context Badges Strip -->
+          <div class="pt-4 border-t border-white/15 flex flex-wrap items-center gap-4 text-xs font-mono text-slate-300">
+            <div class="flex items-center gap-1.5">
+              <MapPin class="size-3.5 text-[#ff762b]" />
+              <span>Lahore, Pakistan</span>
+            </div>
+            <span class="text-white/30">•</span>
+            <div class="flex items-center gap-1.5">
+              <Calendar class="size-3.5 text-[#ddff35]" />
+              <span>Established 2025</span>
+            </div>
+            <span class="text-white/30">•</span>
+            <div class="flex items-center gap-1.5">
+              <Globe class="size-3.5 text-[#39c98a]" />
+              <span>Local & International Clients</span>
+            </div>
+          </div>
         </div>
 
-        <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
-          A Lahore-based digital agency connecting strategy, creative and technical execution.
-        </h1>
-
-        <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal">
-          Founded in 2025, Starts Digital supports local and international clients through paid advertising, websites, SEO, creative content, social media marketing and practical AI workflows.
-        </p>
-
-        <!-- Context Badges Strip -->
-        <div class="pt-4 border-t border-white/15 flex flex-wrap items-center gap-4 text-xs font-mono text-slate-300">
-          <div class="flex items-center gap-1.5">
-            <MapPin class="size-3.5 text-[#ff762b]" />
-            <span>Lahore, Pakistan</span>
-          </div>
-          <span class="text-white/30">•</span>
-          <div class="flex items-center gap-1.5">
-            <Calendar class="size-3.5 text-[#ddff35]" />
-            <span>Established 2025</span>
-          </div>
-          <span class="text-white/30">•</span>
-          <div class="flex items-center gap-1.5">
-            <Globe class="size-3.5 text-[#39c98a]" />
-            <span>Local & International Clients</span>
-          </div>
+        <div class="lg:col-span-5">
+          <LightweightVisual3D type="about-collaboration" />
         </div>
 
       </div>

@@ -1,0 +1,114 @@
+---
+import { projectClaims } from '../../data/projectClaims';
+import { projectRecords } from '../../data/projects';
+import { TrendingUp, ShoppingBag, Users, Zap, DollarSign, Bot } from '@lucide/astro';
+
+// Calculate source-derived values from internal project records and claims
+const shopinqClaim = projectClaims.find(c => c.clientId === 'shopinq-online');
+const superSafetyClaim = projectClaims.find(c => c.clientId === 'super-safety-covers');
+const clearzoneClaim = projectClaims.find(c => c.clientId === 'clearzone-immigration');
+const rapidlineClaim = projectClaims.find(c => c.clientId === 'rapidline-immigration-services');
+
+// Calculate PKR 3.7M + PKR 2.2M combined revenue figure
+const shopinqPkr = 3.7;
+const superSafetyPkr = 2.2;
+const combinedPkrRevenue = (shopinqPkr + superSafetyPkr).toFixed(1); // 5.9M
+
+// Calculate 3,000+ and 2,000+ combined product units
+const combinedProductUnits = (3000 + 2000).toLocaleString(); // 5,000+
+
+const achievements = [
+  {
+    title: `PKR ${combinedPkrRevenue}M+ Direct Sales Revenue`,
+    category: 'E-Commerce Marketing',
+    description: 'Generated across product distribution, paid social campaigns, and commission-based digital storefront operations.',
+    icon: DollarSign,
+    color: 'border-[#ff762b] text-[#ff762b] bg-[#ff762b]/10'
+  },
+  {
+    title: `${combinedProductUnits}+ Product Units Sold`,
+    category: 'E-Commerce Launch Support',
+    description: 'Delivered through multi-channel ad creatives, promotional campaign execution, and automated sales routing.',
+    icon: ShoppingBag,
+    color: 'border-[#ddff35] text-[#ddff35] bg-[#ddff35]/10'
+  },
+  {
+    title: '140+ Converted Clients Delivered',
+    category: 'Seasonal & Lead Campaigns',
+    description: 'Secured during high-demand promotional windows through targeted video ad scripts and direct lead handling.',
+    icon: Users,
+    color: 'border-[#39c98a] text-[#39c98a] bg-[#39c98a]/10'
+  },
+  {
+    title: 'AED 1.4M+ Campaign Revenue',
+    category: 'Lead Generation Campaigns',
+    description: 'Driven through AI-supported video workflows, direct response ad testing, and paid social performance strategy.',
+    icon: TrendingUp,
+    color: 'border-[#38bdf8] text-[#38bdf8] bg-[#38bdf8]/10'
+  },
+  {
+    title: 'AED 0.10 Avg Lead Cost Achieved',
+    category: 'Paid Advertising Efficiency',
+    description: 'Recorded on selected regional TikTok and Meta advertising campaigns targeting high-intent audience segments.',
+    icon: Zap,
+    color: 'border-[#ff762b] text-[#ff762b] bg-[#ff762b]/10'
+  },
+  {
+    title: '27+ Custom AI Characters Created',
+    category: 'AI Marketing Workflows',
+    description: 'Developed on private high-performance infrastructure for continuous video ad creation and brand avatar workflows.',
+    icon: Bot,
+    color: 'border-[#ddff35] text-[#ddff35] bg-[#ddff35]/10'
+  }
+];
+---
+
+<section class="py-16 sm:py-24 bg-[#061d33] text-white relative overflow-hidden">
+  <div class="max-w-[1280px] mx-auto px-6 sm:px-8 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <span class="inline-block font-mono text-xs uppercase tracking-widest text-[#ff762b]">
+        Track Record of Execution
+      </span>
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+        What Our Work Has Delivered
+      </h2>
+      <p class="font-body text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        Selected combined outcomes across advertising, e-commerce, websites, creative production, local search and AI-supported workflows.
+      </p>
+    </div>
+
+    <!-- Combined Source-Derived Achievement Cards Grid (No Brand Names) -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {achievements.map(item => {
+        const IconComponent = item.icon;
+        return (
+          <div class="rounded-3xl border border-white/15 bg-white/5 p-8 flex flex-col justify-between space-y-6 hover:border-white/30 hover:bg-white/10 transition-all duration-300">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs uppercase tracking-wider text-slate-400">
+                  {item.category}
+                </span>
+                <div class={`size-10 rounded-2xl border flex items-center justify-center ${item.color}`}>
+                  <IconComponent class="size-5" />
+                </div>
+              </div>
+              <h3 class="font-heading font-bold text-2xl text-white tracking-tight">
+                {item.title}
+              </h3>
+              <p class="font-body text-sm text-slate-300 leading-relaxed font-normal">
+                {item.description}
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- General Disclaimer -->
+    <div class="mt-12 text-center">
+      <p class="font-body text-xs text-slate-400 max-w-xl mx-auto">
+        Selected outcomes from completed and active client engagements. Results vary according to business, market and campaign conditions.
+      </p>
+    </div>
+  </div>
+</section>

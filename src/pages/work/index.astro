@@ -1,665 +1,315 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
-import MotionController from '../../components/common/MotionController.astro';
+import Container from '../../components/ui/Container.astro';
+import CombinedAchievements from '../../components/work/CombinedAchievements.astro';
+import BrandLogoWall from '../../components/work/BrandLogoWall.astro';
+import LightweightVisual3D from '../../components/visuals/LightweightVisual3D.astro';
 import AnimatedGrid from '../../components/motion/AnimatedGrid.astro';
 import FloatingOrb from '../../components/motion/FloatingOrb.astro';
-import SectionSpark from '../../components/motion/SectionSpark.astro';
 import { site } from '../../site.config';
-import {
-  getDetailedProjectStories,
-  getClientExperienceProfiles,
-  getDetailTypeActionLabel,
-  type ResolvedProject
-} from '../../data/projects';
-import { getPublishedServices } from '../../data/services';
-import {
-  ArrowRight,
-  ExternalLink,
-  CheckCircle2,
-  MessageSquare,
-  Filter,
-  RotateCcw,
-  Building2,
-  MapPin
+import { 
+  ArrowRight, 
+  CheckCircle2, 
+  MessageSquare, 
+  Megaphone, 
+  Globe, 
+  Search, 
+  Video, 
+  Share2, 
+  Bot,
+  Sparkles,
+  Layers
 } from '@lucide/astro';
 
-const detailedProjects: ResolvedProject[] = getDetailedProjectStories();
-const experienceProjects: ResolvedProject[] = getClientExperienceProfiles();
-const publishedServices = getPublishedServices();
+const genericWhatsappMsg = encodeURIComponent('Hello Starts Digital, I would like to discuss a new digital marketing project.');
+const whatsappUrl = `${site.contact.whatsapp}?text=${genericWhatsappMsg}`;
 
-const encodedWhatsappMsg = encodeURIComponent('Hello Starts Digital, I would like to discuss a project after reviewing your work.');
-const whatsappUrl = `${site.contact.whatsapp}?text=${encodedWhatsappMsg}`;
-
-// Project Industry Filter Mapping
-function getProjectIndustryCategory(project: ResolvedProject): string {
-  const brandCat = project.brand.category;
-  if (brandCat === 'ecommerce') return 'ecommerce';
-  if (brandCat === 'immigration' || brandCat === 'business-services') return 'immigration';
-  if (brandCat === 'construction') return 'construction';
-  if (brandCat === 'technology') return 'technology';
-  if (brandCat === 'healthcare') return 'healthcare';
-  if (project.sector.toLowerCase().includes('agriculture') || project.sector.toLowerCase().includes('livestock')) return 'agriculture';
-  return 'ecommerce';
-}
-
-function getProjectLocation(project: ResolvedProject): string {
-  if (project.id === 'black-gold-fertilizer' || project.id === 'viral-naturals' || project.id === 'shopinq-online') return 'Lahore, Pakistan';
-  if (project.id === 'wajib-livestock') return 'Pakistan (Nationwide)';
-  if (project.id === 'rk-reno-solutions') return 'Kuala Lumpur, Malaysia';
-  if (project.id === 'convort-ai') return 'Global Technology';
-  if (project.id === 'rapidline-immigration-services' || project.id === 'rapidzone' || project.id === 'clearzone-immigration') return 'Dubai, UAE';
-  if (project.id === 'riyadh-finish-pro') return 'Riyadh, Saudi Arabia';
-  if (project.id === 'super-safety-covers') return 'Mian Channu, Pakistan';
-  if (project.id === 'unique-lahore-lab-sahiwal') return 'Sahiwal, Pakistan';
-  return 'Local & International';
-}
+const capabilities = [
+  {
+    title: 'Paid Advertising',
+    icon: Megaphone,
+    color: 'text-[#ff762b] bg-[#ff762b]/10 border-[#ff762b]/30',
+    description: 'Paid campaign strategy, ad account structure, creative testing, landing-page alignment, tracking setup, and ongoing campaign optimization across Meta, TikTok, and Google.',
+    items: ['Meta & TikTok Ad Campaigns', 'ROAS & Conversion Strategy', 'Direct Response Creative Production', 'A/B Creative Testing']
+  },
+  {
+    title: 'Website Design & Development',
+    icon: Globe,
+    color: 'text-[#38bdf8] bg-[#38bdf8]/10 border-[#38bdf8]/30',
+    description: 'Custom responsive website design, fast Astro web platforms, e-commerce storefront development, conversion-focused landing pages, and ongoing technical support.',
+    items: ['Custom Web Platforms', 'E-Commerce Storefront Setup', 'Landing Page Development', 'UI/UX & Mobile Responsiveness']
+  },
+  {
+    title: 'SEO & Local Search',
+    icon: Search,
+    color: 'text-[#39c98a] bg-[#39c98a]/10 border-[#39c98a]/30',
+    description: 'Location-focused content development, technical SEO foundations, Google Business Profile optimization, and Google Maps local search visibility.',
+    items: ['Google Maps & Business Setup', 'Service-Area Content Strategy', 'Technical On-Page SEO', 'Local Search Pack Optimization']
+  },
+  {
+    title: 'Creative Content',
+    icon: Video,
+    color: 'text-[#a855f7] bg-[#a855f7]/10 border-[#a855f7]/30',
+    description: 'Video ad editing, promotional graphic design, direct-response scriptwriting, social media banners, and high-converting marketing creative production.',
+    items: ['Short-Form Video Edits', 'Ad Scriptwriting & Visuals', 'Social Media Graphic Design', 'Brand Banners & B-Roll Editing']
+  },
+  {
+    title: 'Social Media Marketing',
+    icon: Share2,
+    color: 'text-[#ec4899] bg-[#ec4899]/10 border-[#ec4899]/30',
+    description: 'Strategic social media publishing, visual content production, account setup, audience engagement, and sales inquiry routing.',
+    items: ['Multi-Channel Publishing', 'Social Account Setup', 'Creative Post Graphics', 'Customer Inquiry Support']
+  },
+  {
+    title: 'AI Marketing Workflows',
+    icon: Bot,
+    color: 'text-[#ddff35] bg-[#ddff35]/10 border-[#ddff35]/30',
+    description: 'Private AI character generation pipelines, automated lead routing workflows, marketing automation, and AI-assisted ad script development.',
+    items: ['Custom AI Character Creation', 'Private Generation Infrastructure', 'Lead Routing Automation', 'Conversational AI Systems']
+  }
+];
 ---
 
 <BaseLayout>
-  <!-- 1. WORK HERO -->
-  <section id="work-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
+  <!-- 1. PREMIUM WORK HERO -->
+  <section id="work-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl">
     <AnimatedGrid opacity={0.10} />
     <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
-    <SectionSpark color="orange" size="md" class="top-10 right-[8%] pointer-events-none" delay="0s" />
 
-    <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 z-10">
-      <div class="max-w-4xl space-y-6 text-left">
-        
-        <div class="inline-flex items-center gap-2">
-          <span class="w-7 h-[2px] bg-[#ff762b] shrink-0" aria-hidden="true"></span>
-          <span class="font-mono font-semibold text-xs sm:text-sm uppercase tracking-[0.08em] text-[#ff762b]">
-            SELECTED CLIENT WORK
-          </span>
-        </div>
-
-        <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
-          Work across campaigns, websites, content and digital products.
-        </h1>
-
-        <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal max-w-3xl">
-          Explore Starts Digital project experience across e-commerce, immigration, local services, agriculture, technology and diagnostic healthcare.
-        </p>
-
-        <!-- Factual Hero Statistics -->
-        <div class="pt-3 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl">
-          <div class="rounded-2xl border border-white/15 bg-white/5 p-3.5 text-left">
-            <span class="font-heading font-bold text-xl sm:text-2xl text-[#ddff35] block">12</span>
-            <span class="text-xs font-mono text-slate-300 block mt-0.5">Client Brands</span>
+    <Container class="max-w-[1280px] px-6 sm:px-8 relative z-10">
+      <div class="grid gap-12 lg:grid-cols-12 items-center">
+        <!-- Hero Text Column -->
+        <div class="lg:col-span-7 space-y-6 text-left">
+          <div class="inline-flex items-center gap-2">
+            <span class="w-7 h-[2px] bg-[#ff762b] shrink-0" aria-hidden="true"></span>
+            <span class="font-mono font-semibold text-xs sm:text-sm uppercase tracking-[0.08em] text-[#ff762b]">
+              DIGITAL WORK & COMBINED RESULTS
+            </span>
           </div>
 
-          <div class="rounded-2xl border border-white/15 bg-white/5 p-3.5 text-left">
-            <span class="font-heading font-bold text-xl sm:text-2xl text-[#ff762b] block">4</span>
-            <span class="text-xs font-mono text-slate-300 block mt-0.5">Detailed Project Stories</span>
-          </div>
+          <h1 class="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[60px] leading-[1.08] tracking-[-0.035em] text-white">
+            What Starts Digital Has Delivered.
+          </h1>
 
-          <div class="rounded-2xl border border-white/15 bg-white/5 p-3.5 text-left">
-            <span class="font-heading font-bold text-xl sm:text-2xl text-[#39c98a] block">8</span>
-            <span class="text-xs font-mono text-slate-300 block mt-0.5">Client Experience Profiles</span>
-          </div>
+          <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal max-w-2xl">
+            Explore combined outcomes and digital work delivered across paid advertising, websites, SEO, creative content, social media, and AI-supported marketing workflows.
+          </p>
 
-          <div class="rounded-2xl border border-white/15 bg-white/5 p-3.5 text-left">
-            <span class="font-heading font-bold text-xl sm:text-2xl text-white block">Local & Int’l</span>
-            <span class="text-xs font-mono text-slate-300 block mt-0.5">Work Reach</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. CLIENT FILTERING CONTROLS SECTION -->
-  <section id="work-filters" class="py-8 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 sticky top-16 z-30 shadow-xs backdrop-blur-md bg-[#f7f4ed]/95">
-    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 space-y-4">
-      
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-2 border-b border-[#061d33]/10">
-        <div class="flex items-center gap-2">
-          <Filter class="size-4 text-[#ff762b]" />
-          <span class="font-heading font-bold text-sm text-[#061d33] uppercase tracking-wider">
-            Filter Client Projects
-          </span>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <span id="visible-count-text" class="text-xs font-mono font-bold bg-white text-[#061d33] px-3 py-1.5 rounded-full border border-[#061d33]/10">
-            Showing 12 of 12 Projects
-          </span>
-          <button
-            id="reset-filters-btn"
-            type="button"
-            class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 py-1.5 rounded-full bg-white text-xs font-body font-semibold text-[#061d33] hover:bg-[#061d33] hover:text-white border border-[#061d33]/15 transition-all cursor-pointer"
-          >
-            <RotateCcw class="size-3.5 text-[#ff762b]" />
-            <span>Reset Filters</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Filter Controls Groups Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-body">
-        
-        <!-- Filter Group 1: Project Type -->
-        <div class="space-y-1.5">
-          <span class="font-mono font-semibold uppercase text-slate-500 text-[11px] block">Project Type</span>
-          <div class="flex flex-wrap gap-1.5" id="type-filter-group">
-            <button type="button" data-filter-type="type" data-value="all" aria-pressed="true" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/20 bg-[#061d33] text-white font-medium cursor-pointer transition-all">All Work</button>
-            <button type="button" data-filter-type="type" data-value="detailed" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Detailed Stories</button>
-            <button type="button" data-filter-type="type" data-value="experience" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Client Experience</button>
-          </div>
-        </div>
-
-        <!-- Filter Group 2: Industry Sector -->
-        <div class="space-y-1.5">
-          <span class="font-mono font-semibold uppercase text-slate-500 text-[11px] block">Industry Sector</span>
-          <div class="flex flex-wrap gap-1.5" id="industry-filter-group">
-            <button type="button" data-filter-type="industry" data-value="all" aria-pressed="true" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/20 bg-[#061d33] text-white font-medium cursor-pointer transition-all">All</button>
-            <button type="button" data-filter-type="industry" data-value="ecommerce" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">E-Commerce</button>
-            <button type="button" data-filter-type="industry" data-value="immigration" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Immigration & Setup</button>
-            <button type="button" data-filter-type="industry" data-value="construction" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Construction</button>
-            <button type="button" data-filter-type="industry" data-value="agriculture" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Agriculture</button>
-            <button type="button" data-filter-type="industry" data-value="technology" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Technology</button>
-            <button type="button" data-filter-type="industry" data-value="healthcare" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Healthcare</button>
-          </div>
-        </div>
-
-        <!-- Filter Group 3: Core Service -->
-        <div class="space-y-1.5">
-          <span class="font-mono font-semibold uppercase text-slate-500 text-[11px] block">Service Discipline</span>
-          <div class="flex flex-wrap gap-1.5" id="service-filter-group">
-            <button type="button" data-filter-type="service" data-value="all" aria-pressed="true" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/20 bg-[#061d33] text-white font-medium cursor-pointer transition-all">All</button>
-            <button type="button" data-filter-type="service" data-value="paid-advertising" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Paid Ads</button>
-            <button type="button" data-filter-type="service" data-value="website-design-development" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Web Dev</button>
-            <button type="button" data-filter-type="service" data-value="seo-local-search" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">SEO</button>
-            <button type="button" data-filter-type="service" data-value="creative-content" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Creative</button>
-            <button type="button" data-filter-type="service" data-value="social-media-marketing" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">Social</button>
-            <button type="button" data-filter-type="service" data-value="ai-marketing-workflows" aria-pressed="false" class="filter-btn min-h-[44px] px-3 py-2 rounded-xl border border-[#061d33]/15 bg-white text-[#061d33] hover:bg-slate-100 font-medium cursor-pointer transition-all">AI Workflows</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. FOUR DETAILED PROJECT STORIES SECTION -->
-  <section id="detailed-stories" class="py-16 sm:py-20 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10">
-    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
-      
-      <div class="mb-10 text-left max-w-3xl space-y-2">
-        <SectionEyebrow label="DETAILED PROJECT STORIES" align="left" motion={false} />
-        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] text-[#061d33] leading-tight">
-          Four Detailed Project Stories
-        </h2>
-        <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-          In-depth project documentations featuring verified outcomes, system breakdowns, and comprehensive execution details.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        {detailedProjects.map((proj) => {
-          const actionLabel = getDetailTypeActionLabel(proj.detailType);
-          const indCat = getProjectIndustryCategory(proj);
-          const svcList = proj.serviceIds.join(',');
-
-          return (
-            <article 
-              class="project-card rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group"
-              data-project-card
-              data-type="detailed"
-              data-industry={indCat}
-              data-services={svcList}
+          <div class="pt-2 flex flex-wrap gap-4 items-center">
+            <a
+              href="/contact/"
+              class="inline-flex items-center gap-2.5 rounded-full bg-[#ff762b] px-7 py-3.5 text-sm font-semibold text-white shadow-lg hover:bg-[#e0611a] hover:shadow-xl transition-all duration-200"
             >
-              <div class="space-y-5">
-                
-                <!-- Card Header -->
-                <div class="flex items-center justify-between gap-3 pb-4 border-b border-[#061d33]/8">
-                  <span class="rounded-full bg-[#ff762b]/15 border border-[#ff762b]/30 px-3 py-0.5 text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider">
-                    {proj.sector}
-                  </span>
+              <span>Discuss Your Project</span>
+              <ArrowRight class="size-4" />
+            </a>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-medium text-white hover:bg-white/20 transition-all duration-200"
+            >
+              <MessageSquare class="size-4 text-[#39c98a]" />
+              <span>WhatsApp Direct</span>
+            </a>
+          </div>
+        </div>
 
-                  <!-- Brand Logo Zone -->
-                  <div class={`h-11 w-32 rounded-xl px-2.5 py-1 flex items-center justify-center border ${proj.darkLogoContainer ? 'bg-[#061d33] border-[#061d33]' : 'bg-slate-50 border-slate-200'}`}>
-                    <img
-                      src={`${site.basePath}${proj.logo}`}
-                      alt={`${proj.publicName} logo`}
-                      width="120"
-                      height="36"
-                      loading="lazy"
-                      class="max-h-7 w-auto object-contain"
-                    />
-                  </div>
-                </div>
-
-                <!-- Title & Relationship -->
-                <div>
-                  <h3 class="font-heading font-bold text-2xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
-                    {proj.publicName}
-                  </h3>
-                  {proj.primaryRelationship ? (
-                    <div class="mt-1.5 flex flex-wrap gap-2">
-                      <span class="inline-flex items-center rounded-md bg-[#ddff35]/20 border border-[#ddff35]/50 px-2.5 py-0.5 text-xs font-mono font-semibold text-[#061d33]">
-                        {proj.primaryRelationship}
-                      </span>
-                      {proj.secondaryRelationship ? (
-                        <span class="inline-flex items-center rounded-md bg-[#ff762b]/10 border border-[#ff762b]/30 px-2.5 py-0.5 text-xs font-mono font-semibold text-[#ff762b]">
-                          {proj.secondaryRelationship}
-                        </span>
-                      ) : null}
-                    </div>
-                  ) : proj.relationshipType ? (
-                    <span class="inline-block mt-1 font-mono text-xs text-[#ff762b] font-semibold">
-                      {proj.relationshipType}
-                    </span>
-                  ) : null}
-                </div>
-
-                <!-- Contribution Summary -->
-                <div class="space-y-1.5">
-                  <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
-                    Approved Contribution
-                  </span>
-                  <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-                    {proj.shortSummary}
-                  </p>
-                </div>
-
-                <!-- Verified Result -->
-                {proj.verifiedOutcome ? (
-                  <div class="p-4 rounded-2xl bg-[#f7f4ed] border border-[#061d33]/8 space-y-1">
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#061d33] block">
-                      Verified Outcome
-                    </span>
-                    <p class="text-base font-body font-semibold text-[#061d33] leading-relaxed">
-                      {proj.verifiedOutcome}
-                    </p>
-                  </div>
-                ) : proj.verifiedContribution ? (
-                  <div class="p-4 rounded-2xl bg-[#f7f4ed] border border-[#061d33]/8 space-y-1">
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#061d33] block">
-                      Verified Contribution
-                    </span>
-                    <p class="text-base font-body font-semibold text-[#061d33] leading-relaxed">
-                      {proj.verifiedContribution}
-                    </p>
-                  </div>
-                ) : null}
-
-                <!-- Services Tags -->
-                <div class="pt-2 flex flex-wrap gap-2">
-                  {proj.approvedServices.map((svc) => (
-                    <span class="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-mono text-slate-700 border border-slate-200">
-                      <CheckCircle2 class="size-3 text-[#ff762b]" />
-                      <span>{svc}</span>
-                    </span>
-                  ))}
-                </div>
-
-              </div>
-
-              <!-- Card Actions -->
-              <div class="flex flex-wrap items-center justify-between gap-3 pt-5 mt-6 border-t border-[#061d33]/8">
-                <a
-                  href={`${site.basePath}${proj.detailPath}`}
-                  class="inline-flex items-center gap-2 rounded-full bg-[#061d33] min-h-[44px] px-5 py-2.5 text-sm font-body font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs"
-                >
-                  <span>{actionLabel}</span>
-                  <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-
-                {proj.officialWebsite && (
-                  <a
-                    href={proj.officialWebsite}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-[#f7f4ed] min-h-[44px] px-4 py-2.5 text-sm font-body font-semibold text-[#061d33] hover:border-[#061d33] hover:bg-white transition-all shadow-xs"
-                  >
-                    <span>Website</span>
-                    <ExternalLink class="size-3.5" />
-                  </a>
-                )}
-              </div>
-            </article>
-          );
-        })}
+        <!-- Hero 3D Dashboard Visual Anchor -->
+        <div class="lg:col-span-5">
+          <LightweightVisual3D type="work-dashboard" />
+        </div>
       </div>
-
-    </div>
+    </Container>
   </section>
 
-  <!-- 4. EIGHT CLIENT EXPERIENCE PROFILES SECTION -->
-  <section id="client-experience" class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
-    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
-      
-      <div class="mb-10 text-left max-w-3xl space-y-2">
-        <SectionEyebrow label="CLIENT EXPERIENCE PROFILES" align="left" motion={false} />
-        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] text-[#061d33] leading-tight">
-          Eight Client Experience Profiles
+  <!-- 2. COMBINED ACHIEVEMENTS -->
+  <CombinedAchievements />
+
+  <!-- 3. WHAT WE HAVE DELIVERED (COMBINED WORK CAPABILITIES) -->
+  <section class="py-16 sm:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="max-w-[1280px] px-6 sm:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="inline-block font-mono text-xs uppercase tracking-widest text-[#ff762b]">
+          Core Capabilities
+        </span>
+        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#061d33]">
+          What We Have Built, Managed and Improved
         </h2>
-        <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-          Client work across e-commerce, immigration, construction, and healthcare. Profiles feature project contributions, services, and reported performance.
+        <p class="font-body text-base sm:text-lg text-slate-700 max-w-2xl mx-auto">
+          Our team delivers end-to-end digital growth operations across six core capability areas.
         </p>
       </div>
 
-      <!-- 8 Client Experience Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {experienceProjects.map((p) => {
-          const actionLabel = getDetailTypeActionLabel(p.detailType);
-          const indCat = getProjectIndustryCategory(p);
-          const svcList = p.serviceIds.join(',');
-          const locStr = getProjectLocation(p);
-          const isPending = p.evidenceStatus === 'user-provided-pending-evidence';
-
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {capabilities.map(cap => {
+          const IconComp = cap.icon;
           return (
-            <article 
-              class="project-card rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 hover:shadow-md transition-all duration-300 group"
-              data-project-card
-              data-type="experience"
-              data-industry={indCat}
-              data-services={svcList}
-            >
+            <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 space-y-6 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
               <div class="space-y-4">
-                
-                <!-- Logo & Sector Header -->
-                <div class="flex items-center justify-between gap-3 pb-3 border-b border-[#061d33]/8">
-                  <span class="rounded-full bg-[#061d33]/5 border border-[#061d33]/10 px-2.5 py-0.5 text-[11px] font-mono font-semibold text-slate-600 uppercase tracking-wider">
-                    {p.sector}
-                  </span>
-
-                  <div class={`h-10 w-28 rounded-xl px-2 py-1 flex items-center justify-center border shrink-0 ${p.darkLogoContainer ? 'bg-[#061d33] border-[#061d33]' : 'bg-white border-slate-200'}`}>
-                    <img
-                      src={`${site.basePath}${p.logo}`}
-                      alt={`${p.publicName} logo`}
-                      width="110"
-                      height="32"
-                      loading="lazy"
-                      class="max-h-6 w-auto object-contain"
-                    />
+                <div class="flex items-center justify-between">
+                  <div class={`size-12 rounded-2xl border flex items-center justify-center ${cap.color}`}>
+                    <IconComp class="size-6" />
                   </div>
+                  <Sparkles class="size-4 text-slate-400" />
                 </div>
-
-                <!-- Brand Name & Location -->
-                <div>
-                  <h3 class="font-heading font-bold text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-tight">
-                    {p.publicName}
-                  </h3>
-                  <div class="flex items-center gap-1.5 mt-1 text-xs font-mono text-slate-500">
-                    <MapPin class="size-3.5 text-[#ff762b]" />
-                    <span>{locStr}</span>
-                  </div>
-                </div>
-
-                <!-- Contribution Summary -->
-                <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-                  {p.shortSummary}
+                <h3 class="font-heading font-bold text-2xl text-[#061d33]">
+                  {cap.title}
+                </h3>
+                <p class="font-body text-sm text-slate-600 leading-relaxed font-normal">
+                  {cap.description}
                 </p>
+              </div>
 
-                <!-- Reported Result Block -->
-                {p.reportedResult && (
-                  <div class="p-3.5 rounded-2xl bg-white border border-[#061d33]/10 space-y-1">
-                    <div class="flex items-center justify-between gap-2">
-                      <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#ff762b]">
-                        {p.resultLabel || 'Reported Result'}
-                      </span>
-                      {isPending && (
-                        <span class="text-[10px] font-mono text-amber-700 bg-amber-100 px-2 py-0.5 rounded-md font-semibold">
-                          Evidence Pending
-                        </span>
-                      )}
-                    </div>
-                    <p class="text-xs font-body font-medium text-slate-800 leading-normal">
-                      {p.reportedResult}
-                    </p>
+              <div class="space-y-2 border-t border-slate-100 pt-4">
+                {cap.items.map(item => (
+                  <div class="flex items-center gap-2 text-xs font-body text-slate-700">
+                    <CheckCircle2 class="size-3.5 text-[#ff762b] shrink-0" />
+                    <span>{item}</span>
                   </div>
-                )}
-
-                <!-- Services Tags -->
-                <div class="pt-1 flex flex-wrap gap-1.5">
-                  {p.approvedServices.slice(0, 3).map((svc) => (
-                    <span class="inline-flex items-center gap-1 rounded-md bg-white px-2 py-0.5 text-[11px] font-mono text-slate-700 border border-slate-200 font-medium">
-                      <span>{svc}</span>
-                    </span>
-                  ))}
-                </div>
-
+                ))}
               </div>
-
-              <!-- Action Footer -->
-              <div class="pt-4 mt-6 border-t border-[#061d33]/8 flex flex-wrap items-center justify-between gap-2.5">
-                <a
-                  href={`${site.basePath}${p.detailPath}`}
-                  class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-4 py-2.5 min-h-[44px] text-sm font-body font-semibold text-white hover:bg-[#ff762b] transition-all shadow-xs"
-                >
-                  <span>{actionLabel}</span>
-                  <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-
-                {p.officialWebsite ? (
-                  <a
-                    href={p.officialWebsite}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Official website for ${p.publicName}`}
-                    class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3.5 py-2.5 min-h-[44px] text-sm font-body font-semibold text-[#061d33] hover:border-[#061d33] transition-all"
-                  >
-                    <span>Website</span>
-                    <ExternalLink class="size-3.5" />
-                  </a>
-                ) : p.officialSocialUrl ? (
-                  <a
-                    href={p.officialSocialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Official social page for ${p.publicName}`}
-                    class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3.5 py-2.5 min-h-[44px] text-sm font-body font-semibold text-[#061d33] hover:border-[#061d33] transition-all"
-                  >
-                    <span>Facebook</span>
-                    <ExternalLink class="size-3.5" />
-                  </a>
-                ) : null}
-              </div>
-            </article>
+            </div>
           );
         })}
       </div>
-
-    </div>
+    </Container>
   </section>
 
-  <!-- 5. SERVICES REPRESENTED ACROSS THE WORK -->
-  <section id="capabilities" class="py-16 sm:py-20 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10">
-    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
-      
-      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
-        <SectionEyebrow label="SERVICES REPRESENTED ACROSS WORK" align="center" motion={false} />
-        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
-          Core digital service capabilities.
+  <!-- 4. VISUAL WORK GALLERY COLLAGE -->
+  <section class="py-16 sm:py-24 bg-[#061d33] text-white relative overflow-hidden">
+    <Container class="max-w-[1280px] px-6 sm:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="inline-block font-mono text-xs uppercase tracking-widest text-[#ddff35]">
+          Production Quality
+        </span>
+        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+          Visual Work Showcase
         </h2>
-        <p class="text-base sm:text-lg text-slate-700 font-body leading-relaxed font-normal">
-          Starts Digital combines strategy, design, technical execution and data analysis across six core service areas.
+        <p class="font-body text-base text-slate-300 max-w-xl mx-auto">
+          High-performance web architecture, direct-response video assets, and AI character workflows.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {publishedServices.map((svc) => (
-          <a
-            href={`${site.basePath}/services/${svc.slug}/`}
-            class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-8 hover:border-[#ff762b]/40 hover:shadow-md transition-all group flex flex-col justify-between"
-          >
-            <div class="space-y-3">
-              <span class="text-xs font-mono font-bold text-[#ff762b] uppercase tracking-wider block">
-                {svc.eyebrow}
-              </span>
-              <h3 class="font-heading font-bold text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors">
-                {svc.name}
-              </h3>
-              <p class="text-base text-slate-700 font-body leading-relaxed">
-                {svc.summary}
-              </p>
+      <div class="grid gap-8 md:grid-cols-3">
+        <!-- Visual Frame 1: Web App & Front-End -->
+        <div class="rounded-3xl border border-white/15 bg-white/5 p-6 space-y-4 backdrop-blur-md">
+          <div class="aspect-video rounded-2xl bg-[#0c2a4a] border border-white/10 p-4 flex flex-col justify-between">
+            <div class="flex items-center gap-1.5 border-b border-white/10 pb-2">
+              <span class="size-2 rounded-full bg-red-400"></span>
+              <span class="size-2 rounded-full bg-yellow-400"></span>
+              <span class="size-2 rounded-full bg-green-400"></span>
+              <span class="font-mono text-[9px] text-slate-400 ml-2">Astro 5.0 Speed: 99/100</span>
             </div>
+            <div class="space-y-2 my-auto">
+              <div class="h-3 w-3/4 rounded bg-white/20"></div>
+              <div class="h-3 w-1/2 rounded bg-[#ff762b]/40"></div>
+            </div>
+            <div class="h-6 rounded bg-[#38bdf8]/20 border border-[#38bdf8]/40 flex items-center justify-center font-mono text-[9px] text-[#38bdf8]">
+              Fast Static Hydration
+            </div>
+          </div>
+          <h3 class="font-heading font-bold text-lg text-white">High-Speed Web Platforms</h3>
+          <p class="text-xs text-slate-300 font-body leading-relaxed font-normal">
+            Custom websites built with zero JS overhead, optimal Lighthouse scores, and conversion-focused layouts.
+          </p>
+        </div>
 
-            <div class="pt-4 mt-6 border-t border-[#061d33]/8 flex items-center justify-between text-xs font-mono font-bold text-[#061d33] group-hover:text-[#ff762b]">
-              <span>Explore {svc.shortName} Page</span>
-              <ArrowRight class="size-4 group-hover:translate-x-1 transition-transform" />
+        <!-- Visual Frame 2: Creative Video Editing -->
+        <div class="rounded-3xl border border-white/15 bg-white/5 p-6 space-y-4 backdrop-blur-md">
+          <div class="aspect-video rounded-2xl bg-[#1e1435] border border-white/10 p-4 flex flex-col justify-between">
+            <div class="flex items-center justify-between border-b border-white/10 pb-2">
+              <span class="font-mono text-[9px] text-purple-300">Timeline Studio</span>
+              <span class="size-2 rounded-full bg-purple-400 animate-pulse"></span>
             </div>
-          </a>
-        ))}
+            <div class="flex items-center justify-center gap-3 my-auto">
+              <div class="size-10 rounded-xl bg-purple-600/40 border border-purple-400/50 flex items-center justify-center">
+                <Video class="size-5 text-purple-300" />
+              </div>
+              <div class="space-y-1">
+                <div class="h-2 w-24 rounded bg-purple-200/30"></div>
+                <div class="h-2 w-16 rounded bg-purple-400/40"></div>
+              </div>
+            </div>
+            <div class="h-6 rounded bg-purple-500/20 border border-purple-400/40 flex items-center justify-center font-mono text-[9px] text-purple-300">
+              Direct-Response Script & Cuts
+            </div>
+          </div>
+          <h3 class="font-heading font-bold text-lg text-white">Direct-Response Ad Creatives</h3>
+          <p class="text-xs text-slate-300 font-body leading-relaxed font-normal">
+            Short-form video editing, hook testing, caption styling, and promotional graphic overlays.
+          </p>
+        </div>
+
+        <!-- Visual Frame 3: AI Generation Workflows -->
+        <div class="rounded-3xl border border-white/15 bg-white/5 p-6 space-y-4 backdrop-blur-md">
+          <div class="aspect-video rounded-2xl bg-[#0e271f] border border-white/10 p-4 flex flex-col justify-between">
+            <div class="flex items-center justify-between border-b border-white/10 pb-2">
+              <span class="font-mono text-[9px] text-emerald-300">Private VPS Pipeline</span>
+              <span class="font-mono text-[9px] text-[#ddff35]">27 Models</span>
+            </div>
+            <div class="flex items-center justify-center gap-2 my-auto">
+              <Bot class="size-6 text-[#ddff35]" />
+              <div class="h-1 w-12 bg-[#ddff35]/30 rounded"></div>
+              <Layers class="size-6 text-emerald-400" />
+            </div>
+            <div class="h-6 rounded bg-[#ddff35]/20 border border-[#ddff35]/40 flex items-center justify-center font-mono text-[9px] text-[#ddff35]">
+              AI Avatar & Voice Synthesis
+            </div>
+          </div>
+          <h3 class="font-heading font-bold text-lg text-white">Private AI Generation</h3>
+          <p class="text-xs text-slate-300 font-body leading-relaxed font-normal">
+            Private infrastructure for AI character development, voice synthesis, and scale ad generation.
+          </p>
+        </div>
       </div>
-
-    </div>
+    </Container>
   </section>
 
-  <!-- 6. WORK CONVERSION CTA -->
-  <section id="work-cta" class="py-16 sm:py-20 lg:py-24 bg-[#061d33] text-white relative overflow-hidden">
-    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 text-center relative z-10 space-y-6 max-w-3xl">
-      <h2 class="font-heading font-bold text-[32px] sm:text-[42px] lg:text-[48px] text-white leading-tight">
-        Ready to discuss your project requirements?
+  <!-- 5. HOW THE WORK CONNECTS -->
+  <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33]">
+    <Container class="max-w-[1000px] px-6 sm:px-8 text-center space-y-8">
+      <span class="font-mono text-xs uppercase tracking-widest text-[#ff762b]">Integrated Delivery</span>
+      <h2 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-[#061d33]">
+        How Strategy, Creative and Web Tech Connect
       </h2>
-      <p class="text-base sm:text-lg text-slate-200 font-body max-w-2xl mx-auto">
-        Whether you require paid acquisition, web development, creative content, or technical partnership, Starts Digital is ready to help.
+      <p class="font-body text-base sm:text-lg text-slate-700 leading-relaxed max-w-3xl mx-auto">
+        Great marketing requires alignment across every touchpoint. We combine high-converting ad creative, high-speed website engineering, local search optimization, and automated lead routing so your marketing dollars turn into real customer sales.
+      </p>
+    </Container>
+  </section>
+
+  <!-- 6. BRAND LOGO WALL -->
+  <BrandLogoWall />
+
+  <!-- 7. GENERIC PROJECT INQUIRY CTA -->
+  <section class="py-16 sm:py-24 bg-[#061d33] text-white text-center">
+    <Container class="max-w-[900px] px-6 sm:px-8 space-y-8">
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+        Ready to Discuss Your Project Goals?
+      </h2>
+      <p class="font-body text-base sm:text-lg text-slate-300 max-w-xl mx-auto">
+        Connect directly with our team to outline your requirements, get strategy recommendations, and start your campaign or web platform.
       </p>
 
-      <div class="pt-3 flex flex-wrap items-center justify-center gap-4">
+      <div class="flex flex-wrap justify-center gap-4">
         <a
-          href={`${site.basePath}/contact/`}
-          class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-xl min-h-[44px]"
+          href="/contact/"
+          class="inline-flex items-center gap-2.5 rounded-full bg-[#ff762b] px-8 py-4 text-base font-semibold text-white shadow-xl hover:bg-[#e0611a] transition-all duration-200"
         >
-          <span>Start a Project Discussion</span>
-          <ArrowRight class="size-4" />
+          <span>Start a Project</span>
+          <ArrowRight class="size-5" />
         </a>
-
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 font-body font-semibold text-base text-white hover:bg-white/20 transition-all min-h-[44px]"
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-4 text-base font-medium text-white hover:bg-white/20 transition-all duration-200"
         >
-          <MessageSquare class="size-4 text-[#ddff35]" />
-          <span>Quick WhatsApp Inquiry</span>
+          <MessageSquare class="size-5 text-[#39c98a]" />
+          <span>Talk About Your Goals</span>
         </a>
       </div>
-    </div>
+    </Container>
   </section>
-
-  <MotionController />
-
-  <!-- Vanilla Client-Side Filtering Script -->
-  <script>
-    function initWorkFilters() {
-      const cards = Array.from(document.querySelectorAll('[data-project-card]')) as HTMLElement[];
-      const countEl = document.getElementById('visible-count-text');
-      const resetBtn = document.getElementById('reset-filters-btn');
-
-      if (cards.length === 0) return;
-
-      let activeType = 'all';
-      let activeIndustry = 'all';
-      let activeService = 'all';
-
-      function updateFiltering() {
-        let visibleCount = 0;
-
-        cards.forEach((card) => {
-          const cardType = card.dataset.type || '';
-          const cardIndustry = card.dataset.industry || '';
-          const cardServices = (card.dataset.services || '').split(',');
-
-          const matchType = activeType === 'all' || cardType === activeType;
-          const matchIndustry = activeIndustry === 'all' || cardIndustry === activeIndustry;
-          const matchService = activeService === 'all' || cardServices.includes(activeService);
-
-          if (matchType && matchIndustry && matchService) {
-            card.classList.remove('hidden');
-            visibleCount++;
-          } else {
-            card.classList.add('hidden');
-          }
-        });
-
-        // Section Heading Visibility (Hide section headings if section has 0 visible cards)
-        const detailedSection = document.getElementById('detailed-stories');
-        const experienceSection = document.getElementById('client-experience');
-
-        const visibleDetailedCards = cards.filter(c => c.dataset.type === 'detailed' && !c.classList.contains('hidden')).length;
-        const visibleExperienceCards = cards.filter(c => c.dataset.type === 'experience' && !c.classList.contains('hidden')).length;
-
-        if (detailedSection) {
-          if (visibleDetailedCards === 0) {
-            detailedSection.classList.add('hidden');
-          } else {
-            detailedSection.classList.remove('hidden');
-          }
-        }
-
-        if (experienceSection) {
-          if (visibleExperienceCards === 0) {
-            experienceSection.classList.add('hidden');
-          } else {
-            experienceSection.classList.remove('hidden');
-          }
-        }
-
-        if (countEl) {
-          countEl.textContent = `Showing ${visibleCount} of ${cards.length} Projects`;
-        }
-      }
-
-      function setupFilterGroup(groupSelector: string, filterCategory: 'type' | 'industry' | 'service') {
-        const buttons = Array.from(document.querySelectorAll(`[data-filter-type="${filterCategory}"]`)) as HTMLButtonElement[];
-        
-        buttons.forEach((btn) => {
-          btn.addEventListener('click', () => {
-            buttons.forEach((b) => {
-              b.setAttribute('aria-pressed', 'false');
-              b.classList.remove('bg-[#061d33]', 'text-white', 'border-[#061d33]/20');
-              b.classList.add('bg-white', 'text-[#061d33]', 'border-[#061d33]/15');
-            });
-
-            btn.setAttribute('aria-pressed', 'true');
-            btn.classList.remove('bg-white', 'text-[#061d33]', 'border-[#061d33]/15');
-            btn.classList.add('bg-[#061d33]', 'text-white', 'border-[#061d33]/20');
-
-            const val = btn.dataset.value || 'all';
-            if (filterCategory === 'type') activeType = val;
-            if (filterCategory === 'industry') activeIndustry = val;
-            if (filterCategory === 'service') activeService = val;
-
-            updateFiltering();
-          });
-        });
-      }
-
-      setupFilterGroup('#type-filter-group', 'type');
-      setupFilterGroup('#industry-filter-group', 'industry');
-      setupFilterGroup('#service-filter-group', 'service');
-
-      resetBtn?.addEventListener('click', () => {
-        activeType = 'all';
-        activeIndustry = 'all';
-        activeService = 'all';
-
-        (['type', 'industry', 'service'] as const).forEach((cat) => {
-          const buttons = Array.from(document.querySelectorAll(`[data-filter-type="${cat}"]`)) as HTMLButtonElement[];
-          buttons.forEach((b) => {
-            const isAll = b.dataset.value === 'all';
-            b.setAttribute('aria-pressed', isAll ? 'true' : 'false');
-            if (isAll) {
-              b.classList.remove('bg-white', 'text-[#061d33]', 'border-[#061d33]/15');
-              b.classList.add('bg-[#061d33]', 'text-white', 'border-[#061d33]/20');
-            } else {
-              b.classList.remove('bg-[#061d33]', 'text-white', 'border-[#061d33]/20');
-              b.classList.add('bg-white', 'text-[#061d33]', 'border-[#061d33]/15');
-            }
-          });
-        });
-
-        updateFiltering();
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initWorkFilters);
-    } else {
-      initWorkFilters();
-    }
-    document.addEventListener('astro:page-load', initWorkFilters);
-  </script>
 </BaseLayout>

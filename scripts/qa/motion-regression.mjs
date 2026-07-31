@@ -15,7 +15,6 @@ const testRoutes = [
   '/industries/ecommerce-product-brands/',
   '/locations/lahore/',
   '/contact/',
-  '/work/black-gold-fertilizer/',
   '/about/',
 ];
 
@@ -25,7 +24,7 @@ async function ensureServer(port) {
     cwd: path.resolve('.'),
   });
 
-  const url = `http://localhost:${port}/startsdigital/`;
+  const url = `http://localhost:${port}/`;
   const start = Date.now();
   while (Date.now() - start < 15000) {
     try {
@@ -44,7 +43,7 @@ async function runMotionAudit() {
   const server = await ensureServer(port);
 
   const browser = await chromium.launch();
-  const baseUrl = `http://localhost:${port}/startsdigital`;
+  const baseUrl = `http://localhost:${port}`;
   const errors = [];
 
   let noJsVisibilityVerified = false;

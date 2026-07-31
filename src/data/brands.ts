@@ -45,7 +45,7 @@ export const brands: Brand[] = [
     featured: true,
     active: true,
     order: 1,
-    caseStudyLink: '/work/black-gold-fertilizer/'
+    caseStudyLink: '/work/'
   },
   {
     id: 'wajib-livestock',
@@ -71,7 +71,7 @@ export const brands: Brand[] = [
     featured: true,
     active: true,
     order: 2,
-    caseStudyLink: '/work/qurbani-campaign/'
+    caseStudyLink: '/work/'
   },
   {
     id: 'rk-reno-solutions',
@@ -95,7 +95,7 @@ export const brands: Brand[] = [
     featured: true,
     active: true,
     order: 3,
-    caseStudyLink: '/work/rk-reno-solutions/'
+    caseStudyLink: '/work/'
   },
   {
     id: 'convort-ai',
@@ -121,7 +121,7 @@ export const brands: Brand[] = [
     active: true,
     order: 4,
     isTechnologyPartner: true,
-    caseStudyLink: '/work/convortai/'
+    caseStudyLink: '/work/'
   },
   {
     id: 'rapidline-immigration-services',
@@ -145,7 +145,7 @@ export const brands: Brand[] = [
     featured: false,
     active: true,
     order: 5,
-    caseStudyLink: '/work/rapidline-immigration-services/'
+    caseStudyLink: '/work/'
   },
   {
     id: 'rapidzone',
@@ -168,7 +168,7 @@ export const brands: Brand[] = [
     featured: false,
     active: true,
     order: 6,
-    caseStudyLink: '/work/rapidzone/'
+    caseStudyLink: '/work/'
   },
   {
     id: 'clearzone-immigration',
@@ -191,7 +191,7 @@ export const brands: Brand[] = [
     featured: false,
     active: true,
     order: 7,
-    caseStudyLink: '/work/clearzone-immigration/'
+    caseStudyLink: '/work/'
   },
   {
     id: 'riyadh-finish-pro',
@@ -214,7 +214,7 @@ export const brands: Brand[] = [
     featured: false,
     active: true,
     order: 8,
-    caseStudyLink: '/work/riyadh-finish-pro/'
+    caseStudyLink: '/work/'
   },
   {
     id: 'viral-naturals',
@@ -237,7 +237,7 @@ export const brands: Brand[] = [
     featured: false,
     active: true,
     order: 9,
-    caseStudyLink: '/work/viral-naturals/'
+    caseStudyLink: '/work/'
   },
   {
     id: 'shopinq-online',
@@ -259,7 +259,7 @@ export const brands: Brand[] = [
     featured: false,
     active: true,
     order: 10,
-    caseStudyLink: '/work/shopinq-online/'
+    caseStudyLink: '/work/'
   },
   {
     id: 'super-safety-covers',
@@ -281,7 +281,7 @@ export const brands: Brand[] = [
     featured: false,
     active: true,
     order: 11,
-    caseStudyLink: '/work/super-safety-covers/'
+    caseStudyLink: '/work/'
   },
   {
     id: 'unique-lahore-lab-sahiwal',
@@ -303,6 +303,6 @@ export const brands: Brand[] = [
     featured: false,
     active: true,
     order: 12,
-    caseStudyLink: '/work/unique-lahore-lab-sahiwal/'
+    caseStudyLink: '/work/'
   }
 ];

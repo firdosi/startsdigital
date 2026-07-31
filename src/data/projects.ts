@@ -75,7 +75,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'Digital strategy, Meta advertising, creative testing, e-commerce growth support and website support for lawn-care e-commerce.',
     serviceIds: ['paid-advertising', 'website-design-development', 'creative-content', 'seo-local-search'],
     verifiedOutcome: 'Supported PKR 30M+ in delivered-order revenue, 29,000+ product sales and 22,000+ delivered sales over 24 months.',
-    detailPath: '/work/black-gold-fertilizer/',
+    detailPath: '/work/',
     detailType: 'case-study',
     variant: 'ecommerce',
     contactSourceValue: 'black-gold-fertilizer',
@@ -101,7 +101,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'Campaign strategy, paid social, lead generation, creative production and sales support for Eid Qurbani sales.',
     serviceIds: ['paid-advertising', 'creative-content', 'social-media-marketing'],
     verifiedOutcome: 'Helped sell more than 150 animals and supported PKR 4.2M+ in sales during the Eid Qurbani campaign.',
-    detailPath: '/work/qurbani-campaign/',
+    detailPath: '/work/',
     detailType: 'case-study',
     variant: 'seasonal',
     contactSourceValue: 'qurbani-campaign',
@@ -123,7 +123,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'Website design, location-focused content, service-page development and local SEO foundation for renovation and air-conditioning services in Kuala Lumpur and Selangor.',
     serviceIds: ['website-design-development', 'seo-local-search', 'creative-content'],
     verifiedContribution: 'Website, content and local SEO foundation for renovation and air-conditioning services in Kuala Lumpur and Selangor.',
-    detailPath: '/work/rk-reno-solutions/',
+    detailPath: '/work/',
     detailType: 'case-study',
     variant: 'local-search',
     contactSourceValue: 'rk-reno-solutions',
@@ -155,7 +155,7 @@ export const projectRecords: ProjectRecord[] = [
     shortSummary: 'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
     serviceIds: ['website-design-development', 'ai-marketing-workflows', 'social-media-marketing', 'creative-content'],
     verifiedContribution: 'Starts Digital developed the ConvortAI web application and continues supporting product development, project management, social media, creative production and growth.',
-    detailPath: '/work/convortai/',
+    detailPath: '/work/',
     detailType: 'partner-story',
     variant: 'technology',
     contactSourceValue: 'convortai',
@@ -178,7 +178,7 @@ export const projectRecords: ProjectRecord[] = [
     serviceIds: ['paid-advertising', 'creative-content'],
     reportedResult: 'Average lead cost around AED 0.10 per lead through TikTok and Meta campaigns targeting Gulf countries, India, Bangladesh and Nepal.',
     resultLabel: 'Reported Campaign Performance',
-    detailPath: '/work/rapidline-immigration-services/',
+    detailPath: '/work/',
     detailType: 'client-experience',
     variant: 'default',
     contactSourceValue: 'rapidline-immigration-services',
@@ -201,7 +201,7 @@ export const projectRecords: ProjectRecord[] = [
     serviceIds: ['paid-advertising', 'creative-content'],
     reportedResult: 'Average lead cost around AED 0.10 per lead through TikTok and Meta campaigns targeting Gulf countries, India, Bangladesh and Nepal.',
     resultLabel: 'Reported Campaign Performance',
-    detailPath: '/work/rapidzone/',
+    detailPath: '/work/',
     detailType: 'client-experience',
     variant: 'default',
     contactSourceValue: 'rapidzone',
@@ -224,7 +224,7 @@ export const projectRecords: ProjectRecord[] = [
     serviceIds: ['paid-advertising', 'creative-content', 'ai-marketing-workflows'],
     reportedResult: 'More than 140 converted clients, AED 1.4M+ in generated revenue, and average campaign lead cost around AED 0.10 per lead in Gulf campaigns.',
     resultLabel: 'Reported Campaign Performance',
-    detailPath: '/work/clearzone-immigration/',
+    detailPath: '/work/',
     detailType: 'client-experience',
     variant: 'default',
     contactSourceValue: 'clearzone-immigration',
@@ -247,7 +247,7 @@ export const projectRecords: ProjectRecord[] = [
     serviceIds: ['website-design-development', 'seo-local-search', 'creative-content'],
     reportedResult: 'New client project, results not yet available.',
     resultLabel: 'Project Status',
-    detailPath: '/work/riyadh-finish-pro/',
+    detailPath: '/work/',
     detailType: 'client-experience',
     variant: 'default',
     contactSourceValue: 'riyadh-finish-pro',
@@ -270,7 +270,7 @@ export const projectRecords: ProjectRecord[] = [
     serviceIds: ['website-design-development', 'creative-content', 'social-media-marketing', 'paid-advertising'],
     reportedResult: 'Sales began on day one, with 10+ daily sales in month one on a PKR 1,000 daily budget, scaling without increasing daily spend.',
     resultLabel: 'Reported Result',
-    detailPath: '/work/viral-naturals/',
+    detailPath: '/work/',
     detailType: 'client-experience',
     variant: 'default',
     contactSourceValue: 'viral-naturals',
@@ -289,11 +289,11 @@ export const projectRecords: ProjectRecord[] = [
     projectSlug: 'shopinq-online',
     sectorOverride: 'E-Commerce',
     relationshipType: 'Client Experience',
-    shortSummary: 'Promoted startup products on a 20% sales commission model, running paid social campaigns, creative production, and customer order support.',
+    shortSummary: 'Promoted startup product lines on a sales-commission structure through paid social campaigns, creative content, customer communication, and order support.',
     serviceIds: ['paid-advertising', 'creative-content', 'social-media-marketing'],
     reportedResult: 'More than 3,000 bike covers sold and PKR 3.7M in generated revenue over approximately six months.',
     resultLabel: 'Reported Result',
-    detailPath: '/work/shopinq-online/',
+    detailPath: '/work/',
     detailType: 'client-experience',
     variant: 'default',
     contactSourceValue: 'shopinq-online',
@@ -316,7 +316,7 @@ export const projectRecords: ProjectRecord[] = [
     serviceIds: ['creative-content', 'paid-advertising', 'social-media-marketing'],
     reportedResult: 'More than 2,000 pieces sold and PKR 2.2M+ in generated revenue over the first three months of initial setup.',
     resultLabel: 'Reported Result',
-    detailPath: '/work/super-safety-covers/',
+    detailPath: '/work/',
     detailType: 'client-experience',
     variant: 'default',
     contactSourceValue: 'super-safety-covers',
@@ -339,7 +339,7 @@ export const projectRecords: ProjectRecord[] = [
     serviceIds: ['creative-content', 'social-media-marketing'],
     reportedResult: 'Creative-support project, with wider digital marketing under discussion.',
     resultLabel: 'Project Status',
-    detailPath: '/work/unique-lahore-lab-sahiwal/',
+    detailPath: '/work/',
     detailType: 'client-experience',
     variant: 'default',
     contactSourceValue: 'unique-lahore-lab-sahiwal',
@@ -516,13 +516,7 @@ export function getDetailTypeActionLabel(detailType: DetailType): string {
 }
 
 export function getProjectContactSourceMap(): Record<string, string> {
-  const map: Record<string, string> = {};
-  for (const p of getPublishedProjects()) {
-    if (p.contactSourceValue && p.contactSourceLabel) {
-      map[p.contactSourceValue] = p.contactSourceLabel;
-    }
-  }
-  return map;
+  return {};
 }
 
 export function validateProjectRecordsArray(records: ProjectRecord[]): { valid: boolean; errors: string[] } {
@@ -565,7 +559,7 @@ export function validateProjectRecordsArray(records: ProjectRecord[]): { valid: 
     if (!record.detailPath) {
       errors.push(`Project ${record.id} is missing detailPath.`);
     } else {
-      if (seenDetailPaths.has(record.detailPath)) {
+      if (record.detailPath !== '/work/' && seenDetailPaths.has(record.detailPath)) {
         errors.push(`Duplicate detailPath found: ${record.detailPath}`);
       }
       seenDetailPaths.add(record.detailPath);

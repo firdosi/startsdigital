@@ -1,126 +1,50 @@
 ---
 import { site } from '../../site.config';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
-import { ArrowRight, ArrowUpRight } from '@lucide/astro';
-
-interface Props {
-  showAllWorkButton?: boolean;
-}
-
-const { showAllWorkButton = true } = Astro.props;
-
-const compactProjects = [
-  {
-    name: 'Black Gold Fertilizer',
-    sector: 'Agriculture & E-Commerce',
-    contribution: 'Digital marketing, paid social advertising, creative production and e-commerce website management.',
-    image: `${site.basePath}/images/black-gold-official.png`,
-    link: `${site.basePath}/work/black-gold-fertilizer/`
-  },
-  {
-    name: 'ConvortAI',
-    sector: 'AI Technology Product',
-    contribution: 'Web application development, UI design, project management and ongoing growth support as technology partner.',
-    image: `${site.basePath}/brands/convort-ai/logo.webp`,
-    darkContainer: true,
-    link: `${site.basePath}/work/convortai/`
-  },
-  {
-    name: 'Wajib Livestock',
-    sector: 'Livestock & Seasonal Campaigns',
-    contribution: 'Seasonal campaign strategy, paid social advertising, lead generation and WhatsApp sales routing.',
-    image: `${site.basePath}/brands/wajib-livestock/logo.webp`,
-    darkContainer: true,
-    link: `${site.basePath}/work/qurbani-campaign/`
-  },
-  {
-    name: 'RK Reno Solutions',
-    sector: 'Renovation & Local Services',
-    contribution: 'Website structure, service-page development, location content and local search optimization in Malaysia.',
-    image: `${site.basePath}/brands/rk-reno-solutions/screenshot.webp`,
-    link: `${site.basePath}/work/rk-reno-solutions/`
-  }
-];
+import BrandLogoWall from '../work/BrandLogoWall.astro';
+import CombinedAchievements from '../work/CombinedAchievements.astro';
+import { ArrowRight } from '@lucide/astro';
 ---
 
-<section id="work" class="py-16 sm:py-20 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-[100px] sm:scroll-mt-[112px] lg:scroll-mt-[104px]">
+<section id="work" class="py-16 sm:py-24 bg-[#061d33] text-white scroll-mt-[100px] border-b border-white/10">
   <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
-    
-    <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
-      <div class="space-y-3 max-w-2xl">
-        <SectionEyebrow
-          label="SELECTED WORK PREVIEW"
-          align="left"
-          motion={false}
-        />
-        <h2 class="font-heading font-bold text-[28px] md:text-[36px] lg:text-[40px] text-[#061d33] leading-[1.15] tracking-[-0.025em]">
-          Compact preview of recent client work.
-        </h2>
-        <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
-          Explore full case studies, technical breakdowns and documented outcomes in our Work directory.
-        </p>
+    <!-- Section Eyebrow & Title -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <SectionEyebrow
+        label="COMBINED COMMERCIAL ACHIEVEMENTS"
+        align="center"
+        motion={false}
+      />
+      <h2 class="font-heading font-bold text-[32px] sm:text-[42px] lg:text-[48px] text-white leading-[1.12] tracking-[-0.03em]">
+        What Our Team Has Delivered
+      </h2>
+      <p class="text-base sm:text-lg text-slate-300 font-body leading-relaxed font-normal">
+        Aggregate commercial outcomes delivered across paid advertising, custom web development, local search, creative content, and AI workflows.
+      </p>
+    </div>
+  </div>
+
+  <!-- A. Compact Combined Achievements -->
+  <CombinedAchievements />
+
+  <!-- B. Premium Unlinked Logo Wall -->
+  <BrandLogoWall />
+
+  <!-- C. Visual CTA to General Work Page -->
+  <div class="py-12 bg-[#061d33] text-center border-t border-white/10">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 space-y-6">
+      <h3 class="font-heading font-bold text-2xl sm:text-3xl text-white">
+        Explore Combined Work & Capability Breakdown
+      </h3>
+      <div>
+        <a
+          href={`${site.basePath}/work/`}
+          class="inline-flex items-center gap-2.5 rounded-full bg-[#ff762b] px-8 py-4 font-body font-semibold text-base text-white shadow-xl hover:bg-[#e0611a] transition-all duration-200"
+        >
+          <span>Explore Digital Work & Results</span>
+          <ArrowRight class="size-5" />
+        </a>
       </div>
-      {showAllWorkButton && (
-        <div class="shrink-0">
-          <a
-            href={`${site.basePath}/work/`}
-            class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/20 bg-white px-6 py-3 font-body font-semibold text-sm text-[#061d33] hover:bg-[#061d33] hover:text-white transition-all shadow-xs group/cta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] min-h-[44px]"
-          >
-            <span>View All Client Work</span>
-            <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
-          </a>
-        </div>
-      )}
     </div>
-
-    <!-- 4 Compact Project Cards Grid (2x2 on tablet/desktop) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {compactProjects.map((p) => (
-        <article class="rounded-2xl border border-[#061d33]/12 bg-white p-5 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/50 hover:shadow-md transition-all duration-300 group">
-          <div class="space-y-4">
-            <!-- Sector Pill -->
-            <span class="inline-block px-2.5 py-0.5 rounded-full bg-[#f7f4ed] text-[#061d33] font-mono text-[11px] font-semibold uppercase tracking-wider border border-[#061d33]/10">
-              {p.sector}
-            </span>
-
-            <!-- Image/Logo Container (Fixed aspect ratio) -->
-            <div class={`overflow-hidden rounded-xl border border-[#061d33]/10 aspect-[16/10] flex items-center justify-center p-3 ${p.darkContainer ? 'bg-[#061d33]' : 'bg-[#f7f4ed]'}`}>
-              <img
-                src={p.image}
-                alt={`${p.name} preview visual`}
-                width="240"
-                height="150"
-                loading="lazy"
-                decoding="async"
-                class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-
-            <!-- Title & Short Contribution Sentence (<=35 words) -->
-            <div>
-              <h3 class="font-heading font-bold text-xl text-[#061d33] group-hover:text-[#ff762b] transition-colors leading-snug mb-1.5">
-                {p.name}
-              </h3>
-              <p class="text-sm text-slate-700 font-body leading-relaxed font-normal">
-                {p.contribution}
-              </p>
-            </div>
-          </div>
-
-          <!-- Bottom Story Link -->
-          <div class="pt-4 mt-4 border-t border-[#061d33]/8">
-            <a
-              href={p.link}
-              class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-[#ff762b] group-hover:text-[#061d33] transition-colors"
-            >
-              <span>READ STORY</span>
-              <ArrowUpRight class="size-3.5" />
-            </a>
-          </div>
-        </article>
-      ))}
-    </div>
-
   </div>
 </section>

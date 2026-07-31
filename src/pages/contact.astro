@@ -3,28 +3,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/ui/Container.astro';
 import Faq from '../components/landing/Faq.astro';
 import MotionController from '../components/common/MotionController.astro';
+import LightweightVisual3D from '../components/visuals/LightweightVisual3D.astro';
 import { site } from '../site.config';
 import { getContactAllowlistMap } from '../data/services';
-import { getProjectContactSourceMap } from '../data/projects';
 import { 
   Mail, 
   MessageSquare, 
   Send, 
   CheckCircle, 
   ShieldCheck,
-  Info,
   Sparkles
 } from '@lucide/astro';
 
-// Centralised allowlist mappings from services and projects data sources of truth
+// Centralised allowlist mapping for services
 const SERVICE_ALLOWLIST: Record<string, string> = getContactAllowlistMap();
-const SOURCE_ALLOWLIST: Record<string, string> = getProjectContactSourceMap();
 
 const initialService = Astro.url.searchParams.get('service');
-const initialSource = Astro.url.searchParams.get('source');
-
 const preselectedService = (initialService && SERVICE_ALLOWLIST[initialService]) ? SERVICE_ALLOWLIST[initialService] : '';
-const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOURCE_ALLOWLIST[initialSource] : '';
 ---
 
 <BaseLayout>
@@ -141,30 +136,10 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
               </p>
             </div>
 
-            <!-- Verified Case Study Context Banner (Shown when URL source param is present) -->
-            <div 
-              id="case-study-context-note"
-              class:list={[
-                'rounded-2xl border border-[#ff762b]/30 bg-[#ff762b]/10 p-4 flex items-start gap-3 text-sm text-[#061d33]',
-                caseStudySource ? 'block' : 'hidden'
-              ]}
-            >
-              <Info class="size-5 text-[#ff762b] shrink-0 mt-0.5" />
-              <div>
-                <span class="font-semibold block">Project Context</span>
-                <span id="case-study-context-text">
-                  {initialSource && ['rapidline-immigration-services', 'rapidzone', 'clearzone-immigration', 'riyadh-finish-pro', 'viral-naturals', 'shopinq-online', 'super-safety-covers', 'unique-lahore-lab-sahiwal'].includes(initialSource)
-                    ? `You are contacting us after viewing the ${caseStudySource} Client Experience profile.`
-                    : `You are contacting us after viewing the ${caseStudySource} case study.`}
-                </span>
-              </div>
-            </div>
-
             <!-- Form -->
             <form 
               id="contact-form"
               data-service-allowlist={JSON.stringify(SERVICE_ALLOWLIST)}
-              data-source-allowlist={JSON.stringify(SOURCE_ALLOWLIST)}
               class="space-y-5"
               novalidate
             >
@@ -471,8 +446,6 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
       const btnWhatsApp = document.getElementById('btn-send-whatsapp');
       const btnEmail = document.getElementById('btn-send-email');
       const serviceSelect = document.getElementById('service') as HTMLSelectElement;
-      const contextBanner = document.getElementById('case-study-context-note');
-      const contextName = document.getElementById('case-study-name');
 
       // Handle URL parameters dynamically on client load
       const urlParams = new URLSearchParams(window.location.search);
@@ -480,7 +453,6 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
       const sourceParam = urlParams.get('source');
 
       const allowlistMap: Record<string, string> = JSON.parse(form.dataset.serviceAllowlist || '{}');
-      const sourceAllowlist: Record<string, string> = JSON.parse(form.dataset.sourceAllowlist || '{}');
 
       if (serviceParam && serviceSelect) {
         const decodedParam = decodeURIComponent(serviceParam);
@@ -490,18 +462,7 @@ const caseStudySource = (initialSource && SOURCE_ALLOWLIST[initialSource]) ? SOU
         }
       }
 
-      if (sourceParam && sourceAllowlist[sourceParam] && contextBanner) {
-        const clientName = sourceAllowlist[sourceParam];
-        const isExp = ['rapidline-immigration-services', 'rapidzone', 'clearzone-immigration', 'riyadh-finish-pro', 'viral-naturals', 'shopinq-online', 'super-safety-covers', 'unique-lahore-lab-sahiwal'].includes(sourceParam);
-        const textContainer = document.getElementById('case-study-context-text');
-        if (textContainer) {
-          textContainer.innerHTML = isExp 
-            ? `You are contacting us after viewing the <strong>${clientName}</strong> Client Experience profile.`
-            : `You are contacting us after viewing the <strong>${clientName}</strong> case study.`;
-        }
-        contextBanner.classList.remove('hidden');
-        contextBanner.classList.add('flex');
-      }
+
 
       const fieldSpecs = [
         { id: 'name', event: 'input', checkValid: (el: HTMLInputElement) => !!el.value.trim() },

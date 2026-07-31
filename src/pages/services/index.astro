@@ -22,6 +22,17 @@ import {
   Cpu
 } from '@lucide/astro';
 
+import LightweightVisual3D from '../../components/visuals/LightweightVisual3D.astro';
+
+const visualTypeMap: Record<string, any> = {
+  'paid-advertising': 'service-ad',
+  'website-design-development': 'service-web',
+  'seo-local-search': 'service-seo',
+  'creative-content': 'service-creative',
+  'social-media-marketing': 'service-social',
+  'ai-marketing-workflows': 'service-ai'
+};
+
 const iconMap: Record<string, any> = {
   Megaphone,
   Layout,
@@ -151,9 +162,7 @@ const generalFaqs = [
                     <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-0.5 rounded">
                       0{idx + 1}
                     </span>
-                    <div class="size-9 rounded-xl bg-[#061d33] text-[#ddff35] flex items-center justify-center shrink-0">
-                      <IconComp class="size-4" />
-                    </div>
+                    <LightweightVisual3D type={visualTypeMap[svc.slug] || 'service-ad'} />
                     <span class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-500">{svc.shortName}</span>
                   </div>
 

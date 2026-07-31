@@ -21,6 +21,7 @@ const commands = [
   'node scripts/qa/analytics-audit.mjs',
   'node scripts/qa/domain-readiness.mjs',
   'node scripts/qa/evidence-validation.mjs',
+  'node scripts/qa/public-storytelling.mjs',
 ];
 
 if (!fs.existsSync(dir81)) {

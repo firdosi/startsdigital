@@ -30,8 +30,6 @@ const routesToTest = [
   '/services/',
   '/services/paid-advertising/',
   '/work/',
-  '/work/convortai/',
-  '/work/clearzone-immigration/',
   '/industries/',
   '/industries/technology-products/',
   '/locations/lahore/',
@@ -94,18 +92,25 @@ function startServer(portToTry) {
       const h1Count = await page.evaluate(() => document.querySelectorAll('h1').length);
       assert(h1Count === 1, `[${route}] Contains exactly 1 <h1> element (found ${h1Count})`);
 
-      // 2. Heading hierarchy order assertion
-      const headingOrderValid = await page.evaluate(() => {
+      const headingResult = await page.evaluate(() => {
         const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+        const list = headings.map(h => `${h.tagName}: ${h.innerText.trim().slice(0, 30)}`);
         let prevLevel = 0;
+        let valid = true;
         for (const h of headings) {
           const level = parseInt(h.tagName.substring(1), 10);
-          if (prevLevel > 0 && level > prevLevel + 1) return false;
+          if (prevLevel > 0 && level > prevLevel + 1) {
+            valid = false;
+            break;
+          }
           prevLevel = level;
         }
-        return true;
+        return { valid, list };
       });
-      assert(headingOrderValid, `[${route}] Heading hierarchy order is logical (h1 -> h2 -> h3)`);
+      if (!headingResult.valid) {
+        console.error(`Headings sequence for [${route}]:`, headingResult.list);
+      }
+      assert(headingResult.valid, `[${route}] Heading hierarchy order is logical (h1 -> h2 -> h3)`);
 
       // 3. Image Alt attribute assertion
       const missingAltCount = await page.evaluate(() => {

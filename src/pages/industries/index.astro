@@ -5,6 +5,7 @@ import SectionHeading from '../../components/ui/SectionHeading.astro';
 import Button from '../../components/ui/Button.astro';
 import FinalCta from '../../components/landing/FinalCta.astro';
 import { ArrowRight, ShoppingBag, Calendar, Wrench, Cpu, Layers } from '@lucide/astro';
+import LightweightVisual3D from '../../components/visuals/LightweightVisual3D.astro';
 import { site } from '../../site.config';
 import { getServiceById } from '../../data/services';
 import { industriesFaqs } from '../../data/faqs';
@@ -12,11 +13,11 @@ import { getIndustryPages } from '../../data/marketPages';
 
 const industryPages = getIndustryPages();
 
-const industryIcons: Record<string, any> = {
-  'ecommerce-product-brands': ShoppingBag,
-  'seasonal-campaigns': Calendar,
-  'local-service-businesses': Wrench,
-  'technology-products': Cpu,
+const industryVisualMap: Record<string, any> = {
+  'ecommerce-product-brands': 'industry-ecommerce',
+  'seasonal-campaigns': 'industry-seasonal',
+  'local-service-businesses': 'industry-local',
+  'technology-products': 'industry-tech',
 };
 ---
 
@@ -58,12 +59,9 @@ const industryIcons: Record<string, any> = {
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {industryPages.map((ind) => {
-                const IconComp = industryIcons[ind.slug] || Layers;
                 return (
                   <div class="flex items-center gap-3 p-3 rounded-2xl bg-[#061d33]/80 border border-white/10">
-                    <div class="size-9 rounded-xl bg-[#ff762b]/15 border border-[#ff762b]/30 flex items-center justify-center shrink-0 text-[#ff762b]">
-                      <IconComp class="size-4" />
-                    </div>
+                    <LightweightVisual3D type={industryVisualMap[ind.slug] || 'industry-ecommerce'} />
                     <span class="font-heading font-semibold text-xs text-white leading-snug">
                       {ind.breadcrumbLabel}
                     </span>
@@ -89,13 +87,10 @@ const industryIcons: Record<string, any> = {
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {industryPages.map((ind) => {
-          const IconComp = industryIcons[ind.slug] || Layers;
           return (
             <div class="bg-white border border-[#061d33]/10 rounded-2xl p-8 space-y-6 shadow-sm hover:border-[#ff762b]/40 transition-colors flex flex-col justify-between">
               <div class="space-y-4">
-                <div class="w-12 h-12 rounded-xl bg-[#061d33] text-[#ff762b] flex items-center justify-center">
-                  <IconComp class="size-6" />
-                </div>
+                <LightweightVisual3D type={industryVisualMap[ind.slug] || 'industry-ecommerce'} />
                 <h2 class="font-heading font-bold text-2xl text-[#061d33]">
                   {ind.breadcrumbLabel}
                 </h2>

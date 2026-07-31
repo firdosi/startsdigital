@@ -26,6 +26,8 @@
     "qa:domain": "node scripts/qa/domain-readiness.mjs",
     "qa:live": "node scripts/qa/live-deployment.mjs",
     "qa:8-1": "node scripts/capture-roadmap-8-1.mjs",
+    "qa:storytelling": "node scripts/qa/public-storytelling.mjs",
+    "qa:8-2": "node scripts/capture-roadmap-8-2.mjs",
     "qa:all": "node scripts/qa/all.mjs"
   },
   "dependencies": {
