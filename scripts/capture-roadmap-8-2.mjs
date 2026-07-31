@@ -366,45 +366,61 @@ async function captureRoadmap82(singleRoute = null) {
       // 3. combined-achievements-audit.json
       const numericVisualClaims = [
         {
-          publicLabel: 'PKR 5.9M+ Sales Supported',
-          sourceClaimIds: ['black-gold-fertilizer-revenue'],
-          calculationMethod: 'Sum of PKR 5.9M+ verified fertilizer sales',
+          publicLabel: 'PKR 5.9M+ Delivered Sales / Revenue',
+          internalSources: [
+            { name: 'Shopinq Online', contribution: 'PKR 3.7M' },
+            { name: 'Super Safety Covers', contribution: 'PKR 2.2M+' }
+          ],
+          calculationMethod: 'Sum of PKR 3.7M (Shopinq Online) + PKR 2.2M+ (Super Safety Covers)',
           approvedWording: 'PKR 5.9M+ Delivered Sales / Revenue',
           pagesUsed: ['/', '/work/']
         },
         {
-          publicLabel: '5,000+ Units Sold',
-          sourceClaimIds: ['black-gold-fertilizer-units'],
-          calculationMethod: 'Sum of 5,000+ delivered fertilizer packages',
+          publicLabel: '5,000+ Units Sold / Delivered',
+          internalSources: [
+            { name: 'Shopinq Online', contribution: '3,000+' },
+            { name: 'Super Safety Covers', contribution: '2,000+' }
+          ],
+          calculationMethod: 'Sum of 3,000+ (Shopinq Online) + 2,000+ (Super Safety Covers)',
           approvedWording: '5,000+ Units Sold / Delivered',
           pagesUsed: ['/', '/work/']
         },
         {
           publicLabel: '140+ Clients Converted',
-          sourceClaimIds: ['rapidline-immigration-clients'],
-          calculationMethod: 'Sum of 140+ converted immigration clients',
+          internalSources: [
+            { name: 'Clearzone Immigration', contribution: '140+' }
+          ],
+          calculationMethod: 'Single campaign converted clients total',
           approvedWording: '140+ Clients Converted',
           pagesUsed: ['/', '/work/']
         },
         {
-          publicLabel: 'AED 1.4M+ Revenue Generated',
-          sourceClaimIds: ['rapidline-immigration-revenue'],
-          calculationMethod: 'Sum of AED 1.4M+ generated campaign revenue',
+          publicLabel: 'AED 1.4M+ Generated Revenue',
+          internalSources: [
+            { name: 'Clearzone Immigration', contribution: 'AED 1.4M+' }
+          ],
+          calculationMethod: 'Single campaign revenue total',
           approvedWording: 'AED 1.4M+ Generated Revenue',
           pagesUsed: ['/', '/work/']
         },
         {
-          publicLabel: 'AED 0.10 Lead Cost',
-          sourceClaimIds: ['rapidline-immigration-leadcost'],
-          calculationMethod: 'Campaign lead-cost benchmark',
-          approvedWording: 'AED 0.10 Lead Cost Benchmark',
+          publicLabel: '27+ Custom AI Characters Built',
+          internalSources: [
+            { name: 'Clearzone Immigration', contribution: '27+' }
+          ],
+          calculationMethod: 'Count of trained AI character models',
+          approvedWording: '27+ Custom AI Characters Built',
           pagesUsed: ['/', '/work/']
         },
         {
-          publicLabel: '27+ Custom AI Characters',
-          sourceClaimIds: ['convortai-characters'],
-          calculationMethod: 'Count of 27+ trained AI avatar models',
-          approvedWording: '27+ Custom AI Characters Built',
+          publicLabel: 'AED 0.10 Lead Cost Benchmark',
+          internalSources: [
+            { name: 'Rapidline', contribution: 'Lead cost optimization' },
+            { name: 'Rapidzone', contribution: 'Lead cost optimization' },
+            { name: 'Clearzone', contribution: 'Lead cost optimization' }
+          ],
+          calculationMethod: 'Average lead cost benchmark across campaigns',
+          approvedWording: 'AED 0.10 Lead Cost Benchmark',
           pagesUsed: ['/', '/work/']
         }
       ];

@@ -161,8 +161,8 @@ const HTML_TEMPLATES = {
           </div>
           <div class="q-title">High-Speed Performance & SEO Foundation</div>
           <div class="q-stats">
-            <div class="stat-box"><div class="stat-val">0.4s</div><div class="stat-lbl">Page Load Time</div></div>
-            <div class="stat-box"><div class="stat-val">100%</div><div class="stat-lbl">Clean Audit</div></div>
+            <div class="stat-box"><div class="stat-val">Astro</div><div class="stat-lbl">Web Framework</div></div>
+            <div class="stat-box"><div class="stat-val">100%</div><div class="stat-lbl">Mobile Responsive</div></div>
           </div>
         </div>
 
