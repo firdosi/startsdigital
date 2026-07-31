@@ -160,7 +160,6 @@ const capabilities = [
                   {cap.description}
                 </p>
               </div>
-
               <div class="space-y-2 border-t border-slate-100 pt-4">
                 {cap.items.map(item => (
                   <div class="flex items-center gap-2 text-xs font-body text-slate-700">
@@ -172,6 +171,24 @@ const capabilities = [
             </div>
           );
         })}
+      </div>
+
+      <!-- Work Capabilities Collage Picture Composition -->
+      <div class="mt-12 max-w-4xl mx-auto">
+        <div class="rounded-3xl overflow-hidden border border-[#061d33]/15 shadow-xl bg-white p-2">
+          <picture>
+            <source srcset={`${site.basePath}/visuals/work-capabilities-collage.avif`} type="image/avif" />
+            <img
+              src={`${site.basePath}/visuals/work-capabilities-collage.webp`}
+              alt="Starts Digital Combined Capabilities Collage across Paid Ads, Web, SEO and AI Workflows"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto object-cover rounded-2xl"
+            />
+          </picture>
+        </div>
       </div>
     </Container>
   </section>

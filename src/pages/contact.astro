@@ -3,15 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/ui/Container.astro';
 import Faq from '../components/landing/Faq.astro';
 import MotionController from '../components/common/MotionController.astro';
-import LightweightVisual3D from '../components/visuals/LightweightVisual3D.astro';
 import { site } from '../site.config';
 import { getContactAllowlistMap } from '../data/services';
 import { 
   Mail, 
   MessageSquare, 
   Send, 
-  CheckCircle, 
-  ShieldCheck,
   Sparkles
 } from '@lucide/astro';
 
@@ -106,20 +103,20 @@ const preselectedService = (initialService && SERVICE_ALLOWLIST[initialService])
             </div>
           </a>
 
-          <!-- Expectations Box -->
-          <div class="rounded-2xl border border-slate-300 bg-white/70 p-6 space-y-3 font-body text-sm font-normal text-slate-700">
-            <div class="flex items-center gap-2 text-[#061d33] font-semibold font-body uppercase text-xs tracking-wider">
-              <ShieldCheck class="size-5 text-[#ff762b]" />
-              <span>DIRECT CONTACT OPTIONS</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <CheckCircle class="size-4 text-[#39c98a] shrink-0" />
-              <span>Send your project details through WhatsApp or email</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <CheckCircle class="size-4 text-[#39c98a] shrink-0" />
-              <span>Choose the channel that is most convenient for you</span>
-            </div>
+          <!-- Expectations & Communication Picture Composition -->
+          <div class="rounded-3xl overflow-hidden border border-[#061d33]/15 shadow-xl bg-white p-2">
+            <picture>
+              <source srcset={`${site.basePath}/visuals/contact-communication-composition.avif`} type="image/avif" />
+              <img
+                src={`${site.basePath}/visuals/contact-communication-composition.webp`}
+                alt="Starts Digital Generic Project Inquiry Routing Interface"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-auto object-cover rounded-2xl"
+              />
+            </picture>
           </div>
         </div>
 

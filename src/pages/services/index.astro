@@ -92,39 +92,60 @@ const generalFaqs = [
     <SectionSpark color="orange" size="md" class="top-10 right-[8%] pointer-events-none" delay="0s" />
 
     <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 z-10">
-      <div class="max-w-4xl space-y-6 text-left">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
-        <div class="inline-flex items-center">
-          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
-            <Sparkles class="size-3.5 text-[#ddff35]" />
-            <span>SERVICES</span>
-          </span>
+        <!-- Left Column: Content & Action (7 cols) -->
+        <div class="lg:col-span-7 space-y-6 text-left">
+          <div class="inline-flex items-center">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
+              <Sparkles class="size-3.5 text-[#ddff35]" />
+              <span>SERVICES</span>
+            </span>
+          </div>
+
+          <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
+            Digital capabilities organised around real project requirements.
+          </h1>
+
+          <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal max-w-3xl">
+            Starts Digital supports paid advertising, websites, search visibility, creative production, social media and practical AI workflows. Services can be used individually or coordinated around one agreed project scope.
+          </p>
+
+          <div class="pt-4 flex flex-wrap items-center gap-4">
+            <a
+              href={`${site.basePath}/contact/`}
+              class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-7 py-3.5 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-lg group/cta min-h-[44px]"
+            >
+              <span>Discuss Your Project</span>
+              <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
+            </a>
+
+            <a
+              href="#directory"
+              class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 font-body font-semibold text-base text-white hover:bg-white/15 transition-all min-h-[44px]"
+            >
+              <span>Explore Service Areas</span>
+              <ChevronDown class="size-4 text-slate-300" />
+            </a>
+          </div>
         </div>
 
-        <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
-          Digital capabilities organised around real project requirements.
-        </h1>
-
-        <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal max-w-3xl">
-          Starts Digital supports paid advertising, websites, search visibility, creative production, social media and practical AI workflows. Services can be used individually or coordinated around one agreed project scope.
-        </p>
-
-        <div class="pt-4 flex flex-wrap items-center gap-4">
-          <a
-            href={`${site.basePath}/contact/`}
-            class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-7 py-3.5 font-body font-semibold text-base text-white hover:bg-white hover:text-[#061d33] transition-all shadow-lg group/cta min-h-[44px]"
-          >
-            <span>Discuss Your Project</span>
-            <ArrowRight class="size-4 group-hover/cta:translate-x-1 transition-transform" />
-          </a>
-
-          <a
-            href="#directory"
-            class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 font-body font-semibold text-base text-white hover:bg-white/15 transition-all min-h-[44px]"
-          >
-            <span>Explore Service Areas</span>
-            <ChevronDown class="size-4 text-slate-300" />
-          </a>
+        <!-- Right Column: Services Picture Composition Anchor (5 cols) -->
+        <div class="lg:col-span-5">
+          <div class="rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-white/5 p-2 backdrop-blur-md">
+            <picture>
+              <source srcset={`${site.basePath}/visuals/services-overview-composition.avif`} type="image/avif" />
+              <img
+                src={`${site.basePath}/visuals/services-overview-composition.webp`}
+                alt="Starts Digital Multi-Device Service Delivery Interface Composition"
+                width="800"
+                height="600"
+                loading="eager"
+                decoding="async"
+                class="w-full h-auto object-cover rounded-2xl"
+              />
+            </picture>
+          </div>
         </div>
 
       </div>
@@ -148,7 +169,6 @@ const generalFaqs = [
       <!-- Divided Editorial Rows Index -->
       <div class="rounded-3xl border border-[#061d33]/15 overflow-hidden shadow-xs divide-y divide-[#061d33]/12">
         {getPublishedServices().map((svc, idx) => {
-          const IconComp = iconMap[svc.iconKey] || Megaphone;
           const targetUrl = `${site.basePath}/services/${svc.slug}/`;
           const isEven = idx % 2 === 0;
 

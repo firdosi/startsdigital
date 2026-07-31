@@ -24,7 +24,7 @@ async function ensureServer(port) {
     cwd: path.resolve('.'),
   });
 
-  const url = `http://localhost:${port}/`;
+  const url = `http://localhost:${port}/startsdigital/`;
   const start = Date.now();
   while (Date.now() - start < 15000) {
     try {
@@ -43,7 +43,7 @@ async function runMotionAudit() {
   const server = await ensureServer(port);
 
   const browser = await chromium.launch();
-  const baseUrl = `http://localhost:${port}`;
+  const baseUrl = `http://localhost:${port}/startsdigital`;
   const errors = [];
 
   let noJsVisibilityVerified = false;
@@ -100,7 +100,8 @@ async function runMotionAudit() {
     const pageNav = await contextNav.newPage();
 
     // Direct hash nav
-    await pageNav.goto(`${baseUrl}/contact/#contact-form-section`, { waitUntil: 'networkidle' });
+    await pageNav.goto(`${baseUrl}/contact/#contact-form-section`, { waitUntil: 'domcontentloaded' });
+    await pageNav.waitForSelector('#contact-form-section', { state: 'attached', timeout: 5000 });
     const formSecBox = await pageNav.locator('#contact-form-section').boundingBox();
     if (formSecBox) hashNavVerified = true;
 
