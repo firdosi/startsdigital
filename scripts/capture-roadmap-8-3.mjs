@@ -122,7 +122,7 @@ async function runCapture() {
     // Derive actual bounding rects via DOM evaluation
     const dropdownBoundingAudit = await page3.evaluate(() => {
       const dropdown = document.getElementById('desktop-services-dropdown');
-      const eyebrow = document.querySelector('#services-hero span:has-text("SERVICES"), #services-hero span.font-mono');
+      const eyebrow = Array.from(document.querySelectorAll('#services-hero span')).find(el => el.textContent.includes('SERVICES')) || document.querySelector('#services-hero span.font-mono');
       const h1 = document.querySelector('#services-hero h1');
       const paragraph = document.querySelector('#services-hero p');
 
