@@ -1,4 +1,5 @@
 ---
+import { site } from '../../site.config';
 // Layered Editorial Work Showcase Canvas for Work Hero
 ---
 
@@ -22,7 +23,7 @@
         </div>
         <div class="relative aspect-video rounded-lg overflow-hidden bg-[#061d33] border border-white/10">
           <img 
-            src="/photography/web-designer-responsive.webp" 
+            src={`${site.basePath}/photography/web-designer-responsive.webp`} 
             alt="Real responsive website design project example" 
             class="w-full h-full object-cover"
             loading="eager"
@@ -64,7 +65,7 @@
         </div>
         <div class="relative aspect-[16/10] rounded-xl overflow-hidden bg-[#061d33] border border-white/15">
           <img 
-            src="/photography/video-editing-workstation.webp" 
+            src={`${site.basePath}/photography/video-editing-workstation.webp`} 
             alt="Hands editing video timeline on a professional workstation" 
             class="w-full h-full object-cover"
             loading="eager"
@@ -109,8 +110,8 @@
         </div>
         <div class="relative aspect-video rounded-lg overflow-hidden bg-[#061d33] border border-white/10">
           <img 
-            src="/photography/advertising-creative-production.webp" 
-            alt="Advertising creative production and multi-channel campaign asset" 
+            src={`${site.basePath}/photography/advertising-creative-production.webp`} 
+            alt="Advertising creative production and campaign asset" 
             class="w-full h-full object-cover"
             loading="eager"
             decoding="async"

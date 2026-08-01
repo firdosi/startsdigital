@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/ui/Container.astro';
 import Contact3DVisual from '../components/contact/Contact3DVisual.astro';
-import Faq from '../components/landing/Faq.astro';
 import MotionController from '../components/common/MotionController.astro';
 import { site } from '../site.config';
 import { getContactAllowlistMap } from '../data/services';
@@ -39,6 +38,11 @@ const preselectedService = (initialService && SERVICE_ALLOWLIST[initialService])
       <p class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[700px] mx-auto leading-[1.65] font-normal">
         Share your business goals, current challenges and the support you need. Your project brief can be opened directly in WhatsApp or email.
       </p>
+
+      <!-- 3D Contact Communication Visual Scene -->
+      <div class="pt-4 max-w-md mx-auto">
+        <Contact3DVisual />
+      </div>
     </Container>
   </section>
 

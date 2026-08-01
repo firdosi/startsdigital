@@ -61,21 +61,24 @@ import { Sparkles, MapPin, Calendar, Globe, ArrowRight } from '@lucide/astro';
           </div>
         </div>
 
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-5 space-y-2">
           <div class="rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-white/5 p-2 backdrop-blur-md">
             <picture>
-              <source srcset={`${site.basePath}/visuals/about-collaboration-composition.avif`} type="image/avif" />
+              <source srcset={`${site.basePath}/photography/team-collaboration-workspace.avif`} type="image/avif" />
               <img
-                src={`${site.basePath}/visuals/about-collaboration-composition.webp`}
-                alt="Starts Digital Operator-Driven Agency Collaboration Architecture"
+                src={`${site.basePath}/photography/team-collaboration-workspace.webp`}
+                alt="Illustrative team collaboration photography"
                 width="800"
-                height="600"
+                height="533"
                 loading="eager"
                 decoding="async"
-                class="w-full h-auto object-cover rounded-2xl"
+                class="w-full h-auto object-cover rounded-2xl aspect-[4/3]"
               />
             </picture>
           </div>
+          <p class="text-[11px] font-mono text-slate-400 text-center">
+            Illustrative team collaboration photography
+          </p>
         </div>
 
       </div>
