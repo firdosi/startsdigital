@@ -2,8 +2,8 @@
 import { brands } from '../../data/brands';
 import { site } from '../../site.config';
 
-// All 12 active brand logos — shown exactly once, no duplicates
-const activeBrands = brands.filter(b => b.active && b.logo).map(b => ({
+// All approved brand logos — shown exactly once, no duplicates
+const activeBrands = brands.filter(b => b.active && b.logoApproved && b.logo).map(b => ({
   name: b.name,
   logo: b.logo!.startsWith('/') ? `${site.basePath}${b.logo}` : b.logo!,
   darkContainer: !!b.darkLogoContainer

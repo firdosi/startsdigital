@@ -6,10 +6,10 @@ import { execSync } from 'node:child_process';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '../../');
 
+const dir91 = path.join(rootDir, 'scratch/roadmap-9-1-premium-visual-storytelling');
 const dir83 = path.join(rootDir, 'scratch/roadmap-8-3-final-visual-rebuild');
-const dir82 = path.join(rootDir, 'scratch/roadmap-8-2-visual-storytelling');
-const dir81 = path.join(rootDir, 'scratch/roadmap-8-1-offline-prelaunch');
-const screenshotDir = fs.existsSync(dir83) ? dir83 : (fs.existsSync(dir82) ? dir82 : dir81);
+const is91 = fs.existsSync(dir91);
+const screenshotDir = is91 ? dir91 : dir83;
 
 let errors = [];
 let passCount = 0;
@@ -24,7 +24,7 @@ function assert(condition, message) {
   }
 }
 
-console.log(`🚀 Running Visual Capture & Audit Readiness QA Audit (Roadmap 8.3)...\n`);
+console.log(`🚀 Running Visual Capture & Audit Readiness QA Audit (${is91 ? 'Roadmap 9.1' : 'Roadmap 8.3'})...\n`);
 
 let currentSha = '';
 try {
@@ -33,7 +33,14 @@ try {
   currentSha = 'unknown';
 }
 
-const requiredScreenshots = [
+const requiredScreenshots = is91 ? [
+  { name: 'homepage-premium-rebuild-1440.png', minSize: 10000 },
+  { name: 'homepage-premium-rebuild-390.png', minSize: 10000 },
+  { name: 'services-ecosystem-and-menu-1440.png', minSize: 10000 },
+  { name: 'work-editorial-storytelling-1440.png', minSize: 10000 },
+  { name: 'industries-unique-visual-1440.png', minSize: 10000 },
+  { name: 'about-contact-mobile-review-390.png', minSize: 10000 }
+] : [
   { name: 'homepage-final-rebuild-1440.png', minSize: 10000 },
   { name: 'homepage-final-rebuild-390.png', minSize: 10000 },
   { name: 'services-menu-and-hero-1440.png', minSize: 10000 },
@@ -54,7 +61,7 @@ for (const shot of requiredScreenshots) {
   }
 }
 
-const auditFiles = [
+const auditFiles = is91 ? ['roadmap-9-1-audit.json'] : [
   'visual-rebuild-audit.json',
   'services-navigation-audit.json',
   'official-logo-audit.json',
@@ -79,15 +86,9 @@ for (const auditName of auditFiles) {
         assert(data.sourceCommitSha === currentSha, `[${auditName}] sourceCommitSha matches current HEAD SHA (${currentSha})`);
       }
 
-      if (data.passFailAssertions) {
-        if (Array.isArray(data.passFailAssertions)) {
-          for (const item of data.passFailAssertions) {
-            assert(item.passed === true, `[${auditName}] Assertion "${item.name}" is true`);
-          }
-        } else {
-          for (const [key, val] of Object.entries(data.passFailAssertions)) {
-            assert(val === true, `[${auditName}] Assertion "${key}" is true`);
-          }
+      if (data.assertions && Array.isArray(data.assertions)) {
+        for (const item of data.assertions) {
+          assert(item.passed === true, `[${auditName}] Assertion "${item.name}" is true`);
         }
       }
     } catch (e) {

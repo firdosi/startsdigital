@@ -8,7 +8,7 @@ const dir = path.dirname(savePath);
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
 async function ensureServer(port) {
-  const server = spawn('cmd.exe', ['/c', 'npx astro preview --host 0.0.0.0 --port ' + port], {
+  const server = spawn('cmd.exe', ['/c', 'node node_modules/astro/dist/cli/index.js preview --host 0.0.0.0 --port ' + port], {
     cwd: path.resolve('.'),
   });
 

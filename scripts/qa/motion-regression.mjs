@@ -19,7 +19,7 @@ const testRoutes = [
 ];
 
 async function ensureServer(port) {
-  const server = spawn('npx', ['astro', 'preview', '--host', '0.0.0.0', '--port', String(port)], {
+  const server = spawn('node', ['node_modules/astro/dist/cli/index.js', 'preview', '--host', '0.0.0.0', '--port', String(port)], {
     shell: true,
     cwd: path.resolve('.'),
   });

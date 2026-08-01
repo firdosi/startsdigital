@@ -118,11 +118,11 @@ const indexAstroPath = path.join(rootDir, 'src/pages/index.astro');
 const indexAstroContent = fs.readFileSync(indexAstroPath, 'utf-8');
 
 const heroIdx = indexAstroContent.indexOf('<Hero');
-const featuresIdx = indexAstroContent.indexOf('<Features');
+const featuresIdx = indexAstroContent.indexOf('<BusinessOutcomes') !== -1 ? indexAstroContent.indexOf('<BusinessOutcomes') : indexAstroContent.indexOf('<Features');
 const showcaseIdx = indexAstroContent.indexOf('<Showcase');
 
-assert(heroIdx !== -1 && featuresIdx !== -1 && showcaseIdx !== -1, 'Homepage contains Hero, Features and Showcase components');
-assert(featuresIdx < showcaseIdx, 'Homepage service overview (Features) appears before selected work preview (Showcase)');
+assert(heroIdx !== -1 && featuresIdx !== -1 && showcaseIdx !== -1, 'Homepage contains Hero, BusinessOutcomes/Features and Showcase components');
+assert(featuresIdx < showcaseIdx, 'Homepage service outcome overview (BusinessOutcomes) appears before selected work preview (Showcase)');
 
 // 5. Page Grid Checks
 const servicesIndexContent = fs.readFileSync(path.join(rootDir, 'src/pages/services/index.astro'), 'utf-8');
