@@ -465,7 +465,7 @@ function addAssertion(name, result, detail = '') {
     .toBuffer();
 
     const shotAboutPath = join(OUTPUT_DIR, 'about-contact-mobile-review-390.png');
-    fs.writeFileSync(shotAboutPath, combinedBuffer);
+    writeFileSync(shotAboutPath, combinedBuffer);
     log(`Screenshot saved: about-contact-mobile-review-390.png (Tall Combined Mobile Contact Sheet)`);
 
     await ctxMobile.close();
