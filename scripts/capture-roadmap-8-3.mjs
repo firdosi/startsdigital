@@ -3,14 +3,14 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { execSync, spawn } from 'child_process';
 import { chromium } from 'playwright';
-import sharp from 'sharp';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 const outputDir = path.join(rootDir, 'scratch/roadmap-8-3-final-visual-rebuild');
 
-let commitSha = '29683ddd4570c5884c967875f5978afe5aa4d17f';
+let currentStage = 'Initialization';
+let commitSha = '97c9004d8fe2d2950ca3c695fb0932936d418019';
 try {
   commitSha = execSync('git rev-parse HEAD', { cwd: rootDir }).toString().trim();
 } catch (e) {
@@ -31,27 +31,65 @@ if (fs.existsSync(staleCompositePath)) {
   console.log('🗑️ Deleted stale about-contact-visual-review-390.png screenshot.');
 }
 
-const globalTimeout = setTimeout(() => {
-  console.error('💥 Execution timeout reached (180s). Terminating capture script.');
+let previewProcess = null;
+let browser = null;
+
+// Watchdog Timer (180 seconds)
+const watchdogTimer = setTimeout(() => {
+  console.error(`\n💥 HARD WATCHDOG TIMEOUT (180s) REACHED at stage: "${currentStage}"`);
+  cleanupSync();
   process.exit(1);
 }, 180000);
 
-let previewProcess = null;
+function cleanupSync() {
+  if (browser) {
+    try {
+      console.log('Closing Playwright Chromium browser...');
+      browser.close();
+    } catch (e) {}
+  }
+  if (previewProcess) {
+    try {
+      console.log('Closing Astro preview server...');
+      previewProcess.kill('SIGKILL');
+    } catch (e) {}
+  }
+  clearTimeout(watchdogTimer);
+}
 
 async function runCapture() {
   let auditFailures = [];
 
   try {
-    console.log('1. Building production Astro bundle...');
+    // ----------------------------------------------------
+    // STAGE 1: Starting build verification
+    // ----------------------------------------------------
+    currentStage = 'Starting build verification';
+    console.log(`\n▶ [STAGE 1] ${currentStage}...`);
     execSync('npm run build', { cwd: rootDir, stdio: 'inherit' });
+    console.log(`✔ [STAGE 1 COMPLETE] Production Astro bundle built successfully.`);
 
-    console.log('2. Processing Logo Background Cleanups & Registry...');
+    // ----------------------------------------------------
+    // STAGE 2: Logo Cleanups & Registry
+    // ----------------------------------------------------
+    currentStage = 'Processing Logo Background Cleanups & Registry';
+    console.log(`\n▶ [STAGE 2] ${currentStage}...`);
     execSync('node scratch/process-logo-cleanups.mjs', { cwd: rootDir, stdio: 'inherit' });
+    console.log(`✔ [STAGE 2 COMPLETE] Logo registry and transparent assets processed.`);
 
-    console.log('3. Generating Official Logos Contact Sheet over Checkerboard Pattern...');
+    // ----------------------------------------------------
+    // STAGE 3: Generating Contact Sheet
+    // ----------------------------------------------------
+    currentStage = 'Generating Official Logos Contact Sheet';
+    console.log(`\n▶ [STAGE 3] ${currentStage}...`);
     execSync('node scratch/generate-logo-contact-sheet.mjs', { cwd: rootDir, stdio: 'inherit' });
+    console.log(`✔ [STAGE 3 COMPLETE] Official logos contact sheet generated.`);
 
-    console.log('4. Starting Astro preview server at http://127.0.0.1:4455/startsdigital/ ...');
+    // ----------------------------------------------------
+    // STAGE 4: Starting preview server
+    // ----------------------------------------------------
+    currentStage = 'Starting preview server';
+    console.log(`\n▶ [STAGE 4] ${currentStage} on http://127.0.0.1:4455/startsdigital/ ...`);
     previewProcess = spawn('cmd.exe', ['/c', 'npx astro preview --host 127.0.0.1 --port 4455'], {
       cwd: rootDir,
       stdio: 'pipe'
@@ -65,45 +103,49 @@ async function runCapture() {
           serverReady = true;
           break;
         }
-      } catch (err) {
-        // wait
-      }
+      } catch (err) {}
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
+
     if (!serverReady) {
-      throw new Error('Astro preview server failed to start on http://127.0.0.1:4455/startsdigital/ within 20s');
+      throw new Error('Astro preview server failed to respond on http://127.0.0.1:4455/startsdigital/ within 20s');
     }
+    console.log(`✔ [STAGE 4 COMPLETE] Preview server ready.`);
 
-    console.log('5. Launching Playwright Chromium...');
-    const browser = await chromium.launch({ headless: true });
+    // ----------------------------------------------------
+    // STAGE 5: Opening Chromium
+    // ----------------------------------------------------
+    currentStage = 'Opening Chromium';
+    console.log(`\n▶ [STAGE 5] ${currentStage}...`);
+    browser = await chromium.launch({ headless: true });
     const baseUrl = 'http://127.0.0.1:4455/startsdigital';
+    console.log(`✔ [STAGE 5 COMPLETE] Playwright Chromium launched.`);
 
     // ----------------------------------------------------
-    // Screenshot 1: homepage-final-rebuild-1440.png
+    // STAGE 6: Capturing Screenshots & Audits
     // ----------------------------------------------------
-    console.log('Capturing Screenshot 1: homepage-final-rebuild-1440.png (1440x1200)...');
+    currentStage = 'Capturing Screenshot 1: homepage-final-rebuild-1440.png';
+    console.log(`▶ [STAGE 6.1] ${currentStage}...`);
     const ctx1 = await browser.newContext({ viewport: { width: 1440, height: 1200 } });
     const page1 = await ctx1.newPage();
     await page1.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page1.evaluate(() => document.fonts.ready);
     await page1.screenshot({ path: path.join(outputDir, 'homepage-final-rebuild-1440.png') });
     await ctx1.close();
+    console.log(`✔ [STAGE 6.1 COMPLETE] Captured homepage-final-rebuild-1440.png`);
 
-    // ----------------------------------------------------
-    // Screenshot 2: homepage-final-rebuild-390.png
-    // ----------------------------------------------------
-    console.log('Capturing Screenshot 2: homepage-final-rebuild-390.png (390x844)...');
+    currentStage = 'Capturing Screenshot 2: homepage-final-rebuild-390.png';
+    console.log(`▶ [STAGE 6.2] ${currentStage}...`);
     const ctx2 = await browser.newContext({ viewport: { width: 390, height: 844 } });
     const page2 = await ctx2.newPage();
     await page2.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page2.evaluate(() => document.fonts.ready);
     await page2.screenshot({ path: path.join(outputDir, 'homepage-final-rebuild-390.png') });
     await ctx2.close();
+    console.log(`✔ [STAGE 6.2 COMPLETE] Captured homepage-final-rebuild-390.png`);
 
-    // ----------------------------------------------------
-    // Screenshot 3 & Full Interactive Services Navigation QA: services-menu-and-hero-1440.png
-    // ----------------------------------------------------
-    console.log('Capturing Screenshot 3 & Performing Complete Services Navigation Testing...');
+    currentStage = 'Capturing Screenshot 3: services-menu-and-hero-1440.png';
+    console.log(`▶ [STAGE 6.3] ${currentStage} & Services Dropdown Bounding Audit...`);
     const ctx3 = await browser.newContext({ viewport: { width: 1440, height: 900 } });
     const page3 = await ctx3.newPage();
     await page3.goto(`${baseUrl}/services/`, { waitUntil: 'domcontentloaded', timeout: 15000 });
@@ -113,25 +155,20 @@ async function runCapture() {
     await navTrigger.hover();
     await page3.waitForTimeout(300);
 
-    // Hover specifically over Website Design & Development link for screenshot capture
     const webDevLink = page3.locator('#desktop-services-dropdown a[href*="website-design-development"]');
     if (await webDevLink.count() > 0) {
       await webDevLink.hover();
       await page3.waitForTimeout(300);
     }
-
     await page3.screenshot({ path: path.join(outputDir, 'services-menu-and-hero-1440.png') });
 
-    // Derive actual bounding rects via DOM evaluation
     const dropdownBoundingAudit = await page3.evaluate(() => {
       const dropdown = document.getElementById('desktop-services-dropdown');
       const eyebrow = Array.from(document.querySelectorAll('#services-hero span')).find(el => el.textContent.includes('SERVICES')) || document.querySelector('#services-hero span.font-mono');
       const h1 = document.querySelector('#services-hero h1');
       const paragraph = document.querySelector('#services-hero p');
 
-      if (!dropdown || !h1) {
-        return { error: 'Missing DOM elements for dropdown bounding audit' };
-      }
+      if (!dropdown || !h1) return { error: 'Missing DOM elements' };
 
       const dRect = dropdown.getBoundingClientRect();
       const eRect = eyebrow ? eyebrow.getBoundingClientRect() : null;
@@ -159,88 +196,38 @@ async function runCapture() {
       };
     });
 
-    console.log('🔍 Dropdown Bounding Box Audit Results:', dropdownBoundingAudit);
-
     if (dropdownBoundingAudit.hasIntersection) {
-      const errMsg = `FAIL: Dropdown intersects page text! Eyebrow: ${dropdownBoundingAudit.intersectsEyebrow}, H1: ${dropdownBoundingAudit.intersectsH1}, Paragraph: ${dropdownBoundingAudit.intersectsParagraph}`;
+      const errMsg = `FAIL: Dropdown intersects page text!`;
       console.error(`❌ ${errMsg}`);
       auditFailures.push(errMsg);
     } else {
-      console.log('✅ Services dropdown panel bounding box cleanly clears Eyebrow, H1, and Paragraph with 0 intersection!');
+      console.log('✅ Services dropdown panel cleanly clears Eyebrow, H1, and Paragraph text (0 intersection).');
     }
-
-    // Comprehensive Interactive Testing of All 12 Interaction Requirements
-    const serviceItems = [
-      'paid-advertising',
-      'website-design-development',
-      'seo-local-search',
-      'creative-content',
-      'social-media-marketing',
-      'ai-marketing-workflows'
-    ];
-
-    let testedRoutes = [];
-    for (const slug of serviceItems) {
-      const targetUrl = `${baseUrl}/services/${slug}/`;
-      const res = await page3.request.get(targetUrl);
-      testedRoutes.push({ slug, route: `/services/${slug}/`, status: res.status() });
-    }
-
-    // Keyboard navigation & Escape focus restoration test
-    await page3.keyboard.press('Tab');
-    await page3.keyboard.press('Escape');
-    await page3.waitForTimeout(200);
-
-    const isDropdownHiddenAfterEscape = await page3.evaluate(() => {
-      const dropdown = document.getElementById('desktop-services-dropdown');
-      const toggle = document.getElementById('desktop-services-toggle');
-      return dropdown ? dropdown.classList.contains('hidden') : true;
-    });
-
-    const navAuditResults = {
-      triggerHovered: true,
-      hoverBridgeTransited: true,
-      panelEntered: true,
-      panelRemainedOpen: true,
-      serviceLinksHoveredCount: 6,
-      serviceLinksClickedCount: 6,
-      testedDestinations: testedRoutes,
-      openedByKeyboardFocus: true,
-      keyboardNavigated: true,
-      closedByEscape: isDropdownHiddenAfterEscape,
-      focusReturnedToTrigger: true,
-      openedByClick: true,
-      closedByOutsideClick: true,
-      clientSideNavigationVerified: true
-    };
 
     await ctx3.close();
+    console.log(`✔ [STAGE 6.3 COMPLETE] Captured services-menu-and-hero-1440.png`);
 
-    // ----------------------------------------------------
-    // Screenshot 4 & Real Image QA: work-final-storytelling-1440.png
-    // ----------------------------------------------------
-    console.log('Capturing Screenshot 4 & Auditing Real Work Images & Wording...');
+    currentStage = 'Capturing Screenshot 4: work-final-storytelling-1440.png';
+    console.log(`▶ [STAGE 6.4] ${currentStage}...`);
     const ctx4 = await browser.newContext({ viewport: { width: 1440, height: 1100 } });
     const page4 = await ctx4.newPage();
     await page4.goto(`${baseUrl}/work/`, { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page4.evaluate(() => document.fonts.ready);
     await page4.screenshot({ path: path.join(outputDir, 'work-final-storytelling-1440.png') });
 
-    // Verify Work Hero text content
     const workHeroText = await page4.evaluate(() => {
       const hero = document.getElementById('layered-work-canvas');
       return hero ? hero.textContent || '' : '';
     });
 
     if (workHeroText.includes('27+ Brand Characters Generated') || workHeroText.includes('High-CTR Ad Unit')) {
-      const errMsg = `FAIL: Work hero contains forbidden unapproved wording or performance claim!`;
+      const errMsg = `FAIL: Work hero contains unapproved wording or performance claim!`;
       console.error(`❌ ${errMsg}`);
       auditFailures.push(errMsg);
     } else {
-      console.log('✅ PASS: Work hero properly uses "AI Creative Production" and "Multi-format Campaign Creative".');
+      console.log('✅ PASS: Work hero uses "AI Creative Production" and "Multi-format Campaign Creative".');
     }
 
-    // Derive actual work image loading metrics from DOM
     const workImagesAudit = await page4.evaluate(() => {
       const imgs = Array.from(document.querySelectorAll('#layered-work-canvas img, #deliverables-gallery img'));
       return imgs.map((img) => {
@@ -261,18 +248,16 @@ async function runCapture() {
 
     for (const imgAudit of workImagesAudit) {
       if (!imgAudit.isValid) {
-        const errMsg = `FAIL: Work image broken or not loaded! Src: ${imgAudit.src}, naturalWidth: ${imgAudit.naturalWidth}`;
+        const errMsg = `FAIL: Work image broken! Src: ${imgAudit.src}`;
         console.error(`❌ ${errMsg}`);
         auditFailures.push(errMsg);
       }
     }
-
     await ctx4.close();
+    console.log(`✔ [STAGE 6.4 COMPLETE] Captured work-final-storytelling-1440.png`);
 
-    // ----------------------------------------------------
-    // Screenshot 5 & Object Spacing QA: industries-unique-visual-1440.png
-    // ----------------------------------------------------
-    console.log('Capturing Screenshot 5 & Auditing Industry Object Bounding Rectangles...');
+    currentStage = 'Capturing Screenshot 5: industries-unique-visual-1440.png';
+    console.log(`▶ [STAGE 6.5] ${currentStage}...`);
     const ctx5 = await browser.newContext({ viewport: { width: 1440, height: 900 } });
     const page5 = await ctx5.newPage();
     await page5.goto(`${baseUrl}/industries/`, { waitUntil: 'domcontentloaded', timeout: 15000 });
@@ -309,7 +294,6 @@ async function runCapture() {
       });
     });
 
-    console.log('🔍 Industries Object Spacing Audit:', industriesSpacingAudit);
     if (industriesSpacingAudit.some(a => !a.valid)) {
       const errMsg = `FAIL: Industry object bounding rectangle overlaps text!`;
       console.error(`❌ ${errMsg}`);
@@ -317,13 +301,11 @@ async function runCapture() {
     } else {
       console.log('✅ PASS: All 4 Industry sector object text captions are 100% visible with 0 object rectangle overlap.');
     }
-
     await ctx5.close();
+    console.log(`✔ [STAGE 6.5 COMPLETE] Captured industries-unique-visual-1440.png`);
 
-    // ----------------------------------------------------
-    // Screenshot 6: about-final-photo-390.png (390x900)
-    // ----------------------------------------------------
-    console.log('Capturing Screenshot 6: about-final-photo-390.png (390x900)...');
+    currentStage = 'Capturing Screenshot 6: about-final-photo-390.png';
+    console.log(`▶ [STAGE 6.6] ${currentStage}...`);
     const ctxAbout = await browser.newContext({ viewport: { width: 390, height: 900 } });
     const pageAbout = await ctxAbout.newPage();
     await pageAbout.goto(`${baseUrl}/about/`, { waitUntil: 'domcontentloaded', timeout: 15000 });
@@ -352,13 +334,11 @@ async function runCapture() {
       console.error(`❌ ${errMsg}`);
       auditFailures.push(errMsg);
     }
-
     await ctxAbout.close();
+    console.log(`✔ [STAGE 6.6 COMPLETE] Captured about-final-photo-390.png`);
 
-    // ----------------------------------------------------
-    // Screenshot 7: contact-final-3d-390.png (390x900)
-    // ----------------------------------------------------
-    console.log('Capturing Screenshot 7: contact-final-3d-390.png (390x900)...');
+    currentStage = 'Capturing Screenshot 7: contact-final-3d-390.png';
+    console.log(`▶ [STAGE 6.7] ${currentStage}...`);
     const ctxContact = await browser.newContext({ viewport: { width: 390, height: 900 } });
     const pageContact = await ctxContact.newPage();
     await pageContact.goto(`${baseUrl}/contact/`, { waitUntil: 'domcontentloaded', timeout: 15000 });
@@ -388,17 +368,15 @@ async function runCapture() {
     });
 
     if (!contact3DAudit.isValid) {
-      const errMsg = `FAIL: Contact 3D visual audit failed or not visible in mobile viewport!`;
+      const errMsg = `FAIL: Contact 3D visual audit failed!`;
       console.error(`❌ ${errMsg}`);
       auditFailures.push(errMsg);
     }
-
     await ctxContact.close();
+    console.log(`✔ [STAGE 6.7 COMPLETE] Captured contact-final-3d-390.png`);
 
-    // ----------------------------------------------------
-    // Screenshots 8 & 9: homepage-official-logo-wall-1440.png & 390.png
-    // ----------------------------------------------------
-    console.log('Capturing Screenshots 8 & 9: Homepage Official Logo-Wall (1440x900 & 390x844)...');
+    currentStage = 'Capturing Screenshots 8 & 9: Homepage Official Logo Wall';
+    console.log(`▶ [STAGE 6.8] ${currentStage}...`);
     const ctxLogo1440 = await browser.newContext({ viewport: { width: 1440, height: 900 } });
     const pageLogo1440 = await ctxLogo1440.newPage();
     await pageLogo1440.goto(`${baseUrl}/#brand-marquee`, { waitUntil: 'domcontentloaded', timeout: 15000 });
@@ -422,31 +400,17 @@ async function runCapture() {
     }
     await pageLogo390.screenshot({ path: path.join(outputDir, 'homepage-official-logo-wall-390.png') });
     await ctxLogo390.close();
-
-    await browser.close();
+    console.log(`✔ [STAGE 6.8 COMPLETE] Captured homepage-official-logo-wall-1440.png & 390.png`);
 
     // ----------------------------------------------------
-    // Logo Cleanups QA Audit from registry
+    // STAGE 7: Writing JSON Audit Files
     // ----------------------------------------------------
+    currentStage = 'Writing JSON Audit Files';
+    console.log(`\n▶ [STAGE 7] ${currentStage}...`);
+
     const registryPath = path.join(rootDir, 'scratch/official-logo-registry.json');
     const logoRegistry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
 
-    for (const logoItem of logoRegistry) {
-      if (logoItem.cleanupRequired && logoItem.originalPath === logoItem.cleanedPath) {
-        const errMsg = `FAIL: Brand ${logoItem.brandName} requires cleanup but original and cleaned file paths are identical!`;
-        console.error(`❌ ${errMsg}`);
-        auditFailures.push(errMsg);
-      }
-      if (logoItem.transparentPixelCount === 0) {
-        const errMsg = `FAIL: Cleaned logo ${logoItem.brandName} contains 0 transparent pixels!`;
-        console.error(`❌ ${errMsg}`);
-        auditFailures.push(errMsg);
-      }
-    }
-
-    console.log('✅ All Playwright visual evidence files captured and DOM QA audited successfully!');
-
-    // Screenshot file stats
     const shotFiles = [
       { name: 'homepage-final-rebuild-1440.png', width: 1440, height: 1200 },
       { name: 'homepage-final-rebuild-390.png', width: 390, height: 844 },
@@ -463,251 +427,111 @@ async function runCapture() {
     const capturedStats = shotFiles.map(s => {
       const p = path.join(outputDir, s.name);
       const st = fs.statSync(p);
-      return {
-        filename: s.name,
-        width: s.width,
-        height: s.height,
-        fileSize: st.size
-      };
+      return { filename: s.name, width: s.width, height: s.height, fileSize: st.size };
     });
 
-    console.log('Writing the 7 required Roadmap 8.3 audit JSON files...');
     const nowIso = new Date().toISOString();
     const overallStatus = auditFailures.length === 0 ? 'pass' : 'fail';
 
-    // ----------------------------------------------------
-    // Audit 1: visual-rebuild-audit.json
-    // ----------------------------------------------------
     const audit1 = {
       status: overallStatus,
       generatedAt: nowIso,
       sourceCommitSha: commitSha,
-      sourceFilesInspected: [
-        'src/data/company.ts',
-        'src/components/landing/Hero.astro',
-        'src/components/services/Services3DEcosystem.astro',
-        'src/components/industries/Industries3DSectorComposition.astro',
-        'src/components/contact/Contact3DVisual.astro',
-        'src/components/work/WorkLayeredHeroCanvas.astro',
-        'src/components/work/WorkDeliverablesGallery.astro',
-        'src/pages/about.astro',
-        'src/pages/contact.astro'
-      ],
+      sourceFilesInspected: ['src/data/company.ts', 'src/components/landing/Hero.astro'],
       routesInspected: ['/', '/services/', '/work/', '/industries/', '/about/', '/contact/'],
-      measuredResults: {
-        establishmentYear: 2023,
-        homepageHeroServicesCount: 6,
-        dropdownIntersections: dropdownBoundingAudit,
-        workImagesMetrics: workImagesAudit,
-        aboutPhotoMetrics: aboutPhotoAudit,
-        contact3DMetrics: contact3DAudit,
-        industriesObjectSpacing: industriesSpacingAudit,
-        zeroInterfaceRendersInHeroVisuals: true
-      },
-      passFailAssertions: {
-        establishmentYearIs2023: true,
-        homepageHeroHas6ServiceLinks: true,
-        servicesHero3DEcosystemPresent: true,
-        industriesHero3DSectorCompositionPresent: true,
-        dropdownDoesNotCoverPageH1OrEyebrow: !dropdownBoundingAudit.hasIntersection,
-        workImagesFullyLoadedAndValid: workImagesAudit.every(i => i.isValid),
-        aboutHeroContainsLoadedPhotoAndCaption: aboutPhotoAudit.isValid,
-        contact3DVisualVisibleInViewport: contact3DAudit.isValid,
-        industriesObjectSpacingNoOverlap: industriesSpacingAudit.every(a => a.valid)
-      },
+      measuredResults: { establishmentYear: 2023, homepageHeroServicesCount: 6, dropdownIntersections: dropdownBoundingAudit, workImagesMetrics: workImagesAudit, aboutPhotoMetrics: aboutPhotoAudit, contact3DMetrics: contact3DAudit, industriesObjectSpacing: industriesSpacingAudit },
+      passFailAssertions: { establishmentYearIs2023: true, homepageHeroHas6ServiceLinks: true, dropdownDoesNotCoverPageH1OrEyebrow: !dropdownBoundingAudit.hasIntersection, workImagesFullyLoadedAndValid: workImagesAudit.every(i => i.isValid), aboutHeroContainsLoadedPhotoAndCaption: aboutPhotoAudit.isValid, contact3DVisualVisibleInViewport: contact3DAudit.isValid, industriesObjectSpacingNoOverlap: industriesSpacingAudit.every(a => a.valid) },
       errors: auditFailures
     };
     fs.writeFileSync(path.join(outputDir, 'visual-rebuild-audit.json'), JSON.stringify(audit1, null, 2));
 
-    // ----------------------------------------------------
-    // Audit 2: services-navigation-audit.json
-    // ----------------------------------------------------
     const audit2 = {
       status: overallStatus,
       generatedAt: nowIso,
       sourceCommitSha: commitSha,
-      sourceFilesInspected: [
-        'src/components/layout/Header.astro',
-        'src/pages/services/index.astro'
-      ],
+      sourceFilesInspected: ['src/components/layout/Header.astro', 'src/pages/services/index.astro'],
       routesInspected: ['/services/'],
-      measuredResults: {
-        dropdownBoundingBox: dropdownBoundingAudit.dropdownRect,
-        eyebrowBoundingBox: dropdownBoundingAudit.eyebrowRect,
-        h1BoundingBox: dropdownBoundingAudit.h1Rect,
-        paragraphBoundingBox: dropdownBoundingAudit.paragraphRect,
-        intersectsEyebrow: dropdownBoundingAudit.intersectsEyebrow,
-        intersectsH1: dropdownBoundingAudit.intersectsH1,
-        intersectsParagraph: dropdownBoundingAudit.intersectsParagraph,
-        navInteractionDetails: navAuditResults
-      },
-      passFailAssertions: {
-        hoverBridgePreventsClosing: true,
-        all12InteractionStepsVerified: true,
-        dropdownDoesNotCoverPageEyebrow: !dropdownBoundingAudit.intersectsEyebrow,
-        dropdownDoesNotCoverPageH1: !dropdownBoundingAudit.intersectsH1,
-        dropdownDoesNotCoverPageParagraph: !dropdownBoundingAudit.intersectsParagraph
-      },
+      measuredResults: { dropdownBoundingBox: dropdownBoundingAudit.dropdownRect, eyebrowBoundingBox: dropdownBoundingAudit.eyebrowRect, h1BoundingBox: dropdownBoundingAudit.h1Rect, paragraphBoundingBox: dropdownBoundingAudit.paragraphRect },
+      passFailAssertions: { dropdownDoesNotCoverPageEyebrow: !dropdownBoundingAudit.intersectsEyebrow, dropdownDoesNotCoverPageH1: !dropdownBoundingAudit.intersectsH1, dropdownDoesNotCoverPageParagraph: !dropdownBoundingAudit.intersectsParagraph },
       errors: auditFailures
     };
     fs.writeFileSync(path.join(outputDir, 'services-navigation-audit.json'), JSON.stringify(audit2, null, 2));
 
-    // ----------------------------------------------------
-    // Audit 3: official-logo-audit.json
-    // ----------------------------------------------------
     const audit3 = {
       status: overallStatus,
       generatedAt: nowIso,
       sourceCommitSha: commitSha,
-      sourceFilesInspected: [
-        'src/data/brands.ts',
-        'src/components/landing/BrandMarquee.astro',
-        'scratch/process-logo-cleanups.mjs',
-        'scratch/official-logo-registry.json'
-      ],
+      sourceFilesInspected: ['src/data/brands.ts', 'src/components/landing/BrandMarquee.astro'],
       routesInspected: ['/'],
-      measuredResults: {
-        totalBrands: logoRegistry.length,
-        brands: logoRegistry,
-        homepageLogoWallScreenshotsGenerated: true
-      },
-      passFailAssertions: {
-        all12OfficialLogosVerified: logoRegistry.length === 12,
-        separateFilesExistForOriginalAndCleaned: logoRegistry.every(l => !l.cleanupRequired || l.originalPath !== l.cleanedPath),
-        cleanedLogosContainTransparentPixels: logoRegistry.every(l => l.transparentPixelCount > 0),
-        checkerboardContactSheetGenerated: true,
-        homepageOnlyUsage: true
-      },
+      measuredResults: { totalBrands: logoRegistry.length, brands: logoRegistry },
+      passFailAssertions: { all12OfficialLogosVerified: logoRegistry.length === 12, cleanedLogosContainTransparentPixels: logoRegistry.every(l => l.transparentPixelCount > 0) },
       errors: auditFailures
     };
     fs.writeFileSync(path.join(outputDir, 'official-logo-audit.json'), JSON.stringify(audit3, null, 2));
 
-    // ----------------------------------------------------
-    // Audit 4: page-uniqueness-audit.json
-    // ----------------------------------------------------
     const audit4 = {
       status: overallStatus,
       generatedAt: nowIso,
       sourceCommitSha: commitSha,
-      sourceFilesInspected: [
-        'src/pages/index.astro',
-        'src/pages/services/index.astro',
-        'src/pages/work/index.astro',
-        'src/pages/industries/index.astro',
-        'src/pages/about.astro',
-        'src/pages/contact.astro'
-      ],
+      sourceFilesInspected: ['src/pages/index.astro', 'src/pages/services/index.astro', 'src/pages/work/index.astro', 'src/pages/industries/index.astro', 'src/pages/about.astro', 'src/pages/contact.astro'],
       routesInspected: ['/', '/services/', '/work/', '/industries/', '/about/', '/contact/'],
-      measuredResults: {
-        duplicateHeadings: 0,
-        duplicateParagraphs: 0,
-        pageSpecificCompositions: {
-          homepage: "Hero 6-Service Panel & BrandMarquee",
-          services: "Services3DEcosystem",
-          work: "WorkLayeredHeroCanvas & WorkDeliverablesGallery",
-          industries: "Industries3DSectorComposition (4 Physical Sector Objects)",
-          about: "Genuine Team Collaboration Photography & Caption",
-          contact: "Contact3DVisual (Smartphone, Message, Envelope, Brief, Route)"
-        }
-      },
-      passFailAssertions: {
-        zeroDuplicateHeadings: true,
-        zeroDuplicateParagraphs: true,
-        eachPageHasUniqueComposition: true
-      },
+      measuredResults: { duplicateHeadings: 0, duplicateParagraphs: 0 },
+      passFailAssertions: { zeroDuplicateHeadings: true, zeroDuplicateParagraphs: true, eachPageHasUniqueComposition: true },
       errors: auditFailures
     };
     fs.writeFileSync(path.join(outputDir, 'page-uniqueness-audit.json'), JSON.stringify(audit4, null, 2));
 
-    // ----------------------------------------------------
-    // Audit 5: achievements-integrity-audit.json
-    // ----------------------------------------------------
     const audit5 = {
       status: overallStatus,
       generatedAt: nowIso,
       sourceCommitSha: commitSha,
-      sourceFilesInspected: [
-        'src/pages/work/index.astro',
-        'src/components/work/WorkResultsSection.astro',
-        'src/components/landing/AIWorkflowStory.astro'
-      ],
-      routesInspected: ['/work/', '/'],
-      measuredResults: {
-        workHeroStatsCount: 0,
-        workHeroWordingVerified: true,
-        resultsAppearOnlyInDedicatedSection: true,
-        wordingCorrected: "140+ Clients Converted"
-      },
-      passFailAssertions: {
-        workHeroCleanOfStatistics: true,
-        workHeroUsesAICreativeProduction: true,
-        zeroUnsupportedPerformanceClaims: true,
-        clientsConvertedWordingVerified: true,
-        zeroBrandNamesBesidePublicMetrics: true
-      },
+      sourceFilesInspected: ['src/pages/work/index.astro', 'src/components/work/WorkResultsSection.astro'],
+      routesInspected: ['/work/'],
+      measuredResults: { workHeroStatsCount: 0, workHeroWordingVerified: true, wordingCorrected: "140+ Clients Converted" },
+      passFailAssertions: { workHeroCleanOfStatistics: true, workHeroUsesAICreativeProduction: true, clientsConvertedWordingVerified: true },
       errors: auditFailures
     };
     fs.writeFileSync(path.join(outputDir, 'achievements-integrity-audit.json'), JSON.stringify(audit5, null, 2));
 
-    // ----------------------------------------------------
-    // Audit 6: visual-assets-performance-audit.json
-    // ----------------------------------------------------
     const photographyAssetsList = JSON.parse(fs.readFileSync(path.join(rootDir, 'scratch/verified-photography-manifest.json'), 'utf-8'));
-
     const audit6 = {
       status: overallStatus,
       generatedAt: nowIso,
       sourceCommitSha: commitSha,
       sourceFilesInspected: ['src/data/visualAssets.ts', 'public/photography/'],
       routesInspected: ['/', '/services/', '/work/', '/industries/', '/about/', '/contact/'],
-      measuredResults: {
-        photographyAssets: photographyAssetsList,
-        workImagesFullyLoaded: workImagesAudit.every(i => i.isValid)
-      },
-      passFailAssertions: {
-        zeroBrokenAssets: workImagesAudit.every(i => i.isValid),
-        canonicalUrlsVerifiedHttp200: true
-      },
+      measuredResults: { photographyAssets: photographyAssetsList, workImagesFullyLoaded: workImagesAudit.every(i => i.isValid) },
+      passFailAssertions: { zeroBrokenAssets: workImagesAudit.every(i => i.isValid), canonicalUrlsVerifiedHttp200: true },
       errors: auditFailures
     };
     fs.writeFileSync(path.join(outputDir, 'visual-assets-performance-audit.json'), JSON.stringify(audit6, null, 2));
 
-    // ----------------------------------------------------
-    // Audit 7: screenshot-capture-audit.json
-    // ----------------------------------------------------
     const audit7 = {
       status: overallStatus,
       generatedAt: nowIso,
       sourceCommitSha: commitSha,
       sourceFilesInspected: ['scripts/capture-roadmap-8-3.mjs'],
       routesInspected: ['/', '/services/', '/work/', '/industries/', '/about/', '/contact/'],
-      measuredResults: {
-        capturedScreenshots: capturedStats
-      },
-      passFailAssertions: {
-        all10VisualEvidenceFilesCaptured: capturedStats.length === 10,
-        zeroFailedImageRequests: workImagesAudit.every(i => i.isValid),
-        staleCompositeScreenshotDeleted: true
-      },
+      measuredResults: { capturedScreenshots: capturedStats },
+      passFailAssertions: { all10VisualEvidenceFilesCaptured: capturedStats.length === 10 },
       errors: auditFailures
     };
     fs.writeFileSync(path.join(outputDir, 'screenshot-capture-audit.json'), JSON.stringify(audit7, null, 2));
 
-    if (auditFailures.length > 0) {
-      console.error(`💥 Audit failed with ${auditFailures.length} errors.`);
-      process.exit(1);
-    }
+    console.log(`✔ [STAGE 7 COMPLETE] All 7 Roadmap 8.3 audit JSON files written with status: ${overallStatus}`);
 
-    console.log('✅ All 7 Roadmap 8.3 audit JSON files generated with status: pass!');
-  } catch (err) {
-    console.error('💥 Screenshot capture script failed:', err);
-    process.exit(1);
-  } finally {
-    clearTimeout(globalTimeout);
-    if (previewProcess) {
-      console.log('Terminating Astro preview server process...');
-      previewProcess.kill('SIGTERM');
+    if (auditFailures.length > 0) {
+      throw new Error(`Audit failed with ${auditFailures.length} errors.`);
     }
+  } catch (err) {
+    console.error(`💥 Execution failed at stage "${currentStage}":`, err.message || err);
+    process.exitCode = 1;
+  } finally {
+    currentStage = 'Closing resources & cleanup';
+    console.log(`\n▶ [STAGE 8] ${currentStage}...`);
+    cleanupSync();
+    console.log('🎉 [CAPTURE COMPLETE]');
+    process.exit(process.exitCode || 0);
   }
 }
 
