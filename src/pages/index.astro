@@ -1,24 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/landing/Hero.astro';
-import Features from '../components/landing/Features.astro';
+import BusinessOutcomes from '../components/landing/BusinessOutcomes.astro';
 import EngagementPath from '../components/landing/EngagementPath.astro';
 import Process from '../components/landing/Process.astro';
 import PlatformGrid from '../components/landing/PlatformGrid.astro';
-import BrandMarquee from '../components/landing/BrandMarquee.astro';
+import BrandLogoGrid from '../components/landing/BrandLogoGrid.astro';
 import Showcase from '../components/landing/Showcase.astro';
 import TeamPreview from '../components/landing/TeamPreview.astro';
 import Faq from '../components/landing/Faq.astro';
 import FinalCta from '../components/landing/FinalCta.astro';
 import MotionController from '../components/common/MotionController.astro';
+import { site } from '../site.config';
+import { ArrowRight, Bot } from '@lucide/astro';
 ---
 
 <BaseLayout>
-  {/* 1. Hero (Service-First Positioning & Core Capabilities) */}
+  {/* 1. Hero (Service-First Positioning – six clickable service rows) */}
   <Hero />
 
-  {/* 2. Six Core Services (Capabilities Overview) */}
-  <Features />
+  {/* 2. What We Help Businesses Achieve (4 outcome blocks – NOT a repeat of hero services) */}
+  <BusinessOutcomes />
 
   {/* 3. Business Problems We Help Solve */}
   <EngagementPath />
@@ -29,19 +31,46 @@ import MotionController from '../components/common/MotionController.astro';
   {/* 5. Platforms & Tools We Work With */}
   <PlatformGrid />
 
-  {/* 6. Brands We Have Worked With (13 Approved Client Brands) */}
-  <BrandMarquee />
+  {/* 6. Brands We Have Worked With – all 12 logos, shown once, no infinite loop */}
+  <BrandLogoGrid />
 
-  {/* 7. Compact Selected Work Preview (4 Compact Project Cards) */}
+  {/* 7. Compact Selected Work Preview */}
   <Showcase />
 
-  {/* 8. Team Preview (Ahad, Meesam and Zaid) */}
+  {/* 8. AI Creative Production Teaser – full story on Work page */}
+  <section id="ai-teaser" class="py-16 sm:py-20 bg-[#061d33] text-white border-t border-white/10">
+    <div class="max-w-[1280px] mx-auto px-6 sm:px-8">
+      <div class="rounded-3xl border border-white/15 bg-white/5 p-8 sm:p-10 backdrop-blur-xl max-w-4xl mx-auto text-center space-y-6">
+        <div class="size-16 rounded-3xl bg-[#ddff35]/15 border border-[#ddff35]/30 flex items-center justify-center mx-auto">
+          <Bot class="size-8 text-[#ddff35]" />
+        </div>
+        <div class="space-y-3">
+          <span class="inline-block font-mono text-xs uppercase tracking-widest text-[#ddff35]">AI Creative Innovation</span>
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl text-white leading-snug">
+            We built a private character-generation pipeline before commercial tools could do it reliably.
+          </h2>
+          <p class="font-body text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Starting with 27+ consistent character identities, the workflow scaled to produce thousands of campaign assets contributing to 140+ client conversions and AED 1.4M+ in campaign revenue.
+          </p>
+        </div>
+        <a
+          href={`${site.basePath}/work/#ai-story`}
+          class="inline-flex items-center gap-2 rounded-full border border-[#ddff35]/40 bg-[#ddff35]/10 px-6 py-3 font-body font-semibold text-sm text-[#ddff35] hover:bg-[#ddff35]/20 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ddff35] min-h-[44px]"
+        >
+          <span>Read the Full AI Story</span>
+          <ArrowRight class="size-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* 9. Team Preview */}
   <TeamPreview />
 
-  {/* 9. Frequently Asked Questions */}
+  {/* 10. Frequently Asked Questions */}
   <Faq />
 
-  {/* 10. Final CTA */}
+  {/* 11. Final CTA */}
   <FinalCta />
 
   {/* Motion Controller System */}

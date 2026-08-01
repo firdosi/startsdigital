@@ -1,0 +1,104 @@
+---
+import { site } from '../../site.config';
+import { Target, Globe, Zap, MapPin, ArrowRight } from '@lucide/astro';
+
+const outcomes = [
+  {
+    icon: Target,
+    color: 'text-[#ff762b]',
+    bg: 'bg-[#ff762b]/12 border-[#ff762b]/25',
+    title: 'Generate Qualified Inquiries',
+    description:
+      'Reach the right audience on Meta, TikTok and Google with direct-response advertising that turns clicks into real sales leads.',
+    link: `${site.basePath}/services/paid-advertising/`,
+    linkLabel: 'Paid Advertising'
+  },
+  {
+    icon: Globe,
+    color: 'text-[#38bdf8]',
+    bg: 'bg-[#38bdf8]/12 border-[#38bdf8]/25',
+    title: 'Build a Professional Online Presence',
+    description:
+      'Fast, mobile-optimised websites and storefronts that present your business clearly and convert visitors into enquiries.',
+    link: `${site.basePath}/services/website-design-development/`,
+    linkLabel: 'Website Design'
+  },
+  {
+    icon: Zap,
+    color: 'text-purple-400',
+    bg: 'bg-purple-500/12 border-purple-500/25',
+    title: 'Improve Campaign Conversion',
+    description:
+      'AI-supported character workflows, video ad scripts and creative variations tested across platforms to reduce cost per lead.',
+    link: `${site.basePath}/services/creative-content/`,
+    linkLabel: 'Creative Content'
+  },
+  {
+    icon: MapPin,
+    color: 'text-[#39c98a]',
+    bg: 'bg-[#39c98a]/12 border-[#39c98a]/25',
+    title: 'Strengthen Local Search Visibility',
+    description:
+      'Location pages, Google Business Profile setup and local keyword structure that help nearby customers find and contact you first.',
+    link: `${site.basePath}/services/seo-local-search/`,
+    linkLabel: 'SEO & Local Search'
+  }
+];
+---
+
+<section id="outcomes" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+  <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+
+    <!-- Section Header -->
+    <div class="mb-12 sm:mb-16 text-center max-w-2xl mx-auto space-y-3">
+      <span class="inline-block font-mono text-xs uppercase tracking-widest text-[#ff762b]">
+        WHAT WE HELP BUSINESSES ACHIEVE
+      </span>
+      <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+        Real outcomes for growing businesses
+      </h2>
+      <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+        Starts Digital focuses on the results that matter to business owners — more inquiries, stronger presence, better conversion and greater visibility.
+      </p>
+    </div>
+
+    <!-- 4 Outcome Blocks -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {outcomes.map((item) => {
+        const IconComp = item.icon;
+        return (
+          <div class="group rounded-3xl border border-[#061d33]/10 bg-white p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-[#ff762b]/30 transition-all duration-300 flex flex-col justify-between">
+            <div class="space-y-4">
+              <!-- Icon -->
+              <div class={`size-12 rounded-2xl border flex items-center justify-center ${item.bg}`}>
+                <IconComp class={`size-6 ${item.color}`} />
+              </div>
+
+              <!-- Heading -->
+              <h3 class="font-heading font-bold text-xl text-[#061d33] leading-snug">
+                {item.title}
+              </h3>
+
+              <!-- Description -->
+              <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+                {item.description}
+              </p>
+            </div>
+
+            <!-- Link -->
+            <div class="pt-5 mt-2 border-t border-[#061d33]/8">
+              <a
+                href={item.link}
+                class="inline-flex items-center gap-1.5 font-body font-semibold text-sm text-[#ff762b] hover:gap-2.5 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+              >
+                <span>{item.linkLabel}</span>
+                <ArrowRight class="size-3.5" />
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

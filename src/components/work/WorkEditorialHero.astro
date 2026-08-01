@@ -1,0 +1,73 @@
+---
+import { site } from '../../site.config';
+---
+
+<!-- Editorial Photography Hero Composition — three overlapping portfolio photos -->
+<div class="relative mt-10 sm:mt-12 h-[320px] sm:h-[400px] lg:h-[420px] select-none" aria-hidden="true">
+
+  <!-- Photo 1: Web designer (center-left, base layer) -->
+  <div class="absolute left-0 top-4 w-[52%] sm:w-[46%] lg:w-[42%] z-10 transform -rotate-2 shadow-2xl rounded-2xl overflow-hidden border border-white/20 hover:-translate-y-1 transition-transform duration-300">
+    <picture>
+      <source srcset={`${site.basePath}/photography/web-designer-responsive.avif`} type="image/avif" />
+      <img
+        src={`${site.basePath}/photography/web-designer-responsive.webp`}
+        alt="Website design and development work"
+        width="600"
+        height="400"
+        loading="eager"
+        decoding="async"
+        class="w-full h-auto object-cover aspect-[3/2]"
+      />
+    </picture>
+    <!-- Annotation label -->
+    <div class="absolute top-3 left-3 bg-[#061d33]/90 backdrop-blur-sm border border-white/20 rounded-lg px-2.5 py-1 flex items-center gap-1.5">
+      <span class="size-1.5 rounded-full bg-[#38bdf8] shrink-0"></span>
+      <span class="font-mono text-[10px] uppercase tracking-wider text-white font-bold">Websites</span>
+    </div>
+  </div>
+
+  <!-- Photo 2: Ad creative production (center, elevated) -->
+  <div class="absolute left-[24%] sm:left-[28%] top-0 w-[50%] sm:w-[44%] lg:w-[40%] z-20 shadow-2xl rounded-2xl overflow-hidden border border-white/20 hover:-translate-y-1 transition-transform duration-300">
+    <picture>
+      <source srcset={`${site.basePath}/photography/advertising-creative-production.avif`} type="image/avif" />
+      <img
+        src={`${site.basePath}/photography/advertising-creative-production.webp`}
+        alt="Advertising and creative production work"
+        width="600"
+        height="400"
+        loading="eager"
+        decoding="async"
+        class="w-full h-auto object-cover aspect-[3/2]"
+      />
+    </picture>
+    <!-- Annotation label -->
+    <div class="absolute top-3 left-3 bg-[#061d33]/90 backdrop-blur-sm border border-white/20 rounded-lg px-2.5 py-1 flex items-center gap-1.5">
+      <span class="size-1.5 rounded-full bg-[#ff762b] shrink-0"></span>
+      <span class="font-mono text-[10px] uppercase tracking-wider text-white font-bold">Ad Creative</span>
+    </div>
+  </div>
+
+  <!-- Photo 3: Video editing (right, slightly lower) -->
+  <div class="absolute right-0 top-8 w-[40%] sm:w-[36%] lg:w-[32%] z-10 transform rotate-2 shadow-2xl rounded-2xl overflow-hidden border border-white/20 hover:-translate-y-1 transition-transform duration-300">
+    <picture>
+      <source srcset={`${site.basePath}/photography/video-editing-workstation.avif`} type="image/avif" />
+      <img
+        src={`${site.basePath}/photography/video-editing-workstation.webp`}
+        alt="Video editing and production workflow"
+        width="500"
+        height="340"
+        loading="eager"
+        decoding="async"
+        class="w-full h-auto object-cover aspect-[3/2]"
+      />
+    </picture>
+    <!-- Annotation label -->
+    <div class="absolute top-3 left-3 bg-[#061d33]/90 backdrop-blur-sm border border-white/20 rounded-lg px-2.5 py-1 flex items-center gap-1.5">
+      <span class="size-1.5 rounded-full bg-purple-400 shrink-0"></span>
+      <span class="font-mono text-[10px] uppercase tracking-wider text-white font-bold">Video</span>
+    </div>
+  </div>
+
+  <!-- Decorative bottom gradient fade -->
+  <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#061d33] to-transparent z-30 pointer-events-none"></div>
+</div>

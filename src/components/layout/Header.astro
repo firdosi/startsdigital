@@ -27,7 +27,9 @@ const publishedServices = getPublishedServices();
 
       <!-- Desktop Services Dropdown Container -->
       <div id="desktop-services-container" class="relative group/svc flex items-center gap-1">
+        <!-- Services link: click toggles dropdown (prevents nav), hover also opens it -->
         <a
+          id="desktop-services-link"
           href={`${site.basePath}/services/`}
           aria-current={currentPath.startsWith(`${site.basePath}/services`) ? 'page' : undefined}
           class="py-1 text-slate-200 hover:text-white transition-colors duration-200 aria-current:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
@@ -46,7 +48,7 @@ const publishedServices = getPublishedServices();
           <ChevronDown class="size-4 transition-transform duration-200" />
         </button>
 
-        <!-- Desktop Dropdown Panel (with invisible top hover bridge) -->
+        <!-- Desktop Dropdown Panel (invisible top hover bridge keeps panel reachable) -->
         <div
           id="desktop-services-dropdown"
           class="hidden absolute top-full left-0 mt-3 w-[480px] max-w-[90vw] rounded-3xl border border-white/15 bg-[#061d33] p-5 shadow-2xl backdrop-blur-xl z-50 animate-in fade-in slide-in-from-top-2 duration-200 before:absolute before:-top-4 before:left-0 before:right-0 before:h-4 before:content-['']"
@@ -273,6 +275,23 @@ const publishedServices = getPublishedServices();
           hideDesktopDropdownDelayed();
         }
       }, { signal });
+
+      // Clicking the "Services" link text opens dropdown instead of navigating
+      const desktopServicesLink = document.getElementById('desktop-services-link');
+      if (desktopServicesLink) {
+        desktopServicesLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const open = !desktopDropdown.classList.contains('hidden');
+          if (open) {
+            if (desktopCloseTimer) clearTimeout(desktopCloseTimer);
+            desktopDropdown.classList.add('hidden');
+            desktopToggle.setAttribute('aria-expanded', 'false');
+          } else {
+            showDesktopDropdown();
+          }
+        }, { signal });
+      }
 
       desktopToggle.addEventListener('click', (e) => {
         e.stopPropagation();

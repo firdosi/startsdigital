@@ -91,7 +91,93 @@ import { Sparkles, MapPin, Calendar, Globe, ArrowRight } from '@lucide/astro';
   {/* 3. Company Facts */}
   <CompanyFacts />
 
-  {/* 4. Founder Profile (Ahad Firdosi) */}
+  {/* 4. How We Work – values list + second workspace visual */}
+  <section class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Left: Second workspace photograph -->
+        <div class="lg:col-span-5 order-2 lg:order-1">
+          <div class="rounded-3xl overflow-hidden border border-[#061d33]/10 shadow-xl">
+            <picture>
+              <source srcset={`${site.basePath}/photography/creative-campaign-planning.avif`} type="image/avif" />
+              <img
+                src={`${site.basePath}/photography/creative-campaign-planning.webp`}
+                alt="Illustrative creative and campaign planning workspace"
+                width="800"
+                height="533"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-auto object-cover aspect-[4/3]"
+              />
+            </picture>
+          </div>
+          <p class="text-[11px] font-mono text-slate-400 mt-2 text-center">
+            Illustrative workspace photography
+          </p>
+        </div>
+
+        <!-- Right: How We Work values -->
+        <div class="lg:col-span-7 order-1 lg:order-2 space-y-8">
+          <div class="space-y-3">
+            <span class="inline-block font-mono text-xs uppercase tracking-widest text-[#ff762b]">How We Work</span>
+            <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+              Principles that guide every project
+            </h2>
+          </div>
+
+          <div class="space-y-6">
+            <!-- Principle 1 -->
+            <div class="flex gap-5 items-start">
+              <div class="size-10 rounded-2xl bg-[#ff762b]/10 border border-[#ff762b]/25 flex items-center justify-center shrink-0">
+                <span class="font-mono font-bold text-sm text-[#ff762b]">01</span>
+              </div>
+              <div class="space-y-1">
+                <h3 class="font-heading font-bold text-lg text-[#061d33]">Transparency over promises</h3>
+                <p class="font-body text-base text-slate-700 leading-relaxed">We communicate what is being built, why, and how it performs. No hidden processes or vague deliverables.</p>
+              </div>
+            </div>
+
+            <!-- Principle 2 -->
+            <div class="flex gap-5 items-start">
+              <div class="size-10 rounded-2xl bg-[#39c98a]/10 border border-[#39c98a]/25 flex items-center justify-center shrink-0">
+                <span class="font-mono font-bold text-sm text-[#39c98a]">02</span>
+              </div>
+              <div class="space-y-1">
+                <h3 class="font-heading font-bold text-lg text-[#061d33]">Real outcomes over activity</h3>
+                <p class="font-body text-base text-slate-700 leading-relaxed">We focus on leads, sales, visibility and conversions — not just posting frequency or ad impressions.</p>
+              </div>
+            </div>
+
+            <!-- Principle 3 -->
+            <div class="flex gap-5 items-start">
+              <div class="size-10 rounded-2xl bg-[#38bdf8]/10 border border-[#38bdf8]/25 flex items-center justify-center shrink-0">
+                <span class="font-mono font-bold text-sm text-[#38bdf8]">03</span>
+              </div>
+              <div class="space-y-1">
+                <h3 class="font-heading font-bold text-lg text-[#061d33]">Direct communication</h3>
+                <p class="font-body text-base text-slate-700 leading-relaxed">Every project has clear points of contact via WhatsApp and email. No account managers blocking access to the team doing the actual work.</p>
+              </div>
+            </div>
+
+            <!-- Principle 4 -->
+            <div class="flex gap-5 items-start">
+              <div class="size-10 rounded-2xl bg-purple-500/10 border border-purple-500/25 flex items-center justify-center shrink-0">
+                <span class="font-mono font-bold text-sm text-purple-400">04</span>
+              </div>
+              <div class="space-y-1">
+                <h3 class="font-heading font-bold text-lg text-[#061d33]">Practical digital, not theoretical</h3>
+                <p class="font-body text-base text-slate-700 leading-relaxed">We work in the markets and tools our clients use daily: Meta Ads, Google, WooCommerce, WhatsApp, local SEO and AI-supported creative workflows.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* 5. Founder Profile (Ahad Firdosi) */}
   <FounderProfile />
 
   {/* 5. Creative & Development Team (Meesam & Zaid) */}

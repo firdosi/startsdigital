@@ -1,68 +1,11 @@
 ---
 import { TrendingUp, ShoppingBag, Users, Zap, DollarSign, Bot, Sparkles, Layers } from '@lucide/astro';
-
-const resultsList = [
-  {
-    title: 'PKR 5.9M+ Direct Sales Revenue',
-    category: 'E-Commerce Marketing',
-    description: 'Generated across product distribution, paid social campaigns, and commission-based digital storefront operations.',
-    icon: DollarSign,
-    color: 'border-[#ff762b] text-[#ff762b] bg-[#ff762b]/10'
-  },
-  {
-    title: '5,000+ Product Units Sold',
-    category: 'E-Commerce Launch Support',
-    description: 'Delivered through multi-channel ad creatives, promotional campaign execution, and automated sales routing.',
-    icon: ShoppingBag,
-    color: 'border-[#ddff35] text-[#ddff35] bg-[#ddff35]/10'
-  },
-  {
-    title: '140+ Clients Converted',
-    category: 'Seasonal & Lead Campaigns',
-    description: 'Secured during high-demand promotional windows through targeted video ad scripts and direct lead handling.',
-    icon: Users,
-    color: 'border-[#39c98a] text-[#39c98a] bg-[#39c98a]/10'
-  },
-  {
-    title: 'AED 1.4M+ Campaign Revenue',
-    category: 'Lead Generation Campaigns',
-    description: 'Driven through AI-supported video workflows, direct response ad testing, and paid social performance strategy.',
-    icon: TrendingUp,
-    color: 'border-[#38bdf8] text-[#38bdf8] bg-[#38bdf8]/10'
-  },
-  {
-    title: 'AED 0.10 Lead Cost Benchmark',
-    category: 'Paid Advertising Efficiency',
-    description: 'Recorded on selected regional TikTok and Meta advertising campaigns targeting high-intent audience segments.',
-    icon: Zap,
-    color: 'border-[#ff762b] text-[#ff762b] bg-[#ff762b]/10'
-  },
-  {
-    title: 'PKR 10 Lead Cost Benchmark',
-    category: 'Regional Search & Social Ads',
-    description: 'Achieved on selected Pakistan-focused promotional campaigns with highly optimized direct-response visual creatives.',
-    icon: Zap,
-    color: 'border-[#39c98a] text-[#39c98a] bg-[#39c98a]/10'
-  },
-  {
-    title: '27+ Original AI Character Identities',
-    category: 'AI Creative Innovation',
-    description: 'Created on private high-performance infrastructure establishing consistent visual marketing avatars for scale ad production.',
-    icon: Bot,
-    color: 'border-[#ddff35] text-[#ddff35] bg-[#ddff35]/10'
-  },
-  {
-    title: 'Thousands of Generated AI Assets',
-    category: 'Scale Content Production',
-    description: 'Produced for multi-angle creative testing across video ads, social graphics, and multi-channel campaign variations.',
-    icon: Layers,
-    color: 'border-[#38bdf8] text-[#38bdf8] bg-[#38bdf8]/10'
-  }
-];
 ---
 
 <section id="work-results" class="py-16 sm:py-24 bg-[#061d33] text-white relative overflow-hidden">
   <div class="max-w-[1280px] mx-auto px-6 sm:px-8 relative z-10">
+
+    <!-- Section Header -->
     <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
       <span class="inline-flex items-center gap-2 rounded-full border border-[#ff762b]/30 bg-[#ff762b]/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.08em] text-[#ff762b]">
         <Sparkles class="size-3.5 text-[#ff762b]" />
@@ -72,42 +15,121 @@ const resultsList = [
         Results Across Campaigns, Commerce and Digital Products
       </h2>
       <p class="font-body text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-        Selected outcomes from our client operations across advertising, e-commerce, websites, creative production, local search and AI workflows.
+        Selected outcomes from our client work across advertising, e-commerce, websites, creative production, local search and AI workflows.
       </p>
     </div>
 
-    <!-- 8 Result Cards Grid (Each figure appears ONCE in main page flow) -->
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {resultsList.map(item => {
-        const IconComponent = item.icon;
-        return (
-          <div class="rounded-3xl border border-white/15 bg-white/5 p-6 flex flex-col justify-between space-y-5 hover:border-white/30 hover:bg-white/10 transition-all duration-300">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="font-mono text-[10px] uppercase tracking-wider text-slate-400">
-                  {item.category}
-                </span>
-                <div class={`size-9 rounded-2xl border flex items-center justify-center ${item.color}`}>
-                  <IconComponent class="size-4.5" />
-                </div>
-              </div>
-              <h3 class="font-heading font-bold text-xl text-white tracking-tight leading-snug">
-                {item.title}
-              </h3>
-              <p class="font-body text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                {item.description}
-              </p>
+    <!-- TOP BAND: 4 headline commercial figures -->
+    <div class="mb-8">
+      <div class="rounded-3xl border border-white/15 bg-white/5 p-6 sm:p-8 backdrop-blur-sm">
+        <span class="font-mono text-[10px] uppercase tracking-widest text-slate-400 block mb-6 text-center">
+          Commercial Performance
+        </span>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+          <!-- PKR 5.9M+ -->
+          <div class="text-center space-y-2 group">
+            <div class="size-12 rounded-2xl border border-[#ff762b]/30 bg-[#ff762b]/10 flex items-center justify-center mx-auto group-hover:scale-105 transition-transform">
+              <DollarSign class="size-6 text-[#ff762b]" />
             </div>
+            <div class="font-heading font-bold text-3xl sm:text-4xl text-white tracking-tight">PKR 5.9M+</div>
+            <div class="font-mono text-xs text-slate-400 uppercase tracking-wider">Direct Sales Revenue</div>
+            <p class="font-body text-xs text-slate-400 leading-relaxed">Generated across product distribution, paid social and e-commerce operations.</p>
           </div>
-        );
-      })}
+
+          <!-- 5,000+ units -->
+          <div class="text-center space-y-2 group">
+            <div class="size-12 rounded-2xl border border-[#ddff35]/30 bg-[#ddff35]/10 flex items-center justify-center mx-auto group-hover:scale-105 transition-transform">
+              <ShoppingBag class="size-6 text-[#ddff35]" />
+            </div>
+            <div class="font-heading font-bold text-3xl sm:text-4xl text-white tracking-tight">5,000+</div>
+            <div class="font-mono text-xs text-slate-400 uppercase tracking-wider">Product Units Sold</div>
+            <p class="font-body text-xs text-slate-400 leading-relaxed">Delivered through multi-channel ad creatives and automated sales routing.</p>
+          </div>
+
+          <!-- 140+ clients -->
+          <div class="text-center space-y-2 group">
+            <div class="size-12 rounded-2xl border border-[#39c98a]/30 bg-[#39c98a]/10 flex items-center justify-center mx-auto group-hover:scale-105 transition-transform">
+              <Users class="size-6 text-[#39c98a]" />
+            </div>
+            <div class="font-heading font-bold text-3xl sm:text-4xl text-white tracking-tight">140+</div>
+            <div class="font-mono text-xs text-slate-400 uppercase tracking-wider">Clients Converted</div>
+            <p class="font-body text-xs text-slate-400 leading-relaxed">Secured during promotional windows through video ad scripts and direct lead handling.</p>
+          </div>
+
+          <!-- AED 1.4M+ -->
+          <div class="text-center space-y-2 group">
+            <div class="size-12 rounded-2xl border border-[#38bdf8]/30 bg-[#38bdf8]/10 flex items-center justify-center mx-auto group-hover:scale-105 transition-transform">
+              <TrendingUp class="size-6 text-[#38bdf8]" />
+            </div>
+            <div class="font-heading font-bold text-3xl sm:text-4xl text-white tracking-tight">AED 1.4M+</div>
+            <div class="font-mono text-xs text-slate-400 uppercase tracking-wider">Campaign Revenue</div>
+            <p class="font-body text-xs text-slate-400 leading-relaxed">Driven through AI-supported video workflows and paid social performance strategy.</p>
+          </div>
+
+        </div>
+      </div>
     </div>
 
-    <!-- Honest General Note -->
-    <div class="mt-12 text-center border-t border-white/10 pt-8">
+    <!-- BOTTOM BAND: 4 efficiency and AI metrics (smaller, secondary) -->
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-10">
+
+      <!-- AED 0.10 lead cost -->
+      <div class="rounded-2xl border border-white/10 bg-white/3 p-5 flex items-start gap-4 hover:border-white/25 hover:bg-white/8 transition-all duration-300">
+        <div class="size-9 rounded-xl border border-[#ff762b]/30 bg-[#ff762b]/10 flex items-center justify-center shrink-0">
+          <Zap class="size-4 text-[#ff762b]" />
+        </div>
+        <div class="space-y-1">
+          <div class="font-heading font-bold text-lg text-white">AED 0.10</div>
+          <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">Lead Cost Benchmark</div>
+          <p class="font-body text-xs text-slate-400 leading-relaxed">Selected Gulf TikTok and Meta campaigns targeting high-intent segments.</p>
+        </div>
+      </div>
+
+      <!-- PKR 10 lead cost -->
+      <div class="rounded-2xl border border-white/10 bg-white/3 p-5 flex items-start gap-4 hover:border-white/25 hover:bg-white/8 transition-all duration-300">
+        <div class="size-9 rounded-xl border border-[#39c98a]/30 bg-[#39c98a]/10 flex items-center justify-center shrink-0">
+          <Zap class="size-4 text-[#39c98a]" />
+        </div>
+        <div class="space-y-1">
+          <div class="font-heading font-bold text-lg text-white">PKR 10</div>
+          <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">Lead Cost Benchmark</div>
+          <p class="font-body text-xs text-slate-400 leading-relaxed">Achieved on selected Pakistan-focused campaigns with direct-response creatives.</p>
+        </div>
+      </div>
+
+      <!-- 27+ character identities -->
+      <div class="rounded-2xl border border-white/10 bg-white/3 p-5 flex items-start gap-4 hover:border-white/25 hover:bg-white/8 transition-all duration-300">
+        <div class="size-9 rounded-xl border border-[#ddff35]/30 bg-[#ddff35]/10 flex items-center justify-center shrink-0">
+          <Bot class="size-4 text-[#ddff35]" />
+        </div>
+        <div class="space-y-1">
+          <div class="font-heading font-bold text-lg text-white">27+ Identities</div>
+          <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">Original AI Character Library</div>
+          <p class="font-body text-xs text-slate-400 leading-relaxed">Starting library of consistent male and female marketing character identities.</p>
+        </div>
+      </div>
+
+      <!-- Thousands of AI assets -->
+      <div class="rounded-2xl border border-white/10 bg-white/3 p-5 flex items-start gap-4 hover:border-white/25 hover:bg-white/8 transition-all duration-300">
+        <div class="size-9 rounded-xl border border-[#38bdf8]/30 bg-[#38bdf8]/10 flex items-center justify-center shrink-0">
+          <Layers class="size-4 text-[#38bdf8]" />
+        </div>
+        <div class="space-y-1">
+          <div class="font-heading font-bold text-lg text-white">1,000s Generated</div>
+          <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider">AI Campaign Assets</div>
+          <p class="font-body text-xs text-slate-400 leading-relaxed">Produced for multi-angle creative testing across video, social and campaign variations.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Honest General Disclaimer -->
+    <div class="text-center border-t border-white/10 pt-8">
       <p class="font-body text-xs text-slate-400 max-w-2xl mx-auto leading-relaxed">
         Results vary according to the business, offer, market, budget and campaign conditions.
       </p>
     </div>
+
   </div>
 </section>
