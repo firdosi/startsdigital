@@ -13,6 +13,7 @@ const commands = [
   'node scripts/qa/accessibility.mjs',
   'node scripts/qa/performance-budget.mjs',
   'node scripts/qa/security-privacy.mjs',
+  'node scripts/capture-roadmap-9-1.mjs',
   'node scripts/qa/visual-capture-readiness.mjs',
   'node scripts/qa/motion-regression.mjs',
   'node scripts/qa/internal-links.mjs',
