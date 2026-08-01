@@ -122,8 +122,8 @@ async function runAnalyticsAudit() {
     }
 
     // ClientRouter Navigation
-    const servicesLink = pageDebug.locator('a[href*="/services/"], button:has-text("Services"), a:has-text("Services")').first();
-    await servicesLink.click();
+    const navLink = pageDebug.locator('a[href*="/work/"]').first();
+    await navLink.click();
     await pageDebug.waitForTimeout(500);
 
     events = await pageDebug.evaluate(() => window.__ANALYTICS_EVENTS__ || []);
