@@ -283,8 +283,8 @@ async function runCapture() {
       const groups = Array.from(document.querySelectorAll('#industries-3d-composition .group'));
       return groups.map((grp, i) => {
         const textEl = grp.querySelector('div.flex > div:last-child');
-        const iconEl = grp.querySelector('div.flex > div.size-14') || grp.querySelector('div.flex > div:first-child');
-        if (!textEl || !iconEl) return { groupIndex: i, valid: false };
+        const iconEl = grp.querySelector('div.flex > div:first-child');
+        if (!textEl || !iconEl) return { groupIndex: i, valid: false, reason: 'missing elements' };
 
         const tRect = textEl.getBoundingClientRect();
         const iRect = iconEl.getBoundingClientRect();
@@ -298,6 +298,8 @@ async function runCapture() {
 
         return {
           groupIndex: i,
+          iRect: { left: iRect.left, right: iRect.right, top: iRect.top, bottom: iRect.bottom },
+          tRect: { left: tRect.left, right: tRect.right, top: tRect.top, bottom: tRect.bottom },
           textVisible,
           overlap,
           valid: textVisible && !overlap
