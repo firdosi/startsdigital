@@ -46,10 +46,10 @@ const publishedServices = getPublishedServices();
           <ChevronDown class="size-4 transition-transform duration-200" />
         </button>
 
-        <!-- Desktop Dropdown Panel -->
+        <!-- Desktop Dropdown Panel (with invisible top hover bridge) -->
         <div
           id="desktop-services-dropdown"
-          class="hidden absolute top-full left-0 mt-3 w-[480px] max-w-[90vw] rounded-3xl border border-white/15 bg-[#061d33] p-5 shadow-2xl backdrop-blur-xl z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+          class="hidden absolute top-full left-0 mt-3 w-[480px] max-w-[90vw] rounded-3xl border border-white/15 bg-[#061d33] p-5 shadow-2xl backdrop-blur-xl z-50 animate-in fade-in slide-in-from-top-2 duration-200 before:absolute before:-top-4 before:left-0 before:right-0 before:h-4 before:content-['']"
         >
           <div class="pb-3 border-b border-white/10 mb-3">
             <a
@@ -244,32 +244,46 @@ const publishedServices = getPublishedServices();
     // Always reset menu states on initial load and route changes
     resetAllMenus();
 
-    // Toggle Desktop Dropdown via Click
-    if (desktopToggle && desktopDropdown) {
-      desktopToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const open = desktopDropdown.classList.contains('hidden');
-        if (open) {
-          desktopDropdown.classList.remove('hidden');
-          desktopToggle.setAttribute('aria-expanded', 'true');
-        } else {
-          desktopDropdown.classList.add('hidden');
-          desktopToggle.setAttribute('aria-expanded', 'false');
-          desktopToggle.focus();
+    let desktopCloseTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const showDesktopDropdown = () => {
+      if (desktopCloseTimer) {
+        clearTimeout(desktopCloseTimer);
+        desktopCloseTimer = null;
+      }
+      if (desktopDropdown) desktopDropdown.classList.remove('hidden');
+      if (desktopToggle) desktopToggle.setAttribute('aria-expanded', 'true');
+    };
+
+    const hideDesktopDropdownDelayed = () => {
+      if (desktopCloseTimer) clearTimeout(desktopCloseTimer);
+      desktopCloseTimer = setTimeout(() => {
+        if (desktopDropdown) desktopDropdown.classList.add('hidden');
+        if (desktopToggle) desktopToggle.setAttribute('aria-expanded', 'false');
+      }, 250);
+    };
+
+    if (container && desktopDropdown && desktopToggle) {
+      container.addEventListener('mouseenter', showDesktopDropdown, { signal });
+      container.addEventListener('mouseleave', hideDesktopDropdownDelayed, { signal });
+
+      container.addEventListener('focusin', showDesktopDropdown, { signal });
+      container.addEventListener('focusout', (e: FocusEvent) => {
+        if (!container.contains(e.relatedTarget as Node)) {
+          hideDesktopDropdownDelayed();
         }
       }, { signal });
-    }
 
-    // Hover support for Desktop Dropdown
-    if (container && desktopDropdown && desktopToggle) {
-      container.addEventListener('mouseenter', () => {
-        desktopDropdown.classList.remove('hidden');
-        desktopToggle.setAttribute('aria-expanded', 'true');
-      }, { signal });
-
-      container.addEventListener('mouseleave', () => {
-        desktopDropdown.classList.add('hidden');
-        desktopToggle.setAttribute('aria-expanded', 'false');
+      desktopToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = !desktopDropdown.classList.contains('hidden');
+        if (open) {
+          if (desktopCloseTimer) clearTimeout(desktopCloseTimer);
+          desktopDropdown.classList.add('hidden');
+          desktopToggle.setAttribute('aria-expanded', 'false');
+        } else {
+          showDesktopDropdown();
+        }
       }, { signal });
     }
 

@@ -58,7 +58,7 @@ export const pageSeoRegistry: Record<string, PageSeoConfig> = {
   },
   '/about/': {
     title: 'About Starts Digital | Lahore Digital Marketing Agency',
-    description: 'Learn about Starts Digital, a Lahore digital agency founded in 2025 by Ahad Firdosi, delivering marketing, creative and web solutions.',
+    description: 'Learn about Starts Digital, a Lahore digital agency founded in 2023 by Ahad Firdosi, delivering marketing, creative and web solutions.',
     canonicalPath: '/about/',
     ogType: 'website',
     ogImage: '/og/default-og.png',
@@ -263,7 +263,7 @@ export const pageSeoRegistry: Record<string, PageSeoConfig> = {
   },
   '/locations/lahore/': {
     title: 'Digital Marketing Agency in Lahore | Starts Digital',
-    description: 'Starts Digital is a Lahore-based digital marketing agency founded in 2025, offering paid ads, website development, SEO, creative content, and AI workflows.',
+    description: 'Starts Digital is a Lahore-based digital marketing agency founded in 2023, offering paid ads, website development, SEO, creative content, and AI workflows.',
     canonicalPath: '/locations/lahore/',
     ogType: 'website',
     ogImage: '/og/default-og.png',

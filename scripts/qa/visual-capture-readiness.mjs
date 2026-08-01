@@ -6,10 +6,10 @@ import { execSync } from 'node:child_process';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '../../');
 
+const dir83 = path.join(rootDir, 'scratch/roadmap-8-3-final-visual-rebuild');
 const dir82 = path.join(rootDir, 'scratch/roadmap-8-2-visual-storytelling');
 const dir81 = path.join(rootDir, 'scratch/roadmap-8-1-offline-prelaunch');
-const dir73 = path.join(rootDir, 'scratch/roadmap-7-3-final-site-acceptance');
-const screenshotDir = fs.existsSync(dir82) ? dir82 : (fs.existsSync(dir81) ? dir81 : dir73);
+const screenshotDir = fs.existsSync(dir83) ? dir83 : (fs.existsSync(dir82) ? dir82 : dir81);
 
 let errors = [];
 let passCount = 0;
@@ -24,7 +24,7 @@ function assert(condition, message) {
   }
 }
 
-console.log(`🚀 Running Visual Capture & Audit Readiness QA Audit (${screenshotDir.includes('8-2') ? 'Roadmap 8.2' : (screenshotDir.includes('8-1') ? 'Roadmap 8.1' : 'Roadmap 7.3')})...\n`);
+console.log(`🚀 Running Visual Capture & Audit Readiness QA Audit (Roadmap 8.3)...\n`);
 
 let currentSha = '';
 try {
@@ -33,22 +33,14 @@ try {
   currentSha = 'unknown';
 }
 
-const requiredScreenshots = screenshotDir.includes('8-2') ? [
-  { name: 'homepage-visual-storytelling-1440.png', minSize: 10000 },
-  { name: 'work-combined-achievements-1440.png', minSize: 10000 },
-  { name: 'services-visual-directory-390.png', minSize: 10000 },
-  { name: 'work-logo-wall-390.png', minSize: 10000 }
-] : (screenshotDir.includes('8-1') ? [
-  { name: 'homepage-offline-prelaunch-1440.png', minSize: 10000 },
-  { name: 'work-media-readiness-1440.png', minSize: 10000 },
-  { name: 'client-experience-offline-review-390.png', minSize: 10000 },
-  { name: 'contact-offline-prelaunch-390.png', minSize: 10000 }
-] : [
-  { name: 'homepage-launch-ready-1440.png', minSize: 10000 },
-  { name: 'services-launch-ready-390.png', minSize: 10000 },
-  { name: 'contact-project-context-1440.png', minSize: 10000 },
-  { name: 'contact-project-brief-390.png', minSize: 10000 }
-]);
+const requiredScreenshots = [
+  { name: 'homepage-final-rebuild-1440.png', minSize: 10000 },
+  { name: 'homepage-final-rebuild-390.png', minSize: 10000 },
+  { name: 'services-menu-and-hero-1440.png', minSize: 10000 },
+  { name: 'work-final-storytelling-1440.png', minSize: 10000 },
+  { name: 'industries-unique-visual-1440.png', minSize: 10000 },
+  { name: 'about-contact-visual-review-390.png', minSize: 10000 }
+];
 
 assert(fs.existsSync(screenshotDir), `Screenshot output folder exists at ${screenshotDir}`);
 
@@ -62,38 +54,15 @@ for (const shot of requiredScreenshots) {
   }
 }
 
-const auditFiles = screenshotDir.includes('8-2') ? [
-  'public-storytelling-audit.json',
-  'combined-achievements-audit.json',
-  'logo-wall-audit.json',
-  'visual-assets-audit.json',
-  'animation-performance-audit.json',
-  'domain-wording-audit.json',
-  'retired-routes-audit.json',
+const auditFiles = [
+  'visual-rebuild-audit.json',
+  'services-navigation-audit.json',
+  'official-logo-audit.json',
+  'page-uniqueness-audit.json',
+  'achievements-integrity-audit.json',
+  'visual-assets-performance-audit.json',
   'screenshot-capture-audit.json'
-] : (screenshotDir.includes('8-1') ? [
-  'media-readiness-audit.json',
-  'evidence-intake-audit.json',
-  'project-claims-audit.json',
-  'logo-quality-audit.json',
-  'social-assets-audit.json',
-  'content-final-review-audit.json',
-  'offline-release-package-audit.json',
-  'future-domain-checklist-audit.json',
-  'screenshot-capture-audit.json'
-] : [
-  'route-inventory-audit.json',
-  'content-consistency-audit.json',
-  'navigation-footer-audit.json',
-  'conversion-flow-audit.json',
-  'accessibility-audit.json',
-  'performance-budget-audit.json',
-  'security-privacy-audit.json',
-  'seo-final-audit.json',
-  'live-deployment-audit.json',
-  'screenshot-capture-audit.json',
-  'release-freeze-audit.json'
-]);
+];
 
 for (const auditName of auditFiles) {
   const auditPath = path.join(screenshotDir, auditName);

@@ -39,7 +39,7 @@ import { Sparkles, MapPin, Calendar, Globe, ArrowRight } from '@lucide/astro';
           </h1>
 
           <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal">
-            Founded in 2025, Starts Digital supports local and international clients through paid advertising, websites, SEO, creative content, social media marketing and practical AI workflows.
+            Founded in 2023, Starts Digital supports local and international clients through paid advertising, websites, SEO, creative content, social media marketing and practical AI workflows.
           </p>
 
           <!-- Context Badges Strip -->
@@ -51,7 +51,7 @@ import { Sparkles, MapPin, Calendar, Globe, ArrowRight } from '@lucide/astro';
             <span class="text-white/30">•</span>
             <div class="flex items-center gap-1.5">
               <Calendar class="size-3.5 text-[#ddff35]" />
-              <span>Established 2025</span>
+              <span>Established 2023</span>
             </div>
             <span class="text-white/30">•</span>
             <div class="flex items-center gap-1.5">
@@ -61,21 +61,24 @@ import { Sparkles, MapPin, Calendar, Globe, ArrowRight } from '@lucide/astro';
           </div>
         </div>
 
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-5 space-y-2">
           <div class="rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-white/5 p-2 backdrop-blur-md">
             <picture>
-              <source srcset={`${site.basePath}/visuals/about-collaboration-composition.avif`} type="image/avif" />
+              <source srcset={`${site.basePath}/photography/team-collaboration-workspace.avif`} type="image/avif" />
               <img
-                src={`${site.basePath}/visuals/about-collaboration-composition.webp`}
-                alt="Starts Digital Operator-Driven Agency Collaboration Architecture"
+                src={`${site.basePath}/photography/team-collaboration-workspace.webp`}
+                alt="Illustrative team collaboration photography"
                 width="800"
-                height="600"
+                height="533"
                 loading="eager"
                 decoding="async"
-                class="w-full h-auto object-cover rounded-2xl"
+                class="w-full h-auto object-cover rounded-2xl aspect-[4/3]"
               />
             </picture>
           </div>
+          <p class="text-[11px] font-mono text-slate-400 text-center">
+            Illustrative team collaboration photography
+          </p>
         </div>
 
       </div>
@@ -116,8 +119,8 @@ import { Sparkles, MapPin, Calendar, Globe, ArrowRight } from '@lucide/astro';
     </div>
   </section>
 
-  {/* 10. Final CTA */}
-  <FinalCta />
+  {/* 9. Final Call to Action */}
+  <FinalCta title="Build Your Digital Capability with Starts Digital" />
 
   {/* Motion Controller */}
   <MotionController />

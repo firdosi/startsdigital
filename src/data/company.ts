@@ -13,12 +13,12 @@ export interface CompanyProfile {
 
 export const companyProfile: CompanyProfile = {
   name: 'Starts Digital',
-  foundedYear: 2025,
+  foundedYear: 2023,
   location: 'Lahore, Pakistan',
   locationStatement: 'Lahore-based digital agency serving local and international clients.',
   founderId: 'ahad-firdosi',
   story: [
-    'Starts Digital was established in Lahore in 2025 to bring digital marketing, creative production and technical execution into one coordinated workflow.',
+    'Starts Digital was established in Lahore in 2023 to bring digital marketing, creative production and technical execution into one coordinated workflow.',
     'The agency began with hands-on campaign management and marketing support for product and service businesses.',
     'It now provides paid advertising, websites and e-commerce, SEO, creative content, social media marketing and practical AI workflows.',
     'Projects are organised around clear requirements, documented responsibilities and real business needs rather than generic packages.'

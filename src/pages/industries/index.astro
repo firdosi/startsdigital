@@ -6,6 +6,7 @@ import Button from '../../components/ui/Button.astro';
 import FinalCta from '../../components/landing/FinalCta.astro';
 import { ArrowRight } from '@lucide/astro';
 import LightweightVisual3D from '../../components/visuals/LightweightVisual3D.astro';
+import Industries3DSectorComposition from '../../components/industries/Industries3DSectorComposition.astro';
 import { site } from '../../site.config';
 import { getServiceById } from '../../data/services';
 import { industriesFaqs } from '../../data/faqs';
@@ -48,22 +49,9 @@ const industryVisualMap: Record<string, any> = {
           </div>
         </div>
 
-        <!-- Right Column: Sector Object Picture Composition Anchor (5 cols) -->
+        <!-- Right Column: Unique 4-Sector 3D Composition Anchor (5 cols) -->
         <div class="lg:col-span-5">
-          <div class="rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-white/5 p-2 backdrop-blur-md">
-            <picture>
-              <source srcset={`${site.basePath}/visuals/industries-object-composition.avif`} type="image/avif" />
-              <img
-                src={`${site.basePath}/visuals/industries-object-composition.webp`}
-                alt="Starts Digital Sector Architecture and Industry Domain Composition"
-                width="800"
-                height="600"
-                loading="eager"
-                decoding="async"
-                class="w-full h-auto object-cover rounded-2xl"
-              />
-            </picture>
-          </div>
+          <Industries3DSectorComposition />
         </div>
       </div>
     </Container>
@@ -260,5 +248,5 @@ const industryVisualMap: Record<string, any> = {
   </section>
 
   <!-- 7. Contact CTA -->
-  <FinalCta />
+  <FinalCta title="Discuss Your Sector Requirements & Growth Goals" />
 </BaseLayout>

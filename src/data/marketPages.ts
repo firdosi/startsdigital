@@ -92,7 +92,7 @@ export const marketPages: MarketPageDefinition[] = [
     workingMethod: [
       { step: '01', title: 'Campaign Planning & Schedule', description: 'Defining campaign duration, promotional messaging, target channels, and inquiry handling routes.' },
       { step: '02', title: 'Creative & Landing Preparation', description: 'Editing promotional media, writing campaign copy, and building mobile inquiry pages.' },
-      { step: '03', title: 'Multi-Channel Activation', description: 'Launching paid social campaigns, organic content posts, and direct customer inquiry pathways.' },
+      { step: '03', title: 'Campaign Activation', description: 'Launching paid social campaigns, organic content posts, and direct customer inquiry pathways.' },
       { step: '04', title: 'Inquiry & Ad Monitoring', description: 'Reviewing incoming inquiry volume, ad performance, and budget pacing throughout the campaign window.' }
     ],
     faqs: [
@@ -190,12 +190,12 @@ export const marketPages: MarketPageDefinition[] = [
     eyebrow: 'LAHORE AGENCY CONTEXT',
     description: 'Based in Lahore, Pakistan, Starts Digital provides paid advertising, custom web development, technical SEO, creative content production, social media management, and practical AI marketing workflows.',
     metaTitle: 'Digital Marketing Agency in Lahore | Starts Digital',
-    metaDescription: 'Starts Digital is a Lahore-based digital marketing agency founded in 2025, offering paid ads, website development, SEO, creative content, and AI workflows.',
+    metaDescription: 'Starts Digital is a Lahore-based digital marketing agency founded in 2023, offering paid ads, website development, SEO, creative content, and AI workflows.',
     canonicalPath: '/locations/lahore/',
     schemaType: 'location',
     breadcrumbLabel: 'Lahore',
     featuredProjectId: 'black-gold-fertilizer',
-    featuredProofText: 'Founded in 2025 in Lahore, Starts Digital delivers digital marketing and technical web production for local and international clients.',
+    featuredProofText: 'Founded in 2023 in Lahore, Starts Digital delivers digital marketing and technical web production for local and international clients.',
     relevantServiceIds: ['paid-advertising', 'website-design-development', 'seo-local-search', 'creative-content', 'social-media-marketing', 'ai-marketing-workflows'],
     keyTopics: [
       { title: 'Lahore-Based Core Team', description: 'Our strategy, design, development, and campaign operations are executed directly by our team in Lahore.' },

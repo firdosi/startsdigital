@@ -1,0 +1,96 @@
+---
+// 3D Contact Visual Component (Smartphone, Message Bubble, Envelope, Project Brief Document & Animated Route)
+import { site } from '../../site.config';
+import { Smartphone, Mail, FileText, MessageSquare, ArrowRight } from '@lucide/astro';
+
+const genericWhatsappMsg = encodeURIComponent('Hello Starts Digital, I would like to discuss a new digital marketing project.');
+const whatsappUrl = `${site.contact.whatsapp}?text=${genericWhatsappMsg}`;
+---
+
+<div class="relative w-full max-w-lg mx-auto p-6 bg-[#0a233c] border-2 border-white/15 rounded-3xl shadow-2xl overflow-hidden" id="contact-3d-scene">
+  <!-- Glowing Background Orbs -->
+  <div class="absolute -top-16 -right-16 size-48 rounded-full bg-[#ff762b]/20 blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-16 -left-16 size-48 rounded-full bg-[#39c98a]/20 blur-3xl pointer-events-none"></div>
+
+  <!-- Header -->
+  <div class="relative z-10 flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+    <div class="flex items-center gap-2">
+      <span class="size-2.5 rounded-full bg-[#ff762b] animate-pulse"></span>
+      <span class="font-mono text-xs font-bold text-white uppercase tracking-wider">Direct Project Channels</span>
+    </div>
+    <span class="font-mono text-[10px] text-[#39c98a] bg-[#39c98a]/10 px-2.5 py-1 rounded-full border border-[#39c98a]/20">
+      Fast Response
+    </span>
+  </div>
+
+  <!-- 3D Objects & Connecting Route Canvas -->
+  <div class="relative z-10 grid grid-cols-3 gap-4 items-center my-6">
+    
+    <!-- 1. 3D Smartphone Element -->
+    <div class="flex flex-col items-center text-center space-y-2 group">
+      <div class="relative size-16 rounded-2xl bg-gradient-to-br from-[#061d33] to-[#0a233c] border border-white/20 p-3 shadow-xl transform transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-105 flex items-center justify-center">
+        <Smartphone class="size-8 text-[#39c98a]" />
+        <div class="absolute -top-1 -right-1 size-3 rounded-full bg-[#39c98a] border-2 border-[#0a233c]"></div>
+      </div>
+      <span class="font-mono text-[11px] font-bold text-white">WhatsApp</span>
+      <span class="text-[10px] text-slate-300">Direct Chat</span>
+    </div>
+
+    <!-- Connecting Animated Route Center Pin -->
+    <div class="relative flex flex-col items-center justify-center space-y-2 group">
+      <!-- 2. Project Brief Document Element -->
+      <div class="relative size-20 rounded-2xl bg-gradient-to-br from-[#ff762b]/20 to-[#0a233c] border-2 border-[#ff762b]/50 p-3 shadow-2xl transform transition-transform duration-300 group-hover:scale-110 flex items-center justify-center">
+        <FileText class="size-10 text-[#ff762b]" />
+        <div class="absolute -bottom-2 font-mono text-[9px] font-bold text-black bg-[#ff762b] px-2 py-0.5 rounded-full uppercase">
+          Brief
+        </div>
+      </div>
+      <span class="font-mono text-[11px] font-bold text-[#ddff35]">Project Brief</span>
+    </div>
+
+    <!-- 3. Email Envelope Element -->
+    <div class="flex flex-col items-center text-center space-y-2 group">
+      <div class="relative size-16 rounded-2xl bg-gradient-to-br from-[#061d33] to-[#0a233c] border border-white/20 p-3 shadow-xl transform transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-105 flex items-center justify-center">
+        <Mail class="size-8 text-[#38bdf8]" />
+        <div class="absolute -top-1 -right-1 size-3 rounded-full bg-[#38bdf8] border-2 border-[#0a233c]"></div>
+      </div>
+      <span class="font-mono text-[11px] font-bold text-white">Email Inbox</span>
+      <span class="text-[10px] text-slate-300">Inquiry Form</span>
+    </div>
+
+  </div>
+
+  <!-- Connected Route SVG Curve -->
+  <div class="relative my-4">
+    <svg class="w-full h-8 overflow-visible" viewBox="0 0 300 30" fill="none" stroke="currentColor">
+      <path d="M 40 15 Q 150 35 260 15" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="4 4" />
+      <circle cx="150" cy="22" r="5" fill="#ff762b" class="animate-ping" />
+      <circle cx="150" cy="22" r="3" fill="#ddff35" />
+    </svg>
+  </div>
+
+  <!-- Clear Message Communication Card -->
+  <div class="relative z-10 rounded-2xl bg-white/5 border border-white/10 p-4 text-center space-y-3">
+    <p class="font-body text-xs text-slate-200 leading-relaxed">
+      Share project details, choose your preferred communication channel, and begin the discussion.
+    </p>
+    <div class="flex items-center justify-center gap-3 pt-1">
+      <a 
+        href={whatsappUrl} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 rounded-full bg-[#39c98a] px-4 py-2 text-xs font-semibold text-black hover:bg-[#2fb078] transition-colors"
+      >
+        <MessageSquare class="size-3.5" />
+        <span>WhatsApp</span>
+      </a>
+      <a 
+        href={`mailto:${site.contact.email}`}
+        class="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/20 transition-colors"
+      >
+        <Mail class="size-3.5 text-[#38bdf8]" />
+        <span>Email Us</span>
+      </a>
+    </div>
+  </div>
+</div>

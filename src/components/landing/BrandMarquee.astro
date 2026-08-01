@@ -1,5 +1,121 @@
 ---
-import BrandLogoWall from '../work/BrandLogoWall.astro';
+import { brands } from '../../data/brands';
+import { site } from '../../site.config';
+
+// Filter all 12 active brand logos from source of truth
+const activeBrands = brands.filter(b => b.active && b.logo).map(b => ({
+  name: b.name,
+  logo: b.logo!.startsWith('/') ? `${site.basePath}${b.logo}` : b.logo!,
+  darkContainer: !!b.darkLogoContainer
+}));
+
+// Split into 2 rows of 6 for desktop marquee
+const row1 = activeBrands.slice(0, 6);
+const row2 = activeBrands.slice(6, 12);
 ---
 
-<BrandLogoWall />
+<section id="brand-marquee" class="py-16 sm:py-20 bg-[#061d33] text-white overflow-hidden relative border-t border-b border-white/10">
+  <!-- Soft Ambient Radial Backlight -->
+  <div class="absolute inset-0 bg-radial-gradient from-[#ff762b]/10 via-transparent to-transparent pointer-events-none"></div>
+
+  <div class="max-w-[1280px] mx-auto px-6 sm:px-8 relative z-10 text-center mb-10 space-y-3">
+    <span class="inline-block font-mono text-xs uppercase tracking-widest text-[#ddff35]">
+      Proven Business Partnerships
+    </span>
+    <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+      Brands We Have Supported & Built With
+    </h2>
+    <p class="font-body text-sm sm:text-base text-slate-300 max-w-xl mx-auto">
+      Engagements across e-commerce storefronts, seasonal campaigns, renovation services, immigration and tech platforms.
+    </p>
+  </div>
+
+  <!-- Animated Marquee Track Wrapper (Pause on hover and focus) -->
+  <div class="relative w-full overflow-hidden space-y-4 group cursor-default select-none">
+    <!-- Left & Right Gradient Fades for Smooth Edge Blending -->
+    <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#061d33] to-transparent z-20 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#061d33] to-transparent z-20 pointer-events-none"></div>
+
+    <!-- Desktop Row 1 (Scrolls Left) / Mobile Track -->
+    <div class="flex w-max gap-4 sm:gap-6 animate-marquee-left group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]">
+      {[...row1, ...row1, ...row1].map((b, idx) => (
+        <div class="rounded-2xl border border-white/15 bg-white/5 p-4 sm:p-5 flex items-center justify-center min-w-[160px] sm:min-w-[180px] h-[80px] sm:h-[90px] backdrop-blur-sm transition-all duration-300 hover:border-[#ff762b]/50 hover:bg-white/10 shrink-0">
+          <img
+            src={b.logo}
+            alt={`${b.name} logo`}
+            loading="lazy"
+            decoding="async"
+            width="140"
+            height="50"
+            class="max-h-10 sm:max-h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Desktop Row 2 (Scrolls Right) -->
+    <div class="hidden lg:flex w-max gap-6 animate-marquee-right group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]">
+      {[...row2, ...row2, ...row2].map((b, idx) => (
+        <div class="rounded-2xl border border-white/15 bg-white/5 p-5 flex items-center justify-center min-w-[180px] h-[90px] backdrop-blur-sm transition-all duration-300 hover:border-[#38bdf8]/50 hover:bg-white/10 shrink-0">
+          <img
+            src={b.logo}
+            alt={`${b.name} logo`}
+            loading="lazy"
+            decoding="async"
+            width="140"
+            height="50"
+            class="max-h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Reduced Motion Fallback Static Grid -->
+    <div class="hidden reduced-motion-grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 px-6">
+      {activeBrands.map((b) => (
+        <div class="rounded-2xl border border-white/15 bg-white/5 p-4 flex items-center justify-center min-h-[80px]">
+          <img
+            src={b.logo}
+            alt={`${b.name} logo`}
+            loading="lazy"
+            decoding="async"
+            width="140"
+            height="50"
+            class="max-h-10 w-auto object-contain"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee-left {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-33.333%); }
+  }
+
+  @keyframes marquee-right {
+    0% { transform: translateX(-33.333%); }
+    100% { transform: translateX(0%); }
+  }
+
+  .animate-marquee-left {
+    animation: marquee-left 35s linear infinite;
+  }
+
+  .animate-marquee-right {
+    animation: marquee-right 35s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee-left,
+    .animate-marquee-right {
+      animation: none !important;
+      display: none !important;
+    }
+    .reduced-motion-grid {
+      display: grid !important;
+    }
+  }
+</style>

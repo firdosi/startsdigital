@@ -1,0 +1,122 @@
+---
+import { site } from '../../site.config';
+import { Globe, ShoppingBag, Megaphone, Video, Share2, Search, Bot, Sparkles, CheckCircle2 } from '@lucide/astro';
+
+const deliverables = [
+  {
+    id: 'web-platforms',
+    category: 'WEBSITE DEVELOPMENT',
+    title: 'High-Speed Web Platforms & Storefronts',
+    description: 'Custom Astro and WooCommerce web platforms engineered for zero JavaScript overhead, fast static loading, and high mobile conversion.',
+    image: `${site.basePath}/photography/web-designer-responsive.webp`,
+    alt: 'Responsive website design project output preview',
+    tags: ['Astro Web Architecture', 'WooCommerce E-Commerce', 'Mobile Conversion Layouts']
+  },
+  {
+    id: 'ecommerce-growth',
+    category: 'E-COMMERCE GROWTH',
+    title: 'Product Storefront & Commission Sales',
+    description: 'End-to-end storefront management, inventory alignment, promotional banners, and direct sales handling across e-commerce product lines.',
+    image: `${site.basePath}/photography/creative-campaign-planning.webp`,
+    alt: 'E-Commerce storefront inventory and campaign strategy',
+    tags: ['Storefront Optimization', 'Direct Sales Routing', 'Customer Order Support']
+  },
+  {
+    id: 'paid-ad-campaigns',
+    category: 'PAID ADVERTISING',
+    title: 'Meta & TikTok Direct-Response Campaigns',
+    description: 'Structure ad accounts, scale creative testing, optimize bid strategies, and align custom landing pages for paid acquisition.',
+    image: `${site.basePath}/photography/advertising-creative-production.webp`,
+    alt: 'Paid advertising campaign creative production output',
+    tags: ['Meta & TikTok Ads', 'Creative A/B Testing', 'Landing Page Alignment']
+  },
+  {
+    id: 'video-editing',
+    category: 'CREATIVE CONTENT',
+    title: 'Direct-Response Video Edits & Motion Banners',
+    description: 'Short-form video editing, hook testing, promotional captions, B-roll overlays, and high-converting creative ad scripts.',
+    image: `${site.basePath}/photography/video-editing-workstation.webp`,
+    alt: 'Video editing workstation output timeline frame',
+    tags: ['Short-Form Video Edits', 'Ad Scriptwriting', 'Social Banners']
+  },
+  {
+    id: 'social-publishing',
+    category: 'SOCIAL MEDIA MARKETING',
+    title: 'Social Content & Account Management',
+    description: 'Consistent social publishing, visual post design, brand communication alignment, and inquiry routing for business accounts.',
+    image: `${site.basePath}/photography/smartphone-content-campaign.webp`,
+    alt: 'Smartphone social media content campaign planning frame',
+    tags: ['Social Media Publishing', 'Post Design', 'Inquiry Routing']
+  },
+  {
+    id: 'ai-character-workflows',
+    category: 'AI MARKETING WORKFLOWS',
+    title: 'Private Consistent-Character Video Pipelines',
+    description: 'Private VPS infrastructure for AI character identity generation, voice synthesis, and scale promotional video creation.',
+    image: `${site.basePath}/photography/team-collaboration-workspace.webp`,
+    alt: 'AI character workflow production workspace frame',
+    tags: ['Custom AI Character Identities', 'Voice Synthesis', 'Private VPS Infrastructure']
+  }
+];
+---
+
+<section id="deliverables-gallery" class="py-16 sm:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+  <div class="max-w-[1280px] mx-auto px-6 sm:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <span class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/15 bg-white px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.08em] text-[#ff762b] shadow-xs">
+        <Sparkles class="size-3.5 text-[#ff762b]" />
+        <span>VISUAL DELIVERABLES SHOWCASE</span>
+      </span>
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#061d33] leading-tight">
+        What Starts Digital Builds, Manages and Improves
+      </h2>
+      <p class="font-body text-base sm:text-lg text-slate-700 max-w-2xl mx-auto leading-relaxed">
+        Explore visual deliverables across our core capability areas, featuring real output examples.
+      </p>
+    </div>
+
+    <!-- Editorial Deliverables Showcase Grid with Real Visual Examples -->
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {deliverables.map((item) => (
+        <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white overflow-hidden flex flex-col justify-between shadow-lg hover:shadow-xl transition-all duration-300 group">
+          <!-- Visual Deliverable Preview Frame -->
+          <div class="relative aspect-video w-full overflow-hidden bg-[#061d33]">
+            <img 
+              src={item.image} 
+              alt={item.alt} 
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="534"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#061d33]/80 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 font-mono text-[10px] font-bold uppercase tracking-wider bg-[#061d33]/80 text-[#ddff35] px-2.5 py-1 rounded-md border border-[#ddff35]/30">
+              {item.category}
+            </span>
+          </div>
+
+          <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+            <div class="space-y-2">
+              <h3 class="font-heading font-bold text-xl text-[#061d33] leading-snug">
+                {item.title}
+              </h3>
+              <p class="font-body text-xs text-slate-600 leading-relaxed font-normal">
+                {item.description}
+              </p>
+            </div>
+
+            <div class="space-y-1.5 border-t border-slate-100 pt-4">
+              {item.tags.map((tag) => (
+                <div class="flex items-center gap-2 text-[11px] font-body text-slate-700">
+                  <CheckCircle2 class="size-3 text-[#ff762b] shrink-0" />
+                  <span>{tag}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/ui/Container.astro';
-import Faq from '../components/landing/Faq.astro';
+import Contact3DVisual from '../components/contact/Contact3DVisual.astro';
 import MotionController from '../components/common/MotionController.astro';
 import { site } from '../site.config';
 import { getContactAllowlistMap } from '../data/services';
@@ -38,6 +38,11 @@ const preselectedService = (initialService && SERVICE_ALLOWLIST[initialService])
       <p class="font-body text-[16px] sm:text-[18px] text-slate-200 max-w-[700px] mx-auto leading-[1.65] font-normal">
         Share your business goals, current challenges and the support you need. Your project brief can be opened directly in WhatsApp or email.
       </p>
+
+      <!-- 3D Contact Communication Visual Scene -->
+      <div class="pt-4 max-w-md mx-auto">
+        <Contact3DVisual />
+      </div>
     </Container>
   </section>
 
@@ -103,21 +108,8 @@ const preselectedService = (initialService && SERVICE_ALLOWLIST[initialService])
             </div>
           </a>
 
-          <!-- Expectations & Communication Picture Composition -->
-          <div class="rounded-3xl overflow-hidden border border-[#061d33]/15 shadow-xl bg-white p-2">
-            <picture>
-              <source srcset={`${site.basePath}/visuals/contact-communication-composition.avif`} type="image/avif" />
-              <img
-                src={`${site.basePath}/visuals/contact-communication-composition.webp`}
-                alt="Starts Digital Generic Project Inquiry Routing Interface"
-                width="800"
-                height="600"
-                loading="lazy"
-                decoding="async"
-                class="w-full h-auto object-cover rounded-2xl"
-              />
-            </picture>
-          </div>
+          <!-- 3D Contact Communication Visual Scene -->
+          <Contact3DVisual />
         </div>
 
         <!-- Right Column: Structured Project Brief Form -->
@@ -424,8 +416,37 @@ const preselectedService = (initialService && SERVICE_ALLOWLIST[initialService])
     </Container>
   </section>
 
-  <!-- FAQ Section -->
-  <Faq />
+  {/* Unique Contact Page FAQ Section */}
+  <section id="contact-faq" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="max-w-[1280px] px-6 sm:px-8">
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <span class="text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ff762b]">CONTACT HELP</span>
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight">
+          Common Questions Before Reaching Out
+        </h2>
+      </div>
+      <div class="max-w-4xl mx-auto space-y-4">
+        <details open class="group rounded-3xl border border-[#061d33]/12 bg-white overflow-hidden shadow-xs p-6">
+          <summary class="font-heading font-semibold text-lg text-[#061d33] cursor-pointer list-none flex justify-between items-center">
+            How fast will Starts Digital respond to my inquiry?
+            <span class="text-[#ff762b] font-bold group-open:rotate-180 transition-transform">↓</span>
+          </summary>
+          <p class="text-slate-600 font-body text-base mt-3 leading-relaxed">
+            WhatsApp messages are typically reviewed within hours. Email briefs are reviewed and responded to within 1 business day.
+          </p>
+        </details>
+        <details class="group rounded-3xl border border-[#061d33]/12 bg-white overflow-hidden shadow-xs p-6">
+          <summary class="font-heading font-semibold text-lg text-[#061d33] cursor-pointer list-none flex justify-between items-center">
+            Do I need a finalized scope before contacting you?
+            <span class="text-[#ff762b] font-bold group-open:rotate-180 transition-transform">↓</span>
+          </summary>
+          <p class="text-slate-600 font-body text-base mt-3 leading-relaxed">
+            No. Simply select "Not Sure Yet" or share your general business goal, and we will help clarify requirements during initial scope review.
+          </p>
+        </details>
+      </div>
+    </Container>
+  </section>
 
   <MotionController />
 

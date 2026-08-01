@@ -2,8 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getPublishedServices } from '../../data/services';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
-import Process from '../../components/landing/Process.astro';
-import PlatformGrid from '../../components/landing/PlatformGrid.astro';
 import MotionController from '../../components/common/MotionController.astro';
 import AnimatedGrid from '../../components/motion/AnimatedGrid.astro';
 import FloatingOrb from '../../components/motion/FloatingOrb.astro';
@@ -15,7 +13,6 @@ import {
   ChevronDown,
   CheckCircle2,
   Megaphone,
-  Layout,
   Search,
   Video,
   Share2,
@@ -23,6 +20,7 @@ import {
 } from '@lucide/astro';
 
 import LightweightVisual3D from '../../components/visuals/LightweightVisual3D.astro';
+import Services3DEcosystem from '../../components/services/Services3DEcosystem.astro';
 
 const visualTypeMap: Record<string, any> = {
   'paid-advertising': 'service-ad',
@@ -31,15 +29,6 @@ const visualTypeMap: Record<string, any> = {
   'creative-content': 'service-creative',
   'social-media-marketing': 'service-social',
   'ai-marketing-workflows': 'service-ai'
-};
-
-const iconMap: Record<string, any> = {
-  Megaphone,
-  Layout,
-  Search,
-  Video,
-  Share2,
-  Cpu
 };
 
 const engagementPatterns = [
@@ -86,7 +75,7 @@ const generalFaqs = [
 
 <BaseLayout>
   {/* 1. Services Hero */}
-  <section id="services-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
+  <section id="services-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-[260px] sm:pt-[280px] lg:pt-[310px] pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
     <AnimatedGrid opacity={0.10} />
     <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
     <SectionSpark color="orange" size="md" class="top-10 right-[8%] pointer-events-none" delay="0s" />
@@ -130,22 +119,9 @@ const generalFaqs = [
           </div>
         </div>
 
-        <!-- Right Column: Services Picture Composition Anchor (5 cols) -->
+        <!-- Right Column: Unique 3D Services Ecosystem Anchor (5 cols) -->
         <div class="lg:col-span-5">
-          <div class="rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-white/5 p-2 backdrop-blur-md">
-            <picture>
-              <source srcset={`${site.basePath}/visuals/services-overview-composition.avif`} type="image/avif" />
-              <img
-                src={`${site.basePath}/visuals/services-overview-composition.webp`}
-                alt="Starts Digital Multi-Device Service Delivery Interface Composition"
-                width="800"
-                height="600"
-                loading="eager"
-                decoding="async"
-                class="w-full h-auto object-cover rounded-2xl"
-              />
-            </picture>
-          </div>
+          <Services3DEcosystem />
         </div>
 
       </div>
@@ -297,11 +273,31 @@ const generalFaqs = [
     </div>
   </section>
 
-  {/* 5. Working Method */}
-  <Process />
+  {/* 5. Service Delivery Process */}
+  <section id="service-process" class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 text-center space-y-4">
+      <SectionEyebrow label="SERVICE DELIVERY METHOD" align="center" motion={false} />
+      <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight">
+        Structured Service Delivery from Brief to Review
+      </h2>
+      <p class="text-base text-slate-700 font-body leading-relaxed max-w-2xl mx-auto">
+        Every service engagement follows documented requirements, scope confirmation, production execution, and performance review.
+      </p>
+    </div>
+  </section>
 
-  {/* 6. Platforms and Tools */}
-  <PlatformGrid />
+  {/* 6. Supported Platforms & Environments */}
+  <section id="service-platforms" class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 text-center space-y-4">
+      <SectionEyebrow label="TECHNICAL ENVIRONMENTS" align="center" motion={false} />
+      <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight">
+        Platforms, Tools and Ad Systems We Manage
+      </h2>
+      <p class="text-base text-slate-700 font-body leading-relaxed max-w-2xl mx-auto">
+        Our team configures and optimizes Meta Ads, Google Ads, TikTok Ads, Astro, WooCommerce, Shopify, Google Analytics 4 and custom AI API workflows.
+      </p>
+    </div>
+  </section>
 
   {/* 7. Service FAQ & Explore Work Link */}
   <section id="services-faq" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44">
