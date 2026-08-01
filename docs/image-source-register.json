@@ -1,0 +1,172 @@
+{
+  "roadmap": "9.1",
+  "generatedAt": "2026-08-01T15:46:29.097Z",
+  "totalAssets": 9,
+  "licenceSummary": "All photos sourced under Unsplash Licence (free for commercial use, no attribution required).",
+  "images": [
+    {
+      "id": "team-collaboration-workspace",
+      "localWebpPath": "public/photography/team-collaboration-workspace.webp",
+      "localAvifPath": "public/photography/team-collaboration-workspace.avif",
+      "canonicalUrl": "https://unsplash.com/photos/group-of-people-sitting-indoors-1522071820081-009f0129c71c",
+      "directUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
+      "sourceWebsite": "Unsplash",
+      "photographer": "Annie Spratt",
+      "licence": "Unsplash Licence (Free Commercial Use)",
+      "description": "Collaborative agency workspace photography",
+      "usedOn": [
+        "about",
+        "homepage"
+      ],
+      "altText": "Illustrative team collaboration photography",
+      "webpSizeBytes": 47030,
+      "avifSizeBytes": 48726
+    },
+    {
+      "id": "web-designer-responsive",
+      "localWebpPath": "public/photography/web-designer-responsive.webp",
+      "localAvifPath": "public/photography/web-designer-responsive.avif",
+      "canonicalUrl": "https://unsplash.com/photos/man-working-on-laptop-1507238691740-187a5b1d37b8",
+      "directUrl": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1200&auto=format&fit=crop",
+      "sourceWebsite": "Unsplash",
+      "photographer": "Ben Kolde",
+      "licence": "Unsplash Licence (Free Commercial Use)",
+      "description": "Web designer working on responsive layout",
+      "usedOn": [
+        "work",
+        "homepage",
+        "services"
+      ],
+      "altText": "Website design and development work",
+      "webpSizeBytes": 98812,
+      "avifSizeBytes": 96814
+    },
+    {
+      "id": "video-editing-workstation",
+      "localWebpPath": "public/photography/video-editing-workstation.webp",
+      "localAvifPath": "public/photography/video-editing-workstation.avif",
+      "canonicalUrl": "https://unsplash.com/photos/video-editing-monitor-1574717024653-61fd2cf4d44d",
+      "directUrl": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1200&auto=format&fit=crop",
+      "sourceWebsite": "Unsplash",
+      "photographer": "Goran Ivos",
+      "licence": "Unsplash Licence (Free Commercial Use)",
+      "description": "Video editing software workstation",
+      "usedOn": [
+        "work",
+        "services"
+      ],
+      "altText": "Video editing and production workflow",
+      "webpSizeBytes": 31530,
+      "avifSizeBytes": 30159
+    },
+    {
+      "id": "advertising-creative-production",
+      "localWebpPath": "public/photography/advertising-creative-production.webp",
+      "localAvifPath": "public/photography/advertising-creative-production.avif",
+      "canonicalUrl": "https://unsplash.com/photos/creative-strategy-meeting-1542744173-8e7e53415bb0",
+      "directUrl": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop",
+      "sourceWebsite": "Unsplash",
+      "photographer": "Campaign Creators",
+      "licence": "Unsplash Licence (Free Commercial Use)",
+      "description": "Advertising creative production and strategy",
+      "usedOn": [
+        "work",
+        "homepage",
+        "services"
+      ],
+      "altText": "Advertising and creative production work",
+      "webpSizeBytes": 57158,
+      "avifSizeBytes": 55767
+    },
+    {
+      "id": "creative-campaign-planning",
+      "localWebpPath": "public/photography/creative-campaign-planning.webp",
+      "localAvifPath": "public/photography/creative-campaign-planning.avif",
+      "canonicalUrl": "https://unsplash.com/photos/wireframing-ui-ux-design-1531403009284-440f080d1e12",
+      "directUrl": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1200&auto=format&fit=crop",
+      "sourceWebsite": "Unsplash",
+      "photographer": "UX Store",
+      "licence": "Unsplash Licence (Free Commercial Use)",
+      "description": "Creative campaign planning and wireframing",
+      "usedOn": [
+        "about",
+        "services"
+      ],
+      "altText": "Illustrative creative and campaign planning workspace",
+      "webpSizeBytes": 26312,
+      "avifSizeBytes": 28568
+    },
+    {
+      "id": "smartphone-content-campaign",
+      "localWebpPath": "public/photography/smartphone-content-campaign.webp",
+      "localAvifPath": "public/photography/smartphone-content-campaign.avif",
+      "canonicalUrl": "https://unsplash.com/photos/person-holding-smartphone-1512941937669-90a1b58e7e9c",
+      "directUrl": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop",
+      "sourceWebsite": "Unsplash",
+      "photographer": "Firmbee",
+      "licence": "Unsplash Licence (Free Commercial Use)",
+      "description": "Mobile social media content campaign",
+      "usedOn": [
+        "homepage",
+        "services"
+      ],
+      "altText": "Illustrative mobile content campaign photography",
+      "webpSizeBytes": 33126,
+      "avifSizeBytes": 32505
+    },
+    {
+      "id": "ecommerce-product-fulfillment",
+      "localWebpPath": "public/photography/ecommerce-product-fulfillment.webp",
+      "localAvifPath": "public/photography/ecommerce-product-fulfillment.avif",
+      "canonicalUrl": "https://unsplash.com/photos/cardboard-boxes-in-warehouse-1586528116311-ad8dd3c8310d",
+      "directUrl": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop",
+      "sourceWebsite": "Unsplash",
+      "photographer": "Petr Magera",
+      "licence": "Unsplash Licence (Free Commercial Use)",
+      "description": "E-commerce product fulfillment and store operations",
+      "usedOn": [
+        "industries",
+        "homepage"
+      ],
+      "altText": "Illustrative e-commerce product logistics and fulfillment",
+      "webpSizeBytes": 144448,
+      "avifSizeBytes": 133182
+    },
+    {
+      "id": "local-service-marketing",
+      "localWebpPath": "public/photography/local-service-marketing.webp",
+      "localAvifPath": "public/photography/local-service-marketing.avif",
+      "canonicalUrl": "https://unsplash.com/photos/map-location-pins-1526778548025-fa2f459cd5c1",
+      "directUrl": "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1200&auto=format&fit=crop",
+      "sourceWebsite": "Unsplash",
+      "photographer": "Glenn Carstens-Peters",
+      "licence": "Unsplash Licence (Free Commercial Use)",
+      "description": "Local business map and search location strategy",
+      "usedOn": [
+        "industries",
+        "services"
+      ],
+      "altText": "Illustrative local search and location marketing strategy",
+      "webpSizeBytes": 55964,
+      "avifSizeBytes": 68938
+    },
+    {
+      "id": "ai-creative-studio",
+      "localWebpPath": "public/photography/ai-creative-studio.webp",
+      "localAvifPath": "public/photography/ai-creative-studio.avif",
+      "canonicalUrl": "https://unsplash.com/photos/abstract-3d-digital-art-1618005182384-a83a8bd57fbe",
+      "directUrl": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
+      "sourceWebsite": "Unsplash",
+      "photographer": "Milad Fakurian",
+      "licence": "Unsplash Licence (Free Commercial Use)",
+      "description": "AI creative studio digital artwork generation",
+      "usedOn": [
+        "work",
+        "services"
+      ],
+      "altText": "Illustrative AI creative generation artwork",
+      "webpSizeBytes": 10026,
+      "avifSizeBytes": 9116
+    }
+  ]
+}
