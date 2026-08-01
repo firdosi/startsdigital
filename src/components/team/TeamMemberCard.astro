@@ -88,7 +88,7 @@ const isAbout = variant === 'about';
 
     <!-- Biography (Approved Bio) -->
     <p class="text-sm sm:text-base text-slate-700 font-body leading-relaxed">
-      {member.shortBio}
+      {!isAbout && member.homepageBio ? member.homepageBio : member.shortBio}
     </p>
 
   </div>

@@ -3,6 +3,7 @@ export interface TeamMember {
   name: string;
   role: string;
   shortBio: string;
+  homepageBio?: string;
   responsibilities: string[];
   image?: string;
   imageApproved?: boolean;
@@ -20,6 +21,7 @@ export const teamMembers: TeamMember[] = [
     name: 'Ahad Firdosi',
     role: 'Owner & CEO',
     shortBio: 'Ahad leads project planning, digital marketing execution and team coordination across Starts Digital client work.',
+    homepageBio: 'Ahad leads project planning, campaign strategy and client communication.',
     responsibilities: [
       'Project Management',
       'Digital Marketing',
@@ -38,6 +40,7 @@ export const teamMembers: TeamMember[] = [
     name: 'Meesam',
     role: 'Video Editor & Graphic Designer',
     shortBio: 'Meesam produces video edits and graphic assets for advertising, social media and brand communication.',
+    homepageBio: 'Meesam produces video edits, social graphics and advertising creatives.',
     responsibilities: [
       'Video Editing',
       'Graphic Design'
@@ -55,6 +58,7 @@ export const teamMembers: TeamMember[] = [
     name: 'Zaid',
     role: 'Developer',
     shortBio: 'Zaid supports UI/UX design and full-stack development for Starts Digital websites and digital products.',
+    homepageBio: 'Zaid engineers frontend interfaces, web applications and site infrastructure.',
     responsibilities: [
       'UI/UX Design',
       'Full Stack Development'
