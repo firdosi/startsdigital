@@ -1,27 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/ui/Container.astro';
+import WorkLayeredHeroCanvas from '../../components/work/WorkLayeredHeroCanvas.astro';
 import WorkDeliverablesGallery from '../../components/work/WorkDeliverablesGallery.astro';
 import WorkResultsSection from '../../components/work/WorkResultsSection.astro';
 import AIWorkflowStory from '../../components/landing/AIWorkflowStory.astro';
 import AnimatedGrid from '../../components/motion/AnimatedGrid.astro';
 import FloatingOrb from '../../components/motion/FloatingOrb.astro';
 import { site } from '../../site.config';
-import { 
-  ArrowRight, 
-  MessageSquare, 
-  Megaphone, 
-  Globe, 
-  Search, 
-  Video, 
-  Share2, 
-  Bot,
-  Sparkles,
-  Layers,
-  CheckCircle2,
-  MapPin,
-  ShoppingBag
-} from '@lucide/astro';
+import { ArrowRight, MessageSquare } from '@lucide/astro';
 
 const genericWhatsappMsg = encodeURIComponent('Hello Starts Digital, I would like to discuss a new digital marketing project.');
 const whatsappUrl = `${site.contact.whatsapp}?text=${genericWhatsappMsg}`;
@@ -51,116 +38,51 @@ const processSteps = [
 ---
 
 <BaseLayout>
-  <!-- 1. WORK HERO (Clean straight transition, zero white cuts / clipping) -->
+  <!-- 1. WORK HERO (Layered Editorial Canvas, zero dashboard bars, zero statistics) -->
   <section id="work-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl">
     <AnimatedGrid opacity={0.10} />
     <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
 
-    <Container class="max-w-[1280px] px-6 sm:px-8 relative z-10">
-      <div class="grid gap-12 lg:grid-cols-12 items-center">
-        <!-- Hero Text Column -->
-        <div class="lg:col-span-7 space-y-6 text-left">
-          <div class="inline-flex items-center gap-2">
-            <span class="w-7 h-[2px] bg-[#ff762b] shrink-0" aria-hidden="true"></span>
-            <span class="font-mono font-semibold text-xs sm:text-sm uppercase tracking-[0.08em] text-[#ff762b]">
-              DIGITAL DELIVERABLES & EXECUTION
-            </span>
-          </div>
-
-          <h1 class="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[60px] leading-[1.08] tracking-[-0.035em] text-white">
-            Work Built Around Real Business Goals.
-          </h1>
-
-          <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal max-w-2xl">
-            Explore how Starts Digital connects advertising, websites, creative production, social media, search visibility and AI-supported workflows.
-          </p>
-
-          <div class="pt-2 flex flex-wrap gap-4 items-center font-body">
-            <a
-              href={`${site.basePath}/contact/`}
-              class="inline-flex items-center gap-2.5 rounded-full bg-[#ff762b] px-7 py-3.5 text-sm font-semibold text-white shadow-lg hover:bg-[#e0611a] hover:shadow-xl transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
-            >
-              <span>Discuss Your Project</span>
-              <ArrowRight class="size-4" />
-            </a>
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-medium text-white hover:bg-white/20 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              <MessageSquare class="size-4 text-[#39c98a]" />
-              <span>WhatsApp Direct</span>
-            </a>
-          </div>
+    <Container class="max-w-[1280px] px-6 sm:px-8 relative z-10 space-y-12">
+      <!-- Hero Text Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-6">
+        <div class="inline-flex items-center gap-2">
+          <span class="w-7 h-[2px] bg-[#ff762b] shrink-0" aria-hidden="true"></span>
+          <span class="font-mono font-semibold text-xs sm:text-sm uppercase tracking-[0.08em] text-[#ff762b]">
+            DIGITAL DELIVERABLES & EXECUTION
+          </span>
         </div>
 
-        <!-- Layered Animated Creative Deliverables Collage (NO Statistics Inside Hero Visual!) -->
-        <div class="lg:col-span-5">
-          <div class="relative w-full max-w-[480px] aspect-[4/3] mx-auto rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl shadow-2xl flex flex-col justify-between space-y-4">
-            
-            <!-- Top Bar -->
-            <div class="flex items-center justify-between border-b border-white/10 pb-3">
-              <div class="flex items-center gap-2">
-                <span class="size-2.5 rounded-full bg-[#ff762b]"></span>
-                <span class="font-mono text-xs font-bold text-white uppercase">Deliverables Collage</span>
-              </div>
-              <span class="font-mono text-[10px] text-[#ddff35] px-2.5 py-0.5 rounded-full bg-[#ddff35]/10 border border-[#ddff35]/20">
-                6 Capabilities
-              </span>
-            </div>
+        <h1 class="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[60px] leading-[1.08] tracking-[-0.035em] text-white">
+          Work Built Around Real Business Goals
+        </h1>
 
-            <!-- Layered Deliverable Elements Grid -->
-            <div class="grid grid-cols-2 gap-3 my-auto">
-              <!-- Element 1: Website Frame -->
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-3 space-y-2">
-                <div class="flex items-center gap-2 text-[#38bdf8]">
-                  <Globe class="size-4" />
-                  <span class="font-mono text-[10px] font-bold text-white uppercase">Astro Web</span>
-                </div>
-                <div class="h-2 w-3/4 rounded bg-white/20"></div>
-                <div class="h-2 w-1/2 rounded bg-sky-400/40"></div>
-              </div>
+        <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal max-w-2xl mx-auto">
+          Explore how Starts Digital connects advertising, websites, creative production, social media, search visibility and AI-supported workflows.
+        </p>
 
-              <!-- Element 2: Mobile Storefront -->
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-3 space-y-2">
-                <div class="flex items-center gap-2 text-[#ff762b]">
-                  <ShoppingBag class="size-4" />
-                  <span class="font-mono text-[10px] font-bold text-white uppercase">Storefront</span>
-                </div>
-                <div class="h-2 w-4/5 rounded bg-white/20"></div>
-                <div class="h-2 w-2/3 rounded bg-[#ff762b]/40"></div>
-              </div>
-
-              <!-- Element 3: Video Cut -->
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-3 space-y-2">
-                <div class="flex items-center gap-2 text-purple-400">
-                  <Video class="size-4" />
-                  <span class="font-mono text-[10px] font-bold text-white uppercase">Video Edit</span>
-                </div>
-                <div class="h-2 w-3/4 rounded bg-white/20"></div>
-                <div class="h-2 w-1/2 rounded bg-purple-400/40"></div>
-              </div>
-
-              <!-- Element 4: AI Avatar Tile -->
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-3 space-y-2">
-                <div class="flex items-center gap-2 text-[#ddff35]">
-                  <Bot class="size-4" />
-                  <span class="font-mono text-[10px] font-bold text-white uppercase">AI Avatar</span>
-                </div>
-                <div class="h-2 w-4/5 rounded bg-white/20"></div>
-                <div class="h-2 w-2/3 rounded bg-[#ddff35]/40"></div>
-              </div>
-            </div>
-
-            <!-- Footer Badge -->
-            <div class="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-300">
-              <span>Integrated Execution</span>
-              <span class="text-[#39c98a] font-bold">Multi-Channel</span>
-            </div>
-          </div>
+        <div class="pt-2 flex flex-wrap justify-center gap-4 items-center font-body">
+          <a
+            href={`${site.basePath}/contact/`}
+            class="inline-flex items-center gap-2.5 rounded-full bg-[#ff762b] px-7 py-3.5 text-sm font-semibold text-white shadow-lg hover:bg-[#e0611a] hover:shadow-xl transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
+          >
+            <span>Discuss Your Project</span>
+            <ArrowRight class="size-4" />
+          </a>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-medium text-white hover:bg-white/20 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            <MessageSquare class="size-4 text-[#39c98a]" />
+            <span>WhatsApp Direct</span>
+          </a>
         </div>
       </div>
+
+      <!-- Layered Editorial Creative Deliverables Canvas (NO dashboard panel!) -->
+      <WorkLayeredHeroCanvas />
     </Container>
   </section>
 

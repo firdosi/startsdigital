@@ -1,109 +1,140 @@
 ---
 import { site } from '../../site.config';
-import { Megaphone, Globe, Search, Video, Share2, Bot, Sparkles } from '@lucide/astro';
+import { Megaphone, Globe, Search, Video, Share2, Bot, Sparkles, Code, MapPin, Camera, MessageSquare, Cpu } from '@lucide/astro';
 
 const ecosystemNodes = [
   {
     id: 'paid-ad',
-    title: 'Paid Ads',
+    title: 'Paid Advertising',
+    subtitle: 'Megaphone & Ad Card',
     slug: 'paid-advertising',
     href: '/services/paid-advertising/',
-    icon: Megaphone,
+    primaryIcon: Megaphone,
+    secondaryIcon: Sparkles,
     color: 'text-[#ff762b]',
-    border: 'border-[#ff762b]/40',
-    bg: 'bg-[#ff762b]/15',
-    position: 'top-0 left-4 sm:top-2 sm:left-6'
+    border: 'border-[#ff762b]/50',
+    bg: 'bg-gradient-to-br from-[#ff762b]/20 to-[#0a233c]',
+    position: 'top-0 left-2 sm:top-0 sm:left-4',
+    transform: 'hover:-translate-y-2 hover:rotate-2 hover:scale-105'
   },
   {
     id: 'web-dev',
-    title: 'Websites',
+    title: 'Website Development',
+    subtitle: 'Browser & Code Brackets',
     slug: 'website-design-development',
     href: '/services/website-design-development/',
-    icon: Globe,
+    primaryIcon: Globe,
+    secondaryIcon: Code,
     color: 'text-[#38bdf8]',
-    border: 'border-[#38bdf8]/40',
-    bg: 'bg-[#38bdf8]/15',
-    position: 'top-0 right-4 sm:top-2 sm:right-6'
+    border: 'border-[#38bdf8]/50',
+    bg: 'bg-gradient-to-br from-[#38bdf8]/20 to-[#0a233c]',
+    position: 'top-0 right-2 sm:top-0 sm:right-4',
+    transform: 'hover:-translate-y-2 hover:-rotate-2 hover:scale-105'
   },
   {
     id: 'seo-rank',
-    title: 'SEO & Maps',
+    title: 'SEO & Local Search',
+    subtitle: 'Search Lens & Map Pin',
     slug: 'seo-local-search',
     href: '/services/seo-local-search/',
-    icon: Search,
+    primaryIcon: Search,
+    secondaryIcon: MapPin,
     color: 'text-[#39c98a]',
-    border: 'border-[#39c98a]/40',
-    bg: 'bg-[#39c98a]/15',
-    position: 'top-1/2 -left-2 sm:-left-4 -translate-y-1/2'
+    border: 'border-[#39c98a]/50',
+    bg: 'bg-gradient-to-br from-[#39c98a]/20 to-[#0a233c]',
+    position: 'top-1/2 -left-3 sm:-left-6 -translate-y-1/2',
+    transform: 'hover:translate-x-2 hover:scale-105'
   },
   {
     id: 'creative-video',
-    title: 'Creative Video',
+    title: 'Creative Content',
+    subtitle: 'Camera & Video Timeline',
     slug: 'creative-content',
     href: '/services/creative-content/',
-    icon: Video,
+    primaryIcon: Camera,
+    secondaryIcon: Video,
     color: 'text-purple-400',
-    border: 'border-purple-500/40',
-    bg: 'bg-purple-500/15',
-    position: 'top-1/2 -right-2 sm:-right-4 -translate-y-1/2'
+    border: 'border-purple-500/50',
+    bg: 'bg-gradient-to-br from-purple-500/20 to-[#0a233c]',
+    position: 'top-1/2 -right-3 sm:-right-6 -translate-y-1/2',
+    transform: 'hover:-translate-x-2 hover:scale-105'
   },
   {
     id: 'social-media',
     title: 'Social Media',
+    subtitle: 'Connected Posts & Chat Bubbles',
     slug: 'social-media-marketing',
     href: '/services/social-media-marketing/',
-    icon: Share2,
+    primaryIcon: Share2,
+    secondaryIcon: MessageSquare,
     color: 'text-pink-400',
-    border: 'border-pink-500/40',
-    bg: 'bg-pink-500/15',
-    position: 'bottom-0 left-4 sm:bottom-2 sm:left-6'
+    border: 'border-pink-500/50',
+    bg: 'bg-gradient-to-br from-pink-500/20 to-[#0a233c]',
+    position: 'bottom-0 left-2 sm:bottom-0 sm:left-4',
+    transform: 'hover:translate-y-2 hover:-rotate-2 hover:scale-105'
   },
   {
     id: 'ai-workflows',
     title: 'AI Workflows',
+    subtitle: 'Neural Nodes & Avatar Tile',
     slug: 'ai-marketing-workflows',
     href: '/services/ai-marketing-workflows/',
-    icon: Bot,
+    primaryIcon: Bot,
+    secondaryIcon: Cpu,
     color: 'text-[#ddff35]',
-    border: 'border-[#ddff35]/40',
-    bg: 'bg-[#ddff35]/15',
-    position: 'bottom-0 right-4 sm:bottom-2 sm:right-6'
+    border: 'border-[#ddff35]/50',
+    bg: 'bg-gradient-to-br from-[#ddff35]/20 to-[#0a233c]',
+    position: 'bottom-0 right-2 sm:bottom-0 sm:right-4',
+    transform: 'hover:translate-y-2 hover:rotate-2 hover:scale-105'
   }
 ];
 ---
 
-<div class="relative w-full max-w-[480px] aspect-square mx-auto perspective-1000 select-none">
-  <!-- Ambient Orbit Glow -->
-  <div class="absolute inset-4 bg-radial-gradient from-[#ff762b]/15 via-[#ddff35]/10 to-transparent rounded-full blur-2xl opacity-60"></div>
+<div class="relative w-full max-w-[500px] aspect-square mx-auto perspective-1000 select-none py-4">
+  <!-- 3D Depth Backdrop Glow -->
+  <div class="absolute inset-6 bg-radial-gradient from-[#ff762b]/20 via-[#ddff35]/10 to-transparent rounded-full blur-3xl opacity-70"></div>
 
-  <!-- SVG Connecting Orbit Lines -->
-  <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-40" viewBox="0 0 400 400" fill="none">
-    <circle cx="200" cy="200" r="140" stroke="white" stroke-dasharray="6 6" stroke-width="1.5" />
-    <circle cx="200" cy="200" r="90" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="1" />
+  <!-- Perspective Orbit Rings -->
+  <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-40 animate-spin-slow" viewBox="0 0 400 400" fill="none">
+    <circle cx="200" cy="200" r="145" stroke="white" stroke-dasharray="6 6" stroke-width="1.5" />
+    <circle cx="200" cy="200" r="95" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="1" />
   </svg>
 
-  <!-- Central Starts Digital System Core -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-28 sm:size-32 rounded-3xl border-2 border-white/20 bg-[#0c2a4a]/90 backdrop-blur-xl shadow-2xl p-4 flex flex-col items-center justify-center text-center space-y-1 group transform hover:scale-105 transition-transform duration-300">
-    <Sparkles class="size-6 text-[#ddff35]" />
-    <span class="font-heading font-bold text-xs sm:text-sm text-white leading-tight">Starts Digital</span>
-    <span class="font-mono text-[9px] text-slate-300">Service Core</span>
+  <!-- Central System Core Node -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-28 sm:size-36 rounded-3xl border-2 border-white/25 bg-gradient-to-br from-[#0c2a4a] to-[#061d33] backdrop-blur-xl shadow-2xl p-4 flex flex-col items-center justify-center text-center space-y-1.5 z-10 group transform hover:scale-110 transition-transform duration-300">
+    <div class="size-10 rounded-2xl bg-[#ddff35]/20 border border-[#ddff35]/40 flex items-center justify-center">
+      <Sparkles class="size-6 text-[#ddff35]" />
+    </div>
+    <span class="font-heading font-bold text-sm sm:text-base text-white leading-tight">Starts Digital</span>
+    <span class="font-mono text-[10px] text-slate-300">Integrated System</span>
   </div>
 
-  <!-- 6 Floating 3D Ecosystem Nodes (Each links to its Service page!) -->
+  <!-- 6 Physical 3D Service Objects (Each links to its Service page!) -->
   {ecosystemNodes.map((node) => {
-    const IconComponent = node.icon;
+    const PrimaryIcon = node.primaryIcon;
+    const SecondaryIcon = node.secondaryIcon;
     return (
       <a
         href={`${site.basePath}${node.href}`}
         class={`absolute ${node.position} z-20 group`}
       >
-        <div class={`rounded-2xl border-2 ${node.border} ${node.bg} backdrop-blur-md p-3 shadow-xl flex items-center gap-2.5 transform hover:scale-110 transition-transform duration-300 hover:z-30`}>
-          <div class={`size-8 rounded-xl bg-white/10 flex items-center justify-center`}>
-            <IconComponent class={`size-4.5 ${node.color}`} />
+        <div class={`rounded-2xl border-2 ${node.border} ${node.bg} backdrop-blur-xl p-3 sm:p-3.5 shadow-2xl flex items-center gap-3 transition-all duration-300 ${node.transform} hover:z-30`}>
+          <!-- 3D Object Group -->
+          <div class="relative flex items-center justify-center shrink-0">
+            <div class={`size-10 sm:size-11 rounded-xl bg-white/10 flex items-center justify-center border border-white/15 shadow-inner`}>
+              <PrimaryIcon class={`size-5 sm:size-6 ${node.color}`} />
+            </div>
+            <div class="absolute -bottom-1 -right-1 size-5 rounded-md bg-[#061d33] border border-white/30 flex items-center justify-center">
+              <SecondaryIcon class="size-3 text-white" />
+            </div>
           </div>
+          <!-- Label & 3D Description -->
           <div class="hidden sm:block">
-            <span class="font-heading font-bold text-xs text-white group-hover:text-[#ddff35] transition-colors block leading-none">
+            <span class="font-heading font-bold text-xs sm:text-sm text-white group-hover:text-[#ddff35] transition-colors block leading-tight">
               {node.title}
+            </span>
+            <span class="font-mono text-[9px] text-slate-300 block mt-0.5">
+              {node.subtitle}
             </span>
           </div>
         </div>
@@ -115,5 +146,12 @@ const ecosystemNodes = [
 <style>
   .perspective-1000 {
     perspective: 1000px;
+  }
+  @keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .animate-spin-slow {
+    animation: spinSlow 40s linear infinite;
   }
 </style>

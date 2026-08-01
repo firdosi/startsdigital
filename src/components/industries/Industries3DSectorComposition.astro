@@ -1,67 +1,114 @@
 ---
-import { ShoppingBag, Calendar, Wrench, Cpu, Sparkles } from '@lucide/astro';
+import { ShoppingBag, Package, Tag, Calendar, Clock, Award, MapPin, Wrench, Search, Laptop, Cpu, Layers, Sparkles } from '@lucide/astro';
 ---
 
-<div class="relative w-full max-w-[480px] aspect-square mx-auto perspective-1000 select-none">
+<div class="relative w-full max-w-[500px] aspect-square mx-auto perspective-1000 select-none py-4">
   <!-- Ambient Backlight -->
-  <div class="absolute inset-4 bg-radial-gradient from-[#ff762b]/15 via-[#39c98a]/10 to-transparent rounded-full blur-2xl opacity-60"></div>
+  <div class="absolute inset-6 bg-radial-gradient from-[#ff762b]/20 via-[#39c98a]/15 to-transparent rounded-full blur-3xl opacity-70"></div>
 
-  <!-- Central System Core -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-28 sm:size-32 rounded-3xl border-2 border-white/20 bg-[#0c2a4a]/90 backdrop-blur-xl shadow-2xl p-4 flex flex-col items-center justify-center text-center space-y-1 transform hover:scale-105 transition-transform duration-300">
-    <Sparkles class="size-6 text-[#ff762b]" />
-    <span class="font-heading font-bold text-xs sm:text-sm text-white leading-tight">Sector Architecture</span>
-    <span class="font-mono text-[9px] text-slate-300">4 Core Models</span>
+  <!-- Central Sector System Core -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-28 sm:size-36 rounded-3xl border-2 border-white/25 bg-gradient-to-br from-[#0c2a4a] to-[#061d33] backdrop-blur-xl shadow-2xl p-4 flex flex-col items-center justify-center text-center space-y-1.5 z-10 transform hover:scale-110 transition-transform duration-300">
+    <div class="size-10 rounded-2xl bg-[#ff762b]/20 border border-[#ff762b]/40 flex items-center justify-center">
+      <Sparkles class="size-6 text-[#ff762b]" />
+    </div>
+    <span class="font-heading font-bold text-sm sm:text-base text-white leading-tight">Sector Systems</span>
+    <span class="font-mono text-[10px] text-slate-300">4 Tailored Models</span>
   </div>
 
-  <!-- 4 3D Sector Objects -->
-  <!-- Object 1: E-Commerce Package (Top-Left) -->
-  <div class="absolute top-4 left-4 z-20 transform -rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
-    <div class="rounded-2xl border-2 border-[#ff762b]/40 bg-[#ff762b]/15 backdrop-blur-md p-4 shadow-xl flex items-center gap-3">
-      <div class="size-10 rounded-xl bg-[#ff762b] text-white flex items-center justify-center font-bold shadow-md">
-        <ShoppingBag class="size-5" />
+  <!-- 4 Physical 3D Sector Objects -->
+
+  <!-- 1. E-Commerce Sector Object Group (Top-Left) -->
+  <div class="absolute top-2 left-2 sm:top-2 sm:left-2 z-20 transform -rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
+    <div class="rounded-2xl border-2 border-[#ff762b]/50 bg-gradient-to-br from-[#ff762b]/20 to-[#0a233c] backdrop-blur-xl p-3.5 sm:p-4 shadow-2xl space-y-2.5">
+      <div class="flex items-center gap-3">
+        <div class="relative flex items-center justify-center">
+          <div class="size-10 sm:size-11 rounded-xl bg-[#ff762b] text-white flex items-center justify-center font-bold shadow-md">
+            <Package class="size-5 sm:size-6" />
+          </div>
+          <div class="absolute -bottom-1 -right-1 size-5 rounded-md bg-[#061d33] border border-white/30 flex items-center justify-center">
+            <ShoppingBag class="size-3 text-[#ff762b]" />
+          </div>
+        </div>
+        <div>
+          <span class="font-heading text-xs sm:text-sm font-bold text-white block leading-tight">E-Commerce Brands</span>
+          <span class="font-mono text-[9px] text-slate-300 block mt-0.5">Package, Bag & Storefront Tag</span>
+        </div>
       </div>
-      <div>
-        <span class="font-mono text-[10px] uppercase text-slate-300 block">E-Commerce</span>
-        <span class="font-heading text-xs font-bold text-white">Product Brands</span>
+      <div class="flex items-center gap-1.5 pt-1 border-t border-white/10 text-[10px] font-mono text-[#ff762b]">
+        <Tag class="size-3" />
+        <span>Product Retail & Conversion</span>
       </div>
     </div>
   </div>
 
-  <!-- Object 2: Seasonal Calendar (Top-Right) -->
-  <div class="absolute top-4 right-4 z-20 transform rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
-    <div class="rounded-2xl border-2 border-[#ddff35]/40 bg-[#ddff35]/15 backdrop-blur-md p-4 shadow-xl flex items-center gap-3">
-      <div class="size-10 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center font-bold shadow-md">
-        <Calendar class="size-5" />
+  <!-- 2. Seasonal Campaigns Sector Object Group (Top-Right) -->
+  <div class="absolute top-2 right-2 sm:top-2 sm:right-2 z-20 transform rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
+    <div class="rounded-2xl border-2 border-[#ddff35]/50 bg-gradient-to-br from-[#ddff35]/20 to-[#0a233c] backdrop-blur-xl p-3.5 sm:p-4 shadow-2xl space-y-2.5">
+      <div class="flex items-center gap-3">
+        <div class="relative flex items-center justify-center">
+          <div class="size-10 sm:size-11 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center font-bold shadow-md">
+            <Calendar class="size-5 sm:size-6" />
+          </div>
+          <div class="absolute -bottom-1 -right-1 size-5 rounded-md bg-[#061d33] border border-white/30 flex items-center justify-center">
+            <Clock class="size-3 text-[#ddff35]" />
+          </div>
+        </div>
+        <div>
+          <span class="font-heading text-xs sm:text-sm font-bold text-white block leading-tight">Seasonal Campaigns</span>
+          <span class="font-mono text-[9px] text-slate-300 block mt-0.5">Calendar, Countdown & Promo Badge</span>
+        </div>
       </div>
-      <div>
-        <span class="font-mono text-[10px] uppercase text-slate-300 block">Seasonal</span>
-        <span class="font-heading text-xs font-bold text-white">Promotional Windows</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Object 3: Local Service Pin (Bottom-Left) -->
-  <div class="absolute bottom-4 left-4 z-20 transform rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
-    <div class="rounded-2xl border-2 border-[#39c98a]/40 bg-[#39c98a]/15 backdrop-blur-md p-4 shadow-xl flex items-center gap-3">
-      <div class="size-10 rounded-xl bg-[#39c98a] text-white flex items-center justify-center font-bold shadow-md">
-        <Wrench class="size-5" />
-      </div>
-      <div>
-        <span class="font-mono text-[10px] uppercase text-slate-300 block">Local Services</span>
-        <span class="font-heading text-xs font-bold text-white">Contractors & Trades</span>
+      <div class="flex items-center gap-1.5 pt-1 border-t border-white/10 text-[10px] font-mono text-[#ddff35]">
+        <Award class="size-3" />
+        <span>High-Impact Time Windows</span>
       </div>
     </div>
   </div>
 
-  <!-- Object 4: Tech Interface (Bottom-Right) -->
-  <div class="absolute bottom-4 right-4 z-20 transform -rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
-    <div class="rounded-2xl border-2 border-[#38bdf8]/40 bg-[#38bdf8]/15 backdrop-blur-md p-4 shadow-xl flex items-center gap-3">
-      <div class="size-10 rounded-xl bg-[#38bdf8] text-white flex items-center justify-center font-bold shadow-md">
-        <Cpu class="size-5" />
+  <!-- 3. Local Services Sector Object Group (Bottom-Left) -->
+  <div class="absolute bottom-2 left-2 sm:bottom-2 sm:left-2 z-20 transform rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
+    <div class="rounded-2xl border-2 border-[#39c98a]/50 bg-gradient-to-br from-[#39c98a]/20 to-[#0a233c] backdrop-blur-xl p-3.5 sm:p-4 shadow-2xl space-y-2.5">
+      <div class="flex items-center gap-3">
+        <div class="relative flex items-center justify-center">
+          <div class="size-10 sm:size-11 rounded-xl bg-[#39c98a] text-white flex items-center justify-center font-bold shadow-md">
+            <MapPin class="size-5 sm:size-6" />
+          </div>
+          <div class="absolute -bottom-1 -right-1 size-5 rounded-md bg-[#061d33] border border-white/30 flex items-center justify-center">
+            <Wrench class="size-3 text-[#39c98a]" />
+          </div>
+        </div>
+        <div>
+          <span class="font-heading text-xs sm:text-sm font-bold text-white block leading-tight">Local Service Pros</span>
+          <span class="font-mono text-[9px] text-slate-300 block mt-0.5">Map Pin, Tool & Search Ring</span>
+        </div>
       </div>
-      <div>
-        <span class="font-mono text-[10px] uppercase text-slate-300 block">Technology</span>
-        <span class="font-heading text-xs font-bold text-white">SaaS & Products</span>
+      <div class="flex items-center gap-1.5 pt-1 border-t border-white/10 text-[10px] font-mono text-[#39c98a]">
+        <Search class="size-3" />
+        <span>Google Maps Rank & Leads</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Technology & SaaS Sector Object Group (Bottom-Right) -->
+  <div class="absolute bottom-2 right-2 sm:bottom-2 sm:right-2 z-20 transform -rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
+    <div class="rounded-2xl border-2 border-[#38bdf8]/50 bg-gradient-to-br from-[#38bdf8]/20 to-[#0a233c] backdrop-blur-xl p-3.5 sm:p-4 shadow-2xl space-y-2.5">
+      <div class="flex items-center gap-3">
+        <div class="relative flex items-center justify-center">
+          <div class="size-10 sm:size-11 rounded-xl bg-[#38bdf8] text-white flex items-center justify-center font-bold shadow-md">
+            <Laptop class="size-5 sm:size-6" />
+          </div>
+          <div class="absolute -bottom-1 -right-1 size-5 rounded-md bg-[#061d33] border border-white/30 flex items-center justify-center">
+            <Cpu class="size-3 text-[#38bdf8]" />
+          </div>
+        </div>
+        <div>
+          <span class="font-heading text-xs sm:text-sm font-bold text-white block leading-tight">Tech & SaaS Products</span>
+          <span class="font-mono text-[9px] text-slate-300 block mt-0.5">App Screen, Nodes & SaaS Tile</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-1.5 pt-1 border-t border-white/10 text-[10px] font-mono text-[#38bdf8]">
+        <Layers class="size-3" />
+        <span>Web App & Product Growth</span>
       </div>
     </div>
   </div>
