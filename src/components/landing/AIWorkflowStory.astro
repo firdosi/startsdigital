@@ -98,47 +98,61 @@ const timelineSteps = [
             <Bot class="size-6" />
           </div>
           <div>
-            <h4 class="font-heading font-bold text-base text-white">From Concept to Campaign</h4>
+            <h4 class="font-heading font-bold text-base text-white">Innovation → Scale → Campaign Use → Conversion</h4>
             <span class="font-mono text-xs text-slate-400">The creative production journey</span>
           </div>
         </div>
         <span class="font-mono text-xs px-3 py-1 rounded-full bg-[#39c98a]/20 text-[#39c98a] border border-[#39c98a]/30">
-          140+ Conversions
+          140+ Conversions | AED 1.4M+
         </span>
       </div>
 
-      <!-- Character Portrait Tiles & Campaign Creative Visual Bridge -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-center space-y-2">
-          <div class="size-12 rounded-xl bg-purple-500/20 border border-purple-400/30 mx-auto flex items-center justify-center font-mono font-bold text-purple-300 text-sm">
-            ID-01
+      <!-- Photography & Character Matrix Visual Bridge -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <!-- Visual Studio Artwork -->
+        <div class="md:col-span-5 rounded-2xl overflow-hidden border border-white/20 aspect-16/10 relative">
+          <picture>
+            <source srcset={`${site.basePath}/photography/ai-creative-studio.avif`} type="image/avif" />
+            <img
+              src={`${site.basePath}/photography/ai-creative-studio.webp`}
+              alt="AI Creative Studio Generation Artwork"
+              width="600"
+              height="375"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover"
+            />
+          </picture>
+          <div class="absolute bottom-2 left-2 bg-[#061d33]/90 backdrop-blur-sm px-2.5 py-1 rounded border border-white/20">
+            <span class="font-mono text-[9px] text-[#ddff35] uppercase font-bold">Studio Pipeline</span>
           </div>
-          <span class="font-mono text-[10px] uppercase text-slate-400 block">Base Character</span>
-          <span class="font-heading text-xs font-bold text-white">Original Identity</span>
         </div>
 
-        <div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-center space-y-2">
-          <div class="size-12 rounded-xl bg-[#ff762b]/20 border border-[#ff762b]/30 mx-auto flex items-center justify-center font-mono font-bold text-[#ff762b] text-sm">
-            27+
+        <!-- 4 Metrics Progression Matrix -->
+        <div class="md:col-span-7 grid grid-cols-2 gap-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-3.5 text-center space-y-1">
+            <div class="font-mono font-bold text-purple-300 text-sm">INNOVATION</div>
+            <span class="font-mono text-[9px] uppercase text-slate-400 block">Private Infrastructure</span>
+            <span class="font-heading text-xs font-bold text-white">Custom VPS Pipeline</span>
           </div>
-          <span class="font-mono text-[10px] uppercase text-slate-400 block">Core Registry</span>
-          <span class="font-heading text-xs font-bold text-white">Identity Matrix</span>
-        </div>
 
-        <div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-center space-y-2">
-          <div class="size-12 rounded-xl bg-sky-500/20 border border-sky-400/30 mx-auto flex items-center justify-center font-mono font-bold text-sky-300 text-sm">
-            1,000s
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-3.5 text-center space-y-1">
+            <div class="font-mono font-bold text-[#ff762b] text-sm">27+ IDENTITIES</div>
+            <span class="font-mono text-[9px] uppercase text-slate-400 block">Core Identity Matrix</span>
+            <span class="font-heading text-xs font-bold text-white">Consistent Characters</span>
           </div>
-          <span class="font-mono text-[10px] uppercase text-slate-400 block">Ad Creatives</span>
-          <span class="font-heading text-xs font-bold text-white">Generated Assets</span>
-        </div>
 
-        <div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-center space-y-2">
-          <div class="size-12 rounded-xl bg-[#39c98a]/20 border border-[#39c98a]/30 mx-auto flex items-center justify-center font-mono font-bold text-[#39c98a] text-sm">
-            140+
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-3.5 text-center space-y-1">
+            <div class="font-mono font-bold text-sky-300 text-sm">1,000s ASSETS</div>
+            <span class="font-mono text-[9px] uppercase text-slate-400 block">Scale Asset Production</span>
+            <span class="font-heading text-xs font-bold text-white">Ad Frames & Video</span>
           </div>
-          <span class="font-mono text-[10px] uppercase text-slate-400 block">Conversions</span>
-          <span class="font-heading text-xs font-bold text-white">Client Sales</span>
+
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-3.5 text-center space-y-1">
+            <div class="font-mono font-bold text-[#39c98a] text-sm">140+ CONVERSIONS</div>
+            <span class="font-mono text-[9px] uppercase text-slate-400 block">Commercial Conversion</span>
+            <span class="font-heading text-xs font-bold text-white">AED 1.4M+ Revenue</span>
+          </div>
         </div>
       </div>
     </div>

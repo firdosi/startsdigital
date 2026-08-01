@@ -10,6 +10,7 @@ import { join, resolve, extname } from 'path';
 import { fileURLToPath } from 'url';
 import { execSync, spawn } from 'child_process';
 import assert from 'assert';
+import sharp from 'sharp';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -393,13 +394,13 @@ function addAssertion(name, result, detail = '') {
     await ctxInd.close();
 
     // ──────────────────────────────────────────────────────────────────────────
-    // STAGE 9: About + Contact mobile screenshot
+    // STAGE 9: About + Contact mobile combined contact sheet
     // ──────────────────────────────────────────────────────────────────────────
     stage = 'STAGE 9: About + Contact mobile';
     log(stage);
-    const ctxMobile = await browser.newContext({ viewport: { width: 390, height: 900 } });
+    const ctxMobile = await browser.newContext({ viewport: { width: 390, height: 1600 } });
 
-    // About page checks
+    // About page checks & capture
     const aboutPage = await ctxMobile.newPage();
     await aboutPage.goto(`${BASE_URL}/about/`, { waitUntil: 'networkidle', timeout: 30000 });
     await aboutPage.waitForTimeout(500);
@@ -424,12 +425,9 @@ function addAssertion(name, result, detail = '') {
     const aboutScrollWidth = await aboutPage.evaluate(() => document.body.scrollWidth);
     addAssertion('no_horizontal_overflow_about_390', aboutScrollWidth <= 390, `scrollWidth=${aboutScrollWidth}`);
 
-    // Screenshot about at 390px
-    const shotAboutPath = join(OUTPUT_DIR, 'about-contact-mobile-review-390.png');
-    await aboutPage.screenshot({ path: shotAboutPath, fullPage: false });
-    log(`Screenshot saved: about-contact-mobile-review-390.png`);
+    const aboutBuffer = await aboutPage.screenshot({ fullPage: true });
 
-    // Contact page checks
+    // Contact page checks & capture
     const contactPage = await ctxMobile.newPage();
     await contactPage.goto(`${BASE_URL}/contact/`, { waitUntil: 'networkidle', timeout: 30000 });
     await contactPage.waitForTimeout(500);
@@ -441,6 +439,34 @@ function addAssertion(name, result, detail = '') {
     // Assertion: No horizontal overflow at 390px
     const contactScrollWidth = await contactPage.evaluate(() => document.body.scrollWidth);
     addAssertion('no_horizontal_overflow_contact_390', contactScrollWidth <= 390, `scrollWidth=${contactScrollWidth}`);
+
+    const contactBuffer = await contactPage.screenshot({ fullPage: true });
+
+    // Combine About + Contact vertically into one tall mobile contact sheet
+    const aboutMeta = await sharp(aboutBuffer).metadata();
+    const contactMeta = await sharp(contactBuffer).metadata();
+
+    const combinedWidth = Math.max(aboutMeta.width, contactMeta.width);
+    const combinedHeight = aboutMeta.height + contactMeta.height + 40; // 40px gap
+
+    const combinedBuffer = await sharp({
+      create: {
+        width: combinedWidth,
+        height: combinedHeight,
+        channels: 4,
+        background: { r: 6, g: 29, b: 51, alpha: 1 } // #061d33 dark background separator
+      }
+    })
+    .composite([
+      { input: aboutBuffer, top: 0, left: 0 },
+      { input: contactBuffer, top: aboutMeta.height + 40, left: 0 }
+    ])
+    .png()
+    .toBuffer();
+
+    const shotAboutPath = join(OUTPUT_DIR, 'about-contact-mobile-review-390.png');
+    fs.writeFileSync(shotAboutPath, combinedBuffer);
+    log(`Screenshot saved: about-contact-mobile-review-390.png (Tall Combined Mobile Contact Sheet)`);
 
     await ctxMobile.close();
 

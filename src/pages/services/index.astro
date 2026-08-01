@@ -128,7 +128,126 @@ const generalFaqs = [
     </div>
   </section>
 
-  {/* 2. Six-Service Directory */}
+  {/* 2. Visual Production Showcase Below Hero */}
+  <section id="visual-production" class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
+      <div class="mb-12 text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="CREATIVE & PRODUCTION IN ACTION" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+          How strategy and creative production come together
+        </h2>
+        <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+          From campaign strategy and responsive web engineering to video editing and local search execution.
+        </p>
+      </div>
+
+      <!-- 3-Column Photography Showcase Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Showcase 1: Web Design & Frontend -->
+        <div class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] overflow-hidden shadow-xs group hover:border-[#ff762b]/40 transition-all duration-300 flex flex-col justify-between">
+          <div class="overflow-hidden aspect-4/3 relative bg-[#061d33]">
+            <picture>
+              <source srcset={`${site.basePath}/photography/web-designer-responsive.avif`} type="image/avif" />
+              <img
+                src={`${site.basePath}/photography/web-designer-responsive.webp`}
+                alt="Website design and responsive development in progress"
+                width="600"
+                height="450"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </picture>
+            <div class="absolute top-3 left-3 bg-[#061d33]/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+              <span class="font-mono text-[10px] uppercase font-bold text-[#38bdf8] tracking-wider">Web Engineering</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-2">
+            <h3 class="font-heading font-bold text-xl text-[#061d33]">High-Speed Web Interfaces</h3>
+            <p class="font-body text-sm text-slate-700 leading-relaxed">
+              Mobile-optimised storefronts, fast landing pages and custom web builds configured for high conversion rates.
+            </p>
+            <div class="pt-2">
+              <a href={`${site.basePath}/services/website-design-development/`} class="inline-flex items-center gap-1.5 font-mono text-xs text-[#ff762b] font-bold hover:underline">
+                <span>Website Development</span>
+                <ArrowRight class="size-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Showcase 2: Creative & Campaign Strategy -->
+        <div class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] overflow-hidden shadow-xs group hover:border-[#ff762b]/40 transition-all duration-300 flex flex-col justify-between">
+          <div class="overflow-hidden aspect-4/3 relative bg-[#061d33]">
+            <picture>
+              <source srcset={`${site.basePath}/photography/creative-campaign-planning.avif`} type="image/avif" />
+              <img
+                src={`${site.basePath}/photography/creative-campaign-planning.webp`}
+                alt="Creative campaign planning and wireframing"
+                width="600"
+                height="450"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </picture>
+            <div class="absolute top-3 left-3 bg-[#061d33]/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+              <span class="font-mono text-[10px] uppercase font-bold text-[#ff762b] tracking-wider">Campaign Strategy</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-2">
+            <h3 class="font-heading font-bold text-xl text-[#061d33]">Creative Strategy & Media</h3>
+            <p class="font-body text-sm text-slate-700 leading-relaxed">
+              Direct-response ad creative, video editing, social media assets and clear customer messaging.
+            </p>
+            <div class="pt-2">
+              <a href={`${site.basePath}/services/creative-content/`} class="inline-flex items-center gap-1.5 font-mono text-xs text-[#ff762b] font-bold hover:underline">
+                <span>Creative Content</span>
+                <ArrowRight class="size-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Showcase 3: Video Production & Editing -->
+        <div class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] overflow-hidden shadow-xs group hover:border-[#ff762b]/40 transition-all duration-300 flex flex-col justify-between">
+          <div class="overflow-hidden aspect-4/3 relative bg-[#061d33]">
+            <picture>
+              <source srcset={`${site.basePath}/photography/video-editing-workstation.avif`} type="image/avif" />
+              <img
+                src={`${site.basePath}/photography/video-editing-workstation.webp`}
+                alt="Video editing software workstation for ad campaigns"
+                width="600"
+                height="450"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </picture>
+            <div class="absolute top-3 left-3 bg-[#061d33]/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+              <span class="font-mono text-[10px] uppercase font-bold text-purple-400 tracking-wider">Video & Motion</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-2">
+            <h3 class="font-heading font-bold text-xl text-[#061d33]">Paid Social Video Ad Production</h3>
+            <p class="font-body text-sm text-slate-700 leading-relaxed">
+              Multi-angle video ad variations, motion graphic hooks and customer product showcase edits.
+            </p>
+            <div class="pt-2">
+              <a href={`${site.basePath}/services/paid-advertising/`} class="inline-flex items-center gap-1.5 font-mono text-xs text-[#ff762b] font-bold hover:underline">
+                <span>Paid Advertising</span>
+                <ArrowRight class="size-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* 3. Six-Service Directory */}
   <section id="directory" class="py-16 sm:py-20 lg:py-24 bg-[#faf9f6] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
     <div class="mx-auto max-w-[1280px] px-6 sm:px-8">
       

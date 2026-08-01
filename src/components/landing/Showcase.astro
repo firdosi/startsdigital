@@ -51,22 +51,84 @@ const industryPreviews = [
         Explore how Starts Digital coordinates paid advertising, website development, local search, creative production, and AI workflows across different industry business models.
       </p>
 
-      <!-- Homepage Marketing System Picture Composition -->
-      <div class="pt-6 max-w-4xl mx-auto">
-        <div class="rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-white/5 p-2">
-          <picture>
-            <source srcset={`${site.basePath}/visuals/marketing-system-visual.avif`} type="image/avif" />
-            <img
-              src={`${site.basePath}/visuals/marketing-system-visual.webp`}
-              alt="Starts Digital Marketing System and Digital Strategy Composition"
-              width="800"
-              height="600"
-              loading="eager"
-              decoding="async"
-              class="w-full h-auto object-cover rounded-2xl"
-            />
-          </picture>
+      <!-- Homepage 3-Moments Photography Showcase Grid -->
+      <div class="pt-6 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+        
+        <!-- Moment 1: Team & Strategy -->
+        <div class="rounded-3xl border border-white/15 bg-white/5 overflow-hidden p-2 group hover:border-white/30 transition-colors">
+          <div class="overflow-hidden aspect-4/3 rounded-2xl relative bg-[#0c2a4a]">
+            <picture>
+              <source srcset={`${site.basePath}/photography/team-collaboration-workspace.avif`} type="image/avif" />
+              <img
+                src={`${site.basePath}/photography/team-collaboration-workspace.webp`}
+                alt="Illustrative team collaboration and strategy workspace"
+                width="600"
+                height="450"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </picture>
+            <div class="absolute top-2 left-2 bg-[#061d33]/90 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/20">
+              <span class="font-mono text-[9px] uppercase font-bold text-[#ddff35] tracking-wider">Strategy & Planning</span>
+            </div>
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="font-heading font-bold text-base text-white">Project Strategy & Planning</h4>
+            <p class="font-body text-xs text-slate-300">Coordinated campaign requirements and channel alignment.</p>
+          </div>
         </div>
+
+        <!-- Moment 2: Campaign Production -->
+        <div class="rounded-3xl border border-white/15 bg-white/5 overflow-hidden p-2 group hover:border-white/30 transition-colors">
+          <div class="overflow-hidden aspect-4/3 rounded-2xl relative bg-[#0c2a4a]">
+            <picture>
+              <source srcset={`${site.basePath}/photography/advertising-creative-production.avif`} type="image/avif" />
+              <img
+                src={`${site.basePath}/photography/advertising-creative-production.webp`}
+                alt="Advertising creative production and strategy"
+                width="600"
+                height="450"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </picture>
+            <div class="absolute top-2 left-2 bg-[#061d33]/90 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/20">
+              <span class="font-mono text-[9px] uppercase font-bold text-[#ff762b] tracking-wider">Creative Production</span>
+            </div>
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="font-heading font-bold text-base text-white">Direct-Response Ad Creative</h4>
+            <p class="font-body text-xs text-slate-300">Video editing, graphic design and campaign copy.</p>
+          </div>
+        </div>
+
+        <!-- Moment 3: Web Engineering -->
+        <div class="rounded-3xl border border-white/15 bg-white/5 overflow-hidden p-2 group hover:border-white/30 transition-colors">
+          <div class="overflow-hidden aspect-4/3 rounded-2xl relative bg-[#0c2a4a]">
+            <picture>
+              <source srcset={`${site.basePath}/photography/web-designer-responsive.avif`} type="image/avif" />
+              <img
+                src={`${site.basePath}/photography/web-designer-responsive.webp`}
+                alt="Website design and responsive frontend development"
+                width="600"
+                height="450"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </picture>
+            <div class="absolute top-2 left-2 bg-[#061d33]/90 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/20">
+              <span class="font-mono text-[9px] uppercase font-bold text-[#38bdf8] tracking-wider">Web Engineering</span>
+            </div>
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="font-heading font-bold text-base text-white">Responsive Web Builds</h4>
+            <p class="font-body text-xs text-slate-300">Mobile-optimised storefronts and conversion pages.</p>
+          </div>
+        </div>
+
       </div>
     </div>
 

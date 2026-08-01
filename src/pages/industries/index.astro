@@ -57,7 +57,91 @@ const industryVisualMap: Record<string, any> = {
     </Container>
   </section>
 
-  <!-- 2. Four Industry Sectors Grid -->
+  <!-- 2. Sector Photography Visual Showcase -->
+  <section id="sector-visuals" class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="space-y-12">
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <SectionEyebrow label="SECTOR VISUAL EXAMPLES" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight tracking-[-0.025em]">
+          Real Business Operations Across Sectors
+        </h2>
+        <p class="text-base text-slate-700 font-body leading-relaxed font-normal">
+          From e-commerce product logistics to location-based marketing strategies.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- E-Commerce Fulfillment Showcase -->
+        <div class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] overflow-hidden shadow-xs group hover:border-[#ff762b]/40 transition-all duration-300">
+          <div class="overflow-hidden aspect-16/9 relative bg-[#061d33]">
+            <picture>
+              <source srcset={`${site.basePath}/photography/ecommerce-product-fulfillment.avif`} type="image/avif" />
+              <img
+                src={`${site.basePath}/photography/ecommerce-product-fulfillment.webp`}
+                alt="E-commerce product inventory, packaging and logistics"
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </picture>
+            <div class="absolute top-3 left-3 bg-[#061d33]/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+              <span class="font-mono text-[10px] uppercase font-bold text-[#ff762b] tracking-wider">E-Commerce & Retail</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-2">
+            <h3 class="font-heading font-bold text-xl text-[#061d33]">E-Commerce Sales & Inventory Operations</h3>
+            <p class="font-body text-sm text-slate-700 leading-relaxed">
+              We connect paid social ad units with WooCommerce and Shopify storefronts to drive product sales and inventory movement.
+            </p>
+            <div class="pt-2">
+              <a href={`${site.basePath}/industries/ecommerce-product-brands/`} class="inline-flex items-center gap-1.5 font-mono text-xs text-[#ff762b] font-bold hover:underline">
+                <span>Explore E-Commerce Solutions</span>
+                <ArrowRight class="size-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Local Service Marketing Showcase -->
+        <div class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] overflow-hidden shadow-xs group hover:border-[#ff762b]/40 transition-all duration-300">
+          <div class="overflow-hidden aspect-16/9 relative bg-[#061d33]">
+            <picture>
+              <source srcset={`${site.basePath}/photography/local-service-marketing.avif`} type="image/avif" />
+              <img
+                src={`${site.basePath}/photography/local-service-marketing.webp`}
+                alt="Local contractor and service area search location strategy"
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </picture>
+            <div class="absolute top-3 left-3 bg-[#061d33]/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+              <span class="font-mono text-[10px] uppercase font-bold text-[#39c98a] tracking-wider">Local Contractors</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-2">
+            <h3 class="font-heading font-bold text-xl text-[#061d33]">Local Search & Service-Area Lead Routing</h3>
+            <p class="font-body text-sm text-slate-700 leading-relaxed">
+              Optimised location pages and Google Maps search visibility tailored for local contractors and service businesses.
+            </p>
+            <div class="pt-2">
+              <a href={`${site.basePath}/industries/local-service-businesses/`} class="inline-flex items-center gap-1.5 font-mono text-xs text-[#ff762b] font-bold hover:underline">
+                <span>Explore Local Service Solutions</span>
+                <ArrowRight class="size-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </Container>
+  </section>
+
+  <!-- 3. Four Industry Sectors Grid -->
   <section id="sectors" class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="space-y-12">
       <SectionHeading
