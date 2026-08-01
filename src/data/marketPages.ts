@@ -92,7 +92,7 @@ export const marketPages: MarketPageDefinition[] = [
     workingMethod: [
       { step: '01', title: 'Campaign Planning & Schedule', description: 'Defining campaign duration, promotional messaging, target channels, and inquiry handling routes.' },
       { step: '02', title: 'Creative & Landing Preparation', description: 'Editing promotional media, writing campaign copy, and building mobile inquiry pages.' },
-      { step: '03', title: 'Multi-Channel Activation', description: 'Launching paid social campaigns, organic content posts, and direct customer inquiry pathways.' },
+      { step: '03', title: 'Campaign Activation', description: 'Launching paid social campaigns, organic content posts, and direct customer inquiry pathways.' },
       { step: '04', title: 'Inquiry & Ad Monitoring', description: 'Reviewing incoming inquiry volume, ad performance, and budget pacing throughout the campaign window.' }
     ],
     faqs: [
