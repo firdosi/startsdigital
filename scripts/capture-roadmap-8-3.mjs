@@ -40,14 +40,13 @@ async function runCapture() {
     execSync('node scratch/generate-logo-contact-sheet.mjs', { cwd: rootDir, stdio: 'inherit' });
 
     console.log('3. Starting Astro preview server at http://127.0.0.1:4455/startsdigital/ ...');
-    previewProcess = spawn('npx', ['astro', 'preview', '--host', '127.0.0.1', '--port', '4455'], {
+    previewProcess = spawn('cmd.exe', ['/c', 'npx astro preview --host 127.0.0.1 --port 4455'], {
       cwd: rootDir,
-      shell: true,
       stdio: 'pipe'
     });
 
     let serverReady = false;
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 40; i++) {
       try {
         const res = await fetch('http://127.0.0.1:4455/startsdigital/');
         if (res.ok || res.status < 500) {
@@ -60,7 +59,7 @@ async function runCapture() {
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
     if (!serverReady) {
-      throw new Error('Astro preview server failed to start on http://127.0.0.1:4455/startsdigital/ within 10s');
+      throw new Error('Astro preview server failed to start on http://127.0.0.1:4455/startsdigital/ within 20s');
     }
 
     console.log('4. Launching Playwright Chromium...');
@@ -98,13 +97,11 @@ async function runCapture() {
     await page3.goto(`${baseUrl}/services/`, { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page3.evaluate(() => document.fonts.ready);
     
-    // Hover services trigger to open dropdown
     const navTrigger = page3.locator('button:has-text("Services"), a:has-text("Services")').first();
     if (await navTrigger.count() > 0) {
       await navTrigger.hover();
       await page3.waitForTimeout(300);
     }
-    // Hover pointer over first service link
     const firstServiceLink = page3.locator('#desktop-services-dropdown a').first();
     if (await firstServiceLink.count() > 0) {
       await firstServiceLink.hover();
@@ -184,7 +181,6 @@ async function runCapture() {
     const contactBuf = await pageContact.screenshot();
     await ctxContact.close();
 
-    // Stitch About (390px) and Contact (390px) side-by-side into a 780px wide composite PNG
     const compositePath = path.join(outputDir, 'about-contact-visual-review-390.png');
     await sharp({
       create: {
@@ -451,7 +447,7 @@ async function runCapture() {
     fs.writeFileSync(path.join(outputDir, 'achievements-integrity-audit.json'), JSON.stringify(audit5, null, 2));
 
     // ----------------------------------------------------
-    // Audit 6: visual-assets-performance-audit.json (with Canonical Unsplash Pages verified HTTP 200!)
+    // Audit 6: visual-assets-performance-audit.json
     // ----------------------------------------------------
     const photographyAssetsList = JSON.parse(fs.readFileSync(path.join(rootDir, 'scratch/verified-photography-manifest.json'), 'utf-8'));
 
