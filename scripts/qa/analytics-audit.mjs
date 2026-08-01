@@ -8,8 +8,7 @@ const dir = path.dirname(savePath);
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
 async function ensureServer(port) {
-  const server = spawn('npx', ['astro', 'preview', '--host', '0.0.0.0', '--port', String(port)], {
-    shell: true,
+  const server = spawn('cmd.exe', ['/c', 'npx astro preview --host 0.0.0.0 --port ' + port], {
     cwd: path.resolve('.'),
   });
 
@@ -57,7 +56,7 @@ async function runAnalyticsAudit() {
       }
     });
 
-    await pageDisabled.goto(`${baseUrl}/`, { waitUntil: 'networkidle' });
+    await pageDisabled.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
     const cookies = await contextDisabled.cookies();
     disabledCookiesCount = cookies.filter((c) => c.name.startsWith('_ga')).length;
     if (disabledCookiesCount > 0) {
@@ -81,7 +80,7 @@ async function runAnalyticsAudit() {
     });
 
     // Initial page load
-    await pageDebug.goto(`${baseUrl}/`, { waitUntil: 'networkidle' });
+    await pageDebug.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
 
     let events = await pageDebug.evaluate(() => window.__ANALYTICS_EVENTS__ || []);
     const initialPageViews = events.filter((e) => e.eventName === 'page_view');
@@ -91,7 +90,8 @@ async function runAnalyticsAudit() {
     }
 
     // ClientRouter Navigation
-    await pageDebug.click('a[href*="/services/"]');
+    const servicesLink = pageDebug.locator('a[href*="/services/"], button:has-text("Services"), a:has-text("Services")').first();
+    await servicesLink.click();
     await pageDebug.waitForTimeout(500);
 
     events = await pageDebug.evaluate(() => window.__ANALYTICS_EVENTS__ || []);
@@ -123,7 +123,7 @@ async function runAnalyticsAudit() {
     ctaEventCount = ctaAfterCount - ctaBeforeCount;
 
     // Contact Form Validation & Event Order Test
-    await pageDebug.goto(`${baseUrl}/contact/?source=convortai`, { waitUntil: 'networkidle' });
+    await pageDebug.goto(`${baseUrl}/contact/?source=convortai`, { waitUntil: 'domcontentloaded' });
     await pageDebug.waitForTimeout(500);
 
     const isConversionEvent = (e) => ['contact_brief_generate', 'whatsapp_click', 'email_click'].includes(e.eventName);
