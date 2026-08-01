@@ -34,6 +34,8 @@ if (!fs.existsSync(dir81)) {
 console.log('🚀 Running aggregate QA suite (qa:all)...\n');
 
 try {
+  console.log('Building static site before audit run...');
+  execSync('node node_modules/astro/dist/cli/index.js build', { stdio: 'inherit' });
   for (const cmd of commands) {
     console.log(`\nExecuting: ${cmd}`);
     execSync(cmd, { stdio: 'inherit' });
