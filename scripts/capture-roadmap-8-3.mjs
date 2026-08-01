@@ -283,7 +283,7 @@ async function runCapture() {
       const groups = Array.from(document.querySelectorAll('#industries-3d-composition .group'));
       return groups.map((grp, i) => {
         const textEl = grp.querySelector('div.flex > div:last-child');
-        const iconEl = grp.querySelector('div.flex > div.relative');
+        const iconEl = grp.querySelector('div.flex > div.size-14') || grp.querySelector('div.flex > div:first-child');
         if (!textEl || !iconEl) return { groupIndex: i, valid: false };
 
         const tRect = textEl.getBoundingClientRect();
