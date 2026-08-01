@@ -282,9 +282,11 @@ async function runCapture() {
     const industriesSpacingAudit = await page5.evaluate(() => {
       const groups = Array.from(document.querySelectorAll('#industries-3d-composition .group'));
       return groups.map((grp, i) => {
-        const textEl = grp.querySelector('div.flex > div:last-child');
-        const iconEl = grp.querySelector('div.flex > div:first-child');
-        if (!textEl || !iconEl) return { groupIndex: i, valid: false, reason: 'missing elements' };
+        const flexParent = grp.querySelector('.flex.items-center');
+        if (!flexParent || flexParent.children.length < 2) return { groupIndex: i, valid: false, reason: 'missing flex children' };
+
+        const iconEl = flexParent.children[0];
+        const textEl = flexParent.children[1];
 
         const tRect = textEl.getBoundingClientRect();
         const iRect = iconEl.getBoundingClientRect();
