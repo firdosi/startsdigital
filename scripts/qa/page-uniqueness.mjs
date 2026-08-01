@@ -43,7 +43,7 @@ for (const relPath of mainPages) {
   html = html.replace(/<header[\s\S]*?<\/header>/gi, '').replace(/<footer[\s\S]*?<\/footer>/gi, '');
 
   // Count brand marquee / logo sections
-  if (html.includes('id="brand-marquee"') || html.includes('id="logo-wall"')) {
+  if (html.includes('id="brand-marquee"') || html.includes('id="logo-wall"') || html.includes('id="brand-logos"')) {
     logoSectionCount++;
   }
 
