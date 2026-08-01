@@ -18,23 +18,54 @@ const testRoutes = [
   '/about/',
 ];
 
-async function ensureServer(port) {
-  const server = spawn('node', ['node_modules/astro/dist/cli/index.js', 'preview', '--host', '0.0.0.0', '--port', String(port)], {
-    shell: true,
-    cwd: path.resolve('.'),
-  });
+import { createServer } from 'http';
+import { extname, join } from 'path';
 
-  const url = `http://localhost:${port}/startsdigital/`;
-  const start = Date.now();
-  while (Date.now() - start < 15000) {
-    try {
-      const res = await fetch(url);
-      if (res.ok || res.status < 500) return server;
-    } catch (e) {
-      await new Promise((r) => setTimeout(r, 400));
-    }
-  }
-  return server;
+const MIME = {
+  '.html': 'text/html;charset=utf-8',
+  '.css':  'text/css',
+  '.js':   'application/javascript',
+  '.mjs':  'application/javascript',
+  '.json': 'application/json',
+  '.svg':  'image/svg+xml',
+  '.png':  'image/png',
+  '.webp': 'image/webp',
+  '.avif': 'image/avif',
+};
+
+function ensureServer(port) {
+  const rootDir = path.resolve('.');
+  const distDir = path.join(rootDir, 'dist');
+  return new Promise((res, rej) => {
+    const srv = createServer((req, resp) => {
+      let urlPath = req.url.split('?')[0];
+      if (urlPath.startsWith('/startsdigital')) {
+        urlPath = urlPath.slice('/startsdigital'.length) || '/';
+      }
+      if (!urlPath || urlPath === '/') urlPath = '/index.html';
+      if (!urlPath.includes('.')) urlPath += '/index.html';
+
+      const filePath = join(distDir, urlPath);
+      const ext = extname(filePath).toLowerCase();
+      try {
+        const data = fs.readFileSync(filePath);
+        resp.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream' });
+        resp.end(data);
+      } catch {
+        try {
+          const fallback = join(distDir, urlPath.replace(/\/[^/]+$/, ''), 'index.html');
+          const data = fs.readFileSync(fallback);
+          resp.writeHead(200, { 'Content-Type': 'text/html;charset=utf-8' });
+          resp.end(data);
+        } catch {
+          resp.writeHead(404);
+          resp.end('Not found');
+        }
+      }
+    });
+    srv.listen(port, '127.0.0.1', () => res({ kill: () => srv.close() }));
+    srv.on('error', rej);
+  });
 }
 
 async function runMotionAudit() {
