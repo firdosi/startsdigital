@@ -1,15 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/ui/Container.astro';
-import CombinedAchievements from '../../components/work/CombinedAchievements.astro';
-import BrandLogoWall from '../../components/work/BrandLogoWall.astro';
-import LightweightVisual3D from '../../components/visuals/LightweightVisual3D.astro';
+import WorkDeliverablesGallery from '../../components/work/WorkDeliverablesGallery.astro';
+import WorkResultsSection from '../../components/work/WorkResultsSection.astro';
+import AIWorkflowStory from '../../components/landing/AIWorkflowStory.astro';
 import AnimatedGrid from '../../components/motion/AnimatedGrid.astro';
 import FloatingOrb from '../../components/motion/FloatingOrb.astro';
 import { site } from '../../site.config';
 import { 
   ArrowRight, 
-  CheckCircle2, 
   MessageSquare, 
   Megaphone, 
   Globe, 
@@ -18,60 +17,41 @@ import {
   Share2, 
   Bot,
   Sparkles,
-  Layers
+  Layers,
+  CheckCircle2,
+  MapPin,
+  ShoppingBag
 } from '@lucide/astro';
 
 const genericWhatsappMsg = encodeURIComponent('Hello Starts Digital, I would like to discuss a new digital marketing project.');
 const whatsappUrl = `${site.contact.whatsapp}?text=${genericWhatsappMsg}`;
 
-const capabilities = [
+const processSteps = [
   {
-    title: 'Paid Advertising',
-    icon: Megaphone,
-    color: 'text-[#ff762b] bg-[#ff762b]/10 border-[#ff762b]/30',
-    description: 'Paid campaign strategy, ad account structure, creative testing, landing-page alignment, tracking setup, and ongoing campaign optimization across Meta, TikTok, and Google.',
-    items: ['Meta & TikTok Ad Campaigns', 'ROAS & Conversion Strategy', 'Direct Response Creative Production', 'A/B Creative Testing']
+    number: '01',
+    title: 'Discovery & Goal Alignment',
+    description: 'We review your business goals, target audience, competitive environment and available assets to define clear project requirements.'
   },
   {
-    title: 'Website Design & Development',
-    icon: Globe,
-    color: 'text-[#38bdf8] bg-[#38bdf8]/10 border-[#38bdf8]/30',
-    description: 'Custom responsive website design, fast Astro web platforms, e-commerce storefront development, conversion-focused landing pages, and ongoing technical support.',
-    items: ['Custom Web Platforms', 'E-Commerce Storefront Setup', 'Landing Page Development', 'UI/UX & Mobile Responsiveness']
+    number: '02',
+    title: 'Strategy & Roadmap Design',
+    description: 'We structure the campaign angle, website architecture, content schedule or AI workflow into a documented execution plan.'
   },
   {
-    title: 'SEO & Local Search',
-    icon: Search,
-    color: 'text-[#39c98a] bg-[#39c98a]/10 border-[#39c98a]/30',
-    description: 'Location-focused content development, technical SEO foundations, Google Business Profile optimization, and Google Maps local search visibility.',
-    items: ['Google Maps & Business Setup', 'Service-Area Content Strategy', 'Technical On-Page SEO', 'Local Search Pack Optimization']
+    number: '03',
+    title: 'Production & Launch Execution',
+    description: 'Our team builds the website, edits video ad creatives, configures local search and launches paid social campaigns.'
   },
   {
-    title: 'Creative Content',
-    icon: Video,
-    color: 'text-[#a855f7] bg-[#a855f7]/10 border-[#a855f7]/30',
-    description: 'Video ad editing, promotional graphic design, direct-response scriptwriting, social media banners, and high-converting marketing creative production.',
-    items: ['Short-Form Video Edits', 'Ad Scriptwriting & Visuals', 'Social Media Graphic Design', 'Brand Banners & B-Roll Editing']
-  },
-  {
-    title: 'Social Media Marketing',
-    icon: Share2,
-    color: 'text-[#ec4899] bg-[#ec4899]/10 border-[#ec4899]/30',
-    description: 'Strategic social media publishing, visual content production, account setup, audience engagement, and sales inquiry routing.',
-    items: ['Multi-Channel Publishing', 'Social Account Setup', 'Creative Post Graphics', 'Customer Inquiry Support']
-  },
-  {
-    title: 'AI Marketing Workflows',
-    icon: Bot,
-    color: 'text-[#ddff35] bg-[#ddff35]/10 border-[#ddff35]/30',
-    description: 'Private AI character generation pipelines, automated lead routing workflows, marketing automation, and AI-assisted ad script development.',
-    items: ['Custom AI Character Creation', 'Private Generation Infrastructure', 'Lead Routing Automation', 'Conversational AI Systems']
+    number: '04',
+    title: 'Review & Optimization',
+    description: 'We monitor ad performance, user conversions and lead routing to refine creative messaging and scale winning channels.'
   }
 ];
 ---
 
 <BaseLayout>
-  <!-- 1. PREMIUM WORK HERO -->
+  <!-- 1. WORK HERO (Clean straight transition, zero white cuts / clipping) -->
   <section id="work-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl">
     <AnimatedGrid opacity={0.10} />
     <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
@@ -83,22 +63,22 @@ const capabilities = [
           <div class="inline-flex items-center gap-2">
             <span class="w-7 h-[2px] bg-[#ff762b] shrink-0" aria-hidden="true"></span>
             <span class="font-mono font-semibold text-xs sm:text-sm uppercase tracking-[0.08em] text-[#ff762b]">
-              DIGITAL WORK & COMBINED RESULTS
+              DIGITAL DELIVERABLES & EXECUTION
             </span>
           </div>
 
           <h1 class="font-heading font-bold text-[36px] sm:text-[48px] lg:text-[60px] leading-[1.08] tracking-[-0.035em] text-white">
-            What Starts Digital Has Delivered.
+            Work Built Around Real Business Goals.
           </h1>
 
           <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal max-w-2xl">
-            Explore combined outcomes and digital work delivered across paid advertising, websites, SEO, creative content, social media, and AI-supported marketing workflows.
+            Explore how Starts Digital connects advertising, websites, creative production, social media, search visibility and AI-supported workflows.
           </p>
 
-          <div class="pt-2 flex flex-wrap gap-4 items-center">
+          <div class="pt-2 flex flex-wrap gap-4 items-center font-body">
             <a
-              href="/contact/"
-              class="inline-flex items-center gap-2.5 rounded-full bg-[#ff762b] px-7 py-3.5 text-sm font-semibold text-white shadow-lg hover:bg-[#e0611a] hover:shadow-xl transition-all duration-200"
+              href={`${site.basePath}/contact/`}
+              class="inline-flex items-center gap-2.5 rounded-full bg-[#ff762b] px-7 py-3.5 text-sm font-semibold text-white shadow-lg hover:bg-[#e0611a] hover:shadow-xl transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
             >
               <span>Discuss Your Project</span>
               <ArrowRight class="size-4" />
@@ -107,7 +87,7 @@ const capabilities = [
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-medium text-white hover:bg-white/20 transition-all duration-200"
+              class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-medium text-white hover:bg-white/20 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               <MessageSquare class="size-4 text-[#39c98a]" />
               <span>WhatsApp Direct</span>
@@ -115,176 +95,83 @@ const capabilities = [
           </div>
         </div>
 
-        <!-- Hero 3D Dashboard Visual Anchor -->
+        <!-- Layered Animated Creative Deliverables Collage (NO Statistics Inside Hero Visual!) -->
         <div class="lg:col-span-5">
-          <LightweightVisual3D type="work-dashboard" />
-        </div>
-      </div>
-    </Container>
-  </section>
+          <div class="relative w-full max-w-[480px] aspect-[4/3] mx-auto rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl shadow-2xl flex flex-col justify-between space-y-4">
+            
+            <!-- Top Bar -->
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="size-2.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-mono text-xs font-bold text-white uppercase">Deliverables Collage</span>
+              </div>
+              <span class="font-mono text-[10px] text-[#ddff35] px-2.5 py-0.5 rounded-full bg-[#ddff35]/10 border border-[#ddff35]/20">
+                6 Capabilities
+              </span>
+            </div>
 
-  <!-- 2. COMBINED ACHIEVEMENTS -->
-  <CombinedAchievements />
-
-  <!-- 3. WHAT WE HAVE DELIVERED (COMBINED WORK CAPABILITIES) -->
-  <section class="py-16 sm:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
-    <Container class="max-w-[1280px] px-6 sm:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-        <span class="inline-block font-mono text-xs uppercase tracking-widest text-[#ff762b]">
-          Core Capabilities
-        </span>
-        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#061d33]">
-          What We Have Built, Managed and Improved
-        </h2>
-        <p class="font-body text-base sm:text-lg text-slate-700 max-w-2xl mx-auto">
-          Our team delivers end-to-end digital growth operations across six core capability areas.
-        </p>
-      </div>
-
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {capabilities.map(cap => {
-          const IconComp = cap.icon;
-          return (
-            <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 space-y-6 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-              <div class="space-y-4">
-                <div class="flex items-center justify-between">
-                  <div class={`size-12 rounded-2xl border flex items-center justify-center ${cap.color}`}>
-                    <IconComp class="size-6" />
-                  </div>
-                  <Sparkles class="size-4 text-slate-400" />
+            <!-- Layered Deliverable Elements Grid -->
+            <div class="grid grid-cols-2 gap-3 my-auto">
+              <!-- Element 1: Website Frame -->
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-3 space-y-2">
+                <div class="flex items-center gap-2 text-[#38bdf8]">
+                  <Globe class="size-4" />
+                  <span class="font-mono text-[10px] font-bold text-white uppercase">Astro Web</span>
                 </div>
-                <h3 class="font-heading font-bold text-2xl text-[#061d33]">
-                  {cap.title}
-                </h3>
-                <p class="font-body text-sm text-slate-600 leading-relaxed font-normal">
-                  {cap.description}
-                </p>
+                <div class="h-2 w-3/4 rounded bg-white/20"></div>
+                <div class="h-2 w-1/2 rounded bg-sky-400/40"></div>
               </div>
-              <div class="space-y-2 border-t border-slate-100 pt-4">
-                {cap.items.map(item => (
-                  <div class="flex items-center gap-2 text-xs font-body text-slate-700">
-                    <CheckCircle2 class="size-3.5 text-[#ff762b] shrink-0" />
-                    <span>{item}</span>
-                  </div>
-                ))}
+
+              <!-- Element 2: Mobile Storefront -->
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-3 space-y-2">
+                <div class="flex items-center gap-2 text-[#ff762b]">
+                  <ShoppingBag class="size-4" />
+                  <span class="font-mono text-[10px] font-bold text-white uppercase">Storefront</span>
+                </div>
+                <div class="h-2 w-4/5 rounded bg-white/20"></div>
+                <div class="h-2 w-2/3 rounded bg-[#ff762b]/40"></div>
+              </div>
+
+              <!-- Element 3: Video Cut -->
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-3 space-y-2">
+                <div class="flex items-center gap-2 text-purple-400">
+                  <Video class="size-4" />
+                  <span class="font-mono text-[10px] font-bold text-white uppercase">Video Edit</span>
+                </div>
+                <div class="h-2 w-3/4 rounded bg-white/20"></div>
+                <div class="h-2 w-1/2 rounded bg-purple-400/40"></div>
+              </div>
+
+              <!-- Element 4: AI Avatar Tile -->
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-3 space-y-2">
+                <div class="flex items-center gap-2 text-[#ddff35]">
+                  <Bot class="size-4" />
+                  <span class="font-mono text-[10px] font-bold text-white uppercase">AI Avatar</span>
+                </div>
+                <div class="h-2 w-4/5 rounded bg-white/20"></div>
+                <div class="h-2 w-2/3 rounded bg-[#ddff35]/40"></div>
               </div>
             </div>
-          );
-        })}
-      </div>
 
-      <!-- Work Capabilities Collage Picture Composition -->
-      <div class="mt-12 max-w-4xl mx-auto">
-        <div class="rounded-3xl overflow-hidden border border-[#061d33]/15 shadow-xl bg-white p-2">
-          <picture>
-            <source srcset={`${site.basePath}/visuals/work-capabilities-collage.avif`} type="image/avif" />
-            <img
-              src={`${site.basePath}/visuals/work-capabilities-collage.webp`}
-              alt="Starts Digital Combined Capabilities Collage across Paid Ads, Web, SEO and AI Workflows"
-              width="800"
-              height="600"
-              loading="lazy"
-              decoding="async"
-              class="w-full h-auto object-cover rounded-2xl"
-            />
-          </picture>
+            <!-- Footer Badge -->
+            <div class="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-300">
+              <span>Integrated Execution</span>
+              <span class="text-[#39c98a] font-bold">Multi-Channel</span>
+            </div>
+          </div>
         </div>
       </div>
     </Container>
   </section>
 
-  <!-- 4. VISUAL WORK GALLERY COLLAGE -->
-  <section class="py-16 sm:py-24 bg-[#061d33] text-white relative overflow-hidden">
-    <Container class="max-w-[1280px] px-6 sm:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-        <span class="inline-block font-mono text-xs uppercase tracking-widest text-[#ddff35]">
-          Production Quality
-        </span>
-        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-          Visual Work Showcase
-        </h2>
-        <p class="font-body text-base text-slate-300 max-w-xl mx-auto">
-          High-performance web architecture, direct-response video assets, and AI character workflows.
-        </p>
-      </div>
+  <!-- 2. VISUAL DELIVERABLES GALLERY -->
+  <WorkDeliverablesGallery />
 
-      <div class="grid gap-8 md:grid-cols-3">
-        <!-- Visual Frame 1: Web App & Front-End -->
-        <div class="rounded-3xl border border-white/15 bg-white/5 p-6 space-y-4 backdrop-blur-md">
-          <div class="aspect-video rounded-2xl bg-[#0c2a4a] border border-white/10 p-4 flex flex-col justify-between">
-            <div class="flex items-center gap-1.5 border-b border-white/10 pb-2">
-              <span class="size-2 rounded-full bg-red-400"></span>
-              <span class="size-2 rounded-full bg-yellow-400"></span>
-              <span class="size-2 rounded-full bg-green-400"></span>
-              <span class="font-mono text-[9px] text-slate-400 ml-2">Astro 5.0 Speed: 99/100</span>
-            </div>
-            <div class="space-y-2 my-auto">
-              <div class="h-3 w-3/4 rounded bg-white/20"></div>
-              <div class="h-3 w-1/2 rounded bg-[#ff762b]/40"></div>
-            </div>
-            <div class="h-6 rounded bg-[#38bdf8]/20 border border-[#38bdf8]/40 flex items-center justify-center font-mono text-[9px] text-[#38bdf8]">
-              Fast Static Hydration
-            </div>
-          </div>
-          <h3 class="font-heading font-bold text-lg text-white">High-Speed Web Platforms</h3>
-          <p class="text-xs text-slate-300 font-body leading-relaxed font-normal">
-            Custom websites built with zero JS overhead, optimal Lighthouse scores, and conversion-focused layouts.
-          </p>
-        </div>
+  <!-- 3. DEDICATED SELECTED RESULTS SECTION (Single Instance on Page!) -->
+  <WorkResultsSection />
 
-        <!-- Visual Frame 2: Creative Video Editing -->
-        <div class="rounded-3xl border border-white/15 bg-white/5 p-6 space-y-4 backdrop-blur-md">
-          <div class="aspect-video rounded-2xl bg-[#1e1435] border border-white/10 p-4 flex flex-col justify-between">
-            <div class="flex items-center justify-between border-b border-white/10 pb-2">
-              <span class="font-mono text-[9px] text-purple-300">Timeline Studio</span>
-              <span class="size-2 rounded-full bg-purple-400 animate-pulse"></span>
-            </div>
-            <div class="flex items-center justify-center gap-3 my-auto">
-              <div class="size-10 rounded-xl bg-purple-600/40 border border-purple-400/50 flex items-center justify-center">
-                <Video class="size-5 text-purple-300" />
-              </div>
-              <div class="space-y-1">
-                <div class="h-2 w-24 rounded bg-purple-200/30"></div>
-                <div class="h-2 w-16 rounded bg-purple-400/40"></div>
-              </div>
-            </div>
-            <div class="h-6 rounded bg-purple-500/20 border border-purple-400/40 flex items-center justify-center font-mono text-[9px] text-purple-300">
-              Direct-Response Script & Cuts
-            </div>
-          </div>
-          <h3 class="font-heading font-bold text-lg text-white">Direct-Response Ad Creatives</h3>
-          <p class="text-xs text-slate-300 font-body leading-relaxed font-normal">
-            Short-form video editing, hook testing, caption styling, and promotional graphic overlays.
-          </p>
-        </div>
-
-        <!-- Visual Frame 3: AI Generation Workflows -->
-        <div class="rounded-3xl border border-white/15 bg-white/5 p-6 space-y-4 backdrop-blur-md">
-          <div class="aspect-video rounded-2xl bg-[#0e271f] border border-white/10 p-4 flex flex-col justify-between">
-            <div class="flex items-center justify-between border-b border-white/10 pb-2">
-              <span class="font-mono text-[9px] text-emerald-300">Private VPS Pipeline</span>
-              <span class="font-mono text-[9px] text-[#ddff35]">27 Models</span>
-            </div>
-            <div class="flex items-center justify-center gap-2 my-auto">
-              <Bot class="size-6 text-[#ddff35]" />
-              <div class="h-1 w-12 bg-[#ddff35]/30 rounded"></div>
-              <Layers class="size-6 text-emerald-400" />
-            </div>
-            <div class="h-6 rounded bg-[#ddff35]/20 border border-[#ddff35]/40 flex items-center justify-center font-mono text-[9px] text-[#ddff35]">
-              AI Avatar & Voice Synthesis
-            </div>
-          </div>
-          <h3 class="font-heading font-bold text-lg text-white">Private AI Generation</h3>
-          <p class="text-xs text-slate-300 font-body leading-relaxed font-normal">
-            Private infrastructure for AI character development, voice synthesis, and scale ad generation.
-          </p>
-        </div>
-      </div>
-    </Container>
-  </section>
-
-  <!-- 5. HOW THE WORK CONNECTS -->
-  <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33]">
+  <!-- 4. HOW STRATEGY, CREATIVE & WEB CONNECT -->
+  <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="max-w-[1000px] px-6 sm:px-8 text-center space-y-8">
       <span class="font-mono text-xs uppercase tracking-widest text-[#ff762b]">Integrated Delivery</span>
       <h2 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-[#061d33]">
@@ -296,10 +183,45 @@ const capabilities = [
     </Container>
   </section>
 
-  <!-- 6. BRAND LOGO WALL -->
-  <BrandLogoWall />
+  <!-- 5. AI CREATIVE INNOVATION STORY -->
+  <AIWorkflowStory />
 
-  <!-- 7. GENERIC PROJECT INQUIRY CTA -->
+  <!-- 6. PROJECT PROCESS -->
+  <section class="py-16 sm:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+    <Container class="max-w-[1280px] px-6 sm:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="inline-block font-mono text-xs uppercase tracking-widest text-[#ff762b]">
+          WORKING METHOD
+        </span>
+        <h2 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-[#061d33]">
+          A Transparent Four-Step Working Method
+        </h2>
+        <p class="font-body text-base sm:text-lg text-slate-700 max-w-2xl mx-auto">
+          From initial requirements discovery through strategy, production, and ongoing performance review.
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {processSteps.map((step) => (
+          <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-6 space-y-4 shadow-md flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="font-mono text-2xl font-bold text-[#ff762b] block">
+                {step.number}
+              </span>
+              <h3 class="font-heading font-bold text-xl text-[#061d33]">
+                {step.title}
+              </h3>
+              <p class="font-body text-xs sm:text-sm text-slate-600 leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- 7. GENERAL PROJECT CTA -->
   <section class="py-16 sm:py-24 bg-[#061d33] text-white text-center">
     <Container class="max-w-[900px] px-6 sm:px-8 space-y-8">
       <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
@@ -309,10 +231,10 @@ const capabilities = [
         Connect directly with our team to outline your requirements, get strategy recommendations, and start your campaign or web platform.
       </p>
 
-      <div class="flex flex-wrap justify-center gap-4">
+      <div class="flex flex-wrap justify-center gap-4 font-body">
         <a
-          href="/contact/"
-          class="inline-flex items-center gap-2.5 rounded-full bg-[#ff762b] px-8 py-4 text-base font-semibold text-white shadow-xl hover:bg-[#e0611a] transition-all duration-200"
+          href={`${site.basePath}/contact/`}
+          class="inline-flex items-center gap-2.5 rounded-full bg-[#ff762b] px-8 py-4 text-base font-semibold text-white shadow-xl hover:bg-[#e0611a] transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
         >
           <span>Start a Project</span>
           <ArrowRight class="size-5" />
@@ -321,7 +243,7 @@ const capabilities = [
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-4 text-base font-medium text-white hover:bg-white/20 transition-all duration-200"
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-4 text-base font-medium text-white hover:bg-white/20 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
           <MessageSquare class="size-5 text-[#39c98a]" />
           <span>Talk About Your Goals</span>

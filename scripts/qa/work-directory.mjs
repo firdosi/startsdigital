@@ -65,8 +65,8 @@ for (const slug of retiredSlugs) {
 const workIndexPath = path.join(rootDir, 'src/pages/work/index.astro');
 const workIndexText = fs.readFileSync(workIndexPath, 'utf-8');
 
-assert(workIndexText.includes('CombinedAchievements'), 'Work index page includes CombinedAchievements');
-assert(workIndexText.includes('BrandLogoWall'), 'Work index page includes BrandLogoWall');
+assert(workIndexText.includes('WorkResultsSection') || workIndexText.includes('CombinedAchievements'), 'Work index page includes WorkResultsSection or CombinedAchievements');
+assert(!workIndexText.includes('BrandLogoWall'), 'Work index page has no duplicate BrandLogoWall (BrandMarquee is Homepage only)');
 assert(!workIndexText.includes('filter'), 'Work index page has no filtering interface');
 
 // 5. Forbidden marketing claims scan across codebase

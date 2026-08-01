@@ -1,0 +1,148 @@
+---
+import { site } from '../../site.config';
+import { Globe, ShoppingBag, Megaphone, Video, Share2, Search, Bot, Sparkles, CheckCircle2 } from '@lucide/astro';
+
+const deliverables = [
+  {
+    id: 'web-platforms',
+    category: 'WEBSITE DEVELOPMENT',
+    title: 'High-Speed Web Platforms & Storefronts',
+    description: 'Custom Astro and WooCommerce web platforms engineered for zero JavaScript overhead, fast static loading, and high mobile conversion.',
+    icon: Globe,
+    color: 'text-[#38bdf8]',
+    border: 'border-[#38bdf8]/30',
+    tags: ['Astro Web Architecture', 'WooCommerce E-Commerce', 'Mobile Conversion Layouts']
+  },
+  {
+    id: 'ecommerce-growth',
+    category: 'E-COMMERCE GROWTH',
+    title: 'Product Storefront & Commission Sales',
+    description: 'End-to-end storefront management, inventory alignment, promotional banners, and direct sales handling across e-commerce product lines.',
+    icon: ShoppingBag,
+    color: 'text-[#ff762b]',
+    border: 'border-[#ff762b]/30',
+    tags: ['Storefront Optimization', 'Direct Sales Routing', 'Customer Order Support']
+  },
+  {
+    id: 'paid-ad-campaigns',
+    category: 'PAID ADVERTISING',
+    title: 'Meta & TikTok Direct-Response Campaigns',
+    description: 'Structure ad accounts, scale creative testing, optimize bid strategies, and align custom landing pages for paid acquisition.',
+    icon: Megaphone,
+    color: 'text-[#ddff35]',
+    border: 'border-[#ddff35]/30',
+    tags: ['Meta & TikTok Ads', 'Creative A/B Testing', 'Landing Page Alignment']
+  },
+  {
+    id: 'video-editing',
+    category: 'CREATIVE CONTENT',
+    title: 'Direct-Response Video Edits & Motion Banners',
+    description: 'Short-form video editing, hook testing, promotional captions, B-roll overlays, and high-converting creative ad scripts.',
+    icon: Video,
+    color: 'text-purple-400',
+    border: 'border-purple-500/30',
+    tags: ['Short-Form Video Edits', 'Ad Scriptwriting', 'Social Banners']
+  },
+  {
+    id: 'social-publishing',
+    category: 'SOCIAL MEDIA MARKETING',
+    title: 'Multi-Channel Content & Account Management',
+    description: 'Consistent social publishing, visual post design, brand communication alignment, and inquiry routing for business accounts.',
+    icon: Share2,
+    color: 'text-pink-400',
+    border: 'border-pink-500/30',
+    tags: ['Multi-Channel Publishing', 'Post Design', 'Inquiry Routing']
+  },
+  {
+    id: 'seo-local-search',
+    category: 'SEO & LOCAL SEARCH',
+    title: 'Google Maps & Local Search Rank Setup',
+    description: 'Location-focused service pages, Google Business Profile optimization, technical SEO foundations, and local search visibility.',
+    icon: Search,
+    color: 'text-[#39c98a]',
+    border: 'border-[#39c98a]/30',
+    tags: ['Google Maps & Business Setup', 'Service-Area Content', 'Technical SEO']
+  },
+  {
+    id: 'ai-character-workflows',
+    category: 'AI MARKETING WORKFLOWS',
+    title: 'Private Consistent-Character Video Pipelines',
+    description: 'Private VPS infrastructure for AI character identity generation, voice synthesis, and scale promotional video creation.',
+    icon: Bot,
+    color: 'text-[#ddff35]',
+    border: 'border-[#ddff35]/30',
+    tags: ['Custom AI Character Identities', 'Voice Synthesis', 'Private VPS Infrastructure']
+  }
+];
+---
+
+<section id="deliverables-gallery" class="py-16 sm:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
+  <div class="max-w-[1280px] mx-auto px-6 sm:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <span class="inline-flex items-center gap-2 rounded-full border border-[#061d33]/15 bg-white px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.08em] text-[#ff762b] shadow-xs">
+        <Sparkles class="size-3.5 text-[#ff762b]" />
+        <span>VISUAL DELIVERABLES SHOWCASE</span>
+      </span>
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#061d33] leading-tight">
+        What Starts Digital Builds, Manages and Improves
+      </h2>
+      <p class="font-body text-base sm:text-lg text-slate-700 max-w-2xl mx-auto leading-relaxed">
+        Explore visual deliverables across our six core capability areas.
+      </p>
+    </div>
+
+    <!-- Editorial / Masonry Deliverables Showcase Grid -->
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {deliverables.map((item) => {
+        const IconComp = item.icon;
+        return (
+          <div class="rounded-3xl border-2 border-[#061d33]/15 bg-white p-8 flex flex-col justify-between space-y-6 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">
+                  {item.category}
+                </span>
+                <div class={`size-11 rounded-2xl border-2 flex items-center justify-center ${item.border} bg-slate-50`}>
+                  <IconComp class={`size-5.5 ${item.color}`} />
+                </div>
+              </div>
+              <h3 class="font-heading font-bold text-2xl text-[#061d33] leading-snug">
+                {item.title}
+              </h3>
+              <p class="font-body text-sm text-slate-600 leading-relaxed font-normal">
+                {item.description}
+              </p>
+            </div>
+
+            <div class="space-y-2 border-t border-slate-100 pt-4">
+              {item.tags.map((tag) => (
+                <div class="flex items-center gap-2 text-xs font-body text-slate-700">
+                  <CheckCircle2 class="size-3.5 text-[#ff762b] shrink-0" />
+                  <span>{tag}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Work Capabilities Collage Picture Composition -->
+    <div class="mt-16 max-w-4xl mx-auto">
+      <div class="rounded-3xl overflow-hidden border border-[#061d33]/15 shadow-2xl bg-white p-2">
+        <picture>
+          <source srcset={`${site.basePath}/visuals/work-capabilities-collage.avif`} type="image/avif" />
+          <img
+            src={`${site.basePath}/visuals/work-capabilities-collage.webp`}
+            alt="Starts Digital Combined Capabilities Collage across Paid Ads, Web, SEO and AI Workflows"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-auto object-cover rounded-2xl"
+          />
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>

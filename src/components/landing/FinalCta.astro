@@ -5,6 +5,12 @@ import FloatingOrb from '../motion/FloatingOrb.astro';
 import OrbitRing from '../motion/OrbitRing.astro';
 import SectionSpark from '../motion/SectionSpark.astro';
 
+interface Props {
+  title?: string;
+}
+
+const { title = "Ready to discuss what your business needs next?" } = Astro.props;
+
 const stickers = [
   'PAID ADVERTISING',
   'WEBSITES & SEO',
@@ -40,7 +46,7 @@ const stickers = [
         
         <!-- Headline: Fade-Up Reveal -->
         <h2 data-motion="fade-up" data-motion-delay="200" class="font-heading font-bold text-[33px] sm:text-[46px] text-white leading-[1.12] tracking-[-0.025em]">
-          Ready to discuss what your business needs next?
+          {title}
         </h2>
 
         <!-- Description: Fade-Up -->

@@ -1,0 +1,119 @@
+---
+import { site } from '../../site.config';
+import { Megaphone, Globe, Search, Video, Share2, Bot, Sparkles } from '@lucide/astro';
+
+const ecosystemNodes = [
+  {
+    id: 'paid-ad',
+    title: 'Paid Ads',
+    slug: 'paid-advertising',
+    href: '/services/paid-advertising/',
+    icon: Megaphone,
+    color: 'text-[#ff762b]',
+    border: 'border-[#ff762b]/40',
+    bg: 'bg-[#ff762b]/15',
+    position: 'top-0 left-4 sm:top-2 sm:left-6'
+  },
+  {
+    id: 'web-dev',
+    title: 'Websites',
+    slug: 'website-design-development',
+    href: '/services/website-design-development/',
+    icon: Globe,
+    color: 'text-[#38bdf8]',
+    border: 'border-[#38bdf8]/40',
+    bg: 'bg-[#38bdf8]/15',
+    position: 'top-0 right-4 sm:top-2 sm:right-6'
+  },
+  {
+    id: 'seo-rank',
+    title: 'SEO & Maps',
+    slug: 'seo-local-search',
+    href: '/services/seo-local-search/',
+    icon: Search,
+    color: 'text-[#39c98a]',
+    border: 'border-[#39c98a]/40',
+    bg: 'bg-[#39c98a]/15',
+    position: 'top-1/2 -left-2 sm:-left-4 -translate-y-1/2'
+  },
+  {
+    id: 'creative-video',
+    title: 'Creative Video',
+    slug: 'creative-content',
+    href: '/services/creative-content/',
+    icon: Video,
+    color: 'text-purple-400',
+    border: 'border-purple-500/40',
+    bg: 'bg-purple-500/15',
+    position: 'top-1/2 -right-2 sm:-right-4 -translate-y-1/2'
+  },
+  {
+    id: 'social-media',
+    title: 'Social Media',
+    slug: 'social-media-marketing',
+    href: '/services/social-media-marketing/',
+    icon: Share2,
+    color: 'text-pink-400',
+    border: 'border-pink-500/40',
+    bg: 'bg-pink-500/15',
+    position: 'bottom-0 left-4 sm:bottom-2 sm:left-6'
+  },
+  {
+    id: 'ai-workflows',
+    title: 'AI Workflows',
+    slug: 'ai-marketing-workflows',
+    href: '/services/ai-marketing-workflows/',
+    icon: Bot,
+    color: 'text-[#ddff35]',
+    border: 'border-[#ddff35]/40',
+    bg: 'bg-[#ddff35]/15',
+    position: 'bottom-0 right-4 sm:bottom-2 sm:right-6'
+  }
+];
+---
+
+<div class="relative w-full max-w-[480px] aspect-square mx-auto perspective-1000 select-none">
+  <!-- Ambient Orbit Glow -->
+  <div class="absolute inset-4 bg-radial-gradient from-[#ff762b]/15 via-[#ddff35]/10 to-transparent rounded-full blur-2xl opacity-60"></div>
+
+  <!-- SVG Connecting Orbit Lines -->
+  <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-40" viewBox="0 0 400 400" fill="none">
+    <circle cx="200" cy="200" r="140" stroke="white" stroke-dasharray="6 6" stroke-width="1.5" />
+    <circle cx="200" cy="200" r="90" stroke="#38bdf8" stroke-dasharray="4 4" stroke-width="1" />
+  </svg>
+
+  <!-- Central Starts Digital System Core -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-28 sm:size-32 rounded-3xl border-2 border-white/20 bg-[#0c2a4a]/90 backdrop-blur-xl shadow-2xl p-4 flex flex-col items-center justify-center text-center space-y-1 group transform hover:scale-105 transition-transform duration-300">
+    <Sparkles class="size-6 text-[#ddff35]" />
+    <span class="font-heading font-bold text-xs sm:text-sm text-white leading-tight">Starts Digital</span>
+    <span class="font-mono text-[9px] text-slate-300">Service Core</span>
+  </div>
+
+  <!-- 6 Floating 3D Ecosystem Nodes (Each links to its Service page!) -->
+  {ecosystemNodes.map((node) => {
+    const IconComponent = node.icon;
+    return (
+      <a
+        href={`${site.basePath}${node.href}`}
+        class={`absolute ${node.position} z-20 group`}
+      >
+        <div class={`rounded-2xl border-2 ${node.border} ${node.bg} backdrop-blur-md p-3 shadow-xl flex items-center gap-2.5 transform hover:scale-110 transition-transform duration-300 hover:z-30`}>
+          <div class={`size-8 rounded-xl bg-white/10 flex items-center justify-center`}>
+            <IconComponent class={`size-4.5 ${node.color}`} />
+          </div>
+          <div class="hidden sm:block">
+            <span class="font-heading font-bold text-xs text-white group-hover:text-[#ddff35] transition-colors block leading-none">
+              {node.title}
+            </span>
+          </div>
+        </div>
+      </a>
+    );
+  })}
+</div>
+
+<style>
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+</style>

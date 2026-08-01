@@ -121,8 +121,7 @@ export async function runPublicStorytellingQa() {
   
   if (fs.existsSync(workIndexPath)) {
     const content = fs.readFileSync(workIndexPath, 'utf-8');
-    addAssertion('Work Page Has Combined Achievements', content.includes('CombinedAchievements'), 'Combined achievements component integrated on /work/');
-    addAssertion('Work Page Has Brand Logo Wall', content.includes('BrandLogoWall'), 'Brand logo wall component integrated on /work/');
+    addAssertion('Work Page Has Work Results Section', content.includes('WorkResultsSection') || content.includes('CombinedAchievements'), 'Work results section integrated on /work/');
     addAssertion('No Client Filters On Work Page', !content.includes('filter') && !content.includes('Client Industry Filter'), 'Filtering interface completely removed');
   }
 

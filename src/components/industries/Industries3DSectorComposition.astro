@@ -1,0 +1,74 @@
+---
+import { ShoppingBag, Calendar, Wrench, Cpu, Sparkles } from '@lucide/astro';
+---
+
+<div class="relative w-full max-w-[480px] aspect-square mx-auto perspective-1000 select-none">
+  <!-- Ambient Backlight -->
+  <div class="absolute inset-4 bg-radial-gradient from-[#ff762b]/15 via-[#39c98a]/10 to-transparent rounded-full blur-2xl opacity-60"></div>
+
+  <!-- Central System Core -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-28 sm:size-32 rounded-3xl border-2 border-white/20 bg-[#0c2a4a]/90 backdrop-blur-xl shadow-2xl p-4 flex flex-col items-center justify-center text-center space-y-1 transform hover:scale-105 transition-transform duration-300">
+    <Sparkles class="size-6 text-[#ff762b]" />
+    <span class="font-heading font-bold text-xs sm:text-sm text-white leading-tight">Sector Architecture</span>
+    <span class="font-mono text-[9px] text-slate-300">4 Core Models</span>
+  </div>
+
+  <!-- 4 3D Sector Objects -->
+  <!-- Object 1: E-Commerce Package (Top-Left) -->
+  <div class="absolute top-4 left-4 z-20 transform -rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
+    <div class="rounded-2xl border-2 border-[#ff762b]/40 bg-[#ff762b]/15 backdrop-blur-md p-4 shadow-xl flex items-center gap-3">
+      <div class="size-10 rounded-xl bg-[#ff762b] text-white flex items-center justify-center font-bold shadow-md">
+        <ShoppingBag class="size-5" />
+      </div>
+      <div>
+        <span class="font-mono text-[10px] uppercase text-slate-300 block">E-Commerce</span>
+        <span class="font-heading text-xs font-bold text-white">Product Brands</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Object 2: Seasonal Calendar (Top-Right) -->
+  <div class="absolute top-4 right-4 z-20 transform rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
+    <div class="rounded-2xl border-2 border-[#ddff35]/40 bg-[#ddff35]/15 backdrop-blur-md p-4 shadow-xl flex items-center gap-3">
+      <div class="size-10 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center font-bold shadow-md">
+        <Calendar class="size-5" />
+      </div>
+      <div>
+        <span class="font-mono text-[10px] uppercase text-slate-300 block">Seasonal</span>
+        <span class="font-heading text-xs font-bold text-white">Promotional Windows</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Object 3: Local Service Pin (Bottom-Left) -->
+  <div class="absolute bottom-4 left-4 z-20 transform rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
+    <div class="rounded-2xl border-2 border-[#39c98a]/40 bg-[#39c98a]/15 backdrop-blur-md p-4 shadow-xl flex items-center gap-3">
+      <div class="size-10 rounded-xl bg-[#39c98a] text-white flex items-center justify-center font-bold shadow-md">
+        <Wrench class="size-5" />
+      </div>
+      <div>
+        <span class="font-mono text-[10px] uppercase text-slate-300 block">Local Services</span>
+        <span class="font-heading text-xs font-bold text-white">Contractors & Trades</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Object 4: Tech Interface (Bottom-Right) -->
+  <div class="absolute bottom-4 right-4 z-20 transform -rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-300">
+    <div class="rounded-2xl border-2 border-[#38bdf8]/40 bg-[#38bdf8]/15 backdrop-blur-md p-4 shadow-xl flex items-center gap-3">
+      <div class="size-10 rounded-xl bg-[#38bdf8] text-white flex items-center justify-center font-bold shadow-md">
+        <Cpu class="size-5" />
+      </div>
+      <div>
+        <span class="font-mono text-[10px] uppercase text-slate-300 block">Technology</span>
+        <span class="font-heading text-xs font-bold text-white">SaaS & Products</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+</style>
