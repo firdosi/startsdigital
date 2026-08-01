@@ -282,8 +282,8 @@ async function runCapture() {
     const industriesSpacingAudit = await page5.evaluate(() => {
       const groups = Array.from(document.querySelectorAll('#industries-3d-composition .group'));
       return groups.map((grp, i) => {
-        const textEl = grp.querySelector('div > div:last-child');
-        const iconEl = grp.querySelector('div > div:first-child');
+        const textEl = grp.querySelector('div.flex > div:last-child');
+        const iconEl = grp.querySelector('div.flex > div.relative');
         if (!textEl || !iconEl) return { groupIndex: i, valid: false };
 
         const tRect = textEl.getBoundingClientRect();
