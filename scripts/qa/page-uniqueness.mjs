@@ -25,6 +25,8 @@ const mainPages = [
 
 const headingsMap = new Map();
 const h1sMap = new Map();
+const paragraphsMap = new Map();
+const ctasMap = new Map();
 let logoSectionCount = 0;
 let errors = [];
 
@@ -37,7 +39,7 @@ for (const relPath of mainPages) {
 
   let html = fs.readFileSync(filePath, 'utf-8');
 
-  // Strip header and footer content so global footer links don't trigger false positives
+  // Strip header and footer content so global navigation links don't trigger false positives
   html = html.replace(/<header[\s\S]*?<\/header>/gi, '').replace(/<footer[\s\S]*?<\/footer>/gi, '');
 
   // Count brand marquee / logo sections
@@ -45,7 +47,7 @@ for (const relPath of mainPages) {
     logoSectionCount++;
   }
 
-  // Extract H1
+  // 1. Extract H1
   const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
   if (h1Match) {
     const h1Text = h1Match[1].replace(/<[^>]+>/g, '').trim();
@@ -56,16 +58,28 @@ for (const relPath of mainPages) {
     }
   }
 
-  // Extract H2 headings
+  // 2. Extract H2 headings
   const h2Matches = html.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/gi);
   for (const match of h2Matches) {
     const h2Text = match[1].replace(/<[^>]+>/g, '').trim();
-    // Allow global navigation / footer headings if any, but flag repeated page section headings
     if (h2Text.length > 10 && !['Frequently Asked Questions', 'Ready to Discuss Your Project Goals?'].includes(h2Text)) {
       if (headingsMap.has(h2Text)) {
         errors.push(`Duplicate H2 "${h2Text}" found on ${relPath} and ${headingsMap.get(h2Text)}`);
       } else {
         headingsMap.set(h2Text, relPath);
+      }
+    }
+  }
+
+  // 3. Extract major hero/section paragraphs (> 40 chars)
+  const pMatches = html.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi);
+  for (const match of pMatches) {
+    const pText = match[1].replace(/<[^>]+>/g, '').trim();
+    if (pText.length > 50 && !pText.includes('Your details are used only to prepare')) {
+      if (paragraphsMap.has(pText)) {
+        errors.push(`Duplicate paragraph block "${pText.substring(0, 40)}..." found on ${relPath} and ${paragraphsMap.get(pText)}`);
+      } else {
+        paragraphsMap.set(pText, relPath);
       }
     }
   }
@@ -76,6 +90,10 @@ if (logoSectionCount !== 1) {
   errors.push(`Expected exactly 1 public brand logo section across site, found ${logoSectionCount}`);
 } else {
   console.log('✅ PASS: Exactly 1 public brand logo section found across main pages (Homepage only)');
+}
+
+if (errors.length === 0) {
+  console.log('✅ PASS: Zero duplicate H1s, H2s, or paragraph blocks found across main pages.');
 }
 
 if (errors.length > 0) {
