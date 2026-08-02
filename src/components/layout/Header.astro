@@ -161,33 +161,33 @@ const publishedServices = getPublishedServices();
   <!-- Mobile Drawer Navigation -->
   <div
     id="mobile-menu-drawer"
-    class="grid grid-rows-[0fr] opacity-0 !hidden transition-all duration-300 ease-in-out border-t border-white/10 bg-[#061d33] lg:hidden"
+    class="!hidden grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-in-out border-t border-white/10 bg-[#061d33] px-6 sm:px-8 lg:hidden font-body overflow-hidden"
   >
-    <div class="overflow-hidden px-6 py-6 font-body space-y-4 text-slate-200">
-      <a href={`${site.basePath}/`} class="mobile-link block py-2 text-base font-semibold hover:text-[#ff762b]">Home</a>
+    <div class="overflow-hidden py-6 flex flex-col gap-3 text-base font-semibold text-white">
+      
+      <a href={`${site.basePath}/`} class="mobile-link min-h-[44px] flex items-center py-2 hover:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs">Home</a>
 
-      <!-- Mobile Services Accordion -->
-      <div class="space-y-2">
-        <div class="flex items-center justify-between py-2 border-b border-white/10">
-          <a href={`${site.basePath}/services/`} class="mobile-link text-base font-semibold hover:text-[#ff762b]">
-            Services Overview
+      <!-- Mobile Services Accordion Submenu -->
+      <div class="border-y border-white/10 py-2">
+        <button
+          id="mobile-services-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-services-submenu"
+          class="w-full flex items-center justify-between min-h-[44px] text-base font-semibold text-white hover:text-[#ff762b] focus:outline-none focus:ring-2 focus:ring-[#ff762b] rounded-sm"
+        >
+          <span>Services</span>
+          <ChevronDown id="mobile-services-chevron" class="size-5 transition-transform duration-300" />
+        </button>
+
+        <div id="mobile-services-submenu" class="hidden pl-4 pt-2 pb-1 space-y-2">
+          <a href={`${site.basePath}/services/`} class="mobile-link min-h-[44px] flex items-center text-base text-[#ddff35] font-semibold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs">
+            All Services Directory
           </a>
-          <button
-            id="mobile-services-toggle"
-            type="button"
-            class="p-2 text-slate-300 hover:text-white focus:outline-none"
-            aria-expanded="false"
-            aria-label="Toggle mobile services menu"
-          >
-            <ChevronDown id="mobile-services-chevron" class="size-5 transition-transform duration-200" />
-          </button>
-        </div>
-
-        <div id="mobile-services-submenu" class="hidden pl-4 space-y-2 pt-1">
           {publishedServices.map((svc) => (
             <a
               href={`${site.basePath}/services/${svc.slug}/`}
-              class="mobile-link block py-1.5 text-sm text-slate-300 hover:text-white"
+              class="mobile-link min-h-[44px] flex items-center text-base text-slate-200 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
             >
               {svc.name}
             </a>
@@ -195,16 +195,16 @@ const publishedServices = getPublishedServices();
         </div>
       </div>
 
-      <a href={`${site.basePath}/work/`} class="mobile-link block py-2 text-base font-semibold hover:text-[#ff762b]">Work</a>
-      <a href={`${site.basePath}/industries/`} class="mobile-link block py-2 text-base font-semibold hover:text-[#ff762b]">Industries</a>
-      <a href={`${site.basePath}/about/`} class="mobile-link block py-2 text-base font-semibold hover:text-[#ff762b]">About</a>
-      <a href={`${site.basePath}/#faq`} class="mobile-link block py-2 text-base font-semibold hover:text-[#ff762b]">FAQ</a>
-      <a href={`${site.basePath}/contact/`} class="mobile-link block py-2 text-base font-semibold hover:text-[#ff762b]">Contact</a>
+      <a href={`${site.basePath}/work/`} class="mobile-link min-h-[44px] flex items-center py-2 hover:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs">Work</a>
+      <a href={`${site.basePath}/industries/`} class="mobile-link min-h-[44px] flex items-center py-2 hover:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs">Industries</a>
+      <a href={`${site.basePath}/about/`} class="mobile-link min-h-[44px] flex items-center py-2 hover:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs">About</a>
+      <a href={`${site.basePath}/#faq`} class="mobile-link min-h-[44px] flex items-center py-2 hover:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs">FAQ</a>
+      <a href={`${site.basePath}/contact/`} class="mobile-link min-h-[44px] flex items-center py-2 hover:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs">Contact</a>
 
       <a
         href={`${site.basePath}/contact/`}
         data-track="primary-cta"
-        class="mobile-link mt-4 rounded-full bg-[#ff762b] min-h-[44px] flex items-center justify-center px-6 py-3.5 text-center text-base font-semibold text-white shadow-md hover:bg-[#e56017] transition-all"
+        class="mobile-link mt-4 rounded-full bg-[#ff762b] min-h-[44px] flex items-center justify-center px-6 py-3.5 text-center text-base font-semibold text-white shadow-md hover:bg-[#e56017] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b]"
       >
         Start a Project
       </a>
