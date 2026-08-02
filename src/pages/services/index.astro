@@ -413,21 +413,21 @@ const generalFaqs = [
       </div>
 
       <!-- Connected 4-stage timeline wrapper -->
-      <div class="relative max-w-6xl mx-auto">
+      <div id="service-process-timeline" class="relative max-w-6xl mx-auto">
         <!-- Horizontal connector line for Desktop (lg) -->
-        <div class="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-0.5 bg-[#061d33]/15 z-0" aria-hidden="true"></div>
+        <div id="timeline-connector-desktop" class="hidden lg:block absolute top-6 sm:top-7 left-[11.72%] right-[11.72%] h-0.5 bg-[#061d33]/15 z-0" aria-hidden="true"></div>
 
         <!-- Vertical connector line for Mobile/Tablet (< lg) -->
-        <div class="lg:hidden absolute top-7 bottom-7 left-6 sm:left-7 w-0.5 bg-[#061d33]/15 z-0" aria-hidden="true"></div>
+        <div id="timeline-connector-mobile" class="lg:hidden absolute top-6 sm:top-7 bottom-6 sm:bottom-7 left-6 sm:left-7 w-0.5 bg-[#061d33]/15 z-0" aria-hidden="true"></div>
 
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-6 relative z-10">
           
           <!-- Stage 01 -->
-          <div class="relative flex lg:flex-col items-start gap-5 lg:gap-6 group">
-            <div class="size-12 sm:size-14 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-mono font-bold text-base shrink-0 z-10 border-4 border-[#f7f4ed] shadow-xs group-hover:bg-[#ff762b] transition-colors">
+          <div data-delivery-stage data-stage-index={0} class="relative flex lg:flex-col items-start lg:items-center gap-5 lg:gap-6 group">
+            <div data-stage-node class="size-12 sm:size-14 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-mono font-bold text-base shrink-0 z-10 border-4 border-[#f7f4ed] shadow-xs group-hover:bg-[#ff762b] transition-colors lg:self-center">
               01
             </div>
-            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex-1 w-full space-y-3 shadow-xs group-hover:border-[#ff762b]/40 transition-all h-full">
+            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex-1 w-full space-y-3 shadow-xs group-hover:border-[#ff762b]/40 transition-all h-full text-left">
               <div class="flex items-center gap-2 text-[#ff762b]">
                 <FileText class="size-4" />
                 <span class="font-mono text-xs font-bold uppercase tracking-wider">STAGE 01</span>
@@ -440,11 +440,11 @@ const generalFaqs = [
           </div>
 
           <!-- Stage 02 -->
-          <div class="relative flex lg:flex-col items-start gap-5 lg:gap-6 group">
-            <div class="size-12 sm:size-14 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-mono font-bold text-base shrink-0 z-10 border-4 border-[#f7f4ed] shadow-xs group-hover:bg-[#ff762b] transition-colors">
+          <div data-delivery-stage data-stage-index={1} class="relative flex lg:flex-col items-start lg:items-center gap-5 lg:gap-6 group">
+            <div data-stage-node class="size-12 sm:size-14 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-mono font-bold text-base shrink-0 z-10 border-4 border-[#f7f4ed] shadow-xs group-hover:bg-[#ff762b] transition-colors lg:self-center">
               02
             </div>
-            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex-1 w-full space-y-3 shadow-xs group-hover:border-[#ff762b]/40 transition-all h-full">
+            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex-1 w-full space-y-3 shadow-xs group-hover:border-[#ff762b]/40 transition-all h-full text-left">
               <div class="flex items-center gap-2 text-[#ff762b]">
                 <FileCheck class="size-4" />
                 <span class="font-mono text-xs font-bold uppercase tracking-wider">STAGE 02</span>
@@ -457,11 +457,11 @@ const generalFaqs = [
           </div>
 
           <!-- Stage 03 -->
-          <div class="relative flex lg:flex-col items-start gap-5 lg:gap-6 group">
-            <div class="size-12 sm:size-14 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-mono font-bold text-base shrink-0 z-10 border-4 border-[#f7f4ed] shadow-xs group-hover:bg-[#ff762b] transition-colors">
+          <div data-delivery-stage data-stage-index={2} class="relative flex lg:flex-col items-start lg:items-center gap-5 lg:gap-6 group">
+            <div data-stage-node class="size-12 sm:size-14 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-mono font-bold text-base shrink-0 z-10 border-4 border-[#f7f4ed] shadow-xs group-hover:bg-[#ff762b] transition-colors lg:self-center">
               03
             </div>
-            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex-1 w-full space-y-3 shadow-xs group-hover:border-[#ff762b]/40 transition-all h-full">
+            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex-1 w-full space-y-3 shadow-xs group-hover:border-[#ff762b]/40 transition-all h-full text-left">
               <div class="flex items-center gap-2 text-[#ff762b]">
                 <Layers class="size-4" />
                 <span class="font-mono text-xs font-bold uppercase tracking-wider">STAGE 03</span>
@@ -474,11 +474,11 @@ const generalFaqs = [
           </div>
 
           <!-- Stage 04 -->
-          <div class="relative flex lg:flex-col items-start gap-5 lg:gap-6 group">
-            <div class="size-12 sm:size-14 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-mono font-bold text-base shrink-0 z-10 border-4 border-[#f7f4ed] shadow-xs group-hover:bg-[#ff762b] transition-colors">
+          <div data-delivery-stage data-stage-index={3} class="relative flex lg:flex-col items-start lg:items-center gap-5 lg:gap-6 group">
+            <div data-stage-node class="size-12 sm:size-14 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-mono font-bold text-base shrink-0 z-10 border-4 border-[#f7f4ed] shadow-xs group-hover:bg-[#ff762b] transition-colors lg:self-center">
               04
             </div>
-            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex-1 w-full space-y-3 shadow-xs group-hover:border-[#ff762b]/40 transition-all h-full">
+            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex-1 w-full space-y-3 shadow-xs group-hover:border-[#ff762b]/40 transition-all h-full text-left">
               <div class="flex items-center gap-2 text-[#ff762b]">
                 <TrendingUp class="size-4" />
                 <span class="font-mono text-xs font-bold uppercase tracking-wider">STAGE 04</span>
