@@ -179,20 +179,25 @@ function addAssertion(name, result, detail = '') {
       addAssertion(`homepage_hero_service_link_present_${href.split('/')[3]}`, linkCount > 0);
     }
 
-    // Assertion: Only ONE brand-logo section
+    // Explicit Logo Assertions
     const brandSectionCount = await homePage.locator('#brand-logos').count();
-    addAssertion('only_one_brand_logo_section', brandSectionCount === 1, `sections=${brandSectionCount}`);
-
-    // Assertion: No marquee infinite loop (BrandMarquee replaced)
     const marqueeCount = await homePage.locator('#brand-marquee').count();
-    addAssertion('no_infinite_marquee_section', marqueeCount === 0, `marquee_count=${marqueeCount}`);
-
-    // Assertion: Exactly 12 logos present in DOM (0 duplicate elements!)
     const logoImgs = await homePage.locator('#brand-logos img').count();
-    addAssertion('all_12_logos_present_once', logoImgs === 12, `logos_in_grid=${logoImgs}`);
-
-    // Assertion: No logo wrapped in anchor tag
     const logoAnchors = await homePage.locator('#brand-logos a img').count();
+
+    const logoSrcs = await homePage.locator('#brand-logos img').evaluateAll(imgs => imgs.map(i => i.getAttribute('src')));
+    const uniqueSrcs = new Set(logoSrcs);
+    const duplicateLogoCount = logoSrcs.length - uniqueSrcs.size;
+
+    addAssertion('unique_brand_ids', uniqueSrcs.size === 12, `unique_brand_ids=${uniqueSrcs.size}`);
+    addAssertion('logo_img_elements', logoImgs === 12, `logo_img_elements=${logoImgs}`);
+    addAssertion('visible_desktop_logos', logoImgs === 12, `visible_desktop_logos=${logoImgs}`);
+    addAssertion('duplicate_brand_ids', duplicateLogoCount === 0, `duplicate_brand_ids=${duplicateLogoCount}`);
+    addAssertion('anchored_logos', logoAnchors === 0, `anchored_logos=${logoAnchors}`);
+    addAssertion('marquee_clones', marqueeCount === 0, `marquee_clones=${marqueeCount}`);
+    addAssertion('all_12_logos_present_once', logoImgs === 12, `logos_in_grid=${logoImgs}`);
+    addAssertion('only_one_brand_logo_section', brandSectionCount === 1, `sections=${brandSectionCount}`);
+    addAssertion('no_infinite_marquee_section', marqueeCount === 0, `marquee_count=${marqueeCount}`);
     addAssertion('no_logos_wrapped_in_anchors', logoAnchors === 0, `anchored_logos=${logoAnchors}`);
 
     // Assertion: BusinessOutcomes section present
@@ -226,6 +231,10 @@ function addAssertion(name, result, detail = '') {
     const homeMobile = await ctx390.newPage();
     await homeMobile.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     await homeMobile.waitForTimeout(600);
+
+    // Assertion: Mobile available logos
+    const mobileLogos = await homeMobile.locator('#brand-logos img').count();
+    addAssertion('available_mobile_logos', mobileLogos === 12, `available_mobile_logos=${mobileLogos}`);
 
     // Assertion: No horizontal overflow at 390px
     const bodyScrollWidth390 = await homeMobile.evaluate(() => document.body.scrollWidth);
@@ -303,9 +312,16 @@ function addAssertion(name, result, detail = '') {
     await indPage.goto(`${BASE_URL}/industries/`, { waitUntil: 'networkidle', timeout: 30000 });
     await indPage.waitForTimeout(600);
 
-    // Assertion: All 4 industry sectors present
-    const indSectorCount = await indPage.locator('#sectors .rounded-2xl, #sectors .rounded-3xl').count();
-    addAssertion('industries_has_four_sectors', indSectorCount >= 4, `sectors=${indSectorCount}`);
+    // Explicit Sector Assertions (4 Primary Sector Cards in #sectors section grid)
+    const visibleDesktopSectors = await indPage.locator('#sectors > div > div.grid > div').count();
+    const sectorLinks = await indPage.locator('#sectors > div > div.grid > div a[href*="/industries/"]').evaluateAll(links => links.map(a => a.getAttribute('href')));
+    const uniqueSectorSlugs = new Set(sectorLinks);
+    const duplicateSectors = sectorLinks.length - uniqueSectorSlugs.size;
+
+    addAssertion('unique_sector_ids', uniqueSectorSlugs.size === 4, `unique_sector_ids=${uniqueSectorSlugs.size}`);
+    addAssertion('visible_desktop_sectors', visibleDesktopSectors === 4, `visible_desktop_sectors=${visibleDesktopSectors}`);
+    addAssertion('duplicate_sector_ids', duplicateSectors === 0, `duplicate_sector_ids=${duplicateSectors}`);
+    addAssertion('industries_has_four_sectors', visibleDesktopSectors === 4, `sectors=${visibleDesktopSectors}`);
 
     // Screenshot 6: industries hero and sectors 1440
     await indPage.screenshot({ path: join(OUTPUT_DIR, 'industries-hero-and-sectors-1440.png'), fullPage: false });
@@ -340,9 +356,10 @@ function addAssertion(name, result, detail = '') {
     await contactPage.goto(`${BASE_URL}/contact/`, { waitUntil: 'networkidle', timeout: 30000 });
     await contactPage.waitForTimeout(500);
 
-    // Assertion: Communication journey visual present
-    const contactStepCount = await contactPage.locator('.step-float, .flex.items-start.gap-4').count();
-    addAssertion('contact_has_communication_journey_visual', contactStepCount > 0, `steps=${contactStepCount}`);
+    // Explicit Contact Journey Step Assertions (Target primary hero visual scene)
+    const primarySteps = await contactPage.locator('section').first().locator('.hidden.sm\\:flex .step-float').count();
+    addAssertion('primary_contact_journey_steps', primarySteps === 4, `primary_contact_journey_steps=${primarySteps}`);
+    addAssertion('contact_has_communication_journey_visual', primarySteps === 4, `steps=${primarySteps}`);
 
     // Screenshot 10: contact mobile review 390 (390px wide viewport, 1200px height)
     await contactPage.screenshot({ path: join(OUTPUT_DIR, 'contact-mobile-review-390.png'), fullPage: false });
