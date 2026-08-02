@@ -401,7 +401,7 @@ const generalFaqs = [
 
   {/* 5. Service Delivery Process */}
   <section id="service-process" class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
-    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 space-y-10">
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 space-y-12">
       <div class="text-center space-y-4 max-w-2xl mx-auto">
         <SectionEyebrow label="SERVICE DELIVERY METHOD" align="center" motion={false} />
         <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight">
@@ -412,74 +412,84 @@ const generalFaqs = [
         </p>
       </div>
 
-      <!-- 4-stage connected delivery system timeline -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-        <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex flex-col justify-between shadow-xs relative group hover:border-[#ff762b]/50 transition-all">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-1 rounded-full">
-                STAGE 01
-              </span>
-              <div class="size-10 rounded-2xl bg-[#061d33]/5 flex items-center justify-center text-[#061d33] group-hover:bg-[#ff762b] group-hover:text-white transition-colors">
-                <FileText class="size-5" />
-              </div>
-            </div>
-            <h3 class="font-heading font-bold text-xl text-[#061d33]">Business Brief</h3>
-            <p class="font-body text-sm text-slate-700 leading-relaxed">
-              Goals, business context, available assets and requirements.
-            </p>
-          </div>
-        </div>
+      <!-- Connected 4-stage timeline wrapper -->
+      <div class="relative max-w-6xl mx-auto">
+        <!-- Horizontal connector line for Desktop (lg) -->
+        <div class="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-0.5 bg-[#061d33]/15 z-0" aria-hidden="true"></div>
 
-        <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex flex-col justify-between shadow-xs relative group hover:border-[#ff762b]/50 transition-all">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="font-mono text-[#ff762b] text-xs font-bold uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-1 rounded-full">
-                STAGE 02
-              </span>
-              <div class="size-10 rounded-2xl bg-[#061d33]/5 flex items-center justify-center text-[#061d33] group-hover:bg-[#ff762b] group-hover:text-white transition-colors">
-                <FileCheck class="size-5" />
-              </div>
-            </div>
-            <h3 class="font-heading font-bold text-xl text-[#061d33]">Scope Confirmation</h3>
-            <p class="font-body text-sm text-slate-700 leading-relaxed">
-              Deliverables, responsibilities, platforms and timeline.
-            </p>
-          </div>
-        </div>
+        <!-- Vertical connector line for Mobile/Tablet (< lg) -->
+        <div class="lg:hidden absolute top-7 bottom-7 left-6 sm:left-7 w-0.5 bg-[#061d33]/15 z-0" aria-hidden="true"></div>
 
-        <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex flex-col justify-between shadow-xs relative group hover:border-[#ff762b]/50 transition-all">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-1 rounded-full">
-                STAGE 03
-              </span>
-              <div class="size-10 rounded-2xl bg-[#061d33]/5 flex items-center justify-center text-[#061d33] group-hover:bg-[#ff762b] group-hover:text-white transition-colors">
-                <Layers class="size-5" />
-              </div>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-6 relative z-10">
+          
+          <!-- Stage 01 -->
+          <div class="relative flex lg:flex-col items-start gap-5 lg:gap-6 group">
+            <div class="size-12 sm:size-14 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-mono font-bold text-base shrink-0 z-10 border-4 border-[#f7f4ed] shadow-xs group-hover:bg-[#ff762b] transition-colors">
+              01
             </div>
-            <h3 class="font-heading font-bold text-xl text-[#061d33]">Production & Execution</h3>
-            <p class="font-body text-sm text-slate-700 leading-relaxed">
-              Design, development, campaigns, content or technical implementation.
-            </p>
+            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex-1 w-full space-y-3 shadow-xs group-hover:border-[#ff762b]/40 transition-all h-full">
+              <div class="flex items-center gap-2 text-[#ff762b]">
+                <FileText class="size-4" />
+                <span class="font-mono text-xs font-bold uppercase tracking-wider">STAGE 01</span>
+              </div>
+              <h3 class="font-heading font-bold text-xl text-[#061d33]">Business Brief</h3>
+              <p class="font-body text-sm text-slate-700 leading-relaxed">
+                Goals, business context, available assets and requirements.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex flex-col justify-between shadow-xs relative group hover:border-[#ff762b]/50 transition-all">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-1 rounded-full">
-                STAGE 04
-              </span>
-              <div class="size-10 rounded-2xl bg-[#061d33]/5 flex items-center justify-center text-[#061d33] group-hover:bg-[#ff762b] group-hover:text-white transition-colors">
-                <TrendingUp class="size-5" />
-              </div>
+          <!-- Stage 02 -->
+          <div class="relative flex lg:flex-col items-start gap-5 lg:gap-6 group">
+            <div class="size-12 sm:size-14 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-mono font-bold text-base shrink-0 z-10 border-4 border-[#f7f4ed] shadow-xs group-hover:bg-[#ff762b] transition-colors">
+              02
             </div>
-            <h3 class="font-heading font-bold text-xl text-[#061d33]">Review & Next Actions</h3>
-            <p class="font-body text-sm text-slate-700 leading-relaxed">
-              Review completed work, available results and agreed next actions.
-            </p>
+            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex-1 w-full space-y-3 shadow-xs group-hover:border-[#ff762b]/40 transition-all h-full">
+              <div class="flex items-center gap-2 text-[#ff762b]">
+                <FileCheck class="size-4" />
+                <span class="font-mono text-xs font-bold uppercase tracking-wider">STAGE 02</span>
+              </div>
+              <h3 class="font-heading font-bold text-xl text-[#061d33]">Scope Confirmation</h3>
+              <p class="font-body text-sm text-slate-700 leading-relaxed">
+                Deliverables, responsibilities, platforms and timeline.
+              </p>
+            </div>
           </div>
+
+          <!-- Stage 03 -->
+          <div class="relative flex lg:flex-col items-start gap-5 lg:gap-6 group">
+            <div class="size-12 sm:size-14 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-mono font-bold text-base shrink-0 z-10 border-4 border-[#f7f4ed] shadow-xs group-hover:bg-[#ff762b] transition-colors">
+              03
+            </div>
+            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex-1 w-full space-y-3 shadow-xs group-hover:border-[#ff762b]/40 transition-all h-full">
+              <div class="flex items-center gap-2 text-[#ff762b]">
+                <Layers class="size-4" />
+                <span class="font-mono text-xs font-bold uppercase tracking-wider">STAGE 03</span>
+              </div>
+              <h3 class="font-heading font-bold text-xl text-[#061d33]">Production & Execution</h3>
+              <p class="font-body text-sm text-slate-700 leading-relaxed">
+                Design, development, campaigns, content or technical implementation.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stage 04 -->
+          <div class="relative flex lg:flex-col items-start gap-5 lg:gap-6 group">
+            <div class="size-12 sm:size-14 rounded-2xl bg-[#061d33] text-white flex items-center justify-center font-mono font-bold text-base shrink-0 z-10 border-4 border-[#f7f4ed] shadow-xs group-hover:bg-[#ff762b] transition-colors">
+              04
+            </div>
+            <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex-1 w-full space-y-3 shadow-xs group-hover:border-[#ff762b]/40 transition-all h-full">
+              <div class="flex items-center gap-2 text-[#ff762b]">
+                <TrendingUp class="size-4" />
+                <span class="font-mono text-xs font-bold uppercase tracking-wider">STAGE 04</span>
+              </div>
+              <h3 class="font-heading font-bold text-xl text-[#061d33]">Review & Next Actions</h3>
+              <p class="font-body text-sm text-slate-700 leading-relaxed">
+                Review completed work, available results and agreed next actions.
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

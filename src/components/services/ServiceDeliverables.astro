@@ -18,16 +18,25 @@ export interface Props {
 
 const { service } = Astro.props;
 const total = service.deliverables.length;
-const rem = total % 3;
 
-function getColSpanClass(idx: number, total: number, rem: number): string {
-  if (rem === 1 && idx === total - 1) {
-    return 'lg:col-span-2 lg:col-start-3';
+function getGridClasses(idx: number, total: number): string {
+  const isTabletOddLast = (total % 2 === 1) && (idx === total - 1);
+  const mdClass = isTabletOddLast ? 'md:col-span-2 md:col-start-2' : 'md:col-span-2';
+
+  if (total === 4) {
+    return `${mdClass} lg:col-span-3`;
   }
-  if (rem === 2 && idx === total - 2) {
-    return 'lg:col-span-2 lg:col-start-2';
+
+  const rem3 = total % 3;
+  let lgClass = 'lg:col-span-2';
+
+  if (rem3 === 1 && idx === total - 1) {
+    lgClass = 'lg:col-span-2 lg:col-start-3';
+  } else if (rem3 === 2 && idx === total - 2) {
+    lgClass = 'lg:col-span-2 lg:col-start-2';
   }
-  return 'lg:col-span-2';
+
+  return `${mdClass} ${lgClass}`;
 }
 
 function getIconComponent(title: string) {
@@ -57,14 +66,18 @@ function getIconComponent(title: string) {
       </p>
     </div>
 
-    <!-- Adaptive 6-Column Centred Deliverables Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+    <!-- Adaptive Grid Container -->
+    <div id="deliverables-grid-container" class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6">
       {service.deliverables.map((item, idx) => {
         const IconComp = getIconComponent(item.title);
-        const spanClass = getColSpanClass(idx, total, rem);
+        const gridClass = getGridClasses(idx, total);
 
         return (
-          <div class={`${spanClass} rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all duration-300 h-full`}>
+          <div
+            data-deliverable-card
+            data-card-index={idx}
+            class={`${gridClass} rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all duration-300 h-full`}
+          >
             <div class="space-y-4">
               <div class="flex items-center justify-between">
                 <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-3 py-1 rounded-full">

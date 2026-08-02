@@ -25,6 +25,7 @@ const commands = [
   'node scripts/qa/public-storytelling.mjs',
   'node scripts/qa/page-uniqueness.mjs',
   'node scripts/qa/final-visual-rebuild.mjs',
+  'node scripts/qa/card-alignment.mjs',
 ];
 
 if (!fs.existsSync(dir81)) {
