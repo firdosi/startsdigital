@@ -1,29 +1,22 @@
 ---
-import { ShoppingBag, Package, Tag, Calendar, Clock, Award, MapPin, Wrench, Search, Laptop, Cpu, Layers, Sparkles, Home, CreditCard, Compass } from '@lucide/astro';
+import { ShoppingBag, Package, Tag, Calendar, Clock, Award, MapPin, Wrench, Laptop, Cpu, Layers, Home, CreditCard } from '@lucide/astro';
+import { site } from '../../site.config';
 ---
 
-<div class="relative w-full max-w-[500px] aspect-square mx-auto perspective-1000 select-none py-4" id="industries-3d-composition">
-  <!-- Ambient Backlight -->
-  <div class="absolute inset-6 bg-radial-gradient from-[#ff762b]/20 via-[#39c98a]/15 to-transparent rounded-full blur-3xl opacity-70"></div>
+<div class="w-full max-w-[480px] mx-auto select-none py-4" id="industries-3d-composition">
+  <!-- 2x2 Sector Visual Object Grid -->
+  <div class="grid grid-cols-2 gap-4 sm:gap-5">
 
-  <!-- Central Core Object -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-28 sm:size-36 rounded-3xl border-2 border-white/25 bg-gradient-to-br from-[#0c2a4a] to-[#061d33] backdrop-blur-xl shadow-2xl p-4 flex flex-col items-center justify-center text-center space-y-1.5 z-10 transform hover:scale-110 transition-transform duration-300">
-    <div class="size-10 rounded-2xl bg-[#ff762b]/20 border border-[#ff762b]/40 flex items-center justify-center">
-      <Sparkles class="size-6 text-[#ff762b]" />
-    </div>
-    <span class="font-heading font-bold text-sm sm:text-base text-white leading-tight">Industry Models</span>
-    <span class="font-mono text-[10px] text-slate-300">4 Sector Compositions</span>
-  </div>
-
-  <!-- 4 Distinct Physical 3D Sector Objects -->
-
-  <!-- 1. E-Commerce Sector: Product Box, Shopping Bag, Storefront Tag & Checkout -->
-  <div class="absolute top-2 left-2 sm:top-4 sm:left-4 z-20 group">
-    <div class="relative p-3.5 sm:p-4 rounded-3xl border-2 border-[#ff762b]/40 bg-[#0a233c]/95 backdrop-blur-xl shadow-2xl transform transition-transform duration-300 group-hover:-translate-y-1.5 group-hover:scale-105">
-      <div class="flex items-center gap-3">
-        <div class="relative size-14 shrink-0 rounded-2xl bg-gradient-to-br from-[#ff762b] to-[#e56017] p-2.5 shadow-lg flex items-center justify-center transform -rotate-6">
-          <Package class="size-8 text-white stroke-[2]" />
-          <div class="absolute -top-2 -right-2 size-6 rounded-xl bg-[#061d33] border-2 border-[#ff762b] flex items-center justify-center shadow-md">
+    <!-- 1. E-Commerce Sector: Product Box, Shopping Bag, Storefront Tag & Checkout -->
+    <a
+      href={`${site.basePath}/industries/ecommerce-product-brands/`}
+      class="group block p-4 sm:p-5 rounded-3xl border border-[#ff762b]/30 bg-[#0a233c]/90 backdrop-blur-xl shadow-xl hover:border-[#ff762b] hover:bg-[#0c2a4a] hover:-translate-y-1 transition-all duration-300"
+    >
+      <div class="flex flex-col items-center text-center space-y-3">
+        <!-- 3D Physical Assembly -->
+        <div class="relative size-16 rounded-2xl bg-gradient-to-br from-[#ff762b] to-[#e56017] p-3 shadow-lg flex items-center justify-center transform -rotate-3 group-hover:rotate-0 transition-transform duration-300">
+          <Package class="size-9 text-white stroke-[2]" />
+          <div class="absolute -top-2 -right-2 size-6 rounded-xl bg-[#061d33] border border-[#ff762b] flex items-center justify-center shadow-md">
             <ShoppingBag class="size-3 text.white" />
           </div>
           <div class="absolute -bottom-2 -left-2 size-6 rounded-xl bg-[#ddff35] text-[#061d33] flex items-center justify-center shadow-sm">
@@ -34,20 +27,22 @@ import { ShoppingBag, Package, Tag, Calendar, Clock, Award, MapPin, Wrench, Sear
           </div>
         </div>
         <div>
-          <span class="font-heading text-xs font-bold text-white block">E-Commerce</span>
-          <span class="font-mono text-[10px] text-[#ff762b] block mt-0.5">Storefront & Checkout</span>
+          <span class="font-heading text-sm font-bold text-white block group-hover:text-[#ff762b] transition-colors">E-Commerce</span>
+          <span class="font-mono text-[11px] text-[#ff762b] block mt-0.5 font-medium">Storefront & Checkout</span>
         </div>
       </div>
-    </div>
-  </div>
+    </a>
 
-  <!-- 2. Seasonal Campaigns: Calendar Block, Countdown Dial & Promo Badge -->
-  <div class="absolute top-2 right-2 sm:top-4 sm:right-4 z-20 group">
-    <div class="relative p-3.5 sm:p-4 rounded-3xl border-2 border-[#ddff35]/40 bg-[#0a233c]/95 backdrop-blur-xl shadow-2xl transform transition-transform duration-300 group-hover:-translate-y-1.5 group-hover:scale-105">
-      <div class="flex items-center gap-3">
-        <div class="relative size-14 shrink-0 rounded-2xl bg-gradient-to-br from-[#ddff35] to-[#bce600] p-2.5 shadow-lg flex items-center justify-center transform rotate-6">
-          <Calendar class="size-8 text-[#061d33] stroke-[2]" />
-          <div class="absolute -top-2 -right-2 size-6 rounded-xl bg-[#061d33] border-2 border-[#ddff35] flex items-center justify-center shadow-md">
+    <!-- 2. Seasonal Campaigns: Calendar Block, Countdown Dial & Promo Badge -->
+    <a
+      href={`${site.basePath}/industries/seasonal-campaigns/`}
+      class="group block p-4 sm:p-5 rounded-3xl border border-[#ddff35]/30 bg-[#0a233c]/90 backdrop-blur-xl shadow-xl hover:border-[#ddff35] hover:bg-[#0c2a4a] hover:-translate-y-1 transition-all duration-300"
+    >
+      <div class="flex flex-col items-center text-center space-y-3">
+        <!-- 3D Physical Assembly -->
+        <div class="relative size-16 rounded-2xl bg-gradient-to-br from-[#ddff35] to-[#bce600] p-3 shadow-lg flex items-center justify-center transform rotate-3 group-hover:rotate-0 transition-transform duration-300">
+          <Calendar class="size-9 text-[#061d33] stroke-[2]" />
+          <div class="absolute -top-2 -right-2 size-6 rounded-xl bg-[#061d33] border border-[#ddff35] flex items-center justify-center shadow-md">
             <Clock class="size-3 text-[#ddff35]" />
           </div>
           <div class="absolute -bottom-2 -left-2 size-6 rounded-xl bg-[#ff762b] text-white flex items-center justify-center shadow-sm">
@@ -55,20 +50,22 @@ import { ShoppingBag, Package, Tag, Calendar, Clock, Award, MapPin, Wrench, Sear
           </div>
         </div>
         <div>
-          <span class="font-heading text-xs font-bold text-white block">Seasonal Campaigns</span>
-          <span class="font-mono text-[10px] text-[#ddff35] block mt-0.5">Promotional Windows</span>
+          <span class="font-heading text-sm font-bold text-white block group-hover:text-[#ddff35] transition-colors">Seasonal Campaigns</span>
+          <span class="font-mono text-[11px] text-[#ddff35] block mt-0.5 font-medium">Promotional Windows</span>
         </div>
       </div>
-    </div>
-  </div>
+    </a>
 
-  <!-- 3. Local Services: Property Visual, Map Pin & Contractor Tools -->
-  <div class="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 z-20 group">
-    <div class="relative p-3.5 sm:p-4 rounded-3xl border-2 border-[#39c98a]/40 bg-[#0a233c]/95 backdrop-blur-xl shadow-2xl transform transition-transform duration-300 group-hover:-translate-y-1.5 group-hover:scale-105">
-      <div class="flex items-center gap-3">
-        <div class="relative size-14 shrink-0 rounded-2xl bg-gradient-to-br from-[#39c98a] to-[#2ea06d] p-2.5 shadow-lg flex items-center justify-center transform rotate-3">
-          <MapPin class="size-8 text-white stroke-[2]" />
-          <div class="absolute -top-2 -right-2 size-6 rounded-xl bg-[#061d33] border-2 border-[#39c98a] flex items-center justify-center shadow-md">
+    <!-- 3. Local Services: Property Visual, Map Pin & Contractor Tools -->
+    <a
+      href={`${site.basePath}/industries/local-service-businesses/`}
+      class="group block p-4 sm:p-5 rounded-3xl border border-[#39c98a]/30 bg-[#0a233c]/90 backdrop-blur-xl shadow-xl hover:border-[#39c98a] hover:bg-[#0c2a4a] hover:-translate-y-1 transition-all duration-300"
+    >
+      <div class="flex flex-col items-center text-center space-y-3">
+        <!-- 3D Physical Assembly -->
+        <div class="relative size-16 rounded-2xl bg-gradient-to-br from-[#39c98a] to-[#2ea06d] p-3 shadow-lg flex items-center justify-center transform rotate-3 group-hover:rotate-0 transition-transform duration-300">
+          <MapPin class="size-9 text-white stroke-[2]" />
+          <div class="absolute -top-2 -right-2 size-6 rounded-xl bg-[#061d33] border border-[#39c98a] flex items-center justify-center shadow-md">
             <Wrench class="size-3 text-[#39c98a]" />
           </div>
           <div class="absolute -bottom-2 -left-2 size-6 rounded-xl bg-[#061d33] border border-white/30 text-[#ddff35] flex items-center justify-center shadow-sm">
@@ -76,20 +73,22 @@ import { ShoppingBag, Package, Tag, Calendar, Clock, Award, MapPin, Wrench, Sear
           </div>
         </div>
         <div>
-          <span class="font-heading text-xs font-bold text-white block">Local Services</span>
-          <span class="font-mono text-[10px] text-[#39c98a] block mt-0.5">Map & Location Radius</span>
+          <span class="font-heading text-sm font-bold text-white block group-hover:text-[#39c98a] transition-colors">Local Services</span>
+          <span class="font-mono text-[11px] text-[#39c98a] block mt-0.5 font-medium">Location Radius & Maps</span>
         </div>
       </div>
-    </div>
-  </div>
+    </a>
 
-  <!-- 4. Technology & SaaS: Laptop, App Modules & Connected Nodes -->
-  <div class="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 z-20 group">
-    <div class="relative p-3.5 sm:p-4 rounded-3xl border-2 border-[#38bdf8]/40 bg-[#0a233c]/95 backdrop-blur-xl shadow-2xl transform transition-transform duration-300 group-hover:-translate-y-1.5 group-hover:scale-105">
-      <div class="flex items-center gap-3">
-        <div class="relative size-14 shrink-0 rounded-2xl bg-gradient-to-br from-[#38bdf8] to-[#0284c7] p-2.5 shadow-lg flex items-center justify-center transform -rotate-3">
-          <Laptop class="size-8 text-white stroke-[2]" />
-          <div class="absolute -top-2 -right-2 size-6 rounded-xl bg-[#061d33] border-2 border-[#38bdf8] flex items-center justify-center shadow-md">
+    <!-- 4. Technology & SaaS: Laptop, App Modules & Connected Nodes -->
+    <a
+      href={`${site.basePath}/industries/technology-products/`}
+      class="group block p-4 sm:p-5 rounded-3xl border border-[#38bdf8]/30 bg-[#0a233c]/90 backdrop-blur-xl shadow-xl hover:border-[#38bdf8] hover:bg-[#0c2a4a] hover:-translate-y-1 transition-all duration-300"
+    >
+      <div class="flex flex-col items-center text-center space-y-3">
+        <!-- 3D Physical Assembly -->
+        <div class="relative size-16 rounded-2xl bg-gradient-to-br from-[#38bdf8] to-[#0284c7] p-3 shadow-lg flex items-center justify-center transform -rotate-3 group-hover:rotate-0 transition-transform duration-300">
+          <Laptop class="size-9 text-white stroke-[2]" />
+          <div class="absolute -top-2 -right-2 size-6 rounded-xl bg-[#061d33] border border-[#38bdf8] flex items-center justify-center shadow-md">
             <Cpu class="size-3 text-[#38bdf8]" />
           </div>
           <div class="absolute -bottom-2 -left-2 size-6 rounded-xl bg-[#061d33] border border-white/30 text-[#38bdf8] flex items-center justify-center shadow-sm">
@@ -97,17 +96,11 @@ import { ShoppingBag, Package, Tag, Calendar, Clock, Award, MapPin, Wrench, Sear
           </div>
         </div>
         <div>
-          <span class="font-heading text-xs font-bold text-white block">Technology & SaaS</span>
-          <span class="font-mono text-[10px] text-[#38bdf8] block mt-0.5">Product Modules & Apps</span>
+          <span class="font-heading text-sm font-bold text-white block group-hover:text-[#38bdf8] transition-colors">Technology & SaaS</span>
+          <span class="font-mono text-[11px] text-[#38bdf8] block mt-0.5 font-medium">Product Modules & Apps</span>
         </div>
       </div>
-    </div>
+    </a>
+
   </div>
-
 </div>
-
-<style>
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-</style>

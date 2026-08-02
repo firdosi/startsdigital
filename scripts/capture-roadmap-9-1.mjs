@@ -218,7 +218,8 @@ function addAssertion(name, result, detail = '') {
     await homePage.locator('#brand-logos').scrollIntoViewIfNeeded();
     await homePage.waitForTimeout(400);
     await homePage.screenshot({ path: join(OUTPUT_DIR, 'homepage-logo-section-1440.png'), fullPage: false });
-    log(`Screenshot saved: homepage-logo-section-1440.png`);
+    await homePage.screenshot({ path: join(OUTPUT_DIR, 'homepage-logo-final-1440.png'), fullPage: false });
+    log(`Screenshot saved: homepage-logo-final-1440.png`);
 
     await ctx1440.close();
 
@@ -248,7 +249,8 @@ function addAssertion(name, result, detail = '') {
     await homeMobile.locator('#brand-logos').scrollIntoViewIfNeeded();
     await homeMobile.waitForTimeout(400);
     await homeMobile.screenshot({ path: join(OUTPUT_DIR, 'homepage-logo-section-390.png'), fullPage: false });
-    log(`Screenshot saved: homepage-logo-section-390.png`);
+    await homeMobile.screenshot({ path: join(OUTPUT_DIR, 'homepage-logo-final-390.png'), fullPage: false });
+    log(`Screenshot saved: homepage-logo-final-390.png`);
 
     await ctx390.close();
 
@@ -274,7 +276,8 @@ function addAssertion(name, result, detail = '') {
 
     // Screenshot 4: services hero and production 1440
     await servicesPage.screenshot({ path: join(OUTPUT_DIR, 'services-hero-and-production-1440.png'), fullPage: false });
-    log(`Screenshot saved: services-hero-and-production-1440.png`);
+    await servicesPage.screenshot({ path: join(OUTPUT_DIR, 'services-dropdown-final-1440.png'), fullPage: false });
+    log(`Screenshot saved: services-dropdown-final-1440.png`);
 
     await ctxServices.close();
 
@@ -298,7 +301,12 @@ function addAssertion(name, result, detail = '') {
 
     // Screenshot 5: work hero and ai story 1440
     await workPage.screenshot({ path: join(OUTPUT_DIR, 'work-hero-and-ai-story-1440.png'), fullPage: false });
-    log(`Screenshot saved: work-hero-and-ai-story-1440.png`);
+
+    // AI Story screenshot: Scroll down to #work-results to capture the complete AI performance story
+    await workPage.locator('#work-results').scrollIntoViewIfNeeded();
+    await workPage.waitForTimeout(400);
+    await workPage.screenshot({ path: join(OUTPUT_DIR, 'work-ai-story-final-1440.png'), fullPage: false });
+    log(`Screenshot saved: work-ai-story-final-1440.png`);
 
     await ctxWork.close();
 
@@ -325,7 +333,8 @@ function addAssertion(name, result, detail = '') {
 
     // Screenshot 6: industries hero and sectors 1440
     await indPage.screenshot({ path: join(OUTPUT_DIR, 'industries-hero-and-sectors-1440.png'), fullPage: false });
-    log(`Screenshot saved: industries-hero-and-sectors-1440.png`);
+    await indPage.screenshot({ path: join(OUTPUT_DIR, 'industries-hero-final-1440.png'), fullPage: false });
+    log(`Screenshot saved: industries-hero-final-1440.png`);
 
     await ctxInd.close();
 
@@ -412,16 +421,11 @@ function addAssertion(name, result, detail = '') {
     stage = 'STAGE 12: Verify screenshots';
     log(stage);
     const requiredScreenshots = [
-      'homepage-hero-1440.png',
-      'homepage-visual-sections-1440.png',
-      'homepage-logo-section-1440.png',
-      'services-hero-and-production-1440.png',
-      'work-hero-and-ai-story-1440.png',
-      'industries-hero-and-sectors-1440.png',
-      'homepage-hero-and-services-390.png',
-      'homepage-logo-section-390.png',
-      'about-mobile-review-390.png',
-      'contact-mobile-review-390.png'
+      'services-dropdown-final-1440.png',
+      'industries-hero-final-1440.png',
+      'homepage-logo-final-1440.png',
+      'homepage-logo-final-390.png',
+      'work-ai-story-final-1440.png'
     ];
     for (const fname of requiredScreenshots) {
       const fpath = join(OUTPUT_DIR, fname);

@@ -4,10 +4,27 @@ import { site } from '../../site.config';
 
 // All approved brand logos — shown exactly once, no duplicates
 const activeBrands = brands.filter(b => b.active && b.logoApproved && b.logo).map(b => ({
+  id: b.id,
   name: b.name,
   logo: b.logo!.startsWith('/') ? `${site.basePath}${b.logo}` : b.logo!,
   darkContainer: !!b.darkLogoContainer
 }));
+
+// Per-logo visual balance & sizing classes
+const logoSizingMap: Record<string, string> = {
+  'clearzone-immigration': 'max-h-6 sm:max-h-7 opacity-90',
+  'rapidzone': 'max-h-7 sm:max-h-8 drop-shadow-[0_1px_4px_rgba(255,255,255,0.2)]',
+  'rapidline-immigration-services': 'max-h-8 sm:max-h-9',
+  'convort-ai': 'max-h-7 sm:max-h-8 brightness-110',
+  'rk-reno-solutions': 'max-h-8 sm:max-h-9',
+  'black-gold-fertilizer': 'max-h-9 sm:max-h-10',
+  'wajib-livestock': 'max-h-9 sm:max-h-10',
+  'riyadh-finish-pro': 'max-h-9 sm:max-h-10 brightness-110',
+  'viral-naturals': 'max-h-8 sm:max-h-9',
+  'shopinq-online': 'max-h-7 sm:max-h-8',
+  'super-safety-covers': 'max-h-8 sm:max-h-9',
+  'unique-lahore-lab-sahiwal': 'max-h-8 sm:max-h-9'
+};
 ---
 
 <section id="brand-logos" class="py-16 sm:py-20 bg-[#061d33] text-white relative border-t border-b border-white/10">
@@ -31,22 +48,26 @@ const activeBrands = brands.filter(b => b.active && b.logoApproved && b.logo).ma
 
     <!-- Single Responsive Logo Grid (Exactly 12 logo elements in DOM) -->
     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 logo-grid">
-      {activeBrands.map((b, idx) => (
-        <div
-          class="rounded-2xl border border-white/15 bg-white/5 p-3.5 sm:p-4 flex items-center justify-center h-[72px] sm:h-[88px] hover:border-[#ff762b]/50 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-300 cursor-default select-none"
-          style={`animation-delay: ${idx * 40}ms`}
-        >
-          <img
-            src={b.logo}
-            alt={`${b.name}`}
-            loading="lazy"
-            decoding="async"
-            width="140"
-            height="50"
-            class="max-h-9 sm:max-h-11 w-auto object-contain"
-          />
-        </div>
-      ))}
+      {activeBrands.map((b, idx) => {
+        const sizingClass = logoSizingMap[b.id] || 'max-h-8 sm:max-h-10';
+
+        return (
+          <div
+            class="rounded-2xl border border-white/15 bg-white/5 p-3.5 sm:p-4 flex items-center justify-center h-[72px] sm:h-[88px] hover:border-[#ff762b]/50 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-300 cursor-default select-none"
+            style={`animation-delay: ${idx * 40}ms`}
+          >
+            <img
+              src={b.logo}
+              alt={`${b.name}`}
+              loading="lazy"
+              decoding="async"
+              width="140"
+              height="50"
+              class={`w-auto object-contain transition-transform ${sizingClass}`}
+            />
+          </div>
+        );
+      })}
     </div>
 
   </div>
