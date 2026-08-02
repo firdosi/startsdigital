@@ -559,15 +559,7 @@ function boxesIntersect(boxA, boxB) {
       await ctxMob.close();
     }
 
-    addAssertion('mobile_drawer_toggle_has_aria_controls', true, 'verified_all_viewports=true');
-    addAssertion('mobile_services_toggle_has_aria_controls', true, 'verified_all_viewports=true');
-    addAssertion('mobile_services_toggle_updates_aria_expanded', true, 'verified_all_viewports=true');
-    addAssertion('mobile_service_links_count_equals_6', true, 'verified_all_viewports=true');
-    addAssertion('mobile_service_links_min_touch_height_44', true, 'verified_all_viewports=true');
-    addAssertion('mobile_primary_links_min_touch_height_44', true, 'verified_all_viewports=true');
-    addAssertion('mobile_services_submenu_opens', true, 'verified_all_viewports=true');
-    addAssertion('mobile_services_submenu_closes', true, 'verified_all_viewports=true');
-    addAssertion('mobile_drawer_has_no_horizontal_overflow', true, 'verified_all_viewports=true');
+
 
     // ──────────────────────────────────────────────────────────────────────────
     // STAGE 7: Work Page 1440px Capture
