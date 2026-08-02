@@ -373,36 +373,100 @@ function boxesIntersect(boxA, boxB) {
       await ctxHome.close();
     }
 
-    // 6C: Keyboard Tab focus-out assertion
+    // 6C: Complete Keyboard Accessibility Assertions
     const ctxKbd = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
     const pKbd = await ctxKbd.newPage();
     await pKbd.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     await pKbd.waitForTimeout(400);
 
     const trigger = pKbd.locator('#desktop-services-link');
+    const dropdownKbd = pKbd.locator('#desktop-services-dropdown');
+
+    // 1. Focus trigger & press Enter
     await trigger.focus();
-    await trigger.click();
+    await pKbd.keyboard.press('Enter');
     await pKbd.waitForTimeout(200);
 
-    const dropdownKbd = pKbd.locator('#desktop-services-dropdown');
-    const isVisibleBefore = !(await dropdownKbd.evaluate(el => el.classList.contains('hidden')));
+    const isVisibleAfterEnter = !(await dropdownKbd.evaluate(el => el.classList.contains('hidden')));
+    const firstActiveLinkVal = await pKbd.evaluate(() => document.activeElement ? document.activeElement.getAttribute('data-services-menu-link') : null);
 
-    // Tab through all service links inside the dropdown
-    const dropdownLinks = dropdownKbd.locator('a');
-    const linkCount = await dropdownLinks.count();
-    for (let i = 0; i < linkCount; i++) {
+    const openFocusesFirst = isVisibleAfterEnter && firstActiveLinkVal === 'overview';
+    addAssertion('keyboard_open_focuses_first_menu_link', openFocusesFirst, `visible=${isVisibleAfterEnter}, focused="${firstActiveLinkVal}"`);
+
+    // 2. Tab through all dropdown links and record values
+    const visitedMenuLinks = [];
+    if (firstActiveLinkVal) {
+      visitedMenuLinks.push(firstActiveLinkVal);
+    }
+
+    // 6 more tabs for the remaining 6 links
+    for (let i = 0; i < 6; i++) {
       await pKbd.keyboard.press('Tab');
       await pKbd.waitForTimeout(50);
+      const activeVal = await pKbd.evaluate(() => document.activeElement ? document.activeElement.getAttribute('data-services-menu-link') : null);
+      if (activeVal) {
+        visitedMenuLinks.push(activeVal);
+      }
     }
-    // Tab once more to leave the final link in the dropdown
+
+    const expectedOrder = [
+      'overview',
+      'paid-advertising',
+      'website-design-development',
+      'seo-local-search',
+      'creative-content',
+      'social-media-marketing',
+      'ai-marketing-workflows'
+    ];
+
+    const visitsAllSeven = visitedMenuLinks.length === 7;
+    addAssertion('keyboard_visits_all_seven_menu_links', visitsAllSeven, `count=${visitedMenuLinks.length}`);
+
+    const orderCorrect = JSON.stringify(visitedMenuLinks) === JSON.stringify(expectedOrder);
+    addAssertion('keyboard_menu_link_order_correct', orderCorrect, `order=${visitedMenuLinks.join(' -> ')}`);
+
+    // 3. Tab once after the final link (7th link)
     await pKbd.keyboard.press('Tab');
-    await pKbd.waitForTimeout(300);
+    await pKbd.waitForTimeout(200);
 
-    const isHiddenAfter = await dropdownKbd.evaluate(el => el.classList.contains('hidden'));
+    const isHiddenAfterFinalTab = await dropdownKbd.evaluate(el => el.classList.contains('hidden'));
+    addAssertion('keyboard_tab_after_final_link_closes_menu', isHiddenAfterFinalTab, `hidden=${isHiddenAfterFinalTab}`);
+
+    const activeElementOutside = await pKbd.evaluate(() => {
+      const active = document.activeElement;
+      if (!active) return false;
+      const dropdown = document.getElementById('desktop-services-dropdown');
+      return dropdown ? !dropdown.contains(active) : true;
+    });
     const activeText = await pKbd.evaluate(() => document.activeElement ? document.activeElement.textContent.trim() : '');
+    addAssertion('keyboard_tab_after_final_link_preserves_natural_focus', activeElementOutside, `outside=${activeElementOutside}, activeElement="${activeText}"`);
 
-    const tabClosesDropdown = isVisibleBefore && isHiddenAfter;
-    addAssertion('keyboard_tab_focusout_closes_dropdown', tabClosesDropdown, `closed=${isHiddenAfter}, activeElement="${activeText}"`);
+    // 4. Test Escape key restoring toggle focus
+    await trigger.focus();
+    await pKbd.keyboard.press('Enter');
+    await pKbd.waitForTimeout(150);
+    await pKbd.keyboard.press('Escape');
+    await pKbd.waitForTimeout(150);
+
+    const isHiddenAfterEscape = await dropdownKbd.evaluate(el => el.classList.contains('hidden'));
+    const activeIdAfterEscape = await pKbd.evaluate(() => document.activeElement ? document.activeElement.id : '');
+    const escapeRestoresFocus = isHiddenAfterEscape && (activeIdAfterEscape === 'desktop-services-toggle' || activeIdAfterEscape === 'desktop-services-link');
+    addAssertion('keyboard_escape_restores_toggle_focus', escapeRestoresFocus, `hidden=${isHiddenAfterEscape}, activeId="${activeIdAfterEscape}"`);
+
+    // 5. Test Shift+Tab from first link closing menu and restoring toggle focus
+    await trigger.focus();
+    await pKbd.keyboard.press('Enter');
+    await pKbd.waitForTimeout(150);
+    await pKbd.keyboard.down('Shift');
+    await pKbd.keyboard.press('Tab');
+    await pKbd.keyboard.up('Shift');
+    await pKbd.waitForTimeout(150);
+
+    const isHiddenAfterShiftTab = await dropdownKbd.evaluate(el => el.classList.contains('hidden'));
+    const activeIdAfterShiftTab = await pKbd.evaluate(() => document.activeElement ? document.activeElement.id : '');
+    const shiftTabCloses = isHiddenAfterShiftTab && (activeIdAfterShiftTab === 'desktop-services-toggle' || activeIdAfterShiftTab === 'desktop-services-link');
+    addAssertion('keyboard_shift_tab_from_first_link_closes_menu', shiftTabCloses, `hidden=${isHiddenAfterShiftTab}, activeId="${activeIdAfterShiftTab}"`);
+
     await ctxKbd.close();
 
     // ──────────────────────────────────────────────────────────────────────────
