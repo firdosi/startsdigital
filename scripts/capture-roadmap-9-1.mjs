@@ -255,7 +255,9 @@ function addAssertion(name, result, detail = '') {
     await ctx390.close();
 
 function boxesIntersect(boxA, boxB) {
-  if (!boxA || !boxB) return false;
+  if (!boxA || !boxB) {
+    throw new Error(`Missing bounding box: boxA=${Boolean(boxA)}, boxB=${Boolean(boxB)}`);
+  }
   return (
     boxA.x < boxB.x + boxB.width &&
     boxA.x + boxA.width > boxB.x &&
@@ -265,26 +267,45 @@ function boxesIntersect(boxA, boxB) {
 }
 
     // ──────────────────────────────────────────────────────────────────────────
-    // STAGE 6: Services Page 1440px & Non-Overlap Assertions (1280px, 1366px, 1440px, 1600px)
+    // STAGE 6: Global Header Non-Overlap Assertions on / and /services/ (1280px, 1366px, 1440px, 1600px)
     // ──────────────────────────────────────────────────────────────────────────
-    stage = 'STAGE 6: Services page non-overlap checks';
+    stage = 'STAGE 6: Global header dropdown non-overlap checks';
     log(stage);
 
+    // 6A: Test /services/ page closed & open
     for (const w of [1280, 1366, 1440, 1600]) {
       const ctxW = await browser.newContext({ viewport: { width: w, height: 1000 } });
       const p = await ctxW.newPage();
       await p.goto(`${BASE_URL}/services/`, { waitUntil: 'networkidle', timeout: 30000 });
       await p.waitForTimeout(400);
 
-      const desktopServicesLink = p.locator('#desktop-services-link');
-      await desktopServicesLink.dispatchEvent('click');
-      await p.waitForTimeout(300);
+      if (w === 1440) {
+        // Screenshot 1: Services page closed proving normal lg:pt-24 hero spacing
+        await p.screenshot({ path: join(OUTPUT_DIR, 'services-page-closed-final-1440.png'), fullPage: false });
+        log(`Screenshot saved: services-page-closed-final-1440.png`);
+      }
 
-      const dropdownBox = await p.locator('#desktop-services-dropdown').boundingBox();
+      // Real Playwright interaction & hover path
+      const servicesTrigger = p.locator('#desktop-services-link');
+      await servicesTrigger.click();
+      await p.waitForTimeout(200);
+
+      const dropdown = p.locator('#desktop-services-dropdown');
+      await servicesTrigger.hover();
+      await dropdown.hover();
+      await p.waitForTimeout(200);
+
+      const dropdownBox = await dropdown.boundingBox();
       const eyebrowBox = await p.locator('#services-hero span:has-text("SERVICES")').first().boundingBox();
       const h1Box = await p.locator('#services-hero h1').boundingBox();
       const paraBox = await p.locator('#services-hero p').first().boundingBox();
       const ctaBox = await p.locator('header a[data-track="primary-cta"]').first().boundingBox();
+
+      addAssertion(`services_dropdown_box_exists_${w}px`, dropdownBox !== null, `exists=${dropdownBox !== null}`);
+      addAssertion(`services_eyebrow_box_exists_${w}px`, eyebrowBox !== null, `exists=${eyebrowBox !== null}`);
+      addAssertion(`services_h1_box_exists_${w}px`, h1Box !== null, `exists=${h1Box !== null}`);
+      addAssertion(`services_para_box_exists_${w}px`, paraBox !== null, `exists=${paraBox !== null}`);
+      addAssertion(`services_cta_box_exists_${w}px`, ctaBox !== null, `exists=${ctaBox !== null}`);
 
       const intersectsEyebrow = boxesIntersect(dropdownBox, eyebrowBox);
       const intersectsH1 = boxesIntersect(dropdownBox, h1Box);
@@ -292,14 +313,58 @@ function boxesIntersect(boxA, boxB) {
       const intersectsCta = boxesIntersect(dropdownBox, ctaBox);
 
       const noOverlap = !intersectsEyebrow && !intersectsH1 && !intersectsPara && !intersectsCta;
-      addAssertion(`services_dropdown_no_overlap_${w}px`, noOverlap, `overlap=${noOverlap}`);
+      addAssertion(`services_dropdown_no_overlap_${w}px`, noOverlap, `no_overlap=${noOverlap}`);
 
       if (w === 1440) {
         await p.screenshot({ path: join(OUTPUT_DIR, 'services-hero-and-production-1440.png'), fullPage: false });
         await p.screenshot({ path: join(OUTPUT_DIR, 'services-dropdown-final-1440.png'), fullPage: false });
-        log(`Screenshot saved: services-dropdown-final-1440.png`);
+        await p.screenshot({ path: join(OUTPUT_DIR, 'services-dropdown-open-final-1440.png'), fullPage: false });
+        log(`Screenshot saved: services-dropdown-open-final-1440.png`);
       }
       await ctxW.close();
+    }
+
+    // 6B: Test Homepage / open dropdown
+    for (const w of [1280, 1366, 1440, 1600]) {
+      const ctxHome = await browser.newContext({ viewport: { width: w, height: 1000 } });
+      const pHome = await ctxHome.newPage();
+      await pHome.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
+      await pHome.waitForTimeout(400);
+
+      const servicesTrigger = pHome.locator('#desktop-services-link');
+      await servicesTrigger.click();
+      await pHome.waitForTimeout(200);
+
+      const dropdown = pHome.locator('#desktop-services-dropdown');
+      await servicesTrigger.hover();
+      await dropdown.hover();
+      await pHome.waitForTimeout(200);
+
+      const dropdownBox = await dropdown.boundingBox();
+      const eyebrowBox = await pHome.locator('#hero span.font-mono').first().boundingBox();
+      const h1Box = await pHome.locator('#hero h1').first().boundingBox();
+      const paraBox = await pHome.locator('#hero p').first().boundingBox();
+      const ctaBox = await pHome.locator('header a[data-track="primary-cta"]').first().boundingBox();
+
+      addAssertion(`homepage_dropdown_box_exists_${w}px`, dropdownBox !== null, `exists=${dropdownBox !== null}`);
+      addAssertion(`homepage_eyebrow_box_exists_${w}px`, eyebrowBox !== null, `exists=${eyebrowBox !== null}`);
+      addAssertion(`homepage_h1_box_exists_${w}px`, h1Box !== null, `exists=${h1Box !== null}`);
+      addAssertion(`homepage_para_box_exists_${w}px`, paraBox !== null, `exists=${paraBox !== null}`);
+      addAssertion(`homepage_cta_box_exists_${w}px`, ctaBox !== null, `exists=${ctaBox !== null}`);
+
+      const intersectsEyebrow = boxesIntersect(dropdownBox, eyebrowBox);
+      const intersectsH1 = boxesIntersect(dropdownBox, h1Box);
+      const intersectsPara = boxesIntersect(dropdownBox, paraBox);
+      const intersectsCta = boxesIntersect(dropdownBox, ctaBox);
+
+      const noOverlap = !intersectsEyebrow && !intersectsH1 && !intersectsPara && !intersectsCta;
+      addAssertion(`homepage_dropdown_no_overlap_${w}px`, noOverlap, `no_overlap=${noOverlap}`);
+
+      if (w === 1440) {
+        await pHome.screenshot({ path: join(OUTPUT_DIR, 'homepage-dropdown-open-final-1440.png'), fullPage: false });
+        log(`Screenshot saved: homepage-dropdown-open-final-1440.png`);
+      }
+      await ctxHome.close();
     }
 
     // ──────────────────────────────────────────────────────────────────────────
@@ -442,6 +507,9 @@ function boxesIntersect(boxA, boxB) {
     stage = 'STAGE 12: Verify screenshots';
     log(stage);
     const requiredScreenshots = [
+      'services-page-closed-final-1440.png',
+      'services-dropdown-open-final-1440.png',
+      'homepage-dropdown-open-final-1440.png',
       'services-dropdown-final-1440.png',
       'industries-hero-final-1440.png',
       'homepage-logo-final-1440.png',
