@@ -16,7 +16,14 @@ import {
   Search,
   Video,
   Share2,
-  Cpu
+  Cpu,
+  FileText,
+  FileCheck,
+  Layers,
+  TrendingUp,
+  Globe,
+  Activity,
+  Zap
 } from '@lucide/astro';
 
 import LightweightVisual3D from '../../components/visuals/LightweightVisual3D.astro';
@@ -394,27 +401,211 @@ const generalFaqs = [
 
   {/* 5. Service Delivery Process */}
   <section id="service-process" class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
-    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 text-center space-y-4">
-      <SectionEyebrow label="SERVICE DELIVERY METHOD" align="center" motion={false} />
-      <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight">
-        Structured Service Delivery from Brief to Review
-      </h2>
-      <p class="text-base text-slate-700 font-body leading-relaxed max-w-2xl mx-auto">
-        Every service engagement follows documented requirements, scope confirmation, production execution, and performance review.
-      </p>
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 space-y-10">
+      <div class="text-center space-y-4 max-w-2xl mx-auto">
+        <SectionEyebrow label="SERVICE DELIVERY METHOD" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight">
+          Structured Service Delivery from Brief to Review
+        </h2>
+        <p class="text-base text-slate-700 font-body leading-relaxed">
+          Every service engagement follows documented requirements, scope confirmation, production execution, and performance review.
+        </p>
+      </div>
+
+      <!-- 4-stage connected delivery system timeline -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+        <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex flex-col justify-between shadow-xs relative group hover:border-[#ff762b]/50 transition-all">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-1 rounded-full">
+                STAGE 01
+              </span>
+              <div class="size-10 rounded-2xl bg-[#061d33]/5 flex items-center justify-center text-[#061d33] group-hover:bg-[#ff762b] group-hover:text-white transition-colors">
+                <FileText class="size-5" />
+              </div>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-[#061d33]">Business Brief</h3>
+            <p class="font-body text-sm text-slate-700 leading-relaxed">
+              Goals, business context, available assets and requirements.
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex flex-col justify-between shadow-xs relative group hover:border-[#ff762b]/50 transition-all">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[#ff762b] text-xs font-bold uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-1 rounded-full">
+                STAGE 02
+              </span>
+              <div class="size-10 rounded-2xl bg-[#061d33]/5 flex items-center justify-center text-[#061d33] group-hover:bg-[#ff762b] group-hover:text-white transition-colors">
+                <FileCheck class="size-5" />
+              </div>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-[#061d33]">Scope Confirmation</h3>
+            <p class="font-body text-sm text-slate-700 leading-relaxed">
+              Deliverables, responsibilities, platforms and timeline.
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex flex-col justify-between shadow-xs relative group hover:border-[#ff762b]/50 transition-all">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-1 rounded-full">
+                STAGE 03
+              </span>
+              <div class="size-10 rounded-2xl bg-[#061d33]/5 flex items-center justify-center text-[#061d33] group-hover:bg-[#ff762b] group-hover:text-white transition-colors">
+                <Layers class="size-5" />
+              </div>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-[#061d33]">Production & Execution</h3>
+            <p class="font-body text-sm text-slate-700 leading-relaxed">
+              Design, development, campaigns, content or technical implementation.
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 flex flex-col justify-between shadow-xs relative group hover:border-[#ff762b]/50 transition-all">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-2.5 py-1 rounded-full">
+                STAGE 04
+              </span>
+              <div class="size-10 rounded-2xl bg-[#061d33]/5 flex items-center justify-center text-[#061d33] group-hover:bg-[#ff762b] group-hover:text-white transition-colors">
+                <TrendingUp class="size-5" />
+              </div>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-[#061d33]">Review & Next Actions</h3>
+            <p class="font-body text-sm text-slate-700 leading-relaxed">
+              Review completed work, available results and agreed next actions.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   {/* 6. Supported Platforms & Environments */}
   <section id="service-platforms" class="py-16 sm:py-20 bg-white text-[#061d33] border-b border-[#061d33]/10">
-    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 text-center space-y-4">
-      <SectionEyebrow label="TECHNICAL ENVIRONMENTS" align="center" motion={false} />
-      <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight">
-        Platforms, Tools and Ad Systems We Manage
-      </h2>
-      <p class="text-base text-slate-700 font-body leading-relaxed max-w-2xl mx-auto">
-        Our team configures and optimizes Meta Ads, Google Ads, TikTok Ads, Astro, WooCommerce, Shopify, Google Analytics 4 and custom AI API workflows.
-      </p>
+    <div class="mx-auto max-w-[1280px] px-6 sm:px-8 space-y-10">
+      <div class="text-center space-y-4 max-w-2xl mx-auto">
+        <SectionEyebrow label="TECHNICAL ENVIRONMENTS" align="center" motion={false} />
+        <h2 class="font-heading font-bold text-[28px] sm:text-[36px] lg:text-[40px] text-[#061d33] leading-tight">
+          Platforms, Tools and Systems We Manage
+        </h2>
+        <p class="text-base text-slate-700 font-body leading-relaxed">
+          Our team configures and optimizes Meta Ads, Google Ads, TikTok Ads, Astro, WooCommerce, Shopify, Google Analytics 4 and custom AI API workflows.
+        </p>
+      </div>
+
+      <!-- 4 organised platform groups -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="rounded-3xl border border-[#061d33]/12 bg-[#f7f4ed] p-6 space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-3 border-b border-[#061d33]/10 pb-3">
+              <div class="size-9 rounded-xl bg-[#061d33] text-white flex items-center justify-center shrink-0">
+                <Megaphone class="size-4 text-[#ff762b]" />
+              </div>
+              <h3 class="font-heading font-bold text-lg text-[#061d33] tracking-wide">ADVERTISING</h3>
+            </div>
+            <ul class="space-y-2 font-body text-sm text-slate-700">
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">Meta Ads</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">Google Ads</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">TikTok Ads</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-[#061d33]/12 bg-[#f7f4ed] p-6 space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-3 border-b border-[#061d33]/10 pb-3">
+              <div class="size-9 rounded-xl bg-[#061d33] text-white flex items-center justify-center shrink-0">
+                <Globe class="size-4 text-[#ff762b]" />
+              </div>
+              <h3 class="font-heading font-bold text-lg text-[#061d33] tracking-wide">WEBSITES & COMMERCE</h3>
+            </div>
+            <ul class="space-y-2 font-body text-sm text-slate-700">
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">Astro</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">WordPress</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">WooCommerce</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">Shopify</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-[#061d33]/12 bg-[#f7f4ed] p-6 space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-3 border-b border-[#061d33]/10 pb-3">
+              <div class="size-9 rounded-xl bg-[#061d33] text-white flex items-center justify-center shrink-0">
+                <Activity class="size-4 text-[#ff762b]" />
+              </div>
+              <h3 class="font-heading font-bold text-lg text-[#061d33] tracking-wide">MEASUREMENT</h3>
+            </div>
+            <ul class="space-y-2 font-body text-sm text-slate-700">
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">Google Analytics 4</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">Google Search Console</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">Conversion tracking</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-[#061d33]/12 bg-[#f7f4ed] p-6 space-y-4 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center gap-3 border-b border-[#061d33]/10 pb-3">
+              <div class="size-9 rounded-xl bg-[#061d33] text-[#ff762b] flex items-center justify-center shrink-0">
+                <Zap class="size-4 text-[#ff762b]" />
+              </div>
+              <h3 class="font-heading font-bold text-lg text-[#061d33] tracking-wide">AUTOMATION & WORKFLOWS</h3>
+            </div>
+            <ul class="space-y-2 font-body text-sm text-slate-700">
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">API integrations</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">AI-supported workflows</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="size-1.5 rounded-full bg-[#ff762b]"></span>
+                <span class="font-semibold text-[#061d33]">WhatsApp inquiry routing</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 

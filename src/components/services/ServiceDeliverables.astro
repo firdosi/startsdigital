@@ -1,13 +1,46 @@
 ---
 import type { ServiceDefinition } from '../../data/services';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
-import { PackageCheck } from '@lucide/astro';
+import {
+  Target,
+  Layout,
+  Sparkles,
+  Sliders,
+  BarChart3,
+  Layers,
+  Cpu,
+  PackageCheck
+} from '@lucide/astro';
 
 export interface Props {
   service: ServiceDefinition;
 }
 
 const { service } = Astro.props;
+const total = service.deliverables.length;
+const rem = total % 3;
+
+function getColSpanClass(idx: number, total: number, rem: number): string {
+  if (rem === 1 && idx === total - 1) {
+    return 'lg:col-span-2 lg:col-start-3';
+  }
+  if (rem === 2 && idx === total - 2) {
+    return 'lg:col-span-2 lg:col-start-2';
+  }
+  return 'lg:col-span-2';
+}
+
+function getIconComponent(title: string) {
+  const t = title.toLowerCase();
+  if (t.includes('plan') || t.includes('strategy') || t.includes('audit')) return Target;
+  if (t.includes('account') || t.includes('structure') || t.includes('setup')) return Sliders;
+  if (t.includes('creative') || t.includes('content') || t.includes('asset') || t.includes('media')) return Sparkles;
+  if (t.includes('landing') || t.includes('page') || t.includes('design') || t.includes('site') || t.includes('web')) return Layout;
+  if (t.includes('track') || t.includes('analytic') || t.includes('report') || t.includes('search') || t.includes('seo') || t.includes('metric')) return BarChart3;
+  if (t.includes('workflow') || t.includes('ai') || t.includes('automation') || t.includes('integration')) return Cpu;
+  if (t.includes('manage') || t.includes('optimi') || t.includes('execut') || t.includes('production')) return Layers;
+  return PackageCheck;
+}
 ---
 
 <section id="deliverables" class="py-16 sm:py-20 lg:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
@@ -24,28 +57,35 @@ const { service } = Astro.props;
       </p>
     </div>
 
-    <!-- Deliverables Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {service.deliverables.map((item, idx) => (
-        <div class="rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all duration-300">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-3 py-1 rounded-full">
-                DELIVERABLE 0{idx + 1}
-              </span>
-              <PackageCheck class="size-5 text-slate-400" />
+    <!-- Adaptive 6-Column Centred Deliverables Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+      {service.deliverables.map((item, idx) => {
+        const IconComp = getIconComponent(item.title);
+        const spanClass = getColSpanClass(idx, total, rem);
+
+        return (
+          <div class={`${spanClass} rounded-3xl border border-[#061d33]/12 bg-white p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all duration-300 h-full`}>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider bg-[#ff762b]/10 px-3 py-1 rounded-full">
+                  DELIVERABLE 0{idx + 1}
+                </span>
+                <div class="size-8 rounded-xl bg-[#061d33]/5 flex items-center justify-center text-[#061d33]">
+                  <IconComp class="size-4 text-[#061d33]" />
+                </div>
+              </div>
+
+              <h3 class="font-heading font-bold text-xl text-[#061d33] leading-snug">
+                {item.title}
+              </h3>
+
+              <p class="text-base text-slate-700 font-body leading-relaxed">
+                {item.description}
+              </p>
             </div>
-
-            <h3 class="font-heading font-bold text-xl text-[#061d33] leading-snug">
-              {item.title}
-            </h3>
-
-            <p class="text-base text-slate-700 font-body leading-relaxed">
-              {item.description}
-            </p>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
 
   </div>

@@ -1,12 +1,25 @@
 ---
 import type { ServiceDefinition } from '../../data/services';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
+import { ArrowRight } from '@lucide/astro';
 
 export interface Props {
   service: ServiceDefinition;
 }
 
 const { service } = Astro.props;
+const total = service.process.length;
+const rem = total % 3;
+
+function getColSpanClass(idx: number, total: number, rem: number): string {
+  if (rem === 1 && idx === total - 1) {
+    return 'lg:col-span-2 lg:col-start-3';
+  }
+  if (rem === 2 && idx === total - 2) {
+    return 'lg:col-span-2 lg:col-start-2';
+  }
+  return 'lg:col-span-2';
+}
 ---
 
 <section id="process" class="py-16 sm:py-20 lg:py-24 bg-white text-[#061d33] border-b border-[#061d33]/10 scroll-mt-44 sm:scroll-mt-40 lg:scroll-mt-36">
@@ -23,25 +36,35 @@ const { service } = Astro.props;
       </p>
     </div>
 
-    <!-- Process Steps Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-      {service.process.map((step) => (
-        <div class="rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all">
-          <div class="space-y-4">
-            <span class="font-mono text-xs font-bold text-[#ff762b] bg-[#ff762b]/10 px-3 py-1 rounded-full w-fit block">
-              STEP {step.step}
-            </span>
+    <!-- Adaptive 6-Column Centred Process Steps Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+      {service.process.map((step, idx) => {
+        const spanClass = getColSpanClass(idx, total, rem);
+        const isLast = idx === total - 1;
 
-            <h3 class="font-heading font-bold text-xl text-[#061d33] leading-snug">
-              {step.title}
-            </h3>
+        return (
+          <div class={`${spanClass} rounded-3xl border border-[#061d33]/12 bg-[#faf9f6] p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#ff762b]/40 transition-all duration-300 h-full group`}>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs font-bold text-[#ff762b] bg-[#ff762b]/10 px-3 py-1 rounded-full">
+                  STEP {step.step}
+                </span>
+                {!isLast && (
+                  <ArrowRight class="size-4 text-slate-300 group-hover:text-[#ff762b] group-hover:translate-x-0.5 transition-all" />
+                )}
+              </div>
 
-            <p class="text-base text-slate-700 font-body leading-relaxed">
-              {step.description}
-            </p>
+              <h3 class="font-heading font-bold text-xl text-[#061d33] leading-snug">
+                {step.title}
+              </h3>
+
+              <p class="text-base text-slate-700 font-body leading-relaxed">
+                {step.description}
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
 
   </div>
