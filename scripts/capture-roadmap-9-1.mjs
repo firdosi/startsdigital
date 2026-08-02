@@ -297,22 +297,25 @@ function boxesIntersect(boxA, boxB) {
 
       const dropdownBox = await dropdown.boundingBox();
       const eyebrowBox = await p.locator('#services-hero span:has-text("SERVICES")').first().boundingBox();
-      const h1Box = await p.locator('#services-hero h1').boundingBox();
+      const h1Box = await p.locator('#services-hero h1').first().boundingBox();
       const paraBox = await p.locator('#services-hero p').first().boundingBox();
+      const ecosystemBox = await p.locator('#services-ecosystem').first().boundingBox();
       const ctaBox = await p.locator('header a[data-track="primary-cta"]').first().boundingBox();
 
       addAssertion(`services_dropdown_box_exists_${w}px`, dropdownBox !== null, `exists=${dropdownBox !== null}`);
       addAssertion(`services_eyebrow_box_exists_${w}px`, eyebrowBox !== null, `exists=${eyebrowBox !== null}`);
       addAssertion(`services_h1_box_exists_${w}px`, h1Box !== null, `exists=${h1Box !== null}`);
       addAssertion(`services_para_box_exists_${w}px`, paraBox !== null, `exists=${paraBox !== null}`);
+      addAssertion(`services_ecosystem_box_exists_${w}px`, ecosystemBox !== null, `exists=${ecosystemBox !== null}`);
       addAssertion(`services_cta_box_exists_${w}px`, ctaBox !== null, `exists=${ctaBox !== null}`);
 
       const intersectsEyebrow = boxesIntersect(dropdownBox, eyebrowBox);
       const intersectsH1 = boxesIntersect(dropdownBox, h1Box);
       const intersectsPara = boxesIntersect(dropdownBox, paraBox);
+      const intersectsEcosystem = boxesIntersect(dropdownBox, ecosystemBox);
       const intersectsCta = boxesIntersect(dropdownBox, ctaBox);
 
-      const noOverlap = !intersectsEyebrow && !intersectsH1 && !intersectsPara && !intersectsCta;
+      const noOverlap = !intersectsEyebrow && !intersectsH1 && !intersectsPara && !intersectsEcosystem && !intersectsCta;
       addAssertion(`services_dropdown_no_overlap_${w}px`, noOverlap, `no_overlap=${noOverlap}`);
 
       if (w === 1440) {
@@ -344,20 +347,23 @@ function boxesIntersect(boxA, boxB) {
       const eyebrowBox = await pHome.locator('#hero span.font-mono').first().boundingBox();
       const h1Box = await pHome.locator('#hero h1').first().boundingBox();
       const paraBox = await pHome.locator('#hero p').first().boundingBox();
+      const panelBox = await pHome.locator('#homepage-service-panel').first().boundingBox();
       const ctaBox = await pHome.locator('header a[data-track="primary-cta"]').first().boundingBox();
 
       addAssertion(`homepage_dropdown_box_exists_${w}px`, dropdownBox !== null, `exists=${dropdownBox !== null}`);
       addAssertion(`homepage_eyebrow_box_exists_${w}px`, eyebrowBox !== null, `exists=${eyebrowBox !== null}`);
       addAssertion(`homepage_h1_box_exists_${w}px`, h1Box !== null, `exists=${h1Box !== null}`);
       addAssertion(`homepage_para_box_exists_${w}px`, paraBox !== null, `exists=${paraBox !== null}`);
+      addAssertion(`homepage_service_panel_box_exists_${w}px`, panelBox !== null, `exists=${panelBox !== null}`);
       addAssertion(`homepage_cta_box_exists_${w}px`, ctaBox !== null, `exists=${ctaBox !== null}`);
 
       const intersectsEyebrow = boxesIntersect(dropdownBox, eyebrowBox);
       const intersectsH1 = boxesIntersect(dropdownBox, h1Box);
       const intersectsPara = boxesIntersect(dropdownBox, paraBox);
+      const intersectsPanel = boxesIntersect(dropdownBox, panelBox);
       const intersectsCta = boxesIntersect(dropdownBox, ctaBox);
 
-      const noOverlap = !intersectsEyebrow && !intersectsH1 && !intersectsPara && !intersectsCta;
+      const noOverlap = !intersectsEyebrow && !intersectsH1 && !intersectsPara && !intersectsPanel && !intersectsCta;
       addAssertion(`homepage_dropdown_no_overlap_${w}px`, noOverlap, `no_overlap=${noOverlap}`);
 
       if (w === 1440) {
@@ -366,6 +372,38 @@ function boxesIntersect(boxA, boxB) {
       }
       await ctxHome.close();
     }
+
+    // 6C: Keyboard Tab focus-out assertion
+    const ctxKbd = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+    const pKbd = await ctxKbd.newPage();
+    await pKbd.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
+    await pKbd.waitForTimeout(400);
+
+    const trigger = pKbd.locator('#desktop-services-link');
+    await trigger.focus();
+    await trigger.click();
+    await pKbd.waitForTimeout(200);
+
+    const dropdownKbd = pKbd.locator('#desktop-services-dropdown');
+    const isVisibleBefore = !(await dropdownKbd.evaluate(el => el.classList.contains('hidden')));
+
+    // Tab through all service links inside the dropdown
+    const dropdownLinks = dropdownKbd.locator('a');
+    const linkCount = await dropdownLinks.count();
+    for (let i = 0; i < linkCount; i++) {
+      await pKbd.keyboard.press('Tab');
+      await pKbd.waitForTimeout(50);
+    }
+    // Tab once more to leave the final link in the dropdown
+    await pKbd.keyboard.press('Tab');
+    await pKbd.waitForTimeout(300);
+
+    const isHiddenAfter = await dropdownKbd.evaluate(el => el.classList.contains('hidden'));
+    const activeText = await pKbd.evaluate(() => document.activeElement ? document.activeElement.textContent.trim() : '');
+
+    const tabClosesDropdown = isVisibleBefore && isHiddenAfter;
+    addAssertion('keyboard_tab_focusout_closes_dropdown', tabClosesDropdown, `closed=${isHiddenAfter}, activeElement="${activeText}"`);
+    await ctxKbd.close();
 
     // ──────────────────────────────────────────────────────────────────────────
     // STAGE 7: Work Page 1440px Capture

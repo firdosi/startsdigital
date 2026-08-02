@@ -268,6 +268,22 @@ const publishedServices = getPublishedServices();
       }, 400);
     };
 
+    const hideDesktopDropdown = () => {
+      if (desktopCloseTimer) {
+        clearTimeout(desktopCloseTimer);
+        desktopCloseTimer = null;
+      }
+      if (desktopDropdown) desktopDropdown.classList.add('hidden');
+      if (desktopToggle) desktopToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    const handleFocusOut = (e: FocusEvent) => {
+      const related = e.relatedTarget as Node | null;
+      if (container && desktopDropdown && !container.contains(related) && !desktopDropdown.contains(related)) {
+        hideDesktopDropdown();
+      }
+    };
+
     if (container && desktopDropdown && desktopToggle) {
       container.addEventListener('mouseenter', showDesktopDropdown, { signal });
       container.addEventListener('mouseleave', hideDesktopDropdownDelayed, { signal });
@@ -276,11 +292,10 @@ const publishedServices = getPublishedServices();
       desktopDropdown.addEventListener('mouseleave', hideDesktopDropdownDelayed, { signal });
 
       container.addEventListener('focusin', showDesktopDropdown, { signal });
-      container.addEventListener('focusout', (e: FocusEvent) => {
-        if (!container.contains(e.relatedTarget as Node) && !desktopDropdown.contains(e.relatedTarget as Node)) {
-          hideDesktopDropdownDelayed();
-        }
-      }, { signal });
+      desktopDropdown.addEventListener('focusin', showDesktopDropdown, { signal });
+
+      container.addEventListener('focusout', handleFocusOut, { signal });
+      desktopDropdown.addEventListener('focusout', handleFocusOut, { signal });
 
       // Clicking the "Services" link text opens dropdown
       const desktopServicesLink = document.getElementById('desktop-services-link');
