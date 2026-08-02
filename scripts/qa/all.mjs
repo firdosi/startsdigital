@@ -26,6 +26,7 @@ const commands = [
   'node scripts/qa/page-uniqueness.mjs',
   'node scripts/qa/final-visual-rebuild.mjs',
   'node scripts/qa/card-alignment.mjs',
+  'node scripts/qa/tool-brand-logos.mjs',
 ];
 
 if (!fs.existsSync(dir81)) {

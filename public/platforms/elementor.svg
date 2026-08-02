@@ -1,3 +1,1 @@
-<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <path fill="#92003B" d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm-3.6 16.8H6V7.2h2.4v9.6zm9.6 0h-7.2v-2.4h7.2v2.4zm0-4.8h-7.2V9.6h7.2v2.4zm0-4.8h-7.2V7.2h7.2v2.4z"/>
-</svg>
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Elementor</title><path fill="#92003B" d="M12 0C5.372 0 0 5.372 0 12c0 6.626 5.372 12 12 12s12-5.372 12-12c0-6.626-5.372-12-12-12ZM9 17H7V7H9Zm8 0H11V15h6Zm0-4H11V11h6Zm0-4H11V7h6Z"/></svg>
