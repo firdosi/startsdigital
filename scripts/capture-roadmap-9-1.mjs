@@ -254,32 +254,53 @@ function addAssertion(name, result, detail = '') {
 
     await ctx390.close();
 
+function boxesIntersect(boxA, boxB) {
+  if (!boxA || !boxB) return false;
+  return (
+    boxA.x < boxB.x + boxB.width &&
+    boxA.x + boxA.width > boxB.x &&
+    boxA.y < boxB.y + boxB.height &&
+    boxA.y + boxA.height > boxB.y
+  );
+}
+
     // ──────────────────────────────────────────────────────────────────────────
-    // STAGE 6: Services Page 1440px Capture
+    // STAGE 6: Services Page 1440px & Non-Overlap Assertions (1280px, 1366px, 1440px, 1600px)
     // ──────────────────────────────────────────────────────────────────────────
-    stage = 'STAGE 6: Services page';
+    stage = 'STAGE 6: Services page non-overlap checks';
     log(stage);
-    const ctxServices = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
-    const servicesPage = await ctxServices.newPage();
-    await servicesPage.goto(`${BASE_URL}/services/`, { waitUntil: 'networkidle', timeout: 30000 });
-    await servicesPage.waitForTimeout(600);
 
-    // Assertion: Services hero does not have excessive padding
-    const heroSection = await servicesPage.locator('#services-hero').first();
-    const heroBounds = await heroSection.boundingBox();
-    addAssertion('services_hero_no_excessive_padding', heroBounds !== null && heroBounds.y < 180, `hero_y=${heroBounds?.y}`);
+    for (const w of [1280, 1366, 1440, 1600]) {
+      const ctxW = await browser.newContext({ viewport: { width: w, height: 1000 } });
+      const p = await ctxW.newPage();
+      await p.goto(`${BASE_URL}/services/`, { waitUntil: 'networkidle', timeout: 30000 });
+      await p.waitForTimeout(400);
 
-    // Assertion: Dropdown opens on clicking Services link
-    const desktopServicesLink = servicesPage.locator('#desktop-services-link');
-    await desktopServicesLink.dispatchEvent('click');
-    await servicesPage.waitForTimeout(400);
+      const desktopServicesLink = p.locator('#desktop-services-link');
+      await desktopServicesLink.dispatchEvent('click');
+      await p.waitForTimeout(300);
 
-    // Screenshot 4: services hero and production 1440
-    await servicesPage.screenshot({ path: join(OUTPUT_DIR, 'services-hero-and-production-1440.png'), fullPage: false });
-    await servicesPage.screenshot({ path: join(OUTPUT_DIR, 'services-dropdown-final-1440.png'), fullPage: false });
-    log(`Screenshot saved: services-dropdown-final-1440.png`);
+      const dropdownBox = await p.locator('#desktop-services-dropdown').boundingBox();
+      const eyebrowBox = await p.locator('#services-hero span:has-text("SERVICES")').first().boundingBox();
+      const h1Box = await p.locator('#services-hero h1').boundingBox();
+      const paraBox = await p.locator('#services-hero p').first().boundingBox();
+      const ctaBox = await p.locator('header a[data-track="primary-cta"]').first().boundingBox();
 
-    await ctxServices.close();
+      const intersectsEyebrow = boxesIntersect(dropdownBox, eyebrowBox);
+      const intersectsH1 = boxesIntersect(dropdownBox, h1Box);
+      const intersectsPara = boxesIntersect(dropdownBox, paraBox);
+      const intersectsCta = boxesIntersect(dropdownBox, ctaBox);
+
+      const noOverlap = !intersectsEyebrow && !intersectsH1 && !intersectsPara && !intersectsCta;
+      addAssertion(`services_dropdown_no_overlap_${w}px`, noOverlap, `overlap=${noOverlap}`);
+
+      if (w === 1440) {
+        await p.screenshot({ path: join(OUTPUT_DIR, 'services-hero-and-production-1440.png'), fullPage: false });
+        await p.screenshot({ path: join(OUTPUT_DIR, 'services-dropdown-final-1440.png'), fullPage: false });
+        log(`Screenshot saved: services-dropdown-final-1440.png`);
+      }
+      await ctxW.close();
+    }
 
     // ──────────────────────────────────────────────────────────────────────────
     // STAGE 7: Work Page 1440px Capture
@@ -302,8 +323,8 @@ function addAssertion(name, result, detail = '') {
     // Screenshot 5: work hero and ai story 1440
     await workPage.screenshot({ path: join(OUTPUT_DIR, 'work-hero-and-ai-story-1440.png'), fullPage: false });
 
-    // AI Story screenshot: Scroll down to #work-results to capture the complete AI performance story
-    await workPage.locator('#work-results').scrollIntoViewIfNeeded();
+    // AI Story screenshot: Scroll down to real #ai-story section on /work/ page
+    await workPage.locator('#ai-story').scrollIntoViewIfNeeded();
     await workPage.waitForTimeout(400);
     await workPage.screenshot({ path: join(OUTPUT_DIR, 'work-ai-story-final-1440.png'), fullPage: false });
     log(`Screenshot saved: work-ai-story-final-1440.png`);

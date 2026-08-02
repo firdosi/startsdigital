@@ -48,12 +48,12 @@ const publishedServices = getPublishedServices();
           <ChevronDown class="size-4 transition-transform duration-200" />
         </button>
 
-        <!-- Desktop Dropdown Panel (anchored directly beneath Services trigger) -->
+        <!-- Desktop Dropdown Panel (compact 2-column menu, zero overlap with hero content) -->
         <div
           id="desktop-services-dropdown"
-          class="hidden absolute top-full left-0 mt-2 w-[380px] max-w-[calc(100vw-2rem)] rounded-2xl border border-white/20 bg-[#061d33]/98 p-4 shadow-2xl backdrop-blur-2xl z-50 animate-in fade-in slide-in-from-top-2 duration-200 before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-['']"
+          class="hidden absolute top-full left-0 mt-2 w-[440px] max-w-[calc(100vw-2rem)] rounded-2xl border border-white/20 bg-[#061d33]/98 p-3.5 shadow-2xl backdrop-blur-2xl z-50 animate-in fade-in slide-in-from-top-2 duration-200 before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-['']"
         >
-          <div class="pb-2.5 border-b border-white/15 mb-2.5">
+          <div class="pb-2 border-b border-white/15 mb-2">
             <a
               href={`${site.basePath}/services/`}
               class="flex items-center justify-between text-xs font-heading font-bold uppercase tracking-wider text-[#ff762b] hover:text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] rounded-xs"
@@ -63,7 +63,7 @@ const publishedServices = getPublishedServices();
             </a>
           </div>
 
-          <div class="grid grid-cols-1 gap-1">
+          <div class="grid grid-cols-2 gap-1.5">
             {publishedServices.map((svc, idx) => {
               const href = `${site.basePath}/services/${svc.slug}/`;
               const isActive = currentPath === href;
@@ -72,13 +72,13 @@ const publishedServices = getPublishedServices();
                 <a
                   href={href}
                   aria-current={isActive ? 'page' : undefined}
-                  class="rounded-lg px-3 py-2 hover:bg-white/10 transition-colors flex items-center justify-between text-xs font-body text-slate-200 hover:text-white aria-current:bg-[#ff762b]/20 aria-current:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] group/item"
+                  class="rounded-lg px-2.5 py-1.5 hover:bg-white/10 transition-colors flex items-center justify-between text-xs font-body text-slate-200 hover:text-white aria-current:bg-[#ff762b]/20 aria-current:text-[#ff762b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] group/item"
                 >
-                  <div class="flex items-center gap-2.5">
-                    <span class="font-mono text-[11px] text-[#ff762b] font-bold shrink-0">0{idx + 1}</span>
-                    <span class="font-semibold text-xs text-white leading-tight">{svc.name}</span>
+                  <div class="flex items-center gap-2 truncate">
+                    <span class="font-mono text-[10px] text-[#ff762b] font-bold shrink-0">0{idx + 1}</span>
+                    <span class="font-semibold text-[11px] text-white leading-tight truncate">{svc.shortName}</span>
                   </div>
-                  <ArrowRight class="size-3 text-slate-400 group-hover/item:text-[#ff762b] transition-colors" />
+                  <ArrowRight class="size-3 text-slate-400 group-hover/item:text-[#ff762b] transition-colors shrink-0" />
                 </a>
               );
             })}
