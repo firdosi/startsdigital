@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import http from 'http';
+import crypto from 'crypto';
 import { chromium } from 'playwright';
 
 const PORT = 4324;
@@ -9,11 +10,11 @@ const REGISTER_FILE = path.join(process.cwd(), 'docs/tool-logo-source-register.j
 
 const expectedCategories = {
   'Advertising & Social Platforms': 8,
-  'Analytics, Search & Tracking': 8,
+  'Analytics, Search & Tracking': 6,
   'Websites, Development & Commerce': 15,
   'Design, Content & Video': 7,
   'Communication & Business Operations': 5,
-  'AI & Automation': 10
+  'AI & Automation': 9
 };
 
 const expectedClientBrandIds = [
@@ -31,6 +32,10 @@ const expectedClientBrandIds = [
   'unique-lahore-lab-sahiwal'
 ];
 
+function getHash(content) {
+  return crypto.createHash('sha256').update(content).digest('hex');
+}
+
 function createStaticServer() {
   const mimeTypes = {
     '.html': 'text/html; charset=utf-8',
@@ -45,7 +50,10 @@ function createStaticServer() {
 
   return http.createServer((req, res) => {
     let reqPath = req.url.split('?')[0];
-    if (reqPath.endsWith('/')) reqPath += 'index.html';
+    if (reqPath.startsWith('/startsdigital')) {
+      reqPath = reqPath.replace('/startsdigital', '');
+    }
+    if (!reqPath || reqPath.endsWith('/')) reqPath += 'index.html';
     
     let filePath = path.join(DIST_DIR, reqPath);
     if (!fs.existsSync(filePath) && fs.existsSync(filePath + '.html')) {
@@ -64,7 +72,7 @@ function createStaticServer() {
 }
 
 async function main() {
-  console.log('🚀 Running Dedicated Tool & Brand Logo QA Audit...');
+  console.log('🚀 Running Dedicated Tool & Brand Logo Authenticity QA Audit...');
 
   let passed = 0;
   let failed = 0;
@@ -78,22 +86,48 @@ async function main() {
     }
   }
 
-  // Load Source Register
+  // 1. DATA & SOURCE REGISTER AUDIT
   assert(fs.existsSync(REGISTER_FILE), `Source register file missing at ${REGISTER_FILE}`);
   const toolEcosystem = JSON.parse(fs.readFileSync(REGISTER_FILE, 'utf-8'));
 
-  // 1. DATA AUDIT: Tool Ecosystem Unique IDs & Filesystem Assets
   const toolIds = new Set();
+  const hashToToolMap = new Map();
+
   toolEcosystem.forEach(t => {
     assert(!toolIds.has(t.id), `Duplicate tool ID found: ${t.id}`);
     toolIds.add(t.id);
 
     const localAssetPath = path.join(process.cwd(), 'public', t.localAsset);
     assert(fs.existsSync(localAssetPath), `Local tool asset missing: ${localAssetPath}`);
-    assert(!!t.sourceUrl, `Missing source URL for tool entry: ${t.id}`);
+    assert(!!t.verifiedSourceUrl, `Missing verified source URL for tool entry: ${t.id}`);
+    assert(!!t.sourceType, `Missing sourceType for tool entry: ${t.id}`);
+    assert(!!t.localAssetHash, `Missing localAssetHash for tool entry: ${t.id}`);
+
+    // Verify hash matches filesystem asset
+    const fileContent = fs.readFileSync(localAssetPath, 'utf-8');
+    const computedHash = getHash(fileContent);
+    assert(computedHash === t.localAssetHash, `Hash mismatch for [${t.id}]: expected ${t.localAssetHash}, got ${computedHash}`);
+
+    // Check duplicate hashes (no unapproved duplicate logos)
+    if (hashToToolMap.has(computedHash)) {
+      const existingId = hashToToolMap.get(computedHash);
+      assert(false, `Unallowed duplicate logo hash detected: [${t.id}] has same SVG hash as [${existingId}]`);
+    } else {
+      hashToToolMap.set(computedHash, t.id);
+    }
   });
 
-  assert(toolEcosystem.length === 53, `Expected exactly 53 tools in ecosystem, found ${toolEcosystem.length}`);
+  // Explicit Authenticity Checks:
+  const openAiHash = toolEcosystem.find(t => t.id === 'openai')?.localAssetHash;
+  const heyGenHash = toolEcosystem.find(t => t.id === 'heygen')?.localAssetHash;
+  const klingHash = toolEcosystem.find(t => t.id === 'kling-ai')?.localAssetHash;
+  const capCutHash = toolEcosystem.find(t => t.id === 'capcut')?.localAssetHash;
+  const gbpHash = toolEcosystem.find(t => t.id === 'google-business-profile')?.localAssetHash;
+
+  assert(heyGenHash !== openAiHash, 'HeyGen must not use OpenAI logo hash');
+  assert(klingHash !== openAiHash, 'Kling AI must not use OpenAI logo hash');
+  assert(!!capCutHash && capCutHash !== openAiHash, 'CapCut must have distinct authentic logo hash');
+  assert(!!gbpHash && gbpHash !== openAiHash, 'Google Business Profile must have distinct authentic logo hash');
 
   // 2. CATEGORY DISTRIBUTION AUDIT
   for (const [cat, expectedCount] of Object.entries(expectedCategories)) {
@@ -117,23 +151,39 @@ async function main() {
       const ctx = await browser.newContext({ viewport: { width: w, height: 1000 } });
       const page = await ctx.newPage();
 
-      await page.goto(`http://localhost:${PORT}/`, { waitUntil: 'networkidle' });
+      await page.goto(`http://localhost:${PORT}/startsdigital/`, { waitUntil: 'networkidle' });
 
-      // Scroll into view & check Tool Cards in DOM
+      // Scroll into view & trigger lazy image loading across all cards
       await page.locator('#platforms').scrollIntoViewIfNeeded();
-      await page.waitForTimeout(300);
+      await page.evaluate(() => {
+        document.querySelectorAll('#platforms img, #brand-logos img').forEach(img => {
+          img.loading = 'eager';
+        });
+      });
+      await page.waitForTimeout(400);
 
       const toolCards = page.locator('[data-tool-logo]');
       const toolCardCount = await toolCards.count();
-      assert(toolCardCount === 53, `[${w}px] DOM tool card count mismatch: expected 53, got ${toolCardCount}`);
+      assert(toolCardCount === 50, `[${w}px] DOM tool card count mismatch: expected 50, got ${toolCardCount}`);
+
+      // Check image load status (naturalWidth > 0, naturalHeight > 0)
+      const invalidToolImgs = await page.$$eval('[data-tool-logo] img', imgs => {
+        return imgs.filter(img => !img.complete || img.naturalWidth === 0 || img.naturalHeight === 0).length;
+      });
+      assert(invalidToolImgs === 0, `[${w}px] Broken/unrendered tool images found: ${invalidToolImgs}`);
 
       // Scroll into view & check Client Brand Cards in DOM
       await page.locator('#brand-logos').scrollIntoViewIfNeeded();
-      await page.waitForTimeout(300);
+      await page.waitForTimeout(400);
 
       const clientCards = page.locator('[data-client-logo]');
       const clientCardCount = await clientCards.count();
       assert(clientCardCount === 12, `[${w}px] DOM client brand card count mismatch: expected 12, got ${clientCardCount}`);
+
+      const invalidClientImgs = await page.$$eval('[data-client-logo] img', imgs => {
+        return imgs.filter(img => !img.complete || img.naturalWidth === 0 || img.naturalHeight === 0).length;
+      });
+      assert(invalidClientImgs === 0, `[${w}px] Broken/unrendered client brand images found: ${invalidClientImgs}`);
 
       // Verify no duplicate desktop/mobile trees
       const brandSectionCards = await page.$$eval('#brand-logos [data-client-logo]', els => els.length);
@@ -148,7 +198,7 @@ async function main() {
         assert(uniqueBrandIdsInDom.has(expectedId), `[${w}px] Client brand ID [${expectedId}] missing from DOM`);
       }
 
-      // Check card background colors (must be white or rgb(255, 255, 255))
+      // Check card background colors (must be white)
       const nonWhiteToolCards = await page.$$eval('[data-tool-logo]', els => {
         return els.filter(el => {
           const bg = window.getComputedStyle(el).backgroundColor;
@@ -177,10 +227,10 @@ async function main() {
       await ctx.close();
     }
 
-    console.log(`\n🎉 TOOL & BRAND LOGO QA COMPLETE: ${passed} assertions passed, ${failed} failed.`);
+    console.log(`\n🎉 TOOL & BRAND LOGO AUTHENTICITY QA COMPLETE: ${passed} assertions passed, ${failed} failed.`);
 
     if (failed > 0) {
-      throw new Error(`Tool & Brand Logo QA failed with ${failed} failed assertions.`);
+      throw new Error(`Tool & Brand Logo Authenticity QA failed with ${failed} failed assertions.`);
     }
 
   } finally {

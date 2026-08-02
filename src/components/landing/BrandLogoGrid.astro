@@ -18,20 +18,20 @@ const activeBrands = brands.filter(b => b.active && b.logoApproved && b.logo).ma
   };
 });
 
-// Per-logo visual balance & sizing map for white cards
-const logoSizingMap: Record<string, string> = {
-  'clearzone-immigration': 'max-h-8 sm:max-h-9',
-  'rapidzone': 'max-h-8 sm:max-h-9',
-  'rapidline-immigration-services': 'max-h-9 sm:max-h-10',
-  'convort-ai': 'max-h-8 sm:max-h-9',
-  'rk-reno-solutions': 'max-h-9 sm:max-h-10',
-  'black-gold-fertilizer': 'max-h-10 sm:max-h-11',
-  'wajib-livestock': 'max-h-10 sm:max-h-11',
-  'riyadh-finish-pro': 'max-h-10 sm:max-h-11',
-  'viral-naturals': 'max-h-9 sm:max-h-10',
-  'shopinq-online': 'max-h-8 sm:max-h-9',
-  'super-safety-covers': 'max-h-9 sm:max-h-10',
-  'unique-lahore-lab-sahiwal': 'max-h-9 sm:max-h-10'
+// Explicit per-brand sizing & proportion metadata for white cards
+const brandSizingMap: Record<string, { maxWidth: string; maxHeight: string; scale?: number; paddingClass?: string }> = {
+  'clearzone-immigration': { maxWidth: '120px', maxHeight: '36px', scale: 0.95 },
+  'rapidzone': { maxWidth: '130px', maxHeight: '38px', scale: 1.0 },
+  'rapidline-immigration-services': { maxWidth: '140px', maxHeight: '42px', scale: 1.05 },
+  'convort-ai': { maxWidth: '125px', maxHeight: '38px', scale: 1.0 },
+  'rk-reno-solutions': { maxWidth: '135px', maxHeight: '42px', scale: 1.05 },
+  'black-gold-fertilizer': { maxWidth: '140px', maxHeight: '44px', scale: 1.1 },
+  'wajib-livestock': { maxWidth: '140px', maxHeight: '44px', scale: 1.1 },
+  'riyadh-finish-pro': { maxWidth: '140px', maxHeight: '44px', scale: 1.1 },
+  'viral-naturals': { maxWidth: '130px', maxHeight: '40px', scale: 1.0 },
+  'shopinq-online': { maxWidth: '120px', maxHeight: '36px', scale: 0.95 },
+  'super-safety-covers': { maxWidth: '135px', maxHeight: '40px', scale: 1.05 },
+  'unique-lahore-lab-sahiwal': { maxWidth: '135px', maxHeight: '40px', scale: 1.05 }
 };
 ---
 
@@ -57,7 +57,7 @@ const logoSizingMap: Record<string, string> = {
     <!-- Single Responsive White Card Grid (Exactly 12 logo cards in DOM) -->
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5 logo-grid">
       {activeBrands.map((b, idx) => {
-        const sizingClass = logoSizingMap[b.id] || 'max-h-9 sm:max-h-10';
+        const sizing = brandSizingMap[b.id] || { maxWidth: '130px', maxHeight: '40px', scale: 1.0 };
 
         return (
           <div
@@ -73,7 +73,8 @@ const logoSizingMap: Record<string, string> = {
               decoding="async"
               width="140"
               height="50"
-              class={`w-auto max-w-full object-contain ${sizingClass}`}
+              style={`max-width: ${sizing.maxWidth}; max-height: ${sizing.maxHeight}; transform: scale(${sizing.scale || 1.0});`}
+              class="w-auto object-contain transition-transform"
             />
           </div>
         );

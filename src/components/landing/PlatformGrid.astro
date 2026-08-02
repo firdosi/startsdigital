@@ -56,24 +56,36 @@ const categories = [
                   data-tool-id={t.id}
                   data-tool-category={t.category}
                   style="background-color: #ffffff;"
-                  class="rounded-2xl border border-[#061d33]/12 bg-white p-4 sm:p-5 flex flex-col items-center justify-between text-center shadow-xs hover:shadow-md hover:border-[#ff762b]/40 hover:-translate-y-0.5 transition-all duration-300 h-full group"
+                  class="rounded-2xl border border-[#061d33]/12 bg-white p-4 sm:p-5 flex flex-col items-center justify-between text-center shadow-xs hover:shadow-md hover:border-[#ff762b]/40 hover:-translate-y-0.5 transition-all duration-300 h-full group relative"
                 >
-                  <div class="size-12 mb-3 flex items-center justify-center rounded-xl bg-[#061d33]/5 p-2 group-hover:scale-105 transition-transform duration-300">
+                  <div class="h-14 w-full mb-3 flex items-center justify-center rounded-xl bg-[#061d33]/5 p-2 group-hover:scale-105 transition-transform duration-300">
                     <img
                       src={logoSrc(t.localAsset)}
                       alt={t.alt}
-                      width="36"
-                      height="36"
+                      width="48"
+                      height="48"
                       loading="lazy"
                       decoding="async"
-                      class="max-h-8 max-w-8 object-contain"
+                      style={`max-width: ${t.maxWidth || '44px'}; max-height: ${t.maxHeight || '44px'}; transform: scale(${t.displayScale || 1.0});`}
+                      class="object-contain"
                     />
                   </div>
 
-                  <div class="space-y-1 w-full">
+                  <div class="space-y-1.5 w-full">
                     <h3 class="font-heading font-bold text-sm text-[#061d33] leading-snug group-hover:text-[#ff762b] transition-colors">
                       {t.name}
                     </h3>
+
+                    {/* Sub-product capability chips if present */}
+                    {t.capabilities && (
+                      <div class="pt-1.5 flex flex-wrap justify-center gap-1">
+                        {t.capabilities.slice(0, 2).map((cap) => (
+                          <span class="font-mono text-[10px] text-[#ff762b] font-medium bg-[#ff762b]/8 px-1.5 py-0.5 rounded">
+                            {cap}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

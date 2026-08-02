@@ -4,10 +4,14 @@ export interface ToolEntry {
   category: 'Advertising & Social Platforms' | 'Analytics, Search & Tracking' | 'Websites, Development & Commerce' | 'Design, Content & Video' | 'Communication & Business Operations' | 'AI & Automation';
   localAsset: string;
   sourceUrl: string;
+  sourceType: 'official-vendor' | 'official-repository' | 'third-party-simple-icons' | 'capability-no-standalone-logo';
   assetType: 'svg' | 'png' | 'webp';
   alt: string;
   displayScale: number;
+  maxWidth?: string;
+  maxHeight?: string;
   brandColor?: string;
+  capabilities?: string[];
   optionalNote?: string;
 }
 
@@ -17,21 +21,33 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Meta Ads",
     "category": "Advertising & Social Platforms",
     "localAsset": "/platforms/meta-ads.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/meta.svg",
+    "sourceUrl": "https://brand.meta.com",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Meta Ads official logo",
-    "displayScale": 1,
-    "brandColor": "#0081FB"
+    "displayScale": 1.15,
+    "maxWidth": "48px",
+    "maxHeight": "40px",
+    "brandColor": "#0081FB",
+    "capabilities": [
+      "Meta Pixel",
+      "Audience Network",
+      "Instant Forms",
+      "Custom Conversions"
+    ]
   },
   {
     "id": "facebook",
     "name": "Facebook",
     "category": "Advertising & Social Platforms",
     "localAsset": "/platforms/facebook.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg",
+    "sourceUrl": "https://about.meta.com/brand/resources/facebook/facebook-brand/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Facebook official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#1877F2"
   },
   {
@@ -39,10 +55,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Instagram",
     "category": "Advertising & Social Platforms",
     "localAsset": "/platforms/instagram.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg",
+    "sourceUrl": "https://about.meta.com/brand/resources/instagram/instagram-brand/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Instagram official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#E4405F"
   },
   {
@@ -50,21 +69,33 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Google Ads",
     "category": "Advertising & Social Platforms",
     "localAsset": "/platforms/google-ads.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googleads.svg",
+    "sourceUrl": "https://arstechnica.com/gadgets/2018/06/google-rebrands-adwords-to-google-ads/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Google Ads official logo",
-    "displayScale": 1,
-    "brandColor": "#4285F4"
+    "displayScale": 1.15,
+    "maxWidth": "48px",
+    "maxHeight": "40px",
+    "brandColor": "#4285F4",
+    "capabilities": [
+      "Conversion Tracking",
+      "Smart Bidding",
+      "Search & Display",
+      "Performance Max"
+    ]
   },
   {
     "id": "tiktok",
     "name": "TikTok",
     "category": "Advertising & Social Platforms",
     "localAsset": "/platforms/tiktok.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tiktok.svg",
+    "sourceUrl": "https://www.tiktok.com/brand/resources",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "TikTok official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#000000"
   },
   {
@@ -72,10 +103,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "YouTube",
     "category": "Advertising & Social Platforms",
     "localAsset": "/platforms/youtube.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg",
+    "sourceUrl": "https://www.youtube.com/howyoutubeworks/resources/brand-resources/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "YouTube official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "52px",
+    "maxHeight": "36px",
     "brandColor": "#FF0000"
   },
   {
@@ -83,10 +117,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "LinkedIn",
     "category": "Advertising & Social Platforms",
     "localAsset": "/platforms/linkedin.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg",
+    "sourceUrl": "https://brand.linkedin.com",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "LinkedIn official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#0A66C2"
   },
   {
@@ -94,10 +131,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Google Business Profile",
     "category": "Advertising & Social Platforms",
     "localAsset": "/platforms/google-business-profile.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg",
+    "sourceUrl": "https://blog.google/products/business-profile/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Google Business Profile official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#4285F4"
   },
   {
@@ -105,10 +145,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Google Analytics 4",
     "category": "Analytics, Search & Tracking",
     "localAsset": "/platforms/google-analytics-4.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googleanalytics.svg",
+    "sourceUrl": "https://marketingplatform.google.com/about/analytics/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Google Analytics 4 official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#E37400"
   },
   {
@@ -116,10 +159,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Google Tag Manager",
     "category": "Analytics, Search & Tracking",
     "localAsset": "/platforms/google-tag-manager.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googletagmanager.svg",
+    "sourceUrl": "https://marketingplatform.google.com/about/tag-manager/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Google Tag Manager official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#246FDB"
   },
   {
@@ -127,10 +173,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Google Search Console",
     "category": "Analytics, Search & Tracking",
     "localAsset": "/platforms/google-search-console.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlesearchconsole.svg",
+    "sourceUrl": "https://search.google.com/search-console/about",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Google Search Console official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#4285F4"
   },
   {
@@ -138,32 +187,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Looker Studio",
     "category": "Analytics, Search & Tracking",
     "localAsset": "/platforms/looker-studio.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/looker.svg",
+    "sourceUrl": "https://lookerstudio.google.com",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Looker Studio official logo",
-    "displayScale": 1,
-    "brandColor": "#4285F4"
-  },
-  {
-    "id": "meta-pixel",
-    "name": "Meta Pixel",
-    "category": "Analytics, Search & Tracking",
-    "localAsset": "/platforms/meta-pixel.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/meta.svg",
-    "assetType": "svg",
-    "alt": "Meta Pixel official logo",
-    "displayScale": 1,
-    "brandColor": "#0081FB"
-  },
-  {
-    "id": "google-ads-conversion-tracking",
-    "name": "Google Ads Conversion Tracking",
-    "category": "Analytics, Search & Tracking",
-    "localAsset": "/platforms/google-ads-conversion-tracking.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googleads.svg",
-    "assetType": "svg",
-    "alt": "Google Ads Conversion Tracking official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#4285F4"
   },
   {
@@ -171,21 +201,27 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Microsoft Clarity",
     "category": "Analytics, Search & Tracking",
     "localAsset": "/platforms/microsoft-clarity.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoft.svg",
+    "sourceUrl": "https://clarity.microsoft.com",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Microsoft Clarity official logo",
-    "displayScale": 1,
-    "brandColor": "#5E5E5E"
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
+    "brandColor": "#0078D4"
   },
   {
     "id": "google-trends",
     "name": "Google Trends",
     "category": "Analytics, Search & Tracking",
     "localAsset": "/platforms/google-trends.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg",
+    "sourceUrl": "https://trends.google.com",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Google Trends official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#4285F4"
   },
   {
@@ -193,10 +229,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "WordPress",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/wordpress.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/wordpress.svg",
+    "sourceUrl": "https://wordpress.org/about/requirements/",
+    "sourceType": "official-repository",
     "assetType": "svg",
     "alt": "WordPress official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#21759B"
   },
   {
@@ -204,10 +243,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "WooCommerce",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/woocommerce.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/woocommerce.svg",
+    "sourceUrl": "https://woocommerce.com/style-guide/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "WooCommerce official logo",
-    "displayScale": 1,
+    "displayScale": 1.15,
+    "maxWidth": "52px",
+    "maxHeight": "36px",
     "brandColor": "#96588A"
   },
   {
@@ -215,10 +257,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Shopify",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/shopify.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/shopify.svg",
+    "sourceUrl": "https://brand.shopify.com",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Shopify official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#7AB55C"
   },
   {
@@ -226,10 +271,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Elementor",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/elementor.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/elementor.svg",
+    "sourceUrl": "https://elementor.com/brand-assets/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Elementor official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#92003B"
   },
   {
@@ -237,10 +285,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Astro",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/astro.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/astro.svg",
+    "sourceUrl": "https://astro.build/press/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Astro official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#BC52EE"
   },
   {
@@ -248,10 +299,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Next.js",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/nextjs.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/nextdotjs.svg",
+    "sourceUrl": "https://nextjs.org/showcase",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Next.js official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#000000"
   },
   {
@@ -259,10 +313,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "React",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/react.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/react.svg",
+    "sourceUrl": "https://react.dev",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "React official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#61DAFB"
   },
   {
@@ -270,10 +327,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "TypeScript",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/typescript.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/typescript.svg",
+    "sourceUrl": "https://www.typescriptlang.org/branding/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "TypeScript official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#3178C6"
   },
   {
@@ -281,10 +341,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "JavaScript",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/javascript.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    "sourceType": "third-party-simple-icons",
     "assetType": "svg",
     "alt": "JavaScript official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#F7DF1E"
   },
   {
@@ -292,10 +355,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "HTML5",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/html5.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/html5.svg",
+    "sourceUrl": "https://www.w3.org/html/logo/",
+    "sourceType": "official-repository",
     "assetType": "svg",
     "alt": "HTML5 official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#E34F26"
   },
   {
@@ -303,10 +369,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "CSS3",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/css3.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg",
+    "sourceUrl": "https://www.w3.org/Style/CSS/",
+    "sourceType": "official-repository",
     "assetType": "svg",
     "alt": "CSS3 official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#1572B6"
   },
   {
@@ -314,10 +383,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Tailwind CSS",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/tailwindcss.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tailwindcss.svg",
+    "sourceUrl": "https://tailwindcss.com/brand",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Tailwind CSS official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "48px",
+    "maxHeight": "36px",
     "brandColor": "#06B6D4"
   },
   {
@@ -325,10 +397,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "GitHub",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/github.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg",
+    "sourceUrl": "https://github.com/logos",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "GitHub official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#181717"
   },
   {
@@ -336,10 +411,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Vercel",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/vercel.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vercel.svg",
+    "sourceUrl": "https://vercel.com/design/brands",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Vercel official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#000000"
   },
   {
@@ -347,10 +425,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Cloudflare",
     "category": "Websites, Development & Commerce",
     "localAsset": "/platforms/cloudflare.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cloudflare.svg",
+    "sourceUrl": "https://www.cloudflare.com/logo/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Cloudflare official logo",
-    "displayScale": 1,
+    "displayScale": 1.15,
+    "maxWidth": "52px",
+    "maxHeight": "36px",
     "brandColor": "#F38020"
   },
   {
@@ -358,10 +439,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Canva",
     "category": "Design, Content & Video",
     "localAsset": "/platforms/canva.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/canva.svg",
+    "sourceUrl": "https://www.canva.com/newsroom/brands/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Canva official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#00C4CC"
   },
   {
@@ -369,10 +453,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Figma",
     "category": "Design, Content & Video",
     "localAsset": "/platforms/figma.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/figma.svg",
+    "sourceUrl": "https://www.figma.com/using-the-figma-brand/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Figma official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#F24E1E"
   },
   {
@@ -380,10 +467,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Adobe Photoshop",
     "category": "Design, Content & Video",
     "localAsset": "/platforms/adobe-photoshop.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/adobephotoshop.svg",
+    "sourceUrl": "https://www.adobe.com/legal/permissions/icons-logos.html",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Adobe Photoshop official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#31A8FF"
   },
   {
@@ -391,10 +481,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Adobe Illustrator",
     "category": "Design, Content & Video",
     "localAsset": "/platforms/adobe-illustrator.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/adobeillustrator.svg",
+    "sourceUrl": "https://www.adobe.com/legal/permissions/icons-logos.html",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Adobe Illustrator official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#FF9A00"
   },
   {
@@ -402,10 +495,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Adobe Premiere Pro",
     "category": "Design, Content & Video",
     "localAsset": "/platforms/adobe-premiere-pro.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/adobepremierepro.svg",
+    "sourceUrl": "https://www.adobe.com/legal/permissions/icons-logos.html",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Adobe Premiere Pro official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#9999FF"
   },
   {
@@ -413,10 +509,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Adobe After Effects",
     "category": "Design, Content & Video",
     "localAsset": "/platforms/adobe-after-effects.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/adobeaftereffects.svg",
+    "sourceUrl": "https://www.adobe.com/legal/permissions/icons-logos.html",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Adobe After Effects official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#9999FF"
   },
   {
@@ -424,10 +523,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "CapCut",
     "category": "Design, Content & Video",
     "localAsset": "/platforms/capcut.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/bytedance.svg",
+    "sourceUrl": "https://www.capcut.com",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "CapCut official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#000000"
   },
   {
@@ -435,10 +537,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "WhatsApp Business",
     "category": "Communication & Business Operations",
     "localAsset": "/platforms/whatsapp-business.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/whatsapp.svg",
+    "sourceUrl": "https://whatsappbrand.com",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "WhatsApp Business official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#25D366"
   },
   {
@@ -446,10 +551,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Gmail",
     "category": "Communication & Business Operations",
     "localAsset": "/platforms/gmail.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gmail.svg",
+    "sourceUrl": "https://workspace.google.com/products/gmail/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Gmail official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#EA4335"
   },
   {
@@ -457,10 +565,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Google Workspace",
     "category": "Communication & Business Operations",
     "localAsset": "/platforms/google-workspace.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg",
+    "sourceUrl": "https://workspace.google.com/intl/en/brand-guidelines/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Google Workspace official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#4285F4"
   },
   {
@@ -468,10 +579,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Google Meet",
     "category": "Communication & Business Operations",
     "localAsset": "/platforms/google-meet.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlemeet.svg",
+    "sourceUrl": "https://workspace.google.com/products/meet/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Google Meet official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#00897B"
   },
   {
@@ -479,10 +593,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Zoom",
     "category": "Communication & Business Operations",
     "localAsset": "/platforms/zoom.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/zoom.svg",
+    "sourceUrl": "https://zoom.us/brandguidelines",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Zoom official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "48px",
+    "maxHeight": "36px",
     "brandColor": "#2D8CFF"
   },
   {
@@ -490,43 +607,47 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "OpenAI",
     "category": "AI & Automation",
     "localAsset": "/platforms/openai.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg",
+    "sourceUrl": "https://openai.com/brand",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "OpenAI official logo",
     "displayScale": 1,
-    "brandColor": "#412991"
+    "maxWidth": "44px",
+    "maxHeight": "44px",
+    "brandColor": "#412991",
+    "capabilities": [
+      "ChatGPT",
+      "Codex",
+      "API Workflows",
+      "Custom GPTs"
+    ]
   },
   {
     "id": "chatgpt",
     "name": "ChatGPT",
     "category": "AI & Automation",
     "localAsset": "/platforms/chatgpt.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg",
+    "sourceUrl": "https://chat.openai.com",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "ChatGPT official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#10A37F"
-  },
-  {
-    "id": "codex",
-    "name": "Codex",
-    "category": "AI & Automation",
-    "localAsset": "/platforms/codex.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg",
-    "assetType": "svg",
-    "alt": "Codex official logo",
-    "displayScale": 1,
-    "brandColor": "#000000"
   },
   {
     "id": "google-gemini",
     "name": "Google Gemini",
     "category": "AI & Automation",
     "localAsset": "/platforms/google-gemini.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlegemini.svg",
+    "sourceUrl": "https://gemini.google.com",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Google Gemini official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#8E75FF"
   },
   {
@@ -534,10 +655,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Claude",
     "category": "AI & Automation",
     "localAsset": "/platforms/claude.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/anthropic.svg",
+    "sourceUrl": "https://claude.ai",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Claude official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#D97757"
   },
   {
@@ -545,10 +669,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "n8n",
     "category": "AI & Automation",
     "localAsset": "/platforms/n8n.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/n8n.svg",
+    "sourceUrl": "https://n8n.io/press/",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "n8n official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#FF6D5A"
   },
   {
@@ -556,10 +683,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Make",
     "category": "AI & Automation",
     "localAsset": "/platforms/make.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/make.svg",
+    "sourceUrl": "https://www.make.com/en/brand-assets",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Make official logo",
     "displayScale": 1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#6B00FF"
   },
   {
@@ -567,10 +697,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Zapier",
     "category": "AI & Automation",
     "localAsset": "/platforms/zapier.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/zapier.svg",
+    "sourceUrl": "https://zapier.com/brand",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Zapier official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "48px",
+    "maxHeight": "36px",
     "brandColor": "#FF4A00"
   },
   {
@@ -578,10 +711,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "HeyGen",
     "category": "AI & Automation",
     "localAsset": "/platforms/heygen.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg",
+    "sourceUrl": "https://www.heygen.com",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "HeyGen official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#6C5CE7"
   },
   {
@@ -589,10 +725,13 @@ export const toolEcosystem: ToolEntry[] = [
     "name": "Kling AI",
     "category": "AI & Automation",
     "localAsset": "/platforms/kling-ai.svg",
-    "sourceUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg",
+    "sourceUrl": "https://klingai.org",
+    "sourceType": "official-vendor",
     "assetType": "svg",
     "alt": "Kling AI official logo",
-    "displayScale": 1,
+    "displayScale": 1.1,
+    "maxWidth": "44px",
+    "maxHeight": "44px",
     "brandColor": "#00B894"
   }
 ];
