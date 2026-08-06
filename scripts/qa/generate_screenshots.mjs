@@ -43,7 +43,7 @@ function createStaticServer() {
 }
 
 async function main() {
-  console.log('Generating required evidence screenshots under scratch/tools-and-brand-logo-review/ via Playwright...');
+  console.log('Generating polished evidence screenshots under scratch/tools-and-brand-logo-review/ via Playwright...');
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
@@ -53,7 +53,7 @@ async function main() {
   const browser = await chromium.launch({ headless: true });
 
   try {
-    // 1. tools-ecosystem-final-1440.png
+    // 1. tools-ecosystem-polished-1440.png
     {
       const ctx = await browser.newContext({ viewport: { width: 1440, height: 1200 } });
       const page = await ctx.newPage();
@@ -66,13 +66,13 @@ async function main() {
       });
       await page.waitForTimeout(500);
       const platformsSection = page.locator('#platforms');
-      const outPath = path.join(OUT_DIR, 'tools-ecosystem-final-1440.png');
+      const outPath = path.join(OUT_DIR, 'tools-ecosystem-polished-1440.png');
       await platformsSection.screenshot({ path: outPath });
       console.log(`✓ Captured ${outPath}`);
       await ctx.close();
     }
 
-    // 2. tools-ecosystem-final-1024.png
+    // 2. tools-ecosystem-polished-1024.png
     {
       const ctx = await browser.newContext({ viewport: { width: 1024, height: 1200 } });
       const page = await ctx.newPage();
@@ -85,13 +85,13 @@ async function main() {
       });
       await page.waitForTimeout(500);
       const platformsSection = page.locator('#platforms');
-      const outPath = path.join(OUT_DIR, 'tools-ecosystem-final-1024.png');
+      const outPath = path.join(OUT_DIR, 'tools-ecosystem-polished-1024.png');
       await platformsSection.screenshot({ path: outPath });
       console.log(`✓ Captured ${outPath}`);
       await ctx.close();
     }
 
-    // 3. tools-ecosystem-final-390.png
+    // 3. tools-ecosystem-polished-390.png
     {
       const ctx = await browser.newContext({ viewport: { width: 390, height: 1200 } });
       const page = await ctx.newPage();
@@ -104,13 +104,13 @@ async function main() {
       });
       await page.waitForTimeout(500);
       const platformsSection = page.locator('#platforms');
-      const outPath = path.join(OUT_DIR, 'tools-ecosystem-final-390.png');
+      const outPath = path.join(OUT_DIR, 'tools-ecosystem-polished-390.png');
       await platformsSection.screenshot({ path: outPath });
       console.log(`✓ Captured ${outPath}`);
       await ctx.close();
     }
 
-    // 4. brand-wall-final-1440.png
+    // 4. brand-wall-polished-1440.png
     {
       const ctx = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
       const page = await ctx.newPage();
@@ -123,13 +123,13 @@ async function main() {
       });
       await page.waitForTimeout(500);
       const brandSection = page.locator('#brand-logos');
-      const outPath = path.join(OUT_DIR, 'brand-wall-final-1440.png');
+      const outPath = path.join(OUT_DIR, 'brand-wall-polished-1440.png');
       await brandSection.screenshot({ path: outPath });
       console.log(`✓ Captured ${outPath}`);
       await ctx.close();
     }
 
-    // 5. brand-wall-final-390.png
+    // 5. brand-wall-polished-390.png
     {
       const ctx = await browser.newContext({ viewport: { width: 390, height: 1000 } });
       const page = await ctx.newPage();
@@ -142,37 +142,38 @@ async function main() {
       });
       await page.waitForTimeout(500);
       const brandSection = page.locator('#brand-logos');
-      const outPath = path.join(OUT_DIR, 'brand-wall-final-390.png');
+      const outPath = path.join(OUT_DIR, 'brand-wall-polished-390.png');
       await brandSection.screenshot({ path: outPath });
       console.log(`✓ Captured ${outPath}`);
       await ctx.close();
     }
 
-    // 6. tool-logo-quality-closeup.png
+    // 6. brand-logo-contrast-closeup.png
+    // Must feature: Wajib Livestock, Convort AI, Rapidzone, Black Gold Fertilizer, Riyadh Finish Pro
     {
       const ctx = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
       const page = await ctx.newPage();
       await page.goto(`http://localhost:${PORT}/startsdigital/`, { waitUntil: 'networkidle' });
-      await page.locator('#platforms').scrollIntoViewIfNeeded();
+      await page.locator('#brand-logos').scrollIntoViewIfNeeded();
       await page.evaluate(async () => {
-        const imgs = Array.from(document.querySelectorAll('#platforms img'));
+        const imgs = Array.from(document.querySelectorAll('#brand-logos img'));
         imgs.forEach(img => { img.loading = 'eager'; img.src = img.src; });
         await Promise.all(imgs.map(img => img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })));
       });
       await page.waitForTimeout(500);
 
       await page.evaluate(() => {
-        const targetIds = ['heygen', 'kling-ai', 'capcut', 'google-business-profile', 'microsoft-clarity'];
-        const cards = targetIds.map(id => document.querySelector(`[data-tool-id="${id}"]`)).filter(Boolean);
+        const targetIds = ['wajib-livestock', 'convort-ai', 'rapidzone', 'black-gold-fertilizer', 'riyadh-finish-pro'];
+        const cards = targetIds.map(id => document.querySelector(`[data-client-brand-id="${id}"]`)).filter(Boolean);
 
         const wrapper = document.createElement('div');
         wrapper.id = 'closeup-wrapper';
-        wrapper.style.cssText = 'position: fixed; top: 50px; left: 50px; z-index: 999999; background: #f7f4ed; padding: 32px; border-radius: 24px; border: 2px solid #061d33; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);';
+        wrapper.style.cssText = 'position: fixed; top: 50px; left: 50px; z-index: 999999; background: #061d33; padding: 32px; border-radius: 24px; border: 2px solid rgba(255,255,255,0.2); display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);';
 
         cards.forEach(card => {
           const clone = card.cloneNode(true);
           clone.style.width = '220px';
-          clone.style.height = '220px';
+          clone.style.height = '120px';
           wrapper.appendChild(clone);
         });
 
@@ -181,14 +182,14 @@ async function main() {
 
       await page.waitForTimeout(300);
       const closeupEl = page.locator('#closeup-wrapper');
-      const outPath = path.join(OUT_DIR, 'tool-logo-quality-closeup.png');
+      const outPath = path.join(OUT_DIR, 'brand-logo-contrast-closeup.png');
       await closeupEl.screenshot({ path: outPath });
       console.log(`✓ Captured ${outPath}`);
 
       await ctx.close();
     }
 
-    console.log(`\nAll 6 required evidence screenshots generated under ${OUT_DIR}.`);
+    console.log(`\nAll 6 required polished evidence screenshots generated under ${OUT_DIR}.`);
 
   } finally {
     await browser.close();

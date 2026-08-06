@@ -50,7 +50,13 @@ const rootReviewPngs = [
   'tool-logo-quality-closeup.png',
   'tools-ecosystem-final-1024.png',
   'tools-ecosystem-final-1440.png',
-  'tools-ecosystem-final-390.png'
+  'tools-ecosystem-final-390.png',
+  'tools-ecosystem-polished-1440.png',
+  'tools-ecosystem-polished-1024.png',
+  'tools-ecosystem-polished-390.png',
+  'brand-wall-polished-1440.png',
+  'brand-wall-polished-390.png',
+  'brand-logo-contrast-closeup.png'
 ];
 
 function getHash(content) {
