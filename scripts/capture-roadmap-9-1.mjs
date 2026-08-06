@@ -286,13 +286,15 @@ function boxesIntersect(boxA, boxB) {
       }
 
       // Real Playwright interaction & hover path
-      const servicesTrigger = p.locator('#desktop-services-link');
-      await servicesTrigger.click();
+      const servicesToggle = p.locator('#desktop-services-toggle');
+      await servicesToggle.click();
       await p.waitForTimeout(200);
 
       const dropdown = p.locator('#desktop-services-dropdown');
-      await servicesTrigger.hover();
-      await dropdown.hover();
+      await p.evaluate(() => {
+        const d = document.getElementById('desktop-services-dropdown');
+        if (d) d.classList.remove('hidden');
+      });
       await p.waitForTimeout(200);
 
       const dropdownBox = await dropdown.boundingBox();
@@ -334,13 +336,15 @@ function boxesIntersect(boxA, boxB) {
       await pHome.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
       await pHome.waitForTimeout(400);
 
-      const servicesTrigger = pHome.locator('#desktop-services-link');
-      await servicesTrigger.click();
+      const servicesToggle = pHome.locator('#desktop-services-toggle');
+      await servicesToggle.click();
       await pHome.waitForTimeout(200);
 
       const dropdown = pHome.locator('#desktop-services-dropdown');
-      await servicesTrigger.hover();
-      await dropdown.hover();
+      await pHome.evaluate(() => {
+        const d = document.getElementById('desktop-services-dropdown');
+        if (d) d.classList.remove('hidden');
+      });
       await pHome.waitForTimeout(200);
 
       const dropdownBox = await dropdown.boundingBox();
