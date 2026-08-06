@@ -59,7 +59,10 @@ const rootReviewPngs = [
   'brand-logo-contrast-closeup.png',
   'brand-wall-final-check-1440.png',
   'brand-wall-final-check-390.png',
-  'brand-logo-final-contrast-closeup.png'
+  'brand-logo-final-contrast-closeup.png',
+  'brand-wall-black-gold-final-1440.png',
+  'brand-wall-black-gold-final-390.png',
+  'black-gold-brand-card-closeup.png'
 ];
 
 function getHash(content) {
@@ -342,6 +345,15 @@ async function main() {
 
       const blackGoldHasPlate = await page.$eval('[data-client-brand-id="black-gold-fertilizer"]', card => !!card.querySelector('.bg-\\[\\#061d33\\]'));
       assert(!blackGoldHasPlate, `[${w}px] Black Gold Fertilizer must not have dark inner plate`);
+
+      // Verify Black Gold Fertilizer contains restored green leaf logo mark and separate business name text
+      const blackGoldText = await page.$eval('[data-client-brand-id="black-gold-fertilizer"]', card => card.textContent.trim());
+      assert(blackGoldText.includes('Black Gold Fertilizer'), `[${w}px] Black Gold Fertilizer card missing separate business name HTML text`);
+
+      const blackGoldHasLeafMark = await page.$eval('[data-client-brand-id="black-gold-fertilizer"] img', img => {
+        return img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && img.naturalWidth / img.naturalHeight > 1.4;
+      });
+      assert(blackGoldHasLeafMark, `[${w}px] Black Gold Fertilizer card must display restored green leaf logo mark (product pouch prohibited)`);
 
       // Verify no duplicate desktop/mobile trees
       const brandSectionCards = await page.$$eval('#brand-logos [data-client-logo]', els => els.length);
