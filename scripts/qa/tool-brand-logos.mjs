@@ -38,7 +38,19 @@ const prohibitedAssets = [
   'public/platforms/kling-ai.svg',
   'public/platforms/microsoft-clarity.svg',
   'public/platforms/google-trends.svg',
-  'public/platforms/google-workspace.svg'
+  'public/platforms/google-workspace.svg',
+  'public/platforms/codex.svg',
+  'public/platforms/meta-pixel.svg',
+  'public/platforms/google-ads-conversion-tracking.svg'
+];
+
+const rootReviewPngs = [
+  'brand-wall-final-1440.png',
+  'brand-wall-final-390.png',
+  'tool-logo-quality-closeup.png',
+  'tools-ecosystem-final-1024.png',
+  'tools-ecosystem-final-1440.png',
+  'tools-ecosystem-final-390.png'
 ];
 
 function getHash(content) {
@@ -95,19 +107,35 @@ async function main() {
     }
   }
 
-  // 1. PROHIBITED REJECTED HANDMADE ASSETS CHECK
-  prohibitedAssets.forEach(p => {
-    const fullPath = path.join(process.cwd(), p);
-    assert(!fs.existsSync(fullPath), `Prohibited rejected handmade SVG asset still exists: ${p}`);
+  // 1. NO REVIEW PNG EXISTS IN ROOT & SCRATCH DIR IS IGNORED
+  rootReviewPngs.forEach(png => {
+    const fullPath = path.join(process.cwd(), png);
+    assert(!fs.existsSync(fullPath), `Review PNG file must not exist in repository root: ${png}`);
   });
 
-  // 2. DATA & SOURCE REGISTER PROVENANCE AUDIT
+  const gitignoreContent = fs.readFileSync(path.join(process.cwd(), '.gitignore'), 'utf8');
+  assert(gitignoreContent.includes('scratch/'), `.gitignore must contain 'scratch/' to ignore local review screenshots`);
+
+  // 2. PROHIBITED UNUSED & HANDMADE ASSETS CHECK
+  prohibitedAssets.forEach(p => {
+    const fullPath = path.join(process.cwd(), p);
+    assert(!fs.existsSync(fullPath), `Prohibited / unused SVG asset still exists on disk: ${p}`);
+  });
+
+  // 3. UNUSED PLATFORM SVG AUDIT
   assert(fs.existsSync(REGISTER_FILE), `Source register file missing at ${REGISTER_FILE}`);
   const toolEcosystem = JSON.parse(fs.readFileSync(REGISTER_FILE, 'utf-8'));
-
   assert(toolEcosystem.length === 49, `Register entry count mismatch: expected 49, got ${toolEcosystem.length}`);
 
-  // Assert ChatGPT is not a separate image card entry
+  const activeLocalAssets = new Set(toolEcosystem.map(t => t.localAsset).filter(Boolean));
+  const allPlatformFiles = fs.readdirSync(path.join(process.cwd(), 'public/platforms'));
+  allPlatformFiles.forEach(file => {
+    if (file === '.gitkeep') return;
+    const relPath = `/platforms/${file}`;
+    assert(activeLocalAssets.has(relPath), `Unused platform asset found in public/platforms: ${file}`);
+  });
+
+  // 4. DATA & SOURCE REGISTER PROVENANCE AUDIT
   const chatgptEntry = toolEcosystem.find(t => t.id === 'chatgpt');
   assert(!chatgptEntry, `ChatGPT must not be a separate tool entry in register (must be capability under OpenAI)`);
 
@@ -121,7 +149,6 @@ async function main() {
     assert(!toolIds.has(t.id), `Duplicate tool ID found: ${t.id}`);
     toolIds.add(t.id);
 
-    // Required fields check
     assert(!!t.id, `Missing id for tool entry`);
     assert(!!t.name, `Missing name for tool entry: ${t.id}`);
     assert(!!t.sourceType, `Missing sourceType for tool entry: ${t.id}`);
@@ -133,12 +160,10 @@ async function main() {
     assert(!!t.transformationApplied, `Missing transformationApplied for tool entry: ${t.id}`);
     assert(!!t.verificationNotes, `Missing verificationNotes for tool entry: ${t.id}`);
 
-    // Simple Icons URL check
     if (t.directAssetUrl.includes('simple-icons')) {
       assert(t.sourceType === 'third-party-simple-icons', `Tool [${t.id}] with simple-icons URL must have sourceType=third-party-simple-icons (got ${t.sourceType})`);
     }
 
-    // Official vendor direct asset host check
     if (t.sourceType === 'official-vendor') {
       try {
         const u = new URL(t.directAssetUrl);
@@ -149,7 +174,6 @@ async function main() {
       }
     }
 
-    // Asset validation for logo tools vs capability-text items
     if (t.sourceType === 'capability-no-standalone-logo') {
       assert(t.localAsset === null, `Capability-only tool [${t.id}] must have localAsset set to null`);
       assert(t.directAssetUrl.includes('Capability text item') || t.directAssetUrl === 'N/A', `Capability-only tool [${t.id}] must document text capability status in directAssetUrl`);
@@ -157,8 +181,6 @@ async function main() {
       assert(t.localAssetHash === 'N/A', `Capability-only tool [${t.id}] localAssetHash must be 'N/A'`);
     } else {
       assert(!!t.localAsset, `Logo tool [${t.id}] must have localAsset relative path`);
-      
-      // Strict 64-char SHA-256 hash regex check
       assert(/^[a-f0-9]{64}$/.test(t.originalFileHash), `Tool [${t.id}] originalFileHash must be 64-char hex SHA-256 (got '${t.originalFileHash}')`);
       assert(/^[a-f0-9]{64}$/.test(t.localAssetHash), `Tool [${t.id}] localAssetHash must be 64-char hex SHA-256 (got '${t.localAssetHash}')`);
 
@@ -173,16 +195,27 @@ async function main() {
     }
   });
 
-  // 3. CATEGORY DISTRIBUTION AUDIT
+  // 5. CATEGORY DISTRIBUTION AUDIT
   for (const [cat, expectedCount] of Object.entries(expectedCategories)) {
     const count = toolEcosystem.filter(t => t.category === cat).length;
     assert(count === expectedCount, `Category [${cat}] count mismatch: expected ${expectedCount}, got ${count}`);
   }
 
-  // 4. CLIENT BRAND AUDIT
+  // 6. CLIENT BRAND AUDIT
   assert(expectedClientBrandIds.length === 12, 'Expected exactly 12 client brand IDs');
 
-  // 5. PLAYWRIGHT RUNTIME DOM & VISUAL ALIGNMENT AUDIT
+  // Load ts data to get total configured capability count
+  const tsFile = fs.readFileSync(path.join(process.cwd(), 'src/data/tool-ecosystem.ts'), 'utf8');
+  const configuredCapabilitiesMatch = tsFile.match(/"capabilities":\s*\[\s*([\s\S]*?)\s*\]/g) || [];
+  let totalConfiguredCapabilities = 0;
+  configuredCapabilitiesMatch.forEach(m => {
+    const items = m.match(/"([^"]+)"/g) || [];
+    // Ignore the key "capabilities" itself
+    const caps = items.filter(i => i !== '"capabilities"');
+    totalConfiguredCapabilities += caps.length;
+  });
+
+  // 7. PLAYWRIGHT RUNTIME DOM & VISUAL ALIGNMENT AUDIT
   const server = createStaticServer();
   await new Promise(res => server.listen(PORT, res));
 
@@ -228,6 +261,39 @@ async function main() {
         return imgs.filter(img => !img.complete || img.naturalWidth === 0 || img.naturalHeight === 0).length;
       });
       assert(invalidToolImgs === 0, `[${w}px] Broken/unrendered tool images found: ${invalidToolImgs}`);
+
+      // Capability count in DOM matches configured capabilities in data exactly
+      const domCapChips = await page.$$eval('[data-capability-chip]', els => els.map(e => e.getAttribute('data-capability-chip')));
+      assert(domCapChips.length === totalConfiguredCapabilities, `[${w}px] DOM capability chip count mismatch: expected ${totalConfiguredCapabilities}, got ${domCapChips.length}`);
+
+      // OpenAI renders all four expected capabilities
+      const openaiCaps = await page.$$eval('[data-tool-id="openai"] [data-capability-chip]', els => els.map(e => e.textContent.trim()));
+      const expectedOpenAICaps = ['ChatGPT', 'Codex', 'API Workflows', 'Custom GPTs'];
+      assert(openaiCaps.length === 4, `[${w}px] OpenAI capability chip count mismatch: expected 4, got ${openaiCaps.length}`);
+      expectedOpenAICaps.forEach(cap => {
+        assert(openaiCaps.includes(cap), `[${w}px] OpenAI missing expected capability chip: ${cap}`);
+      });
+
+      // Meta Pixel renders as text chip, NOT an image element
+      const metaPixelChips = await page.$$eval('[data-tool-id="meta-ads"] [data-capability-chip]', els => els.map(e => e.textContent.trim()));
+      assert(metaPixelChips.includes('Meta Pixel'), `[${w}px] Meta Ads missing 'Meta Pixel' capability text chip`);
+      const metaPixelImgCount = await page.$$eval('img[src*="meta-pixel"]', els => els.length);
+      assert(metaPixelImgCount === 0, `[${w}px] Prohibited meta-pixel image element found in DOM: ${metaPixelImgCount}`);
+
+      // Conversion Tracking renders as text chip, NOT an image element
+      const conversionTrackingChips = await page.$$eval('[data-tool-id="google-ads"] [data-capability-chip]', els => els.map(e => e.textContent.trim()));
+      assert(conversionTrackingChips.includes('Conversion Tracking'), `[${w}px] Google Ads missing 'Conversion Tracking' capability text chip`);
+      const conversionImgCount = await page.$$eval('img[src*="conversion-tracking"]', els => els.length);
+      assert(conversionImgCount === 0, `[${w}px] Prohibited conversion-tracking image element found in DOM: ${conversionImgCount}`);
+
+      // No text clipping across tool cards
+      const textClippingCount = await page.$$eval('[data-tool-logo]', cards => {
+        return cards.filter(card => {
+          const headings = Array.from(card.querySelectorAll('h3, span'));
+          return headings.some(el => el.scrollWidth > el.clientWidth + 2);
+        }).length;
+      });
+      assert(textClippingCount === 0, `[${w}px] Tool cards with text clipping found: ${textClippingCount}`);
 
       // Scroll into view & check Client Brand Cards in DOM
       await page.locator('#brand-logos').scrollIntoViewIfNeeded();

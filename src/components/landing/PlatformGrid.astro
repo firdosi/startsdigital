@@ -81,15 +81,18 @@ const categories = [
                   </div>
 
                   <div class="space-y-1.5 w-full">
-                    <h3 class="font-heading font-bold text-sm text-[#061d33] leading-snug group-hover:text-[#ff762b] transition-colors">
+                    <h3 class="font-heading font-bold text-sm text-[#061d33] leading-snug group-hover:text-[#ff762b] transition-colors break-words">
                       {t.name}
                     </h3>
 
                     {/* Sub-product capability chips if present */}
                     {t.capabilities && (
                       <div class="pt-1.5 flex flex-wrap justify-center gap-1">
-                        {t.capabilities.slice(0, 2).map((cap) => (
-                          <span class="font-mono text-[10px] text-[#ff762b] font-medium bg-[#ff762b]/8 px-1.5 py-0.5 rounded">
+                        {t.capabilities.map((cap) => (
+                          <span
+                            data-capability-chip={cap}
+                            class="font-mono text-[10px] text-[#ff762b] font-medium bg-[#ff762b]/8 px-1.5 py-0.5 rounded break-words"
+                          >
                             {cap}
                           </span>
                         ))}

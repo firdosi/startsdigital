@@ -5,6 +5,7 @@ import { chromium } from 'playwright';
 
 const PORT = 4325;
 const DIST_DIR = path.join(process.cwd(), 'dist');
+const OUT_DIR = path.join(process.cwd(), 'scratch/tools-and-brand-logo-review');
 
 function createStaticServer() {
   const mimeTypes = {
@@ -42,7 +43,9 @@ function createStaticServer() {
 }
 
 async function main() {
-  console.log('Generating required evidence screenshots via Playwright...');
+  console.log('Generating required evidence screenshots under scratch/tools-and-brand-logo-review/ via Playwright...');
+
+  fs.mkdirSync(OUT_DIR, { recursive: true });
 
   const server = createStaticServer();
   await new Promise(res => server.listen(PORT, res));
@@ -63,8 +66,9 @@ async function main() {
       });
       await page.waitForTimeout(500);
       const platformsSection = page.locator('#platforms');
-      await platformsSection.screenshot({ path: 'tools-ecosystem-final-1440.png' });
-      console.log('✓ Captured tools-ecosystem-final-1440.png');
+      const outPath = path.join(OUT_DIR, 'tools-ecosystem-final-1440.png');
+      await platformsSection.screenshot({ path: outPath });
+      console.log(`✓ Captured ${outPath}`);
       await ctx.close();
     }
 
@@ -81,8 +85,9 @@ async function main() {
       });
       await page.waitForTimeout(500);
       const platformsSection = page.locator('#platforms');
-      await platformsSection.screenshot({ path: 'tools-ecosystem-final-1024.png' });
-      console.log('✓ Captured tools-ecosystem-final-1024.png');
+      const outPath = path.join(OUT_DIR, 'tools-ecosystem-final-1024.png');
+      await platformsSection.screenshot({ path: outPath });
+      console.log(`✓ Captured ${outPath}`);
       await ctx.close();
     }
 
@@ -99,8 +104,9 @@ async function main() {
       });
       await page.waitForTimeout(500);
       const platformsSection = page.locator('#platforms');
-      await platformsSection.screenshot({ path: 'tools-ecosystem-final-390.png' });
-      console.log('✓ Captured tools-ecosystem-final-390.png');
+      const outPath = path.join(OUT_DIR, 'tools-ecosystem-final-390.png');
+      await platformsSection.screenshot({ path: outPath });
+      console.log(`✓ Captured ${outPath}`);
       await ctx.close();
     }
 
@@ -117,8 +123,9 @@ async function main() {
       });
       await page.waitForTimeout(500);
       const brandSection = page.locator('#brand-logos');
-      await brandSection.screenshot({ path: 'brand-wall-final-1440.png' });
-      console.log('✓ Captured brand-wall-final-1440.png');
+      const outPath = path.join(OUT_DIR, 'brand-wall-final-1440.png');
+      await brandSection.screenshot({ path: outPath });
+      console.log(`✓ Captured ${outPath}`);
       await ctx.close();
     }
 
@@ -135,13 +142,13 @@ async function main() {
       });
       await page.waitForTimeout(500);
       const brandSection = page.locator('#brand-logos');
-      await brandSection.screenshot({ path: 'brand-wall-final-390.png' });
-      console.log('✓ Captured brand-wall-final-390.png');
+      const outPath = path.join(OUT_DIR, 'brand-wall-final-390.png');
+      await brandSection.screenshot({ path: outPath });
+      console.log(`✓ Captured ${outPath}`);
       await ctx.close();
     }
 
     // 6. tool-logo-quality-closeup.png
-    // Must feature: HeyGen, Kling AI, CapCut, Google Business Profile, Microsoft Clarity
     {
       const ctx = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
       const page = await ctx.newPage();
@@ -154,7 +161,6 @@ async function main() {
       });
       await page.waitForTimeout(500);
 
-      // Create a temporary overlay container in page DOM containing close-up cards for HeyGen, Kling AI, CapCut, Google Business Profile, Microsoft Clarity
       await page.evaluate(() => {
         const targetIds = ['heygen', 'kling-ai', 'capcut', 'google-business-profile', 'microsoft-clarity'];
         const cards = targetIds.map(id => document.querySelector(`[data-tool-id="${id}"]`)).filter(Boolean);
@@ -166,7 +172,7 @@ async function main() {
         cards.forEach(card => {
           const clone = card.cloneNode(true);
           clone.style.width = '220px';
-          clone.style.height = '200px';
+          clone.style.height = '220px';
           wrapper.appendChild(clone);
         });
 
@@ -175,13 +181,14 @@ async function main() {
 
       await page.waitForTimeout(300);
       const closeupEl = page.locator('#closeup-wrapper');
-      await closeupEl.screenshot({ path: 'tool-logo-quality-closeup.png' });
-      console.log('✓ Captured tool-logo-quality-closeup.png');
+      const outPath = path.join(OUT_DIR, 'tool-logo-quality-closeup.png');
+      await closeupEl.screenshot({ path: outPath });
+      console.log(`✓ Captured ${outPath}`);
 
       await ctx.close();
     }
 
-    console.log('\nAll 6 required evidence screenshots generated successfully.');
+    console.log(`\nAll 6 required evidence screenshots generated under ${OUT_DIR}.`);
 
   } finally {
     await browser.close();
