@@ -56,7 +56,10 @@ const rootReviewPngs = [
   'tools-ecosystem-polished-390.png',
   'brand-wall-polished-1440.png',
   'brand-wall-polished-390.png',
-  'brand-logo-contrast-closeup.png'
+  'brand-logo-contrast-closeup.png',
+  'brand-wall-final-check-1440.png',
+  'brand-wall-final-check-390.png',
+  'brand-logo-final-contrast-closeup.png'
 ];
 
 function getHash(content) {
@@ -210,6 +213,19 @@ async function main() {
   // 6. CLIENT BRAND AUDIT
   assert(expectedClientBrandIds.length === 12, 'Expected exactly 12 client brand IDs');
 
+  const brandsDataContent = fs.readFileSync(path.join(process.cwd(), 'src/data/brands.ts'), 'utf8');
+  const rapidzoneBlock = (brandsDataContent.match(/id:\s*'rapidzone'[\s\S]*?\}/) || [''])[0];
+  assert(rapidzoneBlock.includes('darkLogoContainer: true'), 'Rapidzone must use darkLogoContainer: true contrast treatment');
+
+  const wajibBlock = (brandsDataContent.match(/id:\s*'wajib-livestock'[\s\S]*?\}/) || [''])[0];
+  assert(wajibBlock.includes('darkLogoContainer: true'), 'Wajib Livestock must use darkLogoContainer: true contrast treatment');
+
+  const convortBlock = (brandsDataContent.match(/id:\s*'convort-ai'[\s\S]*?\}/) || [''])[0];
+  assert(convortBlock.includes('darkLogoContainer: true'), 'Convort AI must use darkLogoContainer: true contrast treatment');
+
+  const blackGoldBlock = (brandsDataContent.match(/id:\s*'black-gold-fertilizer'[\s\S]*?\}/) || [''])[0];
+  assert(blackGoldBlock && !blackGoldBlock.includes('darkLogoContainer: true'), 'Black Gold Fertilizer must use white card without dark inner plate');
+
   // Load ts data to get total configured capability count
   const tsFile = fs.readFileSync(path.join(process.cwd(), 'src/data/tool-ecosystem.ts'), 'utf8');
   const configuredCapabilitiesMatch = tsFile.match(/"capabilities":\s*\[\s*([\s\S]*?)\s*\]/g) || [];
@@ -313,6 +329,19 @@ async function main() {
         return imgs.filter(img => !img.complete || img.naturalWidth === 0 || img.naturalHeight === 0).length;
       });
       assert(invalidClientImgs === 0, `[${w}px] Broken/unrendered client brand images found: ${invalidClientImgs}`);
+
+      // Verify DOM inner dark plate treatment for contrast brands
+      const rapidzoneHasPlate = await page.$eval('[data-client-brand-id="rapidzone"]', card => !!card.querySelector('.bg-\\[\\#061d33\\]'));
+      assert(rapidzoneHasPlate, `[${w}px] Rapidzone card missing required dark inner plate`);
+
+      const wajibHasPlate = await page.$eval('[data-client-brand-id="wajib-livestock"]', card => !!card.querySelector('.bg-\\[\\#061d33\\]'));
+      assert(wajibHasPlate, `[${w}px] Wajib Livestock card missing required dark inner plate`);
+
+      const convortHasPlate = await page.$eval('[data-client-brand-id="convort-ai"]', card => !!card.querySelector('.bg-\\[\\#061d33\\]'));
+      assert(convortHasPlate, `[${w}px] Convort AI card missing required dark inner plate`);
+
+      const blackGoldHasPlate = await page.$eval('[data-client-brand-id="black-gold-fertilizer"]', card => !!card.querySelector('.bg-\\[\\#061d33\\]'));
+      assert(!blackGoldHasPlate, `[${w}px] Black Gold Fertilizer must not have dark inner plate`);
 
       // Verify no duplicate desktop/mobile trees
       const brandSectionCards = await page.$$eval('#brand-logos [data-client-logo]', els => els.length);

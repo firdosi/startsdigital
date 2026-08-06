@@ -43,7 +43,7 @@ function createStaticServer() {
 }
 
 async function main() {
-  console.log('Generating polished evidence screenshots under scratch/tools-and-brand-logo-review/ via Playwright...');
+  console.log('Generating final brand wall contrast evidence screenshots under scratch/tools-and-brand-logo-review/ via Playwright...');
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
@@ -53,64 +53,7 @@ async function main() {
   const browser = await chromium.launch({ headless: true });
 
   try {
-    // 1. tools-ecosystem-polished-1440.png
-    {
-      const ctx = await browser.newContext({ viewport: { width: 1440, height: 1200 } });
-      const page = await ctx.newPage();
-      await page.goto(`http://localhost:${PORT}/startsdigital/`, { waitUntil: 'networkidle' });
-      await page.locator('#platforms').scrollIntoViewIfNeeded();
-      await page.evaluate(async () => {
-        const imgs = Array.from(document.querySelectorAll('#platforms img, #brand-logos img'));
-        imgs.forEach(img => { img.loading = 'eager'; img.src = img.src; });
-        await Promise.all(imgs.map(img => img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })));
-      });
-      await page.waitForTimeout(500);
-      const platformsSection = page.locator('#platforms');
-      const outPath = path.join(OUT_DIR, 'tools-ecosystem-polished-1440.png');
-      await platformsSection.screenshot({ path: outPath });
-      console.log(`✓ Captured ${outPath}`);
-      await ctx.close();
-    }
-
-    // 2. tools-ecosystem-polished-1024.png
-    {
-      const ctx = await browser.newContext({ viewport: { width: 1024, height: 1200 } });
-      const page = await ctx.newPage();
-      await page.goto(`http://localhost:${PORT}/startsdigital/`, { waitUntil: 'networkidle' });
-      await page.locator('#platforms').scrollIntoViewIfNeeded();
-      await page.evaluate(async () => {
-        const imgs = Array.from(document.querySelectorAll('#platforms img, #brand-logos img'));
-        imgs.forEach(img => { img.loading = 'eager'; img.src = img.src; });
-        await Promise.all(imgs.map(img => img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })));
-      });
-      await page.waitForTimeout(500);
-      const platformsSection = page.locator('#platforms');
-      const outPath = path.join(OUT_DIR, 'tools-ecosystem-polished-1024.png');
-      await platformsSection.screenshot({ path: outPath });
-      console.log(`✓ Captured ${outPath}`);
-      await ctx.close();
-    }
-
-    // 3. tools-ecosystem-polished-390.png
-    {
-      const ctx = await browser.newContext({ viewport: { width: 390, height: 1200 } });
-      const page = await ctx.newPage();
-      await page.goto(`http://localhost:${PORT}/startsdigital/`, { waitUntil: 'networkidle' });
-      await page.locator('#platforms').scrollIntoViewIfNeeded();
-      await page.evaluate(async () => {
-        const imgs = Array.from(document.querySelectorAll('#platforms img, #brand-logos img'));
-        imgs.forEach(img => { img.loading = 'eager'; img.src = img.src; });
-        await Promise.all(imgs.map(img => img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })));
-      });
-      await page.waitForTimeout(500);
-      const platformsSection = page.locator('#platforms');
-      const outPath = path.join(OUT_DIR, 'tools-ecosystem-polished-390.png');
-      await platformsSection.screenshot({ path: outPath });
-      console.log(`✓ Captured ${outPath}`);
-      await ctx.close();
-    }
-
-    // 4. brand-wall-polished-1440.png
+    // 1. brand-wall-final-check-1440.png
     {
       const ctx = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
       const page = await ctx.newPage();
@@ -123,13 +66,13 @@ async function main() {
       });
       await page.waitForTimeout(500);
       const brandSection = page.locator('#brand-logos');
-      const outPath = path.join(OUT_DIR, 'brand-wall-polished-1440.png');
+      const outPath = path.join(OUT_DIR, 'brand-wall-final-check-1440.png');
       await brandSection.screenshot({ path: outPath });
       console.log(`✓ Captured ${outPath}`);
       await ctx.close();
     }
 
-    // 5. brand-wall-polished-390.png
+    // 2. brand-wall-final-check-390.png
     {
       const ctx = await browser.newContext({ viewport: { width: 390, height: 1000 } });
       const page = await ctx.newPage();
@@ -142,14 +85,14 @@ async function main() {
       });
       await page.waitForTimeout(500);
       const brandSection = page.locator('#brand-logos');
-      const outPath = path.join(OUT_DIR, 'brand-wall-polished-390.png');
+      const outPath = path.join(OUT_DIR, 'brand-wall-final-check-390.png');
       await brandSection.screenshot({ path: outPath });
       console.log(`✓ Captured ${outPath}`);
       await ctx.close();
     }
 
-    // 6. brand-logo-contrast-closeup.png
-    // Must feature: Wajib Livestock, Convort AI, Rapidzone, Black Gold Fertilizer, Riyadh Finish Pro
+    // 3. brand-logo-final-contrast-closeup.png
+    // Must feature: Black Gold Fertilizer, Wajib Livestock, Convort AI, Rapidzone, Riyadh Finish Pro
     {
       const ctx = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
       const page = await ctx.newPage();
@@ -163,7 +106,7 @@ async function main() {
       await page.waitForTimeout(500);
 
       await page.evaluate(() => {
-        const targetIds = ['wajib-livestock', 'convort-ai', 'rapidzone', 'black-gold-fertilizer', 'riyadh-finish-pro'];
+        const targetIds = ['black-gold-fertilizer', 'wajib-livestock', 'convort-ai', 'rapidzone', 'riyadh-finish-pro'];
         const cards = targetIds.map(id => document.querySelector(`[data-client-brand-id="${id}"]`)).filter(Boolean);
 
         const wrapper = document.createElement('div');
@@ -182,14 +125,14 @@ async function main() {
 
       await page.waitForTimeout(300);
       const closeupEl = page.locator('#closeup-wrapper');
-      const outPath = path.join(OUT_DIR, 'brand-logo-contrast-closeup.png');
+      const outPath = path.join(OUT_DIR, 'brand-logo-final-contrast-closeup.png');
       await closeupEl.screenshot({ path: outPath });
       console.log(`✓ Captured ${outPath}`);
 
       await ctx.close();
     }
 
-    console.log(`\nAll 6 required polished evidence screenshots generated under ${OUT_DIR}.`);
+    console.log(`\nAll 3 required final contrast evidence screenshots generated under ${OUT_DIR}.`);
 
   } finally {
     await browser.close();
