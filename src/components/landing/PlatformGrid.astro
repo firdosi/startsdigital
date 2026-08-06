@@ -3,7 +3,7 @@ import { toolEcosystem } from '../../data/tool-ecosystem';
 import { site } from '../../site.config';
 import SectionEyebrow from '../common/SectionEyebrow.astro';
 
-const logoSrc = (asset: string) => asset.startsWith('http') ? asset : `${site.basePath}${asset}`;
+const logoSrc = (asset: string | null) => asset ? (asset.startsWith('http') ? asset : `${site.basePath}${asset}`) : '';
 
 const categories = [
   'Advertising & Social Platforms',
@@ -55,20 +55,29 @@ const categories = [
                   data-tool-logo
                   data-tool-id={t.id}
                   data-tool-category={t.category}
+                  data-render-type={t.renderType}
                   style="background-color: #ffffff;"
                   class="rounded-2xl border border-[#061d33]/12 bg-white p-4 sm:p-5 flex flex-col items-center justify-between text-center shadow-xs hover:shadow-md hover:border-[#ff762b]/40 hover:-translate-y-0.5 transition-all duration-300 h-full group relative"
                 >
                   <div class="h-14 w-full mb-3 flex items-center justify-center rounded-xl bg-[#061d33]/5 p-2 group-hover:scale-105 transition-transform duration-300">
-                    <img
-                      src={logoSrc(t.localAsset)}
-                      alt={t.alt}
-                      width="48"
-                      height="48"
-                      loading="lazy"
-                      decoding="async"
-                      style={`max-width: ${t.maxWidth || '44px'}; max-height: ${t.maxHeight || '44px'}; transform: scale(${t.displayScale || 1.0});`}
-                      class="object-contain"
-                    />
+                    {t.localAsset ? (
+                      <img
+                        src={logoSrc(t.localAsset)}
+                        alt={t.alt}
+                        width="48"
+                        height="48"
+                        loading="lazy"
+                        decoding="async"
+                        style={`max-width: ${t.maxWidth || '44px'}; max-height: ${t.maxHeight || '44px'}; transform: scale(${t.displayScale || 1.0});`}
+                        class="object-contain"
+                      />
+                    ) : (
+                      <div class="flex flex-col items-center justify-center space-y-0.5">
+                        <span class="font-mono text-[9px] font-bold text-[#061d33]/60 uppercase tracking-widest bg-[#061d33]/10 px-2 py-0.5 rounded">
+                          Capability
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   <div class="space-y-1.5 w-full">
