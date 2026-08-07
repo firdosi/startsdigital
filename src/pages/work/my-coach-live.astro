@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectVideoGallery from '../../components/work/ProjectVideoGallery.astro';
+import FinalCta from '../../components/landing/FinalCta.astro';
+import MotionController from '../../components/common/MotionController.astro';
+import AnimatedGrid from '../../components/motion/AnimatedGrid.astro';
+import FloatingOrb from '../../components/motion/FloatingOrb.astro';
+import SectionSpark from '../../components/motion/SectionSpark.astro';
+import { site } from '../../site.config';
+import { ArrowLeft, ExternalLink, Dumbbell, Apple, Calendar, TrendingUp } from '@lucide/astro';
+---
+
+<BaseLayout>
+  {/* Project Hero Header */}
+  <section id="project-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-8 sm:pt-20 lg:pt-24 pb-12 sm:pb-16 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
+    <AnimatedGrid opacity={0.10} />
+    <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
+    <SectionSpark color="orange" size="md" class="top-10 right-[8%] pointer-events-none" delay="0s" />
+
+    <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 z-10 space-y-6">
+      
+      <!-- Back Link -->
+      <div>
+        <a
+          href={`${site.basePath}/work/`}
+          class="inline-flex items-center gap-2 text-xs font-mono font-medium text-slate-300 hover:text-[#ddff35] transition-colors py-2"
+        >
+          <ArrowLeft class="size-4" />
+          <span>Back to Work Portfolio</span>
+        </a>
+      </div>
+
+      <div class="max-w-4xl space-y-4">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff762b] text-white text-xs font-mono font-bold uppercase tracking-wider">
+            <span class="size-2 rounded-full bg-white animate-pulse"></span>
+            ONGOING PROJECT
+          </span>
+          <span class="text-xs font-mono text-[#ddff35] uppercase tracking-wider">
+            Fitness &amp; Wellness Technology
+          </span>
+        </div>
+
+        <h1 class="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight tracking-tight">
+          My Coach Live — Remote Fitness &amp; Personal Training Platform
+        </h1>
+
+        <p class="font-body text-base sm:text-lg text-slate-200 leading-relaxed max-w-3xl">
+          Starts Digital provides ongoing digital product support, creative content production, and marketing workflow assistance for My Coach Live — an online personal training and wellness platform connecting clients in the UK and US with certified live trainers and nutritionists.
+        </p>
+
+        <!-- External Website CTA -->
+        <div class="pt-2">
+          <a
+            href="https://my-coach.live/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full bg-[#ff762b] px-6 py-3 font-body font-semibold text-sm text-white hover:bg-[#e0631c] transition-all shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] min-h-[44px]"
+          >
+            <span>Visit Live Platform (my-coach.live)</span>
+            <ExternalLink class="size-4" />
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  {/* Product Overview & Features Grid */}
+  <section class="py-12 sm:py-16 bg-[#f7f4ed] border-b border-[#061d33]/10">
+    <div class="max-w-[1280px] mx-auto px-6 sm:px-8 space-y-8">
+      <div class="max-w-3xl space-y-2">
+        <span class="font-mono text-xs font-bold text-[#ff762b] uppercase tracking-wider">
+          PLATFORM &amp; SERVICE HIGHLIGHTS
+        </span>
+        <h2 class="font-heading font-bold text-2xl sm:text-3xl text-[#061d33]">
+          Supported Digital Features &amp; User Workflows
+        </h2>
+        <p class="font-body text-sm sm:text-base text-slate-700">
+          My Coach Live offers an end-to-end digital coaching ecosystem designed to keep remote gym and home fitness clients guided, consistent, and accountable.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div class="bg-white rounded-2xl p-5 border border-[#061d33]/10 shadow-xs space-y-3">
+          <div class="size-10 rounded-xl bg-[#ff762b]/10 text-[#ff762b] flex items-center justify-center">
+            <Dumbbell class="size-5" />
+          </div>
+          <h3 class="font-heading font-bold text-base text-[#061d33]">Live Trainer Guidance</h3>
+          <p class="font-body text-xs sm:text-sm text-slate-600">
+            Real-time audio and video workout coaching through wireless earphones during gym or home workouts.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-[#061d33]/10 shadow-xs space-y-3">
+          <div class="size-10 rounded-xl bg-[#ff762b]/10 text-[#ff762b] flex items-center justify-center">
+            <Apple class="size-5" />
+          </div>
+          <h3 class="font-heading font-bold text-base text-[#061d33]">Nutritionist Support</h3>
+          <p class="font-body text-xs sm:text-sm text-slate-600">
+            Personalised meal plans and tailored nutritional guidance to complement active fitness regimens.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-[#061d33]/10 shadow-xs space-y-3">
+          <div class="size-10 rounded-xl bg-[#ff762b]/10 text-[#ff762b] flex items-center justify-center">
+            <Calendar class="size-5" />
+          </div>
+          <h3 class="font-heading font-bold text-base text-[#061d33]">Session Booking</h3>
+          <p class="font-body text-xs sm:text-sm text-slate-600">
+            Direct online scheduling for live 1-on-1 coaching sessions across UK and US time zones.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-[#061d33]/10 shadow-xs space-y-3">
+          <div class="size-10 rounded-xl bg-[#ff762b]/10 text-[#ff762b] flex items-center justify-center">
+            <TrendingUp class="size-5" />
+          </div>
+          <h3 class="font-heading font-bold text-base text-[#061d33]">Workout &amp; Progress History</h3>
+          <p class="font-body text-xs sm:text-sm text-slate-600">
+            Comprehensive logging of workout sessions, strength milestones, and body composition tracking.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* YouTube Video Gallery Section */}
+  <section id="videos" class="py-12 sm:py-20 bg-white border-b border-[#061d33]/10">
+    <div class="max-w-[1280px] mx-auto px-6 sm:px-8">
+      <ProjectVideoGallery
+        projectId="my-coach-live"
+        projectName="My Coach Live"
+      />
+    </div>
+  </section>
+
+  {/* Back to Work Footer Bar */}
+  <section class="py-8 bg-[#f7f4ed]">
+    <div class="max-w-[1280px] mx-auto px-6 sm:px-8 flex items-center justify-between">
+      <a
+        href={`${site.basePath}/work/`}
+        class="inline-flex items-center gap-2 text-sm font-body font-semibold text-[#061d33] hover:text-[#ff762b] transition-colors"
+      >
+        <ArrowLeft class="size-4" />
+        <span>Back to Work Portfolio</span>
+      </a>
+
+      <a
+        href="https://my-coach.live/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#ff762b] hover:underline"
+      >
+        <span>my-coach.live</span>
+        <ExternalLink class="size-3.5" />
+      </a>
+    </div>
+  </section>
+
+  <FinalCta />
+  <MotionController />
+</BaseLayout>

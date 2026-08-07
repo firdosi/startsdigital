@@ -2,13 +2,14 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/ui/Container.astro';
 import WorkEditorialHero from '../../components/work/WorkEditorialHero.astro';
+import ProjectCard from '../../components/work/ProjectCard.astro';
 import WorkDeliverablesGallery from '../../components/work/WorkDeliverablesGallery.astro';
 import WorkResultsSection from '../../components/work/WorkResultsSection.astro';
 import AIWorkflowStory from '../../components/landing/AIWorkflowStory.astro';
 import AnimatedGrid from '../../components/motion/AnimatedGrid.astro';
 import FloatingOrb from '../../components/motion/FloatingOrb.astro';
 import { site } from '../../site.config';
-import { ArrowRight, MessageSquare } from '@lucide/astro';
+import { ArrowRight, MessageSquare, Sparkles } from '@lucide/astro';
 
 const genericWhatsappMsg = encodeURIComponent('Hello Starts Digital, I would like to discuss a new digital marketing project.');
 const whatsappUrl = `${site.contact.whatsapp}?text=${genericWhatsappMsg}`;
@@ -38,7 +39,7 @@ const processSteps = [
 ---
 
 <BaseLayout>
-  <!-- 1. WORK HERO (Layered Editorial Canvas, zero dashboard bars, zero statistics) -->
+  <!-- 1. WORK HERO (Layered Editorial Canvas) -->
   <section id="work-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl">
     <AnimatedGrid opacity={0.10} />
     <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
@@ -81,18 +82,75 @@ const processSteps = [
         </div>
       </div>
 
-      <!-- Editorial Photography Hero Composition (three overlapping portfolio photos) -->
+      <!-- Editorial Photography Hero Composition -->
       <WorkEditorialHero />
     </Container>
   </section>
 
-  <!-- 2. VISUAL DELIVERABLES GALLERY -->
+  <!-- 2. SELECTED PROJECT WORK (Featured Real Client Projects) -->
+  <section id="selected-projects" class="py-16 sm:py-24 bg-[#f7f4ed] border-b border-[#061d33]/10">
+    <Container class="max-w-[1280px] px-6 sm:px-8 space-y-12">
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#ff762b] bg-[#ff762b]/10 px-3 py-1 rounded-full">
+          <Sparkles class="size-3.5" />
+          <span>FEATURED CLIENT CASE STUDIES</span>
+        </span>
+        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#061d33]">
+          SELECTED PROJECT WORK
+        </h2>
+        <p class="font-body text-base sm:text-lg text-slate-700 max-w-2xl mx-auto">
+          Explore dedicated project hubs featuring full video short galleries, technical engineering context, and client deliverables.
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        <!-- Project 1: My Coach Live -->
+        <ProjectCard
+          title="My Coach Live"
+          category="Technology & Fitness Platform"
+          industry="Fitness & Wellness Technology"
+          status="ONGOING PROJECT"
+          summary="Ongoing project support for a remote fitness coaching platform providing live trainer guidance, nutritionist support, session booking, workout history, progress tracking, and personalised diet plans for UK and US clients."
+          videoCount={10}
+          projectLink="/work/my-coach-live/"
+          website="https://my-coach.live/"
+          posterYoutubeId="V0Ax0MGuuNw"
+        />
+
+        <!-- Project 2: ConvortAI -->
+        <ProjectCard
+          title="ConvortAI"
+          category="AI Technology Partner"
+          industry="AI Platform & App Development"
+          summary="Starts Digital is an ongoing technology and growth partner for ConvortAI. We developed the ConvortAI web application and continue to support product development, project management, social media marketing, creative production and digital growth."
+          videoCount={4}
+          projectLink="/work/convort-ai/"
+          website="https://convortai.com/"
+          posterYoutubeId="NvXKjRNad6Q"
+        />
+
+        <!-- Project 3: Shopinq Online -->
+        <ProjectCard
+          title="Shopinq Online"
+          category="E-Commerce Distribution"
+          industry="Retail Product Marketing"
+          summary="Promoted startup product lines through paid social campaigns, creative content production, customer communication, and order support on a sales-commission structure."
+          videoCount={16}
+          projectLink="/work/shopinq-online/"
+          website="https://www.facebook.com/shopinq.online/"
+          posterYoutubeId="PnYdfatKb4I"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- 3. VISUAL DELIVERABLES GALLERY -->
   <WorkDeliverablesGallery />
 
-  <!-- 3. DEDICATED SELECTED RESULTS SECTION (Single Instance on Page!) -->
+  <!-- 4. DEDICATED SELECTED RESULTS SECTION -->
   <WorkResultsSection />
 
-  <!-- 4. HOW STRATEGY, CREATIVE & WEB CONNECT -->
+  <!-- 5. HOW STRATEGY, CREATIVE & WEB CONNECT -->
   <section class="py-16 sm:py-20 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="max-w-[1000px] px-6 sm:px-8 text-center space-y-8">
       <span class="font-mono text-xs uppercase tracking-widest text-[#ff762b]">How It All Connects</span>
@@ -105,10 +163,10 @@ const processSteps = [
     </Container>
   </section>
 
-  <!-- 5. AI CREATIVE INNOVATION STORY -->
+  <!-- 6. AI CREATIVE INNOVATION STORY -->
   <AIWorkflowStory />
 
-  <!-- 6. PROJECT PROCESS -->
+  <!-- 7. PROJECT PROCESS -->
   <section class="py-16 sm:py-24 bg-[#f7f4ed] text-[#061d33] border-b border-[#061d33]/10">
     <Container class="max-w-[1280px] px-6 sm:px-8">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -143,7 +201,7 @@ const processSteps = [
     </Container>
   </section>
 
-  <!-- 7. GENERAL PROJECT CTA -->
+  <!-- 8. GENERAL PROJECT CTA -->
   <section class="py-16 sm:py-24 bg-[#061d33] text-white text-center">
     <Container class="max-w-[900px] px-6 sm:px-8 space-y-8">
       <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">

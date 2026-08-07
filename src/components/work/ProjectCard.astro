@@ -1,0 +1,108 @@
+---
+import { site } from '../../site.config';
+import { ArrowRight, Video, ExternalLink } from '@lucide/astro';
+
+interface Props {
+  title: string;
+  category: string;
+  industry: string;
+  status?: string;
+  summary: string;
+  videoCount: number;
+  projectLink: string;
+  website?: string;
+  posterYoutubeId: string;
+}
+
+const {
+  title,
+  category,
+  industry,
+  status,
+  summary,
+  videoCount,
+  projectLink,
+  website,
+  posterYoutubeId
+} = Astro.props;
+
+const posterUrl = `https://img.youtube.com/vi/${posterYoutubeId}/hqdefault.jpg`;
+const fullProjectLink = projectLink.startsWith('/') ? `${site.basePath}${projectLink}` : projectLink;
+---
+
+<div class="group rounded-3xl border border-[#061d33]/12 bg-white overflow-hidden shadow-sm hover:shadow-xl hover:border-[#ff762b] transition-all duration-300 flex flex-col md:flex-row">
+  <!-- Poster Preview Container -->
+  <div class="relative w-full md:w-5/12 aspect-[9/16] md:aspect-auto max-h-[360px] md:max-h-none overflow-hidden bg-[#061d33] shrink-0">
+    <img
+      src={posterUrl}
+      alt={`${title} project preview`}
+      loading="lazy"
+      decoding="async"
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-[#061d33]/80 via-black/20 to-transparent"></div>
+
+    {status && (
+      <div class="absolute top-4 left-4 z-10">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ff762b] text-white text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
+          <span class="size-2 rounded-full bg-white animate-pulse"></span>
+          {status}
+        </span>
+      </div>
+    )}
+
+    <div class="absolute bottom-4 left-4 z-10 flex items-center gap-2">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 text-[#ddff35] text-xs font-mono font-bold backdrop-blur-md border border-white/10">
+        <Video class="size-3.5 text-[#ddff35]" />
+        <span>{videoCount} Video Shorts</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Content & Details -->
+  <div class="p-6 sm:p-8 flex flex-col justify-between flex-1 space-y-6">
+    <div class="space-y-3">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-[#ff762b] bg-[#ff762b]/10 px-3 py-1 rounded-full">
+          {industry}
+        </span>
+        <span class="text-xs font-mono text-slate-500 uppercase tracking-wider">
+          {category}
+        </span>
+      </div>
+
+      <h3 class="font-heading font-bold text-2xl sm:text-3xl text-[#061d33] tracking-tight group-hover:text-[#ff762b] transition-colors">
+        <a href={fullProjectLink}>
+          {title}
+        </a>
+      </h3>
+
+      <p class="font-body text-sm sm:text-base text-slate-600 leading-relaxed">
+        {summary}
+      </p>
+    </div>
+
+    <!-- Action Links -->
+    <div class="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+      <a
+        href={fullProjectLink}
+        class="inline-flex items-center gap-2 rounded-full bg-[#061d33] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#ff762b] transition-all shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff762b] min-h-[44px]"
+      >
+        <span>View Project &amp; {videoCount} Videos</span>
+        <ArrowRight class="size-4" />
+      </a>
+
+      {website && (
+        <a
+          href={website}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-600 hover:text-[#ff762b] transition-colors min-h-[44px] px-2"
+        >
+          <span>Visit Website</span>
+          <ExternalLink class="size-3.5" />
+        </a>
+      )}
+    </div>
+  </div>
+</div>

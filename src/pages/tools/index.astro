@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlatformGrid from '../../components/landing/PlatformGrid.astro';
+import FinalCta from '../../components/landing/FinalCta.astro';
+import MotionController from '../../components/common/MotionController.astro';
+import AnimatedGrid from '../../components/motion/AnimatedGrid.astro';
+import FloatingOrb from '../../components/motion/FloatingOrb.astro';
+import SectionSpark from '../../components/motion/SectionSpark.astro';
+import { Cpu, ShieldCheck } from '@lucide/astro';
+---
+
+<BaseLayout>
+  {/* Tools Hero */}
+  <section id="tools-hero" class="relative overflow-hidden bg-[#061d33] text-white pt-8 sm:pt-20 lg:pt-28 pb-12 sm:pb-20 lg:pb-24 rounded-b-[36px] lg:rounded-b-[48px] shadow-2xl scroll-mt-24">
+    <AnimatedGrid opacity={0.10} />
+    <FloatingOrb color="orange" size="lg" class="-top-24 -left-24 opacity-60 pointer-events-none" duration="16s" />
+    <SectionSpark color="orange" size="md" class="top-10 right-[8%] pointer-events-none" delay="0s" />
+
+    <div class="relative mx-auto max-w-[1280px] px-6 sm:px-8 z-10">
+      <div class="max-w-4xl mx-auto text-center space-y-6">
+        
+        <div class="inline-flex items-center justify-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-[0.06em] text-[#ddff35] backdrop-blur-md">
+            <Cpu class="size-3.5 text-[#ddff35]" />
+            <span>TECHNOLOGY &amp; WORKFLOW ECOSYSTEM</span>
+          </span>
+        </div>
+
+        <h1 class="font-heading font-bold text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.12] tracking-[-0.03em] text-white">
+          Platforms, software and tools behind our work
+        </h1>
+
+        <p class="text-base sm:text-lg leading-[1.65] text-slate-200 font-body font-normal max-w-2xl mx-auto">
+          Tool selection varies according to specific project requirements. These platforms support our client work across advertising networks, analytics tracking, website development, design &amp; video production, customer communication and AI automation.
+        </p>
+
+        <!-- Authenticity & Provenance Banner -->
+        <div class="pt-4 border-t border-white/15 max-w-2xl mx-auto">
+          <div class="inline-flex items-start gap-2 bg-white/5 border border-white/10 rounded-2xl p-3 sm:p-4 text-left text-xs font-body text-slate-300">
+            <ShieldCheck class="size-4 text-[#ddff35] shrink-0 mt-0.5" />
+            <p>
+              Starts Digital utilizes these platforms and software solutions to execute client strategies and digital workflows. All product names, logos, and trademarks belong to their respective owners and are displayed for authentic technical context only.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* Full Categorized Platform Grid */}
+  <PlatformGrid />
+
+  {/* Final CTA */}
+  <FinalCta />
+
+  {/* Motion Controller */}
+  <MotionController />
+</BaseLayout>

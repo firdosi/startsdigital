@@ -120,7 +120,7 @@ export const brands: Brand[] = [
     active: true,
     order: 4,
     isTechnologyPartner: true,
-    caseStudyLink: '/work/'
+    caseStudyLink: '/work/convort-ai/'
   },
   {
     id: 'rapidline-immigration-services',
@@ -259,7 +259,7 @@ export const brands: Brand[] = [
     featured: false,
     active: true,
     order: 10,
-    caseStudyLink: '/work/'
+    caseStudyLink: '/work/shopinq-online/'
   },
   {
     id: 'super-safety-covers',
@@ -304,5 +304,27 @@ export const brands: Brand[] = [
     active: true,
     order: 12,
     caseStudyLink: '/work/'
+  },
+  {
+    id: 'my-coach-live',
+    name: 'My Coach Live',
+    category: 'technology',
+    industry: 'Fitness & Wellness Technology',
+    role: 'Ongoing Digital Product & Creative Support',
+    summary: 'Ongoing project support for a remote fitness coaching platform providing live trainer guidance, nutritionist support, session booking, workout history, progress tracking, and personalised diet plans for UK and US clients.',
+    services: [
+      'Digital Product Support',
+      'Creative Production',
+      'Video Editing',
+      'Growth Support',
+      'Platform Development'
+    ],
+    logoApproved: false,
+    logoFit: 'standard',
+    website: 'https://my-coach.live/',
+    featured: true,
+    active: true,
+    order: 13,
+    caseStudyLink: '/work/my-coach-live/'
   }
 ];

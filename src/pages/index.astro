@@ -4,9 +4,9 @@ import Hero from '../components/landing/Hero.astro';
 import BusinessOutcomes from '../components/landing/BusinessOutcomes.astro';
 import EngagementPath from '../components/landing/EngagementPath.astro';
 import Process from '../components/landing/Process.astro';
-import PlatformGrid from '../components/landing/PlatformGrid.astro';
 import BrandLogoGrid from '../components/landing/BrandLogoGrid.astro';
 import Showcase from '../components/landing/Showcase.astro';
+import PlatformPreview from '../components/landing/PlatformPreview.astro';
 import TeamPreview from '../components/landing/TeamPreview.astro';
 import Faq from '../components/landing/Faq.astro';
 import FinalCta from '../components/landing/FinalCta.astro';
@@ -19,25 +19,22 @@ import { ArrowRight, Bot } from '@lucide/astro';
   {/* 1. Hero (Service-First Positioning – six clickable service rows) */}
   <Hero />
 
-  {/* 2. What We Help Businesses Achieve (4 outcome blocks – NOT a repeat of hero services) */}
+  {/* 2. Business Outcomes (4 outcome blocks) */}
   <BusinessOutcomes />
 
   {/* 3. Business Problems We Help Solve */}
   <EngagementPath />
 
-  {/* 4. How Starts Digital Works (Working Method) */}
+  {/* 4. Working Method (How Starts Digital Works) */}
   <Process />
 
-  {/* 5. Platforms & Tools We Work With */}
-  <PlatformGrid />
-
-  {/* 6. Brands We Have Worked With – all 12 logos, shown once, no infinite loop */}
+  {/* 5. Brands We Have Supported & Built With (13 brands, centered orphan row layout) */}
   <BrandLogoGrid />
 
-  {/* 7. Compact Selected Work Preview */}
+  {/* 6. Current Selected Work / sector content */}
   <Showcase />
 
-  {/* 8. AI Creative Production Teaser – full story on Work page */}
+  {/* 7. AI Creative Teaser */}
   <section id="ai-teaser" class="py-16 sm:py-20 bg-[#061d33] text-white border-t border-white/10">
     <div class="max-w-[1280px] mx-auto px-6 sm:px-8">
       <div class="rounded-3xl border border-white/15 bg-white/5 p-8 sm:p-10 backdrop-blur-xl max-w-4xl mx-auto text-center space-y-6">
@@ -63,6 +60,9 @@ import { ArrowRight, Bot } from '@lucide/astro';
       </div>
     </div>
   </section>
+
+  {/* 8. Compact Main Tools Section (~12 recognizable tools) */}
+  <PlatformPreview />
 
   {/* 9. Team Preview */}
   <TeamPreview />

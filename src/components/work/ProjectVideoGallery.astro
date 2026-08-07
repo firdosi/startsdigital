@@ -1,0 +1,36 @@
+---
+import YouTubeShortCard from './YouTubeShortCard.astro';
+import { projectVideos } from '../../data/project-videos';
+
+interface Props {
+  projectId: 'my-coach-live' | 'convort-ai' | 'shopinq-online';
+  projectName: string;
+}
+
+const { projectId, projectName } = Astro.props;
+const videos = projectVideos.filter(v => v.projectId === projectId);
+---
+
+<div class="space-y-6">
+  <div class="flex items-center justify-between border-b border-[#061d33]/10 pb-4">
+    <div class="space-y-1">
+      <h2 class="font-heading font-bold text-xl sm:text-2xl text-[#061d33]">
+        Project Video Showcase ({videos.length} Short{videos.length === 1 ? '' : 's'})
+      </h2>
+      <p class="font-body text-xs sm:text-sm text-slate-600">
+        Click any thumbnail to play the video. Light-weight player loaded on demand.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+    {videos.map((video, idx) => (
+      <YouTubeShortCard
+        youtubeId={video.youtubeId}
+        title={video.title}
+        projectName={projectName}
+        index={idx + 1}
+      />
+    ))}
+  </div>
+</div>
