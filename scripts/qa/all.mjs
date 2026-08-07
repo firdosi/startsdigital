@@ -27,6 +27,7 @@ const commands = [
   'node scripts/qa/final-visual-rebuild.mjs',
   'node scripts/qa/card-alignment.mjs',
   'node scripts/qa/tool-brand-logos.mjs',
+  'node scripts/qa/project-video-portfolio.mjs',
 ];
 
 if (!fs.existsSync(dir81)) {

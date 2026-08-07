@@ -15,6 +15,7 @@ export interface VideoProject {
   status?: string;
   summary: string;
   website?: string;
+  facebook?: string;
   videoCount: number;
   videoIds: string[];
 }

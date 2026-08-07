@@ -10,7 +10,6 @@ export const headerNavLinks: NavItem[] = [
   { label: 'Home', href: `${siteConfig.basePath}/` },
   { label: 'Services', href: `${siteConfig.basePath}/#services` },
   { label: 'Work', href: getAssetPath('/work/') },
-  { label: 'Tools', href: getAssetPath('/tools/') },
   { label: 'About', href: `${siteConfig.basePath}/#about` },
   { label: 'Contact', href: getAssetPath('/contact/') },
 ];

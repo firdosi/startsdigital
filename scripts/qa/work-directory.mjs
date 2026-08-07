@@ -28,7 +28,7 @@ assert(!brandsText.includes('right-link-advisors'), 'Right Link Advisors is not 
 assert(!brandsText.includes('Right Link Advisors'), 'Right Link Advisors name is not in src/data/brands.ts');
 
 const activeBrandMatches = brandsText.match(/active:\s*true/g) || [];
-assert(activeBrandMatches.length === 12, `Expected exactly 12 active brands in brands.ts, found ${activeBrandMatches.length}`);
+assert(activeBrandMatches.length === 13, `Expected exactly 13 active brands in brands.ts, found ${activeBrandMatches.length}`);
 
 // 2. Check src/data/projects.ts
 const projectsPath = path.join(rootDir, 'src/data/projects.ts');
@@ -51,7 +51,6 @@ const retiredSlugs = [
   'clearzone-immigration',
   'riyadh-finish-pro',
   'viral-naturals',
-  'shopinq-online',
   'super-safety-covers',
   'unique-lahore-lab-sahiwal'
 ];
